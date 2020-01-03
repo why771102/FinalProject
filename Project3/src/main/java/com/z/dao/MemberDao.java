@@ -1,12 +1,18 @@
 package com.z.dao;
 
+import java.util.List;
+
 import com.z.model.MemberBean;
 
 public interface MemberDao {
 	
-	MemberBean addNewMember(MemberBean mb);
+	void saveMember(MemberBean mb);
 	
-	MemberBean updateMember(MemberBean mb);
+	void updateMember(MemberBean mb);
+	
+	MemberBean isExists(MemberBean mb);
+	
+	List<MemberBean> findAllMember();
 	
 	
 	
