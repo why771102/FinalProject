@@ -59,8 +59,10 @@ public class EmpController {
 	
 	//----------------------------------
 	
-	
-	public String getAll
+	@RequestMapping(value = "/emps")
+	public String getAllEmps(Model model) {
+		return "";
+	}
 	
 	
 	
