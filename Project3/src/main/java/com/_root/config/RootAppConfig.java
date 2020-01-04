@@ -1,4 +1,4 @@
-package com.root.config;
+package com._root.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
