@@ -11,8 +11,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Member")
-public class MemberBean implements Serializable{
+@Table(name="Employee")
+public class EmpBean implements Serializable{
 	
 	/**
 	 * 
@@ -21,8 +21,8 @@ public class MemberBean implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer memberId;
-	String memberName;
+	Integer empId;
+	String empName;
 	Integer roleId;
 	String email;
 	String password;
@@ -32,17 +32,17 @@ public class MemberBean implements Serializable{
 	
 	
 	
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getEmpId() {
+		return empId;
 	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
 	}
-	public String getMemberName() {
-		return memberName;
+	public String getEmpName() {
+		return empName;
 	}
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setMemberName(String empName) {
+		this.empName = empName;
 	}
 	public Integer getRoleId() {
 		return roleId;

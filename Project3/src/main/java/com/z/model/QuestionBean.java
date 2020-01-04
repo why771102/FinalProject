@@ -1,7 +1,6 @@
 package com.z.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.z.model.EmpBean;
 
 
 @Entity
@@ -27,8 +28,8 @@ public class QuestionBean implements Serializable{
 	Integer questionId;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="userId")
-	UserBean userBean;
+	@JoinColumn(name="empId")
+	EmpBean empBean;
 	Integer status;
 	
 	
@@ -41,12 +42,12 @@ public class QuestionBean implements Serializable{
 		this.questionId = questionId;
 	}
 
-	public MemberBean getMemberBean() {
-		return memberBean;
+	public EmpBean getEmpBean() {
+		return empBean;
 	}
 	
-	public void setMemberBean(MemberBean memberBean) {
-		this.memberBean = memberBean;
+	public void setMemberBean(EmpBean empBean) {
+		this.empBean = empBean;
 	}
 	
 	public Integer getStatus() {
