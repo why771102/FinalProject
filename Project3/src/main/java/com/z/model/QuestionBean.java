@@ -28,8 +28,8 @@ public class QuestionBean implements Serializable{
 	Integer questionId;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="empId")
-	EmpBean empBean;
+	@JoinColumn(name="userId")
+	UserBean userBean;
 	Integer status;
 	
 	
@@ -42,12 +42,12 @@ public class QuestionBean implements Serializable{
 		this.questionId = questionId;
 	}
 
-	public EmpBean getEmpBean() {
-		return empBean;
+	public EmpBean getUserBean() {
+		return userBean;
 	}
 	
-	public void setMemberBean(EmpBean empBean) {
-		this.empBean = empBean;
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
 	}
 	
 	public Integer getStatus() {
