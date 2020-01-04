@@ -41,7 +41,7 @@ public class EmpDaoImpl implements EmpDao {
 
 	@Override
 	public EmpBean isExists(EmpBean mb) {
-		String hql = "form MemberBean where memberId = :memberId";
+		String hql = "from MemberBean where memberId = :memberId";
 		Session session = factory.getCurrentSession();
 		EmpBean nmb = null;
 		nmb = (EmpBean) session.createQuery(hql).getSingleResult();
