@@ -1,5 +1,6 @@
 package com.z.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -47,10 +48,14 @@ public class MemberDaoImpl implements MemberDao {
 		return nmb;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MemberBean> findAllMember() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from memberBean";
+		Session session = factory.getCurrentSession();
+		List<MemberBean> list = new ArrayList<>();
+		list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

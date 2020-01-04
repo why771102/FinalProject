@@ -10,4 +10,8 @@
     <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
     <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.hibernate.SessionFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
