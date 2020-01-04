@@ -22,13 +22,13 @@ public class EmpDaoImpl implements EmpDao {
 	}
 
 	@Override
-	public void saveMember(EmpBean mb) {
+	public void saveEmp(EmpBean mb) {
 		Session session = factory.getCurrentSession();
 		session.save(mb);
 	}
 
 	@Override
-	public void updateMember(EmpBean mb) {
+	public void updateEmp(EmpBean mb) {
 		String hql = "update MemberBean set memberName = :memberName, roleId = :roleId , email = :email, status = :status where memberId = :memberId";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("memberName", mb.getEmpName())
@@ -50,7 +50,7 @@ public class EmpDaoImpl implements EmpDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<EmpBean> findAllMember() {
+	public List<EmpBean> findAllEmps() {
 		String hql = "from memberBean";
 		Session session = factory.getCurrentSession();
 		List<EmpBean> list = new ArrayList<>();
