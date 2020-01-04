@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+D:\Ally\¤T±M\workspace\.metadata\.plugins\org.eclipse.jdt.core
-3295996359.index
-3705605431.index
