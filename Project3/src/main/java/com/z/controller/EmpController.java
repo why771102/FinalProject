@@ -1,5 +1,7 @@
 package com.z.controller;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +63,12 @@ public class EmpController {
 	
 	@RequestMapping(value = "/emps")
 	public String getAllEmps(Model model) {
-		return "";
+		List<EmpBean> allEmps = service.findAllEmps();
+		model.addAttribute("allEmps", allEmps);
+		return "emps";
 	}
+	
+	
 	
 	
 	
