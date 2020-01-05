@@ -18,6 +18,7 @@ public class HallDaoImpl implements HallDao{
 		this.factory = factory;
 	}
 
+	//用廳名稱去抓資料傳回hallbean就可以用hb.get...()去抓取其他所需的資料
 	@Override
 	public HallBean getHall(String hallName) {
 		Session session = factory.getCurrentSession();
@@ -33,6 +34,8 @@ public class HallDaoImpl implements HallDao{
 //		return seats;
 //	}
 
+	
+	//抓取多筆的廳資料 顯示在頁面上 for management purposes?
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HallBean> getAllHalls(Integer status) {
@@ -54,6 +57,7 @@ public class HallDaoImpl implements HallDao{
 //		return price;
 //	}
 
+	//更新廳的狀態 可能整修或被包廳
 	@Override
 	public void updateStatus(Integer hallId, Integer status) {
 		Session session = factory.getCurrentSession();
@@ -62,10 +66,13 @@ public class HallDaoImpl implements HallDao{
 		session.saveOrUpdate(hb);
 	}
 
+	//新增廳
 	@Override
 	public void insertHall(HallBean hb) {
 		Session session = factory.getCurrentSession();
 		session.save(hb);
 	}
+	
+	
 
 }

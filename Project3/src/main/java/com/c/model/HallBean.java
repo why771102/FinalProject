@@ -15,9 +15,7 @@ public class HallBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer hallID;
+	String hallID;
 	String hallName;
 	Integer noOfSeats;
 	Integer price;
@@ -27,18 +25,18 @@ public class HallBean implements Serializable{
 		
 	};
 	
-	public HallBean(Integer hallID, String hallName, Integer noOfSeats, Integer price, Integer status) {
-		super();
+	public HallBean(String hallID, String hallName, Integer noOfSeats, Integer price, Integer status) {
 		this.hallID = hallID;
 		this.hallName = hallName;
 		this.noOfSeats = noOfSeats;
 		this.price = price;
 		this.status = status;
 	}
-	public Integer getHallID() {
+
+	public String getHallID() {
 		return hallID;
 	}
-	public void setHallID(Integer hallID) {
+	public void setHallID(String hallID) {
 		this.hallID = hallID;
 	}
 	public String getHallName() {

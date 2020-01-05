@@ -14,7 +14,8 @@ public class SeatsBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	Integer hallId;
+	String seatId;
+	String hallId;
 	String row;
 	Integer seatNo;
 	Integer typeOfSeat;
@@ -24,19 +25,20 @@ public class SeatsBean implements Serializable{
 		
 	}
 	
-	public SeatsBean(Integer hallId, String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
+	public SeatsBean(String seatId, String hallId, String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
+		this.seatId = seatId;
 		this.hallId = hallId;
 		this.row = row;
 		this.seatNo = seatNo;
 		this.typeOfSeat = typeOfSeat;
 		this.seatStatus = seatStatus;
 	}
-	
+
 	@ManyToOne(cascade=CascadeType.ALL)
-	public Integer getHallId() {
+	public String getHallId() {
 		return hallId;
 	}
-	public void setHallId(Integer hallId) {
+	public void setHallId(String hallId) {
 		this.hallId = hallId;
 	}
 	public String getRow() {
