@@ -1,9 +1,17 @@
 package com.a.test;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
+
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+
+
 
 public class TimeAPI {
 
@@ -119,6 +127,40 @@ public class TimeAPI {
 	 // 取得距離目前最近的星期三
 	 final LocalDateTime previousWednesdayDateTime = LocalDateTime.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.WEDNESDAY));
 	 final LocalDateTime nextWednesdayDateTime = LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
+	 
+	 
+	 /*LocalDateTime 與 ＳＱＬ 互轉 */
+	 
+	 //  LocalDate to Timestamp
+     LocalDate now = LocalDate.now();
+     Timestamp timestamp = Timestamp.valueOf(now.atStartOfDay());
+     Timestamp timestamp2 =Timestamp.valueOf(LocalDateTime.now());
+     System.out.println(now);        // 2019-06-14
+     System.out.println("time:"+timestamp2);  // 2019-06-14 00:00:00.0
+
+     //  Timestamp to LocalDate
+     LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
+     System.out.println(localDate);  // 2019-06-14
+	 
+     
+//		string && java.util.Date 互轉
+     
+     DateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");    // 这里填写的是想要进行转换的时间格式
+     String str = "2016-12-11 17:17:10";   // 时间字符串
+     Date date = null;
+     try{
+     date = format.parse(str);
+     }catch(Exception e){
+     e.printStackTrace();
+     }
+     
+     /*java.util.Date 與 java.sql.Date 互轉*/
+     
+     // java.util.Date --> java.sql.Date
+     java.sql.Date sqlDate =  (java.sql.Date)date;
+     // java.sql.Date --> java.util.Date
+     java.util.Date utilDate = new java.util.Date();
+     utilDate.setTime(sqlDate.getTime());
 	 
 	}
 
