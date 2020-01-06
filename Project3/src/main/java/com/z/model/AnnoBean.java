@@ -2,6 +2,7 @@ package com.z.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,8 @@ public class AnnoBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer annoId;
-	Date startTime;
-	Date endTime;
+	Timestamp startTime;
+	Timestamp endTime;
 	String title;
 	String content;
 	Integer status;
@@ -37,19 +38,19 @@ public class AnnoBean implements Serializable{
 		this.annoId = annoId;
 	}
 	
-	public Date getStartTime() {
+	public Timestamp getStartTime() {
 		return startTime;
 	}
 	
-	public void setStartTime(Date startTime) {
+	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
 	
-	public Date getEndTime() {
+	public Timestamp getEndTime() {
 		return endTime;
 	}
 	
-	public void setEndTime(Date endTime) {
+	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
 	

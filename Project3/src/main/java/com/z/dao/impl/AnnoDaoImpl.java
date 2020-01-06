@@ -47,7 +47,7 @@ public class AnnoDaoImpl implements AnnoDao {
 
 	@Override
 	public void updateAnno(AnnoBean ab) {
-		// TODO Auto-generated method stub
+		String hql = "update AnnoBean set title = :title, content = :content, "
 
 	}
 
