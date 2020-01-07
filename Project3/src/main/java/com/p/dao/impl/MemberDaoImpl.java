@@ -2,10 +2,12 @@ package com.p.dao.impl;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.p.dao.MemberDao;
 import com.p.model.MemberBean;
 
+@Repository
 public class MemberDaoImpl implements MemberDao {
 	
 	SessionFactory factory;
