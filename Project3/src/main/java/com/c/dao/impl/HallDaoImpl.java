@@ -6,10 +6,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.c.dao.HallDao;
 import com.c.model.HallBean;
-
+@Repository
 public class HallDaoImpl implements HallDao{
 	SessionFactory factory;
 	
