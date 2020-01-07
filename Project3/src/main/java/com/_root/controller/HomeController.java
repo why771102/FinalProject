@@ -19,14 +19,14 @@ public class HomeController {
 		model.addAttribute("title", "歡迎光臨");
 		model.addAttribute("subtitle", "網路上獨一無二的購物天堂");
 		req.setAttribute("test", "測試用");
-		HallBean hb = new HallBean("A", 300, 1500, 0);
-		HallService hs = new HallServiceImpl();
-		hs.insertHall(hb);
 		return "welcome";
 	}
 	
 	@RequestMapping("/")
 	public String index() {
+		HallBean hb = new HallBean("A", 300, 1500, 0);
+		HallService hs = new HallServiceImpl();
+		hs.insertHall(hb);
 		return "index";
 	}
 }
