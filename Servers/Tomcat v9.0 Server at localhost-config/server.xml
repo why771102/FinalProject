@@ -36,7 +36,6 @@
     <!-- Editable user database that can also be used by
          UserDatabaseRealm to authenticate users
     -->
-     <Resource auth="Container" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" initialSize="5" maxActive="120" maxIdle="5" maxWait="5000" name="jdbc/servdb" password="P@ssw0rd" poolPreparedStatements="true" type="javax.sql.DataSource" url="jdbc:sqlserver://localhost:1433;databaseName=GetMarry" username="sa" validationQuery="select 1"/>
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
   </GlobalNamingResources>
 
