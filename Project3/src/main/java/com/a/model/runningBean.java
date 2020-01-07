@@ -33,7 +33,7 @@ public class runningBean implements Serializable {
 	private MovieBean movie;
 	
 	public runningBean() {
-	};
+	}
 
 	public runningBean(Integer runID, MovieBean movie, Timestamp release, Integer expectedOnDate, Integer onDate,
 			Timestamp expectedOffDate, Timestamp offDate, Integer status) {
