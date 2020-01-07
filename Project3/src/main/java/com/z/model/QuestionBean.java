@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.z.model.EmpBean;
+import com.p.model.MemberBean;
 
 
 @Entity
@@ -42,7 +42,7 @@ public class QuestionBean implements Serializable{
 		this.questionId = questionId;
 	}
 
-	public EmpBean getUserBean() {
+	public MemberBean getUserBean() {
 		return memberBean;
 	}
 	
