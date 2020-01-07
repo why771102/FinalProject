@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="HallPayStatus")
+@Table(name="hallPayStatus")
 public class PayStatusBean implements Serializable {
 	
 	/**

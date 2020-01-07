@@ -1,8 +1,8 @@
-package com.p.dao;
+package com.p.service;
 
 import com.p.model.MemberBean;
 
-public interface MemberDao {
+public interface MemberService {
 	//註冊，將前端填寫的資料寫進DB
 	public MemberBean register(MemberBean mb);
 	
@@ -20,5 +20,4 @@ public interface MemberDao {
 	
 	//用戶更改資料後，存進DB
 	public MemberBean updateMember(MemberBean mb);
-	//Login要獨立寫成一個controller???
 }
