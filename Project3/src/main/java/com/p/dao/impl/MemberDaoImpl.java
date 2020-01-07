@@ -33,4 +33,22 @@ public class MemberDaoImpl implements MemberDao {
 		return null;
 	}
 
+	@Override
+	public boolean accountExists(String account) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean UIDExists(String UID) {
+		
+		return false;
+	}
+
+	@Override
+	public MemberBean checkIdPassword(String account, String password) {
+		
+		return null;
+	}
+
 }

@@ -12,7 +12,7 @@ public interface HallOrderDao {
 	//後臺功能，讓員工可查詢一段時間內的包廳申請
 	public HallOrderBean hallOrderEQuery();
 	
-	//後臺功能，讓員工可進行包廳狀態調整
+	//後臺功能，讓員工可進行包廳狀態調整，狀態調整完要記得發送email
 	public HallOrderBean hallOrderStatusChange();
 	
 	//後臺功能，讓員工可進行包廳付款狀態調整

@@ -1,6 +1,7 @@
 package com.p.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Member")
+@Table(name="member")
 public class MemberBean implements Serializable {
 	
 	@Id
@@ -25,7 +26,8 @@ public class MemberBean implements Serializable {
 	String mobile;
 	String email;
 	String address;
-	Date registerTime;
+	Timestamp registerTime;
+	Timestamp lastLogInTime;
 	
 	public MemberBean() {
 		
@@ -94,8 +96,16 @@ public class MemberBean implements Serializable {
 	public Date getRegisterTime() {
 		return registerTime;
 	}
-	public void setRegisterTime(Date registerTime) {
+	public void setRegisterTime(Timestamp registerTime) {
 		this.registerTime = registerTime;
+	}
+
+	public Date getLastTimeLogIn() {
+		return lastLogInTime;
+	}
+
+	public void setLastLogInTime(Timestamp lastLogInTime) {
+		this.lastLogInTime = lastLogInTime;
 	}
 	
 	

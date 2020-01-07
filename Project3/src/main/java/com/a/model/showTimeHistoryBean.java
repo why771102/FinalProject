@@ -34,7 +34,7 @@ public class showTimeHistoryBean implements Serializable {
 	
 	
 	public showTimeHistoryBean() {
-	};
+	}
 
 	public showTimeHistoryBean(Integer showTimeId, HallBean hall, runningBean run, Timestamp palyStartTime) {
 
