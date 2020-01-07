@@ -50,13 +50,13 @@ public class EmpController {
 			throw new RuntimeException("傳入不允許的欄位");
 		}
  		service.saveEmp(eb);
-		return "redirect:/emp";
+		return "redirect:/addEmp";
 	}
 	
 	
 	@InitBinder
 	public void whiteListing(WebDataBinder binder) {
-		binder.setAllowedFields("empName", "roleId", "email", "password", "status", "endDate");
+		binder.setAllowedFields("empName", "roleId", "email", "password", "status", "startDate" ,"endDate");
 	}
 	
 	//----------------------------------

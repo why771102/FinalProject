@@ -20,7 +20,7 @@
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='products'>查詢所有產品資料</a><BR>
+				<a href='emp/add'>查詢所有產品資料</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
 				<a href='update/stock'>更新多筆產品的庫存數量</a><BR>
