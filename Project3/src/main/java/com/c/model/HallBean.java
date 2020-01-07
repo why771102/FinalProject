@@ -2,6 +2,7 @@ package com.c.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,7 +13,7 @@ public class HallBean implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
-	@Id
+   @Id
 	String hallID;
 	String hallName;
 	Integer noOfSeats;
