@@ -1,6 +1,5 @@
 package com.c.model;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -13,9 +12,9 @@ public class HallBean implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	String hallID;
+	String hallName;
 	Integer noOfSeats;
 	Integer price;
 	Integer status;
@@ -24,8 +23,9 @@ public class HallBean implements Serializable{
 		
 	};
 	
-	public HallBean(String hallID, Integer noOfSeats, Integer price, Integer status) {
+	public HallBean(String hallID, String hallName, Integer noOfSeats, Integer price, Integer status) {
 		this.hallID = hallID;
+		this.hallName = hallName;
 		this.noOfSeats = noOfSeats;
 		this.price = price;
 		this.status = status;
@@ -37,7 +37,12 @@ public class HallBean implements Serializable{
 	public void setHallID(String hallID) {
 		this.hallID = hallID;
 	}
-
+	public String getHallName() {
+		return hallName;
+	}
+	public void setHallName(String hallName) {
+		this.hallName = hallName;
+	}
 	public Integer getNoOfSeats() {
 		return noOfSeats;
 	}
