@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -14,33 +15,47 @@ public class SeatsBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	String seatId;
-	String hallId;
+	String seatID;
 	String row;
 	Integer seatNo;
 	Integer typeOfSeat;
 	Integer seatStatus;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="hallID")
+	private HallBean hallBean;
+	
 	public SeatsBean() {
 		
 	}
 	
-	public SeatsBean(String seatId, String hallId, String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
-		this.seatId = seatId;
-		this.hallId = hallId;
+	public SeatsBean(String seatID, HallBean hallBean,String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
+		this.seatID = seatID;
+		this.hallBean = hallBean;
 		this.row = row;
 		this.seatNo = seatNo;
 		this.typeOfSeat = typeOfSeat;
 		this.seatStatus = seatStatus;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	public String getHallId() {
-		return hallId;
+	
+	
+	public String getSeatID() {
+		return seatID;
 	}
-	public void setHallId(String hallId) {
-		this.hallId = hallId;
+
+	public void setSeatID(String seatID) {
+		this.seatID = seatID;
 	}
+
+	public HallBean getHallBean() {
+		return hallBean;
+	}
+
+	public void setHallBean(HallBean hallBean) {
+		this.hallBean = hallBean;
+	}
+
 	public String getRow() {
 		return row;
 	}
