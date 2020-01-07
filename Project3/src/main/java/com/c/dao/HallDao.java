@@ -6,7 +6,7 @@ import com.c.model.HallBean;
 
 public interface HallDao {
 	//取出廳的資訊
-	public HallBean getHall(String hallName);
+	public HallBean getHall(String hallID);
 	
 //	//抓取廳的座位數
 //	public Integer getNumberOfSeats(Integer hallID);
