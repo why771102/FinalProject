@@ -21,7 +21,7 @@ public class QuestionContentBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	@Id
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="questionId")
 	QuestionBean questionBean;
