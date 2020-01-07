@@ -29,7 +29,7 @@ public class QuestionBean implements Serializable{
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="userId")
-	UserBean userBean;
+	MemberBean memberBean;
 	Integer status;
 	
 	
@@ -43,11 +43,11 @@ public class QuestionBean implements Serializable{
 	}
 
 	public EmpBean getUserBean() {
-		return userBean;
+		return memberBean;
 	}
 	
-	public void setUserBean(UserBean userBean) {
-		this.userBean = userBean;
+	public void setUserBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 	
 	public Integer getStatus() {
