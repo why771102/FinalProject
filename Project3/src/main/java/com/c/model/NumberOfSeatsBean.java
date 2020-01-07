@@ -5,9 +5,8 @@ import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,21 +14,18 @@ import javax.persistence.Table;
 public class NumberOfSeatsBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	Date date;
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="hallID")
-	private HallBean hallBean;
 	
+	Date date;
+	Integer hallId;
 	Integer noOfSeats;
 	
 	public NumberOfSeatsBean() {
 		
 	}
 	
-	public NumberOfSeatsBean(Date date, HallBean hallBean, Integer noOfSeats) {
+	public NumberOfSeatsBean(Date date, Integer hallId, Integer noOfSeats) {
 		this.date = date;
-		this.hallBean = hallBean;
+		this.hallId = hallId;
 		this.noOfSeats = noOfSeats;
 	}
 	public Date getDate() {
@@ -39,14 +35,14 @@ public class NumberOfSeatsBean implements Serializable{
 		this.date = date;
 	}
 	
-	public HallBean getHallBean() {
-		return hallBean;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_Hall_id")
+	public Integer getHallId() {
+		return hallId;
 	}
-
-	public void setHallBean(HallBean hallBean) {
-		this.hallBean = hallBean;
+	public void setHallId(Integer hallId) {
+		this.hallId = hallId;
 	}
-
 	public Integer getNoOfSeats() {
 		return noOfSeats;
 	}

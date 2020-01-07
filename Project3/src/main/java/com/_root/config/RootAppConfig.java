@@ -30,18 +30,17 @@ public class RootAppConfig {
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
-		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=FinalProject");
+		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=JSPDB");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;
 	}
 	
-	@Bean						//製作sessionFactory，其他DAO要用的時候直接AutoWired即可
+	@Bean						//製作sesstionFactory，其他DAO要用的時候直接AutoWired即可
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
 		factory.setPackagesToScan(new String[] {
-				"com.c.model",
 				"com.a.model"
 		});
 		factory.setHibernateProperties(additionalProperties());

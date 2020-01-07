@@ -3,38 +3,22 @@ package com.c.model;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.a.model.showTimeHistoryBean;
-@Entity
-@Table(name="seatOrder")
 public class SeatOrderBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	Date date;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="showTimeID")
-	private showTimeHistoryBean showtimeHistoryBean;
-
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="seatID")
-	private SeatsBean seatsBean;
+	Date date;
+	Integer showTimeID;
+	String seatId;
 	
 	public SeatOrderBean() {
 		
 	}
 	
-	public SeatOrderBean(Date date, showTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean) {
+	public SeatOrderBean(Date date, Integer showTimeID, String seatId) {
 		this.date = date;
-		this.showtimeHistoryBean = showtimeHistoryBean;
-		this.seatsBean = seatsBean;
+		this.showTimeID = showTimeID;
+		this.seatId = seatId;
 	}
 	
 	public Date getDate() {
@@ -43,5 +27,18 @@ public class SeatOrderBean implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public Integer getShowTimeID() {
+		return showTimeID;
+	}
+	public void setShowTimeID(Integer showTimeID) {
+		this.showTimeID = showTimeID;
+	}
+	public String getSeatId() {
+		return seatId;
+	}
+	public void setSeatId(String seatId) {
+		this.seatId = seatId;
+	}
+	
 	
 }
