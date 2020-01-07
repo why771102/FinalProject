@@ -41,8 +41,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
 		factory.setPackagesToScan(new String[] {
-				"com.z.model",
-				"com.p.model"
+				"com.a.model"
 		});
 		factory.setHibernateProperties(additionalProperties());
 		return factory;

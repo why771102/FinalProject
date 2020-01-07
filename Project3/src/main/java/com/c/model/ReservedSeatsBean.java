@@ -4,39 +4,31 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-import com.a.model.showTimeHistoryBean;
-@Entity
-@Table(name="reservedSeats")
 public class ReservedSeatsBean implements Serializable{
 	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	Date date;
-	Integer reservationStatus;
+	Integer showTimeId;
+	String seatId;
+	Integer seatReservationStatus;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="showTimeID")
-	private showTimeHistoryBean showtimeHistoryBean;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="seatID")
-	private SeatsBean seatsBean;
 	
 	public ReservedSeatsBean() {
 		
 	}
 	
-	public ReservedSeatsBean(Date date, showTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean, Integer reservationStatus) {
+	public ReservedSeatsBean(Date date, Integer showTimeId, String seatId, Integer seatReservationStatus) {
 		this.date = date;
-		this.showtimeHistoryBean = showtimeHistoryBean;
-		this.seatsBean = seatsBean;
-		this.reservationStatus = reservationStatus;
+		this.showTimeId = showTimeId;
+		this.seatId = seatId;
+		this.seatReservationStatus = seatReservationStatus;
 	}
 	public Date getDate() {
 		return date;
@@ -44,36 +36,25 @@ public class ReservedSeatsBean implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	public Integer getReservationStatus() {
-		return reservationStatus;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "showTimeId")
+	public Integer getShowTimeId() {
+		return showTimeId;
 	}
-
-	public void setReservationStatus(Integer reservationStatus) {
-		this.reservationStatus = reservationStatus;
+	public void setShowTimeId(Integer showTimeId) {
+		this.showTimeId = showTimeId;
 	}
-
-	public showTimeHistoryBean getShowtimeHistoryBean() {
-		return showtimeHistoryBean;
+	public String getSeatId() {
+		return seatId;
 	}
-
-	public void setShowtimeHistoryBean(showTimeHistoryBean showtimeHistoryBean) {
-		this.showtimeHistoryBean = showtimeHistoryBean;
+	public void setSeatId(String seatId) {
+		this.seatId = seatId;
 	}
-
-	public SeatsBean getSeatsBean() {
-		return seatsBean;
-	}
-
-	public void setSeatsBean(SeatsBean seatsBean) {
-		this.seatsBean = seatsBean;
-	}
-
 	public Integer getSeatReservationStatus() {
-		return reservationStatus;
+		return seatReservationStatus;
 	}
 	public void setSeatReservationStatus(Integer seatReservationStatus) {
-		this.reservationStatus = seatReservationStatus;
+		this.seatReservationStatus = seatReservationStatus;
 	}
 	
 	
