@@ -36,7 +36,7 @@ public class RootAppConfig {
 		return ds;
 	}
 	
-	@Bean						//製作sesstionFactory，其他DAO要用的時候直接AutoWired即可
+	@Bean						//製作sessionFactory，其他DAO要用的時候直接AutoWired即可
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
