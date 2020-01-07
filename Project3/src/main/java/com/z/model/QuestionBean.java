@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.z.model.EmpBean;
+import com.p.model.MemberBean;
 
 
 @Entity
@@ -28,7 +28,7 @@ public class QuestionBean implements Serializable{
 	Integer questionId;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="userId")
+	@JoinColumn(name="memberID")
 	MemberBean memberBean;
 	Integer status;
 	
@@ -42,11 +42,11 @@ public class QuestionBean implements Serializable{
 		this.questionId = questionId;
 	}
 
-	public EmpBean getUserBean() {
+	public MemberBean getmemberBean() {
 		return memberBean;
 	}
 	
-	public void setUserBean(MemberBean memberBean) {
+	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
 	}
 	
