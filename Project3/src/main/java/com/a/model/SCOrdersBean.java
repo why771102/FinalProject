@@ -38,11 +38,11 @@ public class SCOrdersBean implements Serializable{
 		
 	}
 	
-	public SCOrdersBean(Integer sCOrderID, com.p.model.MemberBean memberBean, Integer paymentStatus, String shippingAddress,
+	
+	public SCOrdersBean(Integer sCOrderID, MemberBean memberBean, Integer paymentStatus, String shippingAddress,
 			Timestamp orderDate, Integer shippingStatus, Integer total, String memo) {
-		super();
-		SCOrderID = sCOrderID;
-		MemberBean = memberBean;
+		this.SCOrderID = sCOrderID;
+		this.MemberBean = memberBean;
 		this.paymentStatus = paymentStatus;
 		this.shippingAddress = shippingAddress;
 		this.orderDate = orderDate;
@@ -50,6 +50,7 @@ public class SCOrdersBean implements Serializable{
 		this.total = total;
 		this.memo = memo;
 	}
+	
 	public Integer getSCOrderID() {
 		return SCOrderID;
 	}
