@@ -1,6 +1,7 @@
 package com.a.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
-import com.mysql.cj.jdbc.Blob;
+
 
 @Entity
 @Table(name = "movies")
