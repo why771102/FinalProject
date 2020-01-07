@@ -5,9 +5,9 @@ import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class NumberOfSeatsBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+	@Id
 	Date date;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
