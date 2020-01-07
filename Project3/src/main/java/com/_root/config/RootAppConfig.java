@@ -30,7 +30,7 @@ public class RootAppConfig {
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
-		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=JSPDB");
+		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=FinalProject");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;
@@ -41,7 +41,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
 		factory.setPackagesToScan(new String[] {
-				"com.web.store.model"
+				"com.c.model"
 		});
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
