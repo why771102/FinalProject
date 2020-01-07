@@ -31,6 +31,15 @@ public class SCOrderDetailBean implements Serializable {
 	
 	
 	
+	public SCOrderDetailBean(Integer quantity, SCOrdersBean scorders, ProductsBean prducts) {
+		super();
+		this.quantity = quantity;
+		this.scorders = scorders;
+		this.prducts = prducts;
+	}
+
+
+
 	public Integer getQuantity() {
 		return quantity;
 	}
