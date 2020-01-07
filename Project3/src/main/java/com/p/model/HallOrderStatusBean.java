@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="HallOrderStatus")
+@Table(name="hallOrderStatus")
 public class HallOrderStatusBean implements Serializable {
 	
 	/**
