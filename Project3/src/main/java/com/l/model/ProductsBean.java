@@ -16,7 +16,7 @@ public class ProductsBean implements Serializable {
 	@Id
 	@NotNull
 	@Column(nullable=false)
-	Integer productID;
+	Integer productID;    //PK但非流水號
 	@NotNull
 	@Column(nullable=false, columnDefinition = "NVARCHAR(40)")
 	String productName;

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 //參考：https://blog.csdn.net/MurcielagoAN/article/details/43966209
 @Entity
 @Table(name = "running" )
-public class RunningBean implements Serializable {
+public class runningBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +32,10 @@ public class RunningBean implements Serializable {
 	@JoinColumn(name="movieID")
 	private MovieBean movie;
 	
-	public RunningBean() {
+	public runningBean() {
 	};
 
-	public RunningBean(Integer runID, MovieBean movie, Timestamp release, Integer expectedOnDate, Integer onDate,
+	public runningBean(Integer runID, MovieBean movie, Timestamp release, Integer expectedOnDate, Integer onDate,
 			Timestamp expectedOffDate, Timestamp offDate, Integer status) {
 		this.runID = runID;
 		this.movie = movie;

@@ -47,11 +47,5 @@ public class EmpServiceImpl implements EmpService {
 	public List<EmpBean> findAllEmps() {
 		return dao.findAllEmps();
 	}
-	
-	@Transactional
-	@Override
-	public EmpBean getEmp(Integer empId) {
-		return dao.getEmp(empId);
-	}
 
 }

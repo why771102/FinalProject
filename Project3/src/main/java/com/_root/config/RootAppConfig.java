@@ -48,6 +48,8 @@ public class RootAppConfig {
 				"com.p.model",
 				"com.z.model",
 				"com.t.model"
+				
+				
 		});
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
