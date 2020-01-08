@@ -3,6 +3,7 @@ package com.t.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -10,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.a.model.MovieBean;
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -22,9 +24,14 @@ public class ExpectationBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	Integer expectation;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
+	Integer expective;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
+	Integer unexpective;
 //	Integer movieID;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
 	private MovieBean movieID;		
@@ -38,12 +45,20 @@ public class ExpectationBean implements Serializable{
 	}
 
 
-	public Integer getExpectation() {
-		return expectation;
+	public Integer getExpective() {
+		return expective;
 	}
 
-	public void setExpectation(Integer expectation) {
-		this.expectation = expectation;
+	public void setExpective(Integer expective) {
+		this.expective = expective;
+	}
+	
+	public Integer getUnexpect() {
+		return unexpective;
+	}
+
+	public void setUnexpect(Integer unexpective) {
+		this.unexpective = unexpective;
 	}
 
 	public static long getSerialversionuid() {

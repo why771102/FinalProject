@@ -1,25 +1,39 @@
 package com.l.model;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="Products")
 public class ProductsBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	@Column(nullable=false)
 	Integer productID;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "NVARCHAR(40)")
 	String productName;
+	@NotNull
+	@Column(nullable=false, columnDefinition="TINYINT")
 	Integer category;
+	@NotNull
+	@Column(nullable=false)
 	Integer unitPrice;
+	@NotNull
+	@Column(nullable=false)
 	Integer unitStock;
+	@NotNull
+	@Column(nullable=false)
 	Integer cost;
 
+	
 	public Integer getProductID() {
 		return productID;
 	}

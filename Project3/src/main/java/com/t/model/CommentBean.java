@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 
 import com.a.model.MovieBean;
 import com.p.model.MemberBean;
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -28,14 +30,26 @@ public class CommentBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@NotNull
+	@Column(nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer commentId;
 //	Integer movieID;
 //	Integer memberID;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer watched;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer grade;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "NVARCHAR(MAX)")
 	String commentContent;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "DATETIME")
 	Date commentTime;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer commentDelete;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
