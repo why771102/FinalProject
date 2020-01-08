@@ -25,10 +25,10 @@ public class ExpectationBean implements Serializable{
 	
 	@Id
 	@NotNull
-	@Column(nullable=false, columnDefinition = "TINYINT")
+	@Column(nullable=false)
 	Integer expective;
 	@NotNull
-	@Column(nullable=false, columnDefinition = "TINYINT")
+	@Column(nullable=false)
 	Integer unexpective;
 //	Integer movieID;
 
