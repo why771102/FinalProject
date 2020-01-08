@@ -1,5 +1,8 @@
 package com.c.dao.impl;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +29,10 @@ public class NumberOfSeatsDaoImpl implements NumberOfSeatsDao {
 	}
 
 	@Override
-	public NumberOfSeatsBean getNumberOfSeats(String hallID) {
+	public List<NumberOfSeatsBean> getNumberOfSeats(Date date) {
 		Session session = factory.getCurrentSession();
-		NumberOfSeatsBean nosb = session.get(NumberOfSeatsBean.class, hallID);
-		return nosb;
+		
+		return null;
 	}
 	
 	

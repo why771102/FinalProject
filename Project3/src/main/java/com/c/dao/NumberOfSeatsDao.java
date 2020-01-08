@@ -1,5 +1,8 @@
 package com.c.dao;
 
+import java.sql.Date;
+import java.util.List;
+
 import com.c.model.NumberOfSeatsBean;
 
 public interface NumberOfSeatsDao {
@@ -9,6 +12,6 @@ public interface NumberOfSeatsDao {
 	public void insertNumberofSeats(NumberOfSeatsBean nosb);
 	
 	//get number of seats for each hall
-	public NumberOfSeatsBean getNumberOfSeats(String hallID);
+	public List<NumberOfSeatsBean> getNumberOfSeats(Date date);
 	
 }
