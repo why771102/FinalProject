@@ -58,4 +58,17 @@ public class EmpDaoImpl implements EmpDao {
 		return list;
 	}
 
+	@Override
+	public EmpBean getEmp(Integer empId) {
+		
+		String hql = "from EmpBean where empId = :empId";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql)
+		
+		return null;
+	}
+	
+	
+	
+
 }
