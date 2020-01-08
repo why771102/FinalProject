@@ -26,9 +26,12 @@ public class ExpectationBean implements Serializable{
 	@Id
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
-	Integer expectation;
+	Integer expective;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
+	Integer unexpective;
 //	Integer movieID;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
 	private MovieBean movieID;		
@@ -42,12 +45,20 @@ public class ExpectationBean implements Serializable{
 	}
 
 
-	public Integer getExpectation() {
-		return expectation;
+	public Integer getExpective() {
+		return expective;
 	}
 
-	public void setExpectation(Integer expectation) {
-		this.expectation = expectation;
+	public void setExpective(Integer expective) {
+		this.expective = expective;
+	}
+	
+	public Integer getUnexpect() {
+		return unexpective;
+	}
+
+	public void setUnexpect(Integer unexpective) {
+		this.unexpective = unexpective;
 	}
 
 	public static long getSerialversionuid() {
