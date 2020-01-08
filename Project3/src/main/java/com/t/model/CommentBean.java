@@ -32,6 +32,7 @@ public class CommentBean implements Serializable{
 	Integer commentId;
 //	Integer movieID;
 //	Integer memberID;
+	Integer watched;
 	Integer grade;
 	String commentContent;
 	Date commentTime;
@@ -68,6 +69,14 @@ public class CommentBean implements Serializable{
 
 	public void setmemberID(MemberBean memberID) {
 		this.memberID = memberID;
+	}
+	
+	public Integer getWatched() {
+		return watched;
+	}
+
+	public void setWatched(Integer watched) {
+		this.watched = watched;
 	}
 
 	public Integer getGrade() {
