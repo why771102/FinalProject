@@ -64,6 +64,9 @@ public interface MovieService {
     //從第一天開始排
 	//判斷上映日
 	//預期下檔日
+	public ShowTimeHistoryBean createShowTime(List<RunningBean> Running);
+	//
+	public void addShowTime(ShowTimeHistoryBean show);
 	
 	
 	//根據p/t值排片
