@@ -14,7 +14,7 @@ public interface EmpDao {
 	
 	List<EmpBean> findAllEmps();
 	
-	
+	EmpBean getEmp(Integer empId);
 	
 
 }
