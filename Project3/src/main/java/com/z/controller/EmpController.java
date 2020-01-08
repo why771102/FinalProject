@@ -50,7 +50,7 @@ public class EmpController {
 			throw new RuntimeException("傳入不允許的欄位");
 		} 
  		service.saveEmp(eb);
-		return "redirect:/addEmp";
+		return "addEmp";
 	}
 	
 	
