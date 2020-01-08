@@ -21,8 +21,8 @@
 					email:		<form:input name="email" path="email" type='text' /><br>
 					password:	<form:input name="password" path="password" type='text' /><br>
 					status:		<form:input name="status" path="status" type='text' /><br>
-					startDate:	<form:input name="startDate" path="startDate" type='text' /><br>
-					endDate:	<form:input name="endDate" path="endDate" type='text' /><br>
+					startDate:	<form:input name="startDate" path="startDate" type='date' /><br>
+					endDate:	<form:input name="endDate" path="endDate" type='date' /><br>
 
 				
 						<input type='submit'/>
