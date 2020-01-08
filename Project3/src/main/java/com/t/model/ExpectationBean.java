@@ -3,6 +3,7 @@ package com.t.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -10,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.a.model.MovieBean;
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -22,6 +24,8 @@ public class ExpectationBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer expectation;
 //	Integer movieID;
 	
