@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 import com.a.model.showTimeHistoryBean;
 import com.c.model.SeatsBean;
 import com.p.model.MemberBean;
+import com.sun.istack.NotNull;
 import com.z.model.EmpBean;
 
 @Entity
@@ -22,54 +24,30 @@ import com.z.model.EmpBean;
 public class mOrderBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer ordersID;
-	Integer ticketSerial;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer ticketStatus;
-//	Timestamp  showTimeID;
+//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
-	private showTimeHistoryBean showTimeID;
-//	String  title;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="title")
-	private showTimeHistoryBean title;
-//	Integer hallID; 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="hallID")
-	private showTimeHistoryBean hallID;
-//	Timestamp playStartTime;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="playStartTime")
-	private showTimeHistoryBean playStartTime;
-//	String row;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="row")
-	private SeatsBean row;
-//	Integer seatNo;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="seatNo")
-	private SeatsBean seatNo;
-//	Integer employeeID;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="employeeID")
-	private EmpBean employeeID;
+	private ShowTimeHistoryBean showTimeID;
 //	Integer memberID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean memberID;
 	Timestamp ticketTime;
+//	Integer employeeID;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="employeeID")
+	private MemberBean employeeID;
 	public Integer getOrdersID() {
 		return ordersID;
 	}
 	public void setOrdersID(Integer ordersID) {
 		this.ordersID = ordersID;
-	}
-	public Integer getTicketSerial() {
-		return ticketSerial;
-	}
-	public void setTicketSerial(Integer ticketSerial) {
-		this.ticketSerial = ticketSerial;
 	}
 	public Integer getTicketStatus() {
 		return ticketStatus;
@@ -77,47 +55,11 @@ public class mOrderBean implements Serializable {
 	public void setTicketStatus(Integer ticketStatus) {
 		this.ticketStatus = ticketStatus;
 	}
-	public showTimeHistoryBean getShowTimeID() {
+	public ShowTimeHistoryBean getShowTimeID() {
 		return showTimeID;
 	}
-	public void setShowTimeID(showTimeHistoryBean showTimeID) {
+	public void setShowTimeID(ShowTimeHistoryBean showTimeID) {
 		this.showTimeID = showTimeID;
-	}
-	public showTimeHistoryBean getTitle() {
-		return title;
-	}
-	public void setTitle(showTimeHistoryBean title) {
-		this.title = title;
-	}
-	public showTimeHistoryBean getHallID() {
-		return hallID;
-	}
-	public void setHallID(showTimeHistoryBean hallID) {
-		this.hallID = hallID;
-	}
-	public showTimeHistoryBean getPlayStartTime() {
-		return playStartTime;
-	}
-	public void setPlayStartTime(showTimeHistoryBean playStartTime) {
-		this.playStartTime = playStartTime;
-	}
-	public SeatsBean getRow() {
-		return row;
-	}
-	public void setRow(SeatsBean row) {
-		this.row = row;
-	}
-	public SeatsBean getSeatNo() {
-		return seatNo;
-	}
-	public void setSeatNo(SeatsBean seatNo) {
-		this.seatNo = seatNo;
-	}
-	public EmpBean getEmployeeID() {
-		return employeeID;
-	}
-	public void setEmployeeID(EmpBean employeeID) {
-		this.employeeID = employeeID;
 	}
 	public MemberBean getMemberID() {
 		return memberID;
@@ -131,8 +73,10 @@ public class mOrderBean implements Serializable {
 	public void setTicketTime(Timestamp ticketTime) {
 		this.ticketTime = ticketTime;
 	}
-
-	
-	
-	
+	public MemberBean getEmployeeID() {
+		return employeeID;
+	}
+	public void setEmployeeID(MemberBean employeeID) {
+		this.employeeID = employeeID;
+	}
 }

@@ -3,6 +3,7 @@ package com.l.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,12 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
-@Table(name="OrderDetail")
+@Table(name="mOrderDetail")
 public class mOrderDetailBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-//	Integer ordersID;
+//	Integer ordersID; 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
 	private mOrderBean ordersID;
@@ -24,16 +27,16 @@ public class mOrderDetailBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="productID")
 	private ProductsBean productID;
-//	Integer unitPrice;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="unitPrice")
-	private ProductsBean unitPrice;
+	@NotNull
+	@Column(nullable=false)
+	Integer unitPrice;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "REAL")
 	Integer discount;
+	@NotNull
+	@Column(nullable=false)
 	Integer quantity;
 	
-	
-
-
 	
 //	public Integer getOrdersID() {
 //		return ordersID;
@@ -63,17 +66,10 @@ public class mOrderDetailBean implements Serializable {
 	public void setProductID(ProductsBean productID) {
 		this.productID = productID;
 	}
-//	public Integer getUnitPrice() {
-//		return unitPrice;
-//	}
-//	public void setUnitPrice(Integer unitPrice) {
-//		this.unitPrice = unitPrice;
-//	}
-	
-	public ProductsBean getUnitPrice() {
+	public Integer getUnitPrice() {
 		return unitPrice;
 	}
-	public void setUnitPrice(ProductsBean unitPrice) {
+	public void setUnitPrice(Integer unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 	
