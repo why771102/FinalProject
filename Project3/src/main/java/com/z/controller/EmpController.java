@@ -42,22 +42,22 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value = "/emp/add", method = RequestMethod.POST)
-	public String processAddNewEmp(@ModelAttribute("empBean") EmpBean eb, BindingResult result) {
+	public String processAddNewEmp(@ModelAttribute("empBean") EmpBean eb) {
 		
-		String[] suppressedFields = result.getSuppressedFields();
-		
-		if(suppressedFields.length > 0) {
-			throw new RuntimeException("傳入不允許的欄位");
-		}
+//		String[] suppressedFields = result.getSuppressedFields();
+//		, BindingResult result
+//		if(suppressedFields.length > 0) {
+//			throw new RuntimeException("傳入不允許的欄位");
+//		} 
  		service.saveEmp(eb);
-		return "redirect:/emp";
+		return "addEmp";
 	}
 	
 	
-	@InitBinder
-	public void whiteListing(WebDataBinder binder) {
-		binder.setAllowedFields("empName", "roleId", "email", "password", "status", "endDate");
-	}
+//	@InitBinder
+//	public void whiteListing(WebDataBinder binder) {
+//		binder.setAllowedFields("empName", "roleId", "email", "password", "status", "startDate" ,"endDate");
+//	}
 	
 	//----------------------------------
 	
@@ -68,6 +68,13 @@ public class EmpController {
 		return "emps";
 	}
 	
+	
+	@RequestMapping(value = "/emps")
+	public String getEmp(Model model) {
+		List<EmpBean> allEmps = service.findAllEmps();
+		model.addAttribute("allEmps", allEmps);
+		return "emps";
+	}
 	
 	
 	

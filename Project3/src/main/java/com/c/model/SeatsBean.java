@@ -3,9 +3,14 @@ package com.c.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -13,34 +18,58 @@ import javax.persistence.Table;
 public class SeatsBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
-	String seatId;
-	String hallId;
+	@Id
+	@NotNull
+	@Column(nullable=false, columnDefinition = "NCHAR(4)")
+	String seatID;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "NCHAR(1)")
 	String row;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "SMALLINT")
 	Integer seatNo;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer typeOfSeat;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer seatStatus;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="hallID")
+	private HallBean hallBean;
 	
 	public SeatsBean() {
 		
 	}
 	
-	public SeatsBean(String seatId, String hallId, String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
-		this.seatId = seatId;
-		this.hallId = hallId;
+	public SeatsBean(String seatID, HallBean hallBean,String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
+		this.seatID = seatID;
+		this.hallBean = hallBean;
 		this.row = row;
 		this.seatNo = seatNo;
 		this.typeOfSeat = typeOfSeat;
 		this.seatStatus = seatStatus;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	public String getHallId() {
-		return hallId;
+	
+	
+	public String getSeatID() {
+		return seatID;
 	}
-	public void setHallId(String hallId) {
-		this.hallId = hallId;
+
+	public void setSeatID(String seatID) {
+		this.seatID = seatID;
 	}
+
+	public HallBean getHallBean() {
+		return hallBean;
+	}
+
+	public void setHallBean(HallBean hallBean) {
+		this.hallBean = hallBean;
+	}
+
 	public String getRow() {
 		return row;
 	}

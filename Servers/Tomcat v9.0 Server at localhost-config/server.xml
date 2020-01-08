@@ -62,7 +62,8 @@
     -->
     <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
     
-    <Connector SSLEnabled="true" SSLEngine="on" SSLVerifyClient="require" SSLVerifyDepth="2" acceptCount="100" clientAuth="false" disableUploadTimeout="true" enableLookups="true" keystoreFile="c:\_JSP\temp\server.jks" keystorePass="password" keystoreType="JKS" maxSpareThreads="75" maxThreads="200" minSpareThreads="5" port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https" secure="true" sslProtocol="TLS" truststoreFile="c:\_JSP\temp\server.jks" truststorePass="password" truststoreType="JKS"/>
+<!--     <Connector SSLEnabled="true" SSLEngine="on" SSLVerifyClient="require" SSLVerifyDepth="2" acceptCount="100" clientAuth="false" disableUploadTimeout="true" enableLookups="true" keystoreFile="c:\_JSP\temp\server.jks" keystorePass="password" keystoreType="JKS" maxSpareThreads="75" maxThreads="200" minSpareThreads="5" port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https" secure="true" sslProtocol="TLS" truststoreFile="c:\_JSP\temp\server.jks" truststorePass="password" truststoreType="JKS"/> -->
+    
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -108,8 +109,6 @@
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
     <Connector port="8009" protocol="AJP/1.3" redirectPort="8443"/>
-    
-    
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes

@@ -16,7 +16,7 @@ import com.c.model.HallBean;
 
 @Entity
 @Table(name = "showTimeHistory" )
-public class showTimeHistoryBean implements Serializable {
+public class ShowTimeHistoryBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +27,16 @@ public class showTimeHistoryBean implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="runID")
-	private runningBean run;
+	private RunningBean run;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="hallID")
 	private HallBean hall;
 	
 	
-	public showTimeHistoryBean() {
-	};
+	public ShowTimeHistoryBean() {
+	}
 
-	public showTimeHistoryBean(Integer showTimeId, HallBean hall, runningBean run, Timestamp palyStartTime) {
+	public ShowTimeHistoryBean(Integer showTimeId, HallBean hall, RunningBean run, Timestamp palyStartTime) {
 
 		this.showTimeId = showTimeId;
 		this.hall = hall;
@@ -45,11 +45,11 @@ public class showTimeHistoryBean implements Serializable {
 	};
 	
 
-	public runningBean getRun() {
+	public RunningBean getRun() {
 		return run;
 	}
 
-	public void setRun(runningBean run) {
+	public void setRun(RunningBean run) {
 		this.run = run;
 	}
 

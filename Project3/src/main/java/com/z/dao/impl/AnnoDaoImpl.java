@@ -47,8 +47,9 @@ public class AnnoDaoImpl implements AnnoDao {
 
 	@Override
 	public void updateAnno(AnnoBean ab) {
-		String hql = "update AnnoBean set title = :title, content = :content, "
-
+		String hql = "update AnnoBean set title = :title, content = :content, priority = :priority, startTime = :startTime, endTime = :endTime where annoId = :annoId ";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("title",ab.getTitle()).setParameter("content",ab.getContent()).setParameter("priority",ab.getPriority()).setParameter("startTime",ab.getStartTime()).setParameter("endTime",ab.getEndTime()).setParameter("annoId",ab.getAnnoId()).executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")

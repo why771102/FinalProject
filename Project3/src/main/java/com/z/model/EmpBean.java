@@ -1,9 +1,8 @@
 package com.z.model;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +22,16 @@ public class EmpBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer empId;
+	
 	String empName;
 	Integer roleId;
 	String email;
 	String password;
 	Integer status;
-	Timestamp startDate;
-	Timestamp endDate;
+	@Column(columnDefinition = "datetime")
+	String startDate;
+	@Column(columnDefinition = "datetime")
+	String endDate;
 	
 	
 	
@@ -42,7 +44,7 @@ public class EmpBean implements Serializable{
 	public String getEmpName() {
 		return empName;
 	}
-	public void setMemberName(String empName) {
+	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
 	public Integer getRoleId() {
@@ -69,16 +71,16 @@ public class EmpBean implements Serializable{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public Timestamp getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Timestamp startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public Timestamp getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Timestamp endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	

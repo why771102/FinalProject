@@ -6,10 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.c.dao.HallDao;
 import com.c.model.HallBean;
 
+@Repository
 public class HallDaoImpl implements HallDao{
 	SessionFactory factory;
 	
@@ -20,9 +22,9 @@ public class HallDaoImpl implements HallDao{
 
 	//用廳名稱去抓資料傳回hallbean就可以用hb.get...()去抓取其他所需的資料
 	@Override
-	public HallBean getHall(String hallName) {
+	public HallBean getHall(String hallID) {
 		Session session = factory.getCurrentSession();
-		HallBean hb = session.get(HallBean.class, hallName);
+		HallBean hb = session.get(HallBean.class, hallID);
 		return hb;
 	}
 
@@ -71,6 +73,12 @@ public class HallDaoImpl implements HallDao{
 	public void insertHall(HallBean hb) {
 		Session session = factory.getCurrentSession();
 		session.save(hb);
+	}
+
+	@Override
+	public void updateHall(HallBean hb) {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(hb);
 	}
 	
 	
