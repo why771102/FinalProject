@@ -1,16 +1,14 @@
 package com.c.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.c.dao.SeatsDao;
-import com.c.model.HallBean;
 import com.c.model.SeatsBean;
 
+@Repository
 public class SeatsDaoImpl implements SeatsDao {
 
 	SessionFactory factory;

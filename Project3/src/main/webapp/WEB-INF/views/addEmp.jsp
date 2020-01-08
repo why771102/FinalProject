@@ -20,18 +20,24 @@
 		
 			<fieldset>
 
-					empName:	<form:input id="empName" path="empName" type='text'/><br>
-					roleId:		<form:input id="roleId" path="roleId" type='text' /><br>
-					email:		<form:input id="email" path="email" type='text' /><br>
-					password:	<form:input id="password" path="password" type='text' /><br>
-					status:		<form:input id="status" path="status" type='text' /><br>
-					startDate:	<form:input id="startDate" path="startDate" type='text' /><br>
-					endDate:	<form:input id="endDate" path="endDate" type='text' /><br>
+					empName:	<form:input name="empName" path="empName" type='text' /><br>
+					roleId:		<form:input name="roleId" path="roleId" type='text' /><br>
+					email:		<form:input name="email" path="email" type='text' /><br>
+					password:	<form:input name="password" path="password" type='text' /><br>
+					status:		<form:input name="status" path="status" type='text' /><br>
+					startDate:	<form:input name="startDate" path="startDate" type='text' /><br>
+					endDate:	<form:input name="endDate" path="endDate" type='text' /><br>
 
 				
-						<input type='submit'/>
+						<input type='submit' onclick="c()"/>
 					
 			</fieldset>
 		</form:form>
+		
+		<script>
+		function c(){
+		console.log(document.getElementById("empName").value);
+		}
+		</script>
 </body>
 </html>

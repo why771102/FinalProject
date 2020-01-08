@@ -48,7 +48,7 @@ public class EmpController {
 		
 		if(suppressedFields.length > 0) {
 			throw new RuntimeException("傳入不允許的欄位");
-		}
+		} 
  		service.saveEmp(eb);
 		return "redirect:/addEmp";
 	}
