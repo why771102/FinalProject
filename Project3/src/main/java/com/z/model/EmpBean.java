@@ -22,6 +22,7 @@ public class EmpBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer empId;
+	
 	String empName;
 	Integer roleId;
 	String email;
@@ -43,7 +44,7 @@ public class EmpBean implements Serializable{
 	public String getEmpName() {
 		return empName;
 	}
-	public void setMemberName(String empName) {
+	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
 	public Integer getRoleId() {
