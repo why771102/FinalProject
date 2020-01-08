@@ -7,8 +7,6 @@
 <head>
 
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
 <title>Products</title>
 
@@ -17,8 +15,6 @@
 
 
 		<form:form method='POST' modelAttribute="empBean" enctype="multipart/form-data" >
-		
-			<fieldset>
 
 					empName:	<form:input name="empName" path="empName" type='text' /><br>
 					roleId:		<form:input name="roleId" path="roleId" type='text' /><br>
@@ -29,15 +25,9 @@
 					endDate:	<form:input name="endDate" path="endDate" type='text' /><br>
 
 				
-						<input type='submit' onclick="c()"/>
-					
-			</fieldset>
+						<input type='submit'/>
+
 		</form:form>
-		
-		<script>
-		function c(){
-		console.log(document.getElementById("empName").value);
-		}
-		</script>
+
 </body>
 </html>
