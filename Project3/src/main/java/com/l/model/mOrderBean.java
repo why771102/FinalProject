@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.a.model.showTimeHistoryBean;
+import com.a.model.ShowTimeHistoryBean;
 import com.c.model.SeatsBean;
 import com.p.model.MemberBean;
 import com.sun.istack.NotNull;

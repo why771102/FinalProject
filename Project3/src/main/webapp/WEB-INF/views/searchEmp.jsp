@@ -14,13 +14,13 @@
 <body>
 
 
-		<form:form method='POST' action="emp" >
+		<form method='POST' action="emp" >
 
-					請輸入員工ID:	<form:input name="empId" path="empId" type='text' /><br>
+					請輸入員工ID:	<input name="empId"  type='text' /><br>
 					
 						<input type='submit'/>
 
-		</form:form>
+		</form>
 
 </body>
 </html>

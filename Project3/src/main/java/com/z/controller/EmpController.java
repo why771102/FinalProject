@@ -70,12 +70,12 @@ public class EmpController {
 	@RequestMapping(value = "/emp")
 	public String getEmp(@RequestParam("empId") Integer empId, Model model) {
 		EmpBean eb = service.getEmp(empId);
-		model.addAttribute("eb", eb);
+		model.addAttribute("emp", eb);
 		return "emp";
 	}
 	
-	@RequestMapping("searchEmp")
-	public String searchEmp() {
+	@RequestMapping(value = "searchEmp")
+	public String searchEmp(Model model) {
 		return "searchEmp";
 	}
 	

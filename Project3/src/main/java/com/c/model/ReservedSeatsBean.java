@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.a.model.showTimeHistoryBean;
+import com.a.model.ShowTimeHistoryBean;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -29,7 +29,7 @@ public class ReservedSeatsBean implements Serializable{
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
-	private showTimeHistoryBean showtimeHistoryBean;
+	private ShowTimeHistoryBean showtimeHistoryBean;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="seatID")
@@ -39,7 +39,7 @@ public class ReservedSeatsBean implements Serializable{
 		
 	}
 	
-	public ReservedSeatsBean(Date date, showTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean, Integer reservationStatus) {
+	public ReservedSeatsBean(Date date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean, Integer reservationStatus) {
 		this.date = date;
 		this.showtimeHistoryBean = showtimeHistoryBean;
 		this.seatsBean = seatsBean;
@@ -60,11 +60,11 @@ public class ReservedSeatsBean implements Serializable{
 		this.reservationStatus = reservationStatus;
 	}
 
-	public showTimeHistoryBean getShowtimeHistoryBean() {
+	public ShowTimeHistoryBean getShowtimeHistoryBean() {
 		return showtimeHistoryBean;
 	}
 
-	public void setShowtimeHistoryBean(showTimeHistoryBean showtimeHistoryBean) {
+	public void setShowtimeHistoryBean(ShowTimeHistoryBean showtimeHistoryBean) {
 		this.showtimeHistoryBean = showtimeHistoryBean;
 	}
 

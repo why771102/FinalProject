@@ -2,9 +2,10 @@ package com.m.dao;
 
 import java.util.Date;
 import java.util.List;
+
 import com.a.model.MovieBean;
-import com.a.model.runningBean;
-import com.a.model.showTimeHistoryBean;
+import com.a.model.RunningBean;
+import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
 import com.p.model.HallOrderBean;
 
@@ -12,7 +13,7 @@ public interface TicketSaleDao {
 	//DBT: showTimeHistory => hallID, runID, playStartTime播放日期時間
 	
 	//根據輸入的起迄時間, 取得廳院的mID跟RunID, DBT => running
-	public List<runningBean> getRunningInfo(Date sDate, Date eDate);
+	public List<RunningBean> getRunningInfo(Date sDate, Date eDate);
 	
 //	public List<Integer> getMovieID(Date sDate, Date eDate);
 	
@@ -26,7 +27,7 @@ public interface TicketSaleDao {
 	public Integer getShowTime(Integer movieID);
 	
 	//HallID & Date年月日only: 取得x電影x場次的Hall, DBT => showTimeHistory
-	public showTimeHistoryBean getShowHallandDate(Integer showTimeID); 
+	public ShowTimeHistoryBean getShowHallandDate(Integer showTimeID); 
 	
 	//HallSeats: 取得x電影在x天x廳的座位數 DBT => numberOfSeats
 //	public Integer getHallSeats(String hallID, Date date);
