@@ -31,6 +31,8 @@ public class NumberOfSeatsDaoImpl implements NumberOfSeatsDao {
 		NumberOfSeatsBean nosb = session.get(NumberOfSeatsBean.class, hallID);
 		return nosb;
 	}
+	
+	
 
 
 }

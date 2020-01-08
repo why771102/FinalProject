@@ -10,4 +10,5 @@ public interface NumberOfSeatsDao {
 	
 	//get number of seats for each hall
 	public NumberOfSeatsBean getNumberOfSeats(String hallID);
+	
 }
