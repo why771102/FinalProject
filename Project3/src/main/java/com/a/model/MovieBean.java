@@ -40,7 +40,7 @@ public class MovieBean implements Serializable {
 	}
 
 	public MovieBean(Integer movieID, String title, Timestamp contractDate, Integer expectedProfit, Double profitRatio,
-			Timestamp runningTime, String director, String cast, Integer plotSummary, String genre, String trailer,
+			Timestamp runningTime, String director, String cast, Integer movieRating,Integer plotSummary, String genre, String trailer,
 			String plotSummary1, Blob photo, Integer status) {
 		
 		this.movieID = movieID;
