@@ -63,9 +63,8 @@ public class EmpDaoImpl implements EmpDao {
 		
 		String hql = "from EmpBean where empId = :empId";
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql)
-		
-		return null;
+		EmpBean eb = (EmpBean) session.createQuery(hql).setParameter("empId", empId).getSingleResult();
+		return eb;
 	}
 	
 	

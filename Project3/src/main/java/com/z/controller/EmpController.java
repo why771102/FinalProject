@@ -7,12 +7,10 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.z.model.EmpBean;
 import com.z.service.EmpService;
@@ -69,11 +67,11 @@ public class EmpController {
 	}
 	
 	
-	@RequestMapping(value = "/emps")
-	public String getEmp(Model model) {
-		List<EmpBean> allEmps = service.findAllEmps();
-		model.addAttribute("allEmps", allEmps);
-		return "emps";
+	@RequestMapping(value = "/emp")
+	public String getEmp(@RequestParam("empId") Integer empId, Model model) {
+		EmpBean eb = service.getEmp(empId);
+		model.addAttribute("eb", eb);
+		return "emp";
 	}
 	
 	

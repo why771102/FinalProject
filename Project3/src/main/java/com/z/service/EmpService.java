@@ -13,6 +13,8 @@ public interface EmpService {
 	EmpBean isExists(EmpBean mb);
 	
 	List<EmpBean> findAllEmps();
+
+	EmpBean getEmp(Integer empId);
 	
 	
 	
