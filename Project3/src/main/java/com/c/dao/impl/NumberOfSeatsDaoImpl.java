@@ -19,12 +19,17 @@ public class NumberOfSeatsDaoImpl implements NumberOfSeatsDao {
 	}
 	
 	@Override
-	public void insertNumberofSeats() {
-		NumberOfSeatsBean nosb = new NumberOfSeatsBean();
+	public void insertNumberofSeats(NumberOfSeatsBean nosb) {
 		Session session = factory.getCurrentSession();
-		
-		String hql = "SELECT FROM Seats s GROUP BY ";
+		session.save(nosb);
 
+	}
+
+	@Override
+	public NumberOfSeatsBean getNumberOfSeats(String hallID) {
+		Session session = factory.getCurrentSession();
+		NumberOfSeatsBean nosb = session.get(NumberOfSeatsBean.class, hallID);
+		return nosb;
 	}
 
 

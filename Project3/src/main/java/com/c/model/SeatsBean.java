@@ -3,11 +3,14 @@ package com.c.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -16,10 +19,20 @@ public class SeatsBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
+	@NotNull
+	@Column(nullable=false, columnDefinition = "NCHAR(4)")
 	String seatID;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "NCHAR(1)")
 	String row;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "SMALLINT")
 	Integer seatNo;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer typeOfSeat;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer seatStatus;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
