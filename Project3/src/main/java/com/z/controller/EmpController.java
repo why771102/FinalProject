@@ -74,7 +74,10 @@ public class EmpController {
 		return "emp";
 	}
 	
-	
+	@RequestMapping("searchEmp")
+	public String searchEmp() {
+		return "searchEmp";
+	}
 	
 	
 

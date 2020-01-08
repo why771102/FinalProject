@@ -27,10 +27,10 @@ public class ShowTimeHistoryBean implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="runID")
-	private RunningBean run;
+	RunningBean run;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="hallID")
-	private HallBean hall;
+	HallBean hall;
 	
 	
 	public ShowTimeHistoryBean() {
