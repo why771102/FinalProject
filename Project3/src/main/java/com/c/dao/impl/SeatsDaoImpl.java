@@ -1,5 +1,7 @@
 package com.c.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,12 @@ public class SeatsDaoImpl implements SeatsDao {
 		SeatsBean sb = session.get(SeatsBean.class, seatId);
 		sb.setSeatStatus(status);
 		session.saveOrUpdate(sb);
+	}
+
+	@Override
+	public List<SeatsBean> getAllSeats() {
+		
+		return null;
 	}
 
 }

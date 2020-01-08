@@ -27,17 +27,17 @@ public class HallBean implements Serializable{
 	Integer price;
 	@NotNull
 	@Column(nullable=false, columnDefinition="TINYINT")
-	Integer status;
+	Integer hallStatus;
 	
 	public HallBean() {
 		
 	};
 	
-	public HallBean(String hallID, Integer noOfSeats, Integer price, Integer status) {
+	public HallBean(String hallID, Integer noOfSeats, Integer price, Integer hallStatus) {
 		this.hallID = hallID;
 		this.noOfSeats = noOfSeats;
 		this.price = price;
-		this.status = status;
+		this.hallStatus = hallStatus;
 	}
 
 	public String getHallID() {
@@ -60,10 +60,10 @@ public class HallBean implements Serializable{
 		this.price = price;
 	}
 	public Integer getStatus() {
-		return status;
+		return hallStatus;
 	}
 	public void setStatus(Integer status) {
-		this.status = status;
+		this.hallStatus = status;
 	}
 	
 	

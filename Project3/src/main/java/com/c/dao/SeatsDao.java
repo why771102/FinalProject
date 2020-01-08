@@ -1,7 +1,10 @@
 package com.c.dao;
 
+import java.util.List;
+
 import com.c.model.SeatsBean;
 
+//基本座位表
 public interface SeatsDao {
 	
 	//在新增廳時有勾選的座位都要被存進來
@@ -9,5 +12,6 @@ public interface SeatsDao {
 	public void insertSeats(SeatsBean sb);
 	
 	public void updateSeatStatus(Integer status, String seatId);
-
+	
+	public List<SeatsBean> getAllSeats();
 }
