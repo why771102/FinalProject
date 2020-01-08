@@ -31,7 +31,7 @@
 			<td width="350"><p align="left" /> 
 				<a href='queryByCategory'>分類查詢</a><BR>
 			</td>
-			<td width="350"><p align="left" /> 
+			<td width="350"><p align="left" />
 				<a href='products/add'>新增產品資料</a><BR>
 			</td>
 		</tr>

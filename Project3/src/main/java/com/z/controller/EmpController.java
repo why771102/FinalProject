@@ -69,6 +69,13 @@ public class EmpController {
 	}
 	
 	
+	@RequestMapping(value = "/emps")
+	public String getEmp(Model model) {
+		List<EmpBean> allEmps = service.findAllEmps();
+		model.addAttribute("allEmps", allEmps);
+		return "emps";
+	}
+	
 	
 	
 	
