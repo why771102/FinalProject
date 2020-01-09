@@ -47,7 +47,7 @@ public class CommentBean implements Serializable{
 	String commentContent;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATETIME")
-	Date commentTime;
+	String commentTime;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer commentDelete;
