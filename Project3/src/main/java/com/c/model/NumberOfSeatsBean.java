@@ -20,8 +20,8 @@ public class NumberOfSeatsBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
-	@Column(nullable=false)
-	Date date;
+	@Column(nullable=false, columnDefinition="DATE")
+	String date;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="hallID")
@@ -34,15 +34,15 @@ public class NumberOfSeatsBean implements Serializable{
 		
 	}
 	
-	public NumberOfSeatsBean(Date date, HallBean hallBean, Integer noOfSeats) {
+	public NumberOfSeatsBean(String date, HallBean hallBean, Integer noOfSeats) {
 		this.date = date;
 		this.hallBean = hallBean;
 		this.noOfSeats = noOfSeats;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

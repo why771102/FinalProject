@@ -1,7 +1,7 @@
 package com.c.model;
 
+import java.beans.Transient;
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,11 +18,12 @@ import com.sun.istack.NotNull;
 @Table(name="reservedSeats")
 public class ReservedSeatsBean implements Serializable{
 	
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATE")
-	Date date;
+	String date;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "SMALLINT")
 	Integer reservationStatus;
@@ -35,20 +36,24 @@ public class ReservedSeatsBean implements Serializable{
 	@JoinColumn(name="seatID")
 	private SeatsBean seatsBean;
 	
+	@Transient
+	public String seatID;
+
+	
 	public ReservedSeatsBean() {
 		
 	}
 	
-	public ReservedSeatsBean(Date date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean, Integer reservationStatus) {
+	public ReservedSeatsBean(String date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean, Integer reservationStatus) {
 		this.date = date;
 		this.showtimeHistoryBean = showtimeHistoryBean;
 		this.seatsBean = seatsBean;
 		this.reservationStatus = reservationStatus;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

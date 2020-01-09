@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.c.dao.HallDao;
 import com.c.model.HallBean;
+import com.z.model.EmpBean;
 
 @Repository
 public class HallDaoImpl implements HallDao{
@@ -23,8 +24,9 @@ public class HallDaoImpl implements HallDao{
 	//用廳名稱去抓資料傳回hallbean就可以用hb.get...()去抓取其他所需的資料
 	@Override
 	public HallBean getHall(String hallID) {
+		String hql = "FROM HallBean WHERE hallID = :hallID";
 		Session session = factory.getCurrentSession();
-		HallBean hb = session.get(HallBean.class, hallID);
+		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallId", hallID).getSingleResult();
 		return hb;
 	}
 

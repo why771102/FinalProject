@@ -24,7 +24,8 @@ public class SeatsDaoImpl implements SeatsDao {
 	@Override
 	public void insertSeats(SeatsBean sb){
 		Session session = factory.getCurrentSession();
-		session.save(sb);
+		sb.setSeatID(sb.getHallBean()+sb.getRow()+sb.getSeatID());
+		session.saveOrUpdate(sb);
 		
 	}
 

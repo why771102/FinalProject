@@ -20,8 +20,8 @@ public class SeatOrderBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
-	@Column(nullable=false)
-	Date date;
+	@Column(nullable=false, columnDefinition = "DATE")
+	String date;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
@@ -35,16 +35,16 @@ public class SeatOrderBean implements Serializable{
 		
 	}
 	
-	public SeatOrderBean(Date date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean) {
+	public SeatOrderBean(String date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean) {
 		this.date = date;
 		this.showtimeHistoryBean = showtimeHistoryBean;
 		this.seatsBean = seatsBean;
 	}
 	
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
