@@ -1,5 +1,7 @@
 package com.m.service.impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +28,8 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showPeriperalOrders(String orderDateA, String orderDateB) {
-		return dao.showPeriperalOrders(orderDateA, orderDateB);
+	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB) {
+		return dao.showPeripheralOrders(orderDateA, orderDateB);
 	}
 
 	@Transactional
@@ -45,13 +47,13 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showPeriperalOrder(Integer category, String orderDateA, String orderDateB) {
-		return dao.showPeriperalOrder(category, orderDateA, orderDateB);
+	public List<ProductSaleBean> showPeripheralOrder(Integer category, String orderDateA, String orderDateB) {
+		return dao.showPeripheralOrder(category, orderDateA, orderDateB);
 	}
 	
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showPeriperalOrders(Integer categoryA, Integer categoryB, String orderDateA,
+	public List<ProductSaleBean> showPeripheralOrders(Integer categoryA, Integer categoryB, String orderDateA,
 			String orderDateB) {
 		return dao.showPeriperalOrders(categoryA, categoryB, orderDateA, orderDateB);
 	}
@@ -59,9 +61,19 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	@Transactional
 	@Override
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB) {
-		
-		
-		return null;
+		return dao.showFoodOrderByTime(productName, playStartTimeA, playStartTimeB);
+	}
+	
+	@Transactional
+	@Override
+	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB) {
+		return dao.showPeripheralOrderByTime(productName, orderDateA, orderDateB);
+	}
+	
+	@Transactional
+	@Override
+	public List<LocalDate> showEachDate(String sDate, String eDate) {
+		return dao.showEachDate(sDate, eDate);
 	}
 
 }

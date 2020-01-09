@@ -2,6 +2,7 @@ package com.p.service;
 
 import java.util.List;
 
+import com.c.model.HallBean;
 import com.p.model.HallOrderBean;
 
 public interface HallOrderService {
@@ -19,4 +20,7 @@ public interface HallOrderService {
 	
 	//後臺功能，讓員工可進行包廳付款狀態調整
 	public HallOrderBean payStatusChange(HallOrderBean hob);
+	
+	//動態新增廳號選單
+	public List<String> getAllhallID();
 }

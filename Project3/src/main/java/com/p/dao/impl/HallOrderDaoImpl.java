@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.c.model.HallBean;
 import com.p.dao.HallOrderDao;
 import com.p.model.HallOrderBean;
 
@@ -71,6 +72,15 @@ public class HallOrderDaoImpl implements HallOrderDao {
 								.setParameter("h.hallOrderNo", hob.getHallOrderNo())
 								.executeUpdate();
 		return null;
+	}
+
+
+	@Override
+	public List<String> getAllhallID() {
+		String hql = "Select h.hallID From HallBean h";
+		Session session = factory.getCurrentSession();
+		List<String> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }
