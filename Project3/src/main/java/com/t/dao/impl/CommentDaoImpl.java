@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
+import com.t.model.ExpectationBean;
 public class CommentDaoImpl implements CommentDao{
 	
 	SessionFactory factory;
@@ -65,6 +66,14 @@ public class CommentDaoImpl implements CommentDao{
 		String hql = "update CommentBean set deleteComment = 1 where commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).executeUpdate();		
+	}
+
+	@Override
+	public ExpectationBean getAvgGrade(Integer grade) {
+		String hql = "Select grade where movieID = :movieID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).executeUpdate();
+		return null;
 	}
 
 }
