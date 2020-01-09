@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,8 @@ public class ShowTimeHistoryBean implements Serializable {
 	Integer showTimeId;
 //	String hallID;
 //	Integer runID;
-	Timestamp palyStartTime;
+	@Column(nullable=false,columnDefinition = "datetime")
+	String palyStartTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="runID")
@@ -36,7 +38,7 @@ public class ShowTimeHistoryBean implements Serializable {
 	public ShowTimeHistoryBean() {
 	}
 
-	public ShowTimeHistoryBean(Integer showTimeId, HallBean hall, RunningBean run, Timestamp palyStartTime) {
+	public ShowTimeHistoryBean(Integer showTimeId, HallBean hall, RunningBean run, String palyStartTime) {
 
 		this.showTimeId = showTimeId;
 		this.hall = hall;
@@ -85,11 +87,11 @@ public class ShowTimeHistoryBean implements Serializable {
 //		this.runID = runID;
 //	}
 
-	public Timestamp getPalyStartTime() {
+	public String getPalyStartTime() {
 		return palyStartTime;
 	}
 
-	public void setPalyStartTime(Timestamp palyStartTime) {
+	public void setPalyStartTime(String palyStartTime) {
 		this.palyStartTime = palyStartTime;
 	}
 
