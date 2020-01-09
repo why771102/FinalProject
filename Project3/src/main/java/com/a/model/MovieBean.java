@@ -29,7 +29,6 @@ public class MovieBean implements Serializable {
 	@Column(nullable=false, columnDefinition = "nvarchar(30)")
 	String title;
 	@Column(nullable=false, columnDefinition = "datetime")
-	@ColumnDefault("1970-01-01 00:00:00")
 	String contractDate;
 	@Column(nullable=false)
 	Integer expectedProfit;
