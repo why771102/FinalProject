@@ -6,6 +6,7 @@ import java.util.List;
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.a.test.ShowtimeBean;
 import com.c.model.HallBean;
 import com.p.model.HallOrderBean;
 
@@ -32,7 +33,7 @@ public interface MovieService {
 	
 	//取出哪些電影即將上映
 	//從run 取電影ID
-	public RunningBean getComingSoonMovie (Timestamp release);
+	public List<RunningBean> getComingSoonMovie (Timestamp release);
 	//拿電影ID 取出名稱等電影基本資料 (order by expectedProfit)
 	public List<MovieBean> getmovie(int movieID);
 	//確認status 為未上映
@@ -64,9 +65,9 @@ public interface MovieService {
     //從第一天開始排
 	//判斷上映日
 	//預期下檔日
-	public ShowTimeHistoryBean createShowTime(List<RunningBean> Running);
+	public ShowTimeHistoryBean createShowTime(List<ShowtimeBean> showtime);
 	//
-	public void addShowTime(ShowTimeHistoryBean show);
+	public void addShowTimeHistory(ShowTimeHistoryBean show);
 	
 	
 	//根據p/t值排片
