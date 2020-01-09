@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
@@ -12,6 +13,11 @@ public class CommentDaoImpl implements CommentDao{
 	
 	SessionFactory factory;
 
+	@Autowired
+	public void setFactory(SessionFactory factory) {
+		this.factory = factory;
+	}
+	
 	@Override
 	public CommentBean getComment(Integer commentId) {
 		Session session = factory.getCurrentSession();
