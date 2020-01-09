@@ -16,7 +16,11 @@ public class test {
 		    totalDates.add(start);
 		    start = start.plusDays(1);
 		}
-		System.out.println(totalDates);
+//		for(LocalDate date: totalDates) {
+//			String a = date.toString();
+//			System.out.println(a instanceof String);
+//		}
+
 	}
 
 }

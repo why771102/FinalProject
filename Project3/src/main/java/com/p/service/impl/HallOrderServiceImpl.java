@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.c.model.HallBean;
 import com.p.dao.HallOrderDao;
 import com.p.dao.MemberDao;
 import com.p.model.HallOrderBean;
@@ -49,6 +50,12 @@ public class HallOrderServiceImpl implements HallOrderService {
 	@Override
 	public HallOrderBean payStatusChange(HallOrderBean hob) {
 		return dao.payStatusChange(hob);
+	}
+	
+	@Transactional
+	@Override
+	public List<String> getAllhallID() {
+		return dao.getAllhallID();
 	}
 
 }
