@@ -1,5 +1,6 @@
 package com.l.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -20,8 +21,9 @@ public class ProductsDaoImpl implements ProductsDao{
 		this.factory = factory;
 	}
 	
-	///用productID新增
+	///用productID查詢
 	@Override
+	@SuppressWarnings("unchecked")
 	public ProductsBean getProduct(Integer productID) {
 		Session session = factory.getCurrentSession();
 		ProductsBean hb = session.get(ProductsBean.class, productID);
@@ -30,8 +32,12 @@ public class ProductsDaoImpl implements ProductsDao{
 
 	@Override
 	public List<ProductsBean> getProducts() {
-		
-		return null;
+		String hql="from ProductsBean";
+		Session session=null;
+		List<ProductsBean> list=new ArrayList<>();
+		session = factory.getCurrentSession();
+		list=session.createQuery(hql).getResultList();
+		return list;
 	}
 
 	@Override
