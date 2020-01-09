@@ -31,6 +31,13 @@ public class QuestionContentBean implements Serializable{
 	@JoinColumn(name="empId")
 	EmpBean empBean;
 	
+	
+	
+	
+	public QuestionContentBean() {
+
+	}
+
 	public QuestionBean getQuestionBean() {
 		return questionBean;
 	}

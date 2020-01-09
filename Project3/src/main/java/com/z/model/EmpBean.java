@@ -53,6 +53,10 @@ public class EmpBean implements Serializable{
 	
 	
 	
+	public EmpBean() {
+
+	}
+
 	public EmpStatusBean getEmpStatusBean() {
 		return empStatusBean;
 	}

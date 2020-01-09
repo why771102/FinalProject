@@ -6,22 +6,14 @@ package com._root.init;
  
 */
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.sql.Blob;
-import java.sql.Clob;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-
-import com._root.init.GlobalService;
-import com._root.init.HibernateUtils;
-import com._root.init.SystemUtils2018;
+import com.z.model.EmpStatusBean;
 import com.z.model.RoleBean;
 
 public class EDMTableResetHibernate {
@@ -37,50 +29,49 @@ public class EDMTableResetHibernate {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			
-			try (
-					FileReader fr = new FileReader("data/RoleBean.dat"); 
-					BufferedReader br = new BufferedReader(fr);
-				) {
-					while ((line = br.readLine()) != null) {
-						if (line.startsWith(UTF8_BOM)) {
-							line = line.substring(1);
-						}
-						String[] token = line.split("\\|");
-						String name = token[0];
-						RoleBean rb = new RoleBean(name);
-						session.save(rb);
-					}
-				} catch (IOException e) {
-					System.err.println("新建RoleBean表格時發生IO例外: " + e.getMessage());
-				}
-				session.flush();
-				System.out.println("RoleBean 資料新增成功");
-				
 
-			// 以下是範本
-				/*
-			try (
-				FileReader fr = new FileReader("data/bookCompany.dat"); 
-				BufferedReader br = new BufferedReader(fr);
-			) {
+			try (FileReader fr = new FileReader("data/RoleBean.dat"); BufferedReader br = new BufferedReader(fr);) {
 				while ((line = br.readLine()) != null) {
 					if (line.startsWith(UTF8_BOM)) {
 						line = line.substring(1);
 					}
 					String[] token = line.split("\\|");
 					String name = token[0];
-					String address = token[1];
-					String url = token[2];
-					CompanyBean cb = new CompanyBean(null, name, address, url);
-					session.save(cb);
+					RoleBean rb = new RoleBean(name);
+					session.save(rb);
 				}
 			} catch (IOException e) {
 				System.err.println("新建RoleBean表格時發生IO例外: " + e.getMessage());
 			}
 			session.flush();
 			System.out.println("RoleBean 資料新增成功");
-*/
+
+			try (FileReader fr = new FileReader("data/EmpStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					String name = token[0];
+					EmpStatusBean esb = new EmpStatusBean(name);
+					session.save(esb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建EmpStatusBean表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("EmpStatusBean 資料新增成功");
+			// 以下是範本
+			/*
+			 * try ( FileReader fr = new FileReader("data/bookCompany.dat"); BufferedReader
+			 * br = new BufferedReader(fr); ) { while ((line = br.readLine()) != null) { if
+			 * (line.startsWith(UTF8_BOM)) { line = line.substring(1); } String[] token =
+			 * line.split("\\|"); String name = token[0]; String address = token[1]; String
+			 * url = token[2]; CompanyBean cb = new CompanyBean(null, name, address, url);
+			 * session.save(cb); } } catch (IOException e) {
+			 * System.err.println("新建RoleBean表格時發生IO例外: " + e.getMessage()); }
+			 * session.flush(); System.out.println("RoleBean 資料新增成功");
+			 */
 //			File file = new File("data/book.dat");
 //			// 2. 由"data/book.dat"逐筆讀入Book表格內的初始資料，然後依序新增
 //			// 到Book表格中
@@ -158,13 +149,13 @@ public class EDMTableResetHibernate {
 //			} catch (Exception ex) {
 //				ex.printStackTrace();
 //			}
-            tx.commit();
+			tx.commit();
 		} catch (Exception e) {
 			System.err.println("新建表格時發生例外: " + e.getMessage());
 			e.printStackTrace();
 			tx.rollback();
-		} 
-        factory.close();
+		}
+		factory.close();
 	}
 
 }

@@ -33,6 +33,13 @@ public class AnnoBean implements Serializable{
 	Integer status;
 	Integer priority;
 	
+	
+	
+	
+	public AnnoBean() {
+		
+	}
+
 	public Integer getAnnoId() {
 		return annoId;
 	}

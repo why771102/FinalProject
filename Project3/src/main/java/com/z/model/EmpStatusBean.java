@@ -25,6 +25,15 @@ public class EmpStatusBean implements Serializable{
 	Integer status;
 	String statusName;
 	
+	
+	
+	
+	public EmpStatusBean() {
+
+	}
+	public EmpStatusBean(String name) {
+		this.statusName = name;
+	}
 	public Integer getStatus() {
 		return status;
 	}
