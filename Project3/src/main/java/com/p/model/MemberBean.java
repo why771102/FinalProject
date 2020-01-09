@@ -26,8 +26,8 @@ public class MemberBean implements Serializable {
 	String mobile;
 	String email;
 	String address;
-	Timestamp registerTime;
-	Timestamp lastLogInTime;
+	String registerTime;
+	String lastLogInTime;
 	
 	public MemberBean() {
 		
@@ -93,18 +93,18 @@ public class MemberBean implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Date getRegisterTime() {
+	public String getRegisterTime() {
 		return registerTime;
 	}
-	public void setRegisterTime(Timestamp registerTime) {
+	public void setRegisterTime(String registerTime) {
 		this.registerTime = registerTime;
 	}
 
-	public Date getLastTimeLogIn() {
+	public String getLastTimeLogIn() {
 		return lastLogInTime;
 	}
 
-	public void setLastLogInTime(Timestamp lastLogInTime) {
+	public void setLastLogInTime(String lastLogInTime) {
 		this.lastLogInTime = lastLogInTime;
 	}
 	

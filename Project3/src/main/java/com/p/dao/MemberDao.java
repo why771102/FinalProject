@@ -20,5 +20,5 @@ public interface MemberDao {
 	
 	//用戶更改資料後，存進DB
 	public MemberBean updateMember(MemberBean mb);
-	//Login要獨立寫成一個controller???
+	//Login、Logout是否要獨立寫成controller???
 }
