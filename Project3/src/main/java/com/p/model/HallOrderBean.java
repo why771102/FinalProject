@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.c.model.HallBean;
+
 @Entity
 @Table(name="hallOrder")
 public class HallOrderBean implements Serializable {
@@ -32,11 +34,15 @@ public class HallOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean mb;
-	@Column(columnDefinition = "time")
-	String stsrtTime;
-	@Column(columnDefinition = "time")
+	@Column(columnDefinition = "datetime")
+	String orderDate;
+	@Column(columnDefinition = "datetime")
+	String startTime;
+	@Column(columnDefinition = "datetime")
 	String endTime;
-	String hallID;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="hallID")
+	private HallBean hb;
 	String hallPurpose;
 	String hallPurposeDetail;
 	Integer hallSubtotal;
@@ -74,12 +80,19 @@ public class HallOrderBean implements Serializable {
 		this.psb = psb;
 	}
 
-	public HallOrderBean(Integer hallOrderNo,String stsrtTime,String endTime,String hallID,
+	public HallBean getHb() {
+		return hb;
+	}
+
+	public void setHb(HallBean hb) {
+		this.hb = hb;
+	}
+
+	public HallOrderBean(Integer hallOrderNo,String orderDate,String startTime,String endTime,
 			String hallPurpose,String hallPurposeDetail,Integer hallSubtotal) {
 		this.hallOrderNo = hallOrderNo;
-		this.stsrtTime = stsrtTime;
+		this.startTime = startTime;
 		this.endTime = endTime;
-		this.hallID = hallID;
 		this.hallPurpose = hallPurpose;
 		this.hallPurposeDetail = hallPurposeDetail;
 		this.hallSubtotal = hallSubtotal;
@@ -96,24 +109,26 @@ public class HallOrderBean implements Serializable {
 	public void setHallOrderNo(Integer hallOrderNo) {
 		this.hallOrderNo = hallOrderNo;
 	}
-
-	public String getStsrtTime() {
-		return stsrtTime;
+	
+	public String getOrderDate() {
+		return orderDate;
 	}
-	public void setStsrtTime(String stsrtTime) {
-		this.stsrtTime = stsrtTime;
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 	public String getEndTime() {
 		return endTime;
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
-	}
-	public String getHallID() {
-		return hallID;
-	}
-	public void setHallID(String hallID) {
-		this.hallID = hallID;
 	}
 	public String getHallPurpose() {
 		return hallPurpose;

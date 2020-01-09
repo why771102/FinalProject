@@ -1,10 +1,10 @@
-package com.c.dao;
+package com.c.service;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.SeatOrderBean;
 import com.c.model.SeatsBean;
 
-public interface SeatOrderDao {
+public interface SeatOrderService {
 
 	public void insertSeatOrder(SeatOrderBean sob);
 

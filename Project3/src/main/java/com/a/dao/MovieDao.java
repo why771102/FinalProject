@@ -16,19 +16,25 @@ public interface MovieDao {
 
 
 	// 拿電影ID 取出名稱等電影基本資料 (order by expectedProfit)
-	public List<MovieBean> getmovie(int movieID);
+//	public List<MovieBean> getMovie(List<RunningBean> RunList);
 
 
 	// 更改電影狀態
 	public boolean updateMovieStatus(int movieID, int status);
 
 	// 取出這星期有沒有被包場
-	public HallOrderBean getHallOrder(Timestamp date);
+//	public HallOrderBean getHallOrder(Timestamp date);
+
+//拿電影ID 取一個 MovieBean
+	MovieBean getMovieBeanById(int movieID);
+
+	// 拿電影ID 取出movieBean 塞進 runningBean
+	List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList);
 
 
 
-	//排片過程
-	public ShowTimeHistoryBean createShowTime(List<ShowtimeBean> showtime);
+//	//排片過程
+//	public ShowTimeHistoryBean createShowTime(List<ShowtimeBean> showtime);
 
 	
 
