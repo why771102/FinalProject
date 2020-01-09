@@ -24,8 +24,10 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		this.factory = factory;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void insertSeats() {
+		
 		Session session = factory.getCurrentSession();
 		//(ShowTimeHistoryBean) need date, showtimeID and seatID, reservationStatus(SeatsBean)
 		//ShowTimeHistoryBean
@@ -45,7 +47,7 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		for(ShowTimeHistoryBean stBean : listSTHB) {
 			String hallID = stBean.getHall().toString();
 			String hql = "FROM SeatsBean WHERE hallID = :hallID";
-			listSB = session.createQuery(hql).getResultList();
+			listSB = session.createQuery(hql).setParameter("hallID", hallID).getResultList();
 		}
 		
 		for(ShowTimeHistoryBean sthBean : listSTHB) {
@@ -54,11 +56,15 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 			date = date.substring(0, 10);
 			Integer showTimeId = sthBean.getShowTimeId();
 			for(SeatsBean sBean : listSB) {
+				boolean result = false;
 				String sbHallID = sBean.getHallBean().toString();
 				if(sthbHallID == sbHallID) {
-					SeatsBean seatID = sBean.getSeatID();
+					String seatID = sBean.getSeatID();
 					Integer seatStatus = sBean.getSeatStatus();
-					ReservedSeatsBean rsb = new ReservedSeatsBean(date, showTimeId, seatID, seatStatus);
+					ReservedSeatsBean rsb = new ReservedSeatsBean(date, seatID,showTimeId, seatStatus);
+					session.save(rsb);
+					result = true;
+					System.out.println(result);
 				}
 			}
 		}
@@ -71,9 +77,12 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 	}
 
 	@Override
-	public void updateReservationStatus() {
-		
-
+	public void reserveSeat(Integer showTimeID, String seatID) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM ReservedSeatsBean WHERE seatID= :seatID and showTimeID = :showTimeID";
+		ReservedSeatsBean rsb = (ReservedSeatsBean) session.createQuery(hql).setParameter("seatID", seatID).setParameter("showTimeID", showTimeID).getSingleResult();
+		rsb.setReservationStatus(1);
+		session.saveOrUpdate(rsb);
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.c.model;
 
-import java.beans.Transient;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.sun.istack.NotNull;
@@ -37,17 +37,19 @@ public class ReservedSeatsBean implements Serializable{
 	private SeatsBean seatsBean;
 	
 	@Transient
-	public String seatID;
+	private String seatID;
+	@Transient
+	private Integer showTimeID;
 
 	
 	public ReservedSeatsBean() {
 		
 	}
 	
-	public ReservedSeatsBean(String date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean, Integer reservationStatus) {
+	public ReservedSeatsBean(String date, String seatID, Integer showTimeID, Integer reservationStatus) {
 		this.date = date;
-		this.showtimeHistoryBean = showtimeHistoryBean;
-		this.seatsBean = seatsBean;
+		this.seatID = seatID;
+		this.showTimeID = showTimeID;
 		this.reservationStatus = reservationStatus;
 	}
 	public String getDate() {
