@@ -29,8 +29,6 @@
 					mobile:	<form:input id="mobile" path="mobile" type='text' /><br>
 					email:	<form:input id="email" path="email" type='text' /><br>
 					address:	<form:input id="address" path="address" type='text' /><br>
-					registerTime:	<form:input id="registerTime" path="registerTime" type='text' /><br>
-					lastLogInTime:	<form:input id="lastLogInTime" path="lastLogInTime" type='text' /><br>
 
 				
 						<input type='submit'/>
