@@ -23,7 +23,14 @@
 					租借日期:<form:input id="date" path="orderDate" type='date'/><br>
 					租借起始時間:	<form:input id="startTime" path="startTime" type='date'/><br>
 					租借結束時間:<form:input id="endTime" path="endTime" type='date' /><br>
-<%-- 					選擇影廳:<form:input id="hallID" path="hallID" type='text' /><br> --%>
+					選擇影廳:<form:select path="hallID">
+								<form:option value="-1">
+									請選擇
+								</form:option>
+								<form:options items="${hallList}"/>
+							</form:select>
+					
+					<br>
 					包廳目的:<form:input id="hallPurpose" path="hallPurpose" type='text' /><br>
 					原因詳述:<form:input id="hallPurposeDetail" path="hallPurposeDetail" type='text' /><br>
 					預估包廳總金額:<form:input id="hallSubtotal" path="hallSubtotal" type='text' /><br>

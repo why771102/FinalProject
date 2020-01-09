@@ -1,5 +1,9 @@
 package com.p.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import com.p.model.HallOrderBean;
 import com.p.model.MemberBean;
 import com.p.service.HallOrderService;
 import com.p.service.MemberService;
+import com.z.model.RoleBean;
 
 @Controller
 public class HallOrderController {
@@ -39,6 +44,12 @@ public class HallOrderController {
 	public String processMemberRegister(@ModelAttribute("hallOrderBean")HallOrderBean hob) {
 		service.hallOrderApply(hob);
 		return "hallOrderApply";
+	}
+	
+	//此為動態新增Hall欄位的
+	@ModelAttribute("hallList")
+	public List<String> getAllhallID() {
+		return service.getAllhallID();
 	}
 	
 }
