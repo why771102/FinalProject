@@ -59,7 +59,7 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 			for(SeatsBean sBean : listSB) {
 				boolean result = false;
 				String sbHallID = sBean.getHallBean().toString();
-				if(sthbHallID == sbHallID) {
+				if(sthbHallID.equalsIgnoreCase(sbHallID)) {
 //					String seatID = sBean.getSeatID();
 					ShowTimeHistoryBean showTimeID = getShowTimeById(sthBean.getShowTimeId());
 					SeatsBean seatID = getSeatsById(sBean.getSeatID());

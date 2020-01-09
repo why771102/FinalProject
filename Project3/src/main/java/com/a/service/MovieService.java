@@ -35,20 +35,39 @@ public interface MovieService {
 	//從run 取電影ID
 	public List<RunningBean> getComingSoonMovie (Timestamp release);
 	//拿電影ID 取出名稱等電影基本資料 (order by expectedProfit)
-	public List<MovieBean> getmovie(int movieID);
-	//確認status 為未上映
+//	public List<MovieBean> getmovie(List<RunningBean> RunList);
+	List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList);
+	//確認status 為未上映(回傳未上映的)跟DB無關在serviceImpl
+	List<RunningBean> checkStatusComingSoon(List<RunningBean> RunList);
 	
-	//打包Json傳回前端顯示
+	//打包Json傳回前端顯示(好像可以傳runningBean了)
+	/*
+	//取出這個星期才上映的電影
+	//先取出上映日符合這個星期的
+	public List<RunningBean> getOnRunnigBean (Timestamp release);
+	//利用 putMovieBeanInRunBean 取出movieStatus
 	
-	//取出正在上映中電影
-	//從showtime 拿這個星期電影 可以考慮只拿ID?     
-	public List<ShowTimeHistoryBean> getshowMovie (Timestamp playStartTime);
-	//拿runID 取出movieID 可以考慮只拿ID?
-	public List<RunningBean> getrunning(int runID);
-	//拿電影ID 取出名稱等電影基本資料  沿用getmoive
+	//判斷Status =0 為沒有上映過  // Status =1 上映中 (已經上映的電影)
+	//Status =0 可以用 checkStatusComingSoon
+
 	
+	//改變上映狀態
 	//更改電影狀態
 	public boolean updateMovieStatus(int movieID, int status);
+	//putMovieBeanInRunBean
+	*/
+	
+//	//Status =1 
+//	List<RunningBean> checkStatusIsOn(List<RunningBean> RunList);
+	
+	
+	//從showtime 拿這個星期電影 可以考慮只拿ID?     
+//	public List<ShowTimeHistoryBean> getshowMovie (Timestamp playStartTime);
+	//拿runID 取出movieID 可以考慮只拿ID?
+//	public List<RunningBean> getrunning(int runID);
+	//拿電影ID 取出名稱等電影基本資料  沿用getmoive
+	
+	
 	
 	
 	//排片
@@ -57,17 +76,52 @@ public interface MovieService {
 	//取出where date = 這星期 
 	public HallOrderBean getHallOrder(Timestamp date); 	
 	//合約確定
-	//抓上映日早於排片當天 ,下檔晚於排片當天的run table 所有可以列入排片的片子
+	//抓上映日早於或等於排片當天 ,下檔晚於或等於排片當天的run table 所有可以列入排片的片子
 	public List<RunningBean> getAllOnMoive(Timestamp release ,Timestamp expectedOffDate);
-	//拿電影ID 取出名稱等電影基本資料 getmovie (主要需要movieStatus runningTime)
+	//拿電影ID 取出名稱等電影基本資料 putMovieBeanInRunBean
 	// 分成必須排片 與不必排片 runningBean.getstatus
-	//跑第一次排片(各自排一場) 排完踢掉存入另一List
+	//分出必須排片 跟DB無關
+	List<RunningBean> shouldOnRunningBean(List<RunningBean> rb);
+	
+	//跑第一次排片(各自排一場srb 跑) 排完踢掉存入另一List
     //從第一天開始排
-	//判斷上映日
-	//預期下檔日
-	public ShowTimeHistoryBean createShowTime(List<ShowtimeBean> showtime);
-	//
+	//判斷上映日  預期下檔日 取出此天可以排片的
+	List<RunningBean> checkMovieDateCanOn(List<RunningBean>rb);
+	
+	//sort rb by p/t 值
+	//先分未上映的電影(上方有取) 取P/t值 (expectedProfit)
+	
+	//取出這個星期才上映的電影
+		//先取出上映日符合這個星期的
+		public List<RunningBean> getOnRunnigBean (Timestamp release);
+		//利用 putMovieBeanInRunBean 取出movieStatus
+		
+		//判斷Status =0 為沒有上映過  // Status =1 上映中 (已經上映的電影)
+		//Status =0 可以用 checkStatusComingSoon
+		//改變上映狀態  更改電影狀態
+		public boolean updateMovieStatus(int movieID, int status);
+		//putMovieBeanInRunBean
+	
+	//已上映電影 取P/t值 
+	//移出今日上映電影 跟DB無關
+	List<RunningBean> removeReleaseMovie(List<RunningBean> AllRunList,List<RunningBean> RRunList);
+	//取P/t值
+	//先取上星期showtimeHitory
+	List <ShowTimeHistoryBean>getShowTimeHistoryBean(List<RunningBean> Orb );
+	//然後拿showTime ID 取P/T值
+	
+
+	
+	//合併已經上映 和未上映
+	// List sort  by p/t 值  跟DB無關
+	List<RunningBean> sortListbyPT(List<RunningBean>Allrb);
+	
+	//排片方法(one day)跟DB無關
+	public List <ShowTimeHistoryBean> createShowTime(List<ShowtimeBean> showtime);
+	
+	//把排好的檔期存進DB
 	public void addShowTimeHistory(ShowTimeHistoryBean show);
+
 	
 	
 	//根據p/t值排片

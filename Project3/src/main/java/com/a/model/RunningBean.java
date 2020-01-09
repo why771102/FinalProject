@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.sun.istack.NotNull;
 
@@ -37,13 +38,16 @@ public class RunningBean implements Serializable {
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer status;
 	
+	@Transient
+	Integer movieID;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
 	private MovieBean movie;
 	
 	public RunningBean() {
 	}
-
+//有movieBean
 	public RunningBean(Integer runID, String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
 			String offDate, Integer status, MovieBean movie) {
 		super();
@@ -56,6 +60,28 @@ public class RunningBean implements Serializable {
 		this.status = status;
 		this.movie = movie;
 	}
+	//如果沒有movieBean 只有movieID
+	public RunningBean(Integer runID, String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
+			String offDate, Integer status, Integer movieID) {
+		super();
+		this.runID = runID;
+		this.release = release;
+		this.expectedOnDate = expectedOnDate;
+		this.onDate = onDate;
+		this.expectedOffDate = expectedOffDate;
+		this.offDate = offDate;
+		this.status = status;
+		this.movieID = movieID;
+	}
+	
+	public Integer getMovieID() {
+		return movieID;
+	}
+
+	public void setMovieID(Integer movieID) {
+		this.movieID = movieID;
+	}
+
 
 	public Integer getRunID() {
 		return runID;
@@ -120,6 +146,8 @@ public class RunningBean implements Serializable {
 	public void setMovie(MovieBean movie) {
 		this.movie = movie;
 	}
+	
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
