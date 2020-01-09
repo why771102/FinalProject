@@ -22,33 +22,33 @@
 				<table>
 					<tr>
 						<td>會員姓名：</td>
-						<td>${emp.empName}</td>
+						<td>${mData.name}</td>
 					</tr>
 					<tr>
 						<td>信箱：</td>
-						<td>${emp.email}</td>
+						<td>${mData.email}</td>
 					</tr>
 					<tr>
 						<td>生日：</td>
-						<td>${emp.password}</td>
+						<td>${mData.birth}</td>
 					</tr>
 					<tr>
 						<td>性別：</td>
-						<td>${emp.status}</td>
+						<td>${mData.gender}</td>
 					</tr>
 					<tr>
 						<td>身分證字號：</td>
-						<td>${emp.startDate}</td>
+						<td>${mData.uID}</td>
 					</tr>
 					
 					<tr>
 						<td>連絡電話：</td>
-						<td>${emp.startDate}</td>
+						<td>${mData.mobile}</td>
 					</tr>
 
 					<tr>
 						<td>住址：</td>
-						<td>${emp.endDate}</td>
+						<td>${mData.address}</td>
 					</tr>
 				</table>
 				<input type="button" value="修改資料" />

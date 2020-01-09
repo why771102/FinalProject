@@ -1,10 +1,10 @@
-package com.p.dao;
+package com.p.service;
 
 import java.util.List;
 
 import com.p.model.HallOrderBean;
 
-public interface HallOrderDao {
+public interface HallOrderService {
 	//包廳申請，要先抓從cookie抓會員ID，藉此綁定會員
 	public HallOrderBean hallOrderApply(HallOrderBean Hob);
 	
