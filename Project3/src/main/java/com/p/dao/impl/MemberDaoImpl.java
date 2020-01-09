@@ -1,5 +1,9 @@
 package com.p.dao.impl;
 
+import javax.persistence.NoResultException;
+
+import org.hibernate.NonUniqueResultException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,39 +22,103 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberBean register(MemberBean mb) {
-		
+	public MemberBean register(MemberBean mb) { //還要研究註冊時間跟最後登入時間要如何寫入
+		mb.getPassword();//要幫密碼進行加密
+		Session session = factory.getCurrentSession();
+		session.save(mb);
 		return null;
 	}
 
 	@Override
 	public MemberBean queryMember(String account) {
-		
-		return null;
+		Session session = factory.getCurrentSession();
+		MemberBean mb = session.get(MemberBean.class, account);
+		return mb;
+//		String hql = "From MemberBean m Where m.account = :account";
+//		Session session = factory.getCurrentSession();
+//		MemberBean mb = null;
+//		try {
+//		mb = (MemberBean) session.createQuery(hql)
+//								 .setParameter("account", account)
+//								 .getSingleResult();
+//		}catch(NoResultException ex) {
+//			mb = null;
+//		}
+//		return mb;
 	}
 
 	@Override
-	public MemberBean updateMember(MemberBean mb) {
-		
+	public MemberBean updateMember(MemberBean mb) { //還要看看有無問題
+		String hql = "update MemberBean m set m.name = :name, m.mobile = :mobile , m.email = :email, m.address = :address where m.memberId = :memberId";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("name", mb.getName())
+								.setParameter("mobile", mb.getMobile())
+								.setParameter("email", mb.getEmail())
+								.setParameter("address", mb.getAddress()).executeUpdate();
 		return null;
 	}
 
+	// 判斷參數account(會員帳號)是否已經被現有客戶使用，如果是，傳回true，表示此account不能使用，
+	// 否則傳回false，表示此account可使用。
 	@Override
 	public boolean accountExists(String account) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean exist = false;
+		String hql = "From MemberBean m Where m.account = :account";
+		Session session = factory.getCurrentSession();
+		try {
+			MemberBean mb = (MemberBean) session.createQuery(hql)
+												.setParameter("account",account)
+												.getSingleResult();
+			if(mb != null) {
+				exist = true;
+			}
+		}catch(NoResultException ex) {
+			exist = false;
+		}catch(NonUniqueResultException ex) {
+			exist = false;
+		}
+		return exist;
 	}
 
+	// 判斷參數UID(身分證字號)是否已經被現有客戶使用，如果是，傳回true，表示此UID不能使用，
+	// 否則傳回false，表示此UID可使用。
 	@Override
 	public boolean UIDExists(String UID) {
+		boolean exist = false;
+		String hql = "From MemberBean m Where m.uID = :uID";
+		Session session = factory.getCurrentSession();
+		try{
+			MemberBean mb = (MemberBean) session.createQuery(hql)
+												.setParameter("uID",UID)
+												.getSingleResult();
+			if(mb != null) {
+				
+			}
+		}catch(NoResultException ex) {
+			exist = false;
+		}catch(NonUniqueResultException ex) {
+			exist = false;
+		}
 		
 		return false;
 	}
 
+	// 檢查使用者在登入時輸入的帳號與密碼是否正確。如果正確，傳回該帳號所對應的MemberBean物件，
+	// 否則傳回 null。
 	@Override
 	public MemberBean checkIdPassword(String account, String password) {
-		
-		return null;
+		MemberBean mb = null;
+		Session session = factory.getCurrentSession();
+		String hql = "From MemberBean m Where m.account = :account and m.password = :password";
+		try {
+			mb = (MemberBean) session.createQuery(hql)
+							.setParameter("account", account)
+							.setParameter("password", password)
+							.getSingleResult();
+		} catch (NoResultException ex) {
+			mb = null;
+		}
+		return mb;
 	}
 
 }

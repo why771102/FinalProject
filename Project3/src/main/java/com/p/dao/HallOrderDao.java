@@ -1,16 +1,18 @@
 package com.p.dao;
 
+import java.util.List;
+
 import com.p.model.HallOrderBean;
 
 public interface HallOrderDao {
 	//包廳申請，要先抓從cookie抓會員ID，藉此綁定會員
 	public HallOrderBean hallOrderApply(HallOrderBean Hob);
 	
-	//用戶自行查詢包廳狀況，用MemberID去找
-	public HallOrderBean hallOrderMQuery(Integer MemberID);
+	//用戶自行查詢包廳狀況，用MemberID去找，要用大貨櫃包住
+	public List<HallOrderBean> hallOrderMQuery(Integer MemberID);
 	
 	//後臺功能，讓員工可查詢一段時間內的包廳申請
-	public HallOrderBean hallOrderEQuery();
+	public List<HallOrderBean> hallOrderEQuery();
 	
 	//後臺功能，讓員工可進行包廳狀態調整，狀態調整完要記得發送email
 	public HallOrderBean hallOrderStatusChange();
