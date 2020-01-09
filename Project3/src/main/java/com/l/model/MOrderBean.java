@@ -42,6 +42,7 @@ public class MOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean memberID;
+	@NotNull
 	@Column(nullable=false, columnDefinition = "DATETIME")
 	String ticketTime;
 //	Integer employeeID;
