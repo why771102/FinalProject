@@ -25,7 +25,7 @@ public class ShowTimeHistoryBean implements Serializable {
 //	String hallID;
 //	Integer runID;
 	@Column(nullable=false,columnDefinition = "datetime")
-	String palyStartTime;
+	String playStartTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="runID")
@@ -38,12 +38,12 @@ public class ShowTimeHistoryBean implements Serializable {
 	public ShowTimeHistoryBean() {
 	}
 
-	public ShowTimeHistoryBean(Integer showTimeId, HallBean hall, RunningBean run, String palyStartTime) {
+	public ShowTimeHistoryBean(Integer showTimeId, HallBean hall, RunningBean run, String playStartTime) {
 
 		this.showTimeId = showTimeId;
 		this.hall = hall;
 		this.run = run;
-		this.palyStartTime = palyStartTime;
+		this.playStartTime = playStartTime;
 	};
 	
 
@@ -88,11 +88,11 @@ public class ShowTimeHistoryBean implements Serializable {
 //	}
 
 	public String getPalyStartTime() {
-		return palyStartTime;
+		return playStartTime;
 	}
 
 	public void setPalyStartTime(String palyStartTime) {
-		this.palyStartTime = palyStartTime;
+		this.playStartTime = palyStartTime;
 	}
 
 	public static long getSerialversionuid() {
