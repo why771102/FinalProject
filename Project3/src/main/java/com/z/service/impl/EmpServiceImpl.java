@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.z.dao.EmpDao;
 import com.z.model.EmpBean;
+import com.z.model.RoleBean;
 import com.z.service.EmpService;
 
 @Service
@@ -53,5 +54,12 @@ public class EmpServiceImpl implements EmpService {
 	public EmpBean getEmp(Integer empId) {
 		return dao.getEmp(empId);
 	}
+	
+	@Transactional
+	@Override
+	public List<RoleBean> getRoleList() {
+		return dao.getRoleList();
+	}
+	
 
 }

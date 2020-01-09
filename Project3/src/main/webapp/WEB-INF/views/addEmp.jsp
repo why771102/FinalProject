@@ -14,20 +14,34 @@
 <body>
 
 
-		<form:form method='POST' modelAttribute="empBean" enctype="multipart/form-data" >
+	<form:form method='POST' modelAttribute="empBean"
+		enctype="multipart/form-data">
 
-					empName:	<form:input name="empName" path="empName" type='text' /><br>
-					roleId:		<form:input name="roleId" path="roleId" type='text' /><br>
-					email:		<form:input name="email" path="email" type='text' /><br>
-					password:	<form:input name="password" path="password" type='text' /><br>
-					status:		<form:input name="status" path="status" type='text' /><br>
-					startDate:	<form:input name="startDate" path="startDate" type='date' /><br>
-					endDate:	<form:input name="endDate" path="endDate" type='date' /><br>
+					empName:	<form:input name="empName" path="empName" type='text' />
+		<br>
+					email:		<form:input name="email" path="email" type='text' />
+		<br>
+					password:	<form:input name="password" path="password" type='text' />
+		<br>
+					status:		<form:input name="status" path="status" type='text' />
+		<br>
+					startDate:	<form:input name="startDate" path="startDate"
+			type='date' />
+		<br>
+					endDate:	<form:input name="endDate" path="endDate" type='date' />
+		<br>
+					
+					職稱：<form:select path="roleId">
+			<form:option value="-1">
+								請選擇
+							</form:option>
+			<form:options items="${roleList}" />
+		</form:select>
+		<br>
 
-				
-						<input type='submit'/>
+		<input type='submit' />
 
-		</form:form>
+	</form:form>
 
 </body>
 </html>
