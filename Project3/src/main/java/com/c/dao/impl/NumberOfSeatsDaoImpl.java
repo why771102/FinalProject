@@ -1,6 +1,7 @@
 package com.c.dao.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,11 +29,14 @@ public class NumberOfSeatsDaoImpl implements NumberOfSeatsDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<NumberOfSeatsBean> getNumberOfSeats(Date date) {
 		Session session = factory.getCurrentSession();
-		
-		return null;
+		String hql = "FROM NumberOfSeatsBean WHERE Date= :date";
+		List<NumberOfSeatsBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("date", date).getResultList();
+		return list;
 	}
 	
 	
