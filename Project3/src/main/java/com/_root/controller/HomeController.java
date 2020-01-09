@@ -13,20 +13,44 @@ import com.c.service.impl.HallServiceImpl;
 //範本
 @Controller
 public class HomeController {
-	@RequestMapping("/123")
-	public String welcome1219(Model model, HttpServletRequest req) {
-		model.addAttribute("items", new String[] {"KOBE","HOWARD","76"});
-		model.addAttribute("title", "歡迎光臨");
-		model.addAttribute("subtitle", "網路上獨一無二的購物天堂");
-		req.setAttribute("test", "測試用");
-		HallBean hb = new HallBean("A", 300, 1500, 0);
-		HallService hs = new HallServiceImpl();
-		hs.insertHall(hb);
-		return "welcome";
-	}
 	
 	@RequestMapping("/")
 	public String index() {
 		return "index";
+	}
+	
+	@RequestMapping("index-a")
+	public String indexa(Model model, HttpServletRequest req) {
+		return "index-a";
+	}
+	
+	@RequestMapping("index-c")
+	public String indexc(Model model, HttpServletRequest req) {
+		return "index-c";
+	}
+	
+	@RequestMapping("index-l")
+	public String indexl(Model model, HttpServletRequest req) {
+		return "index-l";
+	}
+	
+	@RequestMapping("index-m")
+	public String indexm(Model model, HttpServletRequest req) {
+		return "index-m";
+	}
+	
+	@RequestMapping("index-p")
+	public String indexp(Model model, HttpServletRequest req) {
+		return "index-p";
+	}
+	
+	@RequestMapping("index-t")
+	public String indext(Model model, HttpServletRequest req) {
+		return "index-t";
+	}
+	
+	@RequestMapping("index-z")
+	public String indexz(Model model, HttpServletRequest req) {
+		return "index-z";
 	}
 }
