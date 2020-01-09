@@ -13,8 +13,8 @@ public class ProductsController {
 	//測試查詢
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String getProducts(Model model) {
-		ProductsBean eb = new ProductsBean();
-		model.addAttribute("productsBean", eb);
+		ProductsBean pb = new ProductsBean();
+		model.addAttribute("productsBean", pb);
 		return "products";
 	}
 	
