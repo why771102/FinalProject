@@ -29,6 +29,8 @@
 		<mapping class="com.c.model.HallBean"></mapping>
 		<mapping class="com.z.model.EmpBean"></mapping>
 		<mapping class="com.z.model.AnnoBean"></mapping>
+		<mapping class="com.z.model.EmpStatusBean"></mapping>
+		<mapping class="com.z.model.RoleBean"></mapping>
 <!-- 		<mapping class="com.c.model/HallBean"></mapping> -->
 <!-- 		<mapping class="com.web.store.model.CompanyBean"></mapping> -->
 
