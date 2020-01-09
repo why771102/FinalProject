@@ -6,19 +6,6 @@ import com.m.model.ProductSaleBean;
 
 public interface ProductSaleDao {
 	
-	//DBT:products => productID, productName, category(4套票(飲食), 5飲食, 6~線上商城)
-//	public List<ProductsBean> getProductsInfo(Integer category, String orderDate);
-//	public Integer getProductID(Integer category);
-//	public String getProductName(Integer ProductID);
-	
-	//DBT: showTimeHistory => showTimeID, playStartTime
-//	public Timestamp getPlayStartTime(Integer showTimeID);
-	
-	//DBT: products & mOrderDetail, products & SCOrderDetail (PID)
-//	public List<String> getProductsName(String orderDate);
-//	public List<String> getPeripheralsName(Timestamp orderDate);
-	
-	//DBT: mOrderDetail => productID, unitPrice, quantity, discount
 	//show all food orders
 	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders
@@ -36,7 +23,11 @@ public interface ProductSaleDao {
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
 	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);
 	public List<LocalDate> showEachDate(String sDate, String eDate);
-	//DBT: SCOrderDetail => SCOrderID, productID, quantity, unitPrice, discount
-	//DBT: SCOrders => orderDate(timestamp), total
 	
+	//DBT:products => productID, productName, category(4套票(飲食), 5飲食, 6~線上商城)
+	//DBT: showTimeHistory => showTimeID, playStartTime
+	//DBT: products & mOrderDetail, products & SCOrderDetail (PID)
+	//DBT: mOrderDetail => productID, unitPrice, quantity, discount
+	//DBT: SCOrderDetail => SCOrderID, productID, quantity, unitPrice, discount
+	//DBT: SCOrders => orderDate(String), total
 }
