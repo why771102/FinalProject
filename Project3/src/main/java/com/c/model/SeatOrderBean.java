@@ -1,7 +1,6 @@
 package com.c.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.sun.istack.NotNull;
@@ -31,10 +31,23 @@ public class SeatOrderBean implements Serializable{
 	@JoinColumn(name="seatID")
 	private SeatsBean seatsBean;
 	
+	@Transient
+	private Integer showTimeID;
+	
+	@Transient
+	private String seatID;
+	
 	public SeatOrderBean() {
 		
 	}
 	
+	public SeatOrderBean(String date, Integer showTimeID, String seatID) {
+		super();
+		this.date = date;
+		this.showTimeID = showTimeID;
+		this.seatID = seatID;
+	}
+
 	public SeatOrderBean(String date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean) {
 		this.date = date;
 		this.showtimeHistoryBean = showtimeHistoryBean;
@@ -46,6 +59,22 @@ public class SeatOrderBean implements Serializable{
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public Integer getShowTimeID() {
+		return showTimeID;
+	}
+
+	public void setShowTimeID(Integer showTimeID) {
+		this.showTimeID = showTimeID;
+	}
+
+	public String getSeatID() {
+		return seatID;
+	}
+
+	public void setSeatID(String seatID) {
+		this.seatID = seatID;
 	}
 	
 }
