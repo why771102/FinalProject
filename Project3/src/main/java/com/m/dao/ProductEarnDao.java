@@ -1,14 +1,25 @@
 package com.m.dao;
 
+import java.util.List;
+
+import com.m.model.ProductSaleBean;
+
 public interface ProductEarnDao {
 	
-	//DBT:Products => productID, productName, category(4食物/5純周邊), cost
+	//show all food orders
+	public List<ProductSaleBean> showAllFoodsEarn(String playStartTimeA, String playStartTimeB);
+	//show all peripheral orders
+	public List<ProductSaleBean> showPeriperalsEarn(String orderDateA, String orderDateB);
+	//4, 5
+	public List<ProductSaleBean> showFoodEarn(Integer category, String playStartTimeA, String playStartTimeB);
+	//4+5
+	public List<ProductSaleBean> showFoodsEarn(Integer categoryA, Integer categoryB, String playStartTimeA, String playStartTimeB);
+	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))
+	public List<ProductSaleBean> showPeriperalEarn(Integer category, String orderDateA, String orderDateB);
+	//6+7+8..
+	public List<ProductSaleBean> showPeriperalsEarn(Integer categoryA, Integer categoryB, String orderDateA, String orderDateB);
 	
-	//	同PS方法: public Integer getCategory(Integer productID);
-	
-	public Integer getProductCost(Integer productID);
-	
-	//同PS方法
-	//DBT: OrderDetails => productID, unitPrice, quantity, discount
+	//根據產品名稱進入單日資訊
+	public List<ProductSaleBean> showFoodEarnByTime(String productName, String playStartTimeA, String playStartTimeB);
 	
 }
