@@ -3,6 +3,7 @@ package com.z.dao;
 import java.util.List;
 
 import com.z.model.EmpBean;
+import com.z.model.EmpStatusBean;
 import com.z.model.RoleBean;
 
 public interface EmpDao {
@@ -20,6 +21,10 @@ public interface EmpDao {
 	RoleBean getRoleById(Integer roleId);
 	
 	List<RoleBean> getRoleList();
+
+	EmpStatusBean getEmpStatusById(Integer status);
+
+	List<EmpStatusBean> getEmpStatusList();
 	
 
 }

@@ -3,6 +3,7 @@ package com.z.service;
 import java.util.List;
 
 import com.z.model.EmpBean;
+import com.z.model.EmpStatusBean;
 import com.z.model.RoleBean;
 
 public interface EmpService {
@@ -18,6 +19,8 @@ public interface EmpService {
 	EmpBean getEmp(Integer empId);
 
 	List<RoleBean> getRoleList();
+
+	List<EmpStatusBean> getEmpStatusList();
 	
 	
 	

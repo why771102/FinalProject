@@ -38,7 +38,14 @@ public class EmpBean implements Serializable{
 	
 	String email;
 	String password;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "status")
+	EmpStatusBean empStatusBean;
+	
+	@Transient
 	Integer status;
+	
 	@Column(columnDefinition = "datetime")
 	String startDate;
 	@Column(columnDefinition = "datetime")
@@ -46,6 +53,12 @@ public class EmpBean implements Serializable{
 	
 	
 	
+	public EmpStatusBean getEmpStatusBean() {
+		return empStatusBean;
+	}
+	public void setEmpStatusBean(EmpStatusBean empStatusBean) {
+		this.empStatusBean = empStatusBean;
+	}
 	public Integer getRoleId() {
 		return roleId;
 	}
