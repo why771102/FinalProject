@@ -5,13 +5,20 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
+import com.t.model.ExpectationBean;
 public class CommentDaoImpl implements CommentDao{
 	
 	SessionFactory factory;
 
+	@Autowired
+	public void setFactory(SessionFactory factory) {
+		this.factory = factory;
+	}
+	
 	@Override
 	public CommentBean getComment(Integer commentId) {
 		Session session = factory.getCurrentSession();
@@ -59,6 +66,14 @@ public class CommentDaoImpl implements CommentDao{
 		String hql = "update CommentBean set deleteComment = 1 where commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).executeUpdate();		
+	}
+
+	@Override
+	public ExpectationBean getAvgGrade(Integer grade) {
+		String hql = "Select grade where movieID = :movieID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).executeUpdate();
+		return null;
 	}
 
 }

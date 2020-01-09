@@ -35,6 +35,16 @@ public class ProductsBean implements Serializable {
 	@Column(nullable=false)
 	Integer cost;
 
+	public ProductsBean() {}
+	public ProductsBean(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost) {
+		super();
+		this.productID=productID;
+		this.productName=productName;
+		this.category=category;
+		this.unitPrice=unitPrice;
+		this.unitStock=0;
+		this.cost=cost;
+	}
 	
 	public Integer getProductID() {
 		return productID;

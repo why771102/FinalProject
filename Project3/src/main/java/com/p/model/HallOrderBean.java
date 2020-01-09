@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.c.model.HallBean;
 
@@ -34,6 +35,9 @@ public class HallOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean mb;
+	@Transient
+	Integer memberID;
+	
 	@Column(columnDefinition = "datetime")
 	String orderDate;
 	@Column(columnDefinition = "datetime")
@@ -43,6 +47,9 @@ public class HallOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="hallID")
 	private HallBean hb;
+	@Transient
+	String hallID;
+	
 	String hallPurpose;
 	String hallPurposeDetail;
 	Integer hallSubtotal;
@@ -51,10 +58,14 @@ public class HallOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="hallOrderStatusNo")
 	private HallOrderStatusBean hob;
+	@Transient
+	Integer hallOrderStatusNo;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="payStatusNo")
 	private PayStatusBean psb;
+	@Transient
+	Integer payStatusNo;
 	
 	public MemberBean getMb() {
 		return mb;

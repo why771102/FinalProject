@@ -18,6 +18,8 @@ import com.p.model.MemberBean;
 @Table(name="Question")
 public class QuestionBean implements Serializable{
 	
+
+
 	/**
 	 * 
 	 */
@@ -32,7 +34,9 @@ public class QuestionBean implements Serializable{
 	MemberBean memberBean;
 	Integer status;
 	
-	
+	public QuestionBean() {
+
+	}
 	
 	public Integer getQuestionId() {
 		return questionId;

@@ -2,10 +2,9 @@ package com.m.service;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import com.m.model.ProductSaleBean;
 
-public interface ProductSaleService {
+public interface ProductEarnService {
 	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders
 	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB);

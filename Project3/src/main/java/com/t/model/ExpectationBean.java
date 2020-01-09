@@ -34,7 +34,17 @@ public class ExpectationBean implements Serializable{
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
-	private MovieBean movieID;		
+	private MovieBean movieID;	
+	
+	public ExpectationBean(Integer expective, Integer unexpective, MovieBean movieID) {
+		this.expective = expective;
+		this.unexpective = unexpective;
+		this.movieID = movieID;
+	}
+	
+	public ExpectationBean() {
+		
+	}
 
 	public MovieBean getMovieID() {
 		return movieID;

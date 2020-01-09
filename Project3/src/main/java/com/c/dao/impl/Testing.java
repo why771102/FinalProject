@@ -1,7 +1,9 @@
 package com.c.dao.impl;
 
-import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Testing {
@@ -9,8 +11,19 @@ public class Testing {
 	public static void main(String[] args) {
 		LocalDate currentDate = LocalDate.now();
 		LocalDate currentDatePlusAWeek = currentDate.plusDays(7);
-		System.out.println(currentDate);
-		System.out.println(currentDatePlusAWeek);
+		String datestr = currentDatePlusAWeek.toString();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date d = new Date();
+			Date date = formatter.parse(datestr);
+			System.out.println(currentDate);
+			System.out.println(currentDatePlusAWeek);
+			System.out.println(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 //		Date date= new Date();
 //		 

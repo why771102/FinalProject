@@ -3,13 +3,15 @@ package com.t.dao;
 import java.util.List;
 
 import com.t.model.CommentBean;
+import com.t.model.ExpectationBean;
 
 public interface CommentDao {
 	//從cookie抓會員ID
 	
+	//從前端抓電影ID
 	
-	//從前端抓電影ID	
-
+	//抓出該電影的平均星數(小數點後1位)
+	public ExpectationBean getAvgGrade(Integer grade);
 	
 	//抓出該會員在該電影所留的短評 && deleteComment = 0
 	CommentBean getComment(Integer commentId);

@@ -13,35 +13,50 @@
 </head>
 <body>
 
-
+<table>
 	<form:form method='POST' modelAttribute="empBean"
 		enctype="multipart/form-data">
-
-					empName:	<form:input name="empName" path="empName" type='text' />
-		<br>
-					email:		<form:input name="email" path="email" type='text' />
-		<br>
-					password:	<form:input name="password" path="password" type='text' />
-		<br>
-					status:		<form:input name="status" path="status" type='text' />
-		<br>
-					startDate:	<form:input name="startDate" path="startDate"
-			type='date' />
-		<br>
-					endDate:	<form:input name="endDate" path="endDate" type='date' />
-		<br>
-					
-					職稱：<form:select path="roleId">
-			<form:option value="-1">
-								請選擇
-							</form:option>
+		<tr>
+			<td>員工名稱:</td>
+			<td><form:input name="empName" path="empName" type='text' /></td>
+		</tr>	
+		<tr>
+			<td>email:</td>	
+			<td><form:input name="email" path="email" type='text' /></td>
+		</tr>
+		<tr>
+			<td>密碼:</td>
+			<td><form:input name="password" path="password" type='text' /></td>
+		</tr>
+		<tr>
+			<td>在職狀態:</td>	
+			<td><form:select path="status">
+				<form:option value="-1">請選擇</form:option>
+				<form:options items="${empStatusList}" />
+				</form:select></td>
+		</tr>
+		<tr>
+			<td>到職日期:</td>
+			<td><form:input name="startDate" path="startDate" type='date' /></td>
+		</tr>
+		<tr>
+			<td>離職日期:</td>	
+			<td><form:input name="endDate" path="endDate" type='date' /></td>
+		</tr>
+		<tr>
+			<td>職稱：</td>
+			<td>
+			<form:select path="roleId">
+			<form:option value="-1">請選擇</form:option>
 			<form:options items="${roleList}" />
-		</form:select>
-		<br>
-
-		<input type='submit' />
+			</form:select>
+			</td>
+		</tr>
+		<tr>
+			<td><input type='submit' /></td>
+		</tr>
 
 	</form:form>
-
+</table>
 </body>
 </html>

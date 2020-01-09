@@ -25,8 +25,13 @@ public class RoleBean implements Serializable{
 	Integer roleId;
 	String roleName;
 	
+	public RoleBean() {
+		
+	}
 	
-	
+	public RoleBean(String name) {
+		this.roleName = name;
+	}
 	public Integer getRoleId() {
 		return roleId;
 	}

@@ -1,7 +1,6 @@
 package com.a.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.p.model.MemberBean;
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="SCOrders")
@@ -41,13 +40,25 @@ public class SCOrdersBean implements Serializable{
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String memo;
 	
+	@Transient
+	private Integer memberID;
+	
 	public SCOrdersBean() {
 		
 	}
 	
-	
-	
-	
+	public SCOrdersBean(Integer sCOrderID, Integer paymentStatus, String shippingAddress, String orderDate,
+			Integer shippingStatus, Integer total, String memo, Integer memberID) {
+		super();
+		SCOrderID = sCOrderID;
+		this.paymentStatus = paymentStatus;
+		this.shippingAddress = shippingAddress;
+		this.orderDate = orderDate;
+		this.shippingStatus = shippingStatus;
+		this.total = total;
+		this.memo = memo;
+		this.memberID = memberID;
+	}
 
 	public SCOrdersBean(Integer sCOrderID, MemberBean memberBean, Integer paymentStatus,
 			String shippingAddress, String orderDate, Integer shippingStatus, Integer total, String memo) {
@@ -62,9 +73,13 @@ public class SCOrdersBean implements Serializable{
 		this.memo = memo;
 	}
 
+	public Integer getMemberID() {
+		return memberID;
+	}
 
-
-
+	public void setMemberID(Integer memberID) {
+		this.memberID = memberID;
+	}
 
 	public Integer getSCOrderID() {
 		return SCOrderID;

@@ -52,7 +52,19 @@ public class PreferenceBean implements Serializable{
 	@JoinColumn(name="memberID")
 	private MemberBean memberID;
 	
-
+	public PreferenceBean() {
+		
+	}
+	
+	public PreferenceBean(Integer preferenceID, Integer good, Integer bad, Integer block, CommentBean commentID, MemberBean memberID) {
+		this.preferenceID = preferenceID;
+		this.good = good;
+		this.bad = bad;
+		this.block = block;
+		this.commentID = commentID;
+		this.memberID = memberID;
+	}
+	
 	public CommentBean getcommentID() {
 		return commentID;
 	}
