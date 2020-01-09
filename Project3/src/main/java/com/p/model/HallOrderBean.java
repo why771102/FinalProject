@@ -37,7 +37,7 @@ public class HallOrderBean implements Serializable {
 	@Column(columnDefinition = "datetime")
 	String orderDate;
 	@Column(columnDefinition = "datetime")
-	String stsrtTime;
+	String startTime;
 	@Column(columnDefinition = "datetime")
 	String endTime;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -88,10 +88,10 @@ public class HallOrderBean implements Serializable {
 		this.hb = hb;
 	}
 
-	public HallOrderBean(Integer hallOrderNo,String orderDate,String stsrtTime,String endTime,
+	public HallOrderBean(Integer hallOrderNo,String orderDate,String startTime,String endTime,
 			String hallPurpose,String hallPurposeDetail,Integer hallSubtotal) {
 		this.hallOrderNo = hallOrderNo;
-		this.stsrtTime = stsrtTime;
+		this.startTime = startTime;
 		this.endTime = endTime;
 		this.hallPurpose = hallPurpose;
 		this.hallPurposeDetail = hallPurposeDetail;
@@ -118,11 +118,11 @@ public class HallOrderBean implements Serializable {
 		this.orderDate = orderDate;
 	}
 
-	public String getStsrtTime() {
-		return stsrtTime;
+	public String getStartTime() {
+		return startTime;
 	}
-	public void setStsrtTime(String stsrtTime) {
-		this.stsrtTime = stsrtTime;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 	public String getEndTime() {
 		return endTime;

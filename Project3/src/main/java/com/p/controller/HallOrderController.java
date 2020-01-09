@@ -3,6 +3,7 @@ package com.p.controller;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.p.model.MemberBean;
 import com.p.service.HallOrderService;
 import com.p.service.MemberService;
 
+@Controller
 public class HallOrderController {
 	HallOrderService service;
 	ServletContext context;

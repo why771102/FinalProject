@@ -19,14 +19,14 @@
 		<form:form method='POST' modelAttribute="hallOrderBean" enctype="multipart/form-data" >
 		
 			<fieldset>
-						<form:input id="memberID" path="memberID" type='hidden'/><br>
-					租借日期:<form:input id="name" path="name" type='date'/><br>
-					租借起始時間:	<form:input id="name" path="name" type='text'/><br>
-					租借結束時間:<form:input id="account" path="account" type='text' /><br>
-					選擇影廳:<form:input id="password" path="password" type='text' /><br>
-					包廳目的:<form:input id="gender" path="gender" type='text' /><br>
-					原因詳述:<form:input id="uID" path="uID" type='text' /><br>
-					預估包廳總金額:<form:input id="birth" path="birth" type='text' /><br>
+<%-- 						<form:input id="memberID" path="memberID" type='hidden'/><br> --%>
+					租借日期:<form:input id="date" path="orderDate" type='date'/><br>
+					租借起始時間:	<form:input id="startTime" path="startTime" type='date'/><br>
+					租借結束時間:<form:input id="endTime" path="endTime" type='date' /><br>
+<%-- 					選擇影廳:<form:input id="hallID" path="hallID" type='text' /><br> --%>
+					包廳目的:<form:input id="hallPurpose" path="hallPurpose" type='text' /><br>
+					原因詳述:<form:input id="hallPurposeDetail" path="hallPurposeDetail" type='text' /><br>
+					預估包廳總金額:<form:input id="hallSubtotal" path="hallSubtotal" type='text' /><br>
 					<input type='submit' value="送出申請"/>
 					
 			</fieldset>
