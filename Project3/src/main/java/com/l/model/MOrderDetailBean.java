@@ -16,13 +16,13 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="mOrderDetail")
-public class mOrderDetailBean implements Serializable {
+public class MOrderDetailBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 //	Integer ordersID; 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
-	private mOrderBean ordersID;
+	private MOrderBean ordersID;
 //	Integer productID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="productID")
@@ -46,10 +46,10 @@ public class mOrderDetailBean implements Serializable {
 //	}
 //	
 	
-	public mOrderBean getOrdersID() {
+	public MOrderBean getOrdersID() {
 		return ordersID;
 	}
-	public void setOrdersID(mOrderBean ordersID) {
+	public void setOrdersID(MOrderBean ordersID) {
 		this.ordersID = ordersID;
 	}
 	

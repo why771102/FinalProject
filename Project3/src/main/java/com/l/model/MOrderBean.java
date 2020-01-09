@@ -21,7 +21,7 @@ import com.z.model.EmpBean;
 
 @Entity
 @Table(name="mOrder")
-public class mOrderBean implements Serializable {
+public class MOrderBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
