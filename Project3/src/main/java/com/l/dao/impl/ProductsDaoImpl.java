@@ -21,10 +21,11 @@ public class ProductsDaoImpl implements ProductsDao{
 		this.factory = factory;
 	}
 	
-	///用productID查詢
+	//用productID查詢 
 	@Override
 	@SuppressWarnings("unchecked")
 	public ProductsBean getProduct(Integer productID) {
+		String hql="select from ProductsBean where productID=:id";
 		Session session = factory.getCurrentSession();
 		ProductsBean hb = session.get(ProductsBean.class, productID);
 		return hb;
@@ -39,12 +40,19 @@ public class ProductsDaoImpl implements ProductsDao{
 		list=session.createQuery(hql).getResultList();
 		return list;
 	}
-
+	//用productID更新
 	@Override
 	public void updateProduct(Integer productID, String productName, Integer category, Integer unitPrice,
 			Integer unitStock, Integer cost) {
-	
-		
+		String hql="UPDATE ProductsBean SET productName=:newproductName, category=:newcategory, unitPrice=:newunitPrice, unitStock=:newunitStock, cost=:newcost WHERE productID=:id";
+		Session session=factory.getCurrentSession();
+			int n=session.createQuery(hql)	
+					.setParameter("newproductName", productName)
+					.setParameter("newcategory", category)
+					.setParameter("newunitPrice", unitPrice)
+					.setParameter("newunitStock", unitStock)
+					.setParameter("newcost", cost)
+					.executeUpdate();
 	}
 
 	@Override

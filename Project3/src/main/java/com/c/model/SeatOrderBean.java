@@ -76,5 +76,23 @@ public class SeatOrderBean implements Serializable{
 	public void setSeatID(String seatID) {
 		this.seatID = seatID;
 	}
+
+	public ShowTimeHistoryBean getShowtimeHistoryBean() {
+		return showtimeHistoryBean;
+	}
+
+	public void setShowtimeHistoryBean(ShowTimeHistoryBean showtimeHistoryBean) {
+		this.showtimeHistoryBean = showtimeHistoryBean;
+	}
+
+	public SeatsBean getSeatsBean() {
+		return seatsBean;
+	}
+
+	public void setSeatsBean(SeatsBean seatsBean) {
+		this.seatsBean = seatsBean;
+	}
+	
+	
 	
 }

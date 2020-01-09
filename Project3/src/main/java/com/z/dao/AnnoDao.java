@@ -16,6 +16,4 @@ public interface AnnoDao {
 	
 	List<AnnoBean> showAnno();
 	
-	
-
 }

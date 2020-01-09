@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,8 +24,10 @@ public class AnnoBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer annoId;
-	Timestamp startTime;
-	Timestamp endTime;
+	@Column(columnDefinition = "datetime")
+	String startTime;
+	@Column(columnDefinition = "datetime")
+	String endTime;
 	String title;
 	String content;
 	Integer status;
@@ -38,19 +41,19 @@ public class AnnoBean implements Serializable{
 		this.annoId = annoId;
 	}
 	
-	public Timestamp getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 	
-	public void setStartTime(Timestamp startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 	
-	public Timestamp getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 	
-	public void setEndTime(Timestamp endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	

@@ -50,18 +50,27 @@ public class HallOrderDaoImpl implements HallOrderDao {
 	}
 
 	@Override
-	public HallOrderBean hallOrderStatusChange() {
-		
+	public HallOrderBean hallOrderStatusChange(HallOrderBean hob) {
+		//其實就是update資料庫內的資料
+		String hql = "update HallOrderBean h set h.hallOrderStatusNo = hallOrderStatusNo "
+				+ "where h.hallOrderNo = hallOrderNo";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("h.hallOrderStatusNo",hob.getHob().getHallOrderStatusNo())
+								.setParameter("h.hallOrderNo", hob.getHallOrderNo())
+								.executeUpdate();
 		return null;
 	}
 
 	@Override
-	public HallOrderBean payStatusChange() {
-		
+	public HallOrderBean payStatusChange(HallOrderBean hob) {
+		//其實就是update資料庫內的資料  payStatusNo
+		String hql = "update HallOrderBean h set h.payStatusNo = payStatusNo "
+				+ "where h.hallOrderNo = hallOrderNo";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("h.payStatusNo",hob.getPsb().getPayStatusNO())
+								.setParameter("h.hallOrderNo", hob.getHallOrderNo())
+								.executeUpdate();
 		return null;
 	}
-
-
-
 
 }

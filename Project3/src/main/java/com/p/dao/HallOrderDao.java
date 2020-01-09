@@ -15,8 +15,8 @@ public interface HallOrderDao {
 	public List<HallOrderBean> hallOrderEQuery();
 	
 	//後臺功能，讓員工可進行包廳狀態調整，狀態調整完要記得發送email
-	public HallOrderBean hallOrderStatusChange();
+	public HallOrderBean hallOrderStatusChange(HallOrderBean hob);
 	
 	//後臺功能，讓員工可進行包廳付款狀態調整
-	public HallOrderBean payStatusChange();
+	public HallOrderBean payStatusChange(HallOrderBean hob);
 }

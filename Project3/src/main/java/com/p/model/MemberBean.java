@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,11 +23,14 @@ public class MemberBean implements Serializable {
 	String password;
 	String gender;
 	String uID;
-	Date birth;
+	@Column(columnDefinition = "date")
+	String birth;
 	String mobile;
 	String email;
 	String address;
+	@Column(columnDefinition = "datetime")
 	String registerTime;
+	@Column(columnDefinition = "datetime")
 	String lastLogInTime;
 	
 	public MemberBean() {
@@ -69,10 +73,10 @@ public class MemberBean implements Serializable {
 	public void setuID(String uID) {
 		this.uID = uID;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getMobile() {

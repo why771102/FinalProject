@@ -21,4 +21,7 @@ public interface HallService {
 		public void updateStatus(Integer hallID, Integer status);
 		
 		public void insertHall(HallBean hb);
+		
+		//修改廳資訊
+		public void updateHall(HallBean hb);
 }
