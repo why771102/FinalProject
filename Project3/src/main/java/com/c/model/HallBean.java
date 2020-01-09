@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name="Hall")
+@Table(name="hall")
 public class HallBean implements Serializable{
 
 

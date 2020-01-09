@@ -26,42 +26,30 @@ public class MovieBean implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer movieID;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "nvarchar(30)")
 	String title;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "datetime")
 	@ColumnDefault("1970-01-01 00:00:00")
 	String contractDate;
-	@NotNull
 	@Column(nullable=false)
 	Integer expectedProfit;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "real")
 	Double profitRatio;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "smallint")
 	Integer runningTime;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "nvarchar(40)")
 	String director;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "nvarchar(200)")
 	String cast;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer movieRating;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer genre;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "varchar(max)")
 	String trailer;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String plotSummary;
 	Blob photo;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer status;
 	

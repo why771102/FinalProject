@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.sun.istack.NotNull;
 
@@ -39,10 +40,22 @@ public class SeatsBean implements Serializable{
 	@JoinColumn(name="hallID")
 	private HallBean hallBean;
 	
+	@Transient
+	private String hallID;
+	
 	public SeatsBean() {
 		
 	}
 	
+	public SeatsBean(String seatID, String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus, String hallID) {
+		this.seatID = seatID;
+		this.row = row;
+		this.seatNo = seatNo;
+		this.typeOfSeat = typeOfSeat;
+		this.seatStatus = seatStatus;
+		this.hallID = hallID;
+	}
+
 	public SeatsBean(String seatID, HallBean hallBean,String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
 		this.seatID = seatID;
 		this.hallBean = hallBean;
@@ -52,8 +65,14 @@ public class SeatsBean implements Serializable{
 		this.seatStatus = seatStatus;
 	}
 
-	
-	
+	public String getHallID() {
+		return hallID;
+	}
+
+	public void setHallID(String hallID) {
+		this.hallID = hallID;
+	}
+
 	public String getSeatID() {
 		return seatID;
 	}

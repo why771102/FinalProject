@@ -93,7 +93,7 @@ public class CreateShowTime {
 		//換順序 
 
 	
-		
+		//bdcbadc
 		System.out.println("B廳");
 		for (int i = 0; i < list_B.size(); i++) {
 			System.out.println(list_B.get(i)[0]);

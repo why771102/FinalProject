@@ -28,22 +28,16 @@ public class SCOrdersBean implements Serializable{
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean MemberBean;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer paymentStatus;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String shippingAddress;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "datetime")
 	String orderDate;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer shippingStatus;
-	@NotNull
 	@Column(nullable=false)
 	Integer total;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String memo;
 	

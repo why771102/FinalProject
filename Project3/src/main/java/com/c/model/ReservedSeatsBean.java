@@ -1,7 +1,6 @@
 package com.c.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.sun.istack.NotNull;
@@ -18,11 +18,12 @@ import com.sun.istack.NotNull;
 @Table(name="reservedSeats")
 public class ReservedSeatsBean implements Serializable{
 	
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATE")
-	Date date;
+	String date;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "SMALLINT")
 	Integer reservationStatus;
@@ -35,20 +36,51 @@ public class ReservedSeatsBean implements Serializable{
 	@JoinColumn(name="seatID")
 	private SeatsBean seatsBean;
 	
+	@Transient
+	private String seatID;
+	@Transient
+	private Integer showTimeID;
+
+	
 	public ReservedSeatsBean() {
 		
 	}
 	
-	public ReservedSeatsBean(Date date, ShowTimeHistoryBean showtimeHistoryBean, SeatsBean seatsBean, Integer reservationStatus) {
+	public ReservedSeatsBean(String date, String seatID, Integer showTimeID, Integer reservationStatus) {
 		this.date = date;
-		this.showtimeHistoryBean = showtimeHistoryBean;
-		this.seatsBean = seatsBean;
+		this.seatID = seatID;
+		this.showTimeID = showTimeID;
 		this.reservationStatus = reservationStatus;
 	}
-	public Date getDate() {
+	
+	public ReservedSeatsBean(String date, Integer reservationStatus, ShowTimeHistoryBean showtimeHistoryBean,
+			SeatsBean seatsBean) {
+		this.date = date;
+		this.reservationStatus = reservationStatus;
+		this.showtimeHistoryBean = showtimeHistoryBean;
+		this.seatsBean = seatsBean;
+	}
+
+	public String getSeatID() {
+		return seatID;
+	}
+
+	public void setSeatID(String seatID) {
+		this.seatID = seatID;
+	}
+
+	public Integer getShowTimeID() {
+		return showTimeID;
+	}
+
+	public void setShowTimeID(Integer showTimeID) {
+		this.showTimeID = showTimeID;
+	}
+
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
