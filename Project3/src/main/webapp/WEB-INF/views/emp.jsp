@@ -18,18 +18,40 @@
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section>
 		<div>
-						<div class="caption">
-							<p>員工編號：${emp.empId}</p>
-							<p>員工姓名：${emp.empName}</p>
-							<p>員工信箱：${emp.email}</p>
-							<p>員工密碼：${emp.password}</p>
-							<p>在職狀態：${emp.status}</p>
-							<p>就職日期：${emp.startDate}</p>
-							<p>離職日期：${emp.endDate}</p>
-							<p>-----------------------</p>
-							<hr>
-						</div>
-					</div>
+			<div class="caption">
+				<table>
+					<tr>
+						<td>員工編號：</td>
+						<td>${emp.empId}</td>
+					</tr>
+					<tr>
+						<td>員工姓名：</td>
+						<td>${emp.empName}</td>
+					</tr>
+					<tr>
+						<td>員工信箱：</td>
+						<td>${emp.email}</td>
+					</tr>
+					<tr>
+						<td>員工密碼：</td>
+						<td>${emp.password}</td>
+					</tr>
+					<tr>
+						<td>在職狀態：</td>
+						<td>${emp.status}</td>
+					</tr>
+					<tr>
+						<td>就職日期：</td>
+						<td>${emp.startDate}</td>
+					</tr>
+
+					<tr>
+						<td>離職日期：</td>
+						<td>${emp.endDate}</td>
+					</tr>
+				</table>
+				<input type="button" value="修改資料" />
+			</div>
 		</div>
 	</section>
 </body>
