@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.z.dao.EmpDao;
+import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
 
 @Repository
@@ -60,10 +61,12 @@ public class EmpDaoImpl implements EmpDao {
 
 	@Override
 	public EmpBean getEmp(Integer empId) {
-		
-		String hql = "from EmpBean where empId = :empId";
+	
 		Session session = factory.getCurrentSession();
-		EmpBean eb = (EmpBean) session.createQuery(hql).setParameter("empId", empId).getSingleResult();
+		EmpBean eb = session.get(EmpBean.class, empId);
+		if(eb == null) {
+			throw new EmpNotFoundException("查無員工編號：", empId);
+		}
 		return eb;
 	}
 	

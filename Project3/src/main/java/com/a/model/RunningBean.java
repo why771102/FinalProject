@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 //參考：https://blog.csdn.net/MurcielagoAN/article/details/43966209
 @Entity
@@ -21,11 +24,20 @@ public class RunningBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer runID;
 //	Integer movieID;(FK)
-	Timestamp release;
+	@Column(nullable=false,columnDefinition = "datetime")
+	String release;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer expectedOnDate;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer onDate;
-	Timestamp expectedOffDate;
-	Timestamp offDate;
+	@Column(nullable=false,columnDefinition = "datetime")
+	String expectedOffDate;
+	@Column(nullable=false,columnDefinition = "datetime")
+	String offDate;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -33,25 +45,18 @@ public class RunningBean implements Serializable {
 	private MovieBean movie;
 	
 	public RunningBean() {
-	};
+	}
 
-	public RunningBean(Integer runID, MovieBean movie, Timestamp release, Integer expectedOnDate, Integer onDate,
-			Timestamp expectedOffDate, Timestamp offDate, Integer status) {
+	public RunningBean(Integer runID, String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
+			String offDate, Integer status, MovieBean movie) {
+		super();
 		this.runID = runID;
-		this.movie = movie;
 		this.release = release;
 		this.expectedOnDate = expectedOnDate;
 		this.onDate = onDate;
 		this.expectedOffDate = expectedOffDate;
 		this.offDate = offDate;
 		this.status = status;
-	}
-
-	public MovieBean getMovie() {
-		return movie;
-	}
-
-	public void setMovie(MovieBean movie) {
 		this.movie = movie;
 	}
 
@@ -63,19 +68,11 @@ public class RunningBean implements Serializable {
 		this.runID = runID;
 	}
 
-//	public Integer getMovieID() {
-//		return movie;
-//	}
-//
-//	public void setMovieID(Integer movieID) {
-//		this.movie = movieID;
-//	}
-
-	public Timestamp getRelease() {
+	public String getRelease() {
 		return release;
 	}
 
-	public void setRelease(Timestamp release) {
+	public void setRelease(String release) {
 		this.release = release;
 	}
 
@@ -95,19 +92,19 @@ public class RunningBean implements Serializable {
 		this.onDate = onDate;
 	}
 
-	public Timestamp getExpectedOffDate() {
+	public String getExpectedOffDate() {
 		return expectedOffDate;
 	}
 
-	public void setExpectedOffDate(Timestamp expectedOffDate) {
+	public void setExpectedOffDate(String expectedOffDate) {
 		this.expectedOffDate = expectedOffDate;
 	}
 
-	public Timestamp getOffDate() {
+	public String getOffDate() {
 		return offDate;
 	}
 
-	public void setOffDate(Timestamp offDate) {
+	public void setOffDate(String offDate) {
 		this.offDate = offDate;
 	}
 
@@ -119,9 +116,18 @@ public class RunningBean implements Serializable {
 		this.status = status;
 	}
 
+	public MovieBean getMovie() {
+		return movie;
+	}
+
+	public void setMovie(MovieBean movie) {
+		this.movie = movie;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 
 	
 	

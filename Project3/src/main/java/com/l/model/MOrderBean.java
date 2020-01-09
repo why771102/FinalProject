@@ -21,7 +21,7 @@ import com.z.model.EmpBean;
 
 @Entity
 @Table(name="mOrder")
-public class mOrderBean implements Serializable {
+public class MOrderBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
@@ -30,7 +30,11 @@ public class mOrderBean implements Serializable {
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer ticketStatus;
-//	Integer showTimeID;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "DATETIME")
+	String OrderTime;
+	
+	//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
 	private ShowTimeHistoryBean showTimeID;
@@ -38,11 +42,14 @@ public class mOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean memberID;
-	Timestamp ticketTime;
+	@Column(nullable=false, columnDefinition = "DATETIME")
+	String ticketTime;
 //	Integer employeeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="employeeID")
 	private MemberBean employeeID;
+	
+	
 	public Integer getOrdersID() {
 		return ordersID;
 	}
@@ -54,6 +61,12 @@ public class mOrderBean implements Serializable {
 	}
 	public void setTicketStatus(Integer ticketStatus) {
 		this.ticketStatus = ticketStatus;
+	}
+	public String getOrderTime() {
+		return OrderTime;
+	}
+	public void setOrderTime(String orderTime) {
+		OrderTime = orderTime;
 	}
 	public ShowTimeHistoryBean getShowTimeID() {
 		return showTimeID;
@@ -67,10 +80,10 @@ public class mOrderBean implements Serializable {
 	public void setMemberID(MemberBean memberID) {
 		this.memberID = memberID;
 	}
-	public Timestamp getTicketTime() {
+	public String getTicketTime() {
 		return ticketTime;
 	}
-	public void setTicketTime(Timestamp ticketTime) {
+	public void setTicketTime(String ticketTime) {
 		this.ticketTime = ticketTime;
 	}
 	public MemberBean getEmployeeID() {

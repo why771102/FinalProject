@@ -12,23 +12,23 @@ import javax.persistence.Table;
 import com.c.model.HallBean;
 
 @Entity
-@Table(name="Ticket")
+@Table(name="ticket")
 public class TicketBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 //	Integer ordersID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
-	private mOrderBean ordersID;
+	private MOrderBean ordersID;
 //	String seatID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="seatID")
 	private HallBean seatID;
 	
-	public mOrderBean getOrdersID() {
+	public MOrderBean getOrdersID() {
 		return ordersID;
 	}
-	public void setOrdersID(mOrderBean ordersID) {
+	public void setOrdersID(MOrderBean ordersID) {
 		this.ordersID = ordersID;
 	}
 	public HallBean getSeatID() {

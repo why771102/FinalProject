@@ -3,15 +3,18 @@ package com.z.controller;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
 import com.z.service.EmpService;
 
@@ -70,6 +73,9 @@ public class EmpController {
 	@RequestMapping(value = "/emp")
 	public String getEmp(@RequestParam("empId") Integer empId, Model model) {
 		EmpBean eb = service.getEmp(empId);
+//		if(eb == null) {
+//			model.addAttribute("emp", eb);   //如果無該員工ID，需要出現提示訊息
+//		}
 		model.addAttribute("emp", eb);
 		return "emp";
 	}
@@ -79,6 +85,11 @@ public class EmpController {
 		return "searchEmp";
 	}
 	
+	@ExceptionHandler({EmpNotFoundException.class})
+	public String handler(HttpServletRequest request, EmpNotFoundException exception, Model model) {
+		model.addAttribute("empId", exception.getEmpId());
+		return "searchEmp";
+	}
 	
 
 }
