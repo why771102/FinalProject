@@ -16,7 +16,7 @@
 <body>
 
 
-		<form:form method='POST' modelAttribute="MeberBean" enctype="multipart/form-data" >
+		<form:form method='POST' modelAttribute="memberBean" enctype="multipart/form-data" >
 		
 			<fieldset>
 

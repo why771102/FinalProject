@@ -100,7 +100,7 @@ public class MemberBean implements Serializable {
 		this.registerTime = registerTime;
 	}
 
-	public String getLastTimeLogIn() {
+	public String getLastLogInTime() {
 		return lastLogInTime;
 	}
 
