@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
+import com.z.model.EmpStatusBean;
 import com.z.model.RoleBean;
 import com.z.service.EmpService;
 
@@ -104,6 +105,16 @@ public class EmpController {
 			roleMap.put(rb.getRoleId(), rb.getRoleName());
 		}
 		return roleMap;
+	}
+	
+	@ModelAttribute("empStatusList")
+	public Map<Integer, String> getEmpStatusList() {
+		Map<Integer, String> empStatusMap = new HashMap<>();
+		List<EmpStatusBean> list = service.getEmpStatusList();
+		for (EmpStatusBean rb : list) {
+			empStatusMap.put(rb.getStatus(), rb.getStatusName());
+		}
+		return empStatusMap;
 	}
 	
 
