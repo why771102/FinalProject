@@ -1,6 +1,7 @@
 package com.p.dao;
 
-import com.l.model.mOrderBean;
+import com.l.model.MOrderBean;
+
 
 public interface MemberProductsQueryDao{
 	
@@ -10,6 +11,6 @@ public interface MemberProductsQueryDao{
 	//主要就是訂單內容啦
 	//這個方法可能會非常複雜
 	
-	public mOrderBean MemberProductsQuery();//看看參數要填啥
+	public MOrderBean MemberProductsQuery();//看看參數要填啥
 
 }

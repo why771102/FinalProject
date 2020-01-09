@@ -19,7 +19,7 @@
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='emp/add'>新增會員</a><BR>
+				<a href='member/query'>查詢會員資料</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
 				<a href='searchEmp'>查詢單一員工</a><BR>
