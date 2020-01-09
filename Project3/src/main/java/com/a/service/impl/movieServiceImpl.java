@@ -1,6 +1,7 @@
 package com.a.service.impl;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +59,9 @@ public class movieServiceImpl implements MovieService {
 
 	@Transactional
 	@Override
-	public List<RunningBean> getComingSoonMovie(Timestamp release) {
+	public List<RunningBean> getComingSoonMovie() {
 		
-		return RDao.getComingSoonMovie(release);
+		return RDao.getComingSoonMovie();
 	}
 
 	@Transactional
@@ -84,12 +85,7 @@ public class movieServiceImpl implements MovieService {
 		return null;
 	}
 
-	@Transactional
-	@Override
-	public List<RunningBean> getAllOnMoive(Timestamp release, Timestamp expectedOffDate) {
-		
-		return RDao.getAllOnMoive(release, expectedOffDate);
-	}
+
 
 	
 	@Override
@@ -105,12 +101,7 @@ public class movieServiceImpl implements MovieService {
 		return null;
 	}
 
-	@Transactional
-	@Override
-	public List<RunningBean> getOnRunnigBean(Timestamp release) {
-		
-		return RDao.getOnRunnigBean(release);
-	}
+
 
 	@Transactional
 	@Override
@@ -152,6 +143,18 @@ public class movieServiceImpl implements MovieService {
 	public void addShowTimeHistory(ShowTimeHistoryBean show) {
 		SDao.addShowTimeHistory(show);
 		
+	}
+	@Transactional
+	@Override
+	public List<RunningBean> getAllOnMoive(LocalDate day) {
+		// TODO Auto-generated method stub
+		return RDao.getAllOnMoive(day);
+	}
+	@Transactional
+	@Override
+	public List<RunningBean> getReleaseRunnigBean(LocalDate release) {
+		// TODO Auto-generated method stub
+		return RDao.getReleaseRunnigBean(release);
 	}
 	
 

@@ -1,6 +1,7 @@
 package com.a.service;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.a.model.MovieBean;
@@ -33,7 +34,8 @@ public interface MovieService {
 	
 	//取出哪些電影即將上映
 	//從run 取電影ID
-	public List<RunningBean> getComingSoonMovie (Timestamp release);
+	//取出一個月後要上映的電影
+	public List<RunningBean> getComingSoonMovie ();
 	//拿電影ID 取出名稱等電影基本資料 (order by expectedProfit)
 //	public List<MovieBean> getmovie(List<RunningBean> RunList);
 	List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList);
@@ -77,7 +79,7 @@ public interface MovieService {
 	public HallOrderBean getHallOrder(Timestamp date); 	
 	//合約確定
 	//抓上映日早於或等於排片當天 ,下檔晚於或等於排片當天的run table 所有可以列入排片的片子
-	public List<RunningBean> getAllOnMoive(Timestamp release ,Timestamp expectedOffDate);
+	public List<RunningBean> getAllOnMoive(LocalDate day);
 	//拿電影ID 取出名稱等電影基本資料 putMovieBeanInRunBean
 	// 分成必須排片 與不必排片 runningBean.getstatus
 	//分出必須排片 跟DB無關
@@ -93,7 +95,7 @@ public interface MovieService {
 	
 	//取出這個星期才上映的電影
 		//先取出上映日符合這個星期的
-		public List<RunningBean> getOnRunnigBean (Timestamp release);
+		public List<RunningBean> getReleaseRunnigBean(LocalDate release);
 		//利用 putMovieBeanInRunBean 取出movieStatus
 		
 		//判斷Status =0 為沒有上映過  // Status =1 上映中 (已經上映的電影)

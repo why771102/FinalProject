@@ -1,6 +1,7 @@
 package com.a.dao.impl;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,7 +29,7 @@ public class ShowTimeHistroyDaoImpl implements ShowTimeHistoryDao {
 	}
 
 	@Override
-	public List<ShowTimeHistoryBean> getshowMovie(Timestamp playStartTime) {
+	public List<ShowTimeHistoryBean> getshowMovie(LocalDateTime playStartTime) {
 		// TODO Auto-generated method stub
 		Session session =factory.getCurrentSession();
 		return null;

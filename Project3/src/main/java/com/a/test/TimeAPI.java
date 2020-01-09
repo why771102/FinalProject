@@ -153,6 +153,11 @@ public class TimeAPI {
      }catch(Exception e){
      e.printStackTrace();
      }
+     System.out.println("test=======");  
+     String today = (LocalDate.now().plusWeeks(1).format( DateTimeFormatter.ofPattern("yyyy-MM-DD")))+" "+"00:00:00"; 
+     System.out.println(today);
+     LocalDateTime createTime = LocalDateTime.parse("2015/04/05 12:30:30", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+     System.out.println("test=======");
      
      /*java.util.Date 與 java.sql.Date 互轉*/
      
@@ -161,6 +166,8 @@ public class TimeAPI {
      // java.sql.Date --> java.util.Date
      java.util.Date utilDate = new java.util.Date();
      utilDate.setTime(sqlDate.getTime());
+     
+  
 	 
 	}
 
