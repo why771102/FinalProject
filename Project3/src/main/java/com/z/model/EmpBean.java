@@ -56,9 +56,19 @@ public class EmpBean implements Serializable{
 	public EmpStatusBean getEmpStatusBean() {
 		return empStatusBean;
 	}
+	
 	public void setEmpStatusBean(EmpStatusBean empStatusBean) {
 		this.empStatusBean = empStatusBean;
 	}
+	
+	public RoleBean getRoleBean() {
+		return roleBean;
+	}
+	
+	public void setRoleBean(RoleBean roleBean) {
+		this.roleBean = roleBean;
+	}
+	
 	public Integer getRoleId() {
 		return roleId;
 	}
@@ -109,12 +119,7 @@ public class EmpBean implements Serializable{
 		this.endDate = endDate;
 	}
 	
-	public RoleBean getRoleBean() {
-		return roleBean;
-	}
-	public void setRoleBean(RoleBean roleBean) {
-		this.roleBean = roleBean;
-	}
+
 	
 	
 
