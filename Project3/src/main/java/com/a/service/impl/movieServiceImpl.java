@@ -17,7 +17,7 @@ import com.p.model.HallOrderBean;
 import com.z.dao.EmpDao;
 
 
-//@Service
+@Service
 public class movieServiceImpl implements MovieService {
 	MovieDao dao;
 	
