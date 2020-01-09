@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 //參考：https://blog.csdn.net/MurcielagoAN/article/details/43966209
 @Entity
@@ -21,11 +24,20 @@ public class RunningBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer runID;
 //	Integer movieID;(FK)
+	@Column(nullable=false,columnDefinition = "datetime")
 	Timestamp release;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer expectedOnDate;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer onDate;
+	@Column(nullable=false,columnDefinition = "datetime")
 	Timestamp expectedOffDate;
+	@Column(nullable=false,columnDefinition = "datetime")
 	Timestamp offDate;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
