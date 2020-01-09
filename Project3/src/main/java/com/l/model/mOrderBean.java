@@ -28,9 +28,12 @@ public class mOrderBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer ordersID;
 	@NotNull
-	@Column(nullable=false, columnDefinition = "TINYINT")
+	@Column(nullable=false, columnDefinition = "DATETIME")
 	Integer ticketStatus;
-//	Integer showTimeID;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
+	Timestamp datetime;
+	//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
 	private ShowTimeHistoryBean showTimeID;
@@ -43,6 +46,8 @@ public class mOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="employeeID")
 	private MemberBean employeeID;
+	
+	
 	public Integer getOrdersID() {
 		return ordersID;
 	}

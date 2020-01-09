@@ -32,7 +32,7 @@ public class mOrderDetailBean implements Serializable {
 	Integer unitPrice;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "REAL")
-	Integer discount;
+	double discount;
 	@NotNull
 	@Column(nullable=false)
 	Integer quantity;
@@ -80,7 +80,7 @@ public class mOrderDetailBean implements Serializable {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public Integer getDiscount() {
+	public double getDiscount() {
 		return discount;
 	}
 	public void setDiscount(Integer discount) {
