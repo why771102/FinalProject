@@ -4,5 +4,6 @@ public interface ReservedSeatsDao {
 	
 	public void insertSeats();
 	
+	public void updateReservationStatus();
 	
 }
