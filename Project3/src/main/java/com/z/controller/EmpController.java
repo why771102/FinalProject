@@ -1,6 +1,8 @@
 package com.z.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
+import com.z.model.RoleBean;
 import com.z.service.EmpService;
 
 @Controller
@@ -91,6 +94,16 @@ public class EmpController {
 		model.addAttribute("message",message);
 		model.addAttribute("empId", exception.getEmpId());
 		return "searchEmp";
+	}
+	
+	@ModelAttribute("roleList")
+	public Map<Integer, String> getCompanyList() {
+		Map<Integer, String> roleMap = new HashMap<>();
+		List<RoleBean> list = service.getRoleList();
+		for (RoleBean rb : list) {
+			roleMap.put(rb.getRoleId(), rb.getRoleName());
+		}
+		return roleMap;
 	}
 	
 

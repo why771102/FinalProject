@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,8 +17,8 @@ public class ProductsBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
-	@Column(nullable=false)
-	Integer productID;    //PK但非流水號
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer productID;    
 	@NotNull
 	@Column(nullable=false, columnDefinition = "NVARCHAR(40)")
 	String productName;

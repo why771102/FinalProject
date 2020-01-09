@@ -1,7 +1,6 @@
 package com.c.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.sun.istack.NotNull;
 
@@ -20,8 +20,8 @@ public class NumberOfSeatsBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
-	@Column(nullable=false)
-	Date date;
+	@Column(nullable=false, columnDefinition="DATE")
+	String date;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="hallID")
@@ -30,19 +30,37 @@ public class NumberOfSeatsBean implements Serializable{
 	@Column(nullable=false)
 	Integer noOfSeats;
 	
+	@Transient
+	private String hallID;
+	
 	public NumberOfSeatsBean() {
 		
 	}
 	
-	public NumberOfSeatsBean(Date date, HallBean hallBean, Integer noOfSeats) {
+	public NumberOfSeatsBean(String date, Integer noOfSeats, String hallID) {
+		this.date = date;
+		this.noOfSeats = noOfSeats;
+		this.hallID = hallID;
+	}
+
+	public NumberOfSeatsBean(String date, HallBean hallBean, Integer noOfSeats) {
 		this.date = date;
 		this.hallBean = hallBean;
 		this.noOfSeats = noOfSeats;
 	}
-	public Date getDate() {
+	
+	public String getHallID() {
+		return hallID;
+	}
+
+	public void setHallID(String hallID) {
+		this.hallID = hallID;
+	}
+
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

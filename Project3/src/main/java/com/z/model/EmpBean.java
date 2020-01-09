@@ -2,12 +2,16 @@ package com.z.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -24,7 +28,14 @@ public class EmpBean implements Serializable{
 	Integer empId;
 	
 	String empName;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "roleId")
+	RoleBean roleBean;
+	
+	@Transient
 	Integer roleId;
+	
 	String email;
 	String password;
 	Integer status;
@@ -35,6 +46,12 @@ public class EmpBean implements Serializable{
 	
 	
 	
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 	public Integer getEmpId() {
 		return empId;
 	}
@@ -47,12 +64,7 @@ public class EmpBean implements Serializable{
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
-	public Integer getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -82,6 +94,13 @@ public class EmpBean implements Serializable{
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+	
+	public RoleBean getRoleBean() {
+		return roleBean;
+	}
+	public void setRoleBean(RoleBean roleBean) {
+		this.roleBean = roleBean;
 	}
 	
 	

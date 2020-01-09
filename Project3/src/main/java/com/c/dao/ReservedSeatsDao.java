@@ -4,6 +4,6 @@ public interface ReservedSeatsDao {
 	
 	public void insertSeats();
 	
-	public void updateReservationStatus();
+	public void reserveSeat(Integer showTimeID, String seatID);
 	
 }

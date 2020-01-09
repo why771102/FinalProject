@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.z.dao.EmpDao;
 import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
+import com.z.model.RoleBean;
 
 @Repository
 public class EmpDaoImpl implements EmpDao {
@@ -25,8 +26,18 @@ public class EmpDaoImpl implements EmpDao {
 	@Override
 	public void saveEmp(EmpBean mb) {
 		Session session = factory.getCurrentSession();
+		RoleBean rb = getRoleById(mb.getRoleId());
+		mb.setRoleBean(rb);
 		session.save(mb);
 	}
+	
+	@Override
+	public RoleBean getRoleById(Integer roleId) {
+		Session session = factory.getCurrentSession();
+		RoleBean rb = session.get(RoleBean.class, roleId);
+		return rb;
+	}
+	
 
 	@Override
 	public void updateEmp(EmpBean mb) {
@@ -68,6 +79,14 @@ public class EmpDaoImpl implements EmpDao {
 			throw new EmpNotFoundException("查無員工編號：", empId);
 		}
 		return eb;
+	}
+
+	@Override
+	public List<RoleBean> getRoleList() {
+		String hql = "from RoleBean";
+		Session session = factory.getCurrentSession();
+		List<RoleBean> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 	
 	

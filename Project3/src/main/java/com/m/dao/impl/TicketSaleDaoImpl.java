@@ -8,8 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.a.model.MovieBean;
-import com.a.model.showTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
 import com.m.dao.TicketSaleDao;
 

@@ -3,13 +3,14 @@ package com.l.dao;
 import java.util.List;
 
 import com.c.model.HallBean;
+import com.l.model.ProductsBean;
 
 public interface ProductsDao {
 	//查詢單個產品
-	public HallBean getProduct(Integer productID);
+	public ProductsBean getProduct(Integer productID);
 
 	//查詢所有產品
-	public List<HallBean> getProducts();
+	public List<ProductsBean> getProducts();
 
 	//更新產品
 	public void updateProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);

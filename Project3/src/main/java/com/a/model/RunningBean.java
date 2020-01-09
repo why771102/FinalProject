@@ -26,17 +26,14 @@ public class RunningBean implements Serializable {
 //	Integer movieID;(FK)
 	@Column(nullable=false,columnDefinition = "datetime")
 	String release;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer expectedOnDate;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer onDate;
 	@Column(nullable=false,columnDefinition = "datetime")
 	String expectedOffDate;
 	@Column(nullable=false,columnDefinition = "datetime")
 	String offDate;
-	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer status;
 	
