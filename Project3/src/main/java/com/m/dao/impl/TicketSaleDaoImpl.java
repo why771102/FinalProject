@@ -13,6 +13,7 @@ import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
+import com.c.model.SeatOrderBean;
 import com.m.dao.TicketSaleDao;
 import com.p.model.HallOrderBean;
 
@@ -50,14 +51,15 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		
 	@SuppressWarnings("unchecked")
 	@Override
+	//取得影廳總座位數
 	public List<NumberOfSeatsBean> getHallSeats(Date date){
 		String hql = "FROM numberOfSeats nos WHERE nos.date= :date";
 		Session session = factory.getCurrentSession();
-		List<NumberOfSeatsBean> list = new ArrayList<>();
+		List<NumberOfSeatsBean> hallSeatsList = new ArrayList<>();
 //		list = session.createQuery(hql).getResultList();
-		list = session.createQuery(hql)
+		hallSeatsList = session.createQuery(hql)
 				.setParameter("date", date).list();
-		return list;
+		return hallSeatsList;
 	}
 
 	@Override
@@ -67,7 +69,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 	}
 
 	@Override
-	public MovieBean getMovieTitle(Integer movieID) {
+	public List<MovieBean> getFilm(Integer movieID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -85,7 +87,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 	}
 
 	@Override
-	public Integer CountSeatSale(Integer showTimeID) {
+	public List<SeatOrderBean> CountSeatSale(Integer showTimeID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
