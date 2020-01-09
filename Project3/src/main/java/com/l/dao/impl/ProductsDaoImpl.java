@@ -19,8 +19,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
-
-	//用廳名稱去抓資料傳回hallbean就可以用hb.get...()去抓取其他所需的資料
+	
 	@Override
 	public ProductsBean getProduct(Integer productID) {
 		Session session = factory.getCurrentSession();
