@@ -87,6 +87,8 @@ public class EmpController {
 	
 	@ExceptionHandler({EmpNotFoundException.class})
 	public String handler(HttpServletRequest request, EmpNotFoundException exception, Model model) {
+		String message = "查無員工編號：";
+		model.addAttribute("message",message);
 		model.addAttribute("empId", exception.getEmpId());
 		return "searchEmp";
 	}

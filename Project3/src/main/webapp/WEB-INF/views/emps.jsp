@@ -16,26 +16,29 @@
 	</section>
 	<hr
 		style="height: 1px; border: none; color: #333; background-color: #333;">
-	<section>
-		<div>
+	<div>
+		<table>
+		<tr>
+			<td>員工編號</td>
+			<td>員工姓名</td>
+			<td>員工信箱</td>
+			<td>員工密碼</td>
+			<td>在職狀態</td>
+			<td>就職日期</td>
+			<td>離職日期</td>
+		</tr>
 			<c:forEach var="emp" items="${allEmps}">
-				<div>
-					<div>
-						<div class="caption">
-							<p>員工編號：${emp.empId}</p>
-							<p>員工姓名：${emp.empName}</p>
-							<p>員工信箱：${emp.email}</p>
-							<p>員工密碼：${emp.password}</p>
-							<p>在職狀態：${emp.status}</p>
-							<p>就職日期：${emp.startDate}</p>
-							<p>離職日期：${emp.endDate}</p>
-							<p>-----------------------</p>
-							<hr>
-						</div>
-					</div>
-				</div>
+		<tr>
+			<td>${emp.empId}</td>
+			<td>${emp.empName}</td>
+			<td>${emp.email}</td>
+			<td>${emp.password}</td>
+			<td>${emp.status}</td>
+			<td>${emp.startDate}</td>
+			<td>${emp.endDate}</td>
+		</tr>
 			</c:forEach>
-		</div>
-	</section>
+		</table>
+	</div>
 </body>
 </html>
