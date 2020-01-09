@@ -4357,6 +4357,10 @@
         <mime-type>font/woff</mime-type>
     </mime-mapping>
     <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>font/x-font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
         <extension>woff2</extension>
         <mime-type>font/woff2</mime-type>
     </mime-mapping>

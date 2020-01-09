@@ -42,7 +42,7 @@ public class EmpController {
 	public String addNewEmp(Model model) {
 		EmpBean eb = new EmpBean();
 		model.addAttribute("empBean", eb);
-		return "addEmp";
+		return "z/addEmp";
 	}
 	
 	@RequestMapping(value = "/emp/add", method = RequestMethod.POST)
@@ -54,7 +54,7 @@ public class EmpController {
 //			throw new RuntimeException("傳入不允許的欄位");
 //		} 
  		service.saveEmp(eb);
-		return "addEmp";
+		return "z/addEmp";
 	}
 	
 	
@@ -69,7 +69,7 @@ public class EmpController {
 	public String getAllEmps(Model model) {
 		List<EmpBean> allEmps = service.findAllEmps();
 		model.addAttribute("allEmps", allEmps);
-		return "emps";
+		return "z/emps";
 	}
 	
 	
@@ -80,12 +80,12 @@ public class EmpController {
 //			model.addAttribute("emp", eb);   //如果無該員工ID，需要出現提示訊息
 //		}
 		model.addAttribute("emp", eb);
-		return "emp";
+		return "z/emp";
 	}
 	
 	@RequestMapping(value = "searchEmp")
 	public String searchEmp(Model model) {
-		return "searchEmp";
+		return "z/searchEmp";
 	}
 	
 	@ExceptionHandler({EmpNotFoundException.class})
@@ -93,7 +93,7 @@ public class EmpController {
 		String message = "查無員工編號：";
 		model.addAttribute("message",message);
 		model.addAttribute("empId", exception.getEmpId());
-		return "searchEmp";
+		return "z/searchEmp";
 	}
 	
 	@ModelAttribute("roleList")

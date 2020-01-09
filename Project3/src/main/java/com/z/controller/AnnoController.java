@@ -42,7 +42,7 @@ public class AnnoController {
 	public String getAllAnnos(Model model) {
 		List<AnnoBean> allAnnos = service.showAnno();
 		model.addAttribute("allAnnos", allAnnos);
-		return "annos";
+		return "z/annos";
 	}
 	
 	//以下三個為新增公告方法
@@ -50,7 +50,7 @@ public class AnnoController {
 	public String addNewAnno(Model model) {
 		AnnoBean ab = new AnnoBean();
 		model.addAttribute("annoBean", ab);
-		return "addAnno";
+		return "z/addAnno";
 	}
 	
 	@RequestMapping(value = "/anno/add", method = RequestMethod.POST)
@@ -62,7 +62,7 @@ public class AnnoController {
 //			throw new RuntimeException("傳入不允許的欄位");
 //		} 
  		service.addNewAnno(ab);
-		return "addAnno";
+		return "redirect:/annos";
 	}
 	
 	
@@ -74,40 +74,7 @@ public class AnnoController {
 	//----------------------------------
 	
 
-	
-	
-	@RequestMapping(value = "/emp")
-	public String getEmp(@RequestParam("empId") Integer empId, Model model) {
-		EmpBean eb = service.getEmp(empId);
-//		if(eb == null) {
-//			model.addAttribute("emp", eb);   //如果無該員工ID，需要出現提示訊息
-//		}
-		model.addAttribute("emp", eb);
-		return "emp";
-	}
-	
-	@RequestMapping(value = "searchEmp")
-	public String searchEmp(Model model) {
-		return "searchEmp";
-	}
-	
-	@ExceptionHandler({EmpNotFoundException.class})
-	public String handler(HttpServletRequest request, EmpNotFoundException exception, Model model) {
-		String message = "查無員工編號：";
-		model.addAttribute("message",message);
-		model.addAttribute("empId", exception.getEmpId());
-		return "searchEmp";
-	}
-	
-	@ModelAttribute("roleList")
-	public Map<Integer, String> getCompanyList() {
-		Map<Integer, String> roleMap = new HashMap<>();
-		List<RoleBean> list = service.getRoleList();
-		for (RoleBean rb : list) {
-			roleMap.put(rb.getRoleId(), rb.getRoleName());
-		}
-		return roleMap;
-	}
+
 	
 
 }
