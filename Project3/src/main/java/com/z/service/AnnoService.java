@@ -1,10 +1,10 @@
-package com.z.dao;
+package com.z.service;
 
 import java.util.List;
 
 import com.z.model.AnnoBean;
 
-public interface AnnoDao {
+public interface AnnoService {
 	
 	void addNewAnno(AnnoBean ab);
 	
@@ -16,4 +16,6 @@ public interface AnnoDao {
 	
 	List<AnnoBean> showAnno();
 	
+	
+
 }

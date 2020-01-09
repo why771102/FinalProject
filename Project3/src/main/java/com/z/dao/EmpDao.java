@@ -7,11 +7,11 @@ import com.z.model.RoleBean;
 
 public interface EmpDao {
 	
-	void saveEmp(EmpBean mb);
+	void saveEmp(EmpBean eb);
 	
-	void updateEmp(EmpBean mb);
+	void updateEmp(EmpBean eb);
 	
-	EmpBean isExists(EmpBean mb);
+	EmpBean isExists(EmpBean eb);
 	
 	List<EmpBean> findAllEmps();
 	
