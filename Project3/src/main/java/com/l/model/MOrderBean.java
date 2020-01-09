@@ -28,11 +28,12 @@ public class MOrderBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer ordersID;
 	@NotNull
-	@Column(nullable=false, columnDefinition = "DATETIME")
+	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer ticketStatus;
 	@NotNull
-	@Column(nullable=false, columnDefinition = "TINYINT")
-	Timestamp datetime;
+	@Column(nullable=false, columnDefinition = "DATETIME")
+	String OrderTime;
+	
 	//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
@@ -41,7 +42,7 @@ public class MOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean memberID;
-	Timestamp ticketTime;
+	String ticketTime;
 //	Integer employeeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="employeeID")
@@ -60,6 +61,12 @@ public class MOrderBean implements Serializable {
 	public void setTicketStatus(Integer ticketStatus) {
 		this.ticketStatus = ticketStatus;
 	}
+	public String getOrderTime() {
+		return OrderTime;
+	}
+	public void setOrderTime(String orderTime) {
+		OrderTime = orderTime;
+	}
 	public ShowTimeHistoryBean getShowTimeID() {
 		return showTimeID;
 	}
@@ -72,10 +79,10 @@ public class MOrderBean implements Serializable {
 	public void setMemberID(MemberBean memberID) {
 		this.memberID = memberID;
 	}
-	public Timestamp getTicketTime() {
+	public String getTicketTime() {
 		return ticketTime;
 	}
-	public void setTicketTime(Timestamp ticketTime) {
+	public void setTicketTime(String ticketTime) {
 		this.ticketTime = ticketTime;
 	}
 	public MemberBean getEmployeeID() {
