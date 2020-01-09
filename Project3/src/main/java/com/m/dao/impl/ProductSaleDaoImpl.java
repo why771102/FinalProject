@@ -1,13 +1,17 @@
 package com.m.dao.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.m.dao.ProductSaleDao;
 import com.m.model.ProductSaleBean;
 
+@Repository
 public class ProductSaleDaoImpl implements ProductSaleDao {
 
 	SessionFactory factory;
@@ -37,7 +41,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	//全部之總周邊
-	public List<ProductSaleBean> showPeriperalOrders(String orderDateA, String orderDateB) {
+	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB) {
 		String hql = "SELECT productName, scod.unitPrice, scod.discount, scod.quantity, cost FROM products p "
 				+ "left join p.SCOrderDetail scod left join scod.SCOrders sco "
 				+ "WHERE sco.orderDate BETWEEN :orderDateA AND :orderDateB";
@@ -90,7 +94,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	//選下拉單個周邊p1
-	public List<ProductSaleBean> showPeriperalOrder(Integer category, String orderDateA, String orderDateB) {
+	public List<ProductSaleBean> showPeripheralOrder(Integer category, String orderDateA, String orderDateB) {
 		String hql = "SELECT productName, scod.unitPrice, scod.discount, scod.quantity, cost FROM products p left join p.SCOrderDetail scod"
 				+ "left join scod.SCOrders sco WHERE p.category = :category "
 				+ "AND sco.orderDate BETWEEN :orderDateA AND :orderDateB";
@@ -127,7 +131,8 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB) {
 		String hql= "SELECT productName, mod.unitPrice, mod.discount, mod.quantity, cost FROM products p left join p.mOrderDetail mod"
 				+ "left join mod.mOrder mo left join mo.showTimeHistory sth "
-				+ "WHERE sth.playStartTime BETWEEN :playStartTimeA AND :playStartTimeB AND p.productName= :productName";
+				+ "WHERE sth.playStartTime BETWEEN :playStartTimeA AND :playStartTimeB AND p.productName= :productName"
+				+ "ORDER BY sth.playStartTime ASC";
 		Session session = factory.getCurrentSession();
 		List<ProductSaleBean> foodOrderByTimeList = new ArrayList<>();
 		foodOrderByTimeList = session.createQuery(hql).setParameter("productName", productName)
@@ -136,13 +141,32 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return foodOrderByTimeList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<ProductSaleBean> showPeriperalOrderByTime(String productName, String orderDateA, String orderDateB) {
-		String hql = "";
+	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB) {
+		String hql = "SELECT productName, scod.unitPrice, scod.discount, scod.quantity, cost FROM products p "
+				+ "left join p.SCOrderDetail scod left join scod.SCOrders sco "
+				+ "WHERE sco.orderDate BETWEEN :orderDateA AND orderDateB AND p.productName = :productName"
+				+ "ORDER BY sco.orderDate ASC";
+		//	on p.productID = scod.productID;
+		//	on scod.SCOrderID = sco.SCOrderID;
 		Session session = factory.getCurrentSession();
-		List<ProductSaleBean>
-		return null;
+		List<ProductSaleBean> peripheralOrderByTimeList = new ArrayList<>();
+		peripheralOrderByTimeList = session.createQuery(hql).setParameter("productName", productName)
+				.setParameter("orderDateA", orderDateA).setParameter("orderDateB", orderDateB).getResultList();
+		return peripheralOrderByTimeList;
+	}
+
+	@Override
+	public List<LocalDate> showEachDate(String sDate, String eDate) {
+		LocalDate start = LocalDate.parse(sDate);
+		LocalDate end = LocalDate.parse(eDate);
+		List<LocalDate> totalDates = new ArrayList<>();
+		while (!start.isAfter(end)) {
+		    totalDates.add(start);
+		    start = start.plusDays(1);
+		}
+		return totalDates;
 	}
 	
-	//這個表格沒COST, EARN才有, 這邊的bean cost= null;
 }
