@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,9 @@ public class HallOrderBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean mb;
+	@Column(columnDefinition = "time")
 	String stsrtTime;
+	@Column(columnDefinition = "time")
 	String endTime;
 	String hallID;
 	String hallPurpose;

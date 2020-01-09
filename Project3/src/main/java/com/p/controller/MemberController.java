@@ -23,7 +23,7 @@ public class MemberController {
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
-	
+	@Autowired
 	public void setService(MemberService service) {
 		this.service = service;
 	}

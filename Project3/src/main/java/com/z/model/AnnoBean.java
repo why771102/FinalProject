@@ -23,8 +23,8 @@ public class AnnoBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer annoId;
-	Timestamp startTime;
-	Timestamp endTime;
+	String startTime;
+	String endTime;
 	String title;
 	String content;
 	Integer status;
@@ -38,19 +38,19 @@ public class AnnoBean implements Serializable{
 		this.annoId = annoId;
 	}
 	
-	public Timestamp getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 	
-	public void setStartTime(Timestamp startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 	
-	public Timestamp getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 	
-	public void setEndTime(Timestamp endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	

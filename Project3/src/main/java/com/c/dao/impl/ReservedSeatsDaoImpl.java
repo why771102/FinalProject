@@ -1,5 +1,6 @@
 package com.c.dao.impl;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,14 +55,16 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 			String sthbHallID = sthBean.getHall().toString();
 			String date = sthBean.getPalyStartTime();
 			date = date.substring(0, 10);
-			Integer showTimeId = sthBean.getShowTimeId();
+//			Integer showTimeId = sthBean.getShowTimeId();
 			for(SeatsBean sBean : listSB) {
 				boolean result = false;
 				String sbHallID = sBean.getHallBean().toString();
 				if(sthbHallID == sbHallID) {
-					String seatID = sBean.getSeatID();
+//					String seatID = sBean.getSeatID();
+					ShowTimeHistoryBean showTimeID = getShowTimeById(sthBean.getShowTimeId());
+					SeatsBean seatID = getSeatsById(sBean.getSeatID());
 					Integer seatStatus = sBean.getSeatStatus();
-					ReservedSeatsBean rsb = new ReservedSeatsBean(date, seatID,showTimeId, seatStatus);
+					ReservedSeatsBean rsb = new ReservedSeatsBean(date, seatStatus, showTimeID, seatID);
 					session.save(rsb);
 					result = true;
 					System.out.println(result);
@@ -79,10 +82,44 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 	@Override
 	public void reserveSeat(Integer showTimeID, String seatID) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM ReservedSeatsBean WHERE seatID= :seatID and showTimeID = :showTimeID";
+		String hql = "FROM ReservedSeatsBean WHERE seatID= :seatID and showTimeID = :showTimeID and reservationStatus = 0";
 		ReservedSeatsBean rsb = (ReservedSeatsBean) session.createQuery(hql).setParameter("seatID", seatID).setParameter("showTimeID", showTimeID).getSingleResult();
 		rsb.setReservationStatus(1);
 		session.saveOrUpdate(rsb);
+	}
+
+	@Override
+	public SeatsBean getSeatsById(String seatID) {
+		Session session = factory.getCurrentSession();
+		SeatsBean sb = session.get(SeatsBean.class, seatID);
+		return sb;
+	}
+
+	@Override
+	public ShowTimeHistoryBean getShowTimeById(Integer showTimeID) {
+		Session session = factory.getCurrentSession();
+		ShowTimeHistoryBean sthb = session.get(ShowTimeHistoryBean.class, showTimeID);
+		return sthb;
+	}
+
+	@Override
+	public void cancelReservedSeat(Integer showTimeID, String seatID) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM ReservedSeatsBean WHERE seatID= :seatID and showTimeID = :showTimeID and reservationStatus = 1";
+		ReservedSeatsBean rsb = (ReservedSeatsBean) session.createQuery(hql).setParameter("seatID", seatID).setParameter("showTimeID", showTimeID).getSingleResult();
+		rsb.setReservationStatus(0);
+		session.saveOrUpdate(rsb);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SeatsBean> getAllSeats(Integer showTimeID, Date date) {
+		List<SeatsBean> list = new ArrayList<>();
+		Session session = factory.getCurrentSession();
+		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID and date = :date";
+		list = session.createQuery(hql).setParameter("showTimeID", showTimeID).setParameter("date", date).getResultList();
+		return list;
 	}
 
 }
