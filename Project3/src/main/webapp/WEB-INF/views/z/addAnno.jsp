@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 
 <title>Anno</title>
-<script src="ckeditor/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<table>
@@ -27,7 +27,7 @@
 						path="content" type='textarea'></form:textarea>
 					<script>
 						CKEDITOR.replace('content', {
-							width : 300
+							width : 600
 						});
 					</script></td>
 			</tr>
