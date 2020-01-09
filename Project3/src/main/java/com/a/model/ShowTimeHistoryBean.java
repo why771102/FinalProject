@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.c.model.HallBean;
 
@@ -34,7 +35,21 @@ public class ShowTimeHistoryBean implements Serializable {
 	@JoinColumn(name="hallID")
 	private HallBean hall;
 	
+	@Transient
+	Integer runID;
+	@Transient
+	String hallID;
 	
+	
+  //runID hallID 都只有ID 
+	public ShowTimeHistoryBean(Integer showTimeId, String playStartTime, Integer runID, String hallID) {
+		super();
+		this.showTimeId = showTimeId;
+		this.playStartTime = playStartTime;
+		this.runID = runID;
+		this.hallID = hallID;
+	}
+
 	public ShowTimeHistoryBean() {
 	}
 
@@ -71,21 +86,21 @@ public class ShowTimeHistoryBean implements Serializable {
 		this.showTimeId = showTimeId;
 	}
 
-//	public String getHallID() {
-//		return hallID;
-//	}
-//
-//	public void setHallID(String hallID) {
-//		this.hallID = hallID;
-//	}
-//
-//	public Integer getRunID() {
-//		return runID;
-//	}
-//
-//	public void setRunID(Integer runID) {
-//		this.runID = runID;
-//	}
+	public String getHallID() {
+		return hallID;
+	}
+
+	public void setHallID(String hallID) {
+		this.hallID = hallID;
+	}
+
+	public Integer getRunID() {
+		return runID;
+	}
+
+	public void setRunID(Integer runID) {
+		this.runID = runID;
+	}
 
 	public String getPalyStartTime() {
 		return playStartTime;
