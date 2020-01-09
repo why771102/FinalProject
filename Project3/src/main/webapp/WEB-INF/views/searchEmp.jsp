@@ -19,6 +19,7 @@
 					請輸入員工ID:	<input name="empId"  type='text' /><br>
 					
 						<input type='submit'/>
+						<p>查無員工編號： ${empId}</p>
 
 		</form>
 
