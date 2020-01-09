@@ -13,15 +13,13 @@ import com.google.gson.Gson;
 public class CreateShowTime {
 
 	public static void main(String[] args) {
-		Gson gson = new Gson();
-		String jsonStr = "";
+
 
 		String[] movie1 = { "a", "180", "28" };
 		String[] movie2 = { "b", "128", "35" };
 		String[] movie3 = { "c", "152", "20" };
 		String[] movie4 = { "d", "93", "43" };
 
-		jsonStr = gson.toJson(movie1);
 		List<String[]> list_A = new ArrayList<>();
 		List<String[]> list_B = new ArrayList<>();
 		List<String[]> list_R = new ArrayList<>();

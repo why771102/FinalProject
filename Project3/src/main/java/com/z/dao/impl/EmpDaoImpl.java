@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.z.dao.EmpDao;
 import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
+import com.z.model.EmpStatusBean;
 import com.z.model.RoleBean;
 
 @Repository
@@ -27,7 +28,9 @@ public class EmpDaoImpl implements EmpDao {
 	public void saveEmp(EmpBean mb) {
 		Session session = factory.getCurrentSession();
 		RoleBean rb = getRoleById(mb.getRoleId());
+		EmpStatusBean esb = getEmpStatusById(mb.getStatus());
 		mb.setRoleBean(rb);
+		mb.setEmpStatusBean(esb);
 		session.save(mb);
 	}
 	
@@ -36,6 +39,13 @@ public class EmpDaoImpl implements EmpDao {
 		Session session = factory.getCurrentSession();
 		RoleBean rb = session.get(RoleBean.class, roleId);
 		return rb;
+	}
+	
+	@Override
+	public EmpStatusBean getEmpStatusById(Integer status) {
+		Session session = factory.getCurrentSession();
+		EmpStatusBean esb = session.get(EmpStatusBean.class, status);
+		return esb;
 	}
 	
 
@@ -88,7 +98,14 @@ public class EmpDaoImpl implements EmpDao {
 		List<RoleBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
-	
+
+	@Override
+	public List<EmpStatusBean> getEmpStatusList() {
+		String hql = "from EmpStatusBean";
+		Session session = factory.getCurrentSession();
+		List<EmpStatusBean> list = session.createQuery(hql).getResultList();
+		return list;
+	}
 	
 	
 

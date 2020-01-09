@@ -23,15 +23,14 @@ public class ProductsDaoImpl implements ProductsDao{
 	
 	//用productID查詢 
 	@Override
-	@SuppressWarnings("unchecked")
 	public ProductsBean getProduct(Integer productID) {
-		String hql="select from ProductsBean where productID=:id";
 		Session session = factory.getCurrentSession();
-		ProductsBean hb = session.get(ProductsBean.class, productID);
-		return hb;
+		ProductsBean pb = session.get(ProductsBean.class, productID);
+		return pb;
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<ProductsBean> getProducts() {
 		String hql="from ProductsBean";
 		Session session=null;

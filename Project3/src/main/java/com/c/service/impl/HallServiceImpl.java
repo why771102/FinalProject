@@ -45,4 +45,10 @@ public class HallServiceImpl implements HallService {
 		dao.insertHall(hb);
 	}
 
+	@Override
+	public void updateHall(HallBean hb) {
+		dao.updateHall(hb);
+		
+	}
+
 }
