@@ -9,12 +9,12 @@ public interface ProductsDao {
 	public HallBean getProduct(Integer productID);
 
 	//查詢所有產品
-	public List<HallBean> getProducts(Integer status);
+	public List<HallBean> getProducts();
 
 	//更新產品
-	public void updateProduct(Integer hallID, Integer status);
+	public void updateProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
 	//新增產品
-	public void insertProduct(HallBean hb);
-	//修改產品
-	public void updateProduct(HallBean hb);
+	public void insertProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
+	
+
 }

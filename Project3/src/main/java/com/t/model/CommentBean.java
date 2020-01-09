@@ -3,7 +3,6 @@ package com.t.model;
 
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,7 +46,7 @@ public class CommentBean implements Serializable{
 	String commentContent;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATETIME")
-	Date commentTime;
+	String commentTime;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer commentDelete;
@@ -109,11 +108,11 @@ public class CommentBean implements Serializable{
 		this.commentContent = commentContent;
 	}
 
-	public Date getCommentTime() {
+	public String getCommentTime() {
 		return commentTime;
 	}
 
-	public void setCommentTime(Date commentTime) {
+	public void setCommentTime(String commentTime) {
 		this.commentTime = commentTime;
 	}
 

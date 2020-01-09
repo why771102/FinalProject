@@ -30,8 +30,11 @@ public class GSONAPI {
 		// Object to JSON  //json string
 //		jsonStr = gson.toJson(book1);
 		jsonStr = gson.toJson(a);
+		
 		System.out.println("Object to JSON: " + jsonStr);
-		 
+		jsonStr +="｜｜｜"+ gson.toJson(b);
+		System.out.println("Object to JSON: " + jsonStr);
+		
 		// JSON to Object (已知資料類別為 Book 時) 
 //		System.out.println("JSON to Object: ");
 //		Book myBook = gson.fromJson(jsonStr, Book.class);

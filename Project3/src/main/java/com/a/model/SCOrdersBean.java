@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.p.model.MemberBean;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="SCOrders")
@@ -26,12 +28,23 @@ public class SCOrdersBean implements Serializable{
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean MemberBean;
-	
+	@NotNull
+	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer paymentStatus;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String shippingAddress;
-	Timestamp orderDate;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "datetime")
+	String orderDate;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer shippingStatus;
+	@NotNull
+	@Column(nullable=false)
 	Integer total;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String memo;
 	
 	public SCOrdersBean() {
@@ -39,10 +52,14 @@ public class SCOrdersBean implements Serializable{
 	}
 	
 	
-	public SCOrdersBean(Integer sCOrderID, MemberBean memberBean, Integer paymentStatus, String shippingAddress,
-			Timestamp orderDate, Integer shippingStatus, Integer total, String memo) {
-		this.SCOrderID = sCOrderID;
-		this.MemberBean = memberBean;
+	
+	
+
+	public SCOrdersBean(Integer sCOrderID, MemberBean memberBean, Integer paymentStatus,
+			String shippingAddress, String orderDate, Integer shippingStatus, Integer total, String memo) {
+		super();
+		SCOrderID = sCOrderID;
+		MemberBean = memberBean;
 		this.paymentStatus = paymentStatus;
 		this.shippingAddress = shippingAddress;
 		this.orderDate = orderDate;
@@ -50,55 +67,81 @@ public class SCOrdersBean implements Serializable{
 		this.total = total;
 		this.memo = memo;
 	}
-	
+
+
+
+
+
 	public Integer getSCOrderID() {
 		return SCOrderID;
 	}
+
 	public void setSCOrderID(Integer sCOrderID) {
 		SCOrderID = sCOrderID;
 	}
+
 	public MemberBean getMemberBean() {
 		return MemberBean;
 	}
+
 	public void setMemberBean(MemberBean memberBean) {
 		MemberBean = memberBean;
 	}
+
 	public Integer getPaymentStatus() {
 		return paymentStatus;
 	}
+
 	public void setPaymentStatus(Integer paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
+
 	public String getShippingAddress() {
 		return shippingAddress;
 	}
+
 	public void setShippingAddress(String shippingAddress) {
 		this.shippingAddress = shippingAddress;
 	}
-	public Timestamp getOrderDate() {
+
+	public String getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Timestamp orderDate) {
+
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
+
 	public Integer getShippingStatus() {
 		return shippingStatus;
 	}
+
 	public void setShippingStatus(Integer shippingStatus) {
 		this.shippingStatus = shippingStatus;
 	}
+
 	public Integer getTotal() {
 		return total;
 	}
+
 	public void setTotal(Integer total) {
 		this.total = total;
 	}
+
 	public String getMemo() {
 		return memo;
 	}
+
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+
 	
 	
 	
