@@ -28,7 +28,7 @@ public class SeatsDaoImpl implements SeatsDao {
 		Session session = factory.getCurrentSession();
 		HallBean hb = getHallById(sb.getHallID());
 		sb.setHallBean(hb);
-		session.saveOrUpdate(sb);
+		session.save(sb);
 		
 	}
 	
