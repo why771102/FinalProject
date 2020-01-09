@@ -59,7 +59,21 @@ public class CommentBean implements Serializable{
 	@JoinColumn(name="memberID")
 	private MemberBean memberID;
 	
-
+	public CommentBean() {
+		
+	}
+	
+	public CommentBean(Integer commentId, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, MovieBean movieID, MemberBean memberID) {
+		this.commentId = commentId;
+		this.watched = watched;
+		this.grade = grade;
+		this.commentContent = commentContent;
+		this.commentTime = commentTime;
+		this.commentDelete = commentDelete;
+		this.movieID = movieID;
+		this.memberID = memberID;
+	}
+	
 	public Integer getCommentId() {
 		return commentId;
 	}
