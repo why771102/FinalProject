@@ -1,9 +1,9 @@
-package com.t.dao.impl;
+package com.t.service.impl;
 
-import com.t.dao.ExpectionDao;
 import com.t.model.ExpectationBean;
+import com.t.service.ExpectionService;
 
-public class ExpectionDaoImpl implements ExpectionDao{
+public class ExpectionServiceImpl implements ExpectionService{
 
 	@Override
 	public ExpectationBean getExpection(Integer expection) {
