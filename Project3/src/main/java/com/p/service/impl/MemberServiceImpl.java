@@ -20,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Transactional
 	@Override
-	public MemberBean register(MemberBean mb) {
-		return dao.register(mb);
+	public void register(MemberBean mb) {
+		dao.register(mb);
 	}
 	
 	@Transactional
@@ -50,8 +50,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Transactional
 	@Override
-	public MemberBean updateMember(MemberBean mb) {	
-		return dao.updateMember(mb);
+	public void updateMember(MemberBean mb) {	
+		dao.updateMember(mb);
 	}
 
 }

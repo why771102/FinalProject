@@ -4,7 +4,7 @@ import com.p.model.MemberBean;
 
 public interface MemberDao {
 	//註冊，將前端填寫的資料寫進DB
-	public MemberBean register(MemberBean mb);
+	public void register(MemberBean mb);
 	
 	//判斷帳號是否已被使用
 	public boolean accountExists(String account);
@@ -19,6 +19,6 @@ public interface MemberDao {
 	public MemberBean queryMember(String account);
 	
 	//用戶更改資料後，存進DB
-	public MemberBean updateMember(MemberBean mb);
+	public void updateMember(MemberBean mb);
 	//Login、Logout是否要獨立寫成controller???
 }
