@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.z.model.EmpBean;
 import com.z.model.EmpStatusBean;
 import com.z.model.RoleBean;
 
@@ -46,6 +47,8 @@ public class EDMTableResetHibernate {
 			session.flush();
 			System.out.println("RoleBean 資料新增成功");
 
+			
+			
 			try (FileReader fr = new FileReader("data/EmpStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
 				while ((line = br.readLine()) != null) {
 					if (line.startsWith(UTF8_BOM)) {
@@ -61,6 +64,36 @@ public class EDMTableResetHibernate {
 			}
 			session.flush();
 			System.out.println("EmpStatusBean 資料新增成功");
+			
+			
+			
+			try (FileReader fr = new FileReader("data/emp.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					EmpBean eb = new EmpBean();
+					
+					eb.setEmpName(token[0]);
+					Integer roleId = Integer.parseInt(token[1]);
+					RoleBean RoleBean = session.get(RoleBean.class, roleId);
+					eb.setRoleBean(RoleBean);
+					eb.setEmail(token[2]);
+					eb.setPassword(token[3]);
+					Integer status = Integer.parseInt(token[4]);
+					EmpStatusBean esb = session.get(EmpStatusBean.class, status);
+					eb.setEmpStatusBean(esb);
+					eb.setStartDate(token[5]);
+					eb.setEndDate(token[6]);
+					
+					session.save(eb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建Emp表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("Emp資料新增成功");
 			// 以下是範本
 			/*
 			 * try ( FileReader fr = new FileReader("data/bookCompany.dat"); BufferedReader

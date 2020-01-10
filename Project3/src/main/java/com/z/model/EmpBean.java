@@ -57,6 +57,7 @@ public class EmpBean implements Serializable{
 
 	}
 
+
 	public EmpStatusBean getEmpStatusBean() {
 		return empStatusBean;
 	}
