@@ -31,7 +31,7 @@ public class EmpDaoImpl implements EmpDao {
 		EmpStatusBean esb = getEmpStatusById(mb.getStatus());
 		mb.setRoleBean(rb);
 		mb.setEmpStatusBean(esb);
-		session.save(mb);
+		session.saveOrUpdate(mb);
 	}
 	
 	@Override

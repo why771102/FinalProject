@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.z.dao.AnnoDao;
 import com.z.model.AnnoBean;
+import com.z.model.AnnoStatusBean;
+import com.z.model.EmpStatusBean;
 
 @Repository
 public class AnnoDaoImpl implements AnnoDao {
@@ -25,8 +27,17 @@ public class AnnoDaoImpl implements AnnoDao {
 	@Override
 	public void addNewAnno(AnnoBean ab) {
 		Session session = factory.getCurrentSession();
-		session.save(ab);
+		AnnoStatusBean asb = getAnnoStatusById(ab.getStatus());
+		ab.setAnnoStatusBean(asb);
+		session.saveOrUpdate(ab);
 
+	}
+	
+	@Override
+	public AnnoStatusBean getAnnoStatusById(Integer status) {
+		Session session = factory.getCurrentSession();
+		AnnoStatusBean asb = session.get(AnnoStatusBean.class, status);
+		return asb;
 	}
 	
 	@Override
@@ -59,6 +70,23 @@ public class AnnoDaoImpl implements AnnoDao {
 		Session session = factory.getCurrentSession();
 		List<AnnoBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
+		return list;
+	}
+	
+
+	@Override
+	public AnnoBean showOneAnno(Integer annoId) {
+		String hql = "from AnnoBean where annoId = :annoId";
+		Session session = factory.getCurrentSession();
+		AnnoBean ab = (AnnoBean) session.createQuery(hql).setParameter("annoId", annoId).getSingleResult();
+		return ab;
+	}
+	
+	@Override
+	public List<AnnoStatusBean> getAnnoStatusList() {
+		String hql = "from AnnoStatusBean";
+		Session session = factory.getCurrentSession();
+		List<AnnoStatusBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
 

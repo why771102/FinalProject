@@ -5,21 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.z.exception.EmpNotFoundException;
 import com.z.model.AnnoBean;
-import com.z.model.EmpBean;
-import com.z.model.RoleBean;
+import com.z.model.AnnoStatusBean;
+import com.z.model.EmpStatusBean;
 import com.z.service.AnnoService;
 
 @Controller
@@ -72,8 +69,30 @@ public class AnnoController {
 //	}
 	
 	//----------------------------------
+	@RequestMapping(value = "/anno/update/{annoId}", method = RequestMethod.GET)
+	public String updateAnno(Model model, @PathVariable("annoId") Integer annoId) {
+		AnnoBean ab = service.showOneAnno(annoId);
+		model.addAttribute("annoBean", ab);
+		return "z/editAnno";
+	}
 	
+	
+	@RequestMapping(value = "/anno/update/{annoId}", method = RequestMethod.POST)
+	public String processUdateAnno(@ModelAttribute("annoBean") AnnoBean ab) {
+		service.addNewAnno(ab);
+		return "redirect:/annos";
+	}
 
+	
+	@ModelAttribute("annoStatusList")
+	public Map<Integer, String> getannoStatusList() {
+		Map<Integer, String> annoStatusMap = new HashMap<>();
+		List<AnnoStatusBean> list = service.getAnnoStatusList();
+		for (AnnoStatusBean rb : list) {
+			annoStatusMap.put(rb.getStatus(), rb.getStatusName());
+		}
+		return annoStatusMap;
+	}
 
 	
 

@@ -16,7 +16,10 @@
 
 		<form:form method='POST' modelAttribute="annoBean"
 			enctype="multipart/form-data">
-
+			<tr>
+				<td>公告編號:</td>
+				<td>${annoBean.annoId}</td>
+			</tr>
 			<tr>
 				<td>公告標題:</td>
 				<td><form:input name="title" path="title" type='text' /></td>
@@ -24,12 +27,11 @@
 			<tr>
 				<td>公告內容:</td>
 				<td><form:textarea cols="50" rows="5" name="content"
-						path="content" type='textarea'></form:textarea>
-					<script>
-						CKEDITOR.replace('content', {
-							width : 600
-						});
-					</script></td>
+						path="content" type='textarea'></form:textarea> <script>
+							CKEDITOR.replace('content', {
+								width : 600
+							});
+						</script></td>
 			</tr>
 			<tr>
 				<td>公告狀態:</td>
@@ -40,11 +42,11 @@
 			</tr>
 			<tr>
 				<td>開始時間:</td>
-				<td><form:input name="startTime" path="startTime" type='date' /></td>
+				<td><form:input name="startTime" path="startTime" type='date' value="${annoBean.startTime }"/></td>
 			</tr>
 			<tr>
 				<td>結束時間:</td>
-				<td><form:input name="endTime" path="endTime" type='date' /></td>
+				<td><form:input name="endTime" path="endTime" type='date' value="${annoBean.endTime }" /></td>
 			</tr>
 			<tr>
 				<td>權重:</td>
