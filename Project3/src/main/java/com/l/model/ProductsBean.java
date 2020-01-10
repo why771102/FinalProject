@@ -37,7 +37,6 @@ public class ProductsBean implements Serializable {
 
 	public ProductsBean() {}
 	public ProductsBean(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost) {
-		super();
 		this.productID=productID;
 		this.productName=productName;
 		this.category=category;

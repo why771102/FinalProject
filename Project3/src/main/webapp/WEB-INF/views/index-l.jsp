@@ -12,18 +12,16 @@
 	<hr>
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
-			<td width="350"><p align="left" /> <a href='123'>Hello
-					Spring MVC</a><BR></td>
-			<td width="350"><p align="left" /> <a href='products'>查詢所有員工</a><BR>
+			<td width="350"><p align="left" /> <a href='products'>查詢所有產品</a><BR>
 			</td>
 		</tr>
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='emp/add'>新增會員</a><BR>
+				<a href='emp/add'>新增產品</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='searchEmp'>查詢單一員工</a><BR>
+				<a href='products'>查詢單一產品</a><BR>
 			</td>
 		</tr>
 		

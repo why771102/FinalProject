@@ -21,7 +21,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		this.factory = factory;
 	}
 	
-	//用productID查詢 
+	
 	@Override
 	public ProductsBean getProduct(Integer productID) {
 		Session session = factory.getCurrentSession();
@@ -29,10 +29,11 @@ public class ProductsDaoImpl implements ProductsDao{
 		return pb;
 	}
 
+	//查詢全部
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<ProductsBean> getProducts() {
-		String hql="from ProductsBean";
+		String hql="FROM ProductsBean";
 		Session session=null;
 		List<ProductsBean> list=new ArrayList<>();
 		session = factory.getCurrentSession();

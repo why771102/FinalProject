@@ -20,7 +20,7 @@
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
         <div class="row">
-        
+          <c:forEach var='product' items='${products}'>
             <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
                 <div class="thumbnail" style="width: 320px; height: 340px">
                     <div class="caption">
@@ -28,11 +28,12 @@
                             <b style='font-size: 16px;'>${product.productName}</b>
                         </p>
                         <p>價格:${product.unitPrice}</p>
-                        <p>目前在庫數量: ${product.stock}</p>
-                        <p>成本::${product.cost}</p>
+                        <p>目前在庫數量: ${product.unitStock}</p>
+                        <p>成本:${product.cost}</p>
                    </div>
                 </div>
             </div>
+        </c:forEach>
         </div>
     </section>
 </body>

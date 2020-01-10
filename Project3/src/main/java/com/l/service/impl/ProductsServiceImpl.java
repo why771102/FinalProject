@@ -44,7 +44,7 @@ public class ProductsServiceImpl implements ProductsService{
 	@Override
 	public void insertProduct(Integer productID, String productName, Integer category, Integer unitPrice,
 			Integer unitStock, Integer cost) {
-		
+		dao.insertProduct(productID, productName, category, unitPrice, unitStock, cost);
 		
 	}
 
