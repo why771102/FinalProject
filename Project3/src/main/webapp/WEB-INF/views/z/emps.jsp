@@ -21,6 +21,7 @@
 		<tr>
 			<td>員工編號</td>
 			<td>員工姓名</td>
+			<td>職位名稱</td>
 			<td>員工信箱</td>
 			<td>員工密碼</td>
 			<td>在職狀態</td>
@@ -31,9 +32,10 @@
 		<tr>
 			<td>${emp.empId}</td>
 			<td>${emp.empName}</td>
+			<td>${emp.roleBean.roleName}</td>
 			<td>${emp.email}</td>
 			<td>${emp.password}</td>
-			<td>${emp.status}</td>
+			<td>${emp.empStatusBean.statusName}</td>
 			<td>${emp.startDate}</td>
 			<td>${emp.endDate}</td>
 		</tr>
