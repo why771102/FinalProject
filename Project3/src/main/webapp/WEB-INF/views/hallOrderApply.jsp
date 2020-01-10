@@ -15,28 +15,51 @@
 </head>
 <body>
 
-
+<table>
+<%-- 						<form:input id="memberID" path="memberID" type='hidden'/><br> --%>
 		<form:form method='POST' modelAttribute="hallOrderBean" enctype="multipart/form-data" >
 		
 			<fieldset>
-<%-- 						<form:input id="memberID" path="memberID" type='hidden'/><br> --%>
-					租借日期:<form:input id="date" path="orderDate" type='date'/><br>
-					租借起始時間:	<form:input id="startTime" path="startTime" type='date'/><br>
-					租借結束時間:<form:input id="endTime" path="endTime" type='date' /><br>
-					選擇影廳:<form:select path="hallID">
+			
+				<tr>
+					<td>租借日期:</td>
+					<td><form:input id="date" path="orderDate" type='date'/></td>
+				</tr>
+				
+				<tr>
+					<td>租借起始時間:</td>
+					<td><form:input id="startTime" path="startTime" type='date'/></td>
+				</tr>
+				<tr>
+					<td>租借結束時間:</td>
+					<td><form:input id="endTime" path="endTime" type='date' /></td>
+				</tr>
+				<tr>
+					<td>選擇影廳:</td>
+					<td><form:select path="hallID">
 								<form:option value="-1">
 									請選擇
 								</form:option>
 								<form:options items="${hallList}"/>
-							</form:select>
-					
-					<br>
-					包廳目的:<form:input id="hallPurpose" path="hallPurpose" type='text' /><br>
-					原因詳述:<form:input id="hallPurposeDetail" path="hallPurposeDetail" type='text' /><br>
-					預估包廳總金額:<form:input id="hallSubtotal" path="hallSubtotal" type='text' /><br>
-					<input type='submit' value="送出申請"/>
-					
+							</form:select></td>
+				</tr>
+				<tr>
+					<td>包廳目的:</td>
+					<td><form:input id="hallPurpose" path="hallPurpose" type='text' /></td>
+				</tr>
+				<tr>
+					<td>原因詳述:</td>
+					<td><form:input id="hallPurposeDetail" path="hallPurposeDetail" type='text' /></td>
+				</tr>
+				<tr>
+					<td>預估包廳總金額:</td>
+					<td><form:input id="hallSubtotal" path="hallSubtotal" type='text' /></td>
+				</tr>
+				<tr>
+					<td><input type='submit' value="送出申請"/></td>
+				</tr>
 			</fieldset>
 		</form:form>
+</table>
 </body>
 </html>

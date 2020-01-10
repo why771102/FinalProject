@@ -5,7 +5,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -15,25 +18,70 @@
 </head>
 <body>
 
-
+<table>
 		<form:form method='POST' modelAttribute="memberBean" enctype="multipart/form-data" >
 		
 			<fieldset>
-
-					name:	<form:input id="name" path="name" type='text'/><br>
-					account:	<form:input id="account" path="account" type='text' /><br>
-					password:	<form:input id="password" path="password" type='text' /><br>
-					gender:	<form:input id="gender" path="gender" type='text' /><br>
-					uID:		<form:input id="uID" path="uID" type='text' /><br>
-					birth:	<form:input id="birth" path="birth" type='text' /><br>
-					mobile:	<form:input id="mobile" path="mobile" type='text' /><br>
-					email:	<form:input id="email" path="email" type='text' /><br>
-					address:	<form:input id="address" path="address" type='text' /><br>
-
-				
-						<input type='submit'/>
-					
+				<tr>
+					<td>姓名:</td>
+					<td><form:input id="name" path="name" type='text' /></td>
+				</tr>
+				<tr>
+					<td>帳號:</td>
+					<td><form:input id="account" path="account" type='text' /></td>
+				</tr>
+				<tr>
+					<td>密碼:</td>
+					<td><form:input id="password" path="password" type='text' /></td>
+				</tr>
+				<tr>
+					<td>性別:</td>
+					<td><form:radiobutton path="gender" value="男性" />男性
+						<form:radiobutton path="gender" value="女性" />女性
+						<form:radiobutton path="gender" value="其他" />其他</td>
+				</tr>
+				<tr>
+					<td>身分證字號:</td>
+					<td><form:input id="uID" path="uID" type='text' /></td>
+				</tr>
+				<tr>
+					<td>出生年月日:</td>
+					<td><form:input id="birth" path="birth" type='date' /></td>
+				</tr>
+				<tr>
+					<td>聯絡電話:</td>
+					<td><form:input id="mobile" path="mobile" type='text' /></td>
+				</tr>
+				<tr>
+					<td>email:</td>
+					<td><form:input id="email" path="email" type='text' /></td>
+				</tr>
+				<tr>
+					<td>住址:</td>
+					<td><form:input id="address" path="address" type='text' /></td>
+				</tr>
+				<tr>
+					<td><form:input id="registerTime" path="registerTime" value="" type='hidden' /></td>
+				</tr>
+				<tr>
+					<td><input type='submit' /></td>
+				</tr>
 			</fieldset>
 		</form:form>
+</table>
+<script>
+$(document).ready(function(){
+	var d = new Date();
+	console.log(d.toLocaleTimeString());
+	console.log(d.toLocaleDateString());
+	console.log(d.toUTCString());
+	console.log(d.getTime());
+	console.log(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
+	console.log(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
+	
+	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
+});
+
+</script>
 </body>
 </html>
