@@ -3,6 +3,7 @@ package com.z.dao;
 import java.util.List;
 
 import com.z.model.AnnoBean;
+import com.z.model.AnnoStatusBean;
 
 public interface AnnoDao {
 	
@@ -15,5 +16,11 @@ public interface AnnoDao {
 	void updateAnno(AnnoBean ab);
 	
 	List<AnnoBean> showAnno();
+
+	AnnoBean showOneAnno(Integer annoId);
+
+	AnnoStatusBean getAnnoStatusById(Integer annoId);
+
+	List<AnnoStatusBean> getAnnoStatusList();
 	
 }

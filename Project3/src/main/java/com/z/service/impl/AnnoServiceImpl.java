@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.z.dao.AnnoDao;
 import com.z.model.AnnoBean;
+import com.z.model.AnnoStatusBean;
 import com.z.service.AnnoService;
 
 @Service
@@ -53,6 +54,18 @@ public class AnnoServiceImpl implements AnnoService {
 	@Override
 	public List<AnnoBean> showAnno() {
 		return dao.showAnno();
+	}
+	
+	@Transactional
+	@Override
+	public AnnoBean showOneAnno(Integer annoId) {
+		return dao.showOneAnno(annoId);
+	}
+	
+	@Transactional
+	@Override
+	public List<AnnoStatusBean> getAnnoStatusList() {
+		return dao.getAnnoStatusList();
 	}
 
 }
