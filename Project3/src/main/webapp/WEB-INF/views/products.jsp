@@ -30,6 +30,11 @@
                         <p>價格:${product.unitPrice}</p>
                         <p>目前在庫數量: ${product.unitStock}</p>
                         <p>成本:${product.cost}</p>
+                        <p>
+                        <a href="<spring:url value='/product?id=${product.productID}' />"
+    							class="btn btn-primary">
+    							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
+ 							</a></p>
                    </div>
                 </div>
             </div>
