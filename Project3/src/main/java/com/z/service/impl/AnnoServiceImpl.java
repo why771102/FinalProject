@@ -43,12 +43,12 @@ public class AnnoServiceImpl implements AnnoService {
 
 	}
 
-	@Transactional
-	@Override
-	public void updateAnno(AnnoBean ab) {
-		dao.updateAnno(ab);
-
-	}
+//	@Transactional
+//	@Override
+//	public void updateAnno(AnnoBean ab) {
+//		dao.updateAnno(ab);
+//
+//	}
 
 	@Transactional
 	@Override
@@ -66,6 +66,15 @@ public class AnnoServiceImpl implements AnnoService {
 	@Override
 	public List<AnnoStatusBean> getAnnoStatusList() {
 		return dao.getAnnoStatusList();
+	}
+	
+	
+	
+	
+	@Transactional
+	@Override
+	public List<AnnoBean> showAnnoToMember() {
+		return dao.showAnnoToMember();
 	}
 
 }

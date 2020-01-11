@@ -89,6 +89,29 @@ public class AnnoDaoImpl implements AnnoDao {
 		List<AnnoStatusBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
+	
+	//前端顯示用的method
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AnnoBean> showAnnoToMember() {
+		String hql = "from AnnoBean";
+		Session session = factory.getCurrentSession();
+		List<AnnoBean> list = new ArrayList<>();
+		list = session.createQuery(hql).getResultList();
+		AnnoBean temp = null;
+		AnnoBean fir = null;
+		AnnoBean sed = null;
+		for(int i = 0; i < list.size() - 1 ; i++) {
+			fir = list.get(i);
+			sed = list.get(i + 1);
+			if(fir.getPriority() > sed.getPriority()) {
+				temp = fir;
+				list.set(i, sed);
+				list.set(i + 1, temp);
+			}
+		}
+		return list;
+	}
 
 
 

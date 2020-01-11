@@ -30,13 +30,13 @@ public class EmpServiceImpl implements EmpService {
 		dao.saveEmp(eb);
 		
 	}
-	@Transactional
-	@Override
-	public void updateEmp(EmpBean eb) {
-		
-		dao.updateEmp(eb);
-
-	}
+//	@Transactional
+//	@Override
+//	public void updateEmp(EmpBean eb) {
+//		
+//		dao.saveEmp(eb);
+//
+//	}
 	@Transactional
 	@Override
 	public EmpBean isExists(EmpBean eb) {
