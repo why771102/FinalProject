@@ -73,7 +73,7 @@
 				</tr>
 				<tr>
 					<td>包廳總時數:</td>
-					<td><form:input id="orderHours" path="orderHours" type='text' readonly="true"/></td>
+					<td><form:input id="orderHours" path="orderHours" type='text'  readonly="true"/></td>
 				</tr>
 <!-- 				<tr> -->
 <!-- 					<td>選擇影廳:</td> -->
@@ -101,7 +101,7 @@
 				</tr>
 				<tr>
 					<td>預估包廳總金額:</td>
-					<td><form:input id="hallSubtotal" path="hallSubtotal" type='text' /></td>
+					<td><form:input id="hallSubtotal" path="hallSubtotal" type='text' readonly="true"/></td>
 				</tr>
 <!-- 				<tr> -->
 <%-- 					<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="0" type='hidden' /></td> --%>
@@ -118,23 +118,47 @@
 <script>
 var s;
 var e;
-$("#startTime").click(function(){
-	s = $("#startTime").val();
-	var e = $("#endTime").val();
-	console.log(s);
+
+$("#startTime").change(function(){
+	s = $("#startTime").val().substring(0,2);
+	$("#endTime").change(function(){
+		e = $("#endTime").val().substring(0,2);
+		if(s!=null && e!=null){
+			var s2 = parseInt(s);
+			var e2 = parseInt(e);
+			var hours = e2-s2;
+			var st = (hours)*10000;
+			if(hours<=0){
+				alert("時間輸入有誤!請重新輸入");
+				$("#orderHours").val("時間輸入有誤");
+				$("#hallSubtotal").val("0");
+			}else{
+				$("#orderHours").val(hours);
+				$("#hallSubtotal").val(st);
+			}
+		}
+	});
+	if(s!=null && e!=null){
+		var s2 = parseInt(s);
+		var e2 = parseInt(e);
+		var hours = e2-s2;
+		var st = (hours)*10000;
+		if(hours<=0){
+			alert("時間輸入有誤!請重新輸入");
+			$("#orderHours").val("時間輸入有誤");
+			$("#hallSubtotal").val("0");
+		}else{
+			$("#orderHours").val(hours);
+			$("#hallSubtotal").val(st);
+		}
+	}
 });
 
-$("#endTime").click(function(){
-	e = $("#endTime").val();
-	console.log(e);
-});
 
-var s2 = parseInt(s.substring(0,2));
-var e2 = parseInt(e.substring(0,2));
 
-var st = (e2-s2)*10000;
 
-$("#hallSubtotal").val(st);
+
+
 
 
 
