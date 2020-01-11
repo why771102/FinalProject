@@ -72,13 +72,6 @@
 <script>
 $(document).ready(function(){
 	var d = new Date();
-	console.log(d.toLocaleTimeString());
-	console.log(d.toLocaleDateString());
-	console.log(d.toUTCString());
-	console.log(d.getTime());
-	console.log(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
-	console.log(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
-	
 	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
 });
 

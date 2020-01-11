@@ -44,6 +44,7 @@ public class HallOrderBean implements Serializable {
 	String startTime;
 	@Column(columnDefinition = "datetime")
 	String endTime;
+	Integer orderHours;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="hallID")
 	private HallBean hb;
@@ -141,6 +142,14 @@ public class HallOrderBean implements Serializable {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+	public Integer getOrderHours() {
+		return orderHours;
+	}
+
+	public void setOrderHours(Integer orderHours) {
+		this.orderHours = orderHours;
+	}
+
 	public String getHallPurpose() {
 		return hallPurpose;
 	}

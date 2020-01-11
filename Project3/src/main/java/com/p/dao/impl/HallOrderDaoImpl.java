@@ -26,6 +26,14 @@ public class HallOrderDaoImpl implements HallOrderDao {
 	@Override
 	public HallOrderBean hallOrderApply(HallOrderBean Hob) {
 		Session session = factory.getCurrentSession();
+		String orderDate = Hob.getOrderDate();
+		String startTime = Hob.getStartTime();
+		String endTime = Hob.getEndTime();
+		String newStartTime = orderDate + " " + startTime;
+		String newEndTime = orderDate + " " + endTime;
+		Hob.setStartTime(newStartTime);
+		Hob.setEndTime(newEndTime);
+        //以上為處裡起訖時間
 		session.save(Hob);
 		return null;
 	}
