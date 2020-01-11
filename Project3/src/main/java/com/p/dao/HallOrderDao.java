@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.c.model.HallBean;
 import com.p.model.HallOrderBean;
+import com.p.model.HallOrderStatusBean;
 
 public interface HallOrderDao {
 	//包廳申請，要先抓從cookie抓會員ID，藉此綁定會員
@@ -23,5 +24,8 @@ public interface HallOrderDao {
 	
 	//動態新增廳號選單
 	public List<String> getAllhallID();
+
+	//用hallOrderStatusNo來取一個HallOrderStatusBean
+	public HallOrderStatusBean gethallOrderStatusBean(Integer hallOrderStatusNo);
 	
 }

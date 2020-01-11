@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.c.model.HallBean;
 import com.p.dao.HallOrderDao;
 import com.p.model.HallOrderBean;
+import com.p.model.HallOrderStatusBean;
 
 @Repository
 public class HallOrderDaoImpl implements HallOrderDao {
@@ -82,13 +83,22 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		return null;
 	}
 
-
+	//用於產生下拉式選單
 	@Override
 	public List<String> getAllhallID() {
 		String hql = "Select h.hallID From HallBean h";
 		Session session = factory.getCurrentSession();
 		List<String> list = session.createQuery(hql).getResultList();
 		return list;
+	}
+	
+	//用hallOrderStatusNo來取HallOrderStatusBean
+	@Override
+	public HallOrderStatusBean gethallOrderStatusBean(Integer hallOrderStatusNo) {
+		HallOrderStatusBean Hob = null;
+		Session session = factory.getCurrentSession();
+		Hob = session.get(HallOrderStatusBean.class, hallOrderStatusNo);
+		return Hob;
 	}
 
 }
