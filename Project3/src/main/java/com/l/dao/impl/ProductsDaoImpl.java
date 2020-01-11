@@ -40,6 +40,28 @@ public class ProductsDaoImpl implements ProductsDao{
 		list=session.createQuery(hql).getResultList();
 		return list;
 	}
+	//查詢分類產品們
+		@Override
+		public List<String> getCategories(){
+			String hql="Select Distinct p.category from ProductsBean p";
+			Session session=factory.getCurrentSession();
+			List<String> list=new ArrayList<>();
+			list=session.createQuery(hql).getResultList();
+			return list;
+		}
+	
+	//用ID查詢分類產品 
+		@Override
+		public List<ProductsBean> getCategory(Integer category){
+			String hql="from ProductsBean pb where pb.category=:category";
+			Session session=factory.getCurrentSession();
+			List<ProductsBean> list=new ArrayList<>();
+			list=session.createQuery(hql).setParameter("category", category).getResultList();
+			return list;
+		}
+	
+	
+	
 	//用productID更新
 	@Override
 	public void updateProduct(Integer productID, String productName, Integer category, Integer unitPrice,

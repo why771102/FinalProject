@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,6 +28,28 @@ public class ProductsController {
 		model.addAttribute("products", list);
 		return "products";
 	}
+	//測試查詢類別們
+		@RequestMapping("/queryCategories")
+		public String queryCategories(Model model) {
+			List<String> list=service.getCategories();
+			model.addAttribute("categoryList", list);
+			return "category";
+		}
+		//測試查詢類別用ID
+			@RequestMapping("/products/{category}")
+				public String queryCategory(@PathVariable("category")Integer category,Model model) {
+					List<ProductsBean> products=service.getCategory(category);
+					model.addAttribute("products", products);
+					return "products";
+				}
+	
+	
+	//測試查詢多筆
+		@RequestMapping("/update/products")
+		public String updateProducts(Model model) {
+			service.updateProducts();
+			return "redirect:/products";
+		}
 	
 	//測試查詢單筆
 //		@RequestMapping(value = "/products", method = RequestMethod.GET)

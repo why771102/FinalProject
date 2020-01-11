@@ -20,23 +20,39 @@ public class ProductsServiceImpl implements ProductsService{
 		this.dao = dao;
 	}
 	
+	//查詢單
 	@Transactional
 	@Override
 	public ProductsBean getProduct(Integer productID) {
 		return dao.getProduct(productID);
 	}
 
+	//查詢多
 	@Transactional
 	@Override
 	public List<ProductsBean> getProducts() {
 		return dao.getProducts();
 	}
 	
+	//查詢分類產品們
 	@Transactional
 	@Override
-	public void updateProduct(Integer productID, String productName, Integer category, Integer unitPrice,
-			Integer unitStock, Integer cost) {
-		
+	public List<String> getCategories() {
+		return dao.getCategories();
+	}
+	//用ID查詢分類產品 
+	@Transactional
+	@Override
+	public List<ProductsBean> getCategory(Integer category) {
+		return dao.getCategory(category);
+	}
+	
+	//修改
+	@Transactional
+	@Override
+	public void updateProducts() {
+		List<ProductsBean> getProducts=dao.getProducts();
+		getProducts.updateProducts();
 		
 	}
 	

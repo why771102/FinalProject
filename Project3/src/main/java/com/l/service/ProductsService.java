@@ -12,8 +12,15 @@ public interface ProductsService {
 		//查詢所有產品
 		public List<ProductsBean> getProducts();
 
-		//更新產品
-		public void updateProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
+		//查詢分類產品們
+		public List<String> getCategories();
+		//用ID查詢分類產品 
+		public List<ProductsBean> getCategory(Integer category);
+		
+		//更新產品們
+		public ProductsBean updateProducts(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
+		
+		
 		//新增產品
 		public void insertProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
 		
