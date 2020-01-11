@@ -22,7 +22,7 @@ public interface HallOrderDao {
 	//後臺功能，讓員工可進行包廳付款狀態調整
 	public HallOrderBean payStatusChange(HallOrderBean hob);
 	
-	//動態新增廳號選單
+	//動態新增廳號選單，此區不確定，要再看看別人的code
 	public List<String> getAllhallID();
 
 	//用hallOrderStatusNo來取一個HallOrderStatusBean

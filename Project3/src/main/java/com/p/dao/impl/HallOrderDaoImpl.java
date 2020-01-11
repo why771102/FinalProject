@@ -92,6 +92,8 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		return list;
 	}
 	
+	
+	
 	//用hallOrderStatusNo來取HallOrderStatusBean
 	@Override
 	public HallOrderStatusBean gethallOrderStatusBean(Integer hallOrderStatusNo) {
