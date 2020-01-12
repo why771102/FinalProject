@@ -28,6 +28,10 @@ public class HallBean implements Serializable{
 	@NotNull
 	@Column(nullable=false, columnDefinition="TINYINT")
 	Integer hallStatus;
+	@Column(columnDefinition="TINYINT")
+	Integer rowNum;
+	@Column(columnDefinition="TINYINT")
+	Integer colNum;
 	
 	public HallBean() {
 		
@@ -38,6 +42,12 @@ public class HallBean implements Serializable{
 		this.noOfSeats = noOfSeats;
 		this.price = price;
 		this.hallStatus = hallStatus;
+	}
+
+	public HallBean(String hallID, Integer rowNum, Integer colNum) {
+		this.hallID = hallID;
+		this.rowNum = rowNum;
+		this.colNum = colNum;
 	}
 
 	public String getHallID() {
