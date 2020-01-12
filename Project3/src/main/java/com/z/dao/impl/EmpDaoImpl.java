@@ -49,17 +49,17 @@ public class EmpDaoImpl implements EmpDao {
 	}
 	
 
-	@Override
-	public void updateEmp(EmpBean mb) {
-		String hql = "update EmpBean set empName = :empName, roleId = :roleId , email = :email, status = :status where empId = :empId";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("empName", mb.getEmpName())
-								.setParameter("roleId", mb.getRoleId())
-								.setParameter("email", mb.getEmail())
-								.setParameter("status", mb.getStatus())
-								.setParameter("empId", mb.getEmpId()).executeUpdate();
-		
-	}
+//	@Override
+//	public void updateEmp(EmpBean mb) {
+//		String hql = "update EmpBean set empName = :empName, roleId = :roleId , email = :email, status = :status where empId = :empId";
+//		Session session = factory.getCurrentSession();
+//		session.createQuery(hql).setParameter("empName", mb.getEmpName())
+//								.setParameter("roleId", mb.getRoleId())
+//								.setParameter("email", mb.getEmail())
+//								.setParameter("status", mb.getStatus())
+//								.setParameter("empId", mb.getEmpId()).executeUpdate();
+//		
+//	}
 
 	@Override
 	public EmpBean isExists(EmpBean mb) {
@@ -82,7 +82,6 @@ public class EmpDaoImpl implements EmpDao {
 
 	@Override
 	public EmpBean getEmp(Integer empId) {
-	
 		Session session = factory.getCurrentSession();
 		EmpBean eb = session.get(EmpBean.class, empId);
 		if(eb == null) {

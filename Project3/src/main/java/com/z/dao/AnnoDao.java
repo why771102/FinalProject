@@ -22,5 +22,7 @@ public interface AnnoDao {
 	AnnoStatusBean getAnnoStatusById(Integer annoId);
 
 	List<AnnoStatusBean> getAnnoStatusList();
+
+	List<AnnoBean> showAnnoToMember();
 	
 }

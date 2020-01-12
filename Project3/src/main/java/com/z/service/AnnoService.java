@@ -13,13 +13,15 @@ public interface AnnoService {
 	
 	void takeOff(AnnoBean ab);
 	
-	void updateAnno(AnnoBean ab);
+//	void updateAnno(AnnoBean ab);
 	
 	List<AnnoBean> showAnno();
 
 	AnnoBean showOneAnno(Integer annoId);
 
 	List<AnnoStatusBean> getAnnoStatusList();
+
+	List<AnnoBean> showAnnoToMember();
 	
 	
 

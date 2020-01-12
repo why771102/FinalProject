@@ -10,7 +10,7 @@ public interface EmpService {
 
 	void saveEmp(EmpBean eb);
 	
-	void updateEmp(EmpBean eb);
+//	void updateEmp(EmpBean eb);
 	
 	EmpBean isExists(EmpBean mb);
 	

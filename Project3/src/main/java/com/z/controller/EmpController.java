@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -115,6 +116,22 @@ public class EmpController {
 			empStatusMap.put(rb.getStatus(), rb.getStatusName());
 		}
 		return empStatusMap;
+	}
+	
+	
+	@RequestMapping(value = "/emp/update/{empId}", method = RequestMethod.GET)
+	public String updateEmp(Model model, @PathVariable("empId") Integer empId) {
+		EmpBean ab = service.getEmp(empId);
+		model.addAttribute("empBean", ab);
+		//試著加上是否為員工本人的判斷，導向不同頁面
+		return "z/editEmp";
+	}
+	
+	
+	@RequestMapping(value = "/emp/update/{empId}", method = RequestMethod.POST)
+	public String processUdateEmp(@ModelAttribute("empBean") EmpBean eb) {
+		service.saveEmp(eb);
+		return "redirect:/emps";
 	}
 	
 
