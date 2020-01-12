@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.a.dao.RunningDao;
 import com.a.model.RunningBean;
+import com.a.model.ShowTimeHistoryBean;
 
 @Repository
 public class RunningDaoImpl implements RunningDao {
@@ -59,7 +60,7 @@ public class RunningDaoImpl implements RunningDao {
 		
 		return rbList;
 	}
-
+  //找今天日期要上映的電影
 	@Override
 	public List<RunningBean> getReleaseRunnigBean(LocalDate release) {
 		String hql ="from running where release like ':day' ";
@@ -70,7 +71,7 @@ public class RunningDaoImpl implements RunningDao {
                                        .getResultList();
 		return rbList;
 	}
-
+	 //拿出某段時間內日期的電影
 	@Override
 	public List<RunningBean> getAllOnMoive(LocalDate release, LocalDate expectedOffDate) {
 		List<RunningBean>rbList =new ArrayList<RunningBean>(); 
@@ -83,8 +84,24 @@ public class RunningDaoImpl implements RunningDao {
                                        .getResultList();
 		
 		return rbList;
+
+	}
+	//把 ShowTimeHistoryBean 的 runID 放進去拿出 runningBean
+	@Override
+	public List<ShowTimeHistoryBean> putRunBeanInShowTimeHistoryBean(List<ShowTimeHistoryBean> STHBList) {
+		Session session =factory.getCurrentSession();
+		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
 		
+		for(ShowTimeHistoryBean sthb: STHBList) {
 		
+		RunningBean rb =null;
+		rb =session.get(RunningBean.class,  sthb.getRunID());
+		sthb.setRun(rb);
+		
+		STHB_List.add(sthb);
+		}
+		
+		return STHB_List;
 		
 	}
 

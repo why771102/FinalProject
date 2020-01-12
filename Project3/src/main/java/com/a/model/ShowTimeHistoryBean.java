@@ -59,6 +59,8 @@ public class ShowTimeHistoryBean implements Serializable {
 		this.hall = hall;
 		this.run = run;
 		this.playStartTime = playStartTime;
+		this.run = run;
+		
 	};
 	
 
