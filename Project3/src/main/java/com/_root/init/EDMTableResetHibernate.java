@@ -13,6 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.z.model.AnnoBean;
+import com.z.model.AnnoStatusBean;
 import com.z.model.EmpBean;
 import com.z.model.EmpStatusBean;
 import com.z.model.RoleBean;
@@ -94,6 +96,51 @@ public class EDMTableResetHibernate {
 			}
 			session.flush();
 			System.out.println("Emp資料新增成功");
+			
+			
+			try (FileReader fr = new FileReader("data/annoStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					String name = token[0];
+					AnnoStatusBean asb = new AnnoStatusBean(name);
+					session.save(asb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建AnnoStatus表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("AnnoStatus 資料新增成功");
+			
+			
+			//以下為公告灌資料
+			try (FileReader fr = new FileReader("data/anno.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					AnnoBean ab = new AnnoBean();
+					
+					ab.setTitle(token[0]);
+					ab.setContent(token[1]);
+					ab.setPriority(Integer.parseInt(token[2]));
+					Integer status = Integer.parseInt(token[3]);
+					AnnoStatusBean asb = session.get(AnnoStatusBean.class, status);
+					ab.setAnnoStatusBean(asb);
+					ab.setStartTime(token[4]);
+					ab.setEndTime(token[5]);
+					
+					session.save(ab);
+				}
+			} catch (IOException e) {
+				System.err.println("新建Anno表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("Anno資料新增成功");
+			
 			// 以下是範本
 			/*
 			 * try ( FileReader fr = new FileReader("data/bookCompany.dat"); BufferedReader

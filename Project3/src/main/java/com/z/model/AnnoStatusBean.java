@@ -25,9 +25,6 @@ public class AnnoStatusBean implements Serializable{
 	Integer status;
 	String statusName;
 	
-	
-	
-	
 	public AnnoStatusBean() {
 
 	}
