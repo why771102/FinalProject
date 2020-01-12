@@ -19,25 +19,14 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<h3>${product.title}</h3>
-				<p>作者: ${product.author}</p>
-				<p>單價: ${product.price}</p>
-				<c:choose>
-					<c:when test='${product.discount != 1.0 }'>
-						<p>
-							折扣: ${product.discountStr} &nbsp;&nbsp; 
-							實售: <font color='red'>${product.price*product.discount}元</font>
-						</p>
-					</c:when>
-					<c:otherwise>
-						<p>&nbsp;</p>
-					</c:otherwise>
-				</c:choose>
-				<p>書商: ${product.companyBean.name}</p>
-				<p>書籍分類: ${product.category}</p>
+				<h3>產品ID:${product.productID}</h3>
+				<p>分類: ${product.category}</p>
+				<p>單價: ${product.unitPrice}</p>
+				<p>產品名稱: ${product.productName}</p>
+				<p>產品庫存: ${product.unitStock}</p>
 				<p>
-					<strong>商品編號: </strong> <span class='label label-warning'>
-						${product.bookId} </span>
+					<strong>商品成本: </strong> <span class='label label-warning'>
+						${product.cost} </span>
 				</p>
 				<p>
 					<a href="<spring:url value='/products' />" class="btn btn-default">
