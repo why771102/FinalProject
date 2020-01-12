@@ -92,8 +92,6 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		return list;
 	}
 	
-	
-	
 	//用hallOrderStatusNo來取HallOrderStatusBean
 	@Override
 	public HallOrderStatusBean gethallOrderStatusBean(Integer hallOrderStatusNo) {
@@ -101,6 +99,14 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		Session session = factory.getCurrentSession();
 		Hob = session.get(HallOrderStatusBean.class, hallOrderStatusNo);
 		return Hob;
+	}
+	
+	@Override
+	public List<HallOrderStatusBean> getHallOrderStatusList(){
+		String hql = "from HallOrderStatusBean";
+		Session session = factory.getCurrentSession();
+		List<HallOrderStatusBean> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }
