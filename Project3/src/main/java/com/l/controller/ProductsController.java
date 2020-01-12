@@ -52,16 +52,22 @@ public class ProductsController {
 				return "product";
 			}
 			
-	//測試更新
-		@RequestMapping("/update/products")
-		public String updateProducts(Model model) {
-			ProductsBean pb = new ProductsBean();
+	//測試更新*2
+		@RequestMapping(value = "/update/products", method = RequestMethod.GET)
+		public String getupdateProducts(Model model) {
+			ProductsBean pb=new ProductsBean();
 			model.addAttribute("ProductsBean", pb);
 			return "updateproducts";
 		}
 	
+		@RequestMapping(value = "/update/products", method = RequestMethod.POST)
+		public String proccessupdateProducts(@ModelAttribute("ProductsBean") ProductsBean pb) {
+			service.insertProduct(pb);
+			return "redirect:/products";
+		}
 	
-	
+		
+		
 	//測試新增方法*2       
 		@RequestMapping(value = "/products/add", method = RequestMethod.GET)
 		public String getinsertProduct(Model model) {

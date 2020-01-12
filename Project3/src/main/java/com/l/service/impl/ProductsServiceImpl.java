@@ -50,10 +50,9 @@ public class ProductsServiceImpl implements ProductsService{
 	//修改
 	@Transactional
 	@Override
-	public void updateProducts() {
+	public  ProductsBean updateProducts() {
 		List<ProductsBean> getProducts=dao.getProducts();
-		getProducts.updateProducts();
-		
+		return dao.updateProducts(productID,productName,category,unitPrice,unitStock,cost);
 	}
 	
 	//新增
@@ -63,5 +62,7 @@ public class ProductsServiceImpl implements ProductsService{
 		dao.insertProduct(product);
 		
 	}
+
+
 
 }

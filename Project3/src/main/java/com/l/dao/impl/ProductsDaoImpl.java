@@ -64,7 +64,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	
 	//用productID更新
 	@Override
-	public void updateProduct(Integer productID, String productName, Integer category, Integer unitPrice,
+	public void updateProducts(Integer productID, String productName, Integer category, Integer unitPrice,
 			Integer unitStock, Integer cost) {
 		String hql="UPDATE ProductsBean SET productName=:newproductName, category=:newcategory, unitPrice=:newunitPrice, unitStock=:newunitStock, cost=:newcost WHERE productID=:id";
 		Session session=factory.getCurrentSession();

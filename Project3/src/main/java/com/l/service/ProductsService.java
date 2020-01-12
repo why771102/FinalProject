@@ -18,7 +18,7 @@ public interface ProductsService {
 		public List<ProductsBean> getCategory(Integer category);
 		
 		//更新產品們
-		public ProductsBean updateProducts(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
+		public ProductsBean updateProducts();
 		
 		
 		//新增產品

@@ -18,7 +18,7 @@ public interface ProductsDao {
 	public List<ProductsBean> getCategory(Integer category);
 	
 	//更新產品
-	public void updateProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
+	public void updateProducts(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
 	//新增產品
 	public void insertProduct(ProductsBean product);
 
