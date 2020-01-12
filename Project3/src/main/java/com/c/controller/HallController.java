@@ -3,20 +3,22 @@ package com.c.controller;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.c.model.HallBean;
 import com.c.service.HallService;
-import com.z.model.EmpBean;
+import com.google.gson.Gson;
 
 @Controller
 public class HallController {
@@ -34,25 +36,33 @@ public class HallController {
 		this.service = service;
 	}
 	
-	//以下三個為新增員工方法
-	@RequestMapping(value = "/hall/add", method = RequestMethod.GET)
+	//新增廳方法
+	@GetMapping(value = "/hall/add")
 	public String addNewHall(Model model) {
 		HallBean hb = new HallBean();
 		model.addAttribute("hallBean", hb);
-		return "addHall";
+		return "c/addHall";
 	}
 	
-	@RequestMapping(value = "/hall/add", method = RequestMethod.POST)
-	public String processAddNewEmp(@ModelAttribute("hallBean") HallBean hb, BindingResult result) {
-		
+	@PostMapping(value = "/hall/add")
+	public RedirectView processAddNewEmp(Model model, @ModelAttribute("hallBean") HallBean hb, BindingResult result, HttpServletRequest request) {
+		String url = request.getContextPath();
+		System.out.println(url);
 		String[] suppressedFields = result.getSuppressedFields();
 		
 		if(suppressedFields.length > 0) {
 			throw new RuntimeException("傳入不允許的欄位");
 		} 
  		service.insertHall(hb);
-		return "redirect:/addHall";
+ 		
+ 		model.addAttribute("hallID", hb.getHallID());
+ 		
+ 		RedirectView redirectView = new RedirectView();
+ 		redirectView.setUrl(url+"/seats/addSeats");
+		return redirectView;
 	}
+	
+	
 	
 	
 //	@InitBinder
