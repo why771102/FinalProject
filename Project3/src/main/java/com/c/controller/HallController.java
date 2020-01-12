@@ -63,7 +63,7 @@ public class HallController {
 	//----------------------------------
 	
 	@RequestMapping(value = "/halls")
-	public String getAllEmps(Model model) {
+	public String getAllHalls(Model model) {
 		List<HallBean> allHalls = service.getAllHalls(0);
 		model.addAttribute("allHalls", allHalls);
 		return "halls";
