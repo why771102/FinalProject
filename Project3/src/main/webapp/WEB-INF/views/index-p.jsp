@@ -31,7 +31,7 @@
 				<a href='hallOrder/apply'>包廳申請</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href='products/add'>新增產品資料</a><BR>
+				<a href='Member/hallOrderQuery'>包廳查詢(會員)</a><BR>
 			</td>
 		</tr>
 		

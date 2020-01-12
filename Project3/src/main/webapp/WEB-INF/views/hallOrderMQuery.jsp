@@ -34,8 +34,8 @@
 			<td>${hoA.endTime}</td>
 			<td>${hoA.orderHours}</td>
 			<td>${hoA.hallSubtotal}</td>
-			<td>${hoA.}</td>
-			<td>${hoA.}</td>
+<%-- 			<td>${hoA.}</td> --%>
+<%-- 			<td>${hoA.}</td> --%>
 		</tr>
 			</c:forEach>
 		</table>

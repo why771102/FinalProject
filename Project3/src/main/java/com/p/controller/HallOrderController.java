@@ -54,7 +54,7 @@ public class HallOrderController {
 	}
 	
 	//以下為會員查詢包廳申請
-	@RequestMapping(value = "Member/hallOrderQuery")
+	@RequestMapping(value = "/Member/hallOrderQuery")
 	public String hallOrderMemberQuery(Model model,@ModelAttribute("hallOrderBean")HallOrderBean hob) {
 		List<HallOrderBean> allMHO = service.hallOrderMQuery(hob.getMb().getMemberID());
 		model.addAttribute("allMHO", allMHO);
