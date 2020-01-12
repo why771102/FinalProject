@@ -56,11 +56,11 @@ public class ProductsServiceImpl implements ProductsService{
 		
 	}
 	
+	//新增
 	@Transactional
 	@Override
-	public void insertProduct(Integer productID, String productName, Integer category, Integer unitPrice,
-			Integer unitStock, Integer cost) {
-		dao.insertProduct(productID, productName, category, unitPrice, unitStock, cost);
+	public void insertProduct(ProductsBean product) {
+		dao.insertProduct(product);
 		
 	}
 

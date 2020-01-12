@@ -20,7 +20,6 @@ public interface ProductsDao {
 	//更新產品
 	public void updateProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
 	//新增產品
-	public void insertProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
-	
+	public void insertProduct(ProductsBean product);
 
 }

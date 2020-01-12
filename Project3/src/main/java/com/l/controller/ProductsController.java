@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,20 +52,26 @@ public class ProductsController {
 				return "product";
 			}
 			
-	//測試更新多筆
+	//測試更新
 		@RequestMapping("/update/products")
 		public String updateProducts(Model model) {
-			service.updateProducts();
-			return "redirect:/products";
+			ProductsBean pb = new ProductsBean();
+			model.addAttribute("ProductsBean", pb);
+			return "updateproducts";
 		}
 	
 	
 	
-	//測試新增
+	//測試新增方法*2       
 		@RequestMapping(value = "/products/add", method = RequestMethod.GET)
-		public String insertProduct(Model model) {
+		public String getinsertProduct(Model model) {
 			ProductsBean pb = new ProductsBean();
-			model.addAttribute("productsBean", pb);
-			return "products";
+			model.addAttribute("ProductsBean", pb);
+			return "insertproducts";
+	}
+		@RequestMapping(value = "/products/add", method = RequestMethod.POST)
+		public String proccessinsertProduct(@ModelAttribute("ProductsBean") ProductsBean pb) {
+			service.insertProduct(pb);
+			return "redirect:/products";
 		}
 }

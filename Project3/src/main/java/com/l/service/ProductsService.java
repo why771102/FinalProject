@@ -22,6 +22,6 @@ public interface ProductsService {
 		
 		
 		//新增產品
-		public void insertProduct(Integer productID,String productName,Integer category,Integer unitPrice,Integer unitStock,Integer cost);
+		public void insertProduct(ProductsBean product);
 		
 }

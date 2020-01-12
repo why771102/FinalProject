@@ -76,12 +76,12 @@ public class ProductsDaoImpl implements ProductsDao{
 					.setParameter("newcost", cost)
 					.executeUpdate();
 	}
-
+	
+	//新增單筆
 	@Override
-	public void insertProduct(Integer productID, String productName, Integer category, Integer unitPrice,
-			Integer unitStock, Integer cost) {
-		
-		
+	public void insertProduct(ProductsBean product) {
+		Session session=factory.getCurrentSession();
+		session.save(product);
 	}
 
 
