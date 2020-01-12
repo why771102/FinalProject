@@ -21,7 +21,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		this.factory = factory;
 	}
 	
-	
+	//查詢單筆
 	@Override
 	public ProductsBean getProduct(Integer productID) {
 		Session session = factory.getCurrentSession();

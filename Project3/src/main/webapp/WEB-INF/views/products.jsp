@@ -25,7 +25,7 @@
                 <div class="thumbnail" style="width: 320px; height: 340px">
                     <div class="caption">
                         <p>
-                            <b style='font-size: 16px;'>${product.productName}</b>
+                            <b style='font-size: 16px;'>產品名稱:${product.productName}</b>
                         </p>
                         <p>價格:${product.unitPrice}</p>
                         <p>目前在庫數量: ${product.unitStock}</p>
