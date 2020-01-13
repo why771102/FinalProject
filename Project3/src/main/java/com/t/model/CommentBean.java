@@ -51,6 +51,9 @@ public class CommentBean implements Serializable{
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer commentDelete;
+	@NotNull
+	@Column(nullable=false, columnDefinition = "TINYINT")
+	Integer reportComment;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
@@ -68,11 +71,9 @@ public class CommentBean implements Serializable{
 	
 	public CommentBean() {
 		
-	}
-	
-	
+	}	
 
-	public CommentBean(Integer commentId, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, Integer movieID, Integer memberID) {
+	public CommentBean(Integer commentId, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, Integer movieID, Integer memberID,Integer reportComment) {
 		this.commentId = commentId;
 		this.watched = watched;
 		this.grade = grade;
@@ -81,8 +82,9 @@ public class CommentBean implements Serializable{
 		this.commentDelete = commentDelete;
 		this.movieID = movieID;
 		this.memberID = memberID;
-	}
-	
+		this.reportComment = reportComment;
+	}	
+
 	public Integer getCommentId() {
 		return commentId;
 	}
@@ -161,6 +163,14 @@ public class CommentBean implements Serializable{
 
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
+	}
+	
+	public Integer getReportComment() {
+		return reportComment;
+	}
+
+	public void setReportComment(Integer reportComment) {
+		this.reportComment = reportComment;
 	}
 
 	public static long getSerialversionuid() {

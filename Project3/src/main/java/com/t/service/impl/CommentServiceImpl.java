@@ -2,6 +2,7 @@ package com.t.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.a.model.MovieBean;
@@ -11,33 +12,34 @@ import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
 import com.t.service.CommentService;
 
+@Service
 public class CommentServiceImpl implements CommentService{
 	CommentDao dao;
-	
+	@Transactional
 	@Override
 	public ExpectationBean getAvgGrade(Integer grade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Transactional
 	@Override
 	public CommentBean getComment(Integer commentId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Transactional
 	@Override
 	public List<CommentBean> memberComment() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Transactional
 	@Override
 	public List<CommentBean> findAllComment() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Transactional
 	@Override
 	public void deleteComment(CommentBean cb) {
 		// TODO Auto-generated method stub
@@ -65,7 +67,7 @@ public class CommentServiceImpl implements CommentService{
 	@Transactional
 	@Override
 	public List<MovieBean> getMovieList() {
-		return null;
+		return dao.getMovieList();
 	}
 
 	@Transactional
