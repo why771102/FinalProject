@@ -28,28 +28,28 @@ public class ProductsController {
 	public String getProducts(Model model) {
 		List<ProductsBean> list=service.getProducts();
 		model.addAttribute("Products", list);
-		return "products";
+		return "l/products";
 	}
 	//測試查詢類別們
 		@RequestMapping("/queryCategories")
 		public String queryCategories(Model model) {
 			List<String> list=service.getCategories();
 			model.addAttribute("CategoryList", list);
-			return "category";
+			return "l/category";
 		}
 		//測試查詢類別用ID 
 			@RequestMapping("/products/{category}")
 				public String queryCategory(@PathVariable("category")Integer category,Model model) {
 					List<ProductsBean> products=service.getCategory(category);
 					model.addAttribute("Products", products);
-					return "products";
+					return "l/products";
 				}
 	
 			//測試查詢單筆
 			@RequestMapping("/product")
 			public String getProduct(@RequestParam("id")Integer productID,Model model) {
 				model.addAttribute("Product",service.getProduct(productID));
-				return "product";
+				return "l/product";
 			}
 			
 	//測試更新方法*3  1.在查詢單筆內 2.丟到update頁面 3.丟回查單筆
@@ -57,14 +57,14 @@ public class ProductsController {
 		public String getupdateProducts(Model model) {
 			List<ProductsBean> list=service.getProducts();
 			model.addAttribute("Product", list);
-			return "product";
+			return "l/product";
 		}
 	
 		@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.GET)
 		public String proccessupdateProducts(@PathVariable("productID")Integer productID,Model model) {
 			ProductsBean pb = service.getProduct(productID);
 			model.addAttribute("ProductsBean", pb);
-			return "updateproducts";
+			return "l/updateproducts";
 		}
 		
 		@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
@@ -72,7 +72,7 @@ public class ProductsController {
 			pb.setProductID(productID);   //抓路徑ID塞進pb
 			service.updateProducts(pb);
 			model.addAttribute("Product",service.getProduct(productID));
-			return "product";
+			return "l/product";
 		}
 	
 		
@@ -82,7 +82,7 @@ public class ProductsController {
 		public String getinsertProduct(Model model) {
 			ProductsBean pb = new ProductsBean();
 			model.addAttribute("ProductsBean", pb);
-			return "insertproducts";
+			return "l/insertproducts";
 	}
 		@RequestMapping(value = "/products/add", method = RequestMethod.POST)
 		public String proccessinsertProduct(@ModelAttribute("ProductsBean") ProductsBean pb) {

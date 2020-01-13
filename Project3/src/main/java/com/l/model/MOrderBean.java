@@ -1,7 +1,8 @@
 package com.l.model;
 
+
 import java.io.Serializable;
-import java.sql.Timestamp;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,9 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.a.model.ShowTimeHistoryBean;
-import com.c.model.SeatsBean;
 import com.p.model.MemberBean;
 import com.sun.istack.NotNull;
 import com.z.model.EmpBean;
@@ -37,18 +38,28 @@ public class MOrderBean implements Serializable {
 	//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
-	private ShowTimeHistoryBean showTimeID;
+	private ShowTimeHistoryBean ShowTimeHistoryBean;
+	@Transient
+	Integer showTimeID;
+	
 //	Integer memberID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
-	private MemberBean memberID;
+	private MemberBean MemberBean;
+	@Transient
+	Integer memberID;
+	
+	
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATETIME")
 	String ticketTime;
 //	Integer employeeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="employeeID")
-	private MemberBean employeeID;
+	private EmpBean EmpBean;
+	@Transient
+	Integer empId;
+	
 	
 	
 	public Integer getOrdersID() {
@@ -69,16 +80,16 @@ public class MOrderBean implements Serializable {
 	public void setOrderTime(String orderTime) {
 		OrderTime = orderTime;
 	}
-	public ShowTimeHistoryBean getShowTimeID() {
+	public Integer getShowTimeID() {
 		return showTimeID;
 	}
-	public void setShowTimeID(ShowTimeHistoryBean showTimeID) {
+	public void setShowTimeID(Integer showTimeID) {
 		this.showTimeID = showTimeID;
 	}
-	public MemberBean getMemberID() {
+	public Integer getMemberID() {
 		return memberID;
 	}
-	public void setMemberID(MemberBean memberID) {
+	public void setMemberID(Integer memberID) {
 		this.memberID = memberID;
 	}
 	public String getTicketTime() {
@@ -87,10 +98,35 @@ public class MOrderBean implements Serializable {
 	public void setTicketTime(String ticketTime) {
 		this.ticketTime = ticketTime;
 	}
-	public MemberBean getEmployeeID() {
-		return employeeID;
+	public Integer getEmployeeID() {
+		return empId;
 	}
-	public void setEmployeeID(MemberBean employeeID) {
-		this.employeeID = employeeID;
+	public void setEmployeeID(Integer empId) {
+		this.empId = empId;
 	}
+	public ShowTimeHistoryBean getShowTimeHistoryBean() {
+		return ShowTimeHistoryBean;
+	}
+	public void setShowTimeHistoryBean(ShowTimeHistoryBean showTimeHistoryBean) {
+		ShowTimeHistoryBean = showTimeHistoryBean;
+	}
+	public MemberBean getMemberBean() {
+		return MemberBean;
+	}
+	public void setMemberBean(MemberBean memberBean) {
+		MemberBean = memberBean;
+	}
+	public EmpBean getEmpBean() {
+		return EmpBean;
+	}
+	public void setEmpBean(EmpBean empBean) {
+		EmpBean = empBean;
+	}
+	public Integer getEmpId() {
+		return empId;
+	}
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+
 }
