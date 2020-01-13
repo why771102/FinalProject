@@ -27,23 +27,17 @@ fieldset {
 	<hr style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
+<%-- 	<c:forEach var="product" items="${Product}"> --%>
+		
 		<form:form method='POST' modelAttribute="ProductsBean" class='form-horizontal'>
 			<fieldset >
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='productID'>
-						產品ID </label>
-					<div class="col-lg-10">
-						 <form:input id="productID" path="productID" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-				
+							
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='productName'>
 						產品名稱 </label>
 					<div class="col-lg-10">
 						 <form:input id="productName" path="productName" type='text'
-							class='form:input-large' />
+							class='form:input-large'  />
 					</div>
 				</div>
 
@@ -55,7 +49,6 @@ fieldset {
 							class='form:input-large' />
 					</div>
 				</div>
-
 <!-- 				<div class="form-group"> -->
 <!-- 					<label class='control-label col-lg-2 col-lg-2' for="category"> -->
 <!-- 						類型 </label> -->
@@ -109,6 +102,7 @@ fieldset {
 				</div>
 			</fieldset>
 		</form:form>
+<%-- 		</c:forEach> --%>
 	</section>
 </body>
 </html>

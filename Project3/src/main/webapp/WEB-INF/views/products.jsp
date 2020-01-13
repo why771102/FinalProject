@@ -20,7 +20,7 @@
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
         <div class="row">
-          <c:forEach var='product' items='${products}'>
+          <c:forEach var='product' items='${Products}'>
             <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
                 <div class="thumbnail" style="width: 320px; height: 340px">
                     <div class="caption">

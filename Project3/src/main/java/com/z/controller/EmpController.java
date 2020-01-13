@@ -119,7 +119,7 @@ public class EmpController {
 	}
 	
 	
-	@RequestMapping(value = "/emp/update/{empId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/emp/update", method = RequestMethod.GET)
 	public String updateEmp(Model model, @PathVariable("empId") Integer empId) {
 		EmpBean ab = service.getEmp(empId);
 		model.addAttribute("empBean", ab);

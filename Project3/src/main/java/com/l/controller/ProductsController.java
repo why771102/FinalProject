@@ -27,43 +27,52 @@ public class ProductsController {
 	@RequestMapping("/products")
 	public String getProducts(Model model) {
 		List<ProductsBean> list=service.getProducts();
-		model.addAttribute("products", list);
+		model.addAttribute("Products", list);
 		return "products";
 	}
 	//測試查詢類別們
 		@RequestMapping("/queryCategories")
 		public String queryCategories(Model model) {
 			List<String> list=service.getCategories();
-			model.addAttribute("categoryList", list);
+			model.addAttribute("CategoryList", list);
 			return "category";
 		}
-		//測試查詢類別用ID
+		//測試查詢類別用ID 
 			@RequestMapping("/products/{category}")
 				public String queryCategory(@PathVariable("category")Integer category,Model model) {
 					List<ProductsBean> products=service.getCategory(category);
-					model.addAttribute("products", products);
+					model.addAttribute("Products", products);
 					return "products";
 				}
 	
 			//測試查詢單筆
 			@RequestMapping("/product")
 			public String getProduct(@RequestParam("id")Integer productID,Model model) {
-				model.addAttribute("product",service.getProduct(productID));
+				model.addAttribute("Product",service.getProduct(productID));
 				return "product";
 			}
 			
-	//測試更新*2
+	//測試更新方法*3  1.在查詢單筆內 2.丟到update頁面 3.丟回查單筆
 		@RequestMapping(value = "/update/products", method = RequestMethod.GET)
 		public String getupdateProducts(Model model) {
-			ProductsBean pb=new ProductsBean();
+			List<ProductsBean> list=service.getProducts();
+			model.addAttribute("Product", list);
+			return "product";
+		}
+	
+		@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.GET)
+		public String proccessupdateProducts(@PathVariable("productID")Integer productID,Model model) {
+			ProductsBean pb = service.getProduct(productID);
 			model.addAttribute("ProductsBean", pb);
 			return "updateproducts";
 		}
-	
-		@RequestMapping(value = "/update/products", method = RequestMethod.POST)
-		public String proccessupdateProducts(@ModelAttribute("ProductsBean") ProductsBean pb) {
-			service.insertProduct(pb);
-			return "redirect:/products";
+		
+		@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
+		public String proccessupdateProducts2(@PathVariable("productID")Integer productID,@ModelAttribute("ProductsBean") ProductsBean pb,Model model) {
+			pb.setProductID(productID);   //抓路徑ID塞進pb
+			service.updateProducts(pb);
+			model.addAttribute("Product",service.getProduct(productID));
+			return "product";
 		}
 	
 		
