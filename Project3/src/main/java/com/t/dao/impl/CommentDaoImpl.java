@@ -97,8 +97,10 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<CommentBean> getCommentList() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "FROM CommentBean";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

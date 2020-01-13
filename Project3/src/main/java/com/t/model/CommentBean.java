@@ -54,17 +54,23 @@ public class CommentBean implements Serializable{
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
-	private MovieBean movieID;
+	private MovieBean movieBean;
+	
+	@Transient
+	Integer movieID;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
-	private MemberBean memberID;
+	private MemberBean memberBean;
+	
+	@Transient
+	Integer memberID;
 	
 	public CommentBean() {
 		
 	}
 	
-	public CommentBean(Integer commentId, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, MovieBean movieID, MemberBean memberID) {
+	public CommentBean(Integer commentId, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, Integer movieID, Integer memberID) {
 		this.commentId = commentId;
 		this.watched = watched;
 		this.grade = grade;
@@ -83,19 +89,19 @@ public class CommentBean implements Serializable{
 		this.commentId = commentId;
 	}
 	
-	public MovieBean getMovieID() {
+	public Integer getMovieID() {
 		return movieID;
 	}
 
-	public void setMovieID(MovieBean movieID) {
+	public void setMovieID(Integer movieID) {
 		this.movieID = movieID;
 	}
 
-	public MemberBean getMemberID() {
+	public Integer getMemberID() {
 		return memberID;
 	}
 
-	public void setMemberID(MemberBean memberID) {
+	public void setMemberID(Integer memberID) {
 		this.memberID = memberID;
 	}
 	
