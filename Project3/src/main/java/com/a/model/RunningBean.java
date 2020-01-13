@@ -60,6 +60,19 @@ public class RunningBean implements Serializable {
 		this.status = status;
 		this.movie = movie;
 	}
+	//沒有runID
+	public RunningBean( String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
+			String offDate, Integer status, MovieBean movie) {
+		super();
+		this.release = release;
+		this.expectedOnDate = expectedOnDate;
+		this.onDate = onDate;
+		this.expectedOffDate = expectedOffDate;
+		this.offDate = offDate;
+		this.status = status;
+		this.movie = movie;
+	}
+	
 	//如果沒有movieBean 只有movieID
 	public RunningBean(Integer runID, String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
 			String offDate, Integer status, Integer movieID) {

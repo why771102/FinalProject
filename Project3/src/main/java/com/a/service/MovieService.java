@@ -159,7 +159,7 @@ public interface MovieService {
 
 	
 	
-	
+	MovieBean getMovieBeanById(int movieID);
 	
 	
 
