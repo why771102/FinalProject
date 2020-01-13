@@ -279,10 +279,10 @@ to {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">ç¢ºèªÂ
 		&raquo;</button>
 	<button class="checkout-button" id="refresh"
-		onclick="location.href = 'addSeats';">重新選擇座位 &raquo;</button>
+		onclick="location.href = 'addSeats';">éæ°é¸æåº§ä½ &raquo;</button>
 	<div id="legend"></div>
 </div>
 
@@ -396,7 +396,7 @@ to {
 													+ this.settings.id
 													+ ': <b>$'
 													+ this.data().price
-													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂ¥ÃÂÃÂÃÂ¦ÃÂ¶ÃÂ]</a></li>')
+													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂÃÂ¥ÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂ¶ÃÂÃÂ]</a></li>')
 											.attr(
 													'id',
 													'cart-item-'
@@ -499,7 +499,7 @@ to {
 			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum},
 			type : "POST",
 			success : function() {
-				alert("新增成功");
+				alert("新增成功");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});
