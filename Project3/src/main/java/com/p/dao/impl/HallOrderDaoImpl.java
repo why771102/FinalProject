@@ -65,6 +65,7 @@ public class HallOrderDaoImpl implements HallOrderDao {
 	}
 
 	//後臺功能，讓員工可查詢所有的包廳申請
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<HallOrderBean> hallOrderEQuery() {
 		String hql = "From HallOrderBean";
@@ -124,11 +125,21 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		return Hob;
 	}
 	
+	//創造兩個Bean的list
+	
 	@Override
 	public List<HallOrderStatusBean> getHallOrderStatusList(){
 		String hql = "from HallOrderStatusBean";
 		Session session = factory.getCurrentSession();
 		List<HallOrderStatusBean> list = session.createQuery(hql).getResultList();
+		return list;
+	}
+	
+	@Override
+	public List<PayStatusBean> getPayStatusList(){
+		String hql = "from PayStatusBean";
+		Session session = factory.getCurrentSession();
+		List<PayStatusBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
 

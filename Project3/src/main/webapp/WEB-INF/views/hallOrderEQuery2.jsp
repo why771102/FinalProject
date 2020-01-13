@@ -29,6 +29,7 @@
 			<td>申請總金額</td>
 			<td>包廳申請狀態</td>
 			<td>包廳付款狀態</td>
+			<td>送出修改資料</td>
 		</tr>
 			
 			<c:forEach var="AHO" items="${allEHO}">
@@ -46,9 +47,21 @@
 			
 			<td><form:input id="orderHours" path="orderHours" value="${AHO.orderHours}" type='text' readonly="true"/></td>
 			
-<%-- 			<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="${AHO.hob.hallOrderStatusNo}" type='text'/></td> --%>
+			<td><form:input id="hallSubtotal" path="hallSubtotal" value="${AHO.orderHours}" type='text' readonly="true"/></td>
 			
-<%-- 			<td><form:input id="payStatusNo" path="payStatusNo" value="${AHO.psb.payStatusNo}" type='text' /></td> --%>
+<%-- 			<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="${AHO.hob.hallOrderStatus}" type='text'/></td> --%>
+			<td><form:select path="hallOrderStatusNo">
+				<form:option value="${AHO.hob.hallOrderStatus}"></form:option>
+				<form:options items="${hallOrderStatusList}" />
+				</form:select></td>
+			<td><form:select path="payStatusNo">
+				<form:option value="${AHO.psb.payStatus}"></form:option>
+				<form:options items="${payStatusList}" />
+				</form:select></td>
+			
+<%-- 			<td><form:input id="payStatusNo" path="payStatusNo" value="${AHO.psb.payStatus}" type='text' /></td> --%>
+			
+			<td><input type='submit' value="修改" /></td>
 		</tr>
 			</form:form>
 			</c:forEach>

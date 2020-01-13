@@ -1,6 +1,8 @@
 package com.p.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.p.model.HallOrderBean;
+import com.p.model.HallOrderStatusBean;
+import com.p.model.PayStatusBean;
 import com.p.service.HallOrderService;
 
 @Controller
@@ -72,5 +76,32 @@ public class HallOrderController {
 		service.hallOrderApply(hob);
 		return "hallOrderEQuery2";
 	}
+	
+	//以下為讓前台可以選出相符的兩項狀態
+	
+	@ModelAttribute("hallOrderStatusList")
+	public Map<Integer, String> getHallOrderStatusList() {
+		Map<Integer, String> hallOrderStatusMap = new HashMap<>();
+		List<HallOrderStatusBean> list = service.getHallOrderStatusList();
+		for (HallOrderStatusBean Hob : list) {
+			hallOrderStatusMap.put(Hob.getHallOrderStatusNo(), Hob.getHallOrderStatus());
+		}
+		return hallOrderStatusMap;
+	}
+	
+	@ModelAttribute("payStatusList")
+	public Map<Integer, String> getPayStatusList() {
+		Map<Integer, String> payStatusMap = new HashMap<>();
+		List<PayStatusBean> list = service.getPayStatusList();
+		for (PayStatusBean Psb : list) {
+			payStatusMap.put(Psb.getPayStatusNO(), Psb.getPayStatus());
+		}
+		return payStatusMap;
+	}
+	
+	
+	
+	
+	
 	
 }

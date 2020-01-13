@@ -40,5 +40,7 @@ public interface HallOrderDao {
 	//存包廳付款狀態會用到的方法
 	public PayStatusBean getPayStatusByPSNo(Integer payStatusNo);
 
+	public List<PayStatusBean> getPayStatusList();
+
 	
 }

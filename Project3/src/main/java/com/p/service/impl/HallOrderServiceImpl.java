@@ -10,6 +10,8 @@ import com.c.model.HallBean;
 import com.p.dao.HallOrderDao;
 import com.p.dao.MemberDao;
 import com.p.model.HallOrderBean;
+import com.p.model.HallOrderStatusBean;
+import com.p.model.PayStatusBean;
 import com.p.service.HallOrderService;
 
 @Service
@@ -56,6 +58,18 @@ public class HallOrderServiceImpl implements HallOrderService {
 	@Override
 	public List<String> getAllhallID() {
 		return dao.getAllhallID();
+	}
+
+	@Transactional
+	@Override
+	public List<PayStatusBean> getPayStatusList() {
+		return dao.getPayStatusList();
+	}
+
+	@Transactional
+	@Override
+	public List<HallOrderStatusBean> getHallOrderStatusList() {
+		return dao.getHallOrderStatusList();
 	}
 
 }
