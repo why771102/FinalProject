@@ -70,6 +70,8 @@ public class CommentBean implements Serializable{
 		
 	}
 	
+	
+
 	public CommentBean(Integer commentId, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, Integer movieID, Integer memberID) {
 		this.commentId = commentId;
 		this.watched = watched;
@@ -143,6 +145,22 @@ public class CommentBean implements Serializable{
 
 	public void setCommentDelete(Integer commentDelete) {
 		this.commentDelete = commentDelete;
+	}
+	
+	public MovieBean getMovieBean() {
+		return movieBean;
+	}
+
+	public void setMovieBean(MovieBean movieBean) {
+		this.movieBean = movieBean;
+	}
+
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 
 	public static long getSerialversionuid() {

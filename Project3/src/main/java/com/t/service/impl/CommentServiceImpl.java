@@ -63,9 +63,13 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<CommentBean> getCommentList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MovieBean> getMovieList() {
+		return dao.getMovieList();
+	}
+
+	@Override
+	public List<MemberBean> getMemberList() {
+		return dao.getMemberList();
 	}
 
 }
