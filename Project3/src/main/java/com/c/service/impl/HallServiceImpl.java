@@ -23,8 +23,8 @@ public class HallServiceImpl implements HallService {
 
 	@Transactional
 	@Override
-	public HallBean getHall(String hallName) {
-		return dao.getHall(hallName);
+	public HallBean getHall(String hallID) {
+		return dao.getHall(hallID);
 	}
 
 	@Transactional
@@ -45,10 +45,17 @@ public class HallServiceImpl implements HallService {
 		dao.insertHall(hb);
 	}
 
+	@Transactional
 	@Override
 	public void updateHall(HallBean hb) {
 		dao.updateHall(hb);
 		
+	}
+
+	@Transactional
+	@Override
+	public void updateHallRC(String hallID, Integer colNum, Integer rowNum) {
+		dao.updateHallRC(hallID, colNum, rowNum);
 	}
 
 }

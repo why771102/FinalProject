@@ -1,5 +1,7 @@
 package com.c.controller;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.c.model.HallBean;
 import com.c.model.SeatsBean;
+import com.c.service.HallService;
 import com.c.service.SeatsService;
-import com.google.gson.Gson;
 
 @Controller
 public class SeatsController {
 
-	SeatsService service;
+	SeatsService sservice;
+	HallService hservice;
 	ServletContext context;
 
 	@Autowired
@@ -25,8 +29,9 @@ public class SeatsController {
 	}
 
 	@Autowired
-	public void setService(SeatsService service) {
-		this.service = service;
+	public void setService(SeatsService sservice, HallService hservice) {
+		this.sservice = sservice;
+		this.hservice = hservice;
 	}
 
 	@GetMapping(value = "/seats/addSeats")
@@ -35,22 +40,27 @@ public class SeatsController {
 	}
 	
 	@PostMapping(value="/seats/addSeats")
-	public void saveSeats(@RequestParam ("seats") String seats,
+	public String saveSeats(@RequestParam ("seats") String seats,
 			@RequestParam ("hallID") String hallID,
+			@RequestParam ("rowNum") String rowNum,
+			@RequestParam ("colNum") String colNum,
 			Model model) {
-		Gson gson = new Gson();
-
-		String[] array = gson.fromJson(seats, String[].class);
-		for(int seat = 0; seat < array.length; seat++) {
-			String row = array[seat].substring(0, 1);
-			Integer seatNo =  Integer.parseInt(array[seat].substring(array[seat].length()-1, array[seat].length()));
-			String seatID = hallID+row+seatNo;
-			Integer typeOfSeat = 0; //currently all normal seats
-			Integer seatStatus = 0; //currently all available to be sold
-			SeatsBean sb = new SeatsBean(seatID, row, seatNo, typeOfSeat, seatStatus, hallID);
-			service.insertSeats(sb);
-			System.out.println(sb);
-		}
+		sservice.saveSeats(seats, hallID);
+		hservice.updateHallRC(hallID, Integer.parseInt(colNum), Integer.parseInt(rowNum));
+		return "/index-c";
+	}
+	
+	@GetMapping(value = "/seats/showSeats")
+	public String showHallSeats() {
+		return "c/showSeats";
+	}
+	
+	@PostMapping(value="/seats/showSeats")
+	public void showSeatChart(Model model, @RequestParam ("hallID") String hallID) {
+		HallBean hb = hservice.getHall(hallID);
+		List<SeatsBean> list = sservice.getAllSeats(hallID);
+		//傳回值是['aaaaaa'] 可以直接餵進jsp的mapchart裡
+		String[] seats = sservice.showSeatChart(list, hb.getColNum(), hb.getRowNum());
 	}
 	
 }

@@ -23,6 +23,11 @@ public class SeatsBean implements Serializable{
 	@NotNull
 	@Column(nullable=false, columnDefinition = "NCHAR(4)")
 	String seatID;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="hallID")
+	private HallBean hallBean;
+	@Transient
+	private String hallID;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "NCHAR(1)")
 	String row;
@@ -35,13 +40,6 @@ public class SeatsBean implements Serializable{
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer seatStatus;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="hallID")
-	private HallBean hallBean;
-	
-	@Transient
-	private String hallID;
 	
 	public SeatsBean() {
 		

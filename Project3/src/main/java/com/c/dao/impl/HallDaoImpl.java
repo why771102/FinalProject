@@ -82,6 +82,16 @@ public class HallDaoImpl implements HallDao{
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(hb);
 	}
+
+	@Override
+	public void updateHallRC(String hallID, Integer colNum, Integer rowNum) {
+		Session session = factory.getCurrentSession();
+		String hql = "UPDATE HallBean SET colNum = :colNum, rowNum = :rowNum WHERE hallID = :hallID";
+		session.createQuery(hql).setParameter("colNum", colNum)
+								.setParameter("rowNum", rowNum)
+								.setParameter("hallID", hallID).executeUpdate();
+		
+	}
 	
 	
 

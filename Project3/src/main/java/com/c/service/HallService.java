@@ -6,7 +6,7 @@ import com.c.model.HallBean;
 
 public interface HallService {
 	//取出廳的資訊
-		public HallBean getHall(String hallName);
+		public HallBean getHall(String hallID);
 		
 //		//抓取廳的座位數
 //		public Integer getNumberOfSeats(Integer hallID);
@@ -21,6 +21,9 @@ public interface HallService {
 		public void updateStatus(Integer hallID, Integer status);
 		
 		public void insertHall(HallBean hb);
+		
+		//更新廳的colNum, rowNum
+		public void updateHallRC(String hallID, Integer colNum, Integer rowNum);
 		
 		//修改廳資訊
 		public void updateHall(HallBean hb);
