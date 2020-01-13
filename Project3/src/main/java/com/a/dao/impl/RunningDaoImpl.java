@@ -71,7 +71,7 @@ public class RunningDaoImpl implements RunningDao {
                                        .getResultList();
 		return rbList;
 	}
-	 //拿出某段時間內日期的電影
+	 //拿出某段時間內日期的所有電影
 	@Override
 	public List<RunningBean> getAllOnMoive(LocalDate release, LocalDate expectedOffDate) {
 		List<RunningBean>rbList =new ArrayList<RunningBean>(); 
@@ -104,5 +104,18 @@ public class RunningDaoImpl implements RunningDao {
 		return STHB_List;
 		
 	}
+	//感覺只會取出一個？
+	@Override
+	public List<RunningBean> getnRunningBeanByMovieID(int movieID){
+		RunningBean rb =null;
+		 List<RunningBean> rb_list =null;
+		 Session session =factory.getCurrentSession();
+		 rb = session.get(RunningBean.class, movieID);
+	
+		 
+		 return rb_list;
+	}
+	
+	
 
 }

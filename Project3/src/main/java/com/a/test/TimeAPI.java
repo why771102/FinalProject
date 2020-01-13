@@ -63,7 +63,7 @@ public class TimeAPI {
 	 final LocalDateTime plusTime = LocalDateTime.now().plusMinutes(180);
 	 final LocalDateTime betweenTime = LocalDateTime.now().minusMinutes(144);
 	 
-	 //日期與日期相加減
+	 //日期與日期相加減(單位日子）
 
 		     LocalDate startDate = LocalDate.of(2003, Month.MAY, 9);
 		      System.out.println("开始时间：" + startDate);
@@ -73,7 +73,32 @@ public class TimeAPI {
 		 
 	     long daysDiff = ChronoUnit.DAYS.between(startDate, endDate);
 		     System.out.println("两个时间之间的天数差为：" + daysDiff);
+		     
+	 //日期與日期相加減   （單位 年月日） 
+		     LocalDate today2 = LocalDate.now();
+		        System.out.println("Today : " + today2);
+		        LocalDate birthDate = LocalDate.of(1993, Month.OCTOBER, 19);
+		        System.out.println("BirthDate : " + birthDate);
+
+		        Period p = Period.between(birthDate, today2);
+		        System.out.println(p);
+		        System.out.printf("年龄 : %d 年 %d 月 %d 日\n", p.getYears(), p.getMonths(), p.getDays());
 	 
+    //時間相減
+		        Duration duration = Duration.between(LocalDateTime.now(),  plusTime);
+		        long minust1 =duration.toMinutes();
+		        System.out.println(duration.toMinutes());
+		        
+    //時間相減2        
+		        LocalTime lt1 = LocalTime.parse("01:30:00");
+		        LocalTime lt2 = LocalTime.parse("02:00:00");
+		        LocalTime lt3 = lt1.plusHours(lt2.getHour()).plusMinutes(lt2.getMinute()).plusSeconds(lt2.getSecond());
+		        LocalDateTime ldt = LocalDateTime.of(LocalDate.now(), lt3);System.out.println("lt3="+DateTimeFormatter.ofPattern("HH:mm:ss").format(ldt));
+		        //lt3=03:30:00
+
+		        		
+		        
+		        
 	
 	//formate LocalDateTime
 	//減少時間精確度(Truncation)

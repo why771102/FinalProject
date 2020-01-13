@@ -93,9 +93,16 @@ public class MovieDaoImpl implements MovieDao {
 	}
 
 //	@Override
-//	public HallOrderBean getHallOrder(Timestamp date) {
+//	public List<HallOrderBean> getHallOrder(LocalDate today) {
 //		Session session = factory.getCurrentSession();
-//		return null;
+//      List<HallOrderBean> hb_list = new ArrayList<>();
+//      String hql ="from running where release like ':day' ";	
+//	    //String startTime = (release.format( DateTimeFormatter.ofPattern("yyyy-MM-DD")))+"%";    
+//	hb_list=session.createQuery(hql).setParameter("date", today)                            
+//                                  .getResultList();	
+	
+	
+//		return hb_list;
 //	}
 
 }

@@ -24,5 +24,6 @@ public interface RunningDao {
 		
 		public List<RunningBean> getReleaseRunnigBean(LocalDate release);
 		List<ShowTimeHistoryBean> putRunBeanInShowTimeHistoryBean(List<ShowTimeHistoryBean> STHBList);
+		List<RunningBean> getnRunningBeanByMovieID(int movieID);
 		
 }
