@@ -9,20 +9,20 @@ import java.util.Date;
 public class Testing {
 
 	public static void main(String[] args) {
-		LocalDate currentDate = LocalDate.now();
-		LocalDate currentDatePlusAWeek = currentDate.plusDays(7);
-		String datestr = currentDatePlusAWeek.toString();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			Date d = new Date();
-			Date date = formatter.parse(datestr);
-			System.out.println(currentDate);
-			System.out.println(currentDatePlusAWeek);
-			System.out.println(date);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		LocalDate currentDate = LocalDate.now();
+//		LocalDate currentDatePlusAWeek = currentDate.plusDays(7);
+//		String datestr = currentDatePlusAWeek.toString();
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//		try {
+//			Date d = new Date();
+//			Date date = formatter.parse(datestr);
+//			System.out.println(currentDate);
+//			System.out.println(currentDatePlusAWeek);
+//			System.out.println(date);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 
 //		Date date= new Date();
@@ -35,6 +35,19 @@ public class Testing {
 //		 x = x.substring(0, 10);
 //		 System.out.println("Current Time Stamp: " + ts);
 //		 System.out.println(x);
+		
+		String [] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+		for(int i = 0 ; i < chars.length; i++) {
+			String c = chars[i].toString();
+			System.out.println(c);
+		}
+//		String A = "";
+//		A += "b";
+//		System.out.println(A);
+//		String[] str = new String[5];
+//		String abc = "abc";
+//		
+		
 	}
 
 }

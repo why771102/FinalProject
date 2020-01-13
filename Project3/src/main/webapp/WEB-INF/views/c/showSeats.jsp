@@ -90,6 +90,15 @@ div.seatCharts-seat.available.normal-seats {
 	background-color: #3a78c3;
 }
 
+div.seatCharts-seat.available.handicap-seats {
+	/* 	background: url(vip.png); */
+	background-color: #b9ca1c;
+}
+div.seatCharts-seat.available.out-of-order {
+	/* 	background: url(vip.png); */
+	background-color: #cc1212;
+}
+
 div.seatCharts-seat.focused {
 	background-color: #76B474;
 }
@@ -279,10 +288,10 @@ to {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">Confirm�
 		&raquo;</button>
 	<button class="checkout-button" id="refresh"
-		onclick="location.href = 'addSeats';">重新選擇座位 &raquo;</button>
+		onclick="location.href = 'addSeats';">Refresh &raquo;</button>
 	<div id="legend"></div>
 </div>
 
@@ -318,13 +327,15 @@ to {
 	function getHallSeats(){
 		$.ajax({
 			url : "${pageContext.request.contextPath}/seats/showSeats",
-			data : {hallID: document.getElementsById('hallID').value},
+			data : {hallID: document.getElementById('hallID').value},
 			type : "POST",
 			success : function() {
+				alert("THIS is getHallSeats()");
 				var confirm = document.getElementsByClassName("confirmHall");
 				confirm.onclick = function() {
 					modal.style.display = "none";
 				}
+			}
 			})
 	}
 	
@@ -359,7 +370,7 @@ to {
 				'#seat-map')
 				.seatCharts(
 						{
-							map : map1,
+							map : map,
 
 							seats : {
 								f : {
@@ -375,6 +386,10 @@ to {
 								_ : {
 									classes : 'seatCharts-space',
 									category : 'Aisle'
+								},
+								o : {
+									classes : 'out-of-order',
+									category : 'Out Of Order'
 								}
 
 							},
@@ -395,7 +410,9 @@ to {
 										[ 'f', 'available', 'Normal' ],
 										[ 'e', 'available', 'Handicap Seats' ],
 										[ 'f', 'unavailable', 'Already Booked' ],
-										[ '_', 'seatCharts-space', 'Aisle' ] ]
+										[ 'o', 'out-of-order', 'Out Of Order' ],
+										[ '_', 'seatCharts-space', 'Aisle' ] 
+										]
 							},
 							click : function() {
 								if (this.status() == 'available') {
