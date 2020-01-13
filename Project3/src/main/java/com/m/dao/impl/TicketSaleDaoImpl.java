@@ -27,6 +27,52 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		this.factory = factory;
 	}
 	
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	//取得影廳總座位數
+//	public List<NumberOfSeatsBean> getHallSeats(String sDate, String eDate){
+//		String hql = "FROM numberOfSeats nos WHERE nos.date>= :sDate AND nos.date <= :eDate";
+//		Session session = factory.getCurrentSession();
+//		List<NumberOfSeatsBean> hallSeatsList = new ArrayList<>();
+//		hallSeatsList = session.createQuery(hql)
+//				.setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+//		return hallSeatsList;
+//	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RunningBean> ShowMovieByRunTime() {
+		String hql ="SELECT r.release, r.expectedOffDate, r.offDate FROM running r";
+		Session session = factory.getCurrentSession();
+		List<RunningBean> dateRangeList = new ArrayList<>();
+		dateRangeList = session.createQuery(hql).getResultList();
+		return dateRangeList;
+	}
+	
+	@Override
+	public List<ShowTimeHistoryBean> getshowTimeHistory(List<RunningBean> RBList) {
+		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
+		Session session = factory.getCurrentSession();
+		for(RunningBean rb: RBList) {
+			ShowTimeHistoryBean sthb = null;
+			sthb = session.get(ShowTimeHistoryBean.class, rb.getRunID());
+			sthbList.add(sthb);
+		}
+		return sthbList;
+	}
+	
+	@Override
+	public List<NumberOfSeatsBean> getNumberOfSeats(List<ShowTimeHistoryBean> sthbList) {
+		List<NumberOfSeatsBean> nosbList = new ArrayList<>();
+		Session session = factory.getCurrentSession();
+		for(ShowTimeHistoryBean sthb : sthbList) {
+			NumberOfSeatsBean nosb = null;
+			nosb = session.get(NumberOfSeatsBean.class, sthb.getHallID());
+			nosbList.add(nosb);
+		}
+		return nosbList;
+	}
+
 	//全部上下檔的電影名稱集
 //	SELECT title FROM movies as m left join running as r 
 //	on m.movieID = r.movieID left join showTimeHistory as sth on sth.runID = r.runID;
@@ -43,66 +89,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 //		return mIDList;
 //	}
 
-	@Override
-	public Integer CountShow(String movieID) {
-		
-		return null;
-	}
-		
-	@SuppressWarnings("unchecked")
-	@Override
-	//取得影廳總座位數
-	public List<NumberOfSeatsBean> getHallSeats(Date date){
-		String hql = "FROM numberOfSeats nos WHERE nos.date= :date";
-		Session session = factory.getCurrentSession();
-		List<NumberOfSeatsBean> hallSeatsList = new ArrayList<>();
-//		list = session.createQuery(hql).getResultList();
-		hallSeatsList = session.createQuery(hql)
-				.setParameter("date", date).list();
-		return hallSeatsList;
-	}
 
-	@Override
-	public List<RunningBean> getRunningInfo(Date sDate, Date eDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MovieBean> getFilm(Integer movieID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer getShowTime(Integer movieID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ShowTimeHistoryBean getShowHallandDate(Integer showTimeID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<SeatOrderBean> CountSeatSale(Integer showTimeID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<HallOrderBean> getHallOrderInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer getHallOrderPrice(String hallID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	//抓取HallID去取得list中需要的list
 }
