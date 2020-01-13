@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seat Charts</title>
@@ -88,6 +88,15 @@ div.seatCharts-seat.available {
 div.seatCharts-seat.available.normal-seats {
 	/* 	background: url(vip.png); */
 	background-color: #3a78c3;
+}
+
+div.seatCharts-seat.available.handicap-seats {
+	/* 	background: url(vip.png); */
+	background-color: #b9ca1c;
+}
+div.seatCharts-seat.available.out-of-order {
+	/* 	background: url(vip.png); */
+	background-color: #cc1212;
 }
 
 div.seatCharts-seat.focused {
@@ -279,10 +288,10 @@ to {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">ç¢ºèªÂ
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認
 		&raquo;</button>
 	<button class="checkout-button" id="refresh"
-		onclick="location.href = 'addSeats';">éæ°é¸æåº§ä½ &raquo;</button>
+		onclick="location.href = 'addSeats';">重新選擇座位 &raquo;</button>
 	<div id="legend"></div>
 </div>
 
@@ -352,18 +361,22 @@ to {
 
 							seats : {
 								f : {
-									price : 100,
+									price : 270,
 									classes : 'normal-seats', //your custom CSS class
 									category : 'Normal'
 								},
 								e : {
-									price : 40,
+									price : 270,
 									classes : 'handicap-seats', //your custom CSS class
 									category : 'Handicap Seats'
 								},
 								_ : {
 									classes : 'seatCharts-space',
 									category : 'Aisle'
+								},
+								o : {
+									classes : 'out-of-order',
+									category : 'Out Of Order'
 								}
 
 							},
@@ -384,7 +397,9 @@ to {
 										[ 'f', 'available', 'Normal' ],
 										[ 'e', 'available', 'Handicap Seats' ],
 										[ 'f', 'unavailable', 'Already Booked' ],
-										[ '_', 'seatCharts-space', 'Aisle' ] ]
+										[ 'o', 'out-of-order', 'Out Of Order' ],
+										[ '_', 'seatCharts-space', 'Aisle' ] 
+										]
 							},
 							click : function() {
 								if (this.status() == 'available') {
@@ -396,7 +411,7 @@ to {
 													+ this.settings.id
 													+ ': <b>$'
 													+ this.data().price
-													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂÃÂ¥ÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂ¶ÃÂÃÂ]</a></li>')
+													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂ¶ÃÂÃÂÃÂÃÂ]</a></li>')
 											.attr(
 													'id',
 													'cart-item-'
@@ -484,7 +499,6 @@ to {
 				Sseatobj = selectedSeats[i].id
 				SseatArray.push(Sseatobj);
 			}
-
 		}
 		console.log("This is selected seats: " + SseatArray);
 		seatmain(SseatArray, flag2);
@@ -499,7 +513,7 @@ to {
 			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum},
 			type : "POST",
 			success : function() {
-				alert("新增成功");
+				alert("新增成功");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});

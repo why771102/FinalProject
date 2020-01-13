@@ -58,9 +58,15 @@ public class SeatsController {
 	@PostMapping(value="/seats/showSeats")
 	public void showSeatChart(Model model, @RequestParam ("hallID") String hallID) {
 		HallBean hb = hservice.getHall(hallID);
+		System.out.println("HB: " + hb.getColNum());
 		List<SeatsBean> list = sservice.getAllSeats(hallID);
 		//傳回值是['aaaaaa'] 可以直接餵進jsp的mapchart裡
 		String[] seats = sservice.showSeatChart(list, hb.getColNum(), hb.getRowNum());
+		for(int i = 0; i < seats.length; i++) {
+			System.out.println(seats[i]);
+		}
+		model.addAttribute("seats", seats);
+		model.addAttribute("hallID", hallID);
 	}
 	
 }

@@ -23,7 +23,7 @@
 					HallID:	<form:input name="hallID" path="hallID" type='text' /><br>
 					noOfSeats:	<form:input name="noOfSeats" path="noOfSeats" type='text' /><br>
 					Price:		<form:input name="price" path="price" type='text' /><br>
-					status:		<form:input name="status" path="status" type='text' /><br>
+					status:		<form:input name="status" path="hallStatus" type='text' /><br>
 
 				
 						<input type='submit' onclick="c()"/>
