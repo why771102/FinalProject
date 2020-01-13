@@ -34,8 +34,8 @@
 			<td>${hoA.endTime}</td>
 			<td>${hoA.orderHours}</td>
 			<td>${hoA.hallSubtotal}</td>
-<%-- 			<td>${hoA.}</td> --%>
-<%-- 			<td>${hoA.}</td> --%>
+<%-- 			<td>${hoA.hallOrderStatus}</td> 要研究一下，因為我要取出中文 --%>
+<%-- 			<td>${hoA.}</td> 要研究一下，因為我要取出中文 --%>
 		</tr>
 			</c:forEach>
 		</table>

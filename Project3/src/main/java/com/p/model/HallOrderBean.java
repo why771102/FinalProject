@@ -100,11 +100,44 @@ public class HallOrderBean implements Serializable {
 		this.hb = hb;
 	}
 
+	public Integer getMemberID() {
+		return memberID;
+	}
+
+	public void setMemberID(Integer memberID) {
+		this.memberID = memberID;
+	}
+
+	public String getHallID() {
+		return hallID;
+	}
+
+	public void setHallID(String hallID) {
+		this.hallID = hallID;
+	}
+
+	public Integer getHallOrderStatusNo() {
+		return hallOrderStatusNo;
+	}
+
+	public void setHallOrderStatusNo(Integer hallOrderStatusNo) {
+		this.hallOrderStatusNo = hallOrderStatusNo;
+	}
+
+	public Integer getPayStatusNo() {
+		return payStatusNo;
+	}
+
+	public void setPayStatusNo(Integer payStatusNo) {
+		this.payStatusNo = payStatusNo;
+	}
+
 	public HallOrderBean(Integer hallOrderNo,String orderDate,String startTime,String endTime,
-			String hallPurpose,String hallPurposeDetail,Integer hallSubtotal) {
+			Integer orderHours,String hallPurpose,String hallPurposeDetail,Integer hallSubtotal) {
 		this.hallOrderNo = hallOrderNo;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.orderHours = orderHours;
 		this.hallPurpose = hallPurpose;
 		this.hallPurposeDetail = hallPurposeDetail;
 		this.hallSubtotal = hallSubtotal;

@@ -75,15 +75,15 @@
 					<td>包廳總時數:</td>
 					<td><form:input id="orderHours" path="orderHours" type='text'  readonly="true"/></td>
 				</tr>
-<!-- 				<tr> -->
-<!-- 					<td>選擇影廳:</td> -->
-<%-- 					<td><form:select path="hallID"> --%>
-<%-- 								<form:option value="-1"> --%>
-<!-- 									請選擇 -->
-<%-- 								</form:option> --%>
-<%-- 								<form:options items="${hallList}"/> --%>
-<%-- 							</form:select></td> --%>
-<!-- 				</tr> -->
+				<tr>
+					<td>選擇影廳:</td>
+					<td><form:select path="hallID">
+								<form:option value="-1">
+									請選擇
+								</form:option>
+								<form:options items="${hallList}"/>
+							</form:select></td>
+				</tr>
 				<tr>
 					<td>包廳目的:</td>
 					<td><form:select id="hallPurpose" path="hallPurpose">
@@ -103,12 +103,12 @@
 					<td>預估包廳總金額:</td>
 					<td><form:input id="hallSubtotal" path="hallSubtotal" type='text' readonly="true"/></td>
 				</tr>
-<!-- 				<tr> -->
-<%-- 					<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="0" type='hidden' /></td> --%>
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<%-- 					<td><form:input id="payStatusNo" path="payStatusNo" value="0" type='hodden' /></td> --%>
-<!-- 				</tr> -->
+				<tr>
+					<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="0" type='hidden' /></td>
+				</tr>
+				<tr>
+					<td><form:input id="payStatusNo" path="payStatusNo" value="0" type='hidden' /></td>
+				</tr>
 				<tr>
 					<td><input type='submit' value="送出申請"/></td>
 				</tr>

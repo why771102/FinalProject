@@ -1,24 +1,20 @@
 package com.p.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.p.model.HallOrderBean;
-import com.p.model.MemberBean;
 import com.p.service.HallOrderService;
-import com.p.service.MemberService;
-import com.z.model.EmpBean;
-import com.z.model.RoleBean;
 
 @Controller
 public class HallOrderController {
@@ -60,4 +56,21 @@ public class HallOrderController {
 		model.addAttribute("allMHO", allMHO);
 		return "hallOrderMQuery";
 	}
+	
+	//後台功能:以下為員工查詢所有包廳申請
+	@GetMapping(value = "/Employee/hallOrderQuery")
+	public String hallOrderEmployeeQuery(Model model) {
+		HallOrderBean Hob = new HallOrderBean();
+		List<HallOrderBean> allEHO = service.hallOrderEQuery();
+		model.addAttribute("allEHO", allEHO);
+		model.addAttribute("hallOrderBean",Hob);
+		return "hallOrderEQuery2";
+	}
+	
+	@PostMapping(value = "/Employee/hallOrderQuery")
+	public String processHallOrderQuery(@ModelAttribute("hallOrderBean")HallOrderBean hob) {
+		service.hallOrderApply(hob);
+		return "hallOrderEQuery2";
+	}
+	
 }

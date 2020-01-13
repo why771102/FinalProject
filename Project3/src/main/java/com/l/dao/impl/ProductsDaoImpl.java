@@ -64,16 +64,16 @@ public class ProductsDaoImpl implements ProductsDao{
 	
 	//用productID更新
 	@Override
-	public void updateProducts(Integer productID, String productName, Integer category, Integer unitPrice,
-			Integer unitStock, Integer cost) {
+	public void updateProducts(ProductsBean product) {
 		String hql="UPDATE ProductsBean SET productName=:newproductName, category=:newcategory, unitPrice=:newunitPrice, unitStock=:newunitStock, cost=:newcost WHERE productID=:id";
 		Session session=factory.getCurrentSession();
 			int n=session.createQuery(hql)	
-					.setParameter("newproductName", productName)
-					.setParameter("newcategory", category)
-					.setParameter("newunitPrice", unitPrice)
-					.setParameter("newunitStock", unitStock)
-					.setParameter("newcost", cost)
+					.setParameter("newproductName",product.getProductName())
+					.setParameter("newcategory", product.getCategory())
+					.setParameter("newunitPrice", product.getUnitPrice())
+					.setParameter("newunitStock", product.getUnitStock())
+					.setParameter("newcost",product.getCost())
+					.setParameter("id", product.getProductID())
 					.executeUpdate();
 	}
 	

@@ -41,7 +41,7 @@ public class ProductsBean implements Serializable {
 		this.productName=productName;
 		this.category=category;
 		this.unitPrice=unitPrice;
-		this.unitStock=0;
+		this.unitStock=unitStock;
 		this.cost=cost;
 	}
 	

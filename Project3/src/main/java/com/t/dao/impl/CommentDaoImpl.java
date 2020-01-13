@@ -103,4 +103,16 @@ public class CommentDaoImpl implements CommentDao{
 		return list;
 	}
 
+	@Override
+	public List<MovieBean> getMovieList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberBean> getMemberList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
