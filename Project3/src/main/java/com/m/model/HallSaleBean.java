@@ -2,14 +2,20 @@ package com.m.model;
 
 import java.io.Serializable;
 
+import com.c.model.HallBean;
+import com.p.model.HallOrderBean;
+
 public class HallSaleBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	String hallID; //hall => hallID
-	Integer price; //hall => price
-	Integer orderHours; //hallOrder => ???
-	Integer hallSubtotal; //hallOrder => ???
+	String hallID; //hallBean => hallID
+	Integer price; //hallBean => price
+	Integer orderHours; //hallOrderBean => ???
+	Integer hallSubtotal; //hallOrderBean => ???
+	
+	private HallBean hb;
+	private HallOrderBean hob;
 	
 	public HallSaleBean(String hallID, Integer price, Integer orderHours, Integer hallSubtotal) {
 		this.hallID = hallID;
@@ -43,4 +49,19 @@ public class HallSaleBean implements Serializable {
 		this.hallSubtotal = hallSubtotal;
 	}
 	
+	public HallBean getHb() {
+		return hb;
+	}
+
+	public void setHb(HallBean hb) {
+		this.hb = hb;
+	}
+
+	public HallOrderBean getHob() {
+		return hob;
+	}
+
+	public void setHob(HallOrderBean hob) {
+		this.hob = hob;
+	}
 }

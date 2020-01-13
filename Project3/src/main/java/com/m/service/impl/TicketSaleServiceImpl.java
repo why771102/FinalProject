@@ -5,27 +5,42 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
+import com.c.service.HallService;
 import com.m.dao.TicketSaleDao;
 import com.m.service.TicketSaleService;
 
+@Service
 public class TicketSaleServiceImpl implements TicketSaleService {
 
 	TicketSaleDao dao;
 	TicketSaleService service;
-
+	
+	@Autowired
 	public void setDao(TicketSaleDao dao) {
 		this.dao = dao;
 	}
-
+	
+	@Autowired
+	public void setService(TicketSaleService service) {
+		this.service = service;
+	}
+	
+	@Transactional
 	@Override
 	public List<RunningBean> ShowMovieByRunTime() {
 		return dao.ShowMovieByRunTime();
 	}
-
+	
+	@Transactional
 	@Override
 	public List<RunningBean> CompareByTime(String sDate, String eDate) {
 		List<RunningBean> getRBList = dao.ShowMovieByRunTime();
@@ -69,19 +84,22 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 		}
 		return RBList;
 	}
-
+	
+	@Transactional
 	@Override
 	public List<ShowTimeHistoryBean> getshowTimeHistory(List<RunningBean> RBList) {
 		List<ShowTimeHistoryBean> sthbList = dao.getshowTimeHistory(RBList);
 		return sthbList;
 	}
-
+	
+	@Transactional
 	@Override
 	public List<NumberOfSeatsBean> getNumberOfSeats(List<ShowTimeHistoryBean> sthbList) {
 		List<NumberOfSeatsBean> nosbList = dao.getNumberOfSeats(sthbList);
 		return nosbList;
 	}
-
+	
+	@Transactional
 	@Override
 	//getNumberofSeats
 	public List<NumberOfSeatsBean> getHallSeats(List<NumberOfSeatsBean> nosbList, String sDate, String eDate) {
@@ -107,7 +125,7 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 	}
 	
 	
-
+	
 //	@Override
 //	public List<MovieBean> ShowMovieBean(List<RunningBean> RBListToPage) {
 //		List<MovieBean> mbToPage = new ArrayList<>();
