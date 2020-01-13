@@ -244,11 +244,11 @@ to {
 			<h2>Create Movie Theatre Seatings</h2>
 		</div>
 		<div class="modal-body">
-			<!-- 			hall name: <input type="text" id="hallName"><br> -->
-			columns: <input type="text" id="col"><br> rows: <input
-				type="text" id="rows"><br>
-			<button class="seatNumber"
-				onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)">Confirm</button>
+				hallID: <input type="text" id="hallID"><br>
+<!-- 			columns: <input type="text" id="col"><br> rows: <input -->
+<!-- 				type="text" id="rows"><br> -->
+			<button class="confirmHall"
+				onclick="getHallSeats()">Confirm</button>
 		</div>
 	</div>
 
@@ -279,10 +279,10 @@ to {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">ç¢ºèªÂ
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認
 		&raquo;</button>
 	<button class="checkout-button" id="refresh"
-		onclick="location.href = 'addSeats';">éæ°é¸æåº§ä½ &raquo;</button>
+		onclick="location.href = 'addSeats';">重新選擇座位 &raquo;</button>
 	<div id="legend"></div>
 </div>
 
@@ -290,10 +290,7 @@ to {
 	//Modal
 	// Get the modal
 	var modal = document.getElementById("myModal");
-
-	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
-
+	
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
 
@@ -318,6 +315,20 @@ to {
 
 	//End of Modal
 
+	function getHallSeats(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/seats/showSeats",
+			data : {hallID: document.getElementsById('hallID').value},
+			type : "POST",
+			success : function() {
+				var confirm = document.getElementsByClassName("confirmHall");
+				confirm.onclick = function() {
+					modal.style.display = "none";
+				}
+			})
+	}
+	
+	
 	function getEN() {
 		var arr = [];
 		for (var i = 65; i < 91; i++) {
@@ -396,7 +407,7 @@ to {
 													+ this.settings.id
 													+ ': <b>$'
 													+ this.data().price
-													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂÃÂ¥ÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂ¶ÃÂÃÂ]</a></li>')
+													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂ¥ÃÂÃÂÃÂ¦ÃÂ¶ÃÂ]</a></li>')
 											.attr(
 													'id',
 													'cart-item-'
@@ -499,7 +510,7 @@ to {
 			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum},
 			type : "POST",
 			success : function() {
-				alert("新增成功");
+				alert("新增成功");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});

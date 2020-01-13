@@ -37,6 +37,30 @@ public class HallBean implements Serializable{
 		
 	};
 	
+	public Integer getHallStatus() {
+		return hallStatus;
+	}
+
+	public void setHallStatus(Integer hallStatus) {
+		this.hallStatus = hallStatus;
+	}
+
+	public Integer getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(Integer rowNum) {
+		this.rowNum = rowNum;
+	}
+
+	public Integer getColNum() {
+		return colNum;
+	}
+
+	public void setColNum(Integer colNum) {
+		this.colNum = colNum;
+	}
+
 	public HallBean(String hallID, Integer noOfSeats, Integer price, Integer hallStatus) {
 		this.hallID = hallID;
 		this.noOfSeats = noOfSeats;
@@ -69,12 +93,5 @@ public class HallBean implements Serializable{
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public Integer getStatus() {
-		return hallStatus;
-	}
-	public void setStatus(Integer status) {
-		this.hallStatus = status;
-	}
-	
 	
 }

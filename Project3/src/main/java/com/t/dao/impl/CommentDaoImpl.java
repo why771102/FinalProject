@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.a.model.MovieBean;
+import com.p.model.MemberBean;
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
@@ -50,16 +52,7 @@ public class CommentDaoImpl implements CommentDao{
 		return list;
 	}
 
-	@Override
-	public void createComment(CommentBean cb) {
-		String hql = "Insert into CommentBean set movieID = :movieID, memberID = :memberID , watched = :watched, grade = :grade, commentContent  = :commentContent, commentTime = :commentTime, commentDelete = 0 ";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("watched", cb.getWatched())
-								.setParameter("grade", cb.getGrade())
-								.setParameter("commentContent", cb.getCommentContent())
-								.setParameter("commentTime", cb.getCommentTime())
-								.setParameter("commentDelete", cb.getCommentDelete()).executeUpdate();
-	}
+	
 
 	@Override
 	public void deleteComment(CommentBean cb) {
@@ -74,6 +67,40 @@ public class CommentDaoImpl implements CommentDao{
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).executeUpdate();
 		return null;
+	}
+
+	@Override
+	public void addComment(CommentBean cb) {
+		Session session = factory.getCurrentSession();
+		MovieBean mvb = getMovieById(cb.getMovieID());
+		MemberBean mb = getMemberById(cb.getMemberID());
+		cb.setMovieBean(mvb);
+		cb.setMemberBean(mb);
+		session.save(cb);
+	}
+
+	@Override
+	public MovieBean getMovieById(int movieID) {
+		MovieBean mvb = null;
+		Session session = factory.getCurrentSession();
+		mvb = session.get(MovieBean.class,movieID);
+		return mvb;
+	}
+
+	@Override
+	public MemberBean getMemberById(int memberID) {
+		MemberBean mb = null;
+		Session session = factory.getCurrentSession();
+		mb = session.get(MemberBean.class,memberID);
+		return mb;
+	}
+
+	@Override
+	public List<CommentBean> getCommentList() {
+		String hql = "FROM CommentBean";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

@@ -14,7 +14,7 @@
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='123'>Hello
 					Spring MVC</a><BR></td>
-			<td width="350"><p align="left" /> <a href='emps'>查詢所有員工</a><BR>
+			<td width="350"><p align="left" /> <a href='movie/add'>新增movie</a><BR>
 			</td>
 		</tr>
 

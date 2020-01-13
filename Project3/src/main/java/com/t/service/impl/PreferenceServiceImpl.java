@@ -1,5 +1,7 @@
 package com.t.service.impl;
 
-public class PreferenceServiceImpl {
+import com.t.service.PreferenceService;
+
+public class PreferenceServiceImpl implements PreferenceService{
 
 }
