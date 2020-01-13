@@ -33,8 +33,8 @@ public class MOrderBean implements Serializable {
 	Integer ticketStatus;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATETIME")
-	String OrderTime;
 	
+	String OrderTime;
 	//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
@@ -42,13 +42,12 @@ public class MOrderBean implements Serializable {
 	@Transient
 	Integer showTimeID;
 	
-//	Integer memberID;
+	//	Integer memberID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean MemberBean;
 	@Transient
 	Integer memberID;
-	
 	
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATETIME")
@@ -60,7 +59,16 @@ public class MOrderBean implements Serializable {
 	@Transient
 	Integer empId;
 	
-	
+	public MOrderBean() {}
+	public MOrderBean(Integer ordersID,Integer ticketStatus,String OrderTime,Integer showTimeID,Integer memberID,String ticketTime,Integer empId) {
+		this.ordersID=ordersID;
+		this.ticketStatus=ticketStatus;
+		this.OrderTime=OrderTime;
+		this.showTimeID=showTimeID;
+		this.memberID=memberID;
+		this.ticketTime=ticketTime;
+		this.empId=empId;
+	}
 	
 	public Integer getOrdersID() {
 		return ordersID;
