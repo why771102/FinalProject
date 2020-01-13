@@ -32,40 +32,56 @@
 					預告:		<form:input name="trailer" path="trailer" type='text' value='wjiojfkisdjf' /><br>
 					電影介紹:		<form:input name="plotSummary" path="plotSummary" type='text' value='雅菁怡瑩'  /><br>
 <%-- 					照片:		<form:input name="photo" path="photo" type='text' /><br> --%>
-                   <input id='a' type='submit' onclick="c()"/>
+                 
 			</fieldset>
+		
+	  
+	   
+	   
+		
+	
+		
+			<fieldset>
+
+					上映日:		<input type='text' name="release"   value='2020-01-14' id='release' /><br>
+<!-- 					預計播放天數(一定要上映天數):<input type='text' name="expectedOnDate"  value='14' id='expectedOnDate'/><br> -->
+<%-- 					實際播放天數:		<form:input name="onDate" path="onDate" type='text' /><br> --%>
+					下檔日:		<input type='text'  name="expectedOffDate"   value='2020-01-28' id='expectedOffDate'/><br>
+<%-- 					實際下檔日:		<form:input name="offDate" path="offDate" type='text' /><br> --%>
+                                                    一定上映的天數:          <input type='text' name="MustShowDay"   value='7'id='MustShowDay' /><br>
+					
+				
+             
+			</fieldset>
+		  <input id='a' type='submit' onclick="formSubmit()"/>
 		
 	   </form:form>
 		
-<%-- 		<form:form method='POST' modelAttribute="Run" enctype="multipart/form-data" > --%>
-		
-<!-- 			<fieldset> -->
 
-<%-- 					上映日:		<form:input name="release" path="release" type='text' value='2020-01-14' /><br> --%>
-<%-- 					預計播放天數(一定要上映天數):		<form:input name="expectedOnDate" path="expectedOnDate" type='text' value='' /><br> --%>
-<%-- <%-- 					實際播放天數:		<form:input name="onDate" path="onDate" type='text' /><br> --%> --%>
-<%-- 					下檔日:		<form:input name="expectedOffDate" path="expectedOffDate" type='text' value='2020-01-28' /><br> --%>
-<%-- <%-- 					實際下檔日:		<form:input name="offDate" path="offDate" type='text' /><br> --%> --%>
-<!--                                                     一定上映的天數:          <input name="MustShowDay"  type='text' value='7' /><br> -->
-<%-- 					可否自由下檔:		<form:input name="status" path="status" type='text' value='0' /><br> --%>
-				
-             
-<!-- 			</fieldset> -->
-		
-<!-- 			<input type='submit' onclick="formSubmit()" id='b' value='送出'/> -->
-<%-- 		</form:form> --%>
-		
-		
 		
 		<script>
-		function c(){
-		console.log(document.getElementById("Movie").value);
 	
-		}
 		function formSubmit()
 		  {
-		  document.getElementById("a").submit()
-		  document.getElementById("b").submit()
+		 
+		  
+		
+		var release = document.getElementById("release").value;
+// 		var release = $("#release").val();
+        var expectedOffDate =$('#expectedOffDate').val();
+        var MustShowDay =$('#MustShowDay').val();
+        
+		
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/movie/add",
+			data : {release: release, expectedOffDate: expectedOffDate, MustShowDay: MustShowDay},
+			type : "POST",
+			success : function() {
+				alert("新增成功");
+				window.location.href = "${pageContext.request.contextPath}/index-a";
+			}
+		});
 		  }
 		</script>
 </body>

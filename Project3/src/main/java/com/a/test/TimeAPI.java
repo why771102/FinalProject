@@ -63,6 +63,17 @@ public class TimeAPI {
 	 final LocalDateTime plusTime = LocalDateTime.now().plusMinutes(180);
 	 final LocalDateTime betweenTime = LocalDateTime.now().minusMinutes(144);
 	 
+	 //日期與日期相加減
+
+		     LocalDate startDate = LocalDate.of(2003, Month.MAY, 9);
+		      System.out.println("开始时间：" + startDate);
+		  
+		      LocalDate endDate = LocalDate.of(2015, Month.JANUARY, 26);
+		      System.out.println("结束时间：" + endDate);
+		 
+	     long daysDiff = ChronoUnit.DAYS.between(startDate, endDate);
+		     System.out.println("两个时间之间的天数差为：" + daysDiff);
+	 
 	
 	//formate LocalDateTime
 	//減少時間精確度(Truncation)
@@ -100,14 +111,25 @@ public class TimeAPI {
 	 LocalDateTime time = LocalDateTime.now();
 	 String localTime = df.format(time);
 	 LocalDateTime ldt = LocalDateTime.parse(localTime,df);
+	 LocalDate ld = LocalDate.parse(localTime,df);
 	 System.out.println("test=======");  
 	 System.out.println(localTime);
 	 System.out.println("LocalDateTime转成String类型的时间："+localTime);
 	 System.out.println("String类型的时间转成LocalDateTime："+ldt);
-
-
-	           
-	           
+	 System.out.println("String类型的时间转成LocalDate："+ld);
+     
+    /*LocalDate to String*/
+	   String str2 = "2017-11-21";
+       DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");     
+       LocalDate date2 = LocalDate.parse(str2, fmt);
+//       LocalDateTime time2 = LocalDateTime.parse(str2, fmt);
+       System.out.println("String parse localDate:"+date2);
+//       System.out.println("time2:"+time2);
+	 
+	 
+	 
+	 
+	 
 	 /*LocalDateTime 與 ＳＱＬ 互轉 */
 /*	 
 	 //  LocalDate to Timestamp

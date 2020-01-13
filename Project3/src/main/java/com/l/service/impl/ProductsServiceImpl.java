@@ -50,9 +50,8 @@ public class ProductsServiceImpl implements ProductsService{
 	//修改
 	@Transactional
 	@Override
-	public  ProductsBean updateProducts() {
-		List<ProductsBean> getProducts=dao.getProducts();
-		return dao.updateProducts(productID,productName,category,unitPrice,unitStock,cost);
+	public void updateProducts(ProductsBean product) {
+	 dao.updateProducts(product);
 	}
 	
 	//新增

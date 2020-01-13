@@ -26,7 +26,7 @@ public class HallDaoImpl implements HallDao{
 	public HallBean getHall(String hallID) {
 		String hql = "FROM HallBean WHERE hallID = :hallID";
 		Session session = factory.getCurrentSession();
-		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallId", hallID).getSingleResult();
+		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallID", hallID).getSingleResult();
 		return hb;
 	}
 

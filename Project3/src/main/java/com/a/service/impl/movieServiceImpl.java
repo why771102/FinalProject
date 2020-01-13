@@ -156,7 +156,10 @@ public class movieServiceImpl implements MovieService {
 		// TODO Auto-generated method stub
 		return RDao.getReleaseRunnigBean(release);
 	}
-	
-
+	@Transactional
+	@Override
+	public MovieBean getMovieBeanById(int movieID) {
+		return MDao.getMovieBeanById(movieID);
+	}
 
 }

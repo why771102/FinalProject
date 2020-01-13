@@ -74,11 +74,35 @@ public class SeatsServiceImpl implements SeatsService {
 	@Override
 	public String[] showSeatChart(List<SeatsBean> listSB, Integer colNum, Integer rowNum) {
 		String[] seats = new String[colNum];
-		for(int seat = 0; seat < listSB.size(); seat++) {
-			String seatID = listSB.get(seat).getSeatID();
-			seatID = seatID.substring(1, seatID.length());
-			Integer typeofSeat = listSB.get(seat).getTypeOfSeat();
-			Integer seatStatus = listSB.get(seat).getSeatStatus();
+		String [] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+		for(int col = 0; col < colNum; col++) {
+			for(int row = 0 ; row < rowNum; row++) {
+				String seatStr = "";
+				String seatIDstr = chars[col]+row;
+				for(int seat = 0; seat < listSB.size(); seat++) {
+					String seatID = listSB.get(seat).getSeatID();
+					seatID = seatID.substring(1, seatID.length());
+					if(seatIDstr.equalsIgnoreCase(seatID)) {
+						Integer seatStatus = listSB.get(seat).getSeatStatus();
+						if(seatStatus == 1) { //不可出售
+							seatStr += "o";
+							listSB.remove(seat);
+						}else {
+							Integer typeofSeat = listSB.get(seat).getTypeOfSeat();
+							if(typeofSeat == 0) { // 正常座位
+								seatStr += "f";
+								listSB.remove(seat);
+							}else if(typeofSeat == 1){ //輪椅座
+								seatStr += "e";
+								listSB.remove(seat);
+							}
+						}
+					}else {
+						seatStr += "_"; //走道 (當坐位在DB不存在的時候)
+					}
+					seats[col] = seatStr;
+				}
+			}
 		}
 		return seats;
 	}

@@ -29,7 +29,8 @@ public interface CommentService {
 	void addComment(CommentBean cb);
 	MovieBean getMovieById(int movieID);
 	MemberBean getMemberById(int memberID);
-	List<CommentBean> getCommentList();
+	List<MovieBean> getMovieList();
+	List<MemberBean> getMemberList();
 
 	// 將刪除的短評commentDelete 0改1
 	void deleteComment(CommentBean cb);
