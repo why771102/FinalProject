@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.a.model.MovieBean;
 import com.p.model.MemberBean;
@@ -90,11 +91,11 @@ public class CommentBean implements Serializable{
 		this.movieID = movieID;
 	}
 
-	public MemberBean getmemberID() {
+	public MemberBean getMemberID() {
 		return memberID;
 	}
 
-	public void setmemberID(MemberBean memberID) {
+	public void setMemberID(MemberBean memberID) {
 		this.memberID = memberID;
 	}
 	

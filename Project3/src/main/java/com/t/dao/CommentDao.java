@@ -2,6 +2,8 @@ package com.t.dao;
 
 import java.util.List;
 
+import com.a.model.MovieBean;
+import com.p.model.MemberBean;
 import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
 
@@ -23,7 +25,10 @@ public interface CommentDao {
 	List<CommentBean> findAllComment();
 
 	//建立新短評
-	void createComment(CommentBean cb);
+	void addComment(CommentBean cb);
+	MovieBean getMovieById(int movieID);
+	MemberBean getMemberById(int memberID);
+	List<CommentBean> getCommentList();
 
 	//將刪除的短評commentDelete 0改1
 	void deleteComment(CommentBean cb);
