@@ -70,12 +70,12 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		for (TicketSaleBean tsb : tsbList) {
 			MOrderBean mob = null;
 			MOrderDetailBean modb = null;
-			mob.getShowTimeHistoryBean(); //電影票購買日
 			mob = session.get(MOrderBean.class, tsb.getShowtimeID());
+			mob.getShowTimeHistoryBean().getPalyStartTime(); //電影票購買日
 			modb = session.get(MOrderDetailBean.class, mob.getOrdersID());
 //			modb.getUnitPrice(); //取得該筆訂單電影票的價錢
-//			modb.getQuantity(); //取得該筆訂單電影票數量
-			Integer ticketSaleTotal = modb.getUnitPrice() * modb.getQuantity();
+			Integer SeatsSaleNum = modb.getQuantity(); //單筆訂單電影票數量 = 單筆訂單售出座位數
+			Integer ticketSaleTotal = modb.getUnitPrice() * modb.getQuantity(); //單個Bean的票卷銷售總額
 			
 			
 			tsb.setMob(mob);
