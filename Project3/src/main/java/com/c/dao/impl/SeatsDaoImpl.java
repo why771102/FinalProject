@@ -56,10 +56,12 @@ public class SeatsDaoImpl implements SeatsDao {
 	public List<SeatsBean> getAllSeats(String hallID) {
 		Session session = factory.getCurrentSession();
 		List<SeatsBean> list = new ArrayList<>();
-		String hql = "FROM SeatsBean";
-		list = session.createQuery(hql).getResultList();
+		String hql = "FROM SeatsBean WHERE hallID = :hallID";
+		list = session.createQuery(hql).setParameter("hallID", hallID).getResultList();
 		return list;
 	}
+	
+	
 
 	
 

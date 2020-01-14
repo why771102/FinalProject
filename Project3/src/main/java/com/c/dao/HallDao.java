@@ -15,10 +15,14 @@ public interface HallDao {
 	public void updateStatus(Integer hallID, Integer status);
 	
 	//更新廳的colNum, rowNum
-	public void updateHallRC(String hallID, Integer colNum, Integer rowNum);
+	public void updateHallRC(String hallID, Integer colNum, Integer rowNum, Integer noOfSeats);
 	
 	//新增廳
 	public void insertHall(HallBean hb);
 	//修改廳資訊
 	public void updateHall(HallBean hb);
+	
+	public String getAllHallTags();
+	
+	public List<String> getAllHall();
 }

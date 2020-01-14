@@ -35,11 +35,11 @@ public class AnnoController {
 		this.service = service;
 	}
 	
-	@RequestMapping(value = "/annos")
+	@RequestMapping(value = "/bgAnnos")
 	public String getAllAnnos(Model model) {
 		List<AnnoBean> allAnnos = service.showAnno();
 		model.addAttribute("allAnnos", allAnnos);
-		return "z/annos";
+		return "z/bgAnnos";
 	}
 	
 	//以下三個為新增公告方法
@@ -80,7 +80,7 @@ public class AnnoController {
 	@RequestMapping(value = "/anno/update/{annoId}", method = RequestMethod.POST)
 	public String processUdateAnno(@ModelAttribute("annoBean") AnnoBean ab) {
 		service.addNewAnno(ab);
-		return "redirect:/annos";
+		return "redirect:/bgAnnos";
 	}
 
 	
@@ -93,7 +93,25 @@ public class AnnoController {
 		}
 		return annoStatusMap;
 	}
-
 	
+	//前台顯示公告用(依照優先度排序)
+	@RequestMapping(value = "/annos")
+	public String showAnnos(Model model) {
+		List<AnnoBean> allAnnos = service.showAnnoToMember();
+		model.addAttribute("allAnnos", allAnnos);
+		return "z/annos";
+	}
+	
+	@RequestMapping(value = "/anno/launch/{annoId}")
+	public String launchAnno(Model model, @PathVariable("annoId") Integer annoId) {
+		service.launchAnno(annoId);
+		return "redirect:/bgAnnos";
+	}
+
+	@RequestMapping(value = "/anno/takeoff/{annoId}")
+	public String tackOffAnno(Model model, @PathVariable("annoId") Integer annoId) {
+		service.takeOff(annoId);
+		return "redirect:/bgAnnos";
+	}
 
 }

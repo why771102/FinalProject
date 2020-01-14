@@ -1,5 +1,6 @@
 package com.p.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,11 @@ public class HallOrderServiceImpl implements HallOrderService {
 	@Override
 	public List<HallOrderStatusBean> getHallOrderStatusList() {
 		return dao.getHallOrderStatusList();
+	}
+
+	@Override
+	public List<HallOrderBean> getHallOrder(LocalDate today) {
+		return dao.getHallOrder(today);
 	}
 
 }

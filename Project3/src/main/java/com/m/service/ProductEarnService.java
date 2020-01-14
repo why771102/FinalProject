@@ -17,8 +17,16 @@ public interface ProductEarnService {
 	//6+7+8..
 	public List<ProductSaleBean> showPeripheralOrders(Integer categoryA, Integer categoryB, String orderDateA, String orderDateB);
 	
+	//使用上面方法後要加這個方法才能輸出
+	public List<String> getDistinctProductNames();
+	public List<ProductSaleBean> getProductSaleOutput(List<String> productNamesList,List<ProductSaleBean> psbList);
+	
 	//根據產品名稱進入單日資訊
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
 	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);
+	
+	//使用單日資訊需要加入這個方法才能輸出
 	public List<LocalDate> showEachDate(String sDate, String eDate);
+	public List<ProductSaleBean> getFoodEarnByDateOutput(List<LocalDate> datesList, String productName);
+	public List<ProductSaleBean> getPeripheralEarnByDateOutput(List<LocalDate> datesList, String productName);
 }

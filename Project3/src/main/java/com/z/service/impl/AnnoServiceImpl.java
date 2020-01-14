@@ -31,16 +31,15 @@ public class AnnoServiceImpl implements AnnoService {
 
 	@Transactional
 	@Override
-	public void launchAnno(AnnoBean ab) {
-		dao.launchAnno(ab);
+	public void launchAnno(Integer annoId) {
+		dao.launchAnno(annoId);
 
 	}
 
 	@Transactional
 	@Override
-	public void takeOff(AnnoBean ab) {
-		dao.takeOff(ab);
-
+	public void takeOff(Integer annoId) {
+		dao.takeOff(annoId);
 	}
 
 //	@Transactional
