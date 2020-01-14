@@ -1,5 +1,6 @@
 package com.p.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.c.model.HallBean;
@@ -29,4 +30,7 @@ public interface HallOrderService {
 	public List<PayStatusBean> getPayStatusList();
 	
 	public List<HallOrderStatusBean> getHallOrderStatusList();
+	
+	//Ally用
+	public List<HallOrderBean> getHallOrder(LocalDate today);
 }

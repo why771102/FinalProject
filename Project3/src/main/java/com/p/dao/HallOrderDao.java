@@ -1,5 +1,6 @@
 package com.p.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.c.model.HallBean;
@@ -41,6 +42,9 @@ public interface HallOrderDao {
 	public PayStatusBean getPayStatusByPSNo(Integer payStatusNo);
 
 	public List<PayStatusBean> getPayStatusList();
+	
+	//Ally用
+	public List<HallOrderBean> getHallOrder(LocalDate today);
 
 	
 }

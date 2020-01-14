@@ -47,7 +47,7 @@
 			
 			<td><form:input id="orderHours" path="orderHours" value="${AHO.orderHours}" type='text' readonly="true"/></td>
 			
-			<td><form:input id="hallSubtotal" path="hallSubtotal" value="${AHO.orderHours}" type='text' readonly="true"/></td>
+			<td><form:input id="hallSubtotal" path="hallSubtotal" value="${AHO.hallSubtotal}" type='text' readonly="true"/></td>
 			
 <%-- 			<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="${AHO.hob.hallOrderStatus}" type='text'/></td> --%>
 			<td><form:select path="hallOrderStatusNo">
