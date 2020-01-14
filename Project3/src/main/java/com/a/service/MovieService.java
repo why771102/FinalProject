@@ -110,7 +110,7 @@ public interface MovieService {
 	List<RunningBean> removeReleaseMovie(List<RunningBean> AllRunList,List<RunningBean> RRunList);
 	//取P/t值
 	//先取上星期showtimeHitory
-	List <ShowTimeHistoryBean>getShowTimeHistoryBean(RunningBean rb  );
+	List <ShowTimeHistoryBean>getShowTimeHistoryBean(RunningBean rb);
 	//然後拿showTime ID 取P/T值
 	
 
