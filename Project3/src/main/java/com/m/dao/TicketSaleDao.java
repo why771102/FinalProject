@@ -5,14 +5,16 @@ import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
+import com.l.model.MOrderDetailBean;
 import com.m.model.TicketSaleBean;
 
 public interface TicketSaleDao {
 	
-	//取得電影相關資訊
-	public List<TicketSaleBean> getMovieInfo();
+	//回傳order, od, product表內的資訊
+	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
+	public List<TicketSaleBean> getTicketSaleBean(List<MOrderDetailBean> modbList);
 	//取得票卷銷售相關資訊
-	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList);
+//	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList);
 	
 	
 	
@@ -40,9 +42,6 @@ public interface TicketSaleDao {
 
 //	//ShowTimeID: 取得x電影的場次DBT => (movies & running) & showTimeHistory
 //	public Integer getShowTime(Integer movieID);
-//	
-//	//HallID & Date年月日only: 取得x電影x場次的Hall, DBT => showTimeHistory
-//	public ShowTimeHistoryBean getShowHallandDate(Integer showTimeID); 
 
 //	//DBT: movies => movieID, title, runningTime片長, status上映狀態
 }
