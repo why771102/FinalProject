@@ -35,8 +35,7 @@
 			</tr>
 			<tr>
 				<td>公告狀態:</td>
-				<td><form:select path="status">
-				<form:option value="-1">請選擇</form:option>
+				<td><form:select path="annoStatusBean.statusName">
 				<form:options items="${annoStatusList}" />
 				</form:select></td>
 			</tr>
