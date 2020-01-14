@@ -5,14 +5,17 @@ import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
+import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.m.model.TicketSaleBean;
 
 public interface TicketSaleDao {
 	
 	//回傳order, od, product表內的資訊
+//	public List<TicketSaleBean> getMOrderDetailBeanList();
+	public List<MOrderBean> getMOrderBean();
+	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList);
 	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
-	public List<TicketSaleBean> getTicketSaleBean(List<MOrderDetailBean> modbList);
 	//取得票卷銷售相關資訊
 //	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList);
 	
