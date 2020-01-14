@@ -12,9 +12,12 @@ public interface ShowTimeHistoryDao {
 		public void addShowTimeHistory(ShowTimeHistoryBean show);
 		// 從showtime 拿這個星期電影 可以考慮只拿ID?
 		
-		
+		// 把orderList 換成 showTime List
 		List<ShowTimeHistoryBean> getShowTimeHistoryBean(List<RunningBean> Orb);
 		
-		//這個星期的電影嗎?
+		 //拿某一天的全部的show
 		List<ShowTimeHistoryBean> getshowMovie(LocalDateTime playStartTime);
+
+		//拿指定orderID的上映日到下檔日全部的show
+		List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release);
 }

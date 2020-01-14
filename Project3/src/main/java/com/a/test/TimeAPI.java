@@ -135,12 +135,12 @@ public class TimeAPI {
 	 DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	 LocalDateTime time = LocalDateTime.now();
 	 String localTime = df.format(time);
-	 LocalDateTime ldt = LocalDateTime.parse(localTime,df);
+	 LocalDateTime ldt1 = LocalDateTime.parse(localTime,df);
 	 LocalDate ld = LocalDate.parse(localTime,df);
 	 System.out.println("test=======");  
 	 System.out.println(localTime);
 	 System.out.println("LocalDateTime转成String类型的时间："+localTime);
-	 System.out.println("String类型的时间转成LocalDateTime："+ldt);
+	 System.out.println("String类型的时间转成LocalDateTime："+ldt1);
 	 System.out.println("String类型的时间转成LocalDate："+ld);
      
     /*LocalDate to String*/
@@ -201,6 +201,15 @@ public class TimeAPI {
      System.out.println("util1:"+utilDate1);
   
 	 
+     System.out.println("====-------");
+     System.out.println(LocalDate.now().plusDays(30));  
+     String create2 = ((LocalDate.now().plusDays(30)).toString()+" "+"00:00:00"); 
+     String create3 = ((LocalDateTime.now().plusDays(30)).toString()); 
+     LocalDate today1 = LocalDate.now();
+	  LocalTime time1 = LocalTime.now();
+	  String dateTime = today1.toString()+" "+time1.toString();
+     
+	 System.out.println(dateTime);
 	}
 
 }
