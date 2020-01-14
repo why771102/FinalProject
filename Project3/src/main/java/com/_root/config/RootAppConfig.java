@@ -45,6 +45,7 @@ public class RootAppConfig {
 				"com.a.model",
 				"com.l.model",
 				"com.p.model",
+				"com.m.model",
 				"com.z.model",
 				"com.t.model"		
 		});
