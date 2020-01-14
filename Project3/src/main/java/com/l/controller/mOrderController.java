@@ -16,13 +16,13 @@ import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
 
 
-@Controller
-public class mOrderController {
-	ProductsService service;
-	@Autowired
-	public void setService(ProductsService service) {
-		this.service = service;
-	}
+//	@Controller
+//	public class mOrderController {
+//	ProductsService service;
+//	@Autowired
+//	public void setService(ProductsService service) {
+//		this.service = service;
+//	}
 		
 //	//測試查詢多筆
 //	@RequestMapping("/bookticket")
@@ -65,4 +65,4 @@ public class mOrderController {
 //			service.insertProduct(pb);
 //			return "redirect:/products";
 //		}
-}
+//}
