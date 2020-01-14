@@ -57,14 +57,19 @@ public class SeatsServiceImpl implements SeatsService {
 
 		String[] array = gson.fromJson(seats, String[].class);
 		for(int seat = 0; seat < array.length; seat++) {
+			String seatID;
 			String row = array[seat].substring(0, 1);
-			Integer seatNo =  Integer.parseInt(array[seat].substring(array[seat].length()-1, array[seat].length()));
-			String seatID = hallID+row+seatNo;
+			Integer seatNo =  Integer.parseInt(array[seat].substring(2, array[seat].length()));
+			if(seatNo < 10) {
+				seatID = hallID+row+0+seatNo;
+			}else {
+				seatID = hallID+row+seatNo;
+			}
 			Integer typeOfSeat = 0; //currently all normal seats
 			Integer seatStatus = 0; //currently all available to be sold
+			System.out.println("seatID: " + seatID + " hallID: " + hallID);
 			SeatsBean sb = new SeatsBean(seatID, row, seatNo, typeOfSeat, seatStatus, hallID);
 			this.insertSeats(sb);
-			System.out.println(sb);
 		}
 		
 	}
@@ -80,11 +85,17 @@ public class SeatsServiceImpl implements SeatsService {
 		for(int col = 1; col <= colNum; col++) {
 			String seatStr = "";
 			for(int row = 1 ; row <= rowNum; row++) {
-				String seatIDstr = chars[col-1]+row;
+				String seatIDstr;
+				if(row < 10) {
+					seatIDstr = chars[col-1]+0+row;
+				}else {
+					seatIDstr = chars[col-1]+row;
+				}
 				System.out.println("This is seatIDstr: " + seatIDstr);
 				for(int seat = 0; seat < listSB.size(); seat++) {
 					String seatID = listSB.get(seat).getSeatID();
-					seatID = seatID.substring(1, seatID.length()-1);//後面竟然有空格?!
+					System.out.println(seatID);
+					seatID = seatID.substring(1, seatID.length()).trim();//後面竟然有空格?!
 					System.out.println("This is seatID: " + seatID);
 					System.out.println("seatIDstr.equals(seatID): " + seatIDstr.equals(seatID));
 					if(seatIDstr.equals(seatID)) {

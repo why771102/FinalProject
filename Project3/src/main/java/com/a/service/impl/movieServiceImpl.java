@@ -2,6 +2,7 @@ package com.a.service.impl;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class movieServiceImpl implements MovieService {
 		this.SDao = SDao;
 	}
 
+	
 	@Transactional
 	@Override
 	public void addmovie(MovieBean movie) {
@@ -64,19 +66,8 @@ public class movieServiceImpl implements MovieService {
 		return RDao.getComingSoonMovie();
 	}
 
-	@Transactional
-	@Override
-	public List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList) {
-		
-		return MDao.putMovieBeanInRunBean(RunList);
-	}
 
-	//確認MOVIE status = 0
-	@Override
-	public List<RunningBean> checkStatusComingSoon(List<RunningBean> RunList) {
-		
-		return null;
-	}
+
 
 	@Transactional
 	@Override
@@ -86,21 +77,7 @@ public class movieServiceImpl implements MovieService {
 	}
 
 
-
 	
-	@Override
-	public List<RunningBean> shouldOnRunningBean(List<RunningBean> rb) {
-		
-		return null;
-	}
-
-
-	@Override
-	public List<RunningBean> checkMovieDateCanOn(List<RunningBean> rb) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 
 	@Transactional
@@ -108,13 +85,6 @@ public class movieServiceImpl implements MovieService {
 	public boolean updateMovieStatus(int movieID, int status) {
 		// TODO Auto-generated method stub
 		return MDao.updateMovieStatus(movieID, status);
-	}
-
-
-	@Override
-	public List<RunningBean> removeReleaseMovie(List<RunningBean> AllRunList, List<RunningBean> RRunList) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Transactional
@@ -125,19 +95,8 @@ public class movieServiceImpl implements MovieService {
 	}
 
 
-	@Override
-	public List<RunningBean> sortListbyPT(List<RunningBean> Allrb) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
-	@Override
-	public List<ShowTimeHistoryBean> createShowTime(List<ShowtimeBean> showtime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Transactional
 	@Override
 	public void addShowTimeHistory(ShowTimeHistoryBean show) {
@@ -152,6 +111,12 @@ public class movieServiceImpl implements MovieService {
 	}
 	@Transactional
 	@Override
+	public List<RunningBean> getAllOnMoive(LocalDate release, LocalDate expectedOffDate){
+		return RDao.getAllOnMoive(release,expectedOffDate);
+	}
+	
+	@Transactional
+	@Override
 	public List<RunningBean> getReleaseRunnigBean(LocalDate release) {
 		// TODO Auto-generated method stub
 		return RDao.getReleaseRunnigBean(release);
@@ -161,5 +126,70 @@ public class movieServiceImpl implements MovieService {
 	public MovieBean getMovieBeanById(int movieID) {
 		return MDao.getMovieBeanById(movieID);
 	}
+	@Transactional
+	@Override
+	public List<RunningBean> getnRunningBeanByMovieID(int movieID){
+		return RDao.getnRunningBeanByMovieID(movieID);
+	}
+	@Transactional
+	@Override
+	public boolean updateOnDate(RunningBean rb, int day) {
+		return RDao.updateOnDate(rb, day);
+	}
+	@Transactional
+	@Override
+	public boolean updateOffDate(RunningBean rb, LocalDateTime OffDate) {
+		return RDao.updateOffDate(rb, OffDate);
+	}
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release){
+		
+		return SDao.getRunBeanLastSTHB(rb, exOffDay, release);
+	
+	}
+	
 
+	@Override
+	public List<RunningBean> sortListbyPT(List<RunningBean> Allrb) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	@Override
+	public List<ShowTimeHistoryBean> createShowTime(List<ShowtimeBean> showtime) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	//確認MOVIE status = 0
+		@Override
+		public List<RunningBean> checkStatusComingSoon(List<RunningBean> RunList) {
+			
+			return null;
+		}
+
+		
+		@Override
+		public List<RunningBean> shouldOnRunningBean(List<RunningBean> rb) {
+			
+			return null;
+		}
+
+
+		@Override
+		public List<RunningBean> checkMovieDateCanOn(List<RunningBean> rb) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+	@Override
+	public List<RunningBean> removeReleaseMovie(List<RunningBean> AllRunList, List<RunningBean> RRunList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

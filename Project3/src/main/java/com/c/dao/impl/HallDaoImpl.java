@@ -24,11 +24,13 @@ public class HallDaoImpl implements HallDao{
 	//用廳名稱去抓資料傳回hallbean就可以用hb.get...()去抓取其他所需的資料
 	@Override
 	public HallBean getHall(String hallID) {
-		String hql = "FROM HallBean WHERE hallID = :hallID";
+//		String hql = "FROM HallBean WHERE hallID = :hallID";
 		Session session = factory.getCurrentSession();
-		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallID", hallID).getSingleResult();
+		HallBean hb = session.get(HallBean.class, hallID);
+//		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallID", hallID).getSingleResult();
 		return hb;
 	}
+	//測試成功
 
 //	@Override
 //	public Integer getNumberOfSeats(Integer hallID) {
@@ -84,12 +86,13 @@ public class HallDaoImpl implements HallDao{
 	}
 
 	@Override
-	public void updateHallRC(String hallID, Integer colNum, Integer rowNum) {
+	public void updateHallRC(String hallID, Integer colNum, Integer rowNum, Integer noOfSeats) {
 		Session session = factory.getCurrentSession();
-		String hql = "UPDATE HallBean SET colNum = :colNum, rowNum = :rowNum WHERE hallID = :hallID";
+		String hql = "UPDATE HallBean SET colNum = :colNum, rowNum = :rowNum, noOfSeats = :noOfSeats WHERE hallID = :hallID";
 		session.createQuery(hql).setParameter("colNum", colNum)
 								.setParameter("rowNum", rowNum)
-								.setParameter("hallID", hallID).executeUpdate();
+								.setParameter("hallID", hallID)
+								.setParameter("noOfSeats", noOfSeats).executeUpdate();
 		
 	}
 	

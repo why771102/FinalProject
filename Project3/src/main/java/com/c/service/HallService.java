@@ -23,7 +23,7 @@ public interface HallService {
 		public void insertHall(HallBean hb);
 		
 		//更新廳的colNum, rowNum
-		public void updateHallRC(String hallID, Integer colNum, Integer rowNum);
+		public void updateHallRC(String hallID, Integer colNum, Integer rowNum, Integer noOfSeats);
 		
 		//修改廳資訊
 		public void updateHall(HallBean hb);

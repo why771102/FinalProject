@@ -1,8 +1,11 @@
 package com.a.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
+import com.a.model.ShowTimeHistoryBean;
 import com.a.service.MovieService;
 import com.c.model.HallBean;
 import com.c.service.HallService;
@@ -27,6 +31,7 @@ import com.c.service.HallService;
 public class RunMovieController {
 	ServletContext context;
 	MovieService mService;
+	HallService hService;
 
 	@Autowired
 	public void setContext(ServletContext context) {
@@ -34,8 +39,9 @@ public class RunMovieController {
 	}
 
 	@Autowired
-	public void setService(MovieService mService) {
+	public void setService(MovieService mService, HallService hService) {
 		this.mService = mService;
+		this.hService = hService;
 	}
 	
 	//新增電影方法
@@ -107,9 +113,73 @@ public class RunMovieController {
 
 	 		//換URL
 	 		RedirectView redirectView = new RedirectView();
-	 		redirectView.setUrl(url+"/run/addrun");
+	 		redirectView.setUrl(url+"/addmovie/suseece");
 	 		//換URL
 			return redirectView;
 		}
+		//一部電影的畫面
+		@GetMapping(value = "/movie/show")//URL 跟<a href='movie/show'> 相關
+		public String showMovie(Model model) {
+			MovieBean mb = new MovieBean();
+			
+			//傳空的Bean去前端//如果controller有資料要
+			model.addAttribute("Movie", mb);
+		
+			return "a/showMovie";//URL 跟 eclip 擺放位置相關
+		}
+		
+		@GetMapping(value = "/AllMovie/show")//URL 跟<a href='movie/show'> 相關
+		public String showAllMovie(Model model) {
+		  LocalDate today = (LocalDate.now()).plusDays(1);
+		  LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+		  String dateTime = today.toString()+" "+time.toString();
+		  
+//		  try {
+//			//找出來後runningBean直接是有帶Bean值得
+//			  List<RunningBean> rb_list=mService.getAllOnMoive(today, today.plusDays(7));
+//			  for(RunningBean rb :rb_list) {
+//			      
+//				  System.out.println(rb.getRunID());
+//				  System.out.println(rb.getMovie().getTitle());
+//			  }
+//			  System.out.println("------------");
+//		} catch (Exception e) {
+//			  System.out.println("erro");
+//		}
+		 
+			  List<RunningBean> rb_list=mService.getAllOnMoive(today);
+			  System.out.println("size:"+rb_list.size());
+               for(RunningBean rb :rb_list) {
+			      
+				  System.out.println("runID:"+rb.getRunID());
+				  System.out.println(rb.getMovie().getTitle());
+//				  mService.updateOffDate( rb , LocalDateTime.now());
+				  System.out.println("======a");
+				  HallBean a  = hService.getHall("A");
+				  System.out.println("======b");
+				  ShowTimeHistoryBean show =  new ShowTimeHistoryBean();
+				  show.setHall(a);
+				  show.setRun(rb);
+				  show.setPalyStartTime(dateTime);
+				  mService.addShowTimeHistory(show);
+				 
+				  
+               }
+              List <ShowTimeHistoryBean>sthb_list=mService.getShowTimeHistoryBean(rb_list);
+          
+            	  
+        
+		
+		  
+		 
+		
+       
+			
+			//傳空的Bean去前端//如果controller有資料要
+//			model.addAttribute("Movie", rb_list);
+		
+			return "index-a";//URL 跟 eclip 擺放位置相關
+		}
+
 
 }
