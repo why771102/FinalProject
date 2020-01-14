@@ -25,5 +25,9 @@ public interface ProductSaleService {
 	//根據產品名稱進入單日資訊
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
 	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);
+	
+	//使用單日資訊需要加入這個方法才能輸出
 	public List<LocalDate> showEachDate(String sDate, String eDate);
+	public List<ProductSaleBean> getFoodSaleByDateOutput(List<LocalDate> datesList, String productName);
+	public List<ProductSaleBean> getPeripheralSaleByDateOutput(List<LocalDate> datesList, String productName);
 }

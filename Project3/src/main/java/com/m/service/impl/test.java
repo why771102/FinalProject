@@ -3,7 +3,6 @@ package com.m.service.impl;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,22 +25,23 @@ public class test {
 			}	
 		}
 
-	
 	public static void main(String[] args) {
+		
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		LocalDateTime ldt = convertToEntityAttribute(ts);
 		
 		compareValue("哈囉123", "哈囉");
 		
-//		String playStartTimeA = "2020-01-01";
-//		String playStartTimeB = "2020-01-09";
-//		LocalDate start = LocalDate.parse(playStartTimeA);
-//		LocalDate end = LocalDate.parse(playStartTimeB);
-//		List<LocalDate> totalDates = new ArrayList<>();
-//		while (!start.isAfter(end)) {
-//		    totalDates.add(start);
-//		    start = start.plusDays(1);
-//		}
+		String playStartTimeA = "2020-01-01";
+		String playStartTimeB = "2020-03-30";
+		LocalDate start = LocalDate.parse(playStartTimeA);
+		LocalDate end = LocalDate.parse(playStartTimeB);
+		List<LocalDate> totalDates = new ArrayList<>();
+		while (!start.isAfter(end)) {
+		    totalDates.add(start);
+		    start = start.plusDays(1);
+		}
+		System.out.println("totalDates => " + totalDates);
 		
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 		String playStartTimeC = "2020-01-01";

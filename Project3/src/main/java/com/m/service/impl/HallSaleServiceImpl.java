@@ -88,19 +88,23 @@ public class HallSaleServiceImpl implements HallSaleService {
 		String[] hallName = "ABCDEFGH".split("");
 		
 		for (int x = 0; x < hallName.length; x++) {
+			String savehallName = null;
 			Integer hallSubtotal = 0;
 			Integer orderHours = 0;
 			Integer hallPrice = 0;
 			for (HallSaleBean hsb: hsbList) {
 				//if HallID相等就存
 				if(hallName[x].equals(hsb.getHallID())) {
+				savehallName = hallName[x];
 				hallSubtotal = hallSubtotal + hsb.getHallSubtotal();
 				orderHours = orderHours + hsb.getOrderHours();
 				hallPrice = hsb.getPrice();
 				hsbList.remove(hsb);
+				}else {
+					System.out.println("比對時,DB廳名&hsb廳名不同");
 				}
 			}
-			HallSaleBean hsbTemp =  new HallSaleBean(hallName[x], hallPrice, orderHours, hallSubtotal);
+			HallSaleBean hsbTemp =  new HallSaleBean(savehallName, hallPrice, orderHours, hallSubtotal);
 			hsbListToPage.add(hsbTemp);
 		}
 		return hsbListToPage;

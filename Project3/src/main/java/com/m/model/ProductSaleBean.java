@@ -15,7 +15,9 @@ public class ProductSaleBean implements Serializable {
 	//折扣是用來qty*unitPrice* discount計算總金額的
 	Double discount;
 	Integer cost;
+	Integer earn;
 	Double productSubtotal;
+	Integer earnSubtotal;
 	
 	public ProductSaleBean(String productName, Integer unitPrice, Integer qty, Double productSubtotal) {
 		this.productName = productName;
@@ -23,6 +25,17 @@ public class ProductSaleBean implements Serializable {
 		this.qty = qty;
 		this.productSubtotal = productSubtotal;
 	}
+	
+	public ProductSaleBean(String productName, Integer qty, Integer unitPrice, Integer cost, Integer earn, Double productSubtotal, Integer earnSubtotal) {
+		this.productName = productName;
+		this.qty = qty;
+		this.unitPrice = unitPrice;
+		this.cost = cost;
+		this.earn = earn;
+		this.productSubtotal = productSubtotal;
+		this.earnSubtotal = earnSubtotal;
+	}
+	
 	public String getProductName() {
 		return productName;
 	}
