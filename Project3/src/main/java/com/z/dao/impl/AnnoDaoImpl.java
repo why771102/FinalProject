@@ -15,10 +15,9 @@ import com.z.model.EmpStatusBean;
 
 @Repository
 public class AnnoDaoImpl implements AnnoDao {
-	
+
 	SessionFactory factory;
-	
-	
+
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
@@ -32,35 +31,36 @@ public class AnnoDaoImpl implements AnnoDao {
 		session.saveOrUpdate(ab);
 
 	}
-	
+
 	@Override
 	public AnnoStatusBean getAnnoStatusById(Integer status) {
 		Session session = factory.getCurrentSession();
 		AnnoStatusBean asb = session.get(AnnoStatusBean.class, status);
 		return asb;
 	}
-	
+
 	@Override
-	public void launchAnno(AnnoBean ab) {
+	public void launchAnno(Integer annoId) {
 		String hql = "update AnnoBean set status = 1 where annoId = :annoId";
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("annoId", ab.getAnnoId()).executeUpdate();
-	
-		
+		session.createQuery(hql).setParameter("annoId", annoId).executeUpdate();
+
 	}
 
 	@Override
-	public void takeOff(AnnoBean ab) {
-		String hql = "update AnnoBean set status = 0 where annoId = :annoId";
+	public void takeOff(Integer annoId) {
+		String hql = "update AnnoBean set status = 2 where annoId = :annoId";
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("annoId", ab.getAnnoId()).executeUpdate();
+		session.createQuery(hql).setParameter("annoId", annoId).executeUpdate();
 	}
 
 	@Override
 	public void updateAnno(AnnoBean ab) {
 		String hql = "update AnnoBean set title = :title, content = :content, priority = :priority, startTime = :startTime, endTime = :endTime where annoId = :annoId ";
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("title",ab.getTitle()).setParameter("content",ab.getContent()).setParameter("priority",ab.getPriority()).setParameter("startTime",ab.getStartTime()).setParameter("endTime",ab.getEndTime()).setParameter("annoId",ab.getAnnoId()).executeUpdate();
+		session.createQuery(hql).setParameter("title", ab.getTitle()).setParameter("content", ab.getContent())
+				.setParameter("priority", ab.getPriority()).setParameter("startTime", ab.getStartTime())
+				.setParameter("endTime", ab.getEndTime()).setParameter("annoId", ab.getAnnoId()).executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -72,7 +72,6 @@ public class AnnoDaoImpl implements AnnoDao {
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
-	
 
 	@Override
 	public AnnoBean showOneAnno(Integer annoId) {
@@ -81,7 +80,7 @@ public class AnnoDaoImpl implements AnnoDao {
 		AnnoBean ab = (AnnoBean) session.createQuery(hql).setParameter("annoId", annoId).getSingleResult();
 		return ab;
 	}
-	
+
 	@Override
 	public List<AnnoStatusBean> getAnnoStatusList() {
 		String hql = "from AnnoStatusBean";
@@ -89,8 +88,8 @@ public class AnnoDaoImpl implements AnnoDao {
 		List<AnnoStatusBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
-	
-	//前端顯示用的method
+
+	// 前端顯示用的method
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AnnoBean> showAnnoToMember() {
@@ -101,18 +100,29 @@ public class AnnoDaoImpl implements AnnoDao {
 		AnnoBean temp = null;
 		AnnoBean fir = null;
 		AnnoBean sed = null;
-		for(int i = 0; i < list.size() - 1 ; i++) {
-			fir = list.get(i);
-			sed = list.get(i + 1);
-			if(fir.getPriority() > sed.getPriority()) {
-				temp = fir;
-				list.set(i, sed);
-				list.set(i + 1, temp);
+
+		for (int i = 0; i < list.size() - 1; i++) {
+			for (int j = 0; j < list.size() - i -1; j++) {
+				fir = list.get(j);
+				sed = list.get(j + 1);
+				if (fir.getPriority() > sed.getPriority()) {
+					temp = fir;
+					list.set(j, sed);
+					list.set(j + 1, temp);
+				}
 			}
 		}
+		
+		int len =  list.size() - 1;
+		for (int i = len; i >= 0 ; i--) {
+			System.out.println(list.get(i).getContent());
+			System.out.println(list.get(i).getAnnoStatusBean().getStatus());
+			if(list.get(i).getAnnoStatusBean().getStatus().equals(2)) {
+				list.remove(i);
+			}
+		}
+
 		return list;
 	}
-
-
 
 }
