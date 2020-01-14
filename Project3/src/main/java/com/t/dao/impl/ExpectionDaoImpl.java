@@ -45,12 +45,26 @@ public class ExpectionDaoImpl implements ExpectionDao{
 	}
 
 	@Override
-	public List<ExpectationBean> getAllExpection() {
-		String hql = "FROM ExpectionBean";
+	public List<ExpectationBean> getAllExpectation() {
+		String hql = "FROM ExpectationBean";
 		Session session = factory.getCurrentSession();
 		List<ExpectationBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
 		return list;
+	}
+	
+	@Override
+	public List<ExpectationBean> getExpectation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberBean getMemberById(int memberID) {
+		MemberBean mb = null;
+		Session session = factory.getCurrentSession();
+		mb = session.get(MemberBean.class,memberID);
+		return mb;
 	}
 	
 }

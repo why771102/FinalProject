@@ -47,8 +47,7 @@ public class CommentServiceImpl implements CommentService{
 	@Transactional
 	@Override
 	public void deleteComment(CommentBean cb) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteComment(cb);		
 	}
 
 	@Transactional

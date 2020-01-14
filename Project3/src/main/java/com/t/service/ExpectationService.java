@@ -3,6 +3,7 @@ package com.t.service;
 import java.util.List;
 
 import com.a.model.MovieBean;
+import com.p.model.MemberBean;
 import com.t.model.ExpectationBean;
 
 public interface ExpectationService {
@@ -15,5 +16,6 @@ public interface ExpectationService {
 		
 		//輸入新的期待度
 		void addExpect(ExpectationBean eb);
+		MemberBean getMemberById(int memberID);
 		MovieBean getMovieById(int movieID);
 }
