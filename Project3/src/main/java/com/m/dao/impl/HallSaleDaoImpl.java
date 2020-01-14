@@ -25,7 +25,8 @@ public class HallSaleDaoImpl implements HallSaleDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HallOrderBean> getHallOrder() {
-		String hql = "SELECT hallID, date, orderHours, hallSubtotal FROM hallOrder";
+		String hql = "SELECT ho.hallID, ho.date, ho.orderHours, ho.hallSubtotal FROM hallOrder ho"
+				+ "left join ho.hallPayStatus WHERE payStatus = 1";
 		Session session = factory.getCurrentSession();
 		List<HallOrderBean> hob = new ArrayList<>();
 		hob = session.createQuery(hql).getResultList();

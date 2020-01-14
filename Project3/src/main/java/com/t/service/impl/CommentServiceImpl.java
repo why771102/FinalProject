@@ -15,35 +15,39 @@ import com.t.service.CommentService;
 @Service
 public class CommentServiceImpl implements CommentService{
 	CommentDao dao;
+	
 	@Transactional
 	@Override
 	public ExpectationBean getAvgGrade(Integer grade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Transactional
 	@Override
 	public CommentBean getComment(Integer commentId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Transactional
 	@Override
 	public List<CommentBean> memberComment() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Transactional
 	@Override
 	public List<CommentBean> findAllComment() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Transactional
 	@Override
 	public void deleteComment(CommentBean cb) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteComment(cb);		
 	}
 
 	@Transactional

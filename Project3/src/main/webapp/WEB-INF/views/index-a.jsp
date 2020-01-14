@@ -20,10 +20,10 @@
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='emp/add'>新增會員</a><BR>
+				<a href='movie/autoRun'>排片</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='searchEmp'>查詢單一員工</a><BR>
+				<a href='AllMovie/show'>查看所有電影</a><BR>
 			</td>
 		</tr>
 		

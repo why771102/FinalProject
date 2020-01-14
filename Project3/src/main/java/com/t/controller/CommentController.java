@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.a.model.MovieBean;
 import com.p.model.MemberBean;
@@ -34,11 +35,23 @@ public class CommentController {
 		this.service = service;
 	}
 	
+	@RequestMapping("/commentGetMovieID")
+	public String getMovieById(@RequestParam("movieID") Integer movieID, Model model) {
+		model.addAttribute("movie", service.getMovieById(movieID));
+		return "movieID";
+	}
+	
+	@RequestMapping("/commentGetMemberID")
+	public String getMemberById(@RequestParam("id") Integer memberID, Model model) {
+		model.addAttribute("member", service.getMovieById(memberID));
+		return "memberID";
+	}
+	
 	@RequestMapping(value = "/comments/add", method = RequestMethod.GET)
 	public String getAddNewComment(Model model) {
 		CommentBean cb = new CommentBean();
 		model.addAttribute("commentBean",cb);
-		return "t/addComment";		
+		return "t/addcomment";		
 	}
 	
 	@RequestMapping(value = "/comments/add", method = RequestMethod.POST)
@@ -49,7 +62,25 @@ public class CommentController {
 			cb.setReportComment(0);
 		}
 		service.addComment(cb);
-		return "redirect:/comment";	
+		return "redirect:/addcomment";	
+	}
+	
+	@RequestMapping(value = "/comments/delete", method = RequestMethod.GET)
+	public String getDeleteComment(Model model) {
+		CommentBean cb = new CommentBean();
+		model.addAttribute("commentBean",cb);
+		return "t/deleteComment";		
+	}
+	
+	@RequestMapping(value = "/comments/delete", method = RequestMethod.POST)
+	public String processDeleteComment(@ModelAttribute("CommentBean") CommentBean cb) {
+		//預設刪除檢舉為0
+		if(cb.getCommentDelete() == null && cb.getReportComment() == null) {
+			cb.setCommentDelete(0);
+			cb.setReportComment(0);
+		}
+		service.addComment(cb);
+		return "redirect:/deletecomment";	
 	}
 	
 	@ModelAttribute("movieList")

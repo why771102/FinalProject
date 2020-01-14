@@ -37,8 +37,12 @@
 						<td>${emp.password}</td>
 					</tr>
 					<tr>
+						<td>職務名稱：</td>
+						<td>${emp.roleBean.roleName}</td>
+					</tr>
+					<tr>
 						<td>在職狀態：</td>
-						<td>${emp.status}</td>
+						<td>${emp.empStatusBean.statusName}</td>
 					</tr>
 					<tr>
 						<td>就職日期：</td>
@@ -50,7 +54,7 @@
 						<td>${emp.endDate}</td>
 					</tr>
 				</table>
-				<input type="button" value="修改資料" />
+				<a href="emp/update/${emp.empId}">修改資料</a>
 			</div>
 		</div>
 	</section>

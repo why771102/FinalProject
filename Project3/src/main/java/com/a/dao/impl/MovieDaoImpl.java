@@ -21,7 +21,7 @@ public class MovieDaoImpl implements MovieDao {
 		this.factory = factory;
 	}
 	
-	//新增電影進資料庫
+	//新增電影進資料庫ok
 	@Override
 	public void addmovie(MovieBean movie) {
 		Session session =factory.getCurrentSession();
@@ -46,29 +46,29 @@ public class MovieDaoImpl implements MovieDao {
 //		
 //	}
 	
-    //取出movieBean 然後再存進RunningBean
-	@Override
-	public List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList) {
-		Session session =factory.getCurrentSession();
-		List<RunningBean> RB_List =new ArrayList<>();
-		
-		for(RunningBean rb: RunList) {
-		
-		MovieBean mb =null;
-		mb =session.get(MovieBean.class,  rb.getMovieID());
-		rb.setMovie(mb);
-		
-		RB_List.add(rb);
-		}
-		
-		return RB_List;
-		
-	}
+    //取出movieBean 然後再存進RunningBean(這個不用了)
+//	@Override
+//	public List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList) {
+//		Session session =factory.getCurrentSession();
+//		List<RunningBean> RB_List =new ArrayList<>();
+//		
+//		for(RunningBean rb: RunList) {
+//		
+//		MovieBean mb =null;
+//		mb =session.get(MovieBean.class,  rb.getMovieID());
+//		rb.setMovie(mb);
+//		
+//		RB_List.add(rb);
+//		}
+//		
+//		return RB_List;
+//		
+//	}
 	
 	
 	
 	
-	//拿一個movieID 取movieBean
+	//拿一個movieID 取movieBean ok
 	@Override
 	public MovieBean getMovieBeanById(int movieID) {
 		MovieBean mb =null;
@@ -77,10 +77,11 @@ public class MovieDaoImpl implements MovieDao {
 		return mb;
 	}
 	
-    //改變movieSatus (未上映 上映 下檔)
+    //改變movieSatus (未上映 上映 下檔) //ok
+	//setParameter 裡面的型態 要跟你要查詢的欄位型態一樣
 	@Override
 	public boolean updateMovieStatus(int movieID, int status) {
-		String hql ="update movies set status =:changeStauts where movieID =:ID";
+		String hql ="update MovieBean set status =:changeStauts where movieID =:ID";
 		Session session =factory.getCurrentSession();
 		int n = session.createQuery(hql).setParameter("changeStauts", status)
 				                        .setParameter("ID", movieID)

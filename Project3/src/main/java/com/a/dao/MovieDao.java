@@ -28,8 +28,8 @@ public interface MovieDao {
 //拿電影ID 取一個 MovieBean
 	MovieBean getMovieBeanById(int movieID);
 
-	// 拿電影ID 取出movieBean 塞進 runningBean
-	List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList);
+	// 拿電影ID 取出movieBean 塞進 runningBean(select 出來就有不用取)
+
 
 
 

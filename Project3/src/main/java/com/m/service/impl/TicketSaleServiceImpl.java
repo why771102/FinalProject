@@ -124,8 +124,6 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 		return nosbListToPage;
 	}
 	
-	
-	
 //	@Override
 //	public List<MovieBean> ShowMovieBean(List<RunningBean> RBListToPage) {
 //		List<MovieBean> mbToPage = new ArrayList<>();
@@ -138,5 +136,4 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 //		}
 //		return mbToPage;
 //	}
-
 }

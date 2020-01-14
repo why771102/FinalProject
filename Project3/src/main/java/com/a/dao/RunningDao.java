@@ -2,6 +2,7 @@ package com.a.dao;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.a.model.ShowTimeHistoryBean;
@@ -23,7 +24,9 @@ public interface RunningDao {
 		// 拿電影ID 取出名稱等電影基本資料 getmovie (主要需要movieStatus runningTime)
 		
 		public List<RunningBean> getReleaseRunnigBean(LocalDate release);
-		List<ShowTimeHistoryBean> putRunBeanInShowTimeHistoryBean(List<ShowTimeHistoryBean> STHBList);
+		
 		List<RunningBean> getnRunningBeanByMovieID(int movieID);
+		boolean updateOnDate(RunningBean rb, int day);
+		boolean updateOffDate(RunningBean rb, LocalDateTime OffDate);
 		
 }

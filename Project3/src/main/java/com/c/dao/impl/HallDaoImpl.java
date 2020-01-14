@@ -15,7 +15,7 @@ import com.z.model.EmpBean;
 @Repository
 public class HallDaoImpl implements HallDao{
 	SessionFactory factory;
-	
+	String selected = "";
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
@@ -24,11 +24,13 @@ public class HallDaoImpl implements HallDao{
 	//用廳名稱去抓資料傳回hallbean就可以用hb.get...()去抓取其他所需的資料
 	@Override
 	public HallBean getHall(String hallID) {
-		String hql = "FROM HallBean WHERE hallID = :hallID";
+//		String hql = "FROM HallBean WHERE hallID = :hallID";
 		Session session = factory.getCurrentSession();
-		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallID", hallID).getSingleResult();
+		HallBean hb = session.get(HallBean.class, hallID);
+//		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallID", hallID).getSingleResult();
 		return hb;
 	}
+	//測試成功
 
 //	@Override
 //	public Integer getNumberOfSeats(Integer hallID) {
@@ -84,15 +86,40 @@ public class HallDaoImpl implements HallDao{
 	}
 
 	@Override
-	public void updateHallRC(String hallID, Integer colNum, Integer rowNum) {
+	public void updateHallRC(String hallID, Integer colNum, Integer rowNum, Integer noOfSeats) {
 		Session session = factory.getCurrentSession();
-		String hql = "UPDATE HallBean SET colNum = :colNum, rowNum = :rowNum WHERE hallID = :hallID";
+		String hql = "UPDATE HallBean SET colNum = :colNum, rowNum = :rowNum, noOfSeats = :noOfSeats WHERE hallID = :hallID";
 		session.createQuery(hql).setParameter("colNum", colNum)
 								.setParameter("rowNum", rowNum)
-								.setParameter("hallID", hallID).executeUpdate();
+								.setParameter("hallID", hallID)
+								.setParameter("noOfSeats", noOfSeats).executeUpdate();
 		
 	}
 	
-	
+	@Override
+	public String getAllHallTags() {
+		String ans = "";
+        List<String> list = getAllHall();
+        ans += "<SELECT id='hallID' onchange='showSeats()'>";
+        ans += "<option value='' selected='' disabled=''>請選擇</option>";
+        for (String hallID : list) {
+            if (hallID.equals(selected)) {
+                ans += "<option value='" + hallID + "' selected>" + hallID + "</option>";
+            } else {
+                ans += "<option value='" + hallID + "'>" + hallID + "</option>";
+            }
+        }
+        ans += "</SELECT>";
+        return ans;
+	}
+
+	@Override
+	public List<String> getAllHall() {
+		String hql = "SELECT DISTINCT hallID FROM HallBean";
+        Session session = factory.getCurrentSession();
+        List<String> list = null;
+        list = session.createQuery(hql).getResultList();
+        return list;
+	}
 
 }
