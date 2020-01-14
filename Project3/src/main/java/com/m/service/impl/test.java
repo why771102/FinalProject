@@ -17,10 +17,21 @@ public class test {
 	    	}
 	    	return null;
 	    }
+	 
+		public static void compareValue(String x, String y) {
+			if( x.equals(y) ) {
+				System.out.println("x equals y");
+			}else {
+				System.out.println("no match");
+			}	
+		}
+
 	
 	public static void main(String[] args) {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		LocalDateTime ldt = convertToEntityAttribute(ts);
+		
+		compareValue("哈囉123", "哈囉");
 		
 //		String playStartTimeA = "2020-01-01";
 //		String playStartTimeB = "2020-01-09";
@@ -80,5 +91,7 @@ public class test {
 		System.out.println(elapsedDays);
 		
 	}
+	
 
+	
 }

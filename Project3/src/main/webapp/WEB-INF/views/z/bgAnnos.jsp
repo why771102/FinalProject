@@ -24,8 +24,9 @@
 			<td>公告內容</td>
 			<td>公告狀態</td>
 			<td>開始時間</td>
-<!-- 			<td>結束時間</td> -->
+			<td>結束時間</td>
 			<td>權重</td>
+			<td>操作</td>
 		</tr>
 			<c:forEach var="anno" items="${allAnnos}">
 		<tr>
@@ -34,8 +35,11 @@
 			<td>${anno.content}</td>
 			<td>${anno.annoStatusBean.statusName}</td>
 			<td>${anno.startTime}</td>
-<%-- 			<td>${anno.endTime}</td> --%>
+			<td>${anno.endTime}</td>
 			<td>${anno.priority}</td>
+			<td><a href="anno/update/${anno.annoId}">修改公告</a>
+			<a href="anno/launch/${anno.annoId}">上架</a>
+			<a href="anno/takeoff/${anno.annoId}">下架</a></td>
 		</tr>
 			</c:forEach>
 		</table>

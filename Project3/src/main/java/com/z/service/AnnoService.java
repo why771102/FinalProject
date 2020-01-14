@@ -9,9 +9,9 @@ public interface AnnoService {
 	
 	void addNewAnno(AnnoBean ab);
 	
-	void launchAnno(AnnoBean ab);
+	void launchAnno(Integer annoId);
 	
-	void takeOff(AnnoBean ab);
+	void takeOff(Integer annoId);
 	
 //	void updateAnno(AnnoBean ab);
 	

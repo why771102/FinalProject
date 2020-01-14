@@ -29,7 +29,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='annos'>公告清單查詢</a><BR>
+				<a href='bgAnnos'>公告清單查詢(後台排序)</a><BR>
 			</td>
 			<td width="350"><p align="left" />
 				<a href='anno/add'>新增公告</a><BR>
@@ -38,7 +38,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='member/register'>註冊會員(范)</a><BR>
+				<a href='annos'>公告清單(前台排序)</a><BR>
 			</td>
 			<td width="350"><p align="left" />
 				<a href='products/add'>新增產品資料</a><BR>

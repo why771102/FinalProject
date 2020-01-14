@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.c.model.HallBean;
 import com.m.dao.HallSaleDao;
+import com.m.model.HallSaleBean;
 import com.p.model.HallOrderBean;
 
 @Repository
@@ -32,15 +33,16 @@ public class HallSaleDaoImpl implements HallSaleDao {
 	}
 
 //	@Override
-//	public List<HallBean> getHallPrice(List<HallOrderBean> hobList) {
-//		List<HallBean> hbListToPage = new ArrayList<>();
+//	public List<HallBean> getHallBean(List<HallOrderBean> hobList) {
+//		List<HallBean> hbList = new ArrayList<>();
+//		
 //		Session session = factory.getCurrentSession();
 //		for(HallOrderBean hob : hobList) {
 //			HallBean hb = null;
 //			hb = session.get(HallBean.class, hob.getHallID());
-//			hbListToPage.add(hb);
+//			hbList.add(hb);
 //		}
-//		return hbListToPage;
+//		return hbList;
 //	}
 	
 }
