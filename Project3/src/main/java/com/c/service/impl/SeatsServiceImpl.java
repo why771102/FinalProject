@@ -48,23 +48,36 @@ public class SeatsServiceImpl implements SeatsService {
 	public List<SeatsBean> getAllSeats(String hallID) {
 		return dao.getAllSeats(hallID);
 	}
+	
 
-	@Transactional
 	@Override
-	public void saveSeats(String seats, String hallID) {
-		
+	public String[] stringToStringArray(String seats, String hallID) {
 		Gson gson = new Gson();
-
-		String[] array = gson.fromJson(seats, String[].class);
-		for(int seat = 0; seat < array.length; seat++) {
+		String[] seatsArray = gson.fromJson(seats, String[].class);
+		for(int seat = 0; seat < seatsArray.length; seat++) {
 			String seatID;
-			String row = array[seat].substring(0, 1);
-			Integer seatNo =  Integer.parseInt(array[seat].substring(2, array[seat].length()));
+			String row = seatsArray[seat].substring(0, 1);
+			Integer seatNo =  Integer.parseInt(seatsArray[seat].substring(2, seatsArray[seat].length()));
 			if(seatNo < 10) {
 				seatID = hallID+row+0+seatNo;
 			}else {
 				seatID = hallID+row+seatNo;
 			}
+			seatsArray[seat] = seatID;
+		}
+		return seatsArray;	
+	}
+	
+	
+	@Transactional
+	@Override
+	public void saveSeats(String seats, String hallID) {
+		String[] seatsArray = stringToStringArray(seats, hallID);
+		for(int seat = 0; seat < seatsArray.length; seat++) {
+			String seatID = seatsArray[seat];
+			String row = seatsArray[seat].substring(0, 1);
+			Integer seatNo =  Integer.parseInt(seatsArray[seat].substring(2, seatsArray[seat].length()));
+			
 			Integer typeOfSeat = 0; //currently all normal seats
 			Integer seatStatus = 0; //currently all available to be sold
 			System.out.println("seatID: " + seatID + " hallID: " + hallID);
