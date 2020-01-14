@@ -26,12 +26,15 @@ import com.a.model.ShowTimeHistoryBean;
 import com.a.service.MovieService;
 import com.c.model.HallBean;
 import com.c.service.HallService;
+import com.p.model.HallOrderBean;
+import com.p.service.HallOrderService;
 
 @Controller
 public class RunMovieController {
 	ServletContext context;
 	MovieService mService;
 	HallService hService;
+	HallOrderService hoService;
 
 	@Autowired
 	public void setContext(ServletContext context) {
@@ -162,24 +165,63 @@ public class RunMovieController {
 				  show.setRun(rb);
 				  show.setPalyStartTime(dateTime);
 				  mService.addShowTimeHistory(show);
-				 
-				  
+				  List <ShowTimeHistoryBean>sthb_list=mService.getshowMovie(today);
+				 for(ShowTimeHistoryBean sb:sthb_list) {
+					 System.out.println("======c");
+				  System.out.println("ShowID:"+sb.getShowTimeId());
+				  System.out.println(""+sb.getHall().getHallID());
+				 }
                }
-              List <ShowTimeHistoryBean>sthb_list=mService.getShowTimeHistoryBean(rb_list);
-          
-            	  
-        
 		
-		  
-		 
-		
-       
-			
 			//傳空的Bean去前端//如果controller有資料要
 //			model.addAttribute("Movie", rb_list);
 		
 			return "index-a";//URL 跟 eclip 擺放位置相關
+			
+			
+			
 		}
-
+		@GetMapping(value = "/movie/running")//URL 跟<a href='movie/show'> 相關
+		public String RunningMovie(Model model) {
+		 LocalDateTime runDate = (LocalDateTime.now().plusDays(1)).truncatedTo(ChronoUnit.SECONDS);
+		  //確認廳數
+		 //確認那些影廳可以用  status =0=ok
+		 List<HallBean> hb_list=hService.getAllHalls(0);
+		 int Hallcount = hb_list.size();
+		 //Sort Hall orderby 座位數(大到小)
+	     //跑第一廳(跑哪一聽得for)
+		 for(int i=0;i<hb_list.size()-1;i++) {
+			 int HallTime = 1020;
+			 int Rest =10;
+			 List<RunningBean> runMovie =null;
+			//確定包場 
+				//hallOrder table 取這一天 是否有人包場
+				 List<HallOrderBean> hob_list=hoService.getHallOrder(runDate.toLocalDate());
+				 if(hob_list.size()!=0) {
+					 for(HallOrderBean rob:hob_list) {
+						 if(rob.getHallID().equalsIgnoreCase(hb_list.get(i).getHallID())) {
+							HallTime = HallTime-(rob.getOrderHours());
+							RunningBean Hall = new RunningBean();
+							
+							//創一個統稱包廳的Bean Running
+						 }
+						 
+					 }
+				 } else {
+					 
+				 }
+			 
+		 }
+		 
+	
+		
+		 
+		 
+		 
+		
+			
+		
+			return "index-a";//URL 跟 eclip 擺放位置相關
+		}
 
 }

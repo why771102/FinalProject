@@ -89,12 +89,15 @@ public class movieServiceImpl implements MovieService {
 
 	@Transactional
 	@Override
-	public List<ShowTimeHistoryBean> getShowTimeHistoryBean(List<RunningBean> Orb) {
+	public List<ShowTimeHistoryBean> getShowTimeHistoryBean(RunningBean rb ) {
 		// TODO Auto-generated method stub
-		return SDao.getShowTimeHistoryBean(Orb) ;
+		return SDao.getShowTimeHistoryBean(rb) ;
 	}
-
-
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day){
+		return SDao.getshowMovie(day) ;
+	}
 
 	
 	@Transactional
