@@ -51,7 +51,7 @@ public class CommentController {
 	public String getAddNewComment(Model model) {
 		CommentBean cb = new CommentBean();
 		model.addAttribute("commentBean",cb);
-		return "t/addComment";		
+		return "t/addcomment";		
 	}
 	
 	@RequestMapping(value = "/comments/add", method = RequestMethod.POST)
