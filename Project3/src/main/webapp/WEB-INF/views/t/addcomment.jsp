@@ -27,8 +27,25 @@ fieldset {
 	<hr style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="CommentBean" class='form-horizontal'>
+		<form:form method='POST' modelAttribute="commentBean" class='form-horizontal'>
 			<fieldset >
+				
+				<div class="form-group">
+					<label class='control-label col-lg-2 col-lg-2' for="movieID">
+						電影ID</label>
+					<div class='col-lg-10'>
+						<form:input id="movieID" path="movieID" type='text'
+							class='form:input-large' />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='control-label col-lg-2 col-lg-2' for="memberID">
+						會員ID</label>
+					<div class='col-lg-10'>
+						<form:input id="memberID" path="memberID" type='text'
+							class='form:input-large' />
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='watched'>
 						已觀賞 </label>
@@ -46,18 +63,6 @@ fieldset {
 							class='form:input-large' />
 					</div>
 				</div>
-
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="category"> -->
-<!-- 						類型 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select path="category"> --%>
-<%-- 							<form:option value="-1" label="請挑選" /> --%>
-<%-- 							<form:options items="${categoryList}" /> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
-
 				<div class="form-group">
 					<label class='control-label col-lg-2 col-lg-2' for="commentContent">
 						短評 </label>
@@ -66,48 +71,15 @@ fieldset {
 							class='form:input-large' />
 					</div>
 				</div>
+				
 				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="commentTime">
-						庫存</label>
-					<div class='col-lg-10'>
-						<form:input id="commentTime" path="commentTime" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="cost">
-						成本</label>
-					<div class='col-lg-10'>
-						<form:input id="cost" path="cost" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='productName'>
-						產品名稱 </label>
+					<label class="control-label col-lg-2 col-lg-2" for='commentTime'>
+						時間 </label>
 					<div class="col-lg-10">
-						 <form:input id="productName" path="productName" type='text'
+						 <form:input id="commentTime" path="commentTime" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='productName'>
-						產品名稱 </label>
-					<div class="col-lg-10">
-						 <form:input id="productName" path="productName" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="companyId"> -->
-<!-- 						書商 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select path="companyId"> --%>
-<%-- 							<form:option value="-1" label="請挑選" /> --%>
-<%-- 							<form:options items="${companyList}" /> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
 				<div class="form-group">
 					<div class='col-lg-offset-2 col-lg-10'>
 						<input id="btnAdd" type='submit' class='btn btn-primary'

@@ -19,14 +19,9 @@ public class HallBean implements Serializable{
 	@NotNull
 	@Column(nullable=false, columnDefinition = "NCHAR(1)")
 	String hallID;
-	@NotNull
-	@Column(nullable=false)
 	Integer noOfSeats;
-	@NotNull
-	@Column(nullable=false)
 	Integer price;
-	@NotNull
-	@Column(nullable=false, columnDefinition="TINYINT")
+	@Column(columnDefinition="TINYINT")
 	Integer hallStatus;
 	@Column(columnDefinition="TINYINT")
 	Integer rowNum;

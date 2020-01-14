@@ -2,6 +2,7 @@ package com.a.service;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.a.model.MovieBean;
@@ -38,7 +39,7 @@ public interface MovieService {
 	public List<RunningBean> getComingSoonMovie ();
 	//拿電影ID 取出名稱等電影基本資料 (order by expectedProfit)
 //	public List<MovieBean> getmovie(List<RunningBean> RunList);
-	List<RunningBean> putMovieBeanInRunBean(List<RunningBean> RunList);
+	
 	//確認status 為未上映(回傳未上映的)跟DB無關在serviceImpl
 	List<RunningBean> checkStatusComingSoon(List<RunningBean> RunList);
 	
@@ -160,6 +161,11 @@ public interface MovieService {
 	
 	
 	MovieBean getMovieBeanById(int movieID);
+	List<RunningBean> getAllOnMoive(LocalDate release, LocalDate expectedOffDate);
+	List<RunningBean> getnRunningBeanByMovieID(int movieID);
+	boolean updateOnDate(RunningBean rb, int day);
+	boolean updateOffDate(RunningBean rb, LocalDateTime OffDate);
+	List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release);
 	
 	
 

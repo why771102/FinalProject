@@ -68,7 +68,7 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	@Transactional
 	@Override
 	public List<ProductSaleBean> getProductSaleOutput(List<String> productNamesList, List<ProductSaleBean> psbList) {
-		List<ProductSaleBean> getPSBList = new ArrayList<>();
+		List<ProductSaleBean> PSBList = new ArrayList<>();
 		List<String> productNames = new ArrayList<>();
 
 		for (String productName : productNamesList) {
@@ -76,6 +76,7 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		}
 
 		for (String productName : productNames) {
+			String saveProductName = null;
 			Integer unitPrice = 0;
 			Double discount = 0.0;
 			Integer qty = 0;
@@ -84,16 +85,20 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 			for (ProductSaleBean psb : psbList) {
 				//如果產品名稱相同就存
 				if(productName.equals(psb.getProductName())) {
+					saveProductName = productName;
 					qty = qty + psb.getQty();
 					unitPrice = psb.getUnitPrice();
 					discount = psb.getDiscount();
 					productSubtotal = productSubtotal + unitPrice*discount*qty;
 					psbList.remove(psb);
+				}else {
+					System.out.println("比對時,DB產品名稱&psb名稱不同");
 				}
 			}
-			ProductSaleBean psb = new ProductSaleBean();
+			ProductSaleBean psb = new ProductSaleBean(saveProductName, unitPrice, qty, productSubtotal);
+			PSBList.add(psb);
 		}
-		return getPSBList;
+		return PSBList;
 	}
 
 	@Transactional
@@ -111,7 +116,32 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	@Transactional
 	@Override
 	public List<LocalDate> showEachDate(String sDate, String eDate) {
-		return dao.showEachDate(sDate, eDate);
+		List<LocalDate> datesList = dao.showEachDate(sDate, eDate);
+		return datesList;
 	}
-
+	
+	@Transactional
+	@Override
+	//showFoodSaleByDate
+	public List<ProductSaleBean> getFoodSaleByDateOutput(List<LocalDate> datesList, String productName) {
+		List<ProductSaleBean> PSBList = new ArrayList<>();
+		
+		for (LocalDate date : datesList) {
+			PSBList = dao.showFoodOrderByTime(productName, date.toString(), date.toString());
+		}
+		return PSBList;
+	}
+	
+	@Transactional
+	@Override
+	//showPeripheralSaleByDate
+	public List<ProductSaleBean> getPeripheralSaleByDateOutput(List<LocalDate> datesList, String productName) {
+		List<ProductSaleBean> PSBList = new ArrayList<>();
+		
+		for (LocalDate date : datesList) {
+			PSBList = dao.showPeripheralOrderByTime(productName, date.toString(), date.toString());
+		}
+		return PSBList;
+	}
+	
 }

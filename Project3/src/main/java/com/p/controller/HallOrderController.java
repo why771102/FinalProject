@@ -73,8 +73,18 @@ public class HallOrderController {
 	
 	@PostMapping(value = "/Employee/hallOrderQuery")
 	public String processHallOrderQuery(@ModelAttribute("hallOrderBean")HallOrderBean hob) {
-		service.hallOrderApply(hob);
-		return "hallOrderEQuery2";
+		System.out.println("安安:" + hob.getHallOrderStatusNo());
+		System.out.println("看這邊:" + hob.getPayStatusNo());
+		//在這邊寫if，用來判斷是否有改變
+		if(hob.getHallOrderStatusNo()==0 || hob.getHallOrderStatusNo()==1 || hob.getHallOrderStatusNo()==2) {
+			service.hallOrderStatusChange(hob);
+		}
+		
+		if(hob.getPayStatusNo()==0 || hob.getPayStatusNo()==1) {
+			service.payStatusChange(hob);
+		}
+//		service.hallOrderApply(hob);
+		return "redirect:/Employee/hallOrderQuery";
 	}
 	
 	//以下為讓前台可以選出相符的兩項狀態
@@ -98,6 +108,14 @@ public class HallOrderController {
 		}
 		return payStatusMap;
 	}
+	
+//	//以下為員工進行包廳狀態更新的方法
+//	@PostMapping(value = "/Employee/hallOrderQuery")
+//	public String updateHallOrderStatus() {
+//		
+//		
+//		return null;
+//	}
 	
 	
 	

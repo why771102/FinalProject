@@ -17,4 +17,5 @@ public interface SeatsDao {
 	public void updateSeatStatus(Integer status, String seatID);
 	
 	public List<SeatsBean> getAllSeats(String hallID);
+
 }

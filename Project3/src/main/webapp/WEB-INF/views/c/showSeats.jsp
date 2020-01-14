@@ -1,8 +1,9 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%><!doctype html>
 <html>
 
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seat Charts</title>
@@ -146,133 +147,13 @@ span.seatCharts-legendDescription {
 	width: 170px;
 }
 
-/* Pop up modal */
-/* The Modal (background) */
-.modal {
-	display: none;
-	/* Hidden by default */
-	position: fixed;
-	/* Stay in place */
-	z-index: 1;
-	/* Sit on top */
-	padding-top: 100px;
-	/* Location of the box */
-	left: 0;
-	top: 0;
-	width: 100%;
-	/* Full width */
-	height: 100%;
-	/* Full height */
-	overflow: auto;
-	/* Enable scroll if needed */
-	background-color: rgb(0, 0, 0);
-	/* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4);
-	/* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-	position: relative;
-	background-color: #fefefe;
-	margin: auto;
-	padding: 0;
-	border: 1px solid #888;
-	width: 80%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
-	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 0.4s;
-	animation-name: animatetop;
-	animation-duration: 0.4s
-}
-
-/* Add Animation */
-@
--webkit-keyframes animatetop {from { top:-300px;
-	opacity: 0
-}
-
-to {
-	top: 0;
-	opacity: 1
-}
-
-}
-@
-keyframes animatetop {from { top:-300px;
-	opacity: 0
-}
-
-to {
-	top: 0;
-	opacity: 1
-}
-
-}
-
-/* The Close Button */
-.close {
-	color: white;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.modal-header {
-	padding: 2px 16px;
-	background-color: #1113a8;
-	color: white;
-}
-
-.modal-body {
-	padding: 2px 16px;
-}
-
-.modal-footer {
-	padding: 2px 16px;
-	background-color: #5cb85c;
-	color: white;
-}
-
-/* End of Pop up Modal style */
 </style>
 </head>
-<div id="myModal" class="modal">
 
-	<!-- Modal content -->
-	<div class="modal-content">
-		<div class="modal-header">
-			<span class="close">&times;</span>
-			<h2>Create Movie Theatre Seatings</h2>
-		</div>
-		<div class="modal-body">
-				hallID: <input type="text" id="hallID"><br>
-<!-- 			columns: <input type="text" id="col"><br> rows: <input -->
-<!-- 				type="text" id="rows"><br> -->
-			<button class="confirmHall"
-				onclick="getHallSeats()">Confirm</button>
-		</div>
-	</div>
-
-</div>
 <div class="wrapper">
 	<div class="container">
-		<!-- <div>
-			hall name: <input type="text" id="hallName">
-			columns: <input type="text" id="col">
-			rows: <input type="text" id="rows">
-			<button class="seatNumber"
-				onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)">Confirm</button>
-		</div> -->
 		<h1>Create Movie Theatre Seatings</h1>
-		<div>Hall: ${param.hallID}</div>
+		<div> 選擇廳:  ${hallID} 廳</div>
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
@@ -288,57 +169,12 @@ to {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">Confirm�
-		&raquo;</button>
-	<button class="checkout-button" id="refresh"
-		onclick="location.href = 'addSeats';">Refresh &raquo;</button>
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認&raquo;</button>
 	<div id="legend"></div>
 </div>
 
 <script>
-	//Modal
-	// Get the modal
-	var modal = document.getElementById("myModal");
-	
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
 
-	var seatNumber = document.getElementById("seatNumber");
-
-	// When the user clicks the button, open the modal 
-	window.onload = function() {
-		modal.style.display = "block";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-		modal.style.display = "none";
-	}
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	}
-
-	//End of Modal
-
-	function getHallSeats(){
-		$.ajax({
-			url : "${pageContext.request.contextPath}/seats/showSeats",
-			data : {hallID: document.getElementById('hallID').value},
-			type : "POST",
-			success : function() {
-				alert("THIS is getHallSeats()");
-				var confirm = document.getElementsByClassName("confirmHall");
-				confirm.onclick = function() {
-					modal.style.display = "none";
-				}
-			}
-			})
-	}
-	
 	
 	function getEN() {
 		var arr = [];
@@ -348,29 +184,29 @@ to {
 		return arr;
 	}
 
-	function changeSeat(column, row) {
-		var flag1 = 1;
-		var map = [];
-		for (let x = 0; x < column; x++) {
-			var f = 'f'.repeat(row);
-			map.push(f);
-		}
-		// if($("#seat-map").children().length!=0){
-		// 	$("#seat-map").empty();
-		// }
-		seatmain(map, flag1);
+	function showSeats(){
+		$('.seatCharts-row').remove();
+		$('.seatCharts-legendItem').remove();
+		$('#seat-map,#seat-map *').unbind().removeData();
+		var hallID = document.getElementById("hallID").value;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/seats/showSeats",
+			data : {hallID: hallID},
+			type : "POST",
+			success : function(data) {
+				console.log(hallID);
+				seatmain(data, 1)
+			}
+		});
 	}
 
-	// var firstSeatLabel = 1;
-
-	// $(document).ready(function () {
 	function seatmain(map1, flag) {
 
 		var $cart = $('#selected-seats'), $counter = $('#counter'), $total = $('#total'), sc = $(
 				'#seat-map')
 				.seatCharts(
 						{
-							map : map,
+							map : map1,
 
 							seats : {
 								f : {
@@ -424,7 +260,7 @@ to {
 													+ this.settings.id
 													+ ': <b>$'
 													+ this.data().price
-													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂ¥ÃÂÃÂÃÂ¦ÃÂ¶ÃÂ]</a></li>')
+													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂÃÂ¥ÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂ¶ÃÂÃÂ]</a></li>')
 											.attr(
 													'id',
 													'cart-item-'
@@ -474,8 +310,8 @@ to {
 
 		//let's pretend some seats have already been booked
 		if (flag == 2) {
-			// sc.get(['A_2', '4_1', '7_1', '7_2']).status('unavailable');
-			sc.get(map1).status('seatCharts-space');
+			sc.get(map1).status('unavailable');
+// 			sc.get(map1).status('seatCharts-space');
 
 			$('.normal-seats').on('click', '.seatCharts-space', function() {
 				sc.get($(this).parents('li:first').data('seatId')).click();
@@ -499,7 +335,9 @@ to {
 	// 	console.log(seatArray);
 	// 	//AJAX return seatArray
 	// }
-
+	
+	
+	//按下確認後所執行的function
 	function changeStatus() {
 		//SELECTED SEATS
 		var flag2 = 2;
@@ -517,17 +355,14 @@ to {
 		console.log("This is selected seats: " + SseatArray);
 		seatmain(SseatArray, flag2);
 		var hallID = '${param.hallID}';
-		var availSeats = returnArray();
-		var available=JSON.stringify(availSeats);
-		var rowNum = document.getElementById('rows').value;
-		var colNum = document.getElementById('col').value;
-// 		var aisle={aisle:JSON.stringify(SseatArray)};
+		console.log(hallID);
+		var unavailable=JSON.stringify(SseatArray);
 		$.ajax({
-			url : "${pageContext.request.contextPath}/seats/addSeats",
-			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum},
+			url : "${pageContext.request.contextPath}/seats/updateSeats",
+			data : {seats: unavailable, hallID: hallID},
 			type : "POST",
 			success : function() {
-				alert("新增成功");
+				alert("");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});

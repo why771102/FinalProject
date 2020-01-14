@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 
@@ -256,8 +258,8 @@ to {
 			<!-- 			hall name: <input type="text" id="hallName"><br> -->
 			columns: <input type="text" id="col"><br> rows: <input
 				type="text" id="rows"><br>
-			<button class="seatNumber"
-				onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)">Confirm</button>
+			<button class="seatNumber" id="seatNoConfirm"
+				onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)">確認</button>
 		</div>
 	</div>
 
@@ -272,7 +274,7 @@ to {
 				onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)">Confirm</button>
 		</div> -->
 		<h1>Create Movie Theatre Seatings</h1>
-		<div>Hall: ${param.hallID}</div>
+		<div>${param.hallID} 廳</div>
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
@@ -288,10 +290,9 @@ to {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認
-		&raquo;</button>
-	<button class="checkout-button" id="refresh"
-		onclick="location.href = 'addSeats';">重新選擇座位 &raquo;</button>
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認&raquo;</button>
+	<button class="checkout-button" id="re-select" id="refresh"
+		data-toggle="modal" data-target="#myModal">重新選擇座位 &raquo;</button>
 	<div id="legend"></div>
 </div>
 
@@ -301,15 +302,22 @@ to {
 	var modal = document.getElementById("myModal");
 
 	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
+	var btn = document.getElementById("re-select");
 
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
 
 	var seatNumber = document.getElementById("seatNumber");
 
-	// When the user clicks the button, open the modal 
+	
+	
+	// When webpage loads, open the modal 
 	window.onload = function() {
+		modal.style.display = "block";
+	}
+	
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
 		modal.style.display = "block";
 	}
 
@@ -318,6 +326,7 @@ to {
 		modal.style.display = "none";
 	}
 
+	
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 		if (event.target == modal) {
@@ -336,6 +345,9 @@ to {
 	}
 
 	function changeSeat(column, row) {
+		$('.seatCharts-row').remove();
+		$('.seatCharts-legendItem').remove();
+		$('#seat-map,#seat-map *').unbind().removeData();
 		var flag1 = 1;
 		var map = [];
 		for (let x = 0; x < column; x++) {
@@ -346,9 +358,11 @@ to {
 		// 	$("#seat-map").empty();
 		// }
 		seatmain(map, flag1);
+		modal.style.display = "none";
+		
 	}
 
-	// var firstSeatLabel = 1;
+// 	var firstSeatLabel = 1;
 
 	// $(document).ready(function () {
 	function seatmain(map1, flag) {
@@ -383,9 +397,10 @@ to {
 							naming : {
 								top : false,
 								rows : getEN(),
-								// getLabel: function (character, rows, columns) {
-								// 	return firstSeatLabel++;
-								// },
+// 								getLabel: function (character, rows, columns) {
+// 									return firstSeatLabel++;
+									
+// 								},
 								getId : function(character, rows, columns) {
 									return rows + '_' + columns;
 								}
@@ -486,7 +501,8 @@ to {
 	// 	console.log(seatArray);
 	// 	//AJAX return seatArray
 	// }
-
+var availableSeats = document
+				.getElementsByClassName("seatCharts-seat seatCharts-cell available");
 	function changeStatus() {
 		//SELECTED SEATS
 		var flag2 = 2;
@@ -504,16 +520,17 @@ to {
 		seatmain(SseatArray, flag2);
 		var hallID = '${param.hallID}';
 		var availSeats = returnArray();
+		
 		var available=JSON.stringify(availSeats);
 		var rowNum = document.getElementById('rows').value;
 		var colNum = document.getElementById('col').value;
 // 		var aisle={aisle:JSON.stringify(SseatArray)};
 		$.ajax({
 			url : "${pageContext.request.contextPath}/seats/addSeats",
-			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum},
+			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum, noOfSeats: availableSeats.length},
 			type : "POST",
 			success : function() {
-				alert("新增成功");
+				alert("新增成功!");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});
@@ -535,8 +552,8 @@ to {
 
 	function returnArray() {
 		//ONLY RECORDS AVAILABLE SEATS
-		var availableSeats = document
-				.getElementsByClassName("seatCharts-seat seatCharts-cell available");
+// 		console.log(firstSeatLabel);
+		
 		var AseatArray = [];
 		var Aseatobj = {};
 		for (var i = 0; i < availableSeats.length; i++) {
