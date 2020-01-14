@@ -19,6 +19,8 @@ public interface ProductSaleDao {
 	//6+7+8..
 	public List<ProductSaleBean> showPeriperalOrders(Integer categoryA, Integer categoryB, String orderDateA, String orderDateB);
 	
+	public List<String> getDistinctProductNames();
+	
 	//根據產品名稱進入單日資訊
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
 	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);

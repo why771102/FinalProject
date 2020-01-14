@@ -168,5 +168,15 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		}
 		return totalDates;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getDistinctProductNames() {
+		List<String> productNames = new ArrayList<>();
+		String hql = "SELECT DISTINCT productName FROM products";
+		Session session = factory.getCurrentSession();
+		productNames = session.createQuery(hql).getResultList();
+		return productNames;
+	}
 	
 }
