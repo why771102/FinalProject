@@ -99,7 +99,7 @@ public class EmpController {
 	}
 	
 	@ModelAttribute("roleList")
-	public Map<Integer, String> getCompanyList() {
+	public Map<Integer, String> getRoleCompanyList() {
 		Map<Integer, String> roleMap = new HashMap<>();
 		List<RoleBean> list = service.getRoleList();
 		for (RoleBean rb : list) {
@@ -119,7 +119,7 @@ public class EmpController {
 	}
 	
 	
-	@RequestMapping(value = "/emp/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/emp/update/{empId}", method = RequestMethod.GET)
 	public String updateEmp(Model model, @PathVariable("empId") Integer empId) {
 		EmpBean ab = service.getEmp(empId);
 		model.addAttribute("empBean", ab);

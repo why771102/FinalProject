@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.a.model.MovieBean;
+import com.p.model.MemberBean;
 import com.t.dao.ExpectionDao;
 import com.t.model.ExpectationBean;
 import com.t.service.ExpectationService;
@@ -30,14 +31,19 @@ public class ExpectationServiceImpl implements ExpectationService{
 	@Transactional
 	@Override
 	public void addExpect(ExpectationBean eb) {
-		dao.addExpect(eb);
+		
 	}
 
 	@Transactional
 	@Override
 	public MovieBean getMovieById(int movieID) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getMovieById(movieID);
+	}
+
+	@Transactional
+	@Override
+	public MemberBean getMemberById(int memberID) {
+		return dao.getMemberById(memberID);
 	}
 
 }

@@ -93,7 +93,7 @@ public class MemberDaoImpl implements MemberDao {
 												.setParameter("uID",UID)
 												.getSingleResult();
 			if(mb != null) {
-				
+				exist = true;
 			}
 		}catch(NoResultException ex) {
 			exist = false;

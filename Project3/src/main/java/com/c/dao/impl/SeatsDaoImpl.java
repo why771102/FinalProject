@@ -43,10 +43,16 @@ public class SeatsDaoImpl implements SeatsDao {
 	//後端更新此位是否可以出售
 	@Override
 	public void updateSeatStatus(Integer status, String seatID) {
+		System.out.println("This is updatseatstatus");
 		Session session = factory.getCurrentSession();
-		SeatsBean sb = session.get(SeatsBean.class, seatID);
-		sb.setSeatStatus(status);
-		session.saveOrUpdate(sb);
+		System.out.println(seatID);
+		String hql = "UPDATE SeatsBean SET seatStatus = :seatStatus WHERE seatID = :seatID";
+		session.createQuery(hql).setParameter("seatStatus", status)
+								.setParameter("seatID", seatID)
+								.executeUpdate();
+//		SeatsBean sb = session.get(SeatsBean.class, seatID);
+//		sb.setSeatStatus(status);
+//		session.saveOrUpdate(sb);
 	}
 
 	

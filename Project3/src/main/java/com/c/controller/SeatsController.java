@@ -78,10 +78,16 @@ public class SeatsController {
 	}
 	
 	@PostMapping(value="/seats/updateSeats")
-	public String updateSeatChart() {
-		
-		
-		return null;
+	public String updateSeatChart(@RequestParam ("seats") String seats,
+			@RequestParam("hallID") String hallID) {
+		System.out.println("THIS IS CONTROLLER UPDATESEATCHART");
+		String[] seatsArray = sservice.stringToStringArray(seats, hallID);
+		System.out.println(hallID);
+		for(int seat = 0 ; seat < seatsArray.length; seat++) {
+			System.out.println(hallID+seatsArray[seat]);
+			sservice.updateSeatStatus(1, hallID+seatsArray[seat]);
+		}
+		return "c/showSeats";
 	}
 	
 }

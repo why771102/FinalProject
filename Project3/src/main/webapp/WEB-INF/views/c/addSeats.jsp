@@ -501,7 +501,8 @@ to {
 	// 	console.log(seatArray);
 	// 	//AJAX return seatArray
 	// }
-
+var availableSeats = document
+				.getElementsByClassName("seatCharts-seat seatCharts-cell available");
 	function changeStatus() {
 		//SELECTED SEATS
 		var flag2 = 2;
@@ -519,13 +520,14 @@ to {
 		seatmain(SseatArray, flag2);
 		var hallID = '${param.hallID}';
 		var availSeats = returnArray();
+		
 		var available=JSON.stringify(availSeats);
 		var rowNum = document.getElementById('rows').value;
 		var colNum = document.getElementById('col').value;
 // 		var aisle={aisle:JSON.stringify(SseatArray)};
 		$.ajax({
 			url : "${pageContext.request.contextPath}/seats/addSeats",
-			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum, noOfSeats: firstSeatLabel},
+			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum, noOfSeats: availableSeats.length},
 			type : "POST",
 			success : function() {
 				alert("新增成功!");
@@ -550,9 +552,8 @@ to {
 
 	function returnArray() {
 		//ONLY RECORDS AVAILABLE SEATS
-		console.log(firstSeatLabel);
-		var availableSeats = document
-				.getElementsByClassName("seatCharts-seat seatCharts-cell available");
+// 		console.log(firstSeatLabel);
+		
 		var AseatArray = [];
 		var Aseatobj = {};
 		for (var i = 0; i < availableSeats.length; i++) {

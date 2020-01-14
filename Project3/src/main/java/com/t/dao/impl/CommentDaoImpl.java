@@ -43,9 +43,6 @@ public class CommentDaoImpl implements CommentDao{
 		return list;
 	}
 
-	/**
-	 *
-	 */
 	@Override
 	public List<CommentBean> findAllComment(){
 		String hql = "Select watched, grade, commentContent, commentTime from CommentBean where movieID = :movieID && commentDelete = 0 && block = 0";
@@ -54,8 +51,6 @@ public class CommentDaoImpl implements CommentDao{
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
-
-	
 
 	@Override
 	public void deleteComment(CommentBean cb) {

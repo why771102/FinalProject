@@ -104,6 +104,14 @@
 					<td><form:input id="hallSubtotal" path="hallSubtotal" type='text' readonly="true"/></td>
 				</tr>
 				<tr>
+					<td>連絡人:</td>
+					<td><form:input id="contactPerson" path="contactPerson" type='text' /></td>
+				</tr>
+				<tr>
+					<td>連絡電話:</td>
+					<td><form:input id="mobile" path="mobile" type='text' /></td>
+				</tr>
+				<tr>
 					<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="0" type='hidden' /></td>
 				</tr>
 				<tr>
