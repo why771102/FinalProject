@@ -6,12 +6,15 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.a.model.MovieBean;
 import com.p.model.MemberBean;
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
+
+@Repository
 public class CommentDaoImpl implements CommentDao{
 	
 	SessionFactory factory;
@@ -96,23 +99,19 @@ public class CommentDaoImpl implements CommentDao{
 	}
 
 	@Override
-	public List<CommentBean> getCommentList() {
-		String hql = "FROM CommentBean";
+	public List<MovieBean> getMovieList() {
+		String hql = "FROM MovieBean";
 		Session session = factory.getCurrentSession();
-		List<CommentBean> list = session.createQuery(hql).getResultList();
+		List<MovieBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
 
 	@Override
-	public List<MovieBean> getMovieList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<MemberBean> getMemberList() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "FROM MemberBean";
+		Session session = factory.getCurrentSession();
+		List<MemberBean> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

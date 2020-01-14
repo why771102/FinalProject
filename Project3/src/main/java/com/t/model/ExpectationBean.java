@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.a.model.MovieBean;
 import com.sun.istack.NotNull;
@@ -34,9 +35,12 @@ public class ExpectationBean implements Serializable{
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
-	private MovieBean movieID;	
+	private MovieBean MovieBean;	
 	
-	public ExpectationBean(Integer expective, Integer unexpective, MovieBean movieID) {
+	@Transient
+	Integer movieID;
+	
+	public ExpectationBean(Integer expective, Integer unexpective, Integer movieID) {
 		this.expective = expective;
 		this.unexpective = unexpective;
 		this.movieID = movieID;
@@ -46,11 +50,27 @@ public class ExpectationBean implements Serializable{
 		
 	}
 
-	public MovieBean getMovieID() {
+	public Integer getUnexpective() {
+		return unexpective;
+	}
+
+	public void setUnexpective(Integer unexpective) {
+		this.unexpective = unexpective;
+	}
+
+	public MovieBean getMovieBean() {
+		return MovieBean;
+	}
+
+	public void setMovieBean(MovieBean movieBean) {
+		MovieBean = movieBean;
+	}
+
+	public Integer getMovieID() {
 		return movieID;
 	}
 
-	public void setMovieID(MovieBean movieID) {
+	public void setMovieID(Integer movieID) {
 		this.movieID = movieID;
 	}
 
