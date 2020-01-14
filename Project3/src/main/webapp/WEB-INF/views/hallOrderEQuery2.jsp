@@ -5,6 +5,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -27,6 +29,8 @@
 			<td>詳細申請內容</td>
 			<td>申請總時數</td>
 			<td>申請總金額</td>
+			<td>聯絡人</td>
+			<td>連絡電話</td>
 			<td>包廳申請狀態</td>
 			<td>包廳付款狀態</td>
 			<td>送出修改資料</td>
@@ -49,13 +53,17 @@
 			
 			<td><form:input id="hallSubtotal" path="hallSubtotal" value="${AHO.hallSubtotal}" type='text' readonly="true"/></td>
 			
+			<td><form:input id="contactPerson" path="contactPerson" value="${AHO.contactPerson}" type='text' readonly="true"/></td>
+			
+			<td><form:input id="mobile" path="mobile" value="${AHO.mobile}" type='text' readonly="true"/></td>
+			
 <%-- 			<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="${AHO.hob.hallOrderStatus}" type='text'/></td> --%>
-			<td><form:select path="hallOrderStatusNo">
-				<form:option value="${AHO.hob.hallOrderStatus}"></form:option>
+			<td><form:select path="hallOrderStatusNo" id="no">
+				<form:option value="${AHO.hob.hallOrderStatusNo}">${AHO.hob.hallOrderStatus}</form:option>
 				<form:options items="${hallOrderStatusList}" />
 				</form:select></td>
-			<td><form:select path="payStatusNo">
-				<form:option value="${AHO.psb.payStatus}"></form:option>
+			<td><form:select path="payStatusNo" id="payStatusNo">
+				<form:option value="${AHO.psb.payStatusNO}">${AHO.psb.payStatus}</form:option>
 				<form:options items="${payStatusList}" />
 				</form:select></td>
 			
@@ -68,5 +76,19 @@
 
 		</table>
 	</div>
+<script>
+// var hallOrderStatusNo = "${AHO.hob.hallOrderStatusNo}";
+// var a = $("#no option");
+
+// console.log(a.val());
+
+// 	for(i=0 ; i < a.length ; i++){
+// 		console.log(a[i]);
+// 		console.log(a[i].value);
+// 		if(a[i].value == hallOrderStatusNo){
+// 			a[i].attr("selected","true");
+// 		}
+// 	}
+</script>
 </body>
 </html>

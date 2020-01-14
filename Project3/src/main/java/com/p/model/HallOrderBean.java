@@ -51,6 +51,8 @@ public class HallOrderBean implements Serializable {
 	@Transient
 	String hallID;
 	
+	String mobile;
+	String contactPerson;
 	String hallPurpose;
 	String hallPurposeDetail;
 	Integer hallSubtotal;
@@ -133,7 +135,7 @@ public class HallOrderBean implements Serializable {
 	}
 
 	public HallOrderBean(Integer hallOrderNo,String orderDate,String startTime,String endTime,
-			Integer orderHours,String hallPurpose,String hallPurposeDetail,Integer hallSubtotal) {
+			Integer orderHours,String mobile,String contactPerson,String hallPurpose,String hallPurposeDetail,Integer hallSubtotal) {
 		this.hallOrderNo = hallOrderNo;
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -141,6 +143,8 @@ public class HallOrderBean implements Serializable {
 		this.hallPurpose = hallPurpose;
 		this.hallPurposeDetail = hallPurposeDetail;
 		this.hallSubtotal = hallSubtotal;
+		this.mobile = mobile;
+		this.contactPerson = contactPerson;
 	}
 	
 	public HallOrderBean() {
@@ -201,5 +205,21 @@ public class HallOrderBean implements Serializable {
 	public void setHallSubtotal(Integer hallSubtotal) {
 		this.hallSubtotal = hallSubtotal;
 	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getContactPerson() {
+		return contactPerson;
+	}
+
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+	
+	
 	
 }
