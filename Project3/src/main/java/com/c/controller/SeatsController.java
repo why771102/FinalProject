@@ -46,9 +46,11 @@ public class SeatsController {
 			@RequestParam ("hallID") String hallID,
 			@RequestParam ("rowNum") String rowNum,
 			@RequestParam ("colNum") String colNum,
+			@RequestParam ("noOfSeats") String noOfSeats,
 			Model model) {
+		System.out.println(hallID);
 		sservice.saveSeats(seats, hallID);
-		hservice.updateHallRC(hallID, Integer.parseInt(colNum), Integer.parseInt(rowNum));
+		hservice.updateHallRC(hallID, Integer.parseInt(colNum), Integer.parseInt(rowNum), Integer.parseInt(noOfSeats));
 		return "/index-c";
 	}
 	
@@ -73,6 +75,13 @@ public class SeatsController {
 		}
 //		model.addAttribute("seat", seat);
 		return seats;
+	}
+	
+	@PostMapping(value="/seats/updateSeats")
+	public String updateSeatChart() {
+		
+		
+		return null;
 	}
 	
 }

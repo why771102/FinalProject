@@ -175,22 +175,6 @@ span.seatCharts-legendDescription {
 
 <script>
 
-// 	function getHallSeats(){
-// 		$.ajax({
-// 			url : "${pageContext.request.contextPath}/seats/getSeats",
-// 			data : {hallID: document.getElementById('hallID').value},
-// 			type : "POST",
-// 			success : function() {
-// 				alert("THIS is getHallSeats()");
-// 				var confirm = document.getElementById("confirmHall");
-// 				confirm.onclick = function() {
-// 					modal.style.display = "none";
-// 				}
-// 				window.location.href = "${pageContext.request.contextPath}/seats/showSeats"
-// 			}
-// 			})
-// 	}
-	
 	
 	function getEN() {
 		var arr = [];
@@ -214,20 +198,8 @@ span.seatCharts-legendDescription {
 				seatmain(data, 1)
 			}
 		});
-// 		seatmain(map, 1);
 	}
-// 	function changeSeat() {
-// 		var flag1 = 1;
-// 		var map = ${seats};
-// 		// if($("#seat-map").children().length!=0){
-// 		// 	$("#seat-map").empty();
-// 		// }
-// 		seatmain(map, flag1);
-// 	}
 
-	// var firstSeatLabel = 1;
-
-	// $(document).ready(function () {
 	function seatmain(map1, flag) {
 
 		var $cart = $('#selected-seats'), $counter = $('#counter'), $total = $('#total'), sc = $(
@@ -338,8 +310,8 @@ span.seatCharts-legendDescription {
 
 		//let's pretend some seats have already been booked
 		if (flag == 2) {
-			// sc.get(['A_2', '4_1', '7_1', '7_2']).status('unavailable');
-			sc.get(map1).status('seatCharts-space');
+			sc.get(map1).status('unavailable');
+// 			sc.get(map1).status('seatCharts-space');
 
 			$('.normal-seats').on('click', '.seatCharts-space', function() {
 				sc.get($(this).parents('li:first').data('seatId')).click();
@@ -363,7 +335,9 @@ span.seatCharts-legendDescription {
 	// 	console.log(seatArray);
 	// 	//AJAX return seatArray
 	// }
-
+	
+	
+	//按下確認後所執行的function
 	function changeStatus() {
 		//SELECTED SEATS
 		var flag2 = 2;
@@ -381,17 +355,16 @@ span.seatCharts-legendDescription {
 		console.log("This is selected seats: " + SseatArray);
 		seatmain(SseatArray, flag2);
 		var hallID = '${param.hallID}';
-		var availSeats = returnArray();
-		var available=JSON.stringify(availSeats);
+		var unavailable=JSON.stringify(SseatArray);
 		var rowNum = document.getElementById('rows').value;
 		var colNum = document.getElementById('col').value;
-// 		var aisle={aisle:JSON.stringify(SseatArray)};
+
 		$.ajax({
-			url : "${pageContext.request.contextPath}/seats/addSeats",
-			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum},
+			url : "${pageContext.request.contextPath}/seats/updateSeats",
+			data : {seats: unavailable, hallID: hallID},
 			type : "POST",
 			success : function() {
-				alert("æ°å¢æåÂÂ");
+				alert("");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});

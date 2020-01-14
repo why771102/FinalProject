@@ -54,8 +54,8 @@ public class HallServiceImpl implements HallService {
 
 	@Transactional
 	@Override
-	public void updateHallRC(String hallID, Integer colNum, Integer rowNum) {
-		dao.updateHallRC(hallID, colNum, rowNum);
+	public void updateHallRC(String hallID, Integer colNum, Integer rowNum, Integer noOfSeats) {
+		dao.updateHallRC(hallID, colNum, rowNum, noOfSeats);
 	}
 	
 	@Transactional

@@ -21,7 +21,7 @@
 			<fieldset>
 
 					HallID:	<form:input name="hallID" path="hallID" type='text' required="required"/><br>
-					noOfSeats:	<form:input name="noOfSeats" path="noOfSeats" type='text' required="required"/><br>
+<%-- 					noOfSeats:	<form:input name="noOfSeats" path="noOfSeats" type='text' required="required"/><br> --%>
 					Price:		<form:input name="price" path="price" type='text' required="required"/><br>
 					status:		<form:input name="status" path="hallStatus" type='text' required="required"/><br>
 
