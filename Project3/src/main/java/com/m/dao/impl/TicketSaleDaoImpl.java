@@ -19,6 +19,8 @@ import com.m.model.TicketSaleBean;
 
 @Repository
 public class TicketSaleDaoImpl implements TicketSaleDao {
+	
+	TicketSaleDao dao;
 	SessionFactory factory;
 
 	@Autowired
@@ -26,8 +28,14 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		this.factory = factory;
 	}
 
+	@Autowired
+	public void setDao(TicketSaleDao dao) {
+		this.dao = dao;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
+	// 取得訂單販售資訊欄位的值
 	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList) {
 		String hql = "SELECT m.ordersID, mo.unitPrice, mo.quantity, mo.productID,"
 				+ "category FROM mOrder mo LEFT JOIN mo.mOrderDetail mod"
@@ -36,51 +44,67 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		List<TicketSaleBean> tsbLists = new ArrayList<>();
 		for (TicketSaleBean tsb : tsbList) {
 			tsbLists = session.createQuery(hql).setParameter("showTimeID", tsb.getShowtimeID()).getResultList();
+			
+//0115待確認
+//			ShowTimeHistoryBean sth = null;
+//			sth = session.get(ShowTimeHistoryBean.class, tsb.getShowtimeID());
+//			sth.getPalyStartTime();
+			
+			//從新的陣列資訊中取出所需的資訊: 
+//			for(TicketSaleBean tsb1 : tsbLists){
+//				tsb1.getQuantity(); //取得單筆訂單的產品數量
+//				tsb1.getUnitPrice(); //取得單筆訂單的產品單價
+//				tsb1.getCategory(); //取得單筆訂單產品所對應的種類
+//			}
+			
 		}
 		return tsbLists;
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TicketSaleBean> getTicketSaleBean(List<MOrderDetailBean> modbList) {
+	public List<MOrderBean> getMOrderBean() {
 		String hql = "FROM mOrder";
 		Session session = factory.getCurrentSession();
 		List<MOrderBean> modList = new ArrayList<>();
 		modList = session.createQuery(hql).getResultList();
+	return modList;
+	}
 	
+	@Override
+	//取得電影資訊相關欄位的值
+	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList) {
+		Session session = factory.getCurrentSession();
 		List<TicketSaleBean> tsbList = new ArrayList<>();
-		
+
 		for (MOrderBean mob : modList) {
-			mob.getShowTimeHistoryBean(); //getShowTimeHistoryBean
-			mob.getShowTimeHistoryBean().getHall(); //getHallBean
+			mob.getShowTimeHistoryBean(); // getShowTimeHistoryBean
+			mob.getShowTimeHistoryBean().getHall(); // getHallBean
 			mob.getShowTimeHistoryBean().getRun(); // getRunningBean
 			mob.getShowTimeHistoryBean().getRun().getMovie(); // getMovieBean
-			
+
 			Integer showtimeID = mob.getShowTimeHistoryBean().getShowTimeId();
 			String title = mob.getShowTimeHistoryBean().getRun().getMovie().getTitle();
 			Integer genre = mob.getShowTimeHistoryBean().getRun().getMovie().getGenre();
 			Integer movieHours = mob.getShowTimeHistoryBean().getRun().getMovie().getRunningTime(); // 片長(分鐘)
-//			Double profitRatio = mob.getShowTimeHistoryBean().getRun().getMovie().getProfitRatio(); 營收表要
+//		Double profitRatio = mob.getShowTimeHistoryBean().getRun().getMovie().getProfitRatio(); 營收表要
 			String hallID = mob.getShowTimeHistoryBean().getHall().getHallID();
-			Integer hallSeats = session.get(NumberOfSeatsBean.class, mob.getShowTimeHistoryBean().
-					getHall().getHallID()).getNoOfSeats(); // 取得那廳的座位數
+			Integer hallSeats = session.get(NumberOfSeatsBean.class, mob.getShowTimeHistoryBean().getHall().getHallID())
+					.getNoOfSeats(); // 取得那廳的座位數
 			String releaseDate = mob.getShowTimeHistoryBean().getRun().getRelease(); // 上映日
 			String offDate = mob.getShowTimeHistoryBean().getRun().getOffDate(); // 實際下檔
 			String expectOffDate = mob.getShowTimeHistoryBean().getRun().getExpectedOffDate(); // 預計下檔
-			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); //電影播放年月日
-			
-//			for() {
-//			MOrderDetailBean modb = null;
-//			modb = session.get(MOrderDetailBean.class, mob.getOrdersID());
-//			modbList.add(modb);
-//			}
-			TicketSaleBean tsb = new TicketSaleBean(showtimeID, hallID, title, genre, 
-					movieHours, 0, hallSeats, 0, 0.0, 0.0, 0, releaseDate, 
-					expectOffDate, offDate, playStartTime);
+			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); // 電影播放年月日
+
+			TicketSaleBean tsb = new TicketSaleBean(showtimeID, hallID, title, genre, movieHours, 0, hallSeats, 0, 0.0,
+					0.0, 0, releaseDate, expectOffDate, offDate, playStartTime);
 			tsbList.add(tsb);
 		}
 		return tsbList;
 	}
+
+	// ===========================================================================
 
 //	@Override
 //	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList) {
@@ -175,6 +199,4 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 //				.setParameter("eDate", eDate).list();
 //		return mIDList;
 //	}
-
-	// 抓取HallID去取得list中需要的list
 }

@@ -15,8 +15,12 @@ import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
 import com.c.service.HallService;
+import com.l.model.MOrderBean;
+import com.l.model.MOrderDetailBean;
 import com.m.dao.TicketSaleDao;
+import com.m.model.TicketSaleBean;
 import com.m.service.TicketSaleService;
+import com.p.model.HallOrderBean;
 
 @Service
 public class TicketSaleServiceImpl implements TicketSaleService {
@@ -34,6 +38,67 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 		this.service = service;
 	}
 	
+	@Transactional
+	@Override
+	public List<MOrderBean> getMOrderBean() {
+		return dao.getMOrderBean();
+	}
+	
+	@Transactional
+	@Override
+	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList) {
+		List<TicketSaleBean> tsbListFromMovie= dao.getTicketSaleBean(modList);
+		return tsbListFromMovie;
+	}
+	
+	@Transactional
+	@Override
+	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList) {
+		List<TicketSaleBean> tsbListFromOrder = dao.getMOrderDetailBeanList(tsbList);
+		return tsbListFromOrder;
+	}
+	
+	
+	public List<TicketSaleBean> comparedByTime(String sDate, String eDate){
+		List<TicketSaleBean> tsbListFromMovie = dao.getTicketSaleBean(dao.getMOrderBean());
+		List<TicketSaleBean> tsbListFromOrder = dao.getMOrderDetailBeanList(dao.getTicketSaleBean(dao.getMOrderBean()));
+		List<TicketSaleBean> tsbList = new ArrayList<>();
+
+		LocalDate Sd = LocalDate.parse(sDate);
+		LocalDate Ed = LocalDate.parse(eDate);
+		
+		for (TicketSaleBean hsb : tsbListFromOrder) {
+			Integer c = hsb.getCategory();
+//			hsb.getPlayStartTime();
+			
+			Integer ticketSaleSubtotal; //票卷與食物消費總額
+			if(c < 4 && c > 0) { //c = 1,2,3 ticket
+				//抓取片長 * 座位售出總數 = 票卷銷售總額
+				
+			}else if(c==4 || c==5) { //food
+				//抓取qty * unitprice = foodSaleTotal
+			}
+			 
+			
+//			long SdOdDays = ChronoUnit.DAYS.between(Sd, orderDate);
+//			long OdEdDays = ChronoUnit.DAYS.between(orderDate, Ed);
+//
+//			if (SdOdDays >= 0 && OdEdDays <= 0) {
+//				hobList.add(hob);
+//			} else {
+//				System.out.println("不符合所需輸入查詢區間與hob日期比較");
+//			}
+		}
+		
+		return tsbList;
+	}
+	
+	public List<TicketSaleBean> getTicketSaleBeanOutput(List<TicketSaleBean> tsbListFromOrder, List<TicketSaleBean> tsbListFromMovie){
+
+		return null;
+	}
+	
+	//=====================================================================
 	@Transactional
 	@Override
 	public List<RunningBean> ShowMovieByRunTime() {
@@ -123,6 +188,7 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 		}
 		return nosbListToPage;
 	}
+
 	
 //	@Override
 //	public List<MovieBean> ShowMovieBean(List<RunningBean> RBListToPage) {

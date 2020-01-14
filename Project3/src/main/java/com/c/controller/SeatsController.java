@@ -73,7 +73,7 @@ public class SeatsController {
 			System.out.println(seats[i]);
 
 		}
-//		model.addAttribute("seat", seat);
+		model.addAttribute("hallID", hallID);
 		return seats;
 	}
 	
@@ -84,8 +84,8 @@ public class SeatsController {
 		String[] seatsArray = sservice.stringToStringArray(seats, hallID);
 		System.out.println(hallID);
 		for(int seat = 0 ; seat < seatsArray.length; seat++) {
-			System.out.println(hallID+seatsArray[seat]);
-			sservice.updateSeatStatus(1, hallID+seatsArray[seat]);
+			System.out.println(seatsArray[seat]);
+			sservice.updateSeatStatus(1, seatsArray[seat]);
 		}
 		return "c/showSeats";
 	}
