@@ -15,7 +15,7 @@ import com.z.model.EmpBean;
 @Repository
 public class HallDaoImpl implements HallDao{
 	SessionFactory factory;
-	
+	String selected = "";
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
@@ -93,6 +93,30 @@ public class HallDaoImpl implements HallDao{
 		
 	}
 	
-	
+	@Override
+	public String getAllHallTags() {
+		String ans = "";
+        List<String> list = getAllHall();
+        ans += "<SELECT id='hallID' onchange='showSeats()'>";
+        ans += "<option value='' selected='' disabled=''>請選擇</option>";
+        for (String hallID : list) {
+            if (hallID.equals(selected)) {
+                ans += "<option value='" + hallID + "' selected>" + hallID + "</option>";
+            } else {
+                ans += "<option value='" + hallID + "'>" + hallID + "</option>";
+            }
+        }
+        ans += "</SELECT>";
+        return ans;
+	}
+
+	@Override
+	public List<String> getAllHall() {
+		String hql = "SELECT DISTINCT hallID FROM HallBean";
+        Session session = factory.getCurrentSession();
+        List<String> list = null;
+        list = session.createQuery(hql).getResultList();
+        return list;
+	}
 
 }

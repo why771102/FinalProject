@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 
@@ -272,7 +274,7 @@ to {
 				onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)">Confirm</button>
 		</div> -->
 		<h1>Create Movie Theatre Seatings</h1>
-		<div>Hall: ${param.hallID}</div>
+		<div>${param.hallID} 廳</div>
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
@@ -288,8 +290,7 @@ to {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認
-		&raquo;</button>
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認&raquo;</button>
 	<button class="checkout-button" id="refresh"
 		onclick="location.href = 'addSeats';">重新選擇座位 &raquo;</button>
 	<div id="legend"></div>
@@ -513,7 +514,7 @@ to {
 			data : {seats: available, hallID: hallID, rowNum: rowNum, colNum: colNum},
 			type : "POST",
 			success : function() {
-				alert("新增成功");
+				alert("新增成功!");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});

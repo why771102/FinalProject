@@ -57,5 +57,17 @@ public class HallServiceImpl implements HallService {
 	public void updateHallRC(String hallID, Integer colNum, Integer rowNum) {
 		dao.updateHallRC(hallID, colNum, rowNum);
 	}
+	
+	@Transactional
+	@Override
+	public String getAllHallTags() {
+		return dao.getAllHallTags();
+	}
+	
+	@Transactional
+	@Override
+	public List<String> getAllHall() {
+		return dao.getAllHall();
+	}
 
 }

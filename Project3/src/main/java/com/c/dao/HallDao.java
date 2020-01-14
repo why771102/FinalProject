@@ -21,4 +21,8 @@ public interface HallDao {
 	public void insertHall(HallBean hb);
 	//修改廳資訊
 	public void updateHall(HallBean hb);
+	
+	public String getAllHallTags();
+	
+	public List<String> getAllHall();
 }

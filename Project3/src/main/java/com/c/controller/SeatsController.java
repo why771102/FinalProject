@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.c.model.HallBean;
 import com.c.model.SeatsBean;
@@ -51,22 +53,26 @@ public class SeatsController {
 	}
 	
 	@GetMapping(value = "/seats/showSeats")
-	public String showHallSeats() {
+	public String showHallSeats(Model model) {
+		String hallID = hservice.getAllHallTags();
+		model.addAttribute("hallID", hallID);
 		return "c/showSeats";
 	}
-	
+
 	@PostMapping(value="/seats/showSeats")
-	public void showSeatChart(Model model, @RequestParam ("hallID") String hallID) {
+	public @ResponseBody String[] showSeatChart(Model model, @RequestParam ("hallID") String hallID) {
 		HallBean hb = hservice.getHall(hallID);
+		System.out.println(hallID);
 		System.out.println("HB: " + hb.getColNum());
 		List<SeatsBean> list = sservice.getAllSeats(hallID);
 		//傳回值是['aaaaaa'] 可以直接餵進jsp的mapchart裡
 		String[] seats = sservice.showSeatChart(list, hb.getColNum(), hb.getRowNum());
 		for(int i = 0; i < seats.length; i++) {
 			System.out.println(seats[i]);
+
 		}
-		model.addAttribute("seats", seats);
-		model.addAttribute("hallID", hallID);
+//		model.addAttribute("seat", seat);
+		return seats;
 	}
 	
 }

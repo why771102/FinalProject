@@ -19,4 +19,6 @@ public interface SeatsService {
 	public List<SeatsBean> getAllSeats(String hallID);
 	
 	public String[] showSeatChart(List<SeatsBean> listSB, Integer colNum, Integer rowNum);
+	
+	
 }
