@@ -75,7 +75,7 @@ public class HallController {
 		String flag = "hall";
 		List<SeatsBean> listSB = sservice.getAllSeatsUsingHallID(hallID);
 		for(int seat = 0; seat < listSB.size(); seat++) {
-			sservice.updateSeatStatus(1, listSB.get(seat).getSeatID(), flag);
+			sservice.updateSeatStatus(Integer.parseInt(hallStatus), listSB.get(seat).getSeatID(), flag);
 		}
 		return "/index-c";
 	}

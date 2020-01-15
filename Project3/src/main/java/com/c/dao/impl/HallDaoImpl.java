@@ -128,9 +128,9 @@ public class HallDaoImpl implements HallDao{
 		HallBean hb = getHall(hallID);
 		Integer status = hb.getHallStatus();
 		if(status == 0) {
-			button += "<button class=\"checkout-button\" id=\"updateHallStatus\" onclick=\"updateHallStatus() value='1'\">關閉廳&raquo;</button>";
+			button += "<button class=\"checkout-button\" id=\"updateHallStatus\" onclick='updateHallStatus()' value='1'\">關閉廳&raquo;</button>";
 		}else {
-			button += "<button class=\"checkout-button\" id=\"updateHallStatus\" onclick=\"updateHallStatus() value='0'\">開放廳&raquo;</button>";
+			button += "<button class=\"checkout-button\" id=\"updateHallStatus\" onclick='updateHallStatus()' value='0'\">開放廳&raquo;</button>";
 		}
 		return button;
 	}

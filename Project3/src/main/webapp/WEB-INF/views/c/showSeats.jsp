@@ -387,13 +387,14 @@ span.seatCharts-legendDescription {
 	function updateHallStatus(){
 		var hallID = document.getElementById("hallID").value;
 		var hallStatus = document.getElementById("updateHallStatus").value;
+		console.log(hallStatus);
 		if(confirm("確認關閉此廳嗎?")){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/hall/updateHallStatus",
 				data : {hallID: hallID, hallStatus: hallStatus},
 				type : "POST",
 				success : function() {
-					alert("已關閉"+hallID+"廳");
+					alert("更改成功");
 					window.location.href = "${pageContext.request.contextPath}/index-c";
 				}
 			});
