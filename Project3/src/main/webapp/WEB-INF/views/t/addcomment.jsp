@@ -16,6 +16,10 @@ fieldset {
 	margin: auto;
 }
 </style>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
 <title>Comments</title>
 </head>
 <body>
@@ -34,16 +38,22 @@ fieldset {
 					<label class='control-label col-lg-2 col-lg-2' for="movieID">
 						電影ID</label>
 					<div class='col-lg-10'>
-						<form:input id="movieID" path="movieID" type='text'
-							class='form:input-large' />
+						<form:select id="movieID" path="movieID"
+							class='form:input-large' >
+							<form:option value = "-1" label = "請挑選"/>
+							<form:options items = "${movieList }"/>
+						</form:select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class='control-label col-lg-2 col-lg-2' for="memberID">
 						會員ID</label>
 					<div class='col-lg-10'>
-						<form:input id="memberID" path="memberID" type='text'
-							class='form:input-large' />
+						<form:select id="memberID" path="memberID"
+							class='form:input-large' >
+							<form:option value = "-1" label = "請挑選"/>
+							<form:options items = "${memberList }"/>
+						</form:select>
 					</div>
 				</div>
 				<div class="form-group">
@@ -71,12 +81,11 @@ fieldset {
 							class='form:input-large' />
 					</div>
 				</div>
-				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='commentTime'>
+					<label class='control-label col-lg-2 col-lg-2' for="commentTime">
 						時間 </label>
-					<div class="col-lg-10">
-						 <form:input id="commentTime" path="commentTime" type='text'
+					<div class='col-lg-10'>
+						<form:input id="commentTime" path="commentTime" type='hidden'
 							class='form:input-large' />
 					</div>
 				</div>
@@ -89,5 +98,12 @@ fieldset {
 			</fieldset>
 		</form:form>
 	</section>
+	<script>
+$(document).ready(function(){
+	var d = new Date();
+	$("#commentTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
+});
+
+</script>
 </body>
 </html>
