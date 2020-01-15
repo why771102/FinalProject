@@ -24,15 +24,19 @@
 			<fieldset>
 				<tr>
 					<td>姓名:</td>
-					<td><form:input id="name" path="name" type='text'  required="required" /></td>
+					<td><form:input id="name" path="name" type='text' /><br>
+					<form:errors path="name" cssClass="error"/></td>
+					
 				</tr>
 				<tr>
 					<td>帳號:</td>
-					<td><form:input id="account" path="account" type='text'  required="required" /><span class="notice">${errorMsgMap.accountExistError}</span></td>
+					<td><form:input id="account" path="account" type='text'  /><span class="notice">${errorMsgMap.accountExistError}</span><br>
+					<form:errors path="account" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>密碼:</td>
-					<td><form:input id="password" path="password" type='text'  required="required" /></td>
+					<td><form:input id="password" path="password" type='text' /><br>
+					<form:errors path="password" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>性別:</td>
@@ -42,23 +46,28 @@
 				</tr>
 				<tr>
 					<td>身分證字號:</td>
-					<td><form:input id="uID" path="uID" type='text'  required="required" /><span>${errorMsgMap.uIDtExistError}</span></td>
+					<td><form:input id="uID" path="uID" type='text'  /><span>${errorMsgMap.uIDtExistError}</span><br>
+					<form:errors path="uID" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>出生年月日:</td>
-					<td><form:input id="birth" path="birth" type='date'  required="required" /></td>
+					<td><form:input id="birth" path="birth" type='date'  /><br>
+					<form:errors path="birth" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>聯絡電話:</td>
-					<td><form:input id="mobile" path="mobile" type='text'  required="required" /></td>
+					<td><form:input id="mobile" path="mobile" type='text' /><br>
+					<form:errors path="mobile" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>email:</td>
-					<td><form:input id="email" path="email" type='text'  required="required" /></td>
+					<td><form:input id="email" path="email" type='text'  /><br>
+					<form:errors path="email" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>住址:</td>
-					<td><form:input id="address" path="address" type='text'  required="required" /></td>
+					<td><form:input id="address" path="address" type='text'  /><br>
+					<form:errors path="address" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td><form:input id="registerTime" path="registerTime" value="" type='hidden' /></td>
