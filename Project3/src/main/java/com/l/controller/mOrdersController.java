@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.a.model.MovieBean;
+import com.a.model.RunningBean;
 import com.l.model.MOrderBean;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
@@ -27,22 +28,12 @@ public class mOrdersController {
 	}
 		
 	@RequestMapping("/morders")
-	public String getMovieName(Model model) {
-		List<MovieBean> list=service.getMovieName();
+	public String getRunbyID(Model model) {
+		List<RunningBean> list=service.getRunbyID();
 		model.addAttribute("Movies", list);
 		return "l/morders";
 	}
-	@RequestMapping("/morders/{runid}")
-	public String getRunbyID(@PathVariable("runid")Integer runid,Model model) {
-		model.addAttribute("Movies", runid);
-		return "redirect:/morders/{runid}/{playStartTime}";
-	}
 	
-	@RequestMapping("/morders/{runid}/{playStartTime}")
-	public String getShowTimebyID(@PathVariable("playStartTime")String playStartTime,Model model) {
-		model.addAttribute("Movies", playStartTime);
-		return "l/morders";
-	}
 
 	
 }

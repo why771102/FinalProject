@@ -28,31 +28,34 @@ public class mOrdersDaoImpl implements mOrdersDao{
 		this.factory = factory;
 	}
 	
-	//查詢上映status=1電影ID之電影名字
+	//查詢排片ID之電影ID
 	@Override
 	@SuppressWarnings("unchecked")	
-	public List<MovieBean> getMovieName(){
-			String hql="FROM MovieBean where status=1";
-			Session session=null;
-			List<MovieBean> list=new ArrayList<>();
-			session = factory.getCurrentSession();
+	public List<RunningBean> getRunbyID(){
+			String hql="FROM RunningBean";
+			Session session=factory.getCurrentSession();;
+			List<RunningBean> list=new ArrayList<>();
+//			MovieBean mb=getMovieName(rb.getMovieID());
 			list=session.createQuery(hql).getResultList();
 			return list;
 			}
-	//查詢電影ID之排片ID後,用排片ID查詢播放日期時間
-	public RunningBean getRunbyID(MovieBean mb) {
-				String hql="from RunningBean rb where rb.runID=:runID";
+	//查詢電影ID之電影名字
+	@Override
+	public MovieBean getMovieName(Integer movieID) {
+//				String hql="from RunningBean rb where rb.runID=:runID";
+				MovieBean mb=null;
 				Session session=factory.getCurrentSession();
-				RunningBean rb=(RunningBean) session.createQuery(hql).setParameter("runID", mb).getResultList();
-				return rb;
+				mb=session.get(MovieBean.class,movieID);
+				return mb;
 	}
-	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb){
-			String hql="from showTimeHistoryBean sthb where sthb.playStartTime=:playStartTime";
-			Session session=factory.getCurrentSession();
-			List<ShowTimeHistoryBean> list=new ArrayList<>();
-			list= session.createQuery(hql).setParameter("playStartTime", rb).getResultList();
-			return list;
-		}
+	//用排片ID查詢播放日期時間
+//	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb){
+//			String hql="from showTimeHistoryBean sthb where sthb.playStartTime=:playStartTime";
+//			Session session=factory.getCurrentSession();
+//			List<ShowTimeHistoryBean> list=new ArrayList<>();
+//			list= session.createQuery(hql).setParameter("playStartTime", rb).getResultList();
+//			return list;
+//		}
 		//新增訂單
 		public void addMOrder(MOrderBean mob) {
 			

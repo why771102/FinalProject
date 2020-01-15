@@ -25,24 +25,24 @@ public class mOrdersServiceImpl implements mOrdersService{
 		this.dao = dao;
 	}
 	
-	//查詢上映status=1電影ID之電影名字
+	//查詢排片ID之電影ID
 	@Transactional
 	@Override
-	public List<MovieBean> getMovieName() {
-		return dao.getMovieName();
+	public List<RunningBean> getRunbyID(){
+		return dao.getRunbyID();
 	}
 	
-	//查詢電影ID之排片ID後,用排片ID查詢播放日期時間
-	@Transactional
-	@Override
-	public RunningBean getRunbyID(MovieBean mb) {
-		return dao.getRunbyID(mb);
-	}
-	@Transactional
-	@Override
-	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb) {
-		return dao.getShowTimebyID(rb);
-	}
+	//查詢電影ID之電影名字
+//	@Transactional
+//	@Override
+//	public MovieBean getMovieName(Integer movieID); {
+//		return dao.getMovieName(movieID);
+//	}
+//	@Transactional
+//	@Override
+//	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb) {
+//		return dao.getShowTimebyID(rb);
+//	}
 
 
 }
