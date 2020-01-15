@@ -10,7 +10,7 @@
 <title>Seat Charts</title>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.seat-charts.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/seat-charts.css">
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
 <style>

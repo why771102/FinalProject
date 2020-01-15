@@ -142,7 +142,16 @@ public class TicketSaleBean implements Serializable {
 	Integer quantity;
 	Integer productID;
 	Integer category;
+	Double discount;
 	
+	public Double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
 	public Integer getOrderID() {
 		return orderID;
 	}
@@ -185,14 +194,12 @@ public class TicketSaleBean implements Serializable {
 
 
 	//有用到這個建構子
-	public TicketSaleBean(Integer showtimeID, Integer orderID, Integer unitPrice, Integer quantity, 
-			Integer productID, Integer category) {
-		this.showtimeID = showtimeID;
-		this.orderID = orderID;
-		this.unitPrice = unitPrice;
-		this.quantity = quantity;
+	public TicketSaleBean(Integer productID, Integer category,Integer unitPrice,Integer quantity, Double discount) {
 		this.productID = productID;
 		this.category = category;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.discount = discount;
 	}
 	
 	public TicketSaleBean(String title,Integer genre, Integer countShowTime, Integer hallSeats, Integer hallSaleSeats,

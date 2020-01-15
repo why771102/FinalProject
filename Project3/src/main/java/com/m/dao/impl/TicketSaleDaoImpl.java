@@ -2,12 +2,10 @@ package com.m.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
@@ -35,35 +33,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	// 取得訂單販售資訊欄位的值
-	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList) {
-		String hql = "SELECT m.ordersID, mo.unitPrice, mo.quantity, mo.productID,"
-				+ "category FROM mOrder mo LEFT JOIN mo.mOrderDetail mod"
-				+ "LEFT JOIN mod.products p WHERE showTimeID = :showTimeID";
-		Session session = factory.getCurrentSession();
-		List<TicketSaleBean> tsbLists = new ArrayList<>();
-		for (TicketSaleBean tsb : tsbList) {
-			tsbLists = session.createQuery(hql).setParameter("showTimeID", tsb.getShowtimeID()).getResultList();
-			
-//0115待確認
-//			ShowTimeHistoryBean sth = null;
-//			sth = session.get(ShowTimeHistoryBean.class, tsb.getShowtimeID());
-//			sth.getPalyStartTime();
-			
-			//從新的陣列資訊中取出所需的資訊: 
-//			for(TicketSaleBean tsb1 : tsbLists){
-//				tsb1.getQuantity(); //取得單筆訂單的產品數量
-//				tsb1.getUnitPrice(); //取得單筆訂單的產品單價
-//				tsb1.getCategory(); //取得單筆訂單產品所對應的種類
-//			}
-			
-		}
-		return tsbLists;
-	}
-	
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<MOrderBean> getMOrderBean() {
 		String hql = "FROM mOrder";
 		Session session = factory.getCurrentSession();
@@ -83,7 +52,8 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			mob.getShowTimeHistoryBean().getHall(); // getHallBean
 			mob.getShowTimeHistoryBean().getRun(); // getRunningBean
 			mob.getShowTimeHistoryBean().getRun().getMovie(); // getMovieBean
-
+			
+			mob.getOrdersID(); //用來比對odb orderID用
 			Integer showtimeID = mob.getShowTimeHistoryBean().getShowTimeId();
 			String title = mob.getShowTimeHistoryBean().getRun().getMovie().getTitle();
 			Integer genre = mob.getShowTimeHistoryBean().getRun().getMovie().getGenre();
@@ -95,7 +65,8 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			String releaseDate = mob.getShowTimeHistoryBean().getRun().getRelease(); // 上映日
 			String offDate = mob.getShowTimeHistoryBean().getRun().getOffDate(); // 實際下檔
 			String expectOffDate = mob.getShowTimeHistoryBean().getRun().getExpectedOffDate(); // 預計下檔
-			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); // 電影播放年月日
+			//用來比對input輸入欄位的時間值
+			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); // 電影播放年月日 => 消費計算的日期
 
 			TicketSaleBean tsb = new TicketSaleBean(showtimeID, hallID, title, genre, movieHours, 0, hallSeats, 0, 0.0,
 					0.0, 0, releaseDate, expectOffDate, offDate, playStartTime);
@@ -103,7 +74,50 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		}
 		return tsbList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	// 取得訂單販售資訊欄位的值
+	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList) {
+		String hql = "SELECT mod.productID, p.category, mod.unitPrice, mod.quantity, mod.discount"
+				+ "FROM mOrder mo LEFT JOIN mo.mOrderDetail mod"
+				+ "LEFT JOIN mod.products p WHERE ordersID = :ordersID";
+		Session session = factory.getCurrentSession();
+		List<TicketSaleBean> tsbLists = new ArrayList<>(); //用來裝上面所查詢hql語法的資訊
+//		List<TicketSaleBean> tsbFullLists = new ArrayList<>(); //用來裝前個方法與這個方法總資訊
+		for (TicketSaleBean tsb : tsbList) {
+			//根據ordersID將movieInfoList中的資訊結合(欄位只有上面查詢所獲得的資訊)
+			tsbLists = session.createQuery(hql).setParameter("ordersID", tsb.getOrderID()).getResultList();
+//			TicketSaleBean tsbfl = null;
+//			tsbFullLists.add(tsbfl);
 
+			//特別處理是根據category計算後 if c=3 && pid =15, 實際售出座位*2
+			
+			//0115待確認
+//			ShowTimeHistoryBean sth = null;
+//			sth = session.get(ShowTimeHistoryBean.class, tsb.getShowtimeID());
+//			sth.getPalyStartTime();
+			
+			//從新的陣列資訊中取出所需的資訊: 
+//			for(TicketSaleBean tsb1 : tsbLists){
+//				tsb1.getQuantity(); //取得單筆訂單的產品數量
+//				tsb1.getUnitPrice(); //取得單筆訂單的產品單價
+//				tsb1.getCategory(); //取得單筆訂單產品所對應的種類
+//			}
+			
+		}
+		return tsbLists;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getDistinctTitles() {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT DISTINCT title FROM movies";
+		List<String> TitlesList = new ArrayList<>();
+		TitlesList = session.createQuery(hql).getResultList();
+		return TitlesList;
+	}
 	// ===========================================================================
 
 //	@Override

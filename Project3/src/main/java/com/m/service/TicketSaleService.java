@@ -14,7 +14,8 @@ public interface TicketSaleService {
 	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList);
 	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
 	
-	
+	public List<TicketSaleBean> comparedByTime(String sDate,String eDate);
+	public List<String> getDistinctTitles();
 	//=======================================================================
 	public List<RunningBean> ShowMovieByRunTime();
 	public List<RunningBean> CompareByTime(String sDate, String eDate);

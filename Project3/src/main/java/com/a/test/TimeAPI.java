@@ -7,7 +7,9 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
@@ -123,7 +125,7 @@ public class TimeAPI {
 	 System.out.println("test=======");  
 	 System.out.println(LDT+"|||"+LD+"|||"+LDTNew);  
 	           
-	/*LocalDateTime to LocalDate*/
+	/*LocalDateTime to Localtime*/
 	LocalDateTime LDT2 =LocalDateTime.now(Clock.systemUTC());
 	LocalTime LT   = LDT.toLocalTime();
 	LocalDateTime  LDT2New  = LT.atDate(LocalDate.now(Clock.systemUTC()));
@@ -208,8 +210,16 @@ public class TimeAPI {
      LocalDate today1 = LocalDate.now();
 	  LocalTime time1 = LocalTime.now();
 	  String dateTime = today1.toString()+" "+time1.toString();
-     
-	 System.out.println(dateTime);
+	 LocalDateTime runDate2=LocalDate.now().plusDays(1).atTime(12, 0);
+	  LocalDateTime runDate = (LocalDateTime.now().plusDays(1)).truncatedTo(ChronoUnit.SECONDS);
+	     LocalDateTime runtime=runDate2.plusMinutes(102);
+	  System.out.println( runDate2 +"   "+runtime);
 	}
+	int a=1;
+	int b=2;
+	int c=3;
+	List<Integer> list2 = new ArrayList<>(); 
+	
+
 
 }

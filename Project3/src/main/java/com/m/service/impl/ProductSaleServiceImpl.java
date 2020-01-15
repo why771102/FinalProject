@@ -67,13 +67,9 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> getProductSaleOutput(List<String> productNamesList, List<ProductSaleBean> psbList) {
+	public List<ProductSaleBean> getProductSaleOutput(List<ProductSaleBean> psbList) {
 		List<ProductSaleBean> PSBList = new ArrayList<>();
-		List<String> productNames = new ArrayList<>();
-
-		for (String productName : productNamesList) {
-			productNames.add(productName);
-		}
+		List<String> productNames = dao.getDistinctProductNames();
 
 		for (String productName : productNames) {
 			String saveProductName = null;

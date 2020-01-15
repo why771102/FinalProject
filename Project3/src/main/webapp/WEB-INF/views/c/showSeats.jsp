@@ -9,7 +9,7 @@
 <title>Seat Charts</title>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.seat-charts.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/seat-charts.css">
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
 <style>
@@ -95,10 +95,20 @@ div.seatCharts-seat.available.handicap-seats {
 	/* 	background: url(vip.png); */
 	background-color: #b9ca1c;
 }
-div.seatCharts-seat.available.out-of-order {
+/* div.seatCharts-seat.available.out-of-order { */
+/* 	/* 	background: url(vip.png); */ 
+/* 	background-color: #cc1212; */
+/* } */
+
+div.seatCharts-seat.available.out-of-order{
 	/* 	background: url(vip.png); */
 	background-color: #cc1212;
 }
+
+/* div.seatCharts-seat.seatCharts-cell.out-of-order { */
+/* 	/* 	background: url(vip.png); */ 
+/* 	background-color: #cc1212; */
+/* } */
 
 div.seatCharts-seat.focused {
 	background-color: #76B474;
@@ -170,12 +180,14 @@ span.seatCharts-legendDescription {
 
 	</div>
 	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認&raquo;</button>
+	<div id="closebutton"></div>
 	<div id="legend"></div>
 </div>
 
 <script>
 
-	
+	//Has to do with showing seats
+	//The alphabets of the columns
 	function getEN() {
 		var arr = [];
 		for (var i = 65; i < 91; i++) {
@@ -184,6 +196,7 @@ span.seatCharts-legendDescription {
 		return arr;
 	}
 
+	//showing the seating chart through calling controller using ajax
 	function showSeats(){
 		$('.seatCharts-row').remove();
 		$('.seatCharts-legendItem').remove();
@@ -194,12 +207,14 @@ span.seatCharts-legendDescription {
 			data : {hallID: hallID},
 			type : "POST",
 			success : function(data) {
-				console.log(hallID);
-				seatmain(data, 1)
+				var seat = JSON.parse(data[1]);
+				seatmain(seat, 1)
+				document.getElementById("closebutton").innerHTML = data[2];
 			}
 		});
 	}
 
+	//main seating chart jquery
 	function seatmain(map1, flag) {
 
 		var $cart = $('#selected-seats'), $counter = $('#counter'), $total = $('#total'), sc = $(
@@ -260,7 +275,7 @@ span.seatCharts-legendDescription {
 													+ this.settings.id
 													+ ': <b>$'
 													+ this.data().price
-													+ '</b> <a href="#" class="cancel-cart-item">[ÃÂÃÂ¥ÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂ¶ÃÂÃÂ]</a></li>')
+													+ '</b> <a href="#" class="cancel-cart-item">[取消]</a></li>')
 											.attr(
 													'id',
 													'cart-item-'
@@ -310,7 +325,7 @@ span.seatCharts-legendDescription {
 
 		//let's pretend some seats have already been booked
 		if (flag == 2) {
-			sc.get(map1).status('unavailable');
+			sc.get(map1).status('out-of-order');
 // 			sc.get(map1).status('seatCharts-space');
 
 			$('.normal-seats').on('click', '.seatCharts-space', function() {
@@ -318,28 +333,11 @@ span.seatCharts-legendDescription {
 			});
 		}
 	}
-	// });
-
-	// function changeStatus() {
-	// 	var needtosubmit = document.getElementsByClassName("seatCharts-seat seatCharts-cell");
-	// 	var seatArray = [];
-	// 	var seatobj = {};
-	// 	for (var i = 0; i < needtosubmit.length; i++) {
-	// 		if (needtosubmit[i].id != "") {
-	// 			seatobj = { id: needtosubmit[i].id,
-	// 					available: needtosubmit[i].classList[2] }
-	// 			seatArray.push(seatobj);
-	// 		}
-	// 	}
-
-	// 	console.log(seatArray);
-	// 	//AJAX return seatArray
-	// }
-	
 	
 	//按下確認後所執行的function
 	function changeStatus() {
 		//SELECTED SEATS
+		if(confirm("確認修改座位嗎?")){
 		var flag2 = 2;
 		var selectedSeats = document
 				.getElementsByClassName("seatCharts-seat seatCharts-cell selected");
@@ -362,7 +360,7 @@ span.seatCharts-legendDescription {
 			data : {seats: unavailable, hallID: hallID},
 			type : "POST",
 			success : function() {
-				alert("");
+				alert("修改"+hallID+"廳"+unavailable+"座位成功!");
 				window.location.href = "${pageContext.request.contextPath}/index-c";
 			}
 		});
@@ -380,24 +378,29 @@ span.seatCharts-legendDescription {
 
 		// console.log(seatArray);
 		//AJAX return seatArray
+		}else{
+			
+		}
 	}
 
-	function returnArray() {
-		//ONLY RECORDS AVAILABLE SEATS
-		var availableSeats = document
-				.getElementsByClassName("seatCharts-seat seatCharts-cell available");
-		var AseatArray = [];
-		var Aseatobj = {};
-		for (var i = 0; i < availableSeats.length; i++) {
-			if (availableSeats[i].id != "") {
-				Aseatobj = availableSeats[i].id
-				AseatArray.push(Aseatobj);
-			}
+	//刪除此廳
+	function updateHallStatus(){
+		var hallID = document.getElementById("hallID").value;
+		var hallStatus = document.getElementById("updateHallStatus").value;
+		console.log(hallStatus);
+		if(confirm("確認關閉此廳嗎?")){
+			$.ajax({
+				url : "${pageContext.request.contextPath}/hall/updateHallStatus",
+				data : {hallID: hallID, hallStatus: hallStatus},
+				type : "POST",
+				success : function() {
+					alert("更改成功");
+					window.location.href = "${pageContext.request.contextPath}/index-c";
+				}
+			});
+		}else{
+			//取消關閉此廳的選項
 		}
-		console.log("This is available seats: " + AseatArray);
-		return AseatArray;
-		//AJAX return seatArray
-		
 	}
 	
 	function recalculateTotal(sc) {

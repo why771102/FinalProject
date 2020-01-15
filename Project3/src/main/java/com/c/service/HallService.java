@@ -31,4 +31,6 @@ public interface HallService {
 		public String getAllHallTags();
 		
 		public List<String> getAllHall();
+		
+		public String getHallStatus(String hallID);
 }

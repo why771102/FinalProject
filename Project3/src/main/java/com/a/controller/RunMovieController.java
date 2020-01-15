@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -183,8 +184,9 @@ public class RunMovieController {
 	public String RunningMovie(Model model) {
 		// 跑第一天
 		for (int d = 1; d <= 7; d++) {
-			LocalDateTime runDate = (LocalDateTime.now().plusDays(d)).truncatedTo(ChronoUnit.SECONDS);
-			// 確認廳數
+//			LocalDateTime runDate = (LocalDateTime.now().plusDays(d)).truncatedTo(ChronoUnit.SECONDS);
+			 LocalDateTime runDateTime=LocalDate.now().plusDays(1).atTime(9, 0);
+			// 確認廳數 //checkUseHall
 			// 確認那些影廳可以用 status =0=ok
 			List<HallBean> hb_list = hService.getAllHalls(0);
 			int Hallcount = hb_list.size();
@@ -194,18 +196,21 @@ public class RunMovieController {
 
 			// 跑第一廳(跑哪一聽得for)
 			for (int i = 0; i < hb_list.size() - 1; i++) {
-				int HallTime = 1020; // 營業時間＊60(分鐘）
+				int HallTime = 960; // 營業時間＊60(分鐘）
 				ShowtimeBean restTime = new ShowtimeBean(2,10);// 清場時間（分鐘）
 				List<ShowtimeBean> showMovie_list = null;
 				List<ShowtimeBean> runMovie_list = null;
-				// 確定包場
+				// 確定包場 checkHallOrder
 				// hallOrder table 取這一天 是否有人包場
-				List<HallOrderBean> hob_list = hoService.getHallOrder(runDate.toLocalDate());
+				List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
 				if (hob_list.size() != 0) {
 					for (HallOrderBean rob : hob_list) {
 						if (rob.getHallID().equalsIgnoreCase(hb_list.get(i).getHallID())) {
 							HallTime = HallTime - (rob.getOrderHours())-(restTime.getRunningTime());
 							ShowtimeBean hall = new ShowtimeBean(0, rob.getOrderHours(), rob);
+							   DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");   
+							   LocalDateTime date2 = LocalDateTime.parse(rob.getStartTime(), fmt);		
+							hall.setStartTime(date2);
 							showMovie_list.add(hall);
 							showMovie_list.add(restTime);
 							
@@ -215,14 +220,14 @@ public class RunMovieController {
 					}
 				} else {
 				}
-	// 排片開始
+	// 排片開始  
 				// 抓上映日早於或等於排片當天 ,下檔晚於或等於排片當天的run table 所有可以列入排片的片子
 				List<RunningBean> rb_list0 = null;
 				List<RunningBean> rb_list1 = null;
 				//取出今天可以排片的片
-				List<RunningBean> rb_list = mService.getAllOnMoive(runDate.toLocalDate());
+				List<RunningBean> rb_list = mService.getAllOnMoive(runDateTime.toLocalDate());
 				for (RunningBean rb : rb_list) {
-      // 合約確定
+      // 合約確定 checkContract
 					if (rb.getStatus() == 0) {
 						ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
 								rb.getMovie().getExpectedProfit(), rb);
@@ -231,7 +236,7 @@ public class RunMovieController {
 						showMovie_list.add(restTime);
 					} else {
 					}
-	 // PT排片
+	 // PT排片       runAllMovieByPT
 					// 分出已上映 未上映
 					if (rb.getMovie().getStatus() == 0) {
 						// 新片取預估ＰＴ
@@ -301,6 +306,73 @@ public class RunMovieController {
 					}
 					
 				}
+				//排時間  
+//				runDateTime.minusMinutes(chaneTime);
+				//找出需要推移的時間有多少 insertTime 回傳int should changeTime
+				int runtime=0;
+				int runtimeTotal =0;
+				int thisTime =900;
+				int conut =0;
+				for(ShowtimeBean stb:showMovie_list) {
+					
+					if(stb.getStID()==0) {
+						//表示包廳
+						stb.getStartTime();
+						//
+						LocalDateTime endTime =stb.getStartTime().plusMinutes(stb.getRunningTime());
+					}else if(stb.getStID()==1) {
+						//表示電影
+						runtimeTotal=runtime+stb.getRunningTime();
+						
+						if(runtimeTotal>thisTime) { //900
+							//return runtimeTotal-thisTime //要往前推的秒數
+							break;
+						}else {
+							runtime=runtimeTotal;
+						}
+
+					}else {
+						//表示休息和其他
+					}
+				}
+				List<ShowtimeBean> runMovie_list2 = null;
+				runDateTime.minusMinutes(runtimeTotal-thisTime);
+				//把時間放進去
+				
+				 runtime=0-(runtimeTotal-thisTime);
+				 runtimeTotal =0;
+				 thisTime =720;
+				 List<Integer> list = new ArrayList<>();
+				 conut =-1;
+                 for(ShowtimeBean stb:showMovie_list) {//可能會出問題
+					conut++;
+					if(stb.getStID()==0) {
+						//表示包廳
+						stb.getStartTime();
+						//
+						LocalDateTime endTime =stb.getStartTime().plusMinutes(stb.getRunningTime());
+					}else if(stb.getStID()==1) {
+						//表示電影
+						runtimeTotal=runtime+stb.getRunningTime();
+						
+						if(runtimeTotal>thisTime && runtimeTotal<=thisTime+180) {//720
+//							stb.setStartTime(runDateTime.minusMinutes(runtimeTotal-thisTime));
+							runMovie_list2.add(stb);
+//							runMovie_list.remove(stb);//可能會出問題
+							list.add(conut);
+							
+							//return thisTime //要往後推的秒數
+							break;
+						}else {
+							runtime=runtimeTotal;
+						}
+
+					}else {
+						//表示休息和其他
+					}
+				}
+				
+//				mService.addShowTimeHistory(show);
 			} // 跑第一廳
 
 		}

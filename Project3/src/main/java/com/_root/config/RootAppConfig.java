@@ -7,8 +7,11 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -17,22 +20,37 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:db.properties")
 public class RootAppConfig {
+	
+	
+	@Value("${spring.database.initialPoolSize}")
+	int ips;
+
+	@Value("${spring.database.maxPoolSize}")
+	int mps;
+	
+	Environment env;
+	
+	@Autowired
+	public void setEnv(Environment env) {
+		this.env = env;
+	}
 	
 	@Bean
 	public DataSource dataSource() {			//建立連線用的基本資訊，會提供給factory製作session工廠
 		ComboPooledDataSource ds = new ComboPooledDataSource();
-		ds.setUser("sa");
-		ds.setPassword("P@ssw0rd");
+		ds.setUser(env.getProperty("spring.database.user"));
+		ds.setPassword(env.getProperty("spring.database.password"));
 		
 		try {
-			ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			ds.setDriverClass(env.getProperty("spring.database.driverclass"));
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
-		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=FinalProject");
-		ds.setInitialPoolSize(4);
-		ds.setMaxPoolSize(8);
+		ds.setJdbcUrl(env.getProperty("spring.database.url"));
+		ds.setInitialPoolSize(ips);
+		ds.setMaxPoolSize(mps);
 		return ds;
 	}
 	
