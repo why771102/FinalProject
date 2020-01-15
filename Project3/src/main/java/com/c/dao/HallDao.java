@@ -11,6 +11,9 @@ public interface HallDao {
 	//取出同樣status的廳
 	public List<HallBean> getAllHalls(Integer status);
 	
+	//顯示關閉或開放廳按鈕
+	public String getHallStatus(String hallID);
+	
 	//更新廳狀態
 	public void updateStatus(Integer hallID, Integer status);
 	
