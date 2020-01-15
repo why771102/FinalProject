@@ -83,7 +83,7 @@ fieldset {
 				</div>
 				<div class="form-group">
 					<label class='control-label col-lg-2 col-lg-2' for="commentTime">
-						時間 </label>
+						 </label>
 					<div class='col-lg-10'>
 						<form:input id="commentTime" path="commentTime" type='hidden'
 							class='form:input-large' />
@@ -99,11 +99,10 @@ fieldset {
 		</form:form>
 	</section>
 	<script>
-$(document).ready(function(){
+$("#btnAdd").click(function(){
 	var d = new Date();
 	$("#commentTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
 });
-
 </script>
 </body>
 </html>

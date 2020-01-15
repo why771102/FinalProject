@@ -30,7 +30,7 @@
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			
-			<td width="350"><p align="left" /><a href="bookticket">訂票</a><BR>
+			<td width="350"><p align="left" /><a href="morders">購票</a><BR>
 			</td>
 		</tr>
 

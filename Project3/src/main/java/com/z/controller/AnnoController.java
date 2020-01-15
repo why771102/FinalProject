@@ -1,5 +1,8 @@
 package com.z.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,16 +10,19 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.WebRequest;
 
 import com.z.model.AnnoBean;
 import com.z.model.AnnoStatusBean;
-import com.z.model.EmpStatusBean;
 import com.z.service.AnnoService;
 
 @Controller
@@ -112,6 +118,20 @@ public class AnnoController {
 	public String tackOffAnno(Model model, @PathVariable("annoId") Integer annoId) {
 		service.takeOff(annoId);
 		return "redirect:/bgAnnos";
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder, WebRequest request) {
+		// java.util.Date
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+		dateFormat.setLenient(false);    //規則是否寬鬆。如13月
+		CustomDateEditor ce = new CustomDateEditor(dateFormat, true); 		//空白日期是否合法
+		binder.registerCustomEditor(Date.class, ce);
+		// java.sql.Date		
+		DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat2.setLenient(false);
+		CustomDateEditor ce2 = new CustomDateEditor(dateFormat2, true); 
+		binder.registerCustomEditor(java.sql.Date.class, ce2);
 	}
 
 }

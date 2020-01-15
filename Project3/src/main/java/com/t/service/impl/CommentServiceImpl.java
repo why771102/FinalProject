@@ -19,7 +19,6 @@ public class CommentServiceImpl implements CommentService{
 	
 	CommentDao dao;
 	
-	
 	@Transactional
 	@Autowired
 	public void setDao(CommentDao dao) {
@@ -50,14 +49,13 @@ public class CommentServiceImpl implements CommentService{
 	@Transactional
 	@Override
 	public List<CommentBean> findAllComment() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllComment();
 	}
 	
 	@Transactional
 	@Override
-	public void deleteComment(CommentBean cb) {
-		dao.deleteComment(cb);		
+	public void deleteComment(Integer commentID) {
+		dao.deleteComment(commentID);		
 	}
 
 	@Transactional

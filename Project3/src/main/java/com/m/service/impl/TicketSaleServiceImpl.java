@@ -1,26 +1,22 @@
 package com.m.service.impl;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
-import com.c.service.HallService;
 import com.l.model.MOrderBean;
-import com.l.model.MOrderDetailBean;
 import com.m.dao.TicketSaleDao;
 import com.m.model.TicketSaleBean;
 import com.m.service.TicketSaleService;
-import com.p.model.HallOrderBean;
 
 @Service
 public class TicketSaleServiceImpl implements TicketSaleService {
@@ -69,67 +65,128 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 	@Override
 	public List<TicketSaleBean> comparedByTime(String sDate, String eDate) {
 		List<TicketSaleBean> tsbListFromMovie = dao.getTicketSaleBean(dao.getMOrderBean());
-		List<String> TitlesList = dao.getDistinctTitles();
 		List<TicketSaleBean> tsbList = new ArrayList<>();
 
 		LocalDate Sd = LocalDate.parse(sDate);
 		LocalDate Ed = LocalDate.parse(eDate);
 
-		for (TicketSaleBean tsblfm : tsbListFromMovie) {
+		for (TicketSaleBean tsbl : tsbListFromMovie) {
 			// 比較電影放映日與使用者輸入日期
-			LocalDate Pd = LocalDateTime.parse(tsblfm.getPlayStartTime()).toLocalDate();
+			LocalDate Pd = LocalDateTime.parse(tsbl.getPlayStartTime()).toLocalDate();
 			long SdPdDays = ChronoUnit.DAYS.between(Sd, Pd);
 			long PdEdDays = ChronoUnit.DAYS.between(Pd, Ed);
 
 			if (SdPdDays >= 0 && PdEdDays <= 0) {
-				// 特定日期區間去比對電影名稱
-				for (String title : TitlesList) {
-					if (title.equals(tsblfm.getTitle())) {
-						// 取出資訊存到新List中
-						tsbList.add(tsblfm);
-//Long的Bean
-						// 用新的list去取得相對的販售數量與價格
-						List<TicketSaleBean> tsbListFromOrder = dao.getMOrderDetailBeanList(tsbList);
-						for (TicketSaleBean tsb : tsbListFromOrder) {
-							Integer c = tsb.getCategory();
-							Long seatSaleTotal = 0L; //售出座位總數
-							Long tTotal = 0L; //票卷類加總
-							Long fTotal = 0L; //餐點類加總
-							// ==================都有的：抓片長=================
-							if ( (c == 1) || (c == 2) || (c==3 && tsb.getProductID()==13)) { // c = 1,2 Ticket qty*1
-								seatSaleTotal = seatSaleTotal + tsb.getQuantity();//售出座位數
-								tTotal = tTotal + (tsb.getUnitPrice() * tsb.getQuantity()); //售出小計加總
-								
-							} else if ( (c == 3) && (tsb.getProductID()==15) ) { // c=3 Ticket qty*2
-								seatSaleTotal = seatSaleTotal + (tsb.getQuantity()*2); //售出座位數
-								tTotal = tTotal + (tsb.getUnitPrice() * tsb.getQuantity());//售出小計加總
-								
-							} else if (c == 4) { // food4
-								fTotal = fTotal + (tsb.getUnitPrice() * tsb.getQuantity());//售出小計加總
-								
-							} else if (c == 5) { // food5: 有discount
-								fTotal = fTotal + Math.round(tsb.getUnitPrice() * tsb.getQuantity() * tsb.getDiscount());//售出小計加總
-							
-							}else {
-								System.out.println("比較category發生例外--tssl");
-							}
-							
-							Long ticketSaleSubtotal = tTotal + fTotal; // 票卷與食物消費總額
-							
-						}
-
-						// 取出資訊存到新List中
-						tsbListFromMovie.remove(tsblfm);
-					} else {
-						System.out.println("比對時,DB電影名稱&tsblfm名稱不同");
-					}
-				}
+				tsbList.add(tsbl);
+				tsbListFromMovie.remove(tsbl);
 			} else {
-				// 這邊可以remove不需要的嗎?
 				System.out.println("不符合所需輸入查詢區間與playStartTime日期比較");
 			}
 		}
-		return null;
+		return tsbList;
+	}
+
+	@Transactional
+	@Override
+	public List<TicketSaleBean> getHallSaleOutput(List<TicketSaleBean> tsbList) {
+		List<String> TitlesList = dao.getDistinctTitles();
+		List<TicketSaleBean> tsbList1= new ArrayList<>();
+		
+		for (String title : TitlesList) {
+			List<Integer> showTimeLists = new ArrayList<>();
+			Integer showtimeID = null;
+			String movieTitle = null;
+			Integer genre = 0;
+			Integer movieHours = 0;
+			Integer countShowTime = 0;
+			Integer hallSeats = 0; 
+			Integer hallSaleSeats = 0; // 售出座位總數
+			Integer avgHallSaleSeats = 0;
+			Double avgPerOrder = 0.0;
+			Double avgSalePerHour = 0.0;
+			Long ticketSaleSubtotal = 0L;
+			
+			Long ticketSaleTotal = 0L; // 票卷類加總
+			Long foodSaleTotal = 0L; // 餐點類加總
+
+			for (TicketSaleBean tsblfm : tsbList) {
+				List<TicketSaleBean> tsbListFromOrder = dao.getMOrderDetailBeanList(tsbList);
+				if (title.equals(tsblfm.getTitle())) {
+					Integer sID = tsblfm.getShowtimeID();
+					showTimeLists.add(sID);
+					// 用新的list去取得相對的販售數量與價格
+					for (TicketSaleBean tsb : tsbListFromOrder) {
+						Integer c = tsb.getCategory();
+
+						if ((c == 1) || (c == 2) || (c == 3 && tsb.getProductID() == 13)) { // c = 1,2 Ticket qty*1
+							hallSaleSeats = hallSaleSeats + tsb.getQuantity();// 售出座位數
+							ticketSaleTotal = ticketSaleTotal + (tsb.getUnitPrice() * tsb.getQuantity()); // 售出小計加總
+
+						} else if ((c == 3) && (tsb.getProductID() == 15)) { // c=3 Ticket qty*2
+							hallSaleSeats = hallSaleSeats + (tsb.getQuantity() * 2); // 售出座位數
+							ticketSaleTotal = ticketSaleTotal + (tsb.getUnitPrice() * tsb.getQuantity());// 售出小計加總
+
+						} else if (c == 4) { // food4
+							foodSaleTotal = foodSaleTotal + (tsb.getUnitPrice() * tsb.getQuantity());// 售出小計加總
+
+						} else if (c == 5) { // food5: 有discount
+							foodSaleTotal = foodSaleTotal
+									+ Math.round(tsb.getUnitPrice() * tsb.getQuantity() * tsb.getDiscount());// 售出小計加總
+						} else {
+							System.out.println("比較category發生例外--tssl");
+						}
+						tsbListFromOrder.remove(tsb); // ===檢查===
+					}
+
+				} else {
+					System.out.println("比對時,DB電影名稱&tsblfm名稱不同");
+				}
+				ticketSaleSubtotal = ticketSaleTotal + foodSaleTotal; // 票卷與食物消費總額
+//				Double avgHallSaleSeats
+				Double avgTemp = (double) (ticketSaleSubtotal / hallSaleSeats);
+				BigDecimal b = new BigDecimal(avgTemp);
+				avgPerOrder = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue(); // 小數兩位:平均單筆消費/per座位
+			}
+			countShowTime = countRepeatedIntegers(showTimeLists); //待確認
+			
+			avgHallSaleSeats = (hallSaleSeats / (hallSeats*countShowTime) * 100);
+			Double mh = (double) (movieHours / 60);
+			avgSalePerHour = ticketSaleSubtotal / (mh * countShowTime);
+			TicketSaleBean newTsb = new TicketSaleBean(showtimeID, movieTitle, genre, countShowTime, hallSeats,
+					hallSaleSeats, avgHallSaleSeats, avgPerOrder,avgSalePerHour, ticketSaleSubtotal);
+			tsbList1.add(newTsb);
+		}
+		return tsbList1;
+	}
+
+//	// 將場次數拉出來另外計算, 補上: 平均滿座數, 營收時比 (總收入除以片長)
+//	public List<TicketSaleBean> countShowtime(List<TicketSaleBean> tsbList) {
+//		List<Integer> showTimeLists = new ArrayList<>();
+//
+//		for (TicketSaleBean tsb : tsbList) {
+//			// 將每筆的showtimeID取出放入新的List中
+//			Integer showID = tsb.getShowtimeID();
+//			showTimeLists.add(showID);
+//		}
+//		// 計算場次數
+//		Integer countShowTime = countRepeatedIntegers(showTimeLists);
+//
+//		return null;
+//	}
+
+	@Transactional
+	@Override
+	public Integer countRepeatedIntegers(List<Integer> ints) {
+		HashMap<Integer, String> repetitions = new HashMap<Integer, String>();
+		for (Integer i : ints) {
+			int item = i;
+			if (repetitions.containsKey(item)) {
+				repetitions.put(item, repetitions.get(item) + 1);
+			} else {
+				repetitions.put(item, "else");
+			}
+		}
+		return repetitions.size();
 	}
 
 	public List<TicketSaleBean> getTicketSaleBeanOutput(List<TicketSaleBean> tsbListFromOrder,

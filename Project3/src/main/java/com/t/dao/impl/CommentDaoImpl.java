@@ -45,18 +45,20 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<CommentBean> findAllComment(){
-		String hql = "Select watched, grade, commentContent, commentTime from CommentBean where movieID = :movieID && commentDelete = 0 && block = 0";
+		String hql = "Select movieID, memberID, watched, grade, commentContent, commentTime from CommentBean where commentDelete = 0";
+		System.out.println("123");
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
+		System.out.println("456");
 		return list;
 	}
 
 	@Override
-	public void deleteComment(CommentBean cb) {
-		String hql = "update CommentBean set deleteComment = 1 where commentID = :commentID";
+	public void deleteComment(Integer commentID) {
+		String hql = "update CommentBean set commentDelete = 1 where commentID = :commentID";
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql).executeUpdate();		
+		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();		
 	}
 
 	@Override
