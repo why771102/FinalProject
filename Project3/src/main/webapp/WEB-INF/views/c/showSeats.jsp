@@ -386,10 +386,11 @@ span.seatCharts-legendDescription {
 	//刪除此廳
 	function updateHallStatus(){
 		var hallID = document.getElementById("hallID").value;
+		var hallStatus = document.getElementById("updateHallStatus").value;
 		if(confirm("確認關閉此廳嗎?")){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/hall/updateHallStatus",
-				data : {hallID: hallID},
+				data : {hallID: hallID, hallStatus: hallStatus},
 				type : "POST",
 				success : function() {
 					alert("已關閉"+hallID+"廳");
@@ -397,7 +398,7 @@ span.seatCharts-legendDescription {
 				}
 			});
 		}else{
-			
+			//取消關閉此廳的選項
 		}
 	}
 	

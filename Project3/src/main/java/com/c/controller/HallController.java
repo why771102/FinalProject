@@ -68,9 +68,9 @@ public class HallController {
 	
 	
 	@PostMapping(value = "/hall/updateHallStatus")
-	public String deleteHall(@RequestParam("hallID") String hallID) {
+	public String updateHallStatus(@RequestParam("hallID") String hallID, @RequestParam("hallStatus") String hallStatus) {
 		HallBean hb = hservice.getHall(hallID);
-		hb.set
+		hb.setHallStatus(Integer.parseInt(hallStatus));
 		hservice.updateHall(hb);
 		String flag = "hall";
 		List<SeatsBean> listSB = sservice.getAllSeatsUsingHallID(hallID);
