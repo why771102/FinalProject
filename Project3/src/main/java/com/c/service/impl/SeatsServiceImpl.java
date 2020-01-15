@@ -38,15 +38,15 @@ public class SeatsServiceImpl implements SeatsService {
 
 	@Transactional
 	@Override
-	public void updateSeatStatus(Integer status, String seatID) {
-		dao.updateSeatStatus(status, seatID);
+	public void updateSeatStatus(Integer status, String seatID, String flag) {
+		dao.updateSeatStatus(status, seatID, flag);
 
 	}
 
 	@Transactional
 	@Override
-	public List<SeatsBean> getAllSeats(String hallID) {
-		return dao.getAllSeats(hallID);
+	public List<SeatsBean> getAllSeatsUsingHallID(String hallID) {
+		return dao.getAllSeatsUsingHallID(hallID);
 	}
 	
 
@@ -139,6 +139,11 @@ public class SeatsServiceImpl implements SeatsService {
 			}
 		}
 		return seats;
+	}
+
+	@Override
+	public SeatsBean getSeat(String seatID) {
+		return dao.getSeat(seatID);
 	}
 
 }

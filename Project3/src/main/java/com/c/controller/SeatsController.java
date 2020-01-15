@@ -17,6 +17,7 @@ import com.c.model.HallBean;
 import com.c.model.SeatsBean;
 import com.c.service.HallService;
 import com.c.service.SeatsService;
+import com.google.gson.Gson;
 
 @Controller
 public class SeatsController {
@@ -64,16 +65,20 @@ public class SeatsController {
 	@PostMapping(value="/seats/showSeats")
 	public @ResponseBody String[] showSeatChart(Model model, @RequestParam ("hallID") String hallID) {
 		HallBean hb = hservice.getHall(hallID);
-		System.out.println(hallID);
+		String hallStatus = hservice.getHallStatus(hallID);
+		System.out.println(hallStatus);
 		System.out.println("HB: " + hb.getColNum());
-		List<SeatsBean> list = sservice.getAllSeats(hallID);
+		List<SeatsBean> list = sservice.getAllSeatsUsingHallID(hallID);
 		//傳回值是['aaaaaa'] 可以直接餵進jsp的mapchart裡
 		String[] seats = sservice.showSeatChart(list, hb.getColNum(), hb.getRowNum());
 		for(int i = 0; i < seats.length; i++) {
 			System.out.println(seats[i]);
-
 		}
-		model.addAttribute("hallID", hallID);
+//		Gson g = new Gson();
+//		String seat = g.toJson(seats);
+//		System.out.println(seat);
+//		model.addAttribute("seat", seat);
+//		model.addAttribute("hallStatus", hallStatus);
 		return seats;
 	}
 	
@@ -81,13 +86,16 @@ public class SeatsController {
 	public String updateSeatChart(@RequestParam ("seats") String seats,
 			@RequestParam("hallID") String hallID) {
 		System.out.println("THIS IS CONTROLLER UPDATESEATCHART");
+		String s = "seats";
 		String[] seatsArray = sservice.stringToStringArray(seats, hallID);
 		System.out.println(hallID);
 		for(int seat = 0 ; seat < seatsArray.length; seat++) {
 			System.out.println(seatsArray[seat]);
-			sservice.updateSeatStatus(1, seatsArray[seat]);
+			sservice.updateSeatStatus(1, seatsArray[seat], s);
 		}
 		return "c/showSeats";
 	}
+	
+	
 	
 }

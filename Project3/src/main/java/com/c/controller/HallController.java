@@ -17,13 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.c.model.HallBean;
+import com.c.model.SeatsBean;
 import com.c.service.HallService;
-import com.google.gson.Gson;
+import com.c.service.SeatsService;
 
 @Controller
 public class HallController {
 	
-	HallService service;
+	HallService hservice;
+	SeatsService sservice;
 	ServletContext context;
 	
 	@Autowired
@@ -32,8 +34,9 @@ public class HallController {
 	}
 
 	@Autowired
-	public void setService(HallService service) {
-		this.service = service;
+	public void setService(HallService hservice, SeatsService sservice) {
+		this.hservice = hservice;
+		this.sservice = sservice;
 	}
 	
 	//新增廳方法
@@ -45,7 +48,7 @@ public class HallController {
 	}
 	
 	@PostMapping(value = "/hall/add")
-	public RedirectView processAddNewEmp(Model model, @ModelAttribute("hallBean") HallBean hb, BindingResult result, HttpServletRequest request) {
+	public RedirectView processAddNewHall(Model model, @ModelAttribute("hallBean") HallBean hb, BindingResult result, HttpServletRequest request) {
 		String url = request.getContextPath();
 		System.out.println(url);
 		String[] suppressedFields = result.getSuppressedFields();
@@ -53,7 +56,7 @@ public class HallController {
 		if(suppressedFields.length > 0) {
 			throw new RuntimeException("傳入不允許的欄位");
 		} 
- 		service.insertHall(hb);
+ 		hservice.insertHall(hb);
  		
  		model.addAttribute("hallID", hb.getHallID());
  		
@@ -63,7 +66,17 @@ public class HallController {
 	}
 	
 	
-	
+	@PostMapping(value = "/hall/updateHallStatus")
+	public String deleteHall(@RequestParam("hallID") String hallID) {
+		HallBean hb = hservice.getHall(hallID);
+		hservice.updateHall(hb);
+		String flag = "hall";
+		List<SeatsBean> listSB = sservice.getAllSeatsUsingHallID(hallID);
+		for(int seat = 0; seat < listSB.size(); seat++) {
+			sservice.updateSeatStatus(1, listSB.get(seat).getSeatID(), flag);
+		}
+		return "/index-c";
+	}
 	
 //	@InitBinder
 //	public void whiteListing(WebDataBinder binder) {
@@ -74,7 +87,7 @@ public class HallController {
 	
 	@RequestMapping(value = "/halls")
 	public String getAllHalls(Model model) {
-		List<HallBean> allHalls = service.getAllHalls(0);
+		List<HallBean> allHalls = hservice.getAllHalls(0);
 		model.addAttribute("allHalls", allHalls);
 		return "halls";
 	}
