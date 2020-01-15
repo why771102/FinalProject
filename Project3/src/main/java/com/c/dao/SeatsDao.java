@@ -14,8 +14,10 @@ public interface SeatsDao {
 	
 	public HallBean getHallById(String hallID);
 	
-	public void updateSeatStatus(Integer status, String seatID);
+	public void updateSeatStatus(Integer status, String seatID, String flag);
 	
-	public List<SeatsBean> getAllSeats(String hallID);
+	public List<SeatsBean> getAllSeatsUsingHallID(String hallID);
+	
+	public SeatsBean getSeat(String seatID);
 
 }

@@ -122,4 +122,17 @@ public class HallDaoImpl implements HallDao{
         return list;
 	}
 
+	@Override
+	public String getHallStatus(String hallID) {
+		String button = "";
+		HallBean hb = getHall(hallID);
+		Integer status = hb.getHallStatus();
+		if(status == 0) {
+			button += "<button class=\"checkout-button\" id=\"updateHallStatus\" onclick=\"updateHallStatus() value='1'\">關閉廳&raquo;</button>";
+		}else {
+			button += "<button class=\"checkout-button\" id=\"updateHallStatus\" onclick=\"updateHallStatus() value='0'\">開放廳&raquo;</button>";
+		}
+		return button;
+	}
+
 }

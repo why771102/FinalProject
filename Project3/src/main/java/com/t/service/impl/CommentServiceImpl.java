@@ -2,6 +2,7 @@ package com.t.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +13,18 @@ import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
 import com.t.service.CommentService;
 
+
 @Service
 public class CommentServiceImpl implements CommentService{
+	
 	CommentDao dao;
+	
+	
+	@Transactional
+	@Autowired
+	public void setDao(CommentDao dao) {
+		this.dao = dao;
+	}
 	
 	@Transactional
 	@Override

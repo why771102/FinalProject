@@ -13,32 +13,14 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-<title>會員登入</title>
+<title>登入成功</title>
 
 </head>
 <body>
 
-<div><h3>會員登入</h3></div>
+<div><h3>登入成功</h3></div>
 
-<table>
-		<form:form method='POST' modelAttribute="memberBean" enctype="multipart/form-data" >
-		
-			<fieldset>
-				<tr>
-					<td>帳號:</td>
-					<td><form:input id="account" path="account" type='text' /></td>
-				</tr>
-				<tr>
-					<td>密碼:</td>
-					<td><form:input id="password" path="password" type='text' /></td>
-				</tr>
-				<tr>
-					<td><input type='submit' vaiue="確定" /></td>
-					<td><input type='reset' vaiue="取消" /></td>
-				</tr>
-			</fieldset>
-		</form:form>
-</table>
+
 <script>
 
 </script>

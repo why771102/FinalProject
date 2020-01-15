@@ -14,9 +14,9 @@ public interface SeatsService {
 	
 	public HallBean getHallById(String hallID);
 	
-	public void updateSeatStatus(Integer status, String seatID);
+	public void updateSeatStatus(Integer status, String seatID, String flag);
 	
-	public List<SeatsBean> getAllSeats(String hallID);
+	public List<SeatsBean> getAllSeatsUsingHallID(String hallID);
 	
 	//Turning string in the format of an array into a string[]
 	public String[] stringToStringArray(String seats, String hallID);
@@ -25,5 +25,6 @@ public interface SeatsService {
 	
 	public String[] showSeatChart(List<SeatsBean> listSB, Integer colNum, Integer rowNum);
 	
+	public SeatsBean getSeat(String seatID);
 	
 }

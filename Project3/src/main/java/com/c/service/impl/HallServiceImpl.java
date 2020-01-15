@@ -69,5 +69,10 @@ public class HallServiceImpl implements HallService {
 	public List<String> getAllHall() {
 		return dao.getAllHall();
 	}
+	@Transactional
+	@Override
+	public String getHallStatus(String hallID) {
+		return dao.getHallStatus(hallID);
+	}
 
 }
