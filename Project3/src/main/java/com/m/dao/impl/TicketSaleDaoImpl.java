@@ -69,7 +69,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); // 電影播放年月日 => 消費計算的日期
 
 			TicketSaleBean tsb = new TicketSaleBean(showtimeID, hallID, title, genre, movieHours, 0, hallSeats, 0, 0.0,
-					0.0, 0, releaseDate, expectOffDate, offDate, playStartTime);
+					0.0, 0L, releaseDate, expectOffDate, offDate, playStartTime);
 			tsbList.add(tsb);
 		}
 		return tsbList;

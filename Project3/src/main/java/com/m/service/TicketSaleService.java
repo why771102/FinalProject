@@ -16,6 +16,8 @@ public interface TicketSaleService {
 	
 	public List<TicketSaleBean> comparedByTime(String sDate,String eDate);
 	public List<String> getDistinctTitles();
+	public List<TicketSaleBean> countShowtime(List<TicketSaleBean> tsbList);
+	public Integer countRepeatedIntegers(List<Integer> ints);
 	//=======================================================================
 	public List<RunningBean> ShowMovieByRunTime();
 	public List<RunningBean> CompareByTime(String sDate, String eDate);
