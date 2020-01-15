@@ -3,6 +3,7 @@ package com.a.test;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
@@ -32,10 +33,12 @@ public class ShowtimeBean implements Serializable {
     double price_time;
     RunningBean rb;
     HallOrderBean hob;
+    LocalDateTime StartTime;
     
 //	Integer expectedOnDay;
 //	LocalDate expectedOffDate;
 	
+
 	public ShowtimeBean() {}
 	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb, HallOrderBean hob) {
 		super();
@@ -65,7 +68,12 @@ public class ShowtimeBean implements Serializable {
 		this.runningTime = runningTime;
 		
 	}
-
+	public LocalDateTime getStartTime() {
+		return StartTime;
+	}
+	public void setStartTime(LocalDateTime startTime) {
+		StartTime = startTime;
+	}
 public Integer getStID() {
 		return stID;
 	}
