@@ -76,13 +76,14 @@ public class HallOrderController {
 		System.out.println("安安:" + hob.getHallOrderStatusNo());
 		System.out.println("看這邊:" + hob.getPayStatusNo());
 		//在這邊寫if，用來判斷是否有改變
-		if(hob.getHallOrderStatusNo()==0 || hob.getHallOrderStatusNo()==1 || hob.getHallOrderStatusNo()==2) {
+//		if(hob.getHallOrderStatusNo()==0 || hob.getHallOrderStatusNo()==1 || hob.getHallOrderStatusNo()==2) {
 			service.hallOrderStatusChange(hob);
-		}
-		
-		if(hob.getPayStatusNo()==0 || hob.getPayStatusNo()==1) {
 			service.payStatusChange(hob);
-		}
+//		}
+//		
+//		if(hob.getPayStatusNo()==0 || hob.getPayStatusNo()==1) {
+//			service.payStatusChange(hob);
+//		}
 //		service.hallOrderApply(hob);
 		return "redirect:/Employee/hallOrderQuery";
 	}

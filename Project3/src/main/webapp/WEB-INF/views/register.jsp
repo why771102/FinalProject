@@ -28,7 +28,7 @@
 				</tr>
 				<tr>
 					<td>帳號:</td>
-					<td><form:input id="account" path="account" type='text'  required="required" /></td>
+					<td><form:input id="account" path="account" type='text'  required="required" /><span class="notice">${errorMsgMap.accountExistError}</span></td>
 				</tr>
 				<tr>
 					<td>密碼:</td>
@@ -42,7 +42,7 @@
 				</tr>
 				<tr>
 					<td>身分證字號:</td>
-					<td><form:input id="uID" path="uID" type='text'  required="required" /></td>
+					<td><form:input id="uID" path="uID" type='text'  required="required" /><span>${errorMsgMap.uIDtExistError}</span></td>
 				</tr>
 				<tr>
 					<td>出生年月日:</td>

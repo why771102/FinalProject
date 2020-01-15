@@ -99,32 +99,102 @@ public class TicketSaleBean implements Serializable {
 		this.showtimeID = showtimeID;
 	}
 
-	public TicketSaleBean(Integer showtimeID,String hallID, String title,Integer genre, Integer hallSeats, 
-			String release, String expectedOffDate, String offDate, String playStartTime, Integer movieHours) {
+//	public TicketSaleBean(Integer showtimeID,String hallID, String title,Integer genre, Integer hallSeats, 
+//			String release, String expectedOffDate, String offDate, String playStartTime, Integer movieHours) {
+//		this.hallID = hallID;
+//		this.title = title;
+//		this.genre = genre;
+//		this.hallSeats = hallSeats;
+//		this.release = release;
+//		this.expectedOffDate = expectedOffDate;
+//		this.offDate = offDate;
+//		this.playStartTime = playStartTime;
+//		this.movieHours = movieHours;
+//	}
+	
+	//銷售表所需Bean
+	
+	//有用到這個建構子 => 最後輸出用
+	public TicketSaleBean(Integer showtimeID, String hallID, String title,Integer genre, Integer movieHours, 
+			Integer countShowTime, Integer hallSeats, Integer hallSaleSeats,
+			Double avgHallSaleSeats, Double avgPerOrder, Integer ticketSaleSubtotal, 
+			String release,String expectedOffDate, String offDate, String playStartTime) {
+		this.showtimeID = showtimeID;
 		this.hallID = hallID;
 		this.title = title;
 		this.genre = genre;
-		this.hallSeats = hallSeats;
-		this.release = release;
-		this.expectedOffDate = expectedOffDate;
-		this.offDate = offDate;
-		this.playStartTime = playStartTime;
 		this.movieHours = movieHours;
-	}
-	
-	//銷售表所需Bean
-	public TicketSaleBean(String title,Integer genre, Integer countShowTime, Integer hallSeats, Integer hallSaleSeats,
-			Double avgHallSaleSeats, Double avgPerOrder, Integer ticketSaleSubtotal) {
-		this.genre = genre;
-		this.title = title;
 		this.countShowTime = countShowTime;
 		this.hallSeats = hallSeats;
 		this.hallSaleSeats = hallSaleSeats;
 		this.avgHallSaleSeats = avgHallSaleSeats;
 		this.avgPerOrder = avgPerOrder;
 		this.ticketSaleSubtotal = ticketSaleSubtotal;
+		this.release= release;
+		this.expectedOffDate= expectedOffDate;
+		this.offDate = offDate;
+		this.playStartTime = playStartTime;
+	}
+	
+	//有用到這些
+	Integer orderID;
+	Integer unitPrice;
+	Integer quantity;
+	Integer productID;
+	Integer category;
+	
+	public Integer getOrderID() {
+		return orderID;
 	}
 
+	public void setOrderID(Integer orderID) {
+		this.orderID = orderID;
+	}
+
+	public Integer getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(Integer unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public Integer getProductID() {
+		return productID;
+	}
+
+	public void setProductID(Integer productID) {
+		this.productID = productID;
+	}
+
+	public Integer getCategory() {
+		return category;
+	}
+
+	public void setCategory(Integer category) {
+		this.category = category;
+	}
+
+
+	//有用到這個建構子
+	public TicketSaleBean(Integer showtimeID, Integer orderID, Integer unitPrice, Integer quantity, 
+			Integer productID, Integer category) {
+		this.showtimeID = showtimeID;
+		this.orderID = orderID;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.productID = productID;
+		this.category = category;
+	}
+	
 	public TicketSaleBean(String title,Integer genre, Integer countShowTime, Integer hallSeats, Integer hallSaleSeats,
 			Double avgHallSaleSeats, Double avgPerOrder, Integer ticketSaleSubtotal, Integer ticketSaleTotal,
 			Integer foodSaleTotal, Double avgEarnPerHour) {

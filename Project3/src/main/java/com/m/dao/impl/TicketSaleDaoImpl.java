@@ -1,7 +1,6 @@
 package com.m.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -13,16 +12,15 @@ import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
-import com.c.model.SeatOrderBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
-import com.l.model.TicketBean;
 import com.m.dao.TicketSaleDao;
 import com.m.model.TicketSaleBean;
-import com.p.model.HallOrderBean;
 
 @Repository
 public class TicketSaleDaoImpl implements TicketSaleDao {
+	
+	TicketSaleDao dao;
 	SessionFactory factory;
 
 	@Autowired
@@ -30,59 +28,109 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		this.factory = factory;
 	}
 
+	@Autowired
+	public void setDao(TicketSaleDao dao) {
+		this.dao = dao;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TicketSaleBean> getMovieInfo() {
-		String hql = "FROM showTimeHistory";
+	// 取得訂單販售資訊欄位的值
+	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList) {
+		String hql = "SELECT m.ordersID, mo.unitPrice, mo.quantity, mo.productID,"
+				+ "category FROM mOrder mo LEFT JOIN mo.mOrderDetail mod"
+				+ "LEFT JOIN mod.products p WHERE showTimeID = :showTimeID";
 		Session session = factory.getCurrentSession();
-		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
-		sthbList = session.createQuery(hql).getResultList();
+		List<TicketSaleBean> tsbLists = new ArrayList<>();
+		for (TicketSaleBean tsb : tsbList) {
+			tsbLists = session.createQuery(hql).setParameter("showTimeID", tsb.getShowtimeID()).getResultList();
+			
+//0115待確認
+//			ShowTimeHistoryBean sth = null;
+//			sth = session.get(ShowTimeHistoryBean.class, tsb.getShowtimeID());
+//			sth.getPalyStartTime();
+			
+			//從新的陣列資訊中取出所需的資訊: 
+//			for(TicketSaleBean tsb1 : tsbLists){
+//				tsb1.getQuantity(); //取得單筆訂單的產品數量
+//				tsb1.getUnitPrice(); //取得單筆訂單的產品單價
+//				tsb1.getCategory(); //取得單筆訂單產品所對應的種類
+//			}
+			
+		}
+		return tsbLists;
+	}
+	
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MOrderBean> getMOrderBean() {
+		String hql = "FROM mOrder";
+		Session session = factory.getCurrentSession();
+		List<MOrderBean> modList = new ArrayList<>();
+		modList = session.createQuery(hql).getResultList();
+	return modList;
+	}
+	
+	@Override
+	//取得電影資訊相關欄位的值
+	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList) {
+		Session session = factory.getCurrentSession();
 		List<TicketSaleBean> tsbList = new ArrayList<>();
-		for (ShowTimeHistoryBean sthb : sthbList) {
-			sthb.getHall(); // getHallBean
-			sthb.getRun(); // getRunningBean
-			sthb.getRun().getMovie(); // getMovieBean
-			Integer showtimeID = sthb.getShowTimeId();
-			String title = sthb.getRun().getMovie().getTitle();
-			Integer genre = sthb.getRun().getMovie().getGenre();
-			Integer movieHours = sthb.getRun().getMovie().getRunningTime(); // 片長(分鐘)
-//			Double profitRatio = sthb.getRun().getMovie().getProfitRatio(); 營收表要
-			String hallID = sthb.getHall().getHallID();
-			Integer hallSeats = session.get(NumberOfSeatsBean.class, sthb.getHall().getHallID()).getNoOfSeats(); // 取得那廳的座位數
-			String releaseDate = sthb.getRun().getRelease(); // 上映日
-			String offDate = sthb.getRun().getOffDate(); // 實際下檔
-			String expectOffDate = sthb.getRun().getExpectedOffDate(); // 預計下檔
-//			String playStartTime = sthb.getPalyStartTime(); //電影播放年月日
 
-			TicketSaleBean tsb = new TicketSaleBean(showtimeID, hallID, title, genre, hallSeats, releaseDate,
-					expectOffDate, offDate, null, movieHours);
+		for (MOrderBean mob : modList) {
+			mob.getShowTimeHistoryBean(); // getShowTimeHistoryBean
+			mob.getShowTimeHistoryBean().getHall(); // getHallBean
+			mob.getShowTimeHistoryBean().getRun(); // getRunningBean
+			mob.getShowTimeHistoryBean().getRun().getMovie(); // getMovieBean
+
+			Integer showtimeID = mob.getShowTimeHistoryBean().getShowTimeId();
+			String title = mob.getShowTimeHistoryBean().getRun().getMovie().getTitle();
+			Integer genre = mob.getShowTimeHistoryBean().getRun().getMovie().getGenre();
+			Integer movieHours = mob.getShowTimeHistoryBean().getRun().getMovie().getRunningTime(); // 片長(分鐘)
+//		Double profitRatio = mob.getShowTimeHistoryBean().getRun().getMovie().getProfitRatio(); 營收表要
+			String hallID = mob.getShowTimeHistoryBean().getHall().getHallID();
+			Integer hallSeats = session.get(NumberOfSeatsBean.class, mob.getShowTimeHistoryBean().getHall().getHallID())
+					.getNoOfSeats(); // 取得那廳的座位數
+			String releaseDate = mob.getShowTimeHistoryBean().getRun().getRelease(); // 上映日
+			String offDate = mob.getShowTimeHistoryBean().getRun().getOffDate(); // 實際下檔
+			String expectOffDate = mob.getShowTimeHistoryBean().getRun().getExpectedOffDate(); // 預計下檔
+			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); // 電影播放年月日
+
+			TicketSaleBean tsb = new TicketSaleBean(showtimeID, hallID, title, genre, movieHours, 0, hallSeats, 0, 0.0,
+					0.0, 0, releaseDate, expectOffDate, offDate, playStartTime);
 			tsbList.add(tsb);
 		}
 		return tsbList;
 	}
 
-	@Override
-	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList) {
-		Session session = factory.getCurrentSession();
-		List<TicketSaleBean> tsbLists = new ArrayList<>();
-		
-		for (TicketSaleBean tsb : tsbList) {
-			MOrderBean mob = null;
-			MOrderDetailBean modb = null;
-			mob = session.get(MOrderBean.class, tsb.getShowtimeID());
-			mob.getShowTimeHistoryBean().getPalyStartTime(); //電影票購買日
-			modb = session.get(MOrderDetailBean.class, mob.getOrdersID());
-//			modb.getUnitPrice(); //取得該筆訂單電影票的價錢
-			Integer SeatsSaleNum = modb.getQuantity(); //單筆訂單電影票數量 = 單筆訂單售出座位數
-			Integer ticketSaleTotal = modb.getUnitPrice() * modb.getQuantity(); //單個Bean的票卷銷售總額
-			
-			
-			tsb.setMob(mob);
-			tsbLists.add(tsb);
-		}
-		return null;
-	}
+	// ===========================================================================
+
+//	@Override
+//	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList) {
+//		Session session = factory.getCurrentSession();
+//		List<TicketSaleBean> tsbLists = new ArrayList<>();
+//		List<MOrderDetailBean> modbLists = new ArrayList<>();
+//		
+//		for (TicketSaleBean tsb : tsbList) {
+//			MOrderBean mob = null;
+//			MOrderDetailBean modb = null;
+//			//取得售票相關販售資訊
+//			mob = session.get(MOrderBean.class, tsb.getShowtimeID());
+//			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); //電影票購買日
+////			LocalDate ticketSaleDate = 
+////					LocalDateTime.parse(mob.getShowTimeHistoryBean().getPalyStartTime()).toLocalDate();
+//			modb = session.get(MOrderDetailBean.class, mob.getOrdersID());
+////			modb.getUnitPrice(); //取得該筆訂單票與產品的的價錢
+//			Integer SaleNum = modb.getQuantity(); //單筆訂單電影票與產品的銷售數量 = 單筆訂單售出座位數
+//			Integer ticketSaleTotal = modb.getUnitPrice() * modb.getQuantity(); //單個Bean的票與產品的銷售總額	
+//			
+//			modbLists.add(modb);
+//			
+//			tsb.setPlayStartTime(playStartTime);
+//		}
+//		return tsbLists;
+//	}
 
 //	@SuppressWarnings("unchecked")
 //	@Override
@@ -151,6 +199,4 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 //				.setParameter("eDate", eDate).list();
 //		return mIDList;
 //	}
-
-	// 抓取HallID去取得list中需要的list
 }

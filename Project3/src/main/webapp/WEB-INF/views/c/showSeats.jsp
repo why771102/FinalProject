@@ -354,7 +354,7 @@ span.seatCharts-legendDescription {
 		}
 		console.log("This is selected seats: " + SseatArray);
 		seatmain(SseatArray, flag2);
-		var hallID = '${param.hallID}';
+		var hallID = document.getElementById("hallID").value;
 		console.log(hallID);
 		var unavailable=JSON.stringify(SseatArray);
 		$.ajax({

@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.a.model.RunningBean;
+import com.p.model.HallOrderBean;
 import com.sun.istack.NotNull;
 
 //不存進DB
@@ -22,62 +24,54 @@ import com.sun.istack.NotNull;
 public class ShowtimeBean implements Serializable {
 	private static final long serialVersionUID = 1L;
     
-	Integer runID;
-	Integer movieID;
-	String title;
-	LocalDate release;
+	Integer stID;
+//	Integer movieID;
+//	String title;
+//	LocalDate release;
     int runningTime;
-	Integer expectedOnDay;
-	LocalDate expectedOffDate;
+    double price_time;
+    RunningBean rb;
+    HallOrderBean hob;
+    
+//	Integer expectedOnDay;
+//	LocalDate expectedOffDate;
 	
 	public ShowtimeBean() {}
-	
-	
-
-	public ShowtimeBean(Integer runID, Integer movieID, String title, LocalDate release, int runningTime,
-			Integer expectedOnDay, LocalDate expectedOffDate) {
+	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb, HallOrderBean hob) {
 		super();
-		this.runID = runID;
-		this.movieID = movieID;
-		this.title = title;
-		this.release = release;
+		this.stID = stID;
 		this.runningTime = runningTime;
-		this.expectedOnDay = expectedOnDay;
-		this.expectedOffDate = expectedOffDate;
+		this.price_time = price_time;
+		this.rb = rb;
+		this.hob = hob;
+	}
+	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		this.price_time = price_time;
+		this.rb = rb;
+		
+	}
+	public ShowtimeBean(Integer stID, int runningTime, HallOrderBean hob) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		this.hob = hob;
+	}
+	public ShowtimeBean(Integer stID, int runningTime) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		
 	}
 
-
-
-	public Integer getRunID() {
-		return runID;
+public Integer getStID() {
+		return stID;
 	}
 
-	public void setRunID(Integer runID) {
-		this.runID = runID;
-	}
-
-	public Integer getMovieID() {
-		return movieID;
-	}
-
-	public void setMovieID(Integer movieID) {
-		this.movieID = movieID;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public LocalDate getRelease() {
-		return release;
-	}
-
-	public void setRelease(LocalDate release) {
-		this.release = release;
+	public void setStID(Integer stID) {
+		this.stID = stID;
 	}
 
 	public int getRunningTime() {
@@ -88,29 +82,37 @@ public class ShowtimeBean implements Serializable {
 		this.runningTime = runningTime;
 	}
 
-	public Integer getExpectedOnDay() {
-		return expectedOnDay;
+	public double getPrice_time() {
+		return price_time;
 	}
 
-	public void setExpectedOnDay(Integer expectedOnDay) {
-		this.expectedOnDay = expectedOnDay;
+	public void setPrice_time(double price_time) {
+		this.price_time = price_time;
 	}
 
-	public LocalDate getExpectedOffDate() {
-		return expectedOffDate;
+	public RunningBean getRb() {
+		return rb;
 	}
 
-	public void setExpectedOffDate(LocalDate expectedOffDate) {
-		this.expectedOffDate = expectedOffDate;
+	public void setRb(RunningBean rb) {
+		this.rb = rb;
+	}
+
+	public HallOrderBean getHob() {
+		return hob;
+	}
+
+	public void setHob(HallOrderBean hob) {
+		this.hob = hob;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
 	
-	
-	
-	
-	
-	
+
 }
+	
+	

@@ -1,6 +1,7 @@
 package com.a.dao;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,10 +14,10 @@ public interface ShowTimeHistoryDao {
 		// 從showtime 拿這個星期電影 可以考慮只拿ID?
 		
 		// 把orderList 換成 showTime List
-		List<ShowTimeHistoryBean> getShowTimeHistoryBean(List<RunningBean> Orb);
+		List<ShowTimeHistoryBean> getShowTimeHistoryBean(RunningBean rb );
 		
 		 //拿某一天的全部的show
-		List<ShowTimeHistoryBean> getshowMovie(LocalDateTime playStartTime);
+		List<ShowTimeHistoryBean> getshowMovie(LocalDate day);
 
 		//拿指定orderID的上映日到下檔日全部的show
 		List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release);

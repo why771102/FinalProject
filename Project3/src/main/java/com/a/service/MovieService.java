@@ -110,7 +110,7 @@ public interface MovieService {
 	List<RunningBean> removeReleaseMovie(List<RunningBean> AllRunList,List<RunningBean> RRunList);
 	//取P/t值
 	//先取上星期showtimeHitory
-	List <ShowTimeHistoryBean>getShowTimeHistoryBean(List<RunningBean> Orb );
+	List <ShowTimeHistoryBean>getShowTimeHistoryBean(RunningBean rb);
 	//然後拿showTime ID 取P/T值
 	
 
@@ -166,6 +166,7 @@ public interface MovieService {
 	boolean updateOnDate(RunningBean rb, int day);
 	boolean updateOffDate(RunningBean rb, LocalDateTime OffDate);
 	List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release);
+	List<ShowTimeHistoryBean> getshowMovie(LocalDate day);
 	
 	
 

@@ -1,5 +1,7 @@
 package com.p.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +38,46 @@ public class MemberController {
 		return "register";
 	}
 	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
-	public String processMemberRegister(@ModelAttribute("memberBean")MemberBean mb) {
-		//還要加入判斷
+	public String processMemberRegister(@ModelAttribute("memberBean")MemberBean mb,Model model) {
+		HashMap<String, String> errorMsgMap = new HashMap<String, String>(); //用來放錯誤訊息
+		if(mb.getName() == null || mb.getName().trim().length() == 0) {
+			errorMsgMap.put("nameEmptyError", "姓名欄位不得空白!");
+		}
+		if(mb.getAccount() == null || mb.getAccount().trim().length() == 0) {
+			errorMsgMap.put("accountEmptyError", "帳號欄位不得空白!");
+		}
+		if(mb.getPassword() == null || mb.getPassword().trim().length() == 0) {
+			errorMsgMap.put("passwordEmptyError", "密碼欄位不得空白!");
+		}
+		if(mb.getuID() == null || mb.getuID().trim().length() == 0) {
+			errorMsgMap.put("uIDEmptyError", "身分證字號欄位不得空白!");
+		}
+		if(mb.getBirth() == null || mb.getBirth().trim().length() == 0) {
+			errorMsgMap.put("birthEmptyError", "出生年月日欄位不得空白!");
+		}
+		if(mb.getMobile() == null || mb.getMobile().trim().length() == 0) {
+			errorMsgMap.put("mobileEmptyError", "連絡電話欄位不得空白!");
+		}
+		if(mb.getEmail() == null || mb.getEmail().trim().length() == 0) {
+			errorMsgMap.put("emailEmptyError", "email欄位不得空白!");
+		}
+		if(mb.getAddress() == null || mb.getAddress().trim().length() == 0) {
+			errorMsgMap.put("addressEmptyError", "住址欄位不得空白!");
+		}
+		//接下來要寫有錯的話要接到哪個頁面
+		
+		boolean ae = service.accountExists(mb.getAccount());
+		if(ae == true) {
+			errorMsgMap.put("accountExistError", "帳號已存在!");
+		}
+		boolean ue = service.UIDExists(mb.getuID());
+		if(ue == true) {
+			errorMsgMap.put("uIDtExistError", "身分證字號已存在!");
+		}
+		if(!errorMsgMap.isEmpty()) {
+			model.addAttribute("errorMsgMap",errorMsgMap);
+			return "register";
+		}
 		service.register(mb);
 		return "register";
 	}
@@ -51,6 +91,14 @@ public class MemberController {
 		model.addAttribute("mData", mb);
 		return "memberData";
 	} 
+	
+	//以下為判斷登入的方法
+	@RequestMapping(value="/member/login")
+	public String logincheck() {
+		
+		
+		return null;
+	}
 	
 	
 	
