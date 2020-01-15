@@ -180,8 +180,7 @@ span.seatCharts-legendDescription {
 
 	</div>
 	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認&raquo;</button>
-	${hallStatus}
-
+	<div id="closebutton"></div>
 	<div id="legend"></div>
 </div>
 
@@ -208,7 +207,9 @@ span.seatCharts-legendDescription {
 			data : {hallID: hallID},
 			type : "POST",
 			success : function(data) {
-				seatmain(data, 1)
+				var seat = JSON.parse(data[1]);
+				seatmain(seat, 1)
+				document.getElementById("closebutton").innerHTML = data[2];
 			}
 		});
 	}

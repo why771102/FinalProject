@@ -56,6 +56,7 @@ public class HallController {
 		if(suppressedFields.length > 0) {
 			throw new RuntimeException("傳入不允許的欄位");
 		} 
+		hb.setHallStatus(0);
  		hservice.insertHall(hb);
  		
  		model.addAttribute("hallID", hb.getHallID());
@@ -69,6 +70,7 @@ public class HallController {
 	@PostMapping(value = "/hall/updateHallStatus")
 	public String deleteHall(@RequestParam("hallID") String hallID) {
 		HallBean hb = hservice.getHall(hallID);
+		hb.set
 		hservice.updateHall(hb);
 		String flag = "hall";
 		List<SeatsBean> listSB = sservice.getAllSeatsUsingHallID(hallID);

@@ -1,6 +1,8 @@
 package com.c.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -63,7 +65,7 @@ public class SeatsController {
 	}
 
 	@PostMapping(value="/seats/showSeats")
-	public @ResponseBody String[] showSeatChart(Model model, @RequestParam ("hallID") String hallID) {
+	public @ResponseBody Map<Integer, String> showSeatChart(Model model, @RequestParam ("hallID") String hallID) {
 		HallBean hb = hservice.getHall(hallID);
 		String hallStatus = hservice.getHallStatus(hallID);
 		System.out.println(hallStatus);
@@ -74,12 +76,15 @@ public class SeatsController {
 		for(int i = 0; i < seats.length; i++) {
 			System.out.println(seats[i]);
 		}
-//		Gson g = new Gson();
-//		String seat = g.toJson(seats);
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		Gson g = new Gson();
+		String seat = g.toJson(seats);
+		map.put(1, seat);
+		map.put(2, hallStatus);
 //		System.out.println(seat);
 //		model.addAttribute("seat", seat);
 //		model.addAttribute("hallStatus", hallStatus);
-		return seats;
+		return map;
 	}
 	
 	@PostMapping(value="/seats/updateSeats")
