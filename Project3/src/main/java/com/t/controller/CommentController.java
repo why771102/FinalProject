@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.a.model.MovieBean;
+import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.t.model.CommentBean;
 import com.t.service.CommentService;
@@ -45,7 +47,12 @@ public class CommentController {
 //		model.addAttribute("member", service.getMovieById(memberID));
 //		return "memberID";
 //	}
-	
+	@RequestMapping("/findAllComment")
+	public String findAllComment(Model model) {
+		List<CommentBean> list=service.findAllComment();
+		model.addAttribute("Comments", list);
+		return "t/comments";
+	}
 	
 	@RequestMapping(value = "/comments/add", method = RequestMethod.GET)
 	public String getAddNewComment(Model model) {
@@ -65,22 +72,10 @@ public class CommentController {
 		return "redirect:/addcomment";	
 	}
 	
-//	@RequestMapping(value = "/comments/delete", method = RequestMethod.GET)
-//	public String getDeleteComment(Model model) {
-//		CommentBean cb = new CommentBean();
-//		model.addAttribute("commentBean",cb);
-//		return "t/deleteComment";		
-//	}
-	
-	@RequestMapping(value = "/comments/delete", method = RequestMethod.POST)
-	public String processDeleteComment(@ModelAttribute("CommentBean") CommentBean cb) {
-		//預設刪除檢舉為0
-		if(cb.getCommentDelete() == null && cb.getReportComment() == null) {
-			cb.setCommentDelete(0);
-			cb.setReportComment(0);
-		}
-		service.addComment(cb);
-		return "redirect:/deletecomment";	
+	@RequestMapping("/comments/delete")
+	public String getDeleteComment(Model model, Integer commentID) {
+		service.deleteComment(commentID);
+		return "t/deletecomment";		
 	}
 	
 	@ModelAttribute("movieList")

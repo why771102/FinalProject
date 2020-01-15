@@ -40,7 +40,7 @@ public class ExpectionDaoImpl implements ExpectionDao{
 
 	@Override
 	public List<ExpectationBean> getMemberExpectation() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

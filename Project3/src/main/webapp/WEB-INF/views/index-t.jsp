@@ -23,16 +23,16 @@
 				<a href='emp/add'>新增會員</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='searchEmp'>查詢單一員工</a><BR>
+				<a href='findAllComment'>查詢留言</a><BR>
 			</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='queryByCategory'>分類查詢</a><BR>
+				<a href='comments/add'>新增留言</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href='comments/add'>新增留言</a><BR>
+				<a href='comments/delete'>刪除留言</a><BR>
 			</td>
 		</tr>
 		

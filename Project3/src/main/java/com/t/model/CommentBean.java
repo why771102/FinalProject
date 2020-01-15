@@ -33,7 +33,7 @@ public class CommentBean implements Serializable{
 	@NotNull
 	@Column(nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer commentId;
+	Integer commentID;
 //	Integer movieID;
 //	Integer memberID;
 	@NotNull
@@ -73,8 +73,8 @@ public class CommentBean implements Serializable{
 		
 	}	
 
-	public CommentBean(Integer commentId, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, Integer movieID, Integer memberID,Integer reportComment) {
-		this.commentId = commentId;
+	public CommentBean(Integer commentID, Integer watched, Integer grade, String commentContent, String commentTime, Integer commentDelete, Integer movieID, Integer memberID,Integer reportComment) {
+		this.commentID = commentID;
 		this.watched = watched;
 		this.grade = grade;
 		this.commentContent = commentContent;
@@ -85,12 +85,12 @@ public class CommentBean implements Serializable{
 		this.reportComment = reportComment;
 	}	
 
-	public Integer getCommentId() {
-		return commentId;
+	public Integer getCommentID() {
+		return commentID;
 	}
 	
 	public void setCommentId(Integer commentId) {
-		this.commentId = commentId;
+		this.commentID = commentId;
 	}
 	
 	public Integer getMovieID() {
