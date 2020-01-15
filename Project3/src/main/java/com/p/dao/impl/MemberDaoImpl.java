@@ -106,7 +106,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 檢查使用者在登入時輸入的帳號與密碼是否正確。如果正確，傳回該帳號所對應的MemberBean物件，
 	// 否則傳回 null。
-	// 密碼之後必須要進行加密，才能和資料庫內的進行比對
+	// 密碼必須要進行加密，才能和資料庫內的進行比對
 	@Override
 	public MemberBean checkIdPassword(String account, String password) {
 		MemberBean mb = null;

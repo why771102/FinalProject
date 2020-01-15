@@ -45,6 +45,15 @@
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
+			<td width="350"><p align="left" /> 
+				<a href='member/login'>會員登入</a><BR>
+			</td>
+			<td width="350"><p align="left" />
+				<a href="Employee/hallOrderQuery">會員登出</a><BR>
+			</td>
+		</tr>
+		
+		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
     			<a href='forwardDemo'>RedirectView: forwardDemo</a><br> 
     		</td>

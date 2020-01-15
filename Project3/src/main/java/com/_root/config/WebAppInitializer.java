@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.p.filter.LoginFilter;
+
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
@@ -26,7 +28,8 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter charatorEncodingFilter = new CharacterEncodingFilter("UTF-8");
-		return new Filter[] {charatorEncodingFilter};
+		LoginFilter loginFilter = new LoginFilter();
+		return new Filter[] {charatorEncodingFilter,loginFilter};
 	}
 
 }

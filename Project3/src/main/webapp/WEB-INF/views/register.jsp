@@ -64,16 +64,21 @@
 					<td><form:input id="registerTime" path="registerTime" value="" type='hidden' /></td>
 				</tr>
 				<tr>
-					<td><input type='submit' /></td>
+					<td><input type='submit' id="sumit1"/></td>
 				</tr>
 			</fieldset>
 		</form:form>
 </table>
 <script>
-$(document).ready(function(){
+$("#sumit1").click(function(){
 	var d = new Date();
 	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
 });
+
+// $(document).ready(function(){
+// 	var d = new Date();
+// 	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
+// });
 
 </script>
 </body>
