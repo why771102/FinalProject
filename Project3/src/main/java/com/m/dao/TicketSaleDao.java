@@ -16,6 +16,8 @@ public interface TicketSaleDao {
 	public List<MOrderBean> getMOrderBean();
 	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList);
 	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
+	
+	public List<String> getDistinctTitles();
 	//取得票卷銷售相關資訊
 //	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList);
 	
