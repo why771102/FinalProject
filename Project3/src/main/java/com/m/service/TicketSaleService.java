@@ -13,10 +13,11 @@ public interface TicketSaleService {
 	public List<MOrderBean> getMOrderBean();
 	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList);
 	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
-	
-	public List<TicketSaleBean> comparedByTime(String sDate,String eDate);
+
+	public List<TicketSaleBean> comparedByTime(String sDate,String eDate); 	//input篩選
+	public List<TicketSaleBean> getHallSaleOutput(List<TicketSaleBean> tsbList); //title篩選
 	public List<String> getDistinctTitles();
-	public List<TicketSaleBean> countShowtime(List<TicketSaleBean> tsbList);
+//	public List<TicketSaleBean> countShowtime(List<TicketSaleBean> tsbList);
 	public Integer countRepeatedIntegers(List<Integer> ints);
 	//=======================================================================
 	public List<RunningBean> ShowMovieByRunTime();

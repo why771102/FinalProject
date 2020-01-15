@@ -59,7 +59,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer genre = mob.getShowTimeHistoryBean().getRun().getMovie().getGenre();
 			Integer movieHours = mob.getShowTimeHistoryBean().getRun().getMovie().getRunningTime(); // 片長(分鐘)
 //		Double profitRatio = mob.getShowTimeHistoryBean().getRun().getMovie().getProfitRatio(); 營收表要
-			String hallID = mob.getShowTimeHistoryBean().getHall().getHallID();
+//			String hallID = mob.getShowTimeHistoryBean().getHall().getHallID();
 			Integer hallSeats = session.get(NumberOfSeatsBean.class, mob.getShowTimeHistoryBean().getHall().getHallID())
 					.getNoOfSeats(); // 取得那廳的座位數
 			String releaseDate = mob.getShowTimeHistoryBean().getRun().getRelease(); // 上映日
@@ -68,7 +68,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			//用來比對input輸入欄位的時間值
 			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); // 電影播放年月日 => 消費計算的日期
 
-			TicketSaleBean tsb = new TicketSaleBean(showtimeID, hallID, title, genre, movieHours, 0, hallSeats, 0, 0.0,
+			TicketSaleBean tsb = new TicketSaleBean(showtimeID, title, genre, movieHours, 0, hallSeats, 0, 0,
 					0.0, 0L, releaseDate, expectOffDate, offDate, playStartTime);
 			tsbList.add(tsb);
 		}

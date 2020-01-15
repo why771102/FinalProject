@@ -16,7 +16,7 @@ public class TicketSaleBean implements Serializable {
 	Integer countShowTime; 	//場次數
 	Integer hallSeats; //廳的座位總數 (廳的座位數 * 場次數)
 	Integer hallSaleSeats; //售出廳的座位總數 (售出廳的座位數 * 場次數)
-	Double avgHallSaleSeats; //平均滿座率
+	Integer avgHallSaleSeats; //平均滿座率
 	Double avgPerOrder; //平均單筆消費 (總銷售額ticketSaleSubtotal / 售出廳的座位總數hallSaleSeats)
 	Long ticketSaleSubtotal; //總銷售額(含票與飲食)
 
@@ -24,7 +24,7 @@ public class TicketSaleBean implements Serializable {
 	Long ticketSaleTotal; //票卷銷售總額 (票價錢 * 每筆訂單售出數 相加)
 	Long foodSaleTotal; //商品銷售總額
 	Integer movieHours;//片長(分鐘) 
-	Double avgEarnPerHour; //營收時比(銷售總金額ticketSaleSubtotal / (片長movieHours * 場次數countShowTime))
+	Double avgSalePerHour; //營收時比(銷售總金額ticketSaleSubtotal / (片長movieHours * 場次數countShowTime))
 
 	//earn表格所需欄位
 	Double profitRatio; 	//拆帳 0.4(我們是4), 0.5(我們是5), 0.6(我們是6)
@@ -114,13 +114,13 @@ public class TicketSaleBean implements Serializable {
 	
 	//銷售表所需Bean
 	
-	//有用到這個建構子 => 最後輸出用
-	public TicketSaleBean(Integer showtimeID, String hallID, String title,Integer genre, Integer movieHours, 
+	//有用到這個建構子 => daoimpl站存
+	public TicketSaleBean(Integer showtimeID, String title,Integer genre, Integer movieHours, 
 			Integer countShowTime, Integer hallSeats, Integer hallSaleSeats,
-			Double avgHallSaleSeats, Double avgPerOrder, Long ticketSaleSubtotal, 
+			Integer avgHallSaleSeats, Double avgPerOrder, Long ticketSaleSubtotal, 
 			String release,String expectedOffDate, String offDate, String playStartTime) {
 		this.showtimeID = showtimeID;
-		this.hallID = hallID;
+//		this.hallID = hallID;
 		this.title = title;
 		this.genre = genre;
 		this.movieHours = movieHours;
@@ -135,6 +135,24 @@ public class TicketSaleBean implements Serializable {
 		this.offDate = offDate;
 		this.playStartTime = playStartTime;
 	}
+	
+	//有用到這個建構子 => 最後輸出用
+	public TicketSaleBean(Integer showtimeID, String title,Integer genre,Integer countShowTime, 
+			Integer hallSeats, Integer hallSaleSeats,Integer avgHallSaleSeats, Double avgPerOrder, 
+			Double avgSalePerHour, Long ticketSaleSubtotal) {
+		this.showtimeID = showtimeID;
+		this.title = title;
+		this.genre = genre;
+		this.countShowTime = countShowTime;
+		this.hallSeats = hallSeats;
+		this.hallSaleSeats = hallSaleSeats;
+		this.avgHallSaleSeats = avgHallSaleSeats;
+		this.avgPerOrder = avgPerOrder;
+		this.avgSalePerHour = avgSalePerHour;
+		this.ticketSaleSubtotal = ticketSaleSubtotal;
+	}
+	
+	
 	
 	//有用到這些
 	Integer orderID;
@@ -203,7 +221,7 @@ public class TicketSaleBean implements Serializable {
 	}
 	
 	public TicketSaleBean(String title,Integer genre, Integer countShowTime, Integer hallSeats, Integer hallSaleSeats,
-			Double avgHallSaleSeats, Double avgPerOrder, Long ticketSaleSubtotal, Long ticketSaleTotal,
+			Integer avgHallSaleSeats, Double avgPerOrder, Long ticketSaleSubtotal, Long ticketSaleTotal,
 			Long foodSaleTotal, Double avgEarnPerHour) {
 		this.genre = genre;
 		this.title = title;
@@ -215,11 +233,11 @@ public class TicketSaleBean implements Serializable {
 		this.ticketSaleSubtotal = ticketSaleSubtotal;
 		this.ticketSaleTotal = ticketSaleTotal;
 		this.foodSaleTotal = foodSaleTotal;
-		this.avgEarnPerHour = avgEarnPerHour;
+		this.avgSalePerHour = avgEarnPerHour;
 	}
 
 	public TicketSaleBean(String hallID,String title,Integer genre, Integer countShowTime, Integer hallSeats,
-			Integer hallSaleSeats, Double avgHallSaleSeats, Double avgPerOrder, Long ticketSaleSubtotal,
+			Integer hallSaleSeats, Integer avgHallSaleSeats, Double avgPerOrder, Long ticketSaleSubtotal,
 			Long ticketSaleTotal, Long foodSaleTotal, Double avgEarnPerHour) {
 		this.hallID = hallID;
 		this.genre = genre;
@@ -232,7 +250,7 @@ public class TicketSaleBean implements Serializable {
 		this.ticketSaleSubtotal = ticketSaleSubtotal;
 		this.ticketSaleTotal = ticketSaleTotal;
 		this.foodSaleTotal = foodSaleTotal;
-		this.avgEarnPerHour = avgEarnPerHour;
+		this.avgSalePerHour = avgEarnPerHour;
 	}
 	
 	//營收表所需Bean
@@ -298,11 +316,11 @@ public class TicketSaleBean implements Serializable {
 		this.hallSaleSeats = hallSaleSeats;
 	}
 
-	public Double getAvgHallSaleSeats() {
+	public Integer getAvgHallSaleSeats() {
 		return avgHallSaleSeats;
 	}
 
-	public void setAvgHallSaleSeats(Double avgHallSaleSeats) {
+	public void setAvgHallSaleSeats(Integer avgHallSaleSeats) {
 		this.avgHallSaleSeats = avgHallSaleSeats;
 	}
 
@@ -355,11 +373,11 @@ public class TicketSaleBean implements Serializable {
 	}
 
 	public Double getAvgEarnPerHour() {
-		return avgEarnPerHour;
+		return avgSalePerHour;
 	}
 
 	public void setAvgEarnPerHour(Double avgEarnPerHour) {
-		this.avgEarnPerHour = avgEarnPerHour;
+		this.avgSalePerHour = avgEarnPerHour;
 	}
 
 	public Double getProfitRatio() {

@@ -26,22 +26,6 @@ public class test {
 				System.out.println("no match");
 			}	
 		}
-
-//		public static void countRepeatedIntegers(int[] ints) {
-//			HashMap<Integer, String> repetitions = new HashMap<Integer, String>();
-//			
-//			  for (int i = 0; i < ints.length; i++) {
-//			      int item = ints[i];
-//
-//			      if (repetitions.containsKey(item)) { //把int當作HashMap中的key值去比較是否存在
-//			          repetitions.put(item, repetitions.get(item) + 1); //get(x)取得該x相對的value,若沒有回null
-//			      }else {
-//			          repetitions.put(item, "else");
-//				  }
-//				}
-//			  System.out.println(repetitions.size());
-//			  System.out.println(repetitions);
-//		}
 		
 		public static void countRepeatedIntegers(List<Integer> ints) {
 			HashMap<Integer, String> repetitions = new HashMap<Integer, String>();
@@ -61,9 +45,6 @@ public class test {
 		
 	public static void main(String[] args) {
 		
-		int[] intsArray = new int[] {3,1,3,1}; //把int當作HashMap中的key值去比較, 若item以present就是false
-//		System.out.println("countInt =>" + countRepeatedIntegers(intsArray));
-//		countRepeatedIntegers(intsArray);
 		List<Integer> intList = new ArrayList<>();
 		intList.add(4);
 		intList.add(7);
