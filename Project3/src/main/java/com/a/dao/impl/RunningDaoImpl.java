@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.a.dao.RunningDao;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.p.model.HallOrderBean;
 
 @Repository
 public class RunningDaoImpl implements RunningDao {
@@ -79,6 +80,19 @@ public class RunningDaoImpl implements RunningDao {
                                        .getResultList();
 		return rbList;
 	}
+	
+//	public List<HallOrderBean> getHallOrder(LocalDate today) {
+//		Session session = factory.getCurrentSession();
+//      List<HallOrderBean> hb_list = new ArrayList<>();
+//      String hql ="from HallOrderBean where startTime BETWEEN :stDate AND :edDate ";	
+//      String startTime = (today.toString())+" "+"00:00:00"; 
+//		String endTime = (today.toString())+" "+"23:59:59"; 
+//	  hb_list = session.createQuery(hql).setParameter("stDate", startTime)
+//                                        .setParameter("edDate", endTime)                            
+//                                        .getResultList();	
+//		return hb_list;
+//	}
+	
 	 //拿出某段時間內日期的所有電影  ok
 	@Override
 	public List<RunningBean> getAllOnMoive(LocalDate release, LocalDate expectedOffDate) {

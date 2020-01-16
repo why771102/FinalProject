@@ -279,10 +279,8 @@ public class TestCreateShowTime {
                 		
                 		 mService.addShowTimeHistory(show);
                 	 }
-                	 
                  }
-                 
-                 
+
 			}//廳
 	}
 	
