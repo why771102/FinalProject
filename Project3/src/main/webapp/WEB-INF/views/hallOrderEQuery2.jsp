@@ -23,6 +23,7 @@
 		<table>
 		<tr>
 			<td>包廳申請編號</td>
+			<td>申請廳院</td>
 			<td>申請起始時間</td>
 			<td>申請結束時間</td>
 			<td>包廳目的</td>
@@ -39,7 +40,10 @@
 			<c:forEach var="AHO" items="${allEHO}">
 			<form:form method='POST' modelAttribute="hallOrderBean" enctype="multipart/form-data" >
 		<tr>
+			
 			<td><form:input id="hallOrderNo" path="hallOrderNo" value="${AHO.hallOrderNo}" type='text' readonly="true"/></td>
+			
+			<td><form:input id="hallID" path="hallID" value="${AHO.hb.hallID}" type='text' readonly="true"/></td>
 			
 			<td><form:input id="startTime" path="startTime" value="${AHO.startTime}" type='text' readonly="true"/></td>
 			
@@ -57,7 +61,6 @@
 			
 			<td><form:input id="mobile" path="mobile" value="${AHO.mobile}" type='text' readonly="true"/></td>
 			
-<%-- 			<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="${AHO.hob.hallOrderStatus}" type='text'/></td> --%>
 			<td><form:select path="hallOrderStatusNo" id="no">
 				<form:option value="${AHO.hob.hallOrderStatusNo}">${AHO.hob.hallOrderStatus}</form:option>
 				<form:options items="${hallOrderStatusList}" />
@@ -66,10 +69,11 @@
 				<form:option value="${AHO.psb.payStatusNO}">${AHO.psb.payStatus}</form:option>
 				<form:options items="${payStatusList}" />
 				</form:select></td>
-			
-<%-- 			<td><form:input id="payStatusNo" path="payStatusNo" value="${AHO.psb.payStatus}" type='text' /></td> --%>
-			
+	
 			<td><input type='submit' value="修改" /></td>
+			<td><form:input id="orderDate" path="orderDate" value="${AHO.orderDate}" type='hidden' readonly="true"/></td>
+			
+			<td><form:input id="memberID" path="memberID" value="${AHO.mb.memberID}" type='hidden' readonly="true"/></td>
 		</tr>
 			</form:form>
 			</c:forEach>

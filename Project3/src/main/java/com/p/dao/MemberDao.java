@@ -16,7 +16,7 @@ public interface MemberDao {
 	public MemberBean checkIdPassword(String account, String password);	
 	
 	//以帳號進行會員資料查詢，之後要秀在前端
-	public MemberBean queryMember(String account);
+	public MemberBean queryMember(Integer memberID);
 	
 	//用戶更改資料後，存進DB
 	public void updateMember(MemberBean mb);

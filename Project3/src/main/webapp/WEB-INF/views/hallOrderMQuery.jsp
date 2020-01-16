@@ -20,6 +20,7 @@
 		<table>
 		<tr>
 			<td>包廳申請編號</td>
+			<td>申請廳院</td>
 			<td>申請起始時間</td>
 			<td>申請結束時間</td>
 			<td>申請總時數</td>
@@ -30,12 +31,13 @@
 			<c:forEach var="hoA" items="${allMHO}">
 		<tr>
 			<td>${hoA.hallOrderNo}</td>
+			<td>${hoA.hb.hallID}</td>
 			<td>${hoA.startTime}</td>
 			<td>${hoA.endTime}</td>
 			<td>${hoA.orderHours}</td>
 			<td>${hoA.hallSubtotal}</td>
-<%-- 			<td>${hoA.hallOrderStatus}</td> 要研究一下，因為我要取出中文 --%>
-<%-- 			<td>${hoA.}</td> 要研究一下，因為我要取出中文 --%>
+			<td>${hoA.hob.hallOrderStatus}</td> 
+			<td>${hoA.psb.payStatus}</td> 
 		</tr>
 			</c:forEach>
 		</table>

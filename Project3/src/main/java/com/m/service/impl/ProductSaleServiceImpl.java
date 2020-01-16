@@ -112,8 +112,14 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	@Transactional
 	@Override
 	public List<LocalDate> showEachDate(String sDate, String eDate) {
-		List<LocalDate> datesList = dao.showEachDate(sDate, eDate);
-		return datesList;
+		LocalDate start = LocalDate.parse(sDate);
+		LocalDate end = LocalDate.parse(eDate);
+		List<LocalDate> totalDates = new ArrayList<>();
+		while (!start.isAfter(end)) {
+		    totalDates.add(start);
+		    start = start.plusDays(1);
+		}
+		return totalDates;
 	}
 	
 	@Transactional

@@ -157,18 +157,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return peripheralOrderByTimeList;
 	}
 
-	@Override
-	public List<LocalDate> showEachDate(String sDate, String eDate) {
-		LocalDate start = LocalDate.parse(sDate);
-		LocalDate end = LocalDate.parse(eDate);
-		List<LocalDate> totalDates = new ArrayList<>();
-		while (!start.isAfter(end)) {
-		    totalDates.add(start);
-		    start = start.plusDays(1);
-		}
-		return totalDates;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getDistinctProductNames() {

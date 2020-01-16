@@ -69,8 +69,18 @@ public class HallOrderController {
 	
 	//以下為會員查詢包廳申請
 	@RequestMapping(value = "/Member/hallOrderQuery")
-	public String hallOrderMemberQuery(Model model,@ModelAttribute("hallOrderBean")HallOrderBean hob) {
-		List<HallOrderBean> allMHO = service.hallOrderMQuery(hob.getMb().getMemberID());
+	public String hallOrderMemberQuery(Model model,HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		int nMID = Integer.parseInt(mID);
+		
+		List<HallOrderBean> allMHO = service.hallOrderMQuery(nMID);
 		model.addAttribute("allMHO", allMHO);
 		return "hallOrderMQuery";
 	}
@@ -123,6 +133,14 @@ public class HallOrderController {
 		}
 		return payStatusMap;
 	}
+	
+	@ModelAttribute
+	public void getHallOrder(Model model) {
+		List<HallOrderBean> hobList = service.hallOrderEQuery();
+		model.addAttribute("hobList", hobList);
+	}
+	
+
 	
 //	//以下為員工進行包廳狀態更新的方法
 //	@PostMapping(value = "/Employee/hallOrderQuery")
