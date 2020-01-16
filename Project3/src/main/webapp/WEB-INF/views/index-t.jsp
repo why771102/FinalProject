@@ -20,10 +20,10 @@
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='emp/add'>新增會員</a><BR>
+				<a href='getMovieID'>查詢個別電影的留言</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='findAllComment'>查詢留言</a><BR>
+				<a href='findAllComment'>查詢所有留言</a><BR>
 			</td>
 		</tr>
 		

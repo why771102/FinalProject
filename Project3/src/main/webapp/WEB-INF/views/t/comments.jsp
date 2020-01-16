@@ -25,9 +25,9 @@
                 <div class="thumbnail" style="width: 320px; height: 340px">
                     <div class="caption">
                         <p>
-                            <b style='font-size: 16px;'>電影ID:${comment.movieID}</b>
+                            <b style='font-size: 16px;'>電影ID:${comment.movieBean.movieID}</b>
                         </p>
-                        <p>會員ID:${comment.memberID}</p>
+                        <p>會員ID:${comment.memberBean.memberID}</p>
                         <p>評分等級:${comment.grade}</p>
                         <p>已觀賞:${comment.watched}</p>
                         <p>短評內文:${comment.commentContent}</p>

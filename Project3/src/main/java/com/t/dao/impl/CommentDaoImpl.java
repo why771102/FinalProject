@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.a.model.MovieBean;
+import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
@@ -36,7 +37,7 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<CommentBean> memberComment() {
-		String hql = "Select watched, grade, commentContent, commentTime from CommentBean where commentID = :commitID";
+		String hql = "From CommentBean where commentID = :commitID";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
@@ -45,7 +46,7 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<CommentBean> findAllComment(){
-		String hql = "Select movieID, memberID, watched, grade, commentContent, commentTime from CommentBean where commentDelete = 0";
+		String hql = "From CommentBean c where commentDelete = 0";
 		System.out.println("123");
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
@@ -108,6 +109,26 @@ public class CommentDaoImpl implements CommentDao{
 		String hql = "FROM MemberBean";
 		Session session = factory.getCurrentSession();
 		List<MemberBean> list = session.createQuery(hql).getResultList();
+		return list;
+	}
+
+	//查詢分類產品們
+	@Override
+	public List<String> getMovies(){
+		String hql="Select Distinct m.movieID from MovieBean m";
+		Session session=factory.getCurrentSession();
+		List<String> list=new ArrayList<>();
+		list=session.createQuery(hql).getResultList();
+		return list;
+	}
+		
+	//用ID查詢分類產品 
+	@Override
+	public List<CommentBean> getCommentByMovie(Integer movieID){
+		String hql="from MovieBean mb where mb.movieID=:movieID";
+		Session session=factory.getCurrentSession();
+		List<CommentBean> list=new ArrayList<>();
+		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		return list;
 	}
 
