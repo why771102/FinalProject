@@ -46,7 +46,7 @@ public class HallDaoImpl implements HallDao{
 	@Override
 	public List<HallBean> getAllHalls(Integer status) {
 		List<HallBean> list = new ArrayList<>();
-		String hql = "FROM HallBean hb WHERE hb.status= :hbs";
+		String hql = "FROM HallBean WHERE hallStatus= :hbs";
 		Session session = factory.getCurrentSession();
 		
 		list = session.createQuery(hql)
