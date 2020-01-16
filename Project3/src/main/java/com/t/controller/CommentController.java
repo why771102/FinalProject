@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.a.model.MovieBean;
-import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.t.model.CommentBean;
 import com.t.service.CommentService;
@@ -47,10 +46,29 @@ public class CommentController {
 //		model.addAttribute("member", service.getMovieById(memberID));
 //		return "memberID";
 //	}
+	
+	//列出所有Comment
 	@RequestMapping("/findAllComment")
 	public String findAllComment(Model model) {
 		List<CommentBean> list=service.findAllComment();
 		model.addAttribute("Comments", list);
+		return "t/comments";
+	}
+	
+	//查詢並列出電影ID們
+	@RequestMapping("/getMovieID")
+	public String seleteMovieID(Model model) {
+		List<String> list=service.getMovies();
+		model.addAttribute("movieIDList", list);
+		return "t/selectmovieID";
+	}
+	
+	//用movieID查詢comment
+	@RequestMapping("/comments/{movieID}")
+	public String getCommentByMovie(@PathVariable("movieID")Integer movieID,Model model) {
+		List<CommentBean> comments=service.getCommentByMovie(movieID);
+		System.out.println(movieID);
+		model.addAttribute("Comments", comments);
 		return "t/comments";
 	}
 	

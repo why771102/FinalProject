@@ -12,6 +12,12 @@ public interface CommentService {
 	// 從cookie抓會員ID
 
 	// 從前端抓電影ID
+	
+	//查詢並列出電影ID們
+	public List<String> getMovies();
+		
+	//用列出的電影ID查comment
+	public List<CommentBean> getCommentByMovie(Integer movieID);
 
 	// 抓出該電影的平均星數(小數點後1位)
 	public ExpectationBean getAvgGrade(Integer grade);

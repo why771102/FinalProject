@@ -87,5 +87,15 @@ public class CommentServiceImpl implements CommentService{
 	public List<MemberBean> getMemberList() {
 		return dao.getMemberList();
 	}
+	@Transactional
+	@Override
+	public List<String> getMovies() {
+		return dao.getMovies();
+	}
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovie(Integer movieID) {
+		return dao.getCommentByMovie(movieID);
+	}
 
 }
