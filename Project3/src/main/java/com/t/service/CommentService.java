@@ -33,7 +33,7 @@ public interface CommentService {
 	List<MemberBean> getMemberList();
 
 	// 將刪除的短評commentDelete 0改1
-	void deleteComment(CommentBean cb);
+	void deleteComment(Integer commentID);
 
 	// 將檢舉的短評ID傳送至後台
 }

@@ -32,7 +32,7 @@ public interface CommentDao {
 	List<MemberBean> getMemberList();
 
 	//將刪除的短評commentDelete 0改1
-	void deleteComment(CommentBean cb);
+	void deleteComment(Integer commentID);
 
 	
 

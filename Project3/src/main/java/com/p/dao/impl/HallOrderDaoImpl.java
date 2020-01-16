@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +45,10 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		HallBean hb = getHallByHallID(Hob.getHallID());
 		Hob.setHb(hb);
 		//以上為存取廳別代碼
-//		MemberBean mb = getMemberByMemberID(Hob.getMemberID());
-//		Hob.setMb(mb);
-		//以上為存取前端用hidden藏起來的memeberID
+		MemberBean mb = getMemberByMemberID(Hob.getMemberID());
+		Hob.setMb(mb);
+		//以上為存取memeberID
+		
 		HallOrderStatusBean hosb = gethallOrderStatusBean(Hob.getHallOrderStatusNo()) ;
 		Hob.setHob(hosb);
 		//以上為存取預設包廳狀態

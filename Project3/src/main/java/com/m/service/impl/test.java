@@ -1,11 +1,13 @@
 package com.m.service.impl;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class test {
@@ -24,8 +26,36 @@ public class test {
 				System.out.println("no match");
 			}	
 		}
+		
+		public static void countRepeatedIntegers(List<Integer> ints) {
+			HashMap<Integer, String> repetitions = new HashMap<Integer, String>();
+			
+			  for (Integer i : ints) {
+			      int item = i;
 
+			      if (repetitions.containsKey(item)) { //把int當作HashMap中的key值去比較是否存在
+			          repetitions.put(item, repetitions.get(item) + 1); //get(x)取得該x相對的value,若沒有回null
+			      }else {
+			          repetitions.put(item, "else");
+				  }
+				}
+			  System.out.println(repetitions.size());
+			  System.out.println(repetitions);
+		}
+		
 	public static void main(String[] args) {
+		
+		List<Integer> intList = new ArrayList<>();
+		intList.add(4);
+		intList.add(7);
+		intList.add(2);
+		intList.add(2);
+		countRepeatedIntegers(intList);
+		
+		Double avgPerOrder = 2.159146584564654654;
+		BigDecimal b = new BigDecimal(avgPerOrder);  
+		double here = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();  
+		System.out.println("Double #0.00 =>" + here);
 		
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		LocalDateTime ldt = convertToEntityAttribute(ts);

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
+import com.p.model.MemberBean;
 import com.p.model.PayStatusBean;
 import com.p.service.HallOrderService;
 
@@ -42,7 +46,17 @@ public class HallOrderController {
 		return "hallOrderApply";
 	}
 	@RequestMapping(value = "/hallOrder/apply", method = RequestMethod.POST)
-	public String processMemberRegister(@ModelAttribute("hallOrderBean")HallOrderBean hob) {
+	public String processMemberRegister(@ModelAttribute("hallOrderBean")HallOrderBean hob,HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		int nMID = Integer.parseInt(mID);
+		hob.setMemberID(nMID);
 		service.hallOrderApply(hob);
 		return "hallOrderApply";
 	}

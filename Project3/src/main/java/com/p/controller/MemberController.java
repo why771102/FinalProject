@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.p.model.MemberBean;
 import com.p.service.MemberService;
+import com.p.validator.MemberValidator;
 
 @Controller
 public class MemberController {
@@ -43,8 +46,32 @@ public class MemberController {
 		return "register";
 	}
 	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
-	public String processMemberRegister(@ModelAttribute("memberBean")MemberBean mb,Model model) {
-		HashMap<String, String> errorMsgMap = new HashMap<String, String>(); //用來放錯誤訊息
+	public String processMemberRegister(@ModelAttribute("memberBean")MemberBean mb,Model model,BindingResult result,HttpServletRequest request) {
+		HashMap<String, String> errorMsgMap = new HashMap<String, String>();
+		MemberValidator validator = new MemberValidator();
+		// 呼叫Validate進行資料檢查
+		validator.validate(mb, result);
+		if (result.hasErrors()) {
+			return "register";
+		}
+		
+		boolean ae = service.accountExists(mb.getAccount());
+		if(ae == true) {
+			errorMsgMap.put("accountExistError", "帳號已存在!");
+		}
+		boolean ue = service.UIDExists(mb.getuID());
+		if(ue == true) {
+			errorMsgMap.put("uIDtExistError", "身分證字號已存在!");
+		}
+		if(!errorMsgMap.isEmpty()) {
+			model.addAttribute("errorMsgMap",errorMsgMap);
+			return "register";
+		}
+		service.register(mb);
+		return "register";
+		
+		
+		 //用來放錯誤訊息
 //		if(mb.getName() == null || mb.getName().trim().length() == 0) {
 //			errorMsgMap.put("nameEmptyError", "姓名欄位不得空白!");
 //		}
@@ -71,31 +98,19 @@ public class MemberController {
 //		}
 		//接下來要寫有錯的話要接到哪個頁面
 		
-		boolean ae = service.accountExists(mb.getAccount());
-		if(ae == true) {
-			errorMsgMap.put("accountExistError", "帳號已存在!");
-		}
-		boolean ue = service.UIDExists(mb.getuID());
-		if(ue == true) {
-			errorMsgMap.put("uIDtExistError", "身分證字號已存在!");
-		}
-		if(!errorMsgMap.isEmpty()) {
-			model.addAttribute("errorMsgMap",errorMsgMap);
-			return "register";
-		}
-		service.register(mb);
-		return "register";
+		
 	}
 	
 	//還要加入白名單限制(Spring MVC P.293 Lab9)
 	
 	//以下為查詢會員資料的方法
-	@RequestMapping(value="/member/query")
-	public String memberQuery(@RequestParam("account") String account,Model model) {
-		MemberBean mb = service.queryMember(account);
-		model.addAttribute("mData", mb);
-		return "memberData";
-	}
+//	@GetMapping("/member/query")
+//	public String memberQuery(HttpSession session,Model model) {
+//		
+//		MemberBean mb = service.queryMember(account));
+//		model.addAttribute("mData", mb);
+//		return "memberData";
+//	}
 	
 	//以下為導入登入頁面的controller
 	@RequestMapping(value="/member/login", method = RequestMethod.GET)
@@ -121,16 +136,19 @@ public class MemberController {
 		if(mb2 != null) {
 			//登入成功，將mb2物件放進session範圍中，識別字串為LoginOK
 			session.setAttribute("LoginOK", mb2);
-			Cookie cookie = new Cookie("account",mb.getAccount());
+			Cookie cookie = new Cookie("account",mb2.getAccount());
 		    cookie.setMaxAge(7 * 24 * 60 * 60);
+		    cookie.setPath("/");
 		    response.addCookie(cookie);
 		    
 		    cookie = new Cookie("name",mb2.getName());
 		    cookie.setMaxAge(7 * 24 * 60 * 60);
+		    cookie.setPath("/");
 		    response.addCookie(cookie);
 		    
-		    cookie = new Cookie("memberId",mb2.getMemberID().toString());
+		    cookie = new Cookie("memberID",mb2.getMemberID().toString());
 		    cookie.setMaxAge(7 * 24 * 60 * 60);
+		    cookie.setPath("/");
 		    response.addCookie(cookie);
 
 		}else {
@@ -140,9 +158,7 @@ public class MemberController {
 			model.addAttribute("errorMsgMap", errorMsgMap);
 			return "login";
 		}
-		
-		
-		return "loginSuccess";
+		return "loginSuccess"; //到時候要導到LoginSucess頁面
 	}
 	
 	
