@@ -184,7 +184,7 @@ public class RunMovieController {
 
 	}
 
-	@GetMapping(value = "/movie/running") // URL 跟<a href='movie/show'> 相關
+	@GetMapping(value = "/movie/autoRun") // URL 跟<a href='movie/show'> 相關
 	public String RunningMovie(Model model) {
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime) 
 //		for (int d = 1; d <= 7; d++) {
