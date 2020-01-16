@@ -214,11 +214,25 @@ public class TimeAPI {
 	  LocalDateTime runDate = (LocalDateTime.now().plusDays(1)).truncatedTo(ChronoUnit.SECONDS);
 	     LocalDateTime runtime=runDate2.plusMinutes(102);
 	  System.out.println( runDate2 +"   "+runtime);
+	  
+
+	     System.out.println("====-------");
+	  for(int i=0;i<3;i++) {
+		  LocalDateTime  runDateTime=LocalDate.now().plusDays(1).atTime(9, 0);
+			System.out.println(runDateTime);//2020-01-17T09:00(runDateTimeNotChange)
+			 LocalDateTime runDateTime2=runDateTime.plusDays(10);
+			System.out.println(runDateTime);//2020-01-17T09:00
+			System.out.println(runDateTime2);//2020-01-27T09:00
+			
+		}
 	}
 	int a=1;
 	int b=2;
 	int c=3;
 	List<Integer> list2 = new ArrayList<>(); 
+	
+	
+	
 	
 
 

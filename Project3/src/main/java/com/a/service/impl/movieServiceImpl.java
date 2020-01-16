@@ -188,7 +188,27 @@ public class movieServiceImpl implements MovieService {
 		}
 		
 	}
-
+//	@Transactional
+//
+//	public void checkHallOrder(List<HallOrderBean> hob_list, int HallTime, ) {
+//		if (hob_list.size() != 0) {
+//			for (HallOrderBean rob : hob_list) {
+//				if (rob.getHallID().equalsIgnoreCase(hb_list.get(i).getHallID())) {
+//					HallTime = HallTime - (rob.getOrderHours()) - (restTime.getRunningTime());
+//					ShowtimeBean hall = new ShowtimeBean(0, rob.getOrderHours(), rob);
+//					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//					LocalDateTime date2 = LocalDateTime.parse(rob.getStartTime(), fmt);
+//					hall.setStartTime(date2);
+//					OrderHall_list.add(hall);
+//					// 創一個統稱包廳的Bean Running
+//
+//				} else {
+//				}
+//			}
+//		} else {
+//		}
+//		
+//	}
 
 	
 	
