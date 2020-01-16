@@ -43,7 +43,12 @@ public class TicketSaleBean implements Serializable {
 	Integer showtimeID;
 	List<Integer> showTimeLists;
 	List<String> playStartTimes;
+	String OrderID;
 	
+	public void setOrderID(String orderID) {
+		OrderID = orderID;
+	}
+
 	public List<String> getPlayStartTimes() {
 		return playStartTimes;
 	}
@@ -125,19 +130,6 @@ public class TicketSaleBean implements Serializable {
 	public void setShowtimeID(Integer showtimeID) {
 		this.showtimeID = showtimeID;
 	}
-
-//	public TicketSaleBean(Integer showtimeID,String hallID, String title,Integer genre, Integer hallSeats, 
-//			String release, String expectedOffDate, String offDate, String playStartTime, Integer movieHours) {
-//		this.hallID = hallID;
-//		this.title = title;
-//		this.genre = genre;
-//		this.hallSeats = hallSeats;
-//		this.release = release;
-//		this.expectedOffDate = expectedOffDate;
-//		this.offDate = offDate;
-//		this.playStartTime = playStartTime;
-//		this.movieHours = movieHours;
-//	}
 	
 	//銷售表所需Bean
 	
@@ -166,7 +158,7 @@ public class TicketSaleBean implements Serializable {
 	//有用到這個建構子 => 最後輸出用
 	public TicketSaleBean(List<Integer> showTimeLists,List<String> playStartTimes, String title,Integer genre,Integer countShowTime, 
 			Integer hallSeats, Integer hallSaleSeats,Integer avgHallSaleSeats, Double avgPerOrder, 
-			Double avgSalePerHour, Long ticketSaleSubtotal) {
+			Long ticketSaleTotal,Long foodSaleTotal,Double avgSalePerHour, Long ticketSaleSubtotal) {
 		this.showTimeLists = showTimeLists;
 		this.playStartTimes = playStartTimes;
 		this.title = title;
@@ -176,11 +168,19 @@ public class TicketSaleBean implements Serializable {
 		this.hallSaleSeats = hallSaleSeats;
 		this.avgHallSaleSeats = avgHallSaleSeats;
 		this.avgPerOrder = avgPerOrder;
+		this.ticketSaleTotal = ticketSaleTotal;
+		this.foodSaleTotal = foodSaleTotal;
 		this.avgSalePerHour = avgSalePerHour;
 		this.ticketSaleSubtotal = ticketSaleSubtotal;
 	}
 	
-	
+	//有用到存放sumInfo
+	public TicketSaleBean(Integer hallSaleSeats, Long ticketSaleTotal, Long foodSaleTotal, Long ticketSaleSubtotal) {
+		this.hallSaleSeats = hallSaleSeats;
+		this.ticketSaleTotal = ticketSaleTotal;
+		this.foodSaleTotal = foodSaleTotal;
+		this.ticketSaleSubtotal = ticketSaleSubtotal;
+	}
 	
 	//有用到這些
 	Integer orderID;

@@ -1,9 +1,8 @@
 package com.m.service;
 
+import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
-import com.a.model.RunningBean;
-import com.a.model.ShowTimeHistoryBean;
-import com.c.model.NumberOfSeatsBean;
 import com.l.model.MOrderBean;
 import com.m.model.TicketSaleBean;
 
@@ -14,16 +13,17 @@ public interface TicketSaleService {
 	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
 
 	public List<TicketSaleBean> comparedByTime(String sDate,String eDate); 	//input篩選
-	public List<TicketSaleBean> getTicketSaleOutput(List<TicketSaleBean> tsbList); //title篩選
+	//p1方法
+	public List<TicketSaleBean> getTicketSaleOutput(List<TicketSaleBean> tsbList); //output:p1
+	//p2方法
+	public List<TicketSaleBean> getTicketSaleOutput2(List<TicketSaleBean> tsbListFromMovieList, String title);
+	public LinkedHashMap<LocalDate, List<TicketSaleBean>> getInputTimeList(String sDate, String eDate, String title); //output:p2
+	//p3方法
+	public List<TicketSaleBean> getTicketSaleOutput3(List<TicketSaleBean> tsbListFromMovieList);
+	
+	public List<TicketSaleBean> getSum(List<TicketSaleBean> tsbListFromOrder);
+	//缺少genre分類方法
 	public List<String> getDistinctTitles();
 	public Integer countRepeatedIntegers(List<Integer> ints);
-//	public List<TicketSaleBean> getTicketSaleByTitle(List<TicketSaleBean> tsbList, String title); //P2 BY TITLE
-	public List<TicketSaleBean> getTicketSaleByDateOutput(List<TicketSaleBean> tsbList1, String sDate, String eDate); //P2 BY DATE
-	//=======================================================================
-	public List<RunningBean> ShowMovieByRunTime();
-	public List<RunningBean> CompareByTime(String sDate, String eDate);
-	public List<ShowTimeHistoryBean> getshowTimeHistory(List<RunningBean> RBList);
-	public List<NumberOfSeatsBean> getNumberOfSeats(List<ShowTimeHistoryBean> sthbList);
-	public List<NumberOfSeatsBean> getHallSeats(List<NumberOfSeatsBean> nosbList, String sDate, String eDate);
 
 }
