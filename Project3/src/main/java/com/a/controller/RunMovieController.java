@@ -44,9 +44,10 @@ public class RunMovieController {
 	}
 
 	@Autowired
-	public void setService(MovieService mService, HallService hService) {
+	public void setService(MovieService mService, HallService hService,HallOrderService hoService) {
 		this.mService = mService;
 		this.hService = hService;
+		this.hoService=hoService;
 	}
 
 	// 新增電影方法
@@ -279,14 +280,14 @@ public class RunMovieController {
 				for(ShowtimeBean sb:runMovie_list) {
 					System.out.println(sb.getRb().getRunID());
 				}
-				
+				List<ShowtimeBean> showMovie_list2 = null;
 				while(HallTime >0) {
 					int RunCount =0;
 					if(HallTime >runMovie_list.get(0).getRunningTime()) {
 						HallTime = HallTime -((runMovie_list.get(0)).getRunningTime())-(restTime.getRunningTime());
-						showMovie_list.add(runMovie_list.get(0));
+						showMovie_list2.add(runMovie_list.get(0));
 						runMovie_list.get(0).setPrice_time(runMovie_list.get(0).getPrice_time()*rate);
-						showMovie_list.add(restTime);
+//						showMovie_list.add(restTime);最後再加入休息時間
 						//runMovie_list List sort
 						
 					}else {
@@ -294,9 +295,9 @@ public class RunMovieController {
 						for(int l=1;l<=runMovie_list.size()-1;l++) {
 							if(HallTime >runMovie_list.get(l).getRunningTime()) {
 								HallTime = HallTime -((runMovie_list.get(l)).getRunningTime())-(restTime.getRunningTime());
-								showMovie_list.add(runMovie_list.get(l));
+								showMovie_list2.add(runMovie_list.get(l));
 								runMovie_list.get(l).setPrice_time(runMovie_list.get(l).getPrice_time()*rate);
-								showMovie_list.add(restTime);
+//								showMovie_list.add(restTime);最後再加入休息時間
 								//runMovie_list sort
 								
 								break;
@@ -308,6 +309,11 @@ public class RunMovieController {
 					}
 					
 				}
+				for(i=0;i<(showMovie_list.size()-1);i++) {
+					showMovie_list2.add(showMovie_list.get(i));
+				}
+				
+				
 				//排時間  
 //				runDateTime.minusMinutes(chaneTime);
 				//找出需要推移的時間有多少 insertTime 回傳int should changeTime
@@ -315,7 +321,8 @@ public class RunMovieController {
 				int runtimeTotal =0;
 				int thisTime =900;
 				int conut =0;
-				for(ShowtimeBean stb:showMovie_list) {
+				
+				for(ShowtimeBean stb:showMovie_list2) {
 					
 					if(stb.getStID()==0) {
 						//表示包廳
@@ -337,34 +344,34 @@ public class RunMovieController {
 						//表示休息和其他
 					}
 				}
-				List<ShowtimeBean> runMovie_list2 = null;
-				runDateTime.minusMinutes(runtimeTotal-thisTime);
+				
 				//把時間放進去
+				List<ShowtimeBean> finalRun_list = null;
+				runDateTime.minusMinutes(runtimeTotal-thisTime);
+				//把時間放進去 //把9-12前移
 				
 				 runtime=0-(runtimeTotal-thisTime);
 				 runtimeTotal =0;
 				 thisTime =720;
 				 List<Integer> list = new ArrayList<>();
-				 conut =-1;
-                 for(ShowtimeBean stb:showMovie_list) {//可能會出問題
-					conut++;
-					if(stb.getStID()==0) {
+				 
+                 for(i =0;i<showMovie_list2.size();i++) {//可能會出問題
+					
+					if(showMovie_list.get(i).getStID()==0) {
 						//表示包廳
-						stb.getStartTime();
-						//
-						LocalDateTime endTime =stb.getStartTime().plusMinutes(stb.getRunningTime());
-					}else if(stb.getStID()==1) {
+//						stb.getStartTime();
+//						LocalDateTime endTime =stb.getStartTime().plusMinutes(stb.getRunningTime());
+					}else if(showMovie_list.get(i).getStID()==1) {
 						//表示電影
-						runtimeTotal=runtime+stb.getRunningTime();
+						runtimeTotal=runtime+showMovie_list.get(i).getRunningTime();
 						
-						if(runtimeTotal>thisTime && runtimeTotal<=thisTime+180) {//720
+						if(runtimeTotal>thisTime && runtimeTotal<=thisTime+180) {//720-900之間
 //							stb.setStartTime(runDateTime.minusMinutes(runtimeTotal-thisTime));
-							runMovie_list2.add(stb);
-//							runMovie_list.remove(stb);//可能會出問題
-							list.add(conut);
-							
-							//return thisTime //要往後推的秒數
-							break;
+//							finalRun_list.add(0,showMovie_list.get(i));
+//							runMovie_list.remove(showMovie_list.get(i));//可能會出問題	
+//							runMovie_list.add(0,showMovie_list.get(i));
+							//return thisTime  還有i //要往後推的秒數
+//							
 						}else {
 							runtime=runtimeTotal;
 						}

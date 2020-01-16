@@ -68,14 +68,14 @@ public class HallController {
 	
 	
 	@PostMapping(value = "/hall/updateHallStatus")
-	public String deleteHall(@RequestParam("hallID") String hallID) {
+	public String updateHallStatus(@RequestParam("hallID") String hallID, @RequestParam("hallStatus") String hallStatus) {
 		HallBean hb = hservice.getHall(hallID);
-		hb.set
+		hb.setHallStatus(Integer.parseInt(hallStatus));
 		hservice.updateHall(hb);
 		String flag = "hall";
 		List<SeatsBean> listSB = sservice.getAllSeatsUsingHallID(hallID);
 		for(int seat = 0; seat < listSB.size(); seat++) {
-			sservice.updateSeatStatus(1, listSB.get(seat).getSeatID(), flag);
+			sservice.updateSeatStatus(Integer.parseInt(hallStatus), listSB.get(seat).getSeatID(), flag);
 		}
 		return "/index-c";
 	}

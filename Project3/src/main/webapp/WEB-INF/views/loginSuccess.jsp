@@ -20,6 +20,8 @@
 
 <div><h3>登入成功</h3></div>
 
+<br> <a href="<c:url value='/' />">回首頁</a>
+
 
 <script>
 
