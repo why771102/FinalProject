@@ -40,6 +40,7 @@ public class ShowtimeBean implements Serializable {
 	
 
 	public ShowtimeBean() {}
+
 	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb, HallOrderBean hob) {
 		super();
 		this.stID = stID;
@@ -63,7 +64,7 @@ public class ShowtimeBean implements Serializable {
 		this.hob = hob;
 	}
 	public ShowtimeBean(Integer stID, int runningTime) {
-		super();
+		
 		this.stID = stID;
 		this.runningTime = runningTime;
 		

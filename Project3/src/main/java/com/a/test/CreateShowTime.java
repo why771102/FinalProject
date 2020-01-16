@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.a.model.RunningBean;
 import com.google.gson.Gson;
 
 public class CreateShowTime {
@@ -102,9 +103,104 @@ public class CreateShowTime {
 //			System.out.println(time2);
 //			
 //			
-//			System.out.println("-------");
+		
+			
 		}
+		System.out.println("-------");
+		String a ="a";
+		String bat="2";
+		String c="3";
+		String d ="4";
+		List<String> list =new ArrayList<>();
+		list.add(a);
+		list.add(bat);
+		list.add(c);
+		list.add(bat);
+		list.add(d);
+		
+		
+		for(int i = 0;i<(list.size());i++) {
+			list.remove(bat);
+			list.add(0,bat);
+			System.out.println(i+"  "+list.get(i));
+		}
+		System.out.println("-------");
+		list.remove(bat); 
 
+        for(int i = 0;i<(list.size());i++) {
+			
+			System.out.println(i+"  "+list.get(i));
+		}
+        System.out.println("-------");
+
+		list.add(0,bat);
+        for(int i = 0;i<(list.size());i++) {
+			
+			System.out.println(i+"  "+list.get(i));
+		}
+//		System.out.println("-------");
+//		int Hallcount =3;
+//		int shouldcount = 4;
+//		int InOneHall =(shouldcount/Hallcount );//2
+//		int lestHall =(shouldcount%Hallcount );//1
+//		List<ShowtimeBean>shouldRB_list =new ArrayList<>();
+//		ShowtimeBean a =new ShowtimeBean(1,1);
+//		ShowtimeBean b=new ShowtimeBean(1,2);
+//		ShowtimeBean c=new ShowtimeBean(1,3);
+//		ShowtimeBean d=new ShowtimeBean(1,4);
+//		System.out.println(a);
+//		shouldRB_list.add(a);
+//		shouldRB_list.add(b);
+//		shouldRB_list.add(c);
+//		shouldRB_list.add(d);
+//		
+//		int shouldcount1 =shouldRB_list.size()-1;
+//		System.out.println();
+//		
+//		List<ShowtimeBean> showMovie_list = new ArrayList<>();
+//	
+//		System.out.println(InOneHall+"--"+lestHall);
+//		//合約排片1.平均在每個聽
+//		for(int i=0;i <= (Hallcount-1);i++) {
+//			System.out.println(i);
+//		    for(int j=0;j< InOneHall;j++){
+//		    	ShowtimeBean rb= shouldRB_list.get(0);
+////		    	ShowtimeBean movie = new ShowtimeBean(1, 102,
+////						33, rb);
+//		    	    System.out.println("add前"+"----"+shouldRB_list.get(0).getRunningTime());
+//		    	    System.out.println(shouldRB_list.get(1).getRunningTime());
+//		    	    System.out.println(shouldRB_list.get(2).getRunningTime());
+//		    	    System.out.println(shouldRB_list.get(3).getRunningTime());
+//		    	    System.out.println("size"+shouldRB_list.size());
+//		    	    
+//		    	        showMovie_list.add(rb);
+////		    	        shouldcount1=shouldcount1-1;
+//		    	        System.out.println("remove前"+"----"+shouldRB_list.get(0).getRunningTime());
+//		    	        System.out.println(shouldRB_list.get(1).getRunningTime());
+//			    	    System.out.println(shouldRB_list.get(2).getRunningTime());
+//			    	    System.out.println(shouldRB_list.get(3).getRunningTime());
+//			    	    System.out.println("size"+shouldRB_list.size());
+//		    	        shouldRB_list.remove(i);
+////		    	        shouldRB_list.add(rb);
+//		    	        System.out.println("remove後"+"----"+shouldRB_list.get(0).getRunningTime());
+//		    	        System.out.println(shouldRB_list.get(1).getRunningTime());
+//			    	    System.out.println(shouldRB_list.get(2).getRunningTime());
+//			    	   
+//			    	    System.out.println("size"+shouldRB_list.size());
+//		    }
+//			
+//			
+//			if(i-(Hallcount-lestHall) >=0){
+//				//這邊加入排片
+//				ShowtimeBean rb= shouldRB_list.get(0);
+////		    	ShowtimeBean movie = new ShowtimeBean(1, 222,
+////						123, rb);
+//		    	        showMovie_list.add(rb);
+////		    	        shouldcount1--;
+//		    	        shouldRB_list.remove(rb);
+//				System.out.println("aaaa");
+//			}
+//		}
 	}
 
 }
