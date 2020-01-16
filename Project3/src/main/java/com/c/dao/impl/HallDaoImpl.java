@@ -48,7 +48,6 @@ public class HallDaoImpl implements HallDao{
 		List<HallBean> list = new ArrayList<>();
 		String hql = "FROM HallBean WHERE hallStatus= :hbs";
 		Session session = factory.getCurrentSession();
-		
 		list = session.createQuery(hql)
 				.setParameter("hbs", status)
 				.list();
