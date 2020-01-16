@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.p.model.MemberBean;
 import com.p.service.MemberService;
@@ -170,8 +169,33 @@ public class MemberController {
 	}
 	
 	//以下為登出方法
-	
-	
+	@GetMapping("/member/logout")
+	public String memberLogout(HttpServletRequest request,HttpServletResponse response,Model model) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("LoginOK");
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			cookie.setValue(null);
+            cookie.setMaxAge(0);// 立即销毁cookie
+            cookie.setPath("/");
+            response.addCookie(cookie);
+		}
+		
+//	    cookie.setMaxAge();
+//	    cookie.setPath("/");
+//	    response.addCookie(cookie);
+//	    
+//	    cookie = new Cookie("name","");
+//	    cookie.setMaxAge(-1);
+//	    cookie.setPath("/");
+//	    response.addCookie(cookie);
+//	    
+//	    cookie = new Cookie("memberID","");
+//	    cookie.setMaxAge(-1);
+//	    cookie.setPath("/");
+//	    response.addCookie(cookie);
+		return "redirect:/";
+	}
 	
 	
 
