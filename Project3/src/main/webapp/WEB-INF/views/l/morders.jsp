@@ -27,8 +27,18 @@
                         <p>
 <%--                             <a href='/morders/${runid}' style='font-size: 16px;'>電影ID:${Movie.movieID}</a> --%>
                        		 <b  style='font-size: 16px;'>排片ID:${Movie.runID}</b>
+                       		 
                         </p>
-                        
+                        <p>
+>
+                       		 <b  style='font-size: 16px;'>電影ID:${Movie.movie.movieID}</b>
+                       		 
+                        </p>
+                        <p>
+>
+                       		 <b  style='font-size: 16px;'>實際播放天數:${Movie.onDate}</b>
+                       		 
+                        </p>
                         <p>
 <%--                         <a href="<spring:url value='/product?id=${Movie.productID}' />" --%>
 <!--     							class="btn btn-primary"> -->

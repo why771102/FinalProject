@@ -15,7 +15,9 @@ import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
 import com.l.model.MOrderBean;
 import com.m.dao.TicketSaleDao;
+import com.m.model.ProductSaleBean;
 import com.m.model.TicketSaleBean;
+import com.m.service.ProductSaleService;
 import com.m.service.TicketSaleService;
 
 @Service
@@ -23,7 +25,8 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 
 	TicketSaleDao dao;
 	TicketSaleService service;
-
+	ProductSaleService pService;
+	
 	@Autowired
 	public void setDao(TicketSaleDao dao) {
 		this.dao = dao;
@@ -32,6 +35,11 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 	@Autowired
 	public void setService(TicketSaleService service) {
 		this.service = service;
+	}
+	
+	@Autowired
+	public void setService(ProductSaleService pService) {
+		this.pService = pService;
 	}
 
 	@Transactional
@@ -88,7 +96,7 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 
 	@Transactional
 	@Override
-	public List<TicketSaleBean> getHallSaleOutput(List<TicketSaleBean> tsbList) {
+	public List<TicketSaleBean> getTicketSaleOutput(List<TicketSaleBean> tsbList) {
 		List<String> TitlesList = dao.getDistinctTitles();
 		List<TicketSaleBean> tsbList1= new ArrayList<>();
 		
@@ -113,7 +121,11 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 				List<TicketSaleBean> tsbListFromOrder = dao.getMOrderDetailBeanList(tsbList);
 				if (title.equals(tsblfm.getTitle())) {
 					Integer sID = tsblfm.getShowtimeID();
-					showTimeLists.add(sID);
+					showTimeLists.add(sID);	
+					movieTitle = title;
+					genre = tsblfm.getGenre();
+					movieHours = tsblfm.getMovieHours();
+					hallSeats = tsblfm.getHallSaleSeats();
 					// 用新的list去取得相對的販售數量與價格
 					for (TicketSaleBean tsb : tsbListFromOrder) {
 						Integer c = tsb.getCategory();
@@ -142,13 +154,12 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 					System.out.println("比對時,DB電影名稱&tsblfm名稱不同");
 				}
 				ticketSaleSubtotal = ticketSaleTotal + foodSaleTotal; // 票卷與食物消費總額
-//				Double avgHallSaleSeats
 				Double avgTemp = (double) (ticketSaleSubtotal / hallSaleSeats);
 				BigDecimal b = new BigDecimal(avgTemp);
 				avgPerOrder = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue(); // 小數兩位:平均單筆消費/per座位
 			}
 			countShowTime = countRepeatedIntegers(showTimeLists); //待確認
-			
+			hallSeats = countShowTime * hallSeats;
 			avgHallSaleSeats = (hallSaleSeats / (hallSeats*countShowTime) * 100);
 			Double mh = (double) (movieHours / 60);
 			avgSalePerHour = ticketSaleSubtotal / (mh * countShowTime);
@@ -158,21 +169,6 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 		}
 		return tsbList1;
 	}
-
-//	// 將場次數拉出來另外計算, 補上: 平均滿座數, 營收時比 (總收入除以片長)
-//	public List<TicketSaleBean> countShowtime(List<TicketSaleBean> tsbList) {
-//		List<Integer> showTimeLists = new ArrayList<>();
-//
-//		for (TicketSaleBean tsb : tsbList) {
-//			// 將每筆的showtimeID取出放入新的List中
-//			Integer showID = tsb.getShowtimeID();
-//			showTimeLists.add(showID);
-//		}
-//		// 計算場次數
-//		Integer countShowTime = countRepeatedIntegers(showTimeLists);
-//
-//		return null;
-//	}
 
 	@Transactional
 	@Override
@@ -188,11 +184,39 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 		}
 		return repetitions.size();
 	}
-
-	public List<TicketSaleBean> getTicketSaleBeanOutput(List<TicketSaleBean> tsbListFromOrder,
-			List<TicketSaleBean> tsbListFromMovie) {
-		return null;
+	
+	//補上第一頁的genre selection
+	
+	@Transactional
+	@Override
+	public List<TicketSaleBean> getTicketSaleByTitle(List<TicketSaleBean> tsbList, String title){
+		List<TicketSaleBean> tsbList1 = new ArrayList<>();
+		
+		for (TicketSaleBean tsb : tsbList) {
+			if(title.equals(tsb.getTitle())) {
+				tsbList1.add(tsb);
+			}
+		}
+		return tsbList1;
 	}
+	
+	@Transactional
+	@Override
+	//getTicketSaleByDate
+	public List<TicketSaleBean> getTicketSaleByDateOutput(String sDate, String eDate) {
+		List<LocalDate>datesList = pService.showEachDate(sDate, eDate);
+		List<TicketSaleBean> TSBList = new ArrayList<>();
+		
+		for (LocalDate date : datesList) {
+			TSBList = service.getTicketSaleOutput(service.comparedByTime(date.toString(), date.toString()));
+		}
+		return TSBList;
+	}
+	
+	
+	
+
+
 
 	// =====================================================================
 	@Transactional
@@ -285,17 +309,4 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 		}
 		return nosbListToPage;
 	}
-
-//	@Override
-//	public List<MovieBean> ShowMovieBean(List<RunningBean> RBListToPage) {
-//		List<MovieBean> mbToPage = new ArrayList<>();
-//		
-//		for (RunningBean rb : RBListToPage) {
-//			MovieBean mb = rb.getMovie();
-////			Integer movieGenre = mb.getGenre();
-////			String movieTitle = mb.getTitle();
-//			mbToPage.add(mb);
-//		}
-//		return mbToPage;
-//	}
 }

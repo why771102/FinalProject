@@ -118,6 +118,10 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		TitlesList = session.createQuery(hql).getResultList();
 		return TitlesList;
 	}
+	
+	
+	
+	
 	// ===========================================================================
 
 //	@Override

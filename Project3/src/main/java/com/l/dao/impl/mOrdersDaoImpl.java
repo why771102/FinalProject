@@ -37,17 +37,18 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			List<RunningBean> list=new ArrayList<>();
 //			MovieBean mb=getMovieName(rb.getMovieID());
 			list=session.createQuery(hql).getResultList();
+			
 			return list;
 			}
 	//查詢電影ID之電影名字
-	@Override
-	public MovieBean getMovieName(Integer movieID) {
-//				String hql="from RunningBean rb where rb.runID=:runID";
-				MovieBean mb=null;
-				Session session=factory.getCurrentSession();
-				mb=session.get(MovieBean.class,movieID);
-				return mb;
-	}
+//	@Override
+//	public MovieBean getMovieName(Integer movieID) {
+////				String hql="from RunningBean rb where rb.movieID=:movieID";
+//				MovieBean mb=null;
+//				Session session=factory.getCurrentSession();
+//				mb=session.get(MovieBean.class,movieID);
+//				return mb;
+//	}
 	//用排片ID查詢播放日期時間
 //	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb){
 //			String hql="from showTimeHistoryBean sthb where sthb.playStartTime=:playStartTime";

@@ -1,7 +1,7 @@
 package com.m.dao;
 
-import java.time.LocalDate;
 import java.util.List;
+
 import com.m.model.ProductSaleBean;
 
 public interface ProductSaleDao {
@@ -24,7 +24,6 @@ public interface ProductSaleDao {
 	//根據產品名稱進入單日資訊
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
 	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);
-	public List<LocalDate> showEachDate(String sDate, String eDate);
 	
 	//DBT:products => productID, productName, category(4套票(飲食), 5飲食, 6~線上商城)
 	//DBT: showTimeHistory => showTimeID, playStartTime
