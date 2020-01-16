@@ -32,9 +32,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberBean queryMember(String account) {
+	public MemberBean queryMember(Integer memberID) {
 		Session session = factory.getCurrentSession();
-		MemberBean mb = session.get(MemberBean.class, account);
+		MemberBean mb = session.get(MemberBean.class, memberID);
 		return mb;
 //		String hql = "From MemberBean m Where m.account = :account";
 //		Session session = factory.getCurrentSession();

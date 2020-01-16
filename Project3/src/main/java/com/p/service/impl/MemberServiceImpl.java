@@ -44,8 +44,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Transactional
 	@Override
-	public MemberBean queryMember(String account) {
-		return dao.queryMember(account);
+	public MemberBean queryMember(Integer memberID) {
+		return dao.queryMember(memberID);
 	}
 
 	@Transactional

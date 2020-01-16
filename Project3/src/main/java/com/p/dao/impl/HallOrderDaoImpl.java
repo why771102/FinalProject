@@ -63,10 +63,14 @@ public class HallOrderDaoImpl implements HallOrderDao {
 	//用戶自行查詢包廳狀況，用MemberID去找
 	@Override
 	public List<HallOrderBean> hallOrderMQuery(Integer MemberID) {
-		String hql = "From HallOrderBean h Where h.memberID = :memberID";
+		System.out.println("hallOrderMQuery");
+		System.out.println("看這裡--->" + MemberID);
+		String hql = "From HallOrderBean Where memberID = :memberID";
 		Session session = factory.getCurrentSession();
+//		MemberBean mb = getMemberByMemberID(MemberID);
 		List<HallOrderBean> list = new ArrayList<>();
-		session.createQuery(hql).setParameter("memberID", MemberID).getResultList();
+		
+		list = session.createQuery(hql).setParameter("memberID", MemberID).getResultList();
 		return list;
 	}
 
@@ -86,9 +90,14 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		//其實就是update資料庫內的資料  hallOrderStatusNo
 //		String hql = "update HallOrderBean h set h.hallOrderStatusNo = :hallOrderStatusNo "
 //				+ "where h.hallOrderNo = :hallOrderNo";
+		
 		Session session = factory.getCurrentSession();
+		HallBean hb = getHallByHallID(hob.getHallID());
+		MemberBean mb = getMemberByMemberID(hob.getMemberID());
 		HallOrderStatusBean hosb = gethallOrderStatusBean(hob.getHallOrderStatusNo());
+		hob.setHb(hb);
 		hob.setHob(hosb);
+		hob.setMb(mb);
 		session.saveOrUpdate(hob);
 //		System.out.println(hosb.getHallOrderStatus());
 //		session.createQuery(hql).setParameter("hallOrderStatusNo",hosb)
@@ -103,8 +112,12 @@ public class HallOrderDaoImpl implements HallOrderDao {
 //		String hql = "update HallOrderBean h set h.payStatusNo = :payStatusNo "
 //				+ "where h.hallOrderNo = :hallOrderNo";
 		Session session = factory.getCurrentSession();
+		HallBean hb = getHallByHallID(hob.getHallID());
+		MemberBean mb = getMemberByMemberID(hob.getMemberID());
 		PayStatusBean psb = getPayStatusByPSNo(hob.getPayStatusNo());
+		hob.setHb(hb);
 		hob.setPsb(psb);
+		hob.setMb(mb);
 		session.saveOrUpdate(hob);
 //		session.createQuery(hql).setParameter("h.payStatusNo",hob.getPayStatusNo())
 //								.setParameter("h.hallOrderNo", hob.getHallOrderNo())
@@ -171,16 +184,19 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		PayStatusBean pb = session.get(PayStatusBean.class, payStatusNo);
 		return pb;
 	}
-	
+	//下面這個是Ally取包廳時間的方法
 	@Override
 	public List<HallOrderBean> getHallOrder(LocalDate today) {
 		Session session = factory.getCurrentSession();
       List<HallOrderBean> hb_list = new ArrayList<>();
-      String hql ="from HallOrderBean where release like ':day' ";	
-	  String startTime = (today.format( DateTimeFormatter.ofPattern("yyyy-MM-DD")))+"%";    
-	  hb_list = session.createQuery(hql).setParameter("day", startTime)                            
+      String hql ="from HallOrderBean where startTime BETWEEN :stDate AND :edDate ";	
+      String startTime = (today.toString())+" "+"00:00:00"; 
+		String endTime = (today.toString())+" "+"23:59:59"; 
+	  hb_list = session.createQuery(hql).setParameter("stDate", startTime)
+                                        .setParameter("edDate", endTime)                            
                                         .getResultList();	
 		return hb_list;
 	}
+
 
 }

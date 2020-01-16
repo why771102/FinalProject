@@ -104,13 +104,21 @@ public class MemberController {
 	//還要加入白名單限制(Spring MVC P.293 Lab9)
 	
 	//以下為查詢會員資料的方法
-//	@GetMapping("/member/query")
-//	public String memberQuery(HttpSession session,Model model) {
-//		
-//		MemberBean mb = service.queryMember(account));
-//		model.addAttribute("mData", mb);
-//		return "memberData";
-//	}
+	@GetMapping("/member/query")
+	public String memberQuery(HttpServletRequest request,Model model) {
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		int nMID = Integer.parseInt(mID);
+		MemberBean mb = service.queryMember(nMID);
+		model.addAttribute("mData", mb);
+		return "memberData";
+	}
 	
 	//以下為導入登入頁面的controller
 	@RequestMapping(value="/member/login", method = RequestMethod.GET)
@@ -160,6 +168,9 @@ public class MemberController {
 		}
 		return "loginSuccess"; //到時候要導到LoginSucess頁面
 	}
+	
+	//以下為登出方法
+	
 	
 	
 	
