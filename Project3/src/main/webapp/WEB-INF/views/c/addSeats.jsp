@@ -387,11 +387,11 @@ to {
 								_ : {
 									classes : 'seatCharts-space',
 									category : 'Aisle'
-								},
-								o : {
-									classes : 'out-of-order',
-									category : 'Out Of Order'
 								}
+// 								o : {
+// 									classes : 'out-of-order',
+// 									category : 'Out Of Order'
+// 								}
 
 							},
 							naming : {
@@ -411,8 +411,8 @@ to {
 								items : [
 										[ 'f', 'available', 'Normal' ],
 										[ 'e', 'available', 'Handicap Seats' ],
-										[ 'f', 'unavailable', 'Already Booked' ],
-										[ 'o', 'out-of-order', 'Out Of Order' ],
+// 										[ 'f', 'unavailable', 'Already Booked' ],
+// 										[ 'o', 'out-of-order', 'Out Of Order' ],
 										[ '_', 'seatCharts-space', 'Aisle' ] 
 										]
 							},

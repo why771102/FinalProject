@@ -167,6 +167,8 @@ public interface MovieService {
 	boolean updateOffDate(RunningBean rb, LocalDateTime OffDate);
 	List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release);
 	List<ShowTimeHistoryBean> getshowMovie(LocalDate day);
+	List<RunningBean> checkContract(List<RunningBean> rb_list);
+	void sortPT(List<ShowtimeBean> runMovie_list);
 	
 	
 

@@ -90,14 +90,11 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			tsbLists = session.createQuery(hql).setParameter("ordersID", tsb.getOrderID()).getResultList();
 //			TicketSaleBean tsbfl = null;
 //			tsbFullLists.add(tsbfl);
-
 			//特別處理是根據category計算後 if c=3 && pid =15, 實際售出座位*2
-			
 			//0115待確認
 //			ShowTimeHistoryBean sth = null;
 //			sth = session.get(ShowTimeHistoryBean.class, tsb.getShowtimeID());
 //			sth.getPalyStartTime();
-			
 			//從新的陣列資訊中取出所需的資訊: 
 //			for(TicketSaleBean tsb1 : tsbLists){
 //				tsb1.getQuantity(); //取得單筆訂單的產品數量

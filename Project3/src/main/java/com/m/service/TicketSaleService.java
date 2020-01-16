@@ -17,8 +17,8 @@ public interface TicketSaleService {
 	public List<TicketSaleBean> getTicketSaleOutput(List<TicketSaleBean> tsbList); //title篩選
 	public List<String> getDistinctTitles();
 	public Integer countRepeatedIntegers(List<Integer> ints);
-	public List<TicketSaleBean> getTicketSaleByTitle(List<TicketSaleBean> tsbList, String title); //P2 BY TITLE
-	public List<TicketSaleBean> getTicketSaleByDateOutput(String sDate, String eDate); //P2 BY DATE
+//	public List<TicketSaleBean> getTicketSaleByTitle(List<TicketSaleBean> tsbList, String title); //P2 BY TITLE
+	public List<TicketSaleBean> getTicketSaleByDateOutput(List<TicketSaleBean> tsbList1, String sDate, String eDate); //P2 BY DATE
 	//=======================================================================
 	public List<RunningBean> ShowMovieByRunTime();
 	public List<RunningBean> CompareByTime(String sDate, String eDate);

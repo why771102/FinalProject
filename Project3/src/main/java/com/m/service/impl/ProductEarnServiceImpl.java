@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.m.dao.ProductSaleDao;
 import com.m.model.ProductSaleBean;
 import com.m.service.ProductEarnService;
+import com.m.service.ProductSaleService;
 
 @Service
 public class ProductEarnServiceImpl implements ProductEarnService {
 
 	ProductSaleDao dao;
+	ProductSaleService service;
 	
 	@Autowired
 	public void setDao(ProductSaleDao dao) {
@@ -119,7 +121,7 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 	@Transactional
 	@Override
 	public List<LocalDate> showEachDate(String sDate, String eDate) {
-		List<LocalDate> datesList = dao.showEachDate(sDate, eDate);
+		List<LocalDate> datesList = service.showEachDate(sDate, eDate);
 		return datesList;
 	}
 	

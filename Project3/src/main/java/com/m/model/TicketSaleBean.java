@@ -1,6 +1,7 @@
 package com.m.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.l.model.MOrderBean;
 
@@ -40,7 +41,33 @@ public class TicketSaleBean implements Serializable {
 	
 	//用來比較的欄位
 	Integer showtimeID;
+	List<Integer> showTimeLists;
+	List<String> playStartTimes;
 	
+	public List<String> getPlayStartTimes() {
+		return playStartTimes;
+	}
+
+	public void setPlayStartTimes(List<String> playStartTimes) {
+		this.playStartTimes = playStartTimes;
+	}
+
+	public Double getAvgSalePerHour() {
+		return avgSalePerHour;
+	}
+
+	public void setAvgSalePerHour(Double avgSalePerHour) {
+		this.avgSalePerHour = avgSalePerHour;
+	}
+
+	public List<Integer> getShowTimeLists() {
+		return showTimeLists;
+	}
+
+	public void setShowTimeLists(List<Integer> showTimeLists) {
+		this.showTimeLists = showTimeLists;
+	}
+
 	public MOrderBean getMob() {
 		return mob;
 	}
@@ -137,10 +164,11 @@ public class TicketSaleBean implements Serializable {
 	}
 	
 	//有用到這個建構子 => 最後輸出用
-	public TicketSaleBean(Integer showtimeID, String title,Integer genre,Integer countShowTime, 
+	public TicketSaleBean(List<Integer> showTimeLists,List<String> playStartTimes, String title,Integer genre,Integer countShowTime, 
 			Integer hallSeats, Integer hallSaleSeats,Integer avgHallSaleSeats, Double avgPerOrder, 
 			Double avgSalePerHour, Long ticketSaleSubtotal) {
-		this.showtimeID = showtimeID;
+		this.showTimeLists = showTimeLists;
+		this.playStartTimes = playStartTimes;
 		this.title = title;
 		this.genre = genre;
 		this.countShowTime = countShowTime;
