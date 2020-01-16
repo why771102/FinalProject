@@ -271,6 +271,7 @@ public class RunMovieController {
 						 // PT排片      public  setAllMoviePT(Allrb_list,){ }
 							// 分出已上映 未上映
 							//setPTValue
+							System.out.println("--------------------------------- 所有可排片size:"+ Allrb_list.size());
 							for (RunningBean rb : Allrb_list) {
 								//setPTValue
 								if (rb.getMovie().getStatus() == 0) {
@@ -309,7 +310,8 @@ public class RunMovieController {
 							mService.sortPT(runMovie_list);
 							// Sort runMovie List order by PT
 						
-							
+							System.out.println("-----------------------------------------------");
+							System.out.println("runMovie Size:"+runMovie_list.size());
 							//public void runMovieByPT(int HallTime,runMovie_list ) {}
 							while(HallTime >0) {
 								int RunCount =0;
@@ -370,8 +372,8 @@ public class RunMovieController {
 //							runDateTime=runDateTime.minusMinutes(runtimeTotal-900);
 							//取9-12 （壓在9點分界的）
 							//把時間放進去public sortFinal(int minusTime,MovieInsetHall_list){}
-							System.out.println("---------------");
-							System.out.println();
+							System.out.println("-----------------------------------------------");
+							System.out.println(runDateTime);
 							 int runtime= 0- (runtimeTotal-thisTime);
 							 runtimeTotal =0;
 
@@ -390,7 +392,8 @@ public class RunMovieController {
 										runtime=runtimeTotal;
 									}
 							}
-			               
+			                 System.out.println("size:"+MovieInsetHall_list.size());
+			             	System.out.println("-----------------------------------------------");
 			                //save showTimeHitory(List<ShowtimeBean> FinalShowMovie_list)
 			                 for(ShowtimeBean stb: FinalShowMovie_list) {
 			                	 stb.setStartTime(runDateTime);
@@ -403,8 +406,10 @@ public class RunMovieController {
 			        
 			                		 ShowTimeHistoryBean show =new ShowTimeHistoryBean(dfa,stb.getRb(),showtime);
 			                		
-			                		 mService.addShowTimeHistory(show);
+//			                		 mService.addShowTimeHistory(show);
 			                	 }
+			                	  System.out.println("size:"+MovieInsetHall_list.size());//85
+					             	System.out.println("-----------------------------------------------");
 			                 }
 
 						}//廳
