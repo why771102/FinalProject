@@ -182,10 +182,10 @@ public class RunMovieController {
 
 	@GetMapping(value = "/movie/running") // URL 跟<a href='movie/show'> 相關
 	public String RunningMovie(Model model) {
-		// 跑第一天
+		// 跑第一天 //creatOneweekShowTime(LocalDateTime) 
 		for (int d = 1; d <= 7; d++) {
 //			LocalDateTime runDate = (LocalDateTime.now().plusDays(d)).truncatedTo(ChronoUnit.SECONDS);
-			 LocalDateTime runDateTime=LocalDate.now().plusDays(1).atTime(9, 0);
+			LocalDateTime runDateTime=LocalDate.now().plusDays(d).atTime(9, 0);
 			// 確認廳數 //checkUseHall
 			// 確認那些影廳可以用 status =0=ok
 			List<HallBean> hb_list = hService.getAllHalls(0);
@@ -226,6 +226,8 @@ public class RunMovieController {
 				List<RunningBean> rb_list1 = null;
 				//取出今天可以排片的片
 				List<RunningBean> rb_list = mService.getAllOnMoive(runDateTime.toLocalDate());
+				
+			
 				for (RunningBean rb : rb_list) {
       // 合約確定 checkContract
 					if (rb.getStatus() == 0) {
@@ -378,5 +380,12 @@ public class RunMovieController {
 		}
 		return "index-a";// URL 跟 eclip 擺放位置相關
 	}
-
+	
+	
+	
+	
+	public void checkContract() {}
+	public void checkUseHall() {}
+		
+	
 }
