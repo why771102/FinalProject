@@ -176,7 +176,7 @@ public class movieServiceImpl implements MovieService {
 	public  void sortPT(List<ShowtimeBean>runMovie_list) {
 		System.out.println("before sort");
 		for(ShowtimeBean sb:runMovie_list) {
-			System.out.println(sb.getRb().getRunID());
+			System.out.println(sb.getRb().getRunID()+"  "+sb.getPrice_time());
 		}
 		// Sort runMovie List order by PT
 		Comparator PTcomp = new PTcomparator();
@@ -184,7 +184,7 @@ public class movieServiceImpl implements MovieService {
 		
 		System.out.println("after======sort");
 		for(ShowtimeBean sb:runMovie_list) {
-			System.out.println(sb.getRb().getRunID());
+			System.out.println(sb.getRb().getRunID()+"  "+sb.getPrice_time());
 		}
 		
 	}

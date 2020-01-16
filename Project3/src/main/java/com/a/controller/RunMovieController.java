@@ -220,6 +220,7 @@ public class RunMovieController {
 						
 						//從第一廳開始排
 						for(int i=0;i <= (Hallcount-1);i++) {
+							runDateTime=LocalDate.now().plusDays(1).atTime(9, 0);
 							HallTime=960;
 							
 						//確認包場
@@ -369,7 +370,8 @@ public class RunMovieController {
 //							runDateTime=runDateTime.minusMinutes(runtimeTotal-900);
 							//取9-12 （壓在9點分界的）
 							//把時間放進去public sortFinal(int minusTime,MovieInsetHall_list){}
-							
+							System.out.println("---------------");
+							System.out.println();
 							 int runtime= 0- (runtimeTotal-thisTime);
 							 runtimeTotal =0;
 
@@ -395,8 +397,11 @@ public class RunMovieController {
 			                	 runDateTime= runDateTime.plusMinutes(stb.getRunningTime());
 			                	 if(stb.getStID()==1) {
 			                		HallBean dfa = hb_list.get(i);
-			                		 
-			                		 ShowTimeHistoryBean show =new ShowTimeHistoryBean(dfa,stb.getRb(),(stb.getStartTime().toString()));
+			                		
+			                		String showtime= (stb.getStartTime().toLocalDate()).toString()+" "+(stb.getStartTime().toLocalTime()).toString();
+			                		 System.out.println(showtime);
+			        
+			                		 ShowTimeHistoryBean show =new ShowTimeHistoryBean(dfa,stb.getRb(),showtime);
 			                		
 			                		 mService.addShowTimeHistory(show);
 			                	 }
