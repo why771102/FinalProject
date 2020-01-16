@@ -1,5 +1,6 @@
 package com.l.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,13 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.a.model.MovieBean;
 import com.a.model.RunningBean;
-import com.a.model.ShowTimeHistoryBean;
-import com.l.dao.ProductsDao;
 import com.l.dao.mOrdersDao;
-import com.l.model.ProductsBean;
-import com.l.service.ProductsService;
 import com.l.service.mOrdersService;
 
 @Service
@@ -29,7 +25,13 @@ public class mOrdersServiceImpl implements mOrdersService{
 	@Transactional
 	@Override
 	public List<RunningBean> getRunbyID(){
-		return dao.getRunbyID();
+		List<RunningBean> list = dao.getRunbyID();
+		ArrayList<Object> midList = new ArrayList<>();
+		for(int i = 0; i < list.size(); i++) {
+			Integer movieId = list.get(i).getMovieID();
+			midList.add(movieId);
+		}
+		return list;
 	}
 	
 	//查詢電影ID之電影名字
