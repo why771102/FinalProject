@@ -21,6 +21,25 @@ public class HallSaleBean implements Serializable {
 	Integer orderHours;
 	Integer hallSubtotal;
 	
+	String sDate;
+	String eDate;
+	
+	public String getsDate() {
+		return sDate;
+	}
+
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+
+	public String geteDate() {
+		return eDate;
+	}
+
+	public void seteDate(String eDate) {
+		this.eDate = eDate;
+	}
+
 	public HallSaleBean() {}
 	
 	public HallSaleBean(String hallID, Integer price, Integer orderHours, Integer hallSubtotal) {

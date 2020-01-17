@@ -5,9 +5,9 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.c.model.HallBean;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.m.model.HallSaleBean;
 import com.m.service.HallSaleService;
 
@@ -27,12 +27,21 @@ public class HallSaleController {
 		this.service = service;
 	}
 	
+	@GetMapping(value = "/hall/sale")
+	public String outputHsb(Model model) {
+		HallSaleBean hsb = new HallSaleBean();
+		model.addAttribute("hallSaleBean", hsb);
+		return "m/hallSale1";
+	}
+	
 	//hallSale1資料傳輸
 	@PostMapping(value = "/hall/sale")
-	public String getHallSaleOrders(Model model, String sDate, String eDate){
+	public String getHallSaleOrders(Model model,
+			@RequestParam("sDate")String sDate, 
+			@RequestParam("sDate")String eDate){
 		List<HallSaleBean> hsbList = service.getHallSaleOutput(service.getHallSaleLists
-				(service.getHallHrSubtotal(sDate, eDate)));
+				(service.getHallHrSubtotal(sDate,eDate)));
 		model.addAttribute("HallSaleBeanList", hsbList);
-		return "/index-m";
+		return "m/hallSale1";
 	}
 }

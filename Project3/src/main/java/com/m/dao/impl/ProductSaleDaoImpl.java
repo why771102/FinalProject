@@ -18,7 +18,24 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public String getCategoryNames() {
+		String hql = "SELECT c.categoryName FROM categories c";
+		Session session = factory.getCurrentSession();
+		List<String> categoryNames = new ArrayList<>();
+		categoryNames = session.createQuery(hql).getResultList();
+        
+		String ans = "";
+        ans += "<SELECT name='categoryNames'><option value=''>請選擇</option>";
+        for (String cate : categoryNames) {
+                ans += "<option value='" + cate + "'>" + cate + "</option>";
+        }
+        ans += "</SELECT>";
+		return ans;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	//全部之總飲食

@@ -5,7 +5,8 @@ import java.util.List;
 import com.m.model.ProductSaleBean;
 
 public interface ProductSaleDao {
-	
+	//get categoryNames as select option
+	public String getCategoryNames();
 	//show all food orders
 	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders

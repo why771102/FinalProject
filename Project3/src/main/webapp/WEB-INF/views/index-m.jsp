@@ -7,7 +7,7 @@
 <title>Mary's Page</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" type="text/css">
 </head>
-<body>
+<body style="background-color: grey">
 	<h1 style="text-align: center">Mary's Page</h1>
 	<hr>
 	<table border="1" style="margin: 0px auto;">

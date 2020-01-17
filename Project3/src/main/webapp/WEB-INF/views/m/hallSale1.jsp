@@ -26,15 +26,16 @@
 </head>
 
 <body style="background-color: grey">
-	<form:form method='POST' modelAttribute="hallSaleBean" enctype="multipart/form-data" >
+	<h2 style="text-align: center">包廳銷售資訊總覽</h2>
+	<form:form method='POST' modelAttribute="HallSaleBeanList" enctype="multipart/form-data" >
 	<div>
 		電影類型： <select>
 			<option>輔導級</option>
 		</select> &nbsp; &nbsp; &nbsp;電影名稱 <select>
 			<option>Java人生</option>
 		</select>
-		<div id="reportrange"
-			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 14%;">
+		<div id="timePicker"
+			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
 			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 				class="fa fa-caret-down"></i>
 		</div>
@@ -44,25 +45,19 @@
 		<thead>
 			<tr>
 				<th></th>
-				<th>電影名稱</th>
-				<th>場次數</th>
-				<th>總座位數</th>
-				<th>售出座位數</th>
-				<th>平均滿座率</th>
-				<th>平均單筆消費</th>
+				<th>廳名</th>
+				<th>單價</th>
+				<th>時數</th>
 				<th>銷售總金額</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td></td>
-				<td>Tiger Nixon</td>
+				<td><a href="超連結">Tiger Nixo</a></td>
 				<td>System Architect</td>
 				<td>Edinburgh</td>
 				<td>61</td>
-				<td>$320,800</td>
-				<td>100</td>
-				<td>P</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -70,9 +65,6 @@
 				<td>Accountant</td>
 				<td>Tokyo</td>
 				<td>63</td>
-				<td>$170,750</td>
-				<td>200</td>
-				<td>Q</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -80,9 +72,6 @@
 				<td>Junior Technical Author</td>
 				<td>San Francisco</td>
 				<td>66</td>
-				<td>$86,000</td>
-				<td>300</td>
-				<td>K</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -90,9 +79,6 @@
 				<td>Senior Javascript Developer</td>
 				<td>Edinburgh</td>
 				<td>22</td>
-				<td>$433,060</td>
-				<td>400</td>
-				<td>G</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -100,9 +86,6 @@
 				<td>Accountant</td>
 				<td>Tokyo</td>
 				<td>33</td>
-				<td>$162,700</td>
-				<td>500</td>
-				<td>Y</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -110,9 +93,6 @@
 				<td>Integration Specialist</td>
 				<td>New York</td>
 				<td>61</td>
-				<td>$372,000</td>
-				<td>1000</td>
-				<td>X</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -120,9 +100,6 @@
 				<td>Sales Assistant</td>
 				<td>San Francisco</td>
 				<td>59</td>
-				<td>$137,500</td>
-				<td>700</td>
-				<td>Z</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -130,9 +107,6 @@
 				<td>Integration Specialist</td>
 				<td>Tokyo</td>
 				<td>55</td>
-				<td>$327,900</td>
-				<td>30</td>
-				<td>A</td>
 			</tr>
 		</tbody>
 		<tfoot>
@@ -142,15 +116,15 @@
 				<th></th>
 				<th></th>
 				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
 			</tr>
 		</tfoot>
 	</table>
+	
+	<form:hidden path="sDate"/>
+	<form:hidden path="eDate"/>
 	</form:form>
-</body>
-<script>
+	
+	<script>
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
 			"columnDefs" : [ {
@@ -176,12 +150,13 @@
 		var start = moment().subtract(7, 'days');
 		var end = moment();
 		function cb(start, end) {
-			$('#reportrange span').html(
-					start.format('YYYY / MM / DD') + ' - '
-							+ end.format('YYYY / MM / DD'));
+			$('#timePicker span').html(
+					start.format('YYYY-MM-DD') + ' ~ '
+							+ end.format('YYYY-MM-DD'));
 		}
+		
 		// MMMM D, YYYY
-		$('#reportrange').daterangepicker(
+		$('#timePicker').daterangepicker(
 				{
 					startDate : start,
 					endDate : end,
@@ -202,5 +177,9 @@
 				}, cb);
 		cb(start, end);
 	});
+	
+	$("#start").value(start);
+	$("#end").value(end);
 </script>
+</body>
 </html>
