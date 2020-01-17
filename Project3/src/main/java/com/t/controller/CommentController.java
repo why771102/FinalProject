@@ -91,10 +91,10 @@ public class CommentController {
 		return "redirect:/addcomment";	
 	}
 	
-	@RequestMapping("/comments/delete")
-	public String getDeleteComment(Model model, Integer commentID) {
+	@RequestMapping("/comments/delete/{commentID}")
+	public String getDeleteComment(@PathVariable("commentID")Integer commentID,Model model) {
 		service.deleteComment(commentID);
-		return "t/deletecomment";		
+		return "t/comments";		
 	}
 	
 	//查詢單筆

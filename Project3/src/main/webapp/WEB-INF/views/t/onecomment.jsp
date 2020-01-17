@@ -35,6 +35,9 @@
 					<a href="<spring:url value='/update/comment/${Comment.commentID}' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>修改
 					</a> 
+					<a href="<spring:url value='/comments/delete/${Comment.commentID}' />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span>刪除
+					</a> 
 					
 				</p>
 			</div>
