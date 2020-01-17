@@ -12,9 +12,8 @@ import com.z.model.EmpBean;
 public interface mOrdersDao {
 	//查詢排片ID之所有電影ID
 	public List<RunningBean> getRunbyID();
-	
-	//查詢電影ID之電影名字
-	public MovieBean getMovieName(Integer movieID);
+	//查詢電影ID之所有電影名字
+	public List<MovieBean> getMovieName();
 	//用排片ID查詢播放日期時間
 	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb);
 	//新增訂單

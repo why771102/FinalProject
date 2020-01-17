@@ -26,12 +26,17 @@
                     <div class="caption">
                         <p>
 <%--                             <a href='/morders/${runid}' style='font-size: 16px;'>電影ID:${Movie.movieID}</a> --%>
-                       		 <b  style='font-size: 16px;'>排片ID:${Movie.runID}</b>
+                       		 <b  style='font-size: 16px;'>編號:${Movie.runID}</b>
+                       		 
+                        </p>
+                       <p>
+>
+                       		 <a  style='font-size: 16px;'>電影名稱:<span id="title"></span></a>
                        		 
                         </p>
                         <p>
 >
-                       		 <b  style='font-size: 16px;'>電影ID:${Movie.movie.movieID}</b>
+                       		 <b  style='font-size: 16px;'>電影ID:<span id="movieid">${Movie.movie.movieID}</span></b>
                        		 
                         </p>
                         <p>
@@ -50,6 +55,25 @@
         </c:forEach>
         </div>
     </section>
+    <script>
+    	var jsonStr = ${mtitle};
+    	console.log(jsonStr);
+    	console.log("HI");
+
+    	for(var i = 0; i < jsonStr.length;i++) {
+    		var mid = document.getElementById("movieid").innerText;
+    		console.log("mid" + mid);
+    		if(mid == jsonStr[i].movieID) {	
+    			document.getElementById("title").innerText = jsonStr[i].title;
+    		};
+
+    	}
+    	
+    	
+    	
+    
+    </script>
+    
 </body>
 </html>
     

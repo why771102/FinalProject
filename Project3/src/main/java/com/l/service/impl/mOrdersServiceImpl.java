@@ -1,13 +1,18 @@
 package com.l.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.print.attribute.HashAttributeSet;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.l.dao.mOrdersDao;
 import com.l.service.mOrdersService;
@@ -35,11 +40,11 @@ public class mOrdersServiceImpl implements mOrdersService{
 	}
 	
 	//查詢電影ID之電影名字
-//	@Transactional
-//	@Override
-//	public MovieBean getMovieName(Integer movieID); {
-//		return dao.getMovieName(movieID);
-//	}
+	@Transactional
+	@Override
+	public List<MovieBean> getMovieName() {
+		return dao.getMovieName();
+	}
 //	@Transactional
 //	@Override
 //	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb) {
