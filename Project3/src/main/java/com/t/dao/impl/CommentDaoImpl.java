@@ -123,12 +123,19 @@ public class CommentDaoImpl implements CommentDao{
 	//用電影ID 查出各個comment
 	@Override
 	public List<CommentBean> getCommentByMovie(Integer movieID){
-		System.out.println(movieID);
 		String hql="from CommentBean where movieID = :movieID and commentDelete = 0";
 		Session session=factory.getCurrentSession();
 		List<CommentBean> list=new ArrayList<>();
 		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		return list;
+	}
+
+	//查詢單筆comment(用來讓員工查詢被檢舉的comment)
+	@Override
+	public CommentBean getTheCommentBean(Integer commentID) {
+		Session session = factory.getCurrentSession();
+		CommentBean cb = session.get(CommentBean.class, commentID);
+		return cb;
 	}
 
 }

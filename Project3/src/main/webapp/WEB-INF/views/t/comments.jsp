@@ -33,7 +33,7 @@
                         <p>短評內文:${comment.commentContent}</p>
                         <p>時間:${comment.commentTime}</p>
                         <p>
-                        <a href="<spring:url value='/product?id=${comment.commentID}' />"
+                        <a href="<spring:url value='/onecomment?id=${comment.commentID}' />"
     							class="btn btn-primary">
     							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
  							</a></p>

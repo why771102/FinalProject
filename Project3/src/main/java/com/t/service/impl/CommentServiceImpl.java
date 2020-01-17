@@ -102,4 +102,10 @@ public class CommentServiceImpl implements CommentService{
 		return dao.getCommentByMovie(movieID);
 	}
 
+	@Transactional
+	@Override
+	public CommentBean getTheCommentBean(Integer commentID) {
+		return dao.getTheCommentBean(commentID);
+	}
+
 }
