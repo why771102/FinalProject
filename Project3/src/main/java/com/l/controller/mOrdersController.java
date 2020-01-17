@@ -1,21 +1,20 @@
 package com.l.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
-import com.l.model.MOrderBean;
-import com.l.model.ProductsBean;
-import com.l.service.ProductsService;
+import com.google.gson.Gson;
 import com.l.service.mOrdersService;
 
 
@@ -34,6 +33,24 @@ public class mOrdersController {
 		return "l/morders";
 	}
 	
+	@ModelAttribute("mtitle")
+	public @ResponseBody String getmtitle(){
+		
+		List<MovieBean> list = service.getMovieName();
+		Gson gson = new Gson();
+		List<Map<String,String>> listmap = new ArrayList<>();
+		for(MovieBean mb:list) {
+			Map<String,String> mtitleMap=new HashMap<>();
+			mtitleMap.put("movieID",mb.getMovieID().toString());
+			mtitleMap.put("title",mb.getTitle());
+			listmap.add(mtitleMap);
+		}
+		String mapJson = gson.toJson(listmap);
+		
+		
+		System.out.println(mapJson);
+		return mapJson;	
+	}
 	
 	
 	

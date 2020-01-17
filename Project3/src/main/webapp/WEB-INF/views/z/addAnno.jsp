@@ -40,11 +40,11 @@
 			</tr>
 			<tr>
 				<td>開始時間:</td>
-				<td><form:input name="startTime" path="startTime" type='date' /></td>
+				<td><form:input name="startTime" path="startTime" type='datetime-local' /></td>
 			</tr>
 			<tr>
 				<td>結束時間:</td>
-				<td><form:input name="endTime" path="endTime" type='date' /></td>
+				<td><form:input name="endTime" path="endTime" type='datetime-local' /></td>
 			</tr>
 			<tr>
 				<td>權重:</td>

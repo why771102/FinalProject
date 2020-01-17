@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.a.model.MovieBean;
+import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.t.model.CommentBean;
 import com.t.service.CommentService;
@@ -67,7 +69,6 @@ public class CommentController {
 	@RequestMapping("/comments/{movieID}")
 	public String getCommentByMovie(@PathVariable("movieID")Integer movieID,Model model) {
 		List<CommentBean> comments=service.getCommentByMovie(movieID);
-		System.out.println(movieID);
 		model.addAttribute("Comments", comments);
 		return "t/comments";
 	}
@@ -95,6 +96,28 @@ public class CommentController {
 		service.deleteComment(commentID);
 		return "t/deletecomment";		
 	}
+	
+	//查詢單筆
+	@RequestMapping("/onecomment")
+	public String getOneCommentBean(@RequestParam("id")Integer commentID,Model model) {
+		model.addAttribute("Comment",service.getTheCommentBean(commentID));
+		return "t/onecomment";
+	}
+	
+//	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.GET)
+//	public String proccessupdateProducts(@PathVariable("productID")Integer productID,Model model) {
+//		ProductsBean pb = service.getProduct(productID);
+//		model.addAttribute("ProductsBean", pb);
+//		return "l/updateproducts";
+//	}
+//	
+//	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
+//	public String proccessupdateProducts2(@PathVariable("productID")Integer productID,@ModelAttribute("ProductsBean") ProductsBean pb,Model model) {
+//		pb.setProductID(productID);   //抓路徑ID塞進pb
+//		service.updateProducts(pb);
+//		model.addAttribute("Product",service.getProduct(productID));
+//		return "l/product";
+//	}
 	
 	@ModelAttribute("movieList")
 	public Map<Integer, String> getMovieList() {

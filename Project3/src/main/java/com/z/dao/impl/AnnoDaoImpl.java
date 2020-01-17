@@ -78,6 +78,7 @@ public class AnnoDaoImpl implements AnnoDao {
 		String hql = "from AnnoBean where annoId = :annoId";
 		Session session = factory.getCurrentSession();
 		AnnoBean ab = (AnnoBean) session.createQuery(hql).setParameter("annoId", annoId).getSingleResult();
+		ab.setStatus(ab.getAnnoStatusBean().getStatus());
 		return ab;
 	}
 

@@ -246,6 +246,7 @@ to {
 /* End of Pop up Modal style */
 </style>
 </head>
+<body>
 <div id="myModal" class="modal">
 
 	<!-- Modal content -->
@@ -475,14 +476,15 @@ to {
 		});
 
 		//let's pretend some seats have already been booked
-		if (flag == 2) {
+		//let's pretend some seats have already been booked
+		if (flag == "2") {
 			// sc.get(['A_2', '4_1', '7_1', '7_2']).status('unavailable');
 			sc.get(map1).status('seatCharts-space');
-
-			$('.normal-seats').on('click', '.seatCharts-space', function() {
-				sc.get($(this).parents('li:first').data('seatId')).click();
-			});
+			// $('.normal-seats').on('click', '.seatCharts-space', function() {
+			// 	sc.get($(this).parents('li:first').data('seatId')).click();
+			// });
 		}
+
 	}
 	// });
 
@@ -503,6 +505,7 @@ to {
 	// }
 var availableSeats = document
 				.getElementsByClassName("seatCharts-seat seatCharts-cell available");
+				
 	function changeStatus() {
 		//SELECTED SEATS
 		var flag2 = 2;
