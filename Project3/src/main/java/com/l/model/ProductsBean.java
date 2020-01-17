@@ -2,12 +2,17 @@ package com.l.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 import com.sun.istack.NotNull;
 
@@ -22,9 +27,16 @@ public class ProductsBean implements Serializable {
 	@NotNull
 	@Column(nullable=false, columnDefinition = "NVARCHAR(40)")
 	String productName;
-	@NotNull
-	@Column(nullable=false, columnDefinition="TINYINT")
+	
+//	Integer category;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="category")
+	private CategoriesBean CategoriesBean;
+
+
+	@Transient
 	Integer category;
+	
 	@NotNull
 	@Column(nullable=false)
 	Integer unitPrice;
@@ -45,6 +57,7 @@ public class ProductsBean implements Serializable {
 		this.cost=cost;
 	}
 	
+	
 	public Integer getProductID() {
 		return productID;
 	}
@@ -61,6 +74,13 @@ public class ProductsBean implements Serializable {
 		this.productName = productName;
 	}
 
+	public CategoriesBean getCategoriesBean() {
+		return CategoriesBean;
+	}
+	public void setCategoriesBean(CategoriesBean categoriesBean) {
+		CategoriesBean = categoriesBean;
+	}
+	
 	public Integer getCategory() {
 		return category;
 	}
