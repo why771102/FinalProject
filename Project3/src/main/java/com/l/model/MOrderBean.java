@@ -33,8 +33,8 @@ public class MOrderBean implements Serializable {
 	Integer ticketStatus;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "DATETIME")
-	
 	String OrderTime;
+	
 	//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
