@@ -29,35 +29,36 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	@Transactional
 	@Override
 	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB) {
-		return dao.showPeripheralOrders(orderDateA, orderDateB);
+		return dao.getPeripheralOrders(orderDateA, orderDateB);
 	}
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showFoodOrder(Integer category, String playStartTimeA, String playStartTimeB) {
-		return dao.showFoodOrder(category, playStartTimeA, playStartTimeB);
+	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB) {
+		return dao.showFoodOrder(categoryName, playStartTimeA, playStartTimeB);
 	}
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showFoodOrders(Integer categoryA, Integer categoryB, String playStartTimeA,
+	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA,
 			String playStartTimeB) {
-		return dao.showFoodOrders(categoryA, categoryB, playStartTimeA, playStartTimeB);
+		return dao.showFoodOrders(categoryNameA, categoryNameB, playStartTimeA, playStartTimeB);
 	}
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showPeripheralOrder(Integer category, String orderDateA, String orderDateB) {
-		return dao.showPeripheralOrder(category, orderDateA, orderDateB);
+	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
+		return dao.showPeripheralOrder(categoryName, orderDateA, orderDateB);
 	}
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showPeripheralOrders(Integer categoryA, Integer categoryB, String orderDateA,
+	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA,
 			String orderDateB) {
-		return dao.showPeriperalOrders(categoryA, categoryB, orderDateA, orderDateB);
+		return dao.showPeriperalOrders(categoryNameA, categoryNameB, orderDateA, orderDateB);
 	}
-
+	
+	
 	@Transactional
 	@Override
 	public List<String> getDistinctProductNames() {

@@ -9,15 +9,15 @@ public interface ProductSaleDao {
 	//show all food orders
 	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders
-	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB);
+	public List<ProductSaleBean> getPeripheralOrders(String orderDateA, String orderDateB);
 	//4, 5
-	public List<ProductSaleBean> showFoodOrder(Integer category, String playStartTimeA, String playStartTimeB);
+	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB);
 	//4+5
-	public List<ProductSaleBean> showFoodOrders(Integer categoryA, Integer categoryB, String playStartTimeA, String playStartTimeB);
+	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA, String playStartTimeB);
 	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))
-	public List<ProductSaleBean> showPeripheralOrder(Integer category, String orderDateA, String orderDateB);
+	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB);
 	//6+7+8..
-	public List<ProductSaleBean> showPeriperalOrders(Integer categoryA, Integer categoryB, String orderDateA, String orderDateB);
+	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB);
 	
 	public List<String> getDistinctProductNames();
 	

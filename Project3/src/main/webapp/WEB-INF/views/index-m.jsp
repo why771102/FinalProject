@@ -4,53 +4,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mary's Page</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" type="text/css">
 </head>
 <body>
-	<h1 style="text-align: center">MVC Exercise</h1>
+	<h1 style="text-align: center">Mary's Page</h1>
 	<hr>
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
-			<td width="350"><p align="left" /> <a href='123'>Hello
-					Spring MVC</a><BR></td>
-			<td width="350"><p align="left" /> <a href='emps'>查詢所有員工</a><BR>
+			<td width="350"><p align="left" /> <a href='s'>Ticket銷售 p1</a><BR></td>
+			<td width="350"><p align="left" /> <a href='emps'>Product銷售 p1</a><BR>
 			</td>
 		</tr>
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='emp/add'>新增會員</a><BR>
+				<a href='emp/add'>Ticket銷售 p2</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='searchEmp'>查詢單一員工</a><BR>
+				<a href='searchEmp'>Product銷售 p2</a><BR>
 			</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='queryByCategory'>分類查詢</a><BR>
+				<a href='queryByCategory'>Ticket銷售 p3</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href='products/add'>新增產品資料</a><BR>
+				<a href='products/add'>Product利潤 p1</a><BR>
 			</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='member/register'>註冊會員(范)</a><BR>
+				<a href='member/register'>Ticket利潤 p1</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href='products/add'>新增產品資料</a><BR>
+				<a href='products/add'>Product利潤 p2</a><BR>
 			</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='forwardDemo'>RedirectView: forwardDemo</a><br> 
+    			<a href='forwardDemo'>Ticket利潤 p2</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='redirectDemo'>RedirectView: redirectDemo</a><br>
+		    	<a href='hall/sale'>包廳銷售 p1</a><br>
+    		</td>
+		</tr>
+				<tr height="52" bgcolor="lightblue" align="center">
+    		<td width="350"><p align="left" /> 
+    			<a href='forwardDemo'>Ticket利潤 p3</a><br> 
+    		</td>
+		    <td width="350"><p align="left" />
+		    	<a href='redirectDemo'>包廳銷售 p2</a><br>
     		</td>
 		</tr>
 	</table>

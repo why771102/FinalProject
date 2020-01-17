@@ -8,6 +8,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.a.model.MovieBean;
+import com.a.model.RunningBean;
+import com.a.model.ShowTimeHistoryBean;
 import com.c.model.NumberOfSeatsBean;
 import com.l.model.MOrderBean;
 import com.m.dao.TicketSaleDao;
@@ -112,10 +115,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		TitlesList = session.createQuery(hql).getResultList();
 		return TitlesList;
 	}
-	
-	
-	
-	
+
 	// ===========================================================================
 
 //	@Override

@@ -31,12 +31,12 @@ public class test {
 			HashMap<Integer, String> repetitions = new HashMap<Integer, String>();
 			
 			  for (Integer i : ints) {
-			      int item = i;
+//			      int item = i;
 
-			      if (repetitions.containsKey(item)) { //把int當作HashMap中的key值去比較是否存在
-			          repetitions.put(item, repetitions.get(item) + 1); //get(x)取得該x相對的value,若沒有回null, 有重複地在這
+			      if (repetitions.containsKey(i)) { //把int當作HashMap中的key值去比較是否存在
+			          repetitions.put(i, repetitions.get(i) + 1); //get(x)取得該x相對的value,若沒有回null, 有重複地在這
 			      }else {
-			          repetitions.put(item, "else"); //沒有重複的會是這個
+			          repetitions.put(i, "else"); //沒有重複的會是這個
 				  }
 				}
 			  System.out.println(repetitions.size());

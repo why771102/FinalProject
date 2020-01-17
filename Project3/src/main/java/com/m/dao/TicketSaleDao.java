@@ -1,12 +1,7 @@
 package com.m.dao;
 
 import java.util.List;
-import com.a.model.MovieBean;
-import com.a.model.RunningBean;
-import com.a.model.ShowTimeHistoryBean;
-import com.c.model.NumberOfSeatsBean;
 import com.l.model.MOrderBean;
-import com.l.model.MOrderDetailBean;
 import com.m.model.TicketSaleBean;
 
 public interface TicketSaleDao {
