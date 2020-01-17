@@ -119,6 +119,7 @@
 				</tr>
 				<tr>
 					<td><input type='submit' value="送出申請"/></td>
+					<td><a href="<c:url value='/' />">回首頁</a></td>
 				</tr>
 			</fieldset>
 		</form:form>
