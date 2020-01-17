@@ -3,7 +3,9 @@ package com.c.service;
 import java.util.List;
 
 import com.c.model.HallBean;
+import com.c.model.SeatStatusBean;
 import com.c.model.SeatsBean;
+import com.c.model.TypeOfSeatBean;
 
 public interface SeatsService {
 
@@ -13,6 +15,11 @@ public interface SeatsService {
 
 	
 	public HallBean getHallById(String hallID);
+
+	public TypeOfSeatBean getTypeOfSeatById(Integer typeOfSeat);
+	
+	public SeatStatusBean getSeatStatusById(Integer seatStatus);
+	
 	
 	public void updateSeatStatus(Integer status, String seatID, String flag);
 	
@@ -21,7 +28,7 @@ public interface SeatsService {
 	//Turning string in the format of an array into a string[]
 	public String[] stringToStringArray(String seats, String hallID);
 	
-	public void saveSeats(String seats, String hallID);
+	public void saveSeats(String seats, String hallID, Integer typeOfSeat);
 	
 	public String[] showSeatChart(List<SeatsBean> listSB, Integer colNum, Integer rowNum);
 	

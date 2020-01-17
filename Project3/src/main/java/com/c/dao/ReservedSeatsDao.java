@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.a.model.ShowTimeHistoryBean;
+import com.c.model.ReservationStatusBean;
 import com.c.model.SeatsBean;
 
 public interface ReservedSeatsDao {
@@ -16,6 +17,8 @@ public interface ReservedSeatsDao {
 	public void reserveSeat(Integer showTimeID, String seatID);
 	
 	public SeatsBean getSeatsById(String seatID);
+	
+	public ReservationStatusBean getReservationStatusById(Integer reservationStatus);
 	
 	public ShowTimeHistoryBean getShowTimeById(Integer showTimeID);
 	

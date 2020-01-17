@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.c.dao.HallDao;
 import com.c.model.HallBean;
+import com.c.model.HallStatusBean;
 import com.z.model.EmpBean;
 
 @Repository
@@ -27,6 +28,7 @@ public class HallDaoImpl implements HallDao{
 //		String hql = "FROM HallBean WHERE hallID = :hallID";
 		Session session = factory.getCurrentSession();
 		HallBean hb = session.get(HallBean.class, hallID);
+//		System.out.println(hb.getHallStatusBean().getHallStatusID());
 //		HallBean hb = (HallBean) session.createQuery(hql).setParameter("hallID", hallID).getSingleResult();
 		return hb;
 	}
@@ -53,6 +55,13 @@ public class HallDaoImpl implements HallDao{
 				.list();
 		return list;
 	}
+	
+	@Override
+	public HallStatusBean getHallStatusById(Integer hallStatusID) {
+		Session session = factory.getCurrentSession();
+		HallStatusBean hsb = session.get(HallStatusBean.class, hallStatusID);
+		return hsb;
+	}
 
 //	@Override
 //	public Integer getPrice(Integer hallID) {
@@ -75,6 +84,8 @@ public class HallDaoImpl implements HallDao{
 	@Override
 	public void insertHall(HallBean hb) {
 		Session session = factory.getCurrentSession();
+		HallStatusBean hsb = getHallStatusById(hb.getHallStatus());
+		hb.setHallStatusBean(hsb);
 		session.save(hb);
 	}
 
@@ -125,7 +136,8 @@ public class HallDaoImpl implements HallDao{
 	public String getHallStatus(String hallID) {
 		String button = "";
 		HallBean hb = getHall(hallID);
-		Integer status = hb.getHallStatus();
+		
+		Integer status = hb.getHallStatusBean().getHallStatusID();
 		if(status == 0) {
 			button += "<button class=\"checkout-button\" id=\"updateHallStatus\" onclick='updateHallStatus()' value='1'\">關閉廳&raquo;</button>";
 		}else {

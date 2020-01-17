@@ -182,6 +182,9 @@ span.seatCharts-legendDescription {
 	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認&raquo;</button>
 	<div id="closebutton"></div>
 	<div id="legend"></div>
+	<div>
+	<a href='${pageContext.request.contextPath}/index-c'>index</a>
+	</div>
 </div>
 
 <script>
@@ -260,8 +263,8 @@ span.seatCharts-legendDescription {
 								items : [
 										[ 'f', 'available', 'Normal' ],
 										[ 'e', 'available', 'Handicap Seats' ],
-										[ 'f', 'unavailable', 'Already Booked' ],
-										[ 'o', 'out-of-order', 'Out Of Order' ],
+// 										[ 'f', 'unavailable', 'Already Booked' ],
+										[ 'o', 'available', 'Out Of Order' ],
 										[ '_', 'seatCharts-space', 'Aisle' ] 
 										]
 							},

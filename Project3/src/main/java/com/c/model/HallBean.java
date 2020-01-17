@@ -2,11 +2,16 @@ package com.c.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.a.model.ShowTimeHistoryBean;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -21,17 +26,48 @@ public class HallBean implements Serializable{
 	String hallID;
 	Integer noOfSeats;
 	Integer price;
-	@Column(columnDefinition="TINYINT")
-	Integer hallStatus;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="hallStatus")
+	private HallStatusBean hallStatusBean;
+	
 	@Column(columnDefinition="TINYINT")
 	Integer rowNum;
 	@Column(columnDefinition="TINYINT")
 	Integer colNum;
 	
+	@Transient
+	Integer hallStatus;
+	
 	public HallBean() {
 		
 	};
 	
+	public HallBean(String hallID, Integer noOfSeats, Integer price, HallStatusBean hallStatusBean, Integer rowNum,
+			Integer colNum) {
+		super();
+		this.hallID = hallID;
+		this.noOfSeats = noOfSeats;
+		this.price = price;
+		this.hallStatusBean = hallStatusBean;
+		this.rowNum = rowNum;
+		this.colNum = colNum;
+	}
+
+
+
+	public HallStatusBean getHallStatusBean() {
+		return hallStatusBean;
+	}
+
+
+
+	public void setHallStatusBean(HallStatusBean hallStatusBean) {
+		this.hallStatusBean = hallStatusBean;
+	}
+
+
+
 	public Integer getHallStatus() {
 		return hallStatus;
 	}

@@ -3,7 +3,9 @@ package com.c.dao;
 import java.util.List;
 
 import com.c.model.HallBean;
+import com.c.model.SeatStatusBean;
 import com.c.model.SeatsBean;
+import com.c.model.TypeOfSeatBean;
 
 //基本座位表
 public interface SeatsDao {
@@ -13,6 +15,10 @@ public interface SeatsDao {
 	public void insertSeats(SeatsBean sb);
 	
 	public HallBean getHallById(String hallID);
+	
+	public TypeOfSeatBean getTypeOfSeatById(Integer typeOfSeat);
+	
+	public SeatStatusBean getSeatStatusById(Integer seatStatus);
 	
 	public void updateSeatStatus(Integer status, String seatID, String flag);
 	

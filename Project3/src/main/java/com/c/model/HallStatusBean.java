@@ -2,6 +2,7 @@ package com.c.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,32 +12,35 @@ import javax.persistence.Table;
 public class HallStatusBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	String hallStatusID;
-	Integer hallStatusName;
+	@Column(columnDefinition="TINYINT")
+	Integer hallStatusID;
+	@Column(columnDefinition="NVARCHAR(6)")
+	String hallStatusName;
 	
 	public HallStatusBean() {
 		
 	}
 	
-	public HallStatusBean(String hallStatusID, Integer hallStatusName) {
+	public HallStatusBean(Integer hallStatusID, String hallStatusName) {
 		this.hallStatusID = hallStatusID;
 		this.hallStatusName = hallStatusName;
 	}
 	
-	public String getHallStatusID() {
+	public Integer getHallStatusID() {
 		return hallStatusID;
 	}
 
-	public void setHallStatusID(String hallStatusID) {
+	public void setHallStatusID(Integer hallStatusID) {
 		this.hallStatusID = hallStatusID;
 	}
 
-	public Integer getHallStatusName() {
+	public String getHallStatusName() {
 		return hallStatusName;
 	}
 
-	public void setHallStatusName(Integer hallStatusName) {
+	public void setHallStatusName(String hallStatusName) {
 		this.hallStatusName = hallStatusName;
 	}
 

@@ -34,13 +34,56 @@ public class SeatsBean implements Serializable{
 	@NotNull
 	@Column(nullable=false, columnDefinition = "SMALLINT")
 	Integer seatNo;
-	@NotNull
-	@Column(nullable=false, columnDefinition = "TINYINT")
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="typeOfSeat")
+	private TypeOfSeatBean typeOfSeatBean;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="seatStatus")
+	private SeatStatusBean seatStatusBean;
+	
+	@Transient
 	Integer typeOfSeat;
-	@NotNull
-	@Column(nullable=false, columnDefinition = "TINYINT")
+
+	@Transient
 	Integer seatStatus;
 	
+	public SeatsBean(String seatID, String hallID, String row, Integer seatNo, Integer typeOfSeat, Integer seatStatus) {
+		this.seatID = seatID;
+		this.hallID = hallID;
+		this.row = row;
+		this.seatNo = seatNo;
+		this.typeOfSeat = typeOfSeat;
+		this.seatStatus = seatStatus;
+	}
+
+	public SeatsBean(String seatID, HallBean hallBean, String hallID, String row, Integer seatNo,
+			TypeOfSeatBean typeOfSeatBean, SeatStatusBean seatStatusBean) {
+		this.seatID = seatID;
+		this.hallBean = hallBean;
+		this.row = row;
+		this.seatNo = seatNo;
+		this.typeOfSeatBean = typeOfSeatBean;
+		this.seatStatusBean = seatStatusBean;
+	}
+
+	public TypeOfSeatBean getTypeOfSeatBean() {
+		return typeOfSeatBean;
+	}
+
+	public void setTypeOfSeatBean(TypeOfSeatBean typeOfSeatBean) {
+		this.typeOfSeatBean = typeOfSeatBean;
+	}
+
+	public SeatStatusBean getSeatStatusBean() {
+		return seatStatusBean;
+	}
+
+	public void setSeatStatusBean(SeatStatusBean seatStatusBean) {
+		this.seatStatusBean = seatStatusBean;
+	}
+
 	public SeatsBean() {
 		
 	}

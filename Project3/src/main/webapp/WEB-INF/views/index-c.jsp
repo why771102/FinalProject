@@ -23,13 +23,13 @@
 				<a href='hall/add'>新增場地</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='seats/showSeats'>查詢場地</a><BR>
+				<a href='seats/showSeats'>員工查詢場地</a><BR>
 			</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='queryByCategory'>分類查詢</a><BR>
+				<a href='reservedSeats/showSeats'>會員查詢場地</a><BR>
 			</td>
 			<td width="350"><p align="left" />
 				<a href='products/add'>新增產品資料</a><BR>
@@ -53,6 +53,7 @@
 		    	<a href='redirectDemo'>RedirectView: redirectDemo</a><br>
     		</td>
 		</tr>
+		<a href='${pageContext.request.contextPath}'>index</a>
 	</table>
 
 </body>

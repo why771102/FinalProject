@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.c.dao.SeatsDao;
 import com.c.model.HallBean;
+import com.c.model.SeatStatusBean;
 import com.c.model.SeatsBean;
+import com.c.model.TypeOfSeatBean;
 import com.c.service.SeatsService;
 import com.google.gson.Gson;
 
@@ -71,17 +73,16 @@ public class SeatsServiceImpl implements SeatsService {
 	
 	@Transactional
 	@Override
-	public void saveSeats(String seats, String hallID) {
+	public void saveSeats(String seats, String hallID, Integer typeOfSeat) {
 		String[] seatsArray = stringToStringArray(seats, hallID);
 		for(int seat = 0; seat < seatsArray.length; seat++) {
 			String seatID = seatsArray[seat];
 			String row = seatsArray[seat].substring(0, 1);
 			Integer seatNo =  Integer.parseInt(seatsArray[seat].substring(2, seatsArray[seat].length()));
 			
-			Integer typeOfSeat = 0; //currently all normal seats
 			Integer seatStatus = 0; //currently all available to be sold
 			System.out.println("seatID: " + seatID + " hallID: " + hallID);
-			SeatsBean sb = new SeatsBean(seatID, row, seatNo, typeOfSeat, seatStatus, hallID);
+			SeatsBean sb = new SeatsBean(seatID,hallID, row, seatNo, typeOfSeat, seatStatus);
 			this.insertSeats(sb);
 		}
 		
@@ -112,13 +113,13 @@ public class SeatsServiceImpl implements SeatsService {
 					System.out.println("This is seatID: " + seatID);
 					System.out.println("seatIDstr.equals(seatID): " + seatIDstr.equals(seatID));
 					if(seatIDstr.equals(seatID)) {
-						Integer seatStatus = listSB.get(seat).getSeatStatus();
+						Integer seatStatus = listSB.get(seat).getSeatStatusBean().getSeatStatusID();
 						if(seatStatus == 1) { //不可出售
 							seatStr += "o";
 							listSB.remove(seat);
 							break;
 						}else {
-							Integer typeofSeat = listSB.get(seat).getTypeOfSeat();
+							Integer typeofSeat = listSB.get(seat).getTypeOfSeatBean().getTypeofSeatID();
 							if(typeofSeat == 0) { // 正常座位
 								seatStr += "f";
 								listSB.remove(seat);
@@ -144,6 +145,18 @@ public class SeatsServiceImpl implements SeatsService {
 	@Override
 	public SeatsBean getSeat(String seatID) {
 		return dao.getSeat(seatID);
+	}
+
+	@Override
+	public TypeOfSeatBean getTypeOfSeatById(Integer typeOfSeat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SeatStatusBean getSeatStatusById(Integer seatStatus) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
