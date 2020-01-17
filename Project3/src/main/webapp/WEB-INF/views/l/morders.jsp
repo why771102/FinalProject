@@ -31,7 +31,7 @@
                         </p>
                        <p>
 >
-                       		 <a  style='font-size: 16px;'>電影名稱:<span id="title"></span></a>
+                       		 <a  style='font-size: 16px;'>電影名稱:${Movie.movie.title}<span id="title"></span></a>
                        		 
                         </p>
                         <p>
@@ -55,24 +55,7 @@
         </c:forEach>
         </div>
     </section>
-    <script>
-    	var jsonStr = ${mtitle};
-    	console.log(jsonStr);
-    	console.log("HI");
 
-    	for(var i = 0; i < jsonStr.length;i++) {
-    		var mid = document.getElementById("movieid").innerText;
-    		console.log("mid" + mid);
-    		if(mid == jsonStr[i].movieID) {	
-    			document.getElementById("title").innerText = jsonStr[i].title;
-    		};
-
-    	}
-    	
-    	
-    	
-    
-    </script>
     
 </body>
 </html>

@@ -31,11 +31,11 @@ public class mOrdersServiceImpl implements mOrdersService{
 	@Override
 	public List<RunningBean> getRunbyID(){
 		List<RunningBean> list = dao.getRunbyID();
-		ArrayList<Object> midList = new ArrayList<>();
-		for(int i = 0; i < list.size(); i++) {
-			Integer movieId = list.get(i).getMovieID();
-			midList.add(movieId);
-		}
+//		ArrayList<Object> midList = new ArrayList<>();
+//		for(int i = 0; i < list.size(); i++) {
+//			Integer movieId = list.get(i).getMovieID();
+//			midList.add(movieId);
+//		}
 		return list;
 	}
 	

@@ -33,24 +33,24 @@ public class mOrdersController {
 		return "l/morders";
 	}
 	
-	@ModelAttribute("mtitle")
-	public @ResponseBody String getmtitle(){
-		
-		List<MovieBean> list = service.getMovieName();
-		Gson gson = new Gson();
-		List<Map<String,String>> listmap = new ArrayList<>();
-		for(MovieBean mb:list) {
-			Map<String,String> mtitleMap=new HashMap<>();
-			mtitleMap.put("movieID",mb.getMovieID().toString());
-			mtitleMap.put("title",mb.getTitle());
-			listmap.add(mtitleMap);
-		}
-		String mapJson = gson.toJson(listmap);
-		
-		
-		System.out.println(mapJson);
-		return mapJson;	
-	}
+//	@ModelAttribute("mtitle")
+//	public @ResponseBody String getmtitle(){
+//		
+//		List<MovieBean> list = service.getMovieName();
+//		Gson gson = new Gson();
+//		List<Map<String,String>> listmap = new ArrayList<>();
+//		for(MovieBean mb:list) {
+//			Map<String,String> mtitleMap=new HashMap<>();
+//			mtitleMap.put("movieID",mb.getMovieID().toString());
+//			mtitleMap.put("title",mb.getTitle());
+//			listmap.add(mtitleMap);
+//		}
+//		String mapJson = gson.toJson(listmap);
+//		
+//		
+//		System.out.println(mapJson);
+//		return mapJson;	
+//	}
 	
 	
 	
