@@ -75,6 +75,7 @@ public class HallOrderServiceImpl implements HallOrderService {
 		return dao.getHallOrderStatusList();
 	}
 
+	@Transactional
 	@Override
 	public List<HallOrderBean> getHallOrder(LocalDate today) {
 		return dao.getHallOrder(today);

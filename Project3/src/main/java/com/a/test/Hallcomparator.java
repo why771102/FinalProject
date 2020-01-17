@@ -9,8 +9,8 @@ public class Hallcomparator implements Comparator {
 	public int compare(Object o1, Object o2) {
 		HallBean hb1 = (HallBean) o1;
 		HallBean hb2 = (HallBean) o2;
-		int a=hb1.getColNum()*hb1.getRowNum();
-		int b=hb2.getColNum()*hb2.getRowNum();
+		int a=hb1.getNoOfSeats();
+		int b=hb2.getNoOfSeats();
 		
 
 //		System.out.println("-------");

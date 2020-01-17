@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.a.model.MovieBean;
 import com.l.model.ProductsBean;
@@ -47,10 +48,28 @@ public class CommentController {
 //		model.addAttribute("member", service.getMovieById(memberID));
 //		return "memberID";
 //	}
+	
+	//列出所有Comment
 	@RequestMapping("/findAllComment")
 	public String findAllComment(Model model) {
 		List<CommentBean> list=service.findAllComment();
 		model.addAttribute("Comments", list);
+		return "t/comments";
+	}
+	
+	//查詢並列出電影ID們
+	@RequestMapping("/getMovieID")
+	public String seleteMovieID(Model model) {
+		List<String> list=service.getMovies();
+		model.addAttribute("movieIDList", list);
+		return "t/selectmovieID";
+	}
+	
+	//用movieID查詢comment
+	@RequestMapping("/comments/{movieID}")
+	public String getCommentByMovie(@PathVariable("movieID")Integer movieID,Model model) {
+		List<CommentBean> comments=service.getCommentByMovie(movieID);
+		model.addAttribute("Comments", comments);
 		return "t/comments";
 	}
 	
@@ -77,6 +96,28 @@ public class CommentController {
 		service.deleteComment(commentID);
 		return "t/deletecomment";		
 	}
+	
+	//查詢單筆
+	@RequestMapping("/onecomment")
+	public String getOneCommentBean(@RequestParam("id")Integer commentID,Model model) {
+		model.addAttribute("Comment",service.getTheCommentBean(commentID));
+		return "t/onecomment";
+	}
+	
+//	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.GET)
+//	public String proccessupdateProducts(@PathVariable("productID")Integer productID,Model model) {
+//		ProductsBean pb = service.getProduct(productID);
+//		model.addAttribute("ProductsBean", pb);
+//		return "l/updateproducts";
+//	}
+//	
+//	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
+//	public String proccessupdateProducts2(@PathVariable("productID")Integer productID,@ModelAttribute("ProductsBean") ProductsBean pb,Model model) {
+//		pb.setProductID(productID);   //抓路徑ID塞進pb
+//		service.updateProducts(pb);
+//		model.addAttribute("Product",service.getProduct(productID));
+//		return "l/product";
+//	}
 	
 	@ModelAttribute("movieList")
 	public Map<Integer, String> getMovieList() {

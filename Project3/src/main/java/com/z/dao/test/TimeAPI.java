@@ -1,4 +1,4 @@
-package com.a.test;
+package com.z.dao.test;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -26,7 +26,7 @@ public class TimeAPI {
 	 
 	//直接使用LocalDateTime類別來取得   目前系統的日期與時間
 	 final LocalDateTime currentPoint = LocalDateTime.now(); 
-	 System.out.println(currentPoint);
+	 System.out.println("LocalDateTime.now() : " + currentPoint);
 	 
 	 //如果要設定時區
 	 //UTC時間
@@ -37,9 +37,11 @@ public class TimeAPI {
 	 final LocalDateTime currentPointPlus8 = LocalDateTime.now(Clock.system(ZoneId.of("+8")));
 	
 	 //用此格式 ofPattern("yyyy/MM/dd HH:mm:ss") 將字串轉成 LocalDateTime
-	 final LocalDateTime qingmingParsed = LocalDateTime.parse("2015/04/05 12:30:30", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
-	
-	 System.out.println(qingmingParsed);
+	 String startTime = "2016-03-17T08:00";
+	 final LocalDateTime qingmingParsed = LocalDateTime.parse(startTime.replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+	 String VVV =qingmingParsed.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+	 System.out.println("VVV  :  " + VVV);
+	 System.out.println("LocalDateTime.parse(\"2015/04/05 12:30:30\", DateTimeFormatter.ofPattern(\"yyyy/MM/dd HH:mm:ss\")) : " + qingmingParsed);
 	 
 	 /*LocalDateTime以系統時間為準  取現在時間方法*/
 	 /*
@@ -67,52 +69,52 @@ public class TimeAPI {
 	 
 	 //日期與日期相加減(單位日子）
 
-		     LocalDate startDate = LocalDate.of(2003, Month.MAY, 9);
-		      System.out.println("开始时间：" + startDate);
-		  
-		      LocalDate endDate = LocalDate.of(2015, Month.JANUARY, 26);
-		      System.out.println("结束时间：" + endDate);
-		 
-	     long daysDiff = ChronoUnit.DAYS.between(startDate, endDate);
-		     System.out.println("两个时间之间的天数差为：" + daysDiff);
+//		     LocalDate startDate = LocalDate.of(2003, Month.MAY, 9);
+//		      System.out.println("开始时间：" + startDate);
+//		  
+//		      LocalDate endDate = LocalDate.of(2015, Month.JANUARY, 26);
+//		      System.out.println("结束时间：" + endDate);
+//		 
+//	     long daysDiff = ChronoUnit.DAYS.between(startDate, endDate);
+//		     System.out.println("两个时间之间的天数差为：" + daysDiff);
 		     
-	 //日期與日期相加減   （單位 年月日） 
-		     LocalDate today2 = LocalDate.now();
-		        System.out.println("Today : " + today2);
-		        LocalDate birthDate = LocalDate.of(1993, Month.OCTOBER, 19);
-		        System.out.println("BirthDate : " + birthDate);
-
-		        Period p = Period.between(birthDate, today2);
-		        System.out.println(p);
-		        System.out.printf("年龄 : %d 年 %d 月 %d 日\n", p.getYears(), p.getMonths(), p.getDays());
-	 
-    //時間相減
-		        Duration duration = Duration.between(LocalDateTime.now(),  plusTime);
-		        long minust1 =duration.toMinutes();
-		        System.out.println(duration.toMinutes());
-		        
-    //時間相減2        
-		        LocalTime lt1 = LocalTime.parse("01:30:00");
-		        LocalTime lt2 = LocalTime.parse("02:00:00");
-		        LocalTime lt3 = lt1.plusHours(lt2.getHour()).plusMinutes(lt2.getMinute()).plusSeconds(lt2.getSecond());
-		        LocalDateTime ldt = LocalDateTime.of(LocalDate.now(), lt3);System.out.println("lt3="+DateTimeFormatter.ofPattern("HH:mm:ss").format(ldt));
-		        //lt3=03:30:00
-
-		        		
-		        
+//	 //日期與日期相加減   （單位 年月日） 
+//		     LocalDate today2 = LocalDate.now();
+//		        System.out.println("Today : " + today2);
+//		        LocalDate birthDate = LocalDate.of(1993, Month.OCTOBER, 19);
+//		        System.out.println("BirthDate : " + birthDate);
+//
+//		        Period p = Period.between(birthDate, today2);
+//		        System.out.println(p);
+//		        System.out.printf("年龄 : %d 年 %d 月 %d 日\n", p.getYears(), p.getMonths(), p.getDays());
+//	 
+//    //時間相減
+//		        Duration duration = Duration.between(LocalDateTime.now(),  plusTime);
+//		        long minust1 =duration.toMinutes();
+//		        System.out.println(duration.toMinutes());
+//		        
+//    //時間相減2        
+//		        LocalTime lt1 = LocalTime.parse("01:30:00");
+//		        LocalTime lt2 = LocalTime.parse("02:00:00");
+//		        LocalTime lt3 = lt1.plusHours(lt2.getHour()).plusMinutes(lt2.getMinute()).plusSeconds(lt2.getSecond());
+//		        LocalDateTime ldt = LocalDateTime.of(LocalDate.now(), lt3);System.out.println("lt3="+DateTimeFormatter.ofPattern("HH:mm:ss").format(ldt));
+//		        //lt3=03:30:00
+//
+//		        		
+//		        
 		        
 	
 	//formate LocalDateTime
 	//減少時間精確度(Truncation)
 	 final LocalDateTime secondsDateTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS); 
 	 String a = currentDate.format( DateTimeFormatter.BASIC_ISO_DATE);//20200104
-	 String b =LocalDateTime.now().format( DateTimeFormatter.ofPattern("yyyy:MM:DD HH:MM:SS"));//2020:01:13 11:01:78
-	 System.out.println("String B:"+b);
+	 String b =LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));//2020:01:13 11:01:78
+	 System.out.println("String B : "+b);
 	 
 	 //取得目前這個月的最後一天
 	 final LocalDateTime lastDayOfMonthDateTime = LocalDateTime.now().with(TemporalAdjusters.lastDayOfMonth());
-	 System.out.println("----------------");
-	 System.out.println(lastDayOfMonthDateTime);
+//	 System.out.println("----------------");
+//	 System.out.println(lastDayOfMonthDateTime);
 	 // 取得距離目前最近的星期三
 	 final LocalDateTime previousWednesdayDateTime = LocalDateTime.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.WEDNESDAY));
 	 final LocalDateTime nextWednesdayDateTime = LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));

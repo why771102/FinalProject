@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.a.model.MovieBean;
+import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
@@ -36,7 +37,7 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<CommentBean> memberComment() {
-		String hql = "Select watched, grade, commentContent, commentTime from CommentBean where commentID = :commitID";
+		String hql = "From CommentBean where commentID = :commitID";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
@@ -45,12 +46,10 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<CommentBean> findAllComment(){
-		String hql = "Select movieID, memberID, watched, grade, commentContent, commentTime from CommentBean where commentDelete = 0";
-		System.out.println("123");
+		String hql = "From CommentBean c where commentDelete = 0";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
-		System.out.println("456");
 		return list;
 	}
 
@@ -109,6 +108,34 @@ public class CommentDaoImpl implements CommentDao{
 		Session session = factory.getCurrentSession();
 		List<MemberBean> list = session.createQuery(hql).getResultList();
 		return list;
+	}
+
+	//列出電影ID
+	@Override
+	public List<String> getMovies(){
+		String hql="Select Distinct m.movieID from MovieBean m";
+		Session session=factory.getCurrentSession();
+		List<String> list=new ArrayList<>();
+		list=session.createQuery(hql).getResultList();
+		return list;
+	}
+		
+	//用電影ID 查出各個comment
+	@Override
+	public List<CommentBean> getCommentByMovie(Integer movieID){
+		String hql="from CommentBean where movieID = :movieID and commentDelete = 0";
+		Session session=factory.getCurrentSession();
+		List<CommentBean> list=new ArrayList<>();
+		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		return list;
+	}
+
+	//查詢單筆comment(用來讓員工查詢被檢舉的comment)
+	@Override
+	public CommentBean getTheCommentBean(Integer commentID) {
+		Session session = factory.getCurrentSession();
+		CommentBean cb = session.get(CommentBean.class, commentID);
+		return cb;
 	}
 
 }

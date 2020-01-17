@@ -2,16 +2,14 @@ package com.m.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.a.model.MovieBean;
-import com.a.model.RunningBean;
-import com.a.model.ShowTimeHistoryBean;
+
 import com.c.model.NumberOfSeatsBean;
 import com.l.model.MOrderBean;
-import com.l.model.MOrderDetailBean;
 import com.m.dao.TicketSaleDao;
 import com.m.model.TicketSaleBean;
 
@@ -45,7 +43,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 	//取得電影資訊相關欄位的值
 	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList) {
 		Session session = factory.getCurrentSession();
-		List<TicketSaleBean> tsbList = new ArrayList<>();
+		List<TicketSaleBean> tsbListFromMovie = new ArrayList<>();
 
 		for (MOrderBean mob : modList) {
 			mob.getShowTimeHistoryBean(); // getShowTimeHistoryBean
@@ -70,9 +68,9 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 
 			TicketSaleBean tsb = new TicketSaleBean(showtimeID, title, genre, movieHours, 0, hallSeats, 0, 0,
 					0.0, 0L, releaseDate, expectOffDate, offDate, playStartTime);
-			tsbList.add(tsb);
+			tsbListFromMovie.add(tsb);
 		}
-		return tsbList;
+		return tsbListFromMovie;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -83,11 +81,11 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 				+ "FROM mOrder mo LEFT JOIN mo.mOrderDetail mod"
 				+ "LEFT JOIN mod.products p WHERE ordersID = :ordersID";
 		Session session = factory.getCurrentSession();
-		List<TicketSaleBean> tsbLists = new ArrayList<>(); //用來裝上面所查詢hql語法的資訊
+		List<TicketSaleBean> tsbListFromOrder = new ArrayList<>(); //用來裝上面所查詢hql語法的資訊
 //		List<TicketSaleBean> tsbFullLists = new ArrayList<>(); //用來裝前個方法與這個方法總資訊
 		for (TicketSaleBean tsb : tsbList) {
 			//根據ordersID將movieInfoList中的資訊結合(欄位只有上面查詢所獲得的資訊)
-			tsbLists = session.createQuery(hql).setParameter("ordersID", tsb.getOrderID()).getResultList();
+			tsbListFromOrder = session.createQuery(hql).setParameter("ordersID", tsb.getOrderID()).getResultList();
 //			TicketSaleBean tsbfl = null;
 //			tsbFullLists.add(tsbfl);
 			//特別處理是根據category計算後 if c=3 && pid =15, 實際售出座位*2
@@ -101,9 +99,8 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 //				tsb1.getUnitPrice(); //取得單筆訂單的產品單價
 //				tsb1.getCategory(); //取得單筆訂單產品所對應的種類
 //			}
-			
 		}
-		return tsbLists;
+		return tsbListFromOrder;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -147,58 +144,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 //		return tsbLists;
 //	}
 
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	//取得影廳總座位數
-//	public List<NumberOfSeatsBean> getHallSeats(String sDate, String eDate){
-//		String hql = "FROM numberOfSeats nos WHERE nos.date>= :sDate AND nos.date <= :eDate";
-//		Session session = factory.getCurrentSession();
-//		List<NumberOfSeatsBean> hallSeatsList = new ArrayList<>();
-//		hallSeatsList = session.createQuery(hql)
-//				.setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
-//		return hallSeatsList;
-//	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<RunningBean> ShowMovieByRunTime() {
-		String hql = "SELECT r.release, r.expectedOffDate, r.offDate FROM running r";
-		Session session = factory.getCurrentSession();
-		List<RunningBean> dateRangeList = new ArrayList<>();
-		dateRangeList = session.createQuery(hql).getResultList();
-		return dateRangeList;
-	}
-
-	@Override
-	public List<MovieBean> getMovieNames(List<RunningBean> rbList) {
-		List<MovieBean> mbList = new ArrayList<>();
-
-		return null;
-	}
-
-	@Override
-	public List<ShowTimeHistoryBean> getshowTimeHistory(List<RunningBean> RBList) {
-		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
-		Session session = factory.getCurrentSession();
-		for (RunningBean rb : RBList) {
-			ShowTimeHistoryBean sthb = null;
-			sthb = session.get(ShowTimeHistoryBean.class, rb.getRunID());
-			sthbList.add(sthb);
-		}
-		return sthbList;
-	}
-
-	@Override
-	public List<NumberOfSeatsBean> getNumberOfSeats(List<ShowTimeHistoryBean> sthbList) {
-		List<NumberOfSeatsBean> nosbList = new ArrayList<>();
-		Session session = factory.getCurrentSession();
-		for (ShowTimeHistoryBean sthb : sthbList) {
-			NumberOfSeatsBean nosb = null;
-			nosb = session.get(NumberOfSeatsBean.class, sthb.getHallID());
-			nosbList.add(nosb);
-		}
-		return nosbList;
-	}
 
 	// 全部上下檔的電影名稱集
 //	SELECT title FROM movies as m left join running as r 

@@ -49,7 +49,7 @@
 				<a href='member/login'>會員登入</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href="Employee/hallOrderQuery">會員登出</a><BR>
+				<a href="member/logout">會員登出</a><BR>
 			</td>
 		</tr>
 		

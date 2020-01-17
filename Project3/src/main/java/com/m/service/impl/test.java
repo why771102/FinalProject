@@ -34,9 +34,9 @@ public class test {
 			      int item = i;
 
 			      if (repetitions.containsKey(item)) { //把int當作HashMap中的key值去比較是否存在
-			          repetitions.put(item, repetitions.get(item) + 1); //get(x)取得該x相對的value,若沒有回null
+			          repetitions.put(item, repetitions.get(item) + 1); //get(x)取得該x相對的value,若沒有回null, 有重複地在這
 			      }else {
-			          repetitions.put(item, "else");
+			          repetitions.put(item, "else"); //沒有重複的會是這個
 				  }
 				}
 			  System.out.println(repetitions.size());

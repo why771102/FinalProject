@@ -35,17 +35,17 @@
 			</tr>
 			<tr>
 				<td>公告狀態:</td>
-				<td><form:select path="annoStatusBean.statusName">
+				<td><form:select path="status">
 				<form:options items="${annoStatusList}" />
 				</form:select></td>
 			</tr>
 			<tr>
 				<td>開始時間:</td>
-				<td><form:input name="startTime" path="startTime" type='date' value="${annoBean.startTime }"/></td>
+				<td><form:input name="startTime" path="startTime" type='datetime-local' value="${annoBean.startTime }"/></td>
 			</tr>
 			<tr>
 				<td>結束時間:</td>
-				<td><form:input name="endTime" path="endTime" type='date' value="${annoBean.endTime }" /></td>
+				<td><form:input name="endTime" path="endTime" type='datetime-local' value="${annoBean.endTime }" /></td>
 			</tr>
 			<tr>
 				<td>權重:</td>

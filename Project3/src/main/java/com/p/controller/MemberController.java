@@ -15,10 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.p.model.HallOrderBean;
 import com.p.model.MemberBean;
 import com.p.service.MemberService;
 import com.p.validator.MemberValidator;
@@ -101,7 +102,6 @@ public class MemberController {
 		
 	}
 	
-	//還要加入白名單限制(Spring MVC P.293 Lab9)
 	
 	//以下為查詢會員資料的方法
 	@GetMapping("/member/query")
@@ -118,6 +118,12 @@ public class MemberController {
 		MemberBean mb = service.queryMember(nMID);
 		model.addAttribute("mData", mb);
 		return "memberData";
+	}
+	
+	@PostMapping("/member/query")
+	public String updateMember(@ModelAttribute("mData")MemberBean mb) {
+		service.updateMember(mb);
+		return "redirect:/member/query";
 	}
 	
 	//以下為導入登入頁面的controller
@@ -170,8 +176,19 @@ public class MemberController {
 	}
 	
 	//以下為登出方法
-	
-	
+	@GetMapping("/member/logout")
+	public String memberLogout(HttpServletRequest request,HttpServletResponse response,Model model) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("LoginOK");
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			cookie.setValue(null);
+            cookie.setMaxAge(0);// 立即销毁cookie
+            cookie.setPath("/");
+            response.addCookie(cookie);
+		}
+		return "redirect:/";
+	}
 	
 	
 
