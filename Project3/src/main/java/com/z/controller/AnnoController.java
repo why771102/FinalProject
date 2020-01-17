@@ -2,6 +2,8 @@ package com.z.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -59,13 +61,26 @@ public class AnnoController {
 	@RequestMapping(value = "/anno/add", method = RequestMethod.POST)
 	public String processAddNewEmp(@ModelAttribute("annoBean") AnnoBean ab) {
 		
+		System.out.println("新建立的時間 ab.getStartTime() :  " + ab.getStartTime());
+		LocalDateTime tranST = LocalDateTime.parse(ab.getStartTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		String nst =tranST.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		
+		ab.setStartTime(nst);
+		
+		LocalDateTime tranET = LocalDateTime.parse(ab.getEndTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		String net =tranET.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		
+		ab.setEndTime(net);
+		
+		System.out.println("轉換後的時間  nst : " + nst);
+		System.out.println("轉換後的時間  net : " + net);		
 //		String[] suppressedFields = result.getSuppressedFields();
 //		, BindingResult result
 //		if(suppressedFields.length > 0) {
 //			throw new RuntimeException("傳入不允許的欄位");
 //		} 
  		service.addNewAnno(ab);
-		return "redirect:/annos";
+		return "redirect:/bgAnnos";
 	}
 	
 	
@@ -78,6 +93,9 @@ public class AnnoController {
 	@RequestMapping(value = "/anno/update/{annoId}", method = RequestMethod.GET)
 	public String updateAnno(Model model, @PathVariable("annoId") Integer annoId) {
 		AnnoBean ab = service.showOneAnno(annoId);
+		ab.setStartTime(ab.getStartTime().replace(" ", "T").replace(":00.0", ""));
+		ab.setEndTime(ab.getEndTime().replace(" ", "T").replace(":00.0", ""));
+		System.out.println("從DB抓出來的時間 ab.getStartTime() : " + ab.getStartTime());
 		model.addAttribute("annoBean", ab);
 		return "z/editAnno";
 	}
@@ -85,6 +103,18 @@ public class AnnoController {
 	
 	@RequestMapping(value = "/anno/update/{annoId}", method = RequestMethod.POST)
 	public String processUdateAnno(@ModelAttribute("annoBean") AnnoBean ab) {
+		System.out.println("修改之後的時間(轉換前) ab.getStartTime() :  " + ab.getStartTime());
+		System.out.println("修改後但沒動的時間(轉換前) ab.getEndStartTime() :  " + ab.getEndTime());
+		LocalDateTime tranST = LocalDateTime.parse(ab.getStartTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		String nst =tranST.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		System.out.println("nst : " + nst);
+		
+		ab.setStartTime(nst);
+		
+		LocalDateTime tranET = LocalDateTime.parse(ab.getEndTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		String net =tranET.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		System.out.println("net : " + net);	
+		ab.setEndTime(net);
 		service.addNewAnno(ab);
 		return "redirect:/bgAnnos";
 	}

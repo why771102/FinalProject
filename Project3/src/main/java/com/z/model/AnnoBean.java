@@ -28,9 +28,9 @@ public class AnnoBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer annoId;
-	@Column(columnDefinition = "date")
+	@Column(columnDefinition = "smalldatetime")
 	String startTime;
-	@Column(columnDefinition = "date")
+	@Column(columnDefinition = "smalldatetime")
 	String endTime;
 	String title;
 	String content;
