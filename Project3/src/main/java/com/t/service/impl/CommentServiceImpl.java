@@ -108,4 +108,10 @@ public class CommentServiceImpl implements CommentService{
 		return dao.getTheCommentBean(commentID);
 	}
 
+	@Transactional
+	@Override
+	public void updateComment(CommentBean cb) {
+		dao.updateComment(cb);
+	}
+
 }

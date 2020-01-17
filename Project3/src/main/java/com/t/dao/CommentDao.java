@@ -42,7 +42,7 @@ public interface CommentDao {
 	public CommentBean getTheCommentBean(Integer commentID);
 	
 	//修改留言
-	
+	public void updateComment(CommentBean cb);
 
 	//將刪除的短評commentDelete 0改1
 	void deleteComment(Integer commentID);

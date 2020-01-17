@@ -89,8 +89,8 @@ public class CommentBean implements Serializable{
 		return commentID;
 	}
 	
-	public void setCommentId(Integer commentId) {
-		this.commentID = commentId;
+	public void setCommentID(Integer commentID) {
+		this.commentID = commentID;
 	}
 	
 	public Integer getMovieID() {

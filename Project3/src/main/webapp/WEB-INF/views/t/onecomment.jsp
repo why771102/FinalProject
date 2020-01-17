@@ -12,7 +12,7 @@
 	<section>
 		<div>
 			<div class="container" style="text-align: center">
-				<h2>產品資料</h2>
+				<h2>留言</h2>
 			</div>
 		</div>
 	</section>
@@ -32,7 +32,7 @@
 					<a href="<spring:url value='/findAllComment' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回
 					</a> 
-					<a href="<spring:url value='/update/products/${Product.productID}' />" class="btn btn-default">
+					<a href="<spring:url value='/update/comment/${Comment.commentID}' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>修改
 					</a> 
 					

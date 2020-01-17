@@ -104,20 +104,30 @@ public class CommentController {
 		return "t/onecomment";
 	}
 	
-//	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.GET)
-//	public String proccessupdateProducts(@PathVariable("productID")Integer productID,Model model) {
-//		ProductsBean pb = service.getProduct(productID);
-//		model.addAttribute("ProductsBean", pb);
-//		return "l/updateproducts";
-//	}
-//	
-//	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
-//	public String proccessupdateProducts2(@PathVariable("productID")Integer productID,@ModelAttribute("ProductsBean") ProductsBean pb,Model model) {
-//		pb.setProductID(productID);   //抓路徑ID塞進pb
-//		service.updateProducts(pb);
-//		model.addAttribute("Product",service.getProduct(productID));
-//		return "l/product";
-//	}
+	//抓出所有commentBean裡的東西
+	@RequestMapping(value = "/update/comment")
+	public String getupdateProducts(Model model) {
+		List<CommentBean> list=service.findAllComment();
+		model.addAttribute("comment", list);
+		return "t/onecomment";
+	}
+	
+	//用對應的commentID找出該comment的資料
+	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET)
+	public String getupdateComment(@PathVariable("commentID")Integer commentID,Model model) {
+		CommentBean pb = service.getTheCommentBean(commentID);
+		model.addAttribute("CommentBean", pb);
+		return "t/updatecomment";
+	}
+	
+	//修改該留言內容
+	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.POST)
+	public String proccessupdateComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+		cb.setCommentID(commentID);   //抓路徑ID塞進cb
+		service.updateComment(cb);
+		model.addAttribute("Comment",service.getTheCommentBean(commentID));
+		return "t/onecomment";
+	}
 	
 	@ModelAttribute("movieList")
 	public Map<Integer, String> getMovieList() {

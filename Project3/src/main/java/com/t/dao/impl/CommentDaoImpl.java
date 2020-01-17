@@ -46,7 +46,7 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<CommentBean> findAllComment(){
-		String hql = "From CommentBean c where commentDelete = 0";
+		String hql = "From CommentBean where commentDelete = 0";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
@@ -113,7 +113,7 @@ public class CommentDaoImpl implements CommentDao{
 	//列出電影ID
 	@Override
 	public List<String> getMovies(){
-		String hql="Select Distinct m.movieID from MovieBean m";
+		String hql="Select Distinct movieID from MovieBean";
 		Session session=factory.getCurrentSession();
 		List<String> list=new ArrayList<>();
 		list=session.createQuery(hql).getResultList();
@@ -136,6 +136,19 @@ public class CommentDaoImpl implements CommentDao{
 		Session session = factory.getCurrentSession();
 		CommentBean cb = session.get(CommentBean.class, commentID);
 		return cb;
+	}
+
+	@Override
+	public void updateComment(CommentBean cb) {
+		String hql="UPDATE CommentBean SET watched = :newwatched, grade = :newgrade, commentContent = :newcommentContent, commentTime = :newcommentTime WHERE commentID = :id";
+		Session session=factory.getCurrentSession();
+			int n=session.createQuery(hql)	
+					.setParameter("newwatched",cb.getWatched())
+					.setParameter("newgrade", cb.getGrade())
+					.setParameter("newcommentContent", cb.getCommentContent())
+					.setParameter("newcommentTime", cb.getCommentTime())
+					.setParameter("id", cb.getCommentID())
+					.executeUpdate();
 	}
 
 }
