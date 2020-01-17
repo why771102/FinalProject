@@ -47,11 +47,9 @@ public class CommentDaoImpl implements CommentDao{
 	@Override
 	public List<CommentBean> findAllComment(){
 		String hql = "From CommentBean c where commentDelete = 0";
-		System.out.println("123");
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
-		System.out.println("456");
 		return list;
 	}
 
@@ -112,7 +110,7 @@ public class CommentDaoImpl implements CommentDao{
 		return list;
 	}
 
-	//查詢分類產品們
+	//列出電影ID
 	@Override
 	public List<String> getMovies(){
 		String hql="Select Distinct m.movieID from MovieBean m";
@@ -122,10 +120,11 @@ public class CommentDaoImpl implements CommentDao{
 		return list;
 	}
 		
-	//用ID查詢分類產品 
+	//用電影ID 查出各個comment
 	@Override
 	public List<CommentBean> getCommentByMovie(Integer movieID){
-		String hql="from MovieBean mb where mb.movieID=:movieID";
+		System.out.println(movieID);
+		String hql="from CommentBean where movieID = :movieID and commentDelete = 0";
 		Session session=factory.getCurrentSession();
 		List<CommentBean> list=new ArrayList<>();
 		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();

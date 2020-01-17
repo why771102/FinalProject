@@ -67,8 +67,9 @@ public class CommentController {
 	@RequestMapping("/comments/{movieID}")
 	public String getCommentByMovie(@PathVariable("movieID")Integer movieID,Model model) {
 		List<CommentBean> comments=service.getCommentByMovie(movieID);
-		System.out.println(movieID);
+		System.out.println("123");
 		model.addAttribute("Comments", comments);
+		System.out.println("456");
 		return "t/comments";
 	}
 	
