@@ -35,7 +35,7 @@ import com.p.model.HallOrderBean;
 import com.p.service.HallOrderService;
 
 @Controller
-public class RunMovieController {
+public class RunMovieController3 {
 	ServletContext context;
 	MovieService mService;
 	HallService hService;
@@ -192,11 +192,14 @@ public class RunMovieController {
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
 //		for (int d = 1; d <= 7; d++) {
 //		int startTime =9;
-
+		int HallTime = 1020; // 1020營業時間＊60(分鐘）
+		List<ShowtimeBean> Contract_list = new ArrayList<>(); // 存合約
+		List<ShowtimeBean> OrderHall_list = new ArrayList<>(); // 存包場
 		List<RunningBean> Allrb_list = new ArrayList<>();// 存電影排片 還沒有PT
 		List<ShowtimeBean> runMovie_list = new ArrayList<>(); // 存電影排片 有PT值的
 		ShowtimeBean restTime = new ShowtimeBean(2, 10);// 清場時間（分鐘）
-
+		List<ShowtimeBean> MovieInsetHall_list = new ArrayList<>(); // 存按照PT值排好的順序
+		List<ShowtimeBean> FinalShowMovie_list = new ArrayList<>();// 最後排片(放時間)
 		double rate = 0.8;// 遞減函數
 
 		LocalDateTime runDateTime = LocalDate.now().plusDays(1).atTime(9, 0); // 初始時間
@@ -225,64 +228,83 @@ public class RunMovieController {
 		// 取出今天一定要排片
 		List<RunningBean> shouldRB_list = mService.checkContract(Allrb_list);
 		System.out.println("一定要排片:" + shouldRB_list);
-	
+		int shouldcount = shouldRB_list.size();
+		int InOneHall = (shouldcount / Hallcount);
+		int lestHall = (shouldcount % Hallcount);
+		System.out.println("InOneHall: " + InOneHall);
+		System.out.println("lestHall: " + lestHall);
 
-		
-		// PT排片 public setAllMoviePT( List<RunningBean>Allrb_list,List<ShowtimeBean>runMovie_list){ }
-		// 分出已上映 未上映 setPTValue
-		 // 
-		setAllMoviePT(Allrb_list,runMovie_list);
-			
-		
-		
-		
-		
-		
-		
-		
 		// 從第一廳開始排
-		for (int Hall_i = 0; Hall_i < Hallcount; Hall_i++) {
+		for (int i = 0; i < Hallcount ; i++) {
 			runDateTime = LocalDate.now().plusDays(1).atTime(9, 0);
-			System.out.println("第幾廳: " + (Hall_i + 1));
-			List<ShowtimeBean> OrderHall_list = new ArrayList<>(); // 存包場
-			List<ShowtimeBean> Contract_list = new ArrayList<>(); // 存合約
-			List<ShowtimeBean> MovieInsetHall_list = new ArrayList<>(); // 存按照PT值排好的順序
-			List<ShowtimeBean> FinalShowMovie_list = new ArrayList<>();// 最後排片(放時間)
-			int HallTime = 1020; // 1020營業時間＊60(分鐘）
+			System.out.println("第幾廳: " + (i + 1));
+			
+			OrderHall_list.clear();
+			Contract_list.clear();
+			MovieInsetHall_list.clear();
+			FinalShowMovie_list.clear();
 
 //			runDateTime = LocalDate.now().plusDays(1).atTime(9, 0);
+			HallTime = 960;
 
 			// 確認包場
 			// void checkHallOrder(LocalDateTime runDateTime ,int i, List<HallBean> hb_list)
-			HallTime = HallTime - checkHallOrder( runDateTime , hb_list.get(Hall_i) , HallTime) ;
+			List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
+			if (hob_list.size() != 0) {
+				for (HallOrderBean hob : hob_list) {
+					if (hob.getHallID().equalsIgnoreCase(hb_list.get(i).getHallID())) {
+						HallTime = HallTime - (hob.getOrderHours()) - (restTime.getRunningTime());
+						ShowtimeBean hall = new ShowtimeBean(0, hob.getOrderHours(), hob);
+						DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+						LocalDateTime date2 = LocalDateTime.parse(hob.getStartTime(), fmt);
+						hall.setStartTime(date2);
+						OrderHall_list.add(hall);
+						// 創一個統稱包廳的Bean Running
 
+					} else {
+					}
+				}
+			} else {
+			}
 			System.out.println("合約數量:" + Contract_list.size());
 			System.out.println("必須排數量:" + shouldRB_list.size());
-//			System.out.println("InOneHall:" + InOneHall);
+			System.out.println("InOneHall:" + InOneHall);
 
 			// 把合約內容排進去 addContract
-			int shouldcount = shouldRB_list.size();
-			int InOneHall = (shouldcount / Hallcount);
-			int lestHall = (shouldcount % Hallcount);
-			System.out.println("InOneHall: " + InOneHall);
-			System.out.println("lestHall: " + lestHall);
 			System.out.println("contract1----HallTime----:" + HallTime);
 			if (shouldRB_list.size() > 0) {
 
-				if (Hall_i - (Hallcount - lestHall) >= 0 && !(InOneHall < 1)) {
-					InOneHall +=1;
-				}
-				
-				for (int j = 0; j < InOneHall; j++) {
+				if (InOneHall < 1) {
+					RunningBean rb = shouldRB_list.get(0);
+					ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
+							rb.getMovie().getExpectedProfit(), rb);
+					HallTime = HallTime - (movie.getRunningTime()) - (restTime.getRunningTime());
+					Contract_list.add(movie);
+					shouldRB_list.remove(rb);
+				} else {
+					for (int j = 0; j < InOneHall; j++) {
 
 						RunningBean rb = shouldRB_list.get(0);
 						ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
-							  	             rb.getMovie().getExpectedProfit(), rb);
+								rb.getMovie().getExpectedProfit(), rb);
 						HallTime = HallTime - (movie.getRunningTime()) - (restTime.getRunningTime());
 						Contract_list.add(movie);
 						shouldRB_list.remove(rb);
+					}
+					System.out.println("第幾個聽:" + i);
+
+					if (i - (Hallcount - lestHall) >= 0) {
+						// 這邊加入排片
+						RunningBean rb = shouldRB_list.get(0);
+						ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
+								rb.getMovie().getExpectedProfit(), rb);
+						HallTime = HallTime - (movie.getRunningTime()) - (restTime.getRunningTime());
+						Contract_list.add(movie);
+						shouldRB_list.remove(rb);
+						System.out.println("\"必須排數量:\2" + shouldRB_list.size());
+					}
+
 				}
-				System.out.println("第幾個聽:" + Hall_i);
 			}
 			System.out.println("contract1----HallTime----:" + HallTime);
 
@@ -290,19 +312,83 @@ public class RunMovieController {
 //            	Allrb_list.clear();
 //            }
 //			
-			
-			System.out.println("runMovie_list in MovieInsetHall_list-----------------------------------------------");
+
+			// PT排片 public setAllMoviePT(Allrb_list,){ }
+			// 分出已上映 未上映 setPTValue
+			if (i == 0) { // &&d==1
+				System.out.println("i:" + i + "--------------------------------- 所有可排片size:" + Allrb_list.size());
+				for (RunningBean rb : Allrb_list) {
+					// setPTValue
+					if (rb.getMovie().getStatus() == 0) {
+						// 新片取預估ＰＴ
+						ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
+								rb.getMovie().getExpectedProfit(), rb);
+						mService.updateMovieStatus(rb.getMovie().getMovieID(), 1);
+						runMovie_list.add(movie);
+
+					} else if (rb.getMovie().getStatus() == 1) {
+						// 舊片取上星期ＰＴ值
+						// 先取showtimeHitory
+						// 這邊會有問題runningID 一部電影可能有兩個
+						List<RunningBean> Movie_rb_list = mService.getnRunningBeanByMovieID(rb.getMovie().getMovieID());
+						int AllPrice = 0;
+						int AllTime = 0;
+						for (RunningBean rb2 : Movie_rb_list) {
+							List<ShowTimeHistoryBean> sthb_list = mService.getShowTimeHistoryBean(rb2);
+							AllTime = AllTime + (sthb_list.size()) * (rb2.getMovie().getRunningTime());
+
+							for (ShowTimeHistoryBean sthb : sthb_list) {
+								// showID to seatOrder get seatOrder //seatOrderList.size()*270//P
+								// AllPrice= AllPrice +(seatOrderList.size()*270);
+								// getOrderBean (List)
+								// AllPrice = AllPrice +(getTickBean(List) .size()*票價 （票的總類？？票價）)
+							}
+						}
+						// hihi這邊要改 rb.getMovie().getExpectedProfit() 改成 AllPrice/AllTime
+						ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
+								rb.getMovie().getExpectedProfit(), rb);
+						runMovie_list.add(movie);
+					} else {
+						System.out.println("下檔");
+					}
+				}
+			} else {
+				System.out.println("clear Allrb_list");
+				Allrb_list.clear();
+
+			} // //setPTValue
+
+			System.out.println("=============before sort=============");
+			for (ShowtimeBean sb : runMovie_list) {
+				System.out.println(sb.getRb().getRunID() + "  " + sb.getPrice_time());
+			}
+			mService.sortPT(runMovie_list);
+			// Sort runMovie List order by PT
+			System.out.println("after======sort");
+			for (ShowtimeBean sb : runMovie_list) {
+				System.out.println(sb.getRb().getRunID() + "  " + sb.getPrice_time());
+			}
+			System.out.println("setPTValue-----------------------------------------------");
 			System.out.println("MovieInsetHall_list:" + MovieInsetHall_list.size());
 			System.out.println("runMovie Size:" + runMovie_list.size());
 			System.out.println("HallTime :" + HallTime);
 			int RunCount = 0;
 			// public void runMovieByPT(int HallTime,runMovie_list ) {}
-			System.out.println("runMovie_list in MovieInsetHall_list-----------------------------------------------");
+			System.out.println("setPTValue-----------------------------------------------");
 
 			while (HallTime > 0) {
-				boolean runMoviedetect = false;
 
-					for (int l = 0; l < (runMovie_list.size() - 1); l++) {
+				if (HallTime > runMovie_list.get(0).getRunningTime()) {
+					HallTime = HallTime - ((runMovie_list.get(0)).getRunningTime()) - (restTime.getRunningTime());
+					MovieInsetHall_list.add(runMovie_list.get(0));
+					runMovie_list.get(0).setPrice_time(runMovie_list.get(0).getPrice_time() * rate);
+					mService.sortPT(runMovie_list);
+					System.out.println("1: " + HallTime + "runID: " + runMovie_list.get(0).getRb().getRunID()
+							+ " runTime:" + runMovie_list.get(0).getRunningTime());
+
+				} else {
+
+					for (int l = 1; l < (runMovie_list.size() - 1); l++) {
 
 						if (HallTime > runMovie_list.get(l).getRunningTime()) {
 							HallTime = HallTime - ((runMovie_list.get(l)).getRunningTime())
@@ -313,12 +399,19 @@ public class RunMovieController {
 //											showMovie_list.add(restTime);
 							System.out.println("2: " + HallTime);
 							mService.sortPT(runMovie_list);
-							runMoviedetect =true;
+
 							break;
-						} else {}
+						} else {
+
+							RunCount++;
+							System.out.println("3: " + HallTime + " r:" + RunCount + "  runMovie_list.size() - 1"
+									+ (runMovie_list.size() - 1));
+						}
 					}
 
-				if (!runMoviedetect) {
+				}
+				if (RunCount == runMovie_list.size() - 1) {
+					System.out.println("6: " + HallTime);
 					break;
 				}
 			}
@@ -399,7 +492,7 @@ public class RunMovieController {
 				// 如果(把休息時間排除)
 				System.out.println("stb.getStID()" + stb.getStID());
 				if (stb.getStID() == 1) {
-					HallBean dfa = hb_list.get(Hall_i);
+					HallBean dfa = hb_list.get(i);
 
 					String showtime = (stb.getStartTime().toLocalDate()).toString() + " "
 							+ (stb.getStartTime().toLocalTime()).toString();
@@ -421,77 +514,4 @@ public class RunMovieController {
 		return "index-a";// URL 跟 eclip 擺放位置相關
 	}
 
-	public int checkHallOrder(LocalDateTime runDateTime ,HallBean hb ,int HallTime) {
-		int HallOrderTime = 0;
-		List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
-		if (hob_list.size() != 0) {
-			for (HallOrderBean hob : hob_list) {
-				if (hob.getHallID().equalsIgnoreCase(hb.getHallID())) {
-//					HallTime = HallTime - (hob.getOrderHours()) - (restTime.getRunningTime());
-					ShowtimeBean hall = new ShowtimeBean(0, hob.getOrderHours(), hob);
-					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-					LocalDateTime date2 = LocalDateTime.parse(hob.getStartTime(), fmt);
-					hall.setStartTime(date2);
-//					OrderHall_list.add(hall);
-					// 創一個統稱包廳的Bean Running
-                   
-				} else {}
-				HallOrderTime += hob.getOrderHours();
-			}
-			
-		} else {
-		}
-		return HallOrderTime;
-		
-	}
-	
-	public  void setAllMoviePT( List<RunningBean>Allrb_list,List<ShowtimeBean>runMovie_list){ 
-		System.out.println( "--------------------------------- 所有可排片size:" + Allrb_list.size());
-		for (RunningBean rb : Allrb_list) {
-			// setPTValue
-			if (rb.getMovie().getStatus() == 0) {
-				// 新片取預估ＰＴ
-				ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
-						rb.getMovie().getExpectedProfit(), rb);
-				mService.updateMovieStatus(rb.getMovie().getMovieID(), 1);
-				runMovie_list.add(movie);
-
-			} else if (rb.getMovie().getStatus() == 1) {
-				// 舊片取上星期ＰＴ值
-				// 先取showtimeHitory
-				// 這邊會有問題runningID 一部電影可能有兩個
-				List<RunningBean> Movie_rb_list = mService.getnRunningBeanByMovieID(rb.getMovie().getMovieID());
-				int AllPrice = 0;
-				int AllTime = 0;
-				for (RunningBean rb2 : Movie_rb_list) {
-					List<ShowTimeHistoryBean> sthb_list = mService.getShowTimeHistoryBean(rb2);
-					AllTime = AllTime + (sthb_list.size()) * (rb2.getMovie().getRunningTime());
-
-					for (ShowTimeHistoryBean sthb : sthb_list) {
-						// showID to seatOrder get seatOrder //seatOrderList.size()*270//P
-						// AllPrice= AllPrice +(seatOrderList.size()*270);
-						// getOrderBean (List)
-						// AllPrice = AllPrice +(getTickBean(List) .size()*票價 （票的總類？？票價）)
-					}
-				}
-				// hihi這邊要改 rb.getMovie().getExpectedProfit() 改成 AllPrice/AllTime
-				ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
-						rb.getMovie().getExpectedProfit(), rb);
-				runMovie_list.add(movie);
-			} else {
-				System.out.println("下檔");
-			}
-		}
-		System.out.println("=============before sort=============");
-		for (ShowtimeBean sb : runMovie_list) {
-			System.out.println(sb.getRb().getRunID() + "  " + sb.getPrice_time());
-		}
-		mService.sortPT(runMovie_list);
-		// Sort runMovie List order by PT
-		System.out.println("after======sort");
-		for (ShowtimeBean sb : runMovie_list) {
-			System.out.println(sb.getRb().getRunID() + "  " + sb.getPrice_time());
-		}
-	
-	}
 }

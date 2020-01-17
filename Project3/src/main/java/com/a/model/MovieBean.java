@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -40,10 +43,10 @@ public class MovieBean implements Serializable {
 	String director;
 	@Column(nullable=false, columnDefinition = "nvarchar(200)")
 	String cast;
-	@Column(nullable=false, columnDefinition = "tinyint")
-	Integer movieRating;
-	@Column(nullable=false, columnDefinition = "tinyint")
-	Integer genre;
+//	@Column(nullable=false, columnDefinition = "tinyint")
+//	Integer movieRating;
+//	@Column(nullable=false, columnDefinition = "tinyint")
+//	Integer genre;
 	@Column(nullable=false, columnDefinition = "varchar(max)")
 	String trailer;
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
@@ -52,12 +55,19 @@ public class MovieBean implements Serializable {
 	@Column(nullable=false, columnDefinition = "tinyint")
 	Integer status;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="genreID")
+	private GenreBean genre;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="genreID")
+	private MovieRatingBean movieRating;
 	
 	
 	public MovieBean() {}
 	
 	public MovieBean(Integer movieID, String title, String contractDate, Integer expectedProfit, Double profitRatio,
-			Integer runningTime, String director, String cast, Integer movieRating, Integer genre, String trailer,
+			Integer runningTime, String director, String cast, MovieRatingBean movieRating, GenreBean genre, String trailer,
 			String plotSummary, Blob photo, Integer status) {
 		super();
 		this.movieID = movieID;
@@ -76,6 +86,10 @@ public class MovieBean implements Serializable {
 		this.status = status;
 	}
 	
+	public void setMovieRating(MovieRatingBean movieRating) {
+		this.movieRating = movieRating;
+	}
+
 	public Integer getMovieID() {
 		return movieID;
 	}
@@ -124,16 +138,16 @@ public class MovieBean implements Serializable {
 	public void setCast(String cast) {
 		this.cast = cast;
 	}
-	public Integer getMovieRating() {
-		return movieRating;
-	}
-	public void setMovieRating(Integer movieRating) {
-		this.movieRating = movieRating;
-	}
-	public Integer getGenre() {
+//	public Integer getMovieRating() {
+//		return movieRating;
+//	}
+//	public void setMovieRating(Integer movieRating) {
+//		this.movieRating = movieRating;
+//	}
+	public GenreBean  getGenre() {
 		return genre;
 	}
-	public void setGenre(Integer genre) {
+	public void setGenre(GenreBean genre) {
 		this.genre = genre;
 	}
 	public String getTrailer() {
