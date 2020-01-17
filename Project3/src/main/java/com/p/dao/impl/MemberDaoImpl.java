@@ -51,12 +51,16 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void updateMember(MemberBean mb) { //還要看看有無問題
-		String hql = "update MemberBean m set m.name = :name, m.mobile = :mobile , m.email = :email, m.address = :address where m.memberId = :memberId";
+		System.out.println("安安看這邊name:" + mb.getName());
+		System.out.println("安安看這邊mobile:" + mb.getMobile());
+		System.out.println("安安看這邊memberID:" + mb.getMemberID());
+		String hql = "UPDATE MemberBean SET name = :name, mobile = :mobile , email = :email, address = :address WHERE memberID = :memberID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("name", mb.getName())
 								.setParameter("mobile", mb.getMobile())
 								.setParameter("email", mb.getEmail())
-								.setParameter("address", mb.getAddress()).executeUpdate();
+								.setParameter("address", mb.getAddress())
+								.setParameter("memberID", mb.getMemberID()).executeUpdate();
 	}
 
 	// 判斷參數account(會員帳號)是否已經被現有客戶使用，如果是，傳回true，表示此account不能使用，

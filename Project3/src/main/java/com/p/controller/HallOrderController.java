@@ -99,16 +99,8 @@ public class HallOrderController {
 	public String processHallOrderQuery(@ModelAttribute("hallOrderBean")HallOrderBean hob) {
 		System.out.println("安安:" + hob.getHallOrderStatusNo());
 		System.out.println("看這邊:" + hob.getPayStatusNo());
-		//在這邊寫if，用來判斷是否有改變
-//		if(hob.getHallOrderStatusNo()==0 || hob.getHallOrderStatusNo()==1 || hob.getHallOrderStatusNo()==2) {
-			service.hallOrderStatusChange(hob);
-			service.payStatusChange(hob);
-//		}
-//		
-//		if(hob.getPayStatusNo()==0 || hob.getPayStatusNo()==1) {
-//			service.payStatusChange(hob);
-//		}
-//		service.hallOrderApply(hob);
+		service.hallOrderStatusChange(hob);
+		service.payStatusChange(hob);
 		return "redirect:/Employee/hallOrderQuery";
 	}
 	
@@ -139,20 +131,6 @@ public class HallOrderController {
 		List<HallOrderBean> hobList = service.hallOrderEQuery();
 		model.addAttribute("hobList", hobList);
 	}
-	
-
-	
-//	//以下為員工進行包廳狀態更新的方法
-//	@PostMapping(value = "/Employee/hallOrderQuery")
-//	public String updateHallOrderStatus() {
-//		
-//		
-//		return null;
-//	}
-	
-	
-	
-	
 	
 	
 }
