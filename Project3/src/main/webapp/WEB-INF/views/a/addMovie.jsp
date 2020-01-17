@@ -22,7 +22,7 @@
 
 					電影名稱:	<form:input name="title" path="title" type='text' value='a' /><br>
 					簽約日:	<form:input name="contractDate" path="contractDate" type='text' value='1992-01-01' /><br>
-					預期收益:		<form:input name="expectedProfit" path="expectedProfit" type='text' value='51235' /><br>
+					預期收益:		<form:input name="expectedProfit" path="expectedProfit" type='text' value='300' /><br>
 					拆帳比:		<form:input name="profitRatio" path="profitRatio" type='text' value='0.6' /><br>
 					片長:		<form:input name="runningTime" path="runningTime" type='text' value='102' /><br>
 					導演:		<form:input name="director" path="director" type='text' value='雅菁'  /><br>
