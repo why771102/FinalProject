@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.a.dao.MovieDao;
+import com.a.model.GenreBean;
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.p.model.HallOrderBean;
@@ -25,6 +26,9 @@ public class MovieDaoImpl implements MovieDao {
 	@Override
 	public void addmovie(MovieBean movie) {
 		Session session =factory.getCurrentSession();
+		System.out.println(movie.getGenre());
+		GenreBean gb = getGenreBeanById(movie.getGenre());
+		movie.setGenreBean(gb);
 		session.save(movie);
 		
 
@@ -91,6 +95,13 @@ public class MovieDaoImpl implements MovieDao {
 		}
 
 		return true;
+	}
+
+	@Override
+	public GenreBean getGenreBeanById(Integer genreID) {
+		Session session =factory.getCurrentSession();
+		GenreBean gb =session.get(GenreBean.class,  genreID);
+		return gb;
 	}
 
 //	@Override

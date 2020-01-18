@@ -18,11 +18,8 @@ public class MovieRatingBean implements Serializable {
 	Integer movieRatingID;
 	@Column(nullable=false)
 	Integer age;
-	@Column(nullable=false)
+	@Column(nullable=false, columnDefinition="NVARCHAR(10)")
 	String rating;
-	
-	
-	
 	
 	public MovieRatingBean(Integer movieRatingID, Integer age, String rating) {
 		super();

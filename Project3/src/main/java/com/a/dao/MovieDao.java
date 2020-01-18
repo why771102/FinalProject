@@ -1,13 +1,7 @@
 package com.a.dao;
 
-import java.sql.Timestamp;
-import java.util.List;
-
+import com.a.model.GenreBean;
 import com.a.model.MovieBean;
-import com.a.model.RunningBean;
-import com.a.model.ShowTimeHistoryBean;
-import com.a.test.ShowtimeBean;
-import com.p.model.HallOrderBean;
 
 public interface MovieDao {
 
@@ -28,6 +22,8 @@ public interface MovieDao {
 //拿電影ID 取一個 MovieBean
 	MovieBean getMovieBeanById(int movieID);
 
+	GenreBean getGenreBeanById(Integer genreID);
+	
 	// 拿電影ID 取出movieBean 塞進 runningBean(select 出來就有不用取)
 
 
