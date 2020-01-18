@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-
+import com.a.model.MovieBean;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -32,9 +32,12 @@ public class ProductsBean implements Serializable {
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name="category")
 //	private CategoriesBean CategoriesBean;
-	@NotNull
-	@Column(nullable=false)
-	Integer categoryID;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="categoryID")
+	private CategoriesBean categoryID;
+	@Transient
+	Integer Category;
 	
 	
 	@NotNull
@@ -48,7 +51,7 @@ public class ProductsBean implements Serializable {
 	Integer cost;
 
 	public ProductsBean() {}
-	public ProductsBean(Integer productID,String productName,Integer categoryID,Integer unitPrice,Integer unitStock,Integer cost) {
+	public ProductsBean(Integer productID,String productName,CategoriesBean categoryID,Integer unitPrice,Integer unitStock,Integer cost) {
 		this.productID=productID;
 		this.productName=productName;
 		this.categoryID=categoryID;
@@ -74,14 +77,21 @@ public class ProductsBean implements Serializable {
 		this.productName = productName;
 	}
 
-	public Integer getCategoryID() {
+
+
+
+	public CategoriesBean getCategoryID() {
 		return categoryID;
 	}
-	public void setCategoryID(Integer categoryID) {
+	public void setCategoryID(CategoriesBean categoryID) {
 		this.categoryID = categoryID;
 	}
-
-
+	public Integer getCategory() {
+		return Category;
+	}
+	public void setCategory(Integer category) {
+		Category = category;
+	}
 	public Integer getUnitPrice() {
 		return unitPrice;
 	}
