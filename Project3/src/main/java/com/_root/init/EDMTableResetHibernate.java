@@ -35,6 +35,9 @@ import com.z.model.RoleBean;
 public class EDMTableResetHibernate {
 	public static final String UTF8_BOM = "\uFEFF"; // 定義 UTF-8的BOM字元
 
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 
 		String line = "";
@@ -228,7 +231,8 @@ public class EDMTableResetHibernate {
 				     String[] token = line.split("\\|");
 				     GenreBean eb = new GenreBean();
 				     
-				     eb.setGenre(token[0]);
+				     eb.setGenreID(Integer.parseInt(token[0]));
+				     eb.setGenre(token[1]);
 				     
 				     session.save(eb);
 				    }
@@ -361,8 +365,7 @@ public class EDMTableResetHibernate {
 					     eb.setOrderDate(token[6]);
 					     eb.setOrderHours(Integer.parseInt(token[7]));
 					     eb.setStartTime(token[8]);
-					     Integer hallID = Integer.parseInt(token[9]);
-					     HallBean HallBean = session.get(HallBean.class, hallID);
+					     HallBean HallBean = session.get(HallBean.class, token[9]);
 					     eb.setHb(HallBean);
 					     Integer hallOrderStatusNo = Integer.parseInt(token[10]);
 					     HallOrderStatusBean HallOrderStatusBean = session.get(HallOrderStatusBean.class, hallOrderStatusNo);
