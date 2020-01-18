@@ -208,6 +208,7 @@ span.seatCharts-legendDescription {
 			type : "POST",
 			success : function(data) {
 				var seat = JSON.parse(data[1]);
+				var noOfTickets = parseInt(data[2]);
 				seatmain(seat, 1)
 				document.getElementById("closebutton").innerHTML = data[2];
 			}
@@ -237,11 +238,11 @@ span.seatCharts-legendDescription {
 								_ : {
 									classes : 'seatCharts-space',
 									category : 'Aisle'
-								},
-								o : {
-									classes : 'out-of-order',
-									category : 'Out Of Order'
 								}
+// 								o : {
+// 									classes : 'out-of-order',
+// 									category : 'Out Of Order'
+// 								}
 
 							},
 							naming : {
@@ -261,7 +262,7 @@ span.seatCharts-legendDescription {
 										[ 'f', 'available', 'Normal' ],
 										[ 'e', 'available', 'Handicap Seats' ],
 										[ 'u', 'unavailable', 'Already Booked' ],
-										[ 'o', 'out-of-order', 'Out Of Order' ],
+// 										[ 'o', 'out-of-order', 'Out Of Order' ],
 										[ '_', 'seatCharts-space', 'Aisle' ] 
 										]
 							},
