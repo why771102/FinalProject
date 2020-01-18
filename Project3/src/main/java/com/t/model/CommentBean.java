@@ -34,8 +34,6 @@ public class CommentBean implements Serializable{
 	@Column(nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer commentID;
-//	Integer movieID;
-//	Integer memberID;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer watched;

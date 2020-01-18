@@ -260,7 +260,7 @@ span.seatCharts-legendDescription {
 								items : [
 										[ 'f', 'available', 'Normal' ],
 										[ 'e', 'available', 'Handicap Seats' ],
-										[ 'f', 'unavailable', 'Already Booked' ],
+										[ 'u', 'unavailable', 'Already Booked' ],
 										[ 'o', 'out-of-order', 'Out Of Order' ],
 										[ '_', 'seatCharts-space', 'Aisle' ] 
 										]
@@ -325,7 +325,7 @@ span.seatCharts-legendDescription {
 
 		//let's pretend some seats have already been booked
 		if (flag == 2) {
-			sc.get(map1).status('out-of-order');
+			sc.get(map1).status('unavailable');
 // 			sc.get(map1).status('seatCharts-space');
 
 			$('.normal-seats').on('click', '.seatCharts-space', function() {
