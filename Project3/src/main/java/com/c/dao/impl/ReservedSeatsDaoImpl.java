@@ -1,6 +1,5 @@
 package com.c.dao.impl;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.c.dao.ReservedSeatsDao;
+import com.c.model.NumberOfSeatsBean;
 import com.c.model.ReservationStatusBean;
 import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatsBean;
@@ -20,27 +20,21 @@ import com.c.model.SeatsBean;
 public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 
 	SessionFactory factory;
+//	NumberOfSeatsDaoImpl nosdImpl;
 
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertSeats() {
-
+	public List<ShowTimeHistoryBean> insertSeats() {
 		Session session = factory.getCurrentSession();
-		// (ShowTimeHistoryBean) need date, showtimeID and seatID,
-		// reservationStatus(SeatsBean)
-		// ShowTimeHistoryBean
-
 		List<ShowTimeHistoryBean> listSTHB = new ArrayList<>();
-			// first get today's date + 7 days
 		String currentDate = ((LocalDate.now().toString())+" "+"00:00:00"); 
 		String currentDatePlusAWeek = (((LocalDate.now().plusDays(7)).toString())+" "+"23:59:59");
-//			LocalDate currentDate = LocalDate.now();
-//			LocalDate currentDatePlusAWeek = currentDate.plusDays(days);
 			// 先判斷日期是今天加一週 -->
 		String listSTHBhql = "FROM ShowTimeHistoryBean WHERE playStartTime >= :currentDate and playStartTime <= :currentDatePlusAWeek";
 		listSTHB = session.createQuery(listSTHBhql)
@@ -62,13 +56,11 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 			String date = sthBean.getPalyStartTime();
 			date = date.substring(0, 10);
 			System.out.println(date);
-//			Integer showTimeId = sthBean.getShowTimeId();
 			for (SeatsBean sBean : listSB) {
 				boolean result = false;
 				String sbHallID = sBean.getHallBean().getHallID();
 				System.out.println("sbHallID in for (SeatsBean sBean : listSB)" + sbHallID);
 				if (sthbHallID.equalsIgnoreCase(sbHallID)) {
-//					String seatID = sBean.getSeatID();
 					ShowTimeHistoryBean showTimeID = getShowTimeById(sthBean.getShowTimeId());
 					SeatsBean seatID = getSeatsById(sBean.getSeatID());
 					Integer seatStatus = sBean.getSeatStatusBean().getSeatStatusID();
@@ -83,7 +75,7 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		// use hallID to get all seatID + seatStatus
 		// seatStatus = 0 can be reserved
 		// seatStatus = 1 cannot be reserved
-
+		return listSTHB;
 	}
 
 	@Override
@@ -123,12 +115,14 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SeatsBean> getAllSeats(Integer showTimeID, Date date) {
-		List<SeatsBean> list = new ArrayList<>();
+	public List<ReservedSeatsBean> getAllSeats(Integer showTimeID) {
+		List<ReservedSeatsBean> list = new ArrayList<>();
+		System.out.println("List<ReservedSeatsBean> getAllSeats");
 		Session session = factory.getCurrentSession();
-		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID and date = :date";
-		list = session.createQuery(hql).setParameter("showTimeID", showTimeID).setParameter("date", date)
+		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID";
+		list = session.createQuery(hql).setParameter("showTimeID", showTimeID)
 				.getResultList();
+		System.out.println(list.get(0).getSeatsBean().getSeatID());
 		return list;
 	}
 
@@ -138,5 +132,13 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		ReservationStatusBean rsb = session.get(ReservationStatusBean.class, reservationStatus);
 		return rsb;
 	}
+	
+//	@Override
+//	public Integer calculateNumberOfSeats(List<ReservedSeatsBean> listRSB) {
+//		Integer noOfSeats;
+//		
+//		return noOfSeats;
+//		
+//	}
 
 }
