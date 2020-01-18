@@ -13,7 +13,7 @@ public interface ProductsDao {
 	public List<ProductsBean> getProducts();
 
 	//查詢分類產品們
-	public List<String> getCategories();
+	public List<String> getCategoriesID();
 	//用ID查詢分類產品 
 	public List<ProductsBean> getCategoryID(Integer categoryID);
 	

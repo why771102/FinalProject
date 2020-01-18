@@ -29,14 +29,13 @@ public class ProductsBean implements Serializable {
 	String productName;
 	
 //	Integer category;
-	@ManyToOne(cascade = CascadeType.ALL)
-	
-	@JoinColumn(name="categoryID")
-	private CategoriesBean CategoriesBean;
-
-
-	@Transient
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="category")
+//	private CategoriesBean CategoriesBean;
+	@NotNull
+	@Column(nullable=false)
 	Integer categoryID;
+	
 	
 	@NotNull
 	@Column(nullable=false)
@@ -75,20 +74,13 @@ public class ProductsBean implements Serializable {
 		this.productName = productName;
 	}
 
-	public CategoriesBean getCategoriesBean() {
-		return CategoriesBean;
-	}
-	public void setCategoriesBean(CategoriesBean categoriesBean) {
-		CategoriesBean = categoriesBean;
-	}
-	
 	public Integer getCategoryID() {
 		return categoryID;
 	}
-
 	public void setCategoryID(Integer categoryID) {
 		this.categoryID = categoryID;
 	}
+
 
 	public Integer getUnitPrice() {
 		return unitPrice;

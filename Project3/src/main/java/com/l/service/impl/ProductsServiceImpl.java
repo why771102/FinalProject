@@ -37,8 +37,8 @@ public class ProductsServiceImpl implements ProductsService{
 	//查詢分類產品們
 	@Transactional
 	@Override
-	public List<String> getCategories() {
-		return dao.getCategories();
+	public List<String> getCategoriesID() {
+		return dao.getCategoriesID();
 	}
 	//用ID查詢分類產品 
 	@Transactional
