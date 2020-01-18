@@ -77,7 +77,8 @@ public class SeatsServiceImpl implements SeatsService {
 		String[] seatsArray = stringToStringArray(seats, hallID);
 		for(int seat = 0; seat < seatsArray.length; seat++) {
 			String seatID = seatsArray[seat];
-			String row = seatsArray[seat].substring(0, 1);
+			String row = seatsArray[seat].substring(1, 2);
+			System.out.println(row);
 			Integer seatNo =  Integer.parseInt(seatsArray[seat].substring(2, seatsArray[seat].length()));
 			
 			Integer seatStatus = 0; //currently all available to be sold
