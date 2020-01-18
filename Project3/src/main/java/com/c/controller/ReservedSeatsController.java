@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
 import com.c.model.NumberOfSeatsBean;
 import com.c.model.ReservedSeatsBean;
 import com.c.service.HallService;
+import com.c.service.NumberOfSeatsService;
 import com.c.service.ReservedSeatsService;
 import com.c.service.SeatsService;
 import com.google.gson.Gson;
@@ -27,6 +27,7 @@ public class ReservedSeatsController {
 	ReservedSeatsService rservice;
 	SeatsService sservice;
 	HallService hservice;
+	NumberOfSeatsService nosservice;
 	ServletContext context;
 	
 	@Autowired
@@ -35,10 +36,11 @@ public class ReservedSeatsController {
 	}
 
 	@Autowired
-	public void setService(ReservedSeatsService rservice, SeatsService sservice, HallService hservice) {
+	public void setService(ReservedSeatsService rservice, SeatsService sservice, HallService hservice, NumberOfSeatsService nosservice) {
 		this.rservice = rservice;
 		this.sservice = sservice;
 		this.hservice = hservice;
+		this.nosservice = nosservice;
 	}
 	
 	@GetMapping("/reservedSeats/showSeats")
@@ -47,8 +49,11 @@ public class ReservedSeatsController {
 //		List<ShowTimeHistoryBean> list = rservice.insertSeats();
 		
 		//insert seat number into number of seats table;
+	
 		List<ReservedSeatsBean> list = rservice.getAllSeats(1);
-		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatID().substring(0, 1));
+		System.out.println(list.get(0).getDate());
+		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatsBean().getHallBean().getHallID());
+		nosservice.insertNumberofSeats(nosb);
 		return "c/showReservedSeats";
 	}
 	
