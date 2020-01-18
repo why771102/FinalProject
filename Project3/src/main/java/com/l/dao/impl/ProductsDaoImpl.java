@@ -52,11 +52,11 @@ public class ProductsDaoImpl implements ProductsDao{
 	
 	//用ID查詢分類產品 
 		@Override
-		public List<ProductsBean> getCategory(Integer category){
-			String hql="from ProductsBean pb where pb.category=:category";
+		public List<ProductsBean> getCategoryID(Integer categoryID){
+			String hql="from ProductsBean pb where pb.categoryID=:categoryID";
 			Session session=factory.getCurrentSession();
 			List<ProductsBean> list=new ArrayList<>();
-			list=session.createQuery(hql).setParameter("category", category).getResultList();
+			list=session.createQuery(hql).setParameter("categoryID", categoryID).getResultList();
 			return list;
 		}
 	
@@ -65,11 +65,11 @@ public class ProductsDaoImpl implements ProductsDao{
 	//用productID更新
 	@Override
 	public void updateProducts(ProductsBean product) {
-		String hql="UPDATE ProductsBean SET productName=:newproductName, category=:newcategory, unitPrice=:newunitPrice, unitStock=:newunitStock, cost=:newcost WHERE productID=:id";
+		String hql="UPDATE ProductsBean SET productName=:newproductName, categoryID=:newcategoryID, unitPrice=:newunitPrice, unitStock=:newunitStock, cost=:newcost WHERE productID=:id";
 		Session session=factory.getCurrentSession();
 			int n=session.createQuery(hql)	
 					.setParameter("newproductName",product.getProductName())
-					.setParameter("newcategory", product.getCategory())
+					.setParameter("newcategoryID", product.getCategoryID())
 					.setParameter("newunitPrice", product.getUnitPrice())
 					.setParameter("newunitStock", product.getUnitStock())
 					.setParameter("newcost",product.getCost())
