@@ -29,7 +29,7 @@ public class MOrderDetailBean implements Serializable {
 	private ProductsBean productID;
 	@NotNull
 	@Column(nullable=false)
-	Integer unitPrice;
+	Integer sellUnitPrice;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "REAL")
 	double discount;
@@ -66,11 +66,11 @@ public class MOrderDetailBean implements Serializable {
 	public void setProductID(ProductsBean productID) {
 		this.productID = productID;
 	}
-	public Integer getUnitPrice() {
-		return unitPrice;
+	public Integer getSellUnitPrice() {
+		return sellUnitPrice;
 	}
-	public void setUnitPrice(Integer unitPrice) {
-		this.unitPrice = unitPrice;
+	public void setSellUnitPrice(Integer sellUnitPrice) {
+		this.sellUnitPrice = sellUnitPrice;
 	}
 	
 	
