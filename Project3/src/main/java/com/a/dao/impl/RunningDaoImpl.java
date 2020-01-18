@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.a.dao.RunningDao;
+import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
+import com.a.model.RunningStatusBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.p.model.HallOrderBean;
 
@@ -31,6 +33,8 @@ public class RunningDaoImpl implements RunningDao {
 	@Override
 	public void addrunning(RunningBean run) {
 		Session session =factory.getCurrentSession();
+		RunningStatusBean msb = getRunningStatusBeanById(run.getStatus());
+		run.setRunningStatus(msb);
 		session.save(run);
 
 	}
@@ -154,6 +158,13 @@ public class RunningDaoImpl implements RunningDao {
 		}
 		
 		return true;
+	}
+	
+	@Override
+	public RunningStatusBean getRunningStatusBeanById(Integer runningStatusID) {
+		Session session =factory.getCurrentSession();
+		 RunningStatusBean rsb =session.get( RunningStatusBean.class,  runningStatusID);
+		return rsb;
 	}
 	
 
