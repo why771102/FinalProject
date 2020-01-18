@@ -81,6 +81,7 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 	@Override
 	public void reserveSeat(Integer showTimeID, String seatID) {
 		Session session = factory.getCurrentSession();
+		
 		String hql = "FROM ReservedSeatsBean WHERE seatID= :seatID and showTimeID = :showTimeID and reservationStatus = 0";
 		ReservedSeatsBean rsb = (ReservedSeatsBean) session.createQuery(hql).setParameter("seatID", seatID)
 				.setParameter("showTimeID", showTimeID).getSingleResult();
@@ -119,10 +120,11 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		List<ReservedSeatsBean> list = new ArrayList<>();
 		System.out.println("List<ReservedSeatsBean> getAllSeats");
 		Session session = factory.getCurrentSession();
+		System.out.println(showTimeID);
 		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID";
 		list = session.createQuery(hql).setParameter("showTimeID", showTimeID)
 				.getResultList();
-		System.out.println(list.get(0).getSeatsBean().getSeatID());
+		System.out.println(list.get(0));
 		return list;
 	}
 

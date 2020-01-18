@@ -163,7 +163,9 @@ span.seatCharts-legendDescription {
 <div class="wrapper">
 	<div class="container">
 		<h1>Create Movie Theatre Seatings</h1>
-		<div> ${hallID} 廳</div>
+<%-- 		<div> ${hallID} 廳</div> --%>
+		<div id="numberOfTickets"></div>
+		<div id="numberOfTickets"></div>
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
@@ -179,9 +181,11 @@ span.seatCharts-legendDescription {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">確認&raquo;</button>
-	<div id="closebutton"></div>
+	<button class="checkout-button" id="checkout" onclick="changeStatus()">bring out seating chart</button>
+	<button class="checkout-button" id="checkout" onclick="confirmReservation()">確認&raquo;</button>
+	
 	<div id="legend"></div>
+	
 </div>
 
 <script>
@@ -210,7 +214,7 @@ span.seatCharts-legendDescription {
 				var seat = JSON.parse(data[1]);
 				var noOfTickets = parseInt(data[2]);
 				seatmain(seat, 1)
-				document.getElementById("closebutton").innerHTML = data[2];
+				document.getElementById("numberOfTickets").innerHTML = data[2];
 			}
 		});
 	}
@@ -336,35 +340,35 @@ span.seatCharts-legendDescription {
 	}
 	
 	//按下確認後所執行的function
-// 	function changeStatus() {
-// 		//SELECTED SEATS
-// 		if(confirm("確認修改座位嗎?")){
-// 		var flag2 = 2;
-// 		var selectedSeats = document
-// 				.getElementsByClassName("seatCharts-seat seatCharts-cell selected");
-// 		var SseatArray = [];
-// 		var Sseatobj = {};
-// 		for (var i = 0; i < selectedSeats.length; i++) {
-// 			if (selectedSeats[i].id != "") {
-// 				Sseatobj = selectedSeats[i].id
-// 				SseatArray.push(Sseatobj);
-// 			}
+	function confirmReservation() {
+		//SELECTED SEATS
+		if(confirm("確認訂此座位嗎?")){
+		var flag2 = 2;
+		var selectedSeats = document
+				.getElementsByClassName("seatCharts-seat seatCharts-cell selected");
+		var SseatArray = [];
+		var Sseatobj = {};
+		for (var i = 0; i < selectedSeats.length; i++) {
+			if (selectedSeats[i].id != "") {
+				Sseatobj = selectedSeats[i].id
+				SseatArray.push(Sseatobj);
+			}
 
-// 		}
-// 		console.log("This is selected seats: " + SseatArray);
-// 		seatmain(SseatArray, flag2);
-// 		var hallID = document.getElementById("hallID").value;
+		}
+		console.log("This is selected seats: " + SseatArray);
+		seatmain(SseatArray, flag2);
+// 		var hallID = document.getElementById("closebutton").innerHTML;
 // 		console.log(hallID);
-// 		var unavailable=JSON.stringify(SseatArray);
-// 		$.ajax({
-// 			url : "${pageContext.request.contextPath}/seats/updateSeats",
-// 			data : {seats: unavailable, hallID: hallID},
-// 			type : "POST",
-// 			success : function() {
-// 				alert("修改"+hallID+"廳"+unavailable+"座位成功!");
-// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-// 			}
-// 		});
+		var bookSeats=JSON.stringify(SseatArray);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/reservedSeats/reserveSeats",
+			data : {seats: bookSeats},
+			type : "POST",
+			success : function() {
+				alert("訂"+bookSeats+"成功!");
+				window.location.href = "${pageContext.request.contextPath}/index-c";
+			}
+		});
 		//USE WHEN YOU WANT TO ADD DIFFERENT TYPE OF SEATS
 		// var seats = document.getElementsByClassName("seatCharts-seat seatCharts-cell available");
 		// var seatArray = [];
@@ -381,8 +385,8 @@ span.seatCharts-legendDescription {
 		//AJAX return seatArray
 // 		}else{
 			
-// 		}
-// 	}
+		}
+	}
 
 	//刪除此廳
 	function updateHallStatus(){
