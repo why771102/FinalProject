@@ -15,7 +15,7 @@ public class ReservationStatusBean implements Serializable{
 	@Id
 	@Column(columnDefinition="TINYINT")
 	Integer reservationStatusID;
-//	@Column(columnDefinition="NVARCHAR(8)")
+	@Column(columnDefinition="NVARCHAR(8)")
 	String reservationStatusName;
 	
 	public ReservationStatusBean() {

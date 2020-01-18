@@ -50,10 +50,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void updateMember(MemberBean mb) { //還要看看有無問題
-		System.out.println("安安看這邊name:" + mb.getName());
-		System.out.println("安安看這邊mobile:" + mb.getMobile());
-		System.out.println("安安看這邊memberID:" + mb.getMemberID());
+	public void updateMember(MemberBean mb) { 
 		String hql = "UPDATE MemberBean SET name = :name, mobile = :mobile , email = :email, address = :address WHERE memberID = :memberID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("name", mb.getName())
@@ -126,6 +123,14 @@ public class MemberDaoImpl implements MemberDao {
 			mb = null;
 		}
 		return mb;
+	}
+
+	@Override
+	public void updateLastLoginTime(String lastLoginTime, Integer memberID) {
+		Session session = factory.getCurrentSession();
+		String hql = "Update MemberBean set lastLogInTime = :lastLogInTime where memberID = :memberID"; 
+		session.createQuery(hql).setParameter("lastLogInTime", lastLoginTime)
+								.setParameter("memberID", memberID).executeUpdate();
 	}
 
 }

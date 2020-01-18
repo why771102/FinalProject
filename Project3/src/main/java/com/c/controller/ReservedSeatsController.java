@@ -57,6 +57,8 @@ public class ReservedSeatsController {
 		return "c/showReservedSeats";
 	}
 	
+	
+//	應該傳到前端 電影名稱、廳、訂票數、日期
 	@PostMapping("/reservedSeats/showSeats")
 	public @ResponseBody Map<Integer, String>showReservedSeats() {
 		List<ReservedSeatsBean> listsb = rservice.getAllSeats(1);
@@ -71,6 +73,7 @@ public class ReservedSeatsController {
 		Gson g = new Gson();
 		String seat = g.toJson(seats);
 		map.put(1, seat);
+		map.put(1, "2"); //number of tickets user wishes to buy
 //		map.put(2, showTimeID.toString());
 		return map;
 	}

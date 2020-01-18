@@ -20,4 +20,7 @@ public interface MemberService {
 	
 	//用戶更改資料後，存進DB
 	public void updateMember(MemberBean mb);
+	
+	//寫入最後登入時間
+	public void updateLastLoginTime(String lastLoginTime, Integer memberID);
 }

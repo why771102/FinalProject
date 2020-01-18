@@ -19,6 +19,7 @@ import com.c.model.HallBean;
 import com.c.model.HallStatusBean;
 import com.c.model.ReservationStatusBean;
 import com.c.model.SeatStatusBean;
+import com.c.model.SeatsBean;
 import com.c.model.TypeOfSeatBean;
 import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
@@ -35,6 +36,9 @@ import com.z.model.RoleBean;
 public class EDMTableResetHibernate {
 	public static final String UTF8_BOM = "\uFEFF"; // 定義 UTF-8的BOM字元
 
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 
 		String line = "";
@@ -228,7 +232,8 @@ public class EDMTableResetHibernate {
 				     String[] token = line.split("\\|");
 				     GenreBean eb = new GenreBean();
 				     
-				     eb.setGenre(token[0]);
+				     eb.setGenreID(Integer.parseInt(token[0]));
+				     eb.setGenre(token[1]);
 				     
 				     session.save(eb);
 				    }
@@ -295,6 +300,31 @@ public class EDMTableResetHibernate {
 					   session.flush();
 					   System.out.println("HallOrderStatusBean資料新增成功");
 //HallBean
+					   try (FileReader fr = new FileReader("data/hall.dat"); BufferedReader br = new BufferedReader(fr);) {
+						    while ((line = br.readLine()) != null) {
+						     if (line.startsWith(UTF8_BOM)) {
+						      line = line.substring(1);
+						     }
+						     String[] token = line.split("\\|");
+						     HallBean eb = new HallBean();
+						     
+						     eb.setHallID(token[0]);
+						     eb.setColNum(Integer.parseInt(token[1]));
+						     eb.setNoOfSeats(Integer.parseInt(token[2]));
+						     eb.setPrice(Integer.parseInt(token[3]));
+						     eb.setRowNum(Integer.parseInt(token[4]));
+						     Integer hallStatus = Integer.parseInt(token[5]);
+						     HallStatusBean HallStatusBean = session.get(HallStatusBean.class, hallStatus);
+						     eb.setHallStatusBean(HallStatusBean);
+						     
+						     
+						     session.save(eb);
+						    }
+						   } catch (IOException e) {
+						    System.err.println("新建HallBean表格時發生IO例外: " + e.getMessage());
+						   }
+						   session.flush();
+						   System.out.println("HallBean資料新增成功");
 //MovieRatingBean
 					   try (FileReader fr = new FileReader("data/MovieRating.dat"); BufferedReader br = new BufferedReader(fr);) {
 						    while ((line = br.readLine()) != null) {
@@ -303,8 +333,8 @@ public class EDMTableResetHibernate {
 						     }
 						     String[] token = line.split("\\|");
 						     MovieRatingBean eb = new MovieRatingBean();
-						     
-						     eb.setAge(Integer.parseInt(token[0]));
+						     eb.setMovieRatingID(Integer.parseInt(token[0]));
+						     eb.setAge(Integer.parseInt(token[1]));
 						     eb.setrating(token[1]);
 						     
 						     session.save(eb);
@@ -361,8 +391,7 @@ public class EDMTableResetHibernate {
 					     eb.setOrderDate(token[6]);
 					     eb.setOrderHours(Integer.parseInt(token[7]));
 					     eb.setStartTime(token[8]);
-					     Integer hallID = Integer.parseInt(token[9]);
-					     HallBean HallBean = session.get(HallBean.class, hallID);
+					     HallBean HallBean = session.get(HallBean.class, token[9]);
 					     eb.setHb(HallBean);
 					     Integer hallOrderStatusNo = Integer.parseInt(token[10]);
 					     HallOrderStatusBean HallOrderStatusBean = session.get(HallOrderStatusBean.class, hallOrderStatusNo);
@@ -422,6 +451,36 @@ public class EDMTableResetHibernate {
 							   }
 							   session.flush();
 							   System.out.println("TypeOfSeatBean資料新增成功");
+//SeatsBean
+							   try (FileReader fr = new FileReader("data/seats.dat"); BufferedReader br = new BufferedReader(fr);) {
+								    while ((line = br.readLine()) != null) {
+								     if (line.startsWith(UTF8_BOM)) {
+								      line = line.substring(1);
+								     }
+								     String[] token = line.split("\\|");
+								     SeatsBean eb = new SeatsBean();
+								     
+								     eb.setSeatID(token[0]);
+								     eb.setRow(token[1]);
+								     eb.setSeatNo(Integer.parseInt(token[2]));
+								     HallBean HallBean = session.get(HallBean.class, token[3]);
+								     eb.setHallBean(HallBean);
+								     Integer seatStatus = Integer.parseInt(token[4]);
+								     SeatStatusBean SeatStatusBean = session.get(SeatStatusBean.class, seatStatus);
+								     eb.setSeatStatusBean(SeatStatusBean);
+								     Integer typeOfSeat = Integer.parseInt(token[5]);
+								     TypeOfSeatBean TypeOfSeatBean = session.get(TypeOfSeatBean.class, typeOfSeat);
+								     eb.setTypeOfSeatBean(TypeOfSeatBean);
+								     
+								     
+								     
+								     session.save(eb);
+								    }
+								   } catch (IOException e) {
+								    System.err.println("新建seats表格時發生IO例外: " + e.getMessage());
+								   }
+								   session.flush();
+								   System.out.println("seats資料新增成功");
 				   
 				   	   
 			tx.commit();

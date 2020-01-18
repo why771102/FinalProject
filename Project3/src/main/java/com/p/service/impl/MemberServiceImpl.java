@@ -53,5 +53,11 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMember(MemberBean mb) {	
 		dao.updateMember(mb);
 	}
+	
+	@Transactional
+	@Override
+	public void updateLastLoginTime(String lastLoginTime, Integer memberID) {
+		dao.updateLastLoginTime(lastLoginTime, memberID);
+	}
 
 }
