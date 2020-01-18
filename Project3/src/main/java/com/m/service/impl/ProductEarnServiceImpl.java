@@ -25,7 +25,7 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 	@Transactional
 	@Override
 	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB) {
-		return dao.showAllFoodOrders(playStartTimeA, playStartTimeB);
+		return dao.showAllProductOrders(playStartTimeA, playStartTimeB);
 	}
 
 	@Transactional
