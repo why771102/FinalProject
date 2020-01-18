@@ -1,9 +1,9 @@
 package com.c.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.a.model.ShowTimeHistoryBean;
+import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatsBean;
 
 public interface ReservedSeatsService {
@@ -22,5 +22,8 @@ public interface ReservedSeatsService {
 	public void cancelReservedSeat(Integer showTimeID, String seatID);
 	
 	//要顯示給使用者看的畫面
-	public List<SeatsBean> getAllSeats(Integer showTimeID, Date date);
+	public List<ReservedSeatsBean> getAllSeats(Integer showTimeID, String date);
+	
+	public String[] showSeatChart(List<ReservedSeatsBean> listRSB, Integer colNum, Integer rowNum, String hallID);
+	
 }

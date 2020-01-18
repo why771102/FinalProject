@@ -1,6 +1,5 @@
 package com.c.dao.impl;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -123,8 +122,8 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SeatsBean> getAllSeats(Integer showTimeID, Date date) {
-		List<SeatsBean> list = new ArrayList<>();
+	public List<ReservedSeatsBean> getAllSeats(Integer showTimeID, String date) {
+		List<ReservedSeatsBean> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
 		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID and date = :date";
 		list = session.createQuery(hql).setParameter("showTimeID", showTimeID).setParameter("date", date)

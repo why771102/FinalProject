@@ -150,13 +150,13 @@ public class SeatsServiceImpl implements SeatsService {
 	@Override
 	public TypeOfSeatBean getTypeOfSeatById(Integer typeOfSeat) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getTypeOfSeatById(typeOfSeat);
 	}
 
 	@Override
 	public SeatStatusBean getSeatStatusById(Integer seatStatus) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getSeatStatusById(seatStatus);
 	}
 
 }
