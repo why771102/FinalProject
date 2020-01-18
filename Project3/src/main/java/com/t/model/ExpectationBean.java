@@ -32,7 +32,6 @@ public class ExpectationBean implements Serializable{
 	@NotNull
 	@Column(nullable=false)
 	Integer unexpective;
-//	Integer movieID;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
