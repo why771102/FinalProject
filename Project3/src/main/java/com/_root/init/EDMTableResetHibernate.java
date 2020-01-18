@@ -307,8 +307,8 @@ public class EDMTableResetHibernate {
 						     }
 						     String[] token = line.split("\\|");
 						     MovieRatingBean eb = new MovieRatingBean();
-						     
-						     eb.setAge(Integer.parseInt(token[0]));
+						     eb.setMovieRatingID(Integer.parseInt(token[0]));
+						     eb.setAge(Integer.parseInt(token[1]));
 						     eb.setrating(token[1]);
 						     
 						     session.save(eb);
