@@ -32,15 +32,19 @@
 					<td>密碼:</td>
 					<td><form:input id="password" path="password" type='text' /></td>
 				</tr>
+					<td><form:input id="lastLogInTime" path="lastLogInTime" type='hidden' /></td>
 				<tr>
-					<td><input type='submit' vaiue="確定" /></td>
+					<td><input type='submit' vaiue="確定" id="sumit1" /></td>
 					<td><input type='reset' vaiue="取消" /></td>
 				</tr>
 			</fieldset>
 		</form:form>
 </table>
 <script>
-
+$("#sumit1").click(function(){
+	var d = new Date();
+	$("#lastLogInTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
+});
 </script>
 </body>
 </html>

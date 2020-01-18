@@ -164,7 +164,18 @@ public class MemberController {
 		    cookie.setMaxAge(7 * 24 * 60 * 60);
 		    cookie.setPath("/");
 		    response.addCookie(cookie);
-
+		    
+		    Cookie[] cookies = request.getCookies();
+			String mID = null;
+			for (Cookie cookiess : cookies) {
+				String name = cookie.getName();
+				if(name.equals("memberID")) {
+					mID = cookie.getValue();
+				}
+			}
+			int nMID = Integer.parseInt(mID);
+			service.updateLastLoginTime(mb.getLastLogInTime(), nMID);
+		    
 		}else {
 			errorMsgMap.put("IDPwdError","帳號或密碼錯誤，請重新輸入!");
 		}
