@@ -52,7 +52,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	
 	//用ID查詢分類產品 
 		@Override
-		public List<ProductsBean> getCategory(Integer categoryID){
+		public List<ProductsBean> getCategoryID(Integer categoryID){
 			String hql="from ProductsBean pb where pb.categoryID=:categoryID";
 			Session session=factory.getCurrentSession();
 			List<ProductsBean> list=new ArrayList<>();

@@ -15,7 +15,7 @@ public interface ProductsDao {
 	//查詢分類產品們
 	public List<String> getCategories();
 	//用ID查詢分類產品 
-	public List<ProductsBean> getCategory(Integer category);
+	public List<ProductsBean> getCategoryID(Integer categoryID);
 	
 	//更新產品
 	public void updateProducts(ProductsBean product);
