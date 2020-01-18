@@ -42,7 +42,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	}
 	//查詢分類產品們
 		@Override
-		public List<String> getCategories(){
+		public List<String> getCategoriesID(){
 			String hql="Select Distinct p.categoryID from ProductsBean p";
 			Session session=factory.getCurrentSession();
 			List<String> list=new ArrayList<>();

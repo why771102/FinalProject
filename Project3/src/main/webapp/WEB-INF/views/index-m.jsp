@@ -12,8 +12,8 @@
 	<hr>
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
-			<td width="350"><p align="left" /> <a href='s'>Ticket銷售 p1</a><BR></td>
-			<td width="350"><p align="left" /> <a href='emps'>Product銷售 p1</a><BR>
+			<td width="350"><p align="left" /> <a href='ticket/sale'>Ticket銷售 p1</a><BR></td>
+			<td width="350"><p align="left" /> <a href='product/sale'>Product銷售 p1</a><BR>
 			</td>
 		</tr>
 

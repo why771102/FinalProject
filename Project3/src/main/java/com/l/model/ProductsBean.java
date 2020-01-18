@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-
+import com.a.model.MovieBean;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -29,14 +29,16 @@ public class ProductsBean implements Serializable {
 	String productName;
 	
 //	Integer category;
-	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="category")
+//	private CategoriesBean CategoriesBean;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="categoryID")
-	private CategoriesBean CategoriesBean;
-
-
+	private CategoriesBean categoryID;
 	@Transient
-	Integer categoryID;
+	Integer Category;
+	
 	
 	@NotNull
 	@Column(nullable=false)
@@ -49,7 +51,7 @@ public class ProductsBean implements Serializable {
 	Integer cost;
 
 	public ProductsBean() {}
-	public ProductsBean(Integer productID,String productName,Integer categoryID,Integer unitPrice,Integer unitStock,Integer cost) {
+	public ProductsBean(Integer productID,String productName,CategoriesBean categoryID,Integer unitPrice,Integer unitStock,Integer cost) {
 		this.productID=productID;
 		this.productName=productName;
 		this.categoryID=categoryID;
@@ -75,21 +77,21 @@ public class ProductsBean implements Serializable {
 		this.productName = productName;
 	}
 
-	public CategoriesBean getCategoriesBean() {
-		return CategoriesBean;
-	}
-	public void setCategoriesBean(CategoriesBean categoriesBean) {
-		CategoriesBean = categoriesBean;
-	}
-	
-	public Integer getCategoryID() {
+
+
+
+	public CategoriesBean getCategoryID() {
 		return categoryID;
 	}
-
-	public void setCategoryID(Integer categoryID) {
+	public void setCategoryID(CategoriesBean categoryID) {
 		this.categoryID = categoryID;
 	}
-
+	public Integer getCategory() {
+		return Category;
+	}
+	public void setCategory(Integer category) {
+		Category = category;
+	}
 	public Integer getUnitPrice() {
 		return unitPrice;
 	}

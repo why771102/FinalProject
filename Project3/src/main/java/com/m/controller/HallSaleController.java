@@ -27,21 +27,42 @@ public class HallSaleController {
 		this.service = service;
 	}
 	
+	//到hs1
 	@GetMapping(value = "/hall/sale")
-	public String outputHsb(Model model) {
+	public String toHallSale(Model model) {
 		HallSaleBean hsb = new HallSaleBean();
-		model.addAttribute("hallSaleBean", hsb);
+		model.addAttribute("hallSaleBean1", hsb);
 		return "m/hallSale1";
 	}
 	
 	//hallSale1資料傳輸
 	@PostMapping(value = "/hall/sale")
 	public String getHallSaleOrders(Model model,
-			@RequestParam("sDate")String sDate, 
-			@RequestParam("sDate")String eDate){
+			@RequestParam("start")String sDate, 
+			@RequestParam("end")String eDate){
 		List<HallSaleBean> hsbList = service.getHallSaleOutput(service.getHallSaleLists
 				(service.getHallHrSubtotal(sDate,eDate)));
 		model.addAttribute("HallSaleBeanList", hsbList);
 		return "m/hallSale1";
 	}
+	
+//	//到hs2
+//	@GetMapping(value = "/hall/sale/date")
+//	public String toHallSaleDate(Model model) {
+//		HallSaleBean hsb = new HallSaleBean();
+//		model.addAttribute("hallSaleBean2", hsb);
+//		return "m/hallSale2";
+//	}
+//	
+//	//hallSale2資料傳輸
+//	@PostMapping(value = "/date")
+//	public String getHallSaleOrders1(Model model,
+//			@RequestParam("sDate")String sDate, 
+//			@RequestParam("eDate")String eDate){
+//		List<HallSaleBean> hsbList = service.getHallSaleOutput(service.getHallSaleLists
+//				(service.getHallHrSubtotal(sDate,eDate)));
+//		model.addAttribute("HallSaleBeanList", hsbList);
+//		return "m/hallSale2";
+//	}
+	
 }

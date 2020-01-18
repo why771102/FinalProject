@@ -31,15 +31,15 @@ public class ProductsController {
 		return "l/products";
 	}
 	//測試查詢類別們
-		@RequestMapping("/queryCategories")
-		public String queryCategories(Model model) {
-			List<String> list=service.getCategories();
+		@RequestMapping("/queryCategoriesID")
+		public String queryCategoriesID(Model model) {
+			List<String> list=service.getCategoriesID();
 			model.addAttribute("CategoryList", list);
-			return "l/category";
+			return "l/categoryID";
 		}
 		//測試查詢類別用ID 
 			@RequestMapping("/products/{categoryID}")
-				public String queryCategory(@PathVariable("categoryID")Integer categoryID,Model model) {
+				public String queryCategoryID(@PathVariable("categoryID")Integer categoryID,Model model) {
 					List<ProductsBean> products=service.getCategoryID(categoryID);
 					model.addAttribute("Products", products);
 					return "l/products";

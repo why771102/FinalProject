@@ -8,9 +8,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.a.model.GenreBean;
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.c.model.HallBean;
 import com.c.model.NumberOfSeatsBean;
 import com.l.model.MOrderBean;
 import com.m.dao.TicketSaleDao;
@@ -49,25 +51,26 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		List<TicketSaleBean> tsbListFromMovie = new ArrayList<>();
 
 		for (MOrderBean mob : modList) {
-			mob.getShowTimeHistoryBean(); // getShowTimeHistoryBean
-			mob.getShowTimeHistoryBean().getHall(); // getHallBean
-			mob.getShowTimeHistoryBean().getRun(); // getRunningBean
-			mob.getShowTimeHistoryBean().getRun().getMovie(); // getMovieBean
+			ShowTimeHistoryBean sth = mob.getShowTimeHistoryBean(); // getShowTimeHistoryBean
+			HallBean hb = mob.getShowTimeHistoryBean().getHall(); // getHallBean
+			RunningBean rb = mob.getShowTimeHistoryBean().getRun(); // getRunningBean
+			MovieBean mb = mob.getShowTimeHistoryBean().getRun().getMovie(); // getMovieBean
+			GenreBean gb = mob.getShowTimeHistoryBean().getRun().getMovie().getGenreBean(); //getGenreBean
 			
 			mob.getOrdersID(); //用來比對odb orderID用
-			Integer showtimeID = mob.getShowTimeHistoryBean().getShowTimeId();
-			String title = mob.getShowTimeHistoryBean().getRun().getMovie().getTitle();
-			Integer genre = mob.getShowTimeHistoryBean().getRun().getMovie().getGenre();
-			Integer movieHours = mob.getShowTimeHistoryBean().getRun().getMovie().getRunningTime(); // 片長(分鐘)
+			Integer showtimeID = sth.getShowTimeId();
+			String title = mb.getTitle();
+			Integer genre = gb.getGenreID(); //電影類型
+			Integer movieHours = mb.getRunningTime(); // 片長(分鐘)
 //		Double profitRatio = mob.getShowTimeHistoryBean().getRun().getMovie().getProfitRatio(); 營收表要
 //			String hallID = mob.getShowTimeHistoryBean().getHall().getHallID();
-			Integer hallSeats = session.get(NumberOfSeatsBean.class, mob.getShowTimeHistoryBean().getHall().getHallID())
+			Integer hallSeats = session.get(NumberOfSeatsBean.class, hb.getHallID())
 					.getNoOfSeats(); // 取得那廳的座位數
-			String releaseDate = mob.getShowTimeHistoryBean().getRun().getRelease(); // 上映日
-			String offDate = mob.getShowTimeHistoryBean().getRun().getOffDate(); // 實際下檔
-			String expectOffDate = mob.getShowTimeHistoryBean().getRun().getExpectedOffDate(); // 預計下檔
+			String releaseDate = rb.getRelease(); // 上映日
+			String offDate = rb.getOffDate(); // 實際下檔
+			String expectOffDate = rb.getExpectedOffDate(); // 預計下檔
 			//用來比對input輸入欄位的時間值
-			String playStartTime = mob.getShowTimeHistoryBean().getPalyStartTime(); // 電影播放年月日 => 消費計算的日期
+			String playStartTime = sth.getPalyStartTime(); // 電影播放年月日 => 消費計算的日期
 
 			TicketSaleBean tsb = new TicketSaleBean(showtimeID, title, genre, movieHours, 0, hallSeats, 0, 0,
 					0.0, 0L, releaseDate, expectOffDate, offDate, playStartTime);
@@ -80,7 +83,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 	@Override
 	// 取得訂單販售資訊欄位的值
 	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList) {
-		String hql = "SELECT mod.productID, p.category, mod.unitPrice, mod.quantity, mod.discount"
+		String hql = "SELECT mod.productID, p.category, p.unitPrice, mod.quantity, mod.discount"
 				+ "FROM mOrder mo LEFT JOIN mo.mOrderDetail mod"
 				+ "LEFT JOIN mod.products p WHERE ordersID = :ordersID";
 		Session session = factory.getCurrentSession();

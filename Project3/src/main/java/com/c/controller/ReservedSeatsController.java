@@ -46,7 +46,7 @@ public class ReservedSeatsController {
 	@GetMapping("/reservedSeats/showSeats")
 	public String insertReservedSeats() {
 		//insert seats into reserved seats table;
-//		List<ShowTimeHistoryBean> list = rservice.insertSeats();
+		rservice.insertSeats();
 		
 		//insert seat number into number of seats table;
 	

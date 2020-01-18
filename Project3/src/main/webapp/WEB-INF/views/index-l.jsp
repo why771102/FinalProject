@@ -18,7 +18,7 @@
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='products'>查詢所有產品</a><BR>
 			</td>
-			<td width="350"><p align="left" /> <a href='queryCategories'>查詢所有類別</a><BR>
+			<td width="350"><p align="left" /> <a href='queryCategoriesID'>查詢所有類別</a><BR>
 			</td>
 		</tr>
 

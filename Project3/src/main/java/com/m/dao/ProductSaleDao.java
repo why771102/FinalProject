@@ -8,17 +8,18 @@ public interface ProductSaleDao {
 	//get categoryNames as select option
 	public String getCategoryNames();
 	//show all food orders
-	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB);
+	public List<ProductSaleBean> showAllProductOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders
 	public List<ProductSaleBean> getPeripheralOrders(String orderDateA, String orderDateB);
 	//4, 5
 	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB);
 	//4+5
-	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA, String playStartTimeB);
+	public List<ProductSaleBean> showFoodOrders(String playStartTimeA, String playStartTimeB);
 	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))
-	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB);
-	//6+7+8..
-	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB);
+//	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB);
+
+//	//6+7+8..
+//	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB);
 	
 	public List<String> getDistinctProductNames();
 	
