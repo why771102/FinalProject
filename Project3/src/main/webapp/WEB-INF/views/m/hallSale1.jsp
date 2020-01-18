@@ -27,13 +27,8 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">包廳銷售資訊總覽</h2>
-	<form:form method='POST' modelAttribute="HallSaleBeanList" enctype="multipart/form-data" >
+	<form:form method='POST' modelAttribute="hallSaleBean" enctype="multipart/form-data" >
 	<div>
-		電影類型： <select>
-			<option>輔導級</option>
-		</select> &nbsp; &nbsp; &nbsp;電影名稱 <select>
-			<option>Java人生</option>
-		</select>
 		<div id="timePicker"
 			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
 			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
@@ -176,6 +171,19 @@
 					}
 				}, cb);
 		cb(start, end);
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/seats/addSeats",
+			data : {
+				start: start,
+				end: end
+			},
+			type : "POST",
+			success : function() {
+				alert("新增成功!");
+// 				window.location.href = "${pageContext.request.contextPath}/index-c";
+			}
+		});
 	});
 	
 	$("#start").value(start);

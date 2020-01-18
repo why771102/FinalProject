@@ -56,7 +56,7 @@ public class MovieBean implements Serializable {
 	Integer status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="genreID")
+	@JoinColumn(name="genreID", insertable = false, updatable = false)
 	private GenreBean genre;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
