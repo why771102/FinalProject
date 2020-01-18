@@ -30,6 +30,8 @@ public class MovieDaoImpl implements MovieDao {
 		Session session =factory.getCurrentSession();
 		System.out.println(movie.getGenre());
 		GenreBean gb = getGenreBeanById(movie.getGenre());
+		System.out.println((movie.getStatus()));
+		System.out.println((movie.getMovieRating()));
 		MovieStatusBean msb = getMovieStatusBeanById(movie.getStatus());
 		MovieRatingBean mrb  = getMovieRatingBeanById (movie.getMovieRating());
 		movie.setGenreBean(gb);
@@ -90,11 +92,14 @@ public class MovieDaoImpl implements MovieDao {
     //改變movieSatus (未上映 上映 下檔) //ok
 	//setParameter 裡面的型態 要跟你要查詢的欄位型態一樣
 	@Override
-	public boolean updateMovieStatus(int movieID, int status) {
-		String hql ="update MovieBean set status =:changeStauts where movieID =:ID";
+	public boolean updateMovieStatus(MovieBean movie, int status) {
+		String hql ="update MovieBean set movieStatus =:changeStauts where movieID =:ID";
+		MovieStatusBean msb = getMovieStatusBeanById(status);
 		Session session =factory.getCurrentSession();
+		movie.setMovieStatusBean(msb);
+	
 		int n = session.createQuery(hql).setParameter("changeStauts", status)
-				                        .setParameter("ID", movieID)
+				                        .setParameter("ID", movie.getMovieID())
 				                        .executeUpdate();
 		if(n==0) {
 			return false;

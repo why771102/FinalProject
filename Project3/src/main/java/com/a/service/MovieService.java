@@ -105,7 +105,7 @@ public interface MovieService {
 		//判斷Status =0 為沒有上映過  // Status =1 上映中 (已經上映的電影)
 		//Status =0 可以用 checkStatusComingSoon
 		//改變上映狀態  更改電影狀態
-		public boolean updateMovieStatus(int movieID, int status);
+//		public boolean updateMovieStatus(int movieID, int status);
 		//putMovieBeanInRunBean
 	
 	//已上映電影 取P/t值 
@@ -175,6 +175,7 @@ public interface MovieService {
 	MovieRatingBean getMovieRatingBeanById(Integer movieRatingID);
 	MovieStatusBean getMovieStatusBeanById(Integer movieStatusID);
 	RunningStatusBean getRunningStatusBeanById(Integer runningStatusID);
+	boolean updateMovieStatus(MovieBean movie, int status);
 	
 	
 

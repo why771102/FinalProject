@@ -95,9 +95,9 @@ public class movieServiceImpl implements MovieService {
 
 	@Transactional
 	@Override
-	public boolean updateMovieStatus(int movieID, int status) {
+	public boolean updateMovieStatus(MovieBean movie, int status) {
 		// TODO Auto-generated method stub
-		return MDao.updateMovieStatus(movieID, status);
+		return MDao.updateMovieStatus(movie, status);
 	}
 
 	@Transactional

@@ -16,7 +16,7 @@ public interface MovieDao {
 
 
 	// 更改電影狀態
-	public boolean updateMovieStatus(int movieID, int status);
+	public boolean updateMovieStatus(MovieBean movie, int status);
 
 	// 取出這星期有沒有被包場
 //	public HallOrderBean getHallOrder(Timestamp date);

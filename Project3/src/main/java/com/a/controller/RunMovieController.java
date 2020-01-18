@@ -76,6 +76,7 @@ public class RunMovieController {
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("傳入不允許的欄位");
 		}
+		mb.setStatus(0);
 
 //			System.out.println("title:"+mb.getTitle()+"合約:"+mb.getContractDate()+"預估 :"+mb.getExpectedProfit()
 //			                   +"拆帳:"+mb.getProfitRatio()+"狀態:"+mb.getStatus()+"片長:"+mb.getRunningTime()
@@ -208,7 +209,7 @@ public class RunMovieController {
 		// Sort Hall orderby 座位數(大到小)
 		Comparator Hallcomp = new Hallcomparator();
 		Collections.sort(hb_list, Hallcomp);
-//
+		System.out.println("============= 確認那些影廳可以用  結束:================= " );
 //	if(d>1) {
 //         	Allrb_list.clear();
 //		  shouldRB_list.clear();
@@ -226,24 +227,16 @@ public class RunMovieController {
 		List<RunningBean> shouldRB_list = mService.checkContract(Allrb_list);
 		System.out.println("一定要排片:" + shouldRB_list);
 	
-
-		
 		// PT排片 public setAllMoviePT( List<RunningBean>Allrb_list,List<ShowtimeBean>runMovie_list){ }
 		// 分出已上映 未上映 setPTValue
 		 // 
 		setAllMoviePT(Allrb_list,runMovie_list);
-			
-		
-		
-		
-		
-		
-		
-		
+		System.out.println("=============setAllMoviePT 結束:================= " );
 		// 從第一廳開始排
 		for (int Hall_i = 0; Hall_i < Hallcount; Hall_i++) {
+			System.out.println("第幾廳: " + (Hall_i + 1)+hb_list.get(Hall_i));
 			runDateTime = LocalDate.now().plusDays(1).atTime(9, 0);
-			System.out.println("第幾廳: " + (Hall_i + 1));
+		
 			List<ShowtimeBean> OrderHall_list = new ArrayList<>(); // 存包場
 			List<ShowtimeBean> Contract_list = new ArrayList<>(); // 存合約
 			List<ShowtimeBean> MovieInsetHall_list = new ArrayList<>(); // 存按照PT值排好的順序
@@ -255,7 +248,7 @@ public class RunMovieController {
 			// 確認包場
 			// void checkHallOrder(LocalDateTime runDateTime ,int i, List<HallBean> hb_list)
 			HallTime = HallTime - checkHallOrder( runDateTime , hb_list.get(Hall_i) , HallTime) ;
-
+			System.out.println("=============包場 結束:================= " );
 			System.out.println("合約數量:" + Contract_list.size());
 			System.out.println("必須排數量:" + shouldRB_list.size());
 //			System.out.println("InOneHall:" + InOneHall);
@@ -285,7 +278,7 @@ public class RunMovieController {
 				System.out.println("第幾個聽:" + Hall_i);
 			}
 			System.out.println("contract1----HallTime----:" + HallTime);
-
+			System.out.println("=============合約結束:================= " );
 //            if(d>1) {
 //            	Allrb_list.clear();
 //            }
@@ -339,7 +332,7 @@ public class RunMovieController {
 
 			// int minusTime = minusTime(MovieInsetHall_list);
 			int runtimeTotal = 0;
-			int thisTime = 900;
+			int thisTime = 960;
 
 			for (ShowtimeBean stb : MovieInsetHall_list) {
 
@@ -377,7 +370,7 @@ public class RunMovieController {
 				// 表示電影
 				runtimeTotal = runtime + MovieInsetHall_list.get(s).getRunningTime();
 				System.out.println(" runtime2:" + runtimeTotal);
-				if (runtimeTotal > 720 && runtime <= 720 + 180) {// 720
+				if (runtimeTotal > 780 && runtime <= 780 + 180) {// 720
 					FinalShowMovie_list.add(0, MovieInsetHall_list.get(s));
 					FinalShowMovie_list.add(restTime);
 					System.out.println(" 取9-12 ----------------");
@@ -416,6 +409,7 @@ public class RunMovieController {
 			}
 			System.out.println("--------------------THE END--------------------------");
 		} // 廳
+		System.out.println("--------------------THE END--------------------------");
 
 //		} //七天的迴圈
 		return "index-a";// URL 跟 eclip 擺放位置相關
@@ -453,7 +447,7 @@ public class RunMovieController {
 				// 新片取預估ＰＴ
 				ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
 						rb.getMovie().getExpectedProfit(), rb);
-				mService.updateMovieStatus(rb.getMovie().getMovieID(), 1);
+				mService.updateMovieStatus(rb.getMovie(), 1);
 				runMovie_list.add(movie);
 
 			} else if (rb.getMovie().getMovieStatusBean().getStatusID() == 1) {
