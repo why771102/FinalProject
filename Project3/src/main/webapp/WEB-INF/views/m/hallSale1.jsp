@@ -26,8 +26,8 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">包廳銷售資訊總覽</h2>
-	<form:form method='POST' modelAttribute="hallSaleBean" enctype="multipart/form-data" >
+	<h2 style="text-align: center">包廳銷售總覽</h2>
+	<form:form method='POST' modelAttribute="hallSaleBean1" enctype="multipart/form-data" >
 	<div>
 		<div id="timePicker"
 			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
@@ -46,62 +46,13 @@
 				<th>銷售總金額</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="insertHere">	
 			<tr>
 				<td></td>
-				<td><a href="超連結">Tiger Nixo</a></td>
+				<td><a href="${pageContext.request.contextPath}/hall/sale/date">Tiger Nixo</a></td>
 				<td>System Architect</td>
 				<td>Edinburgh</td>
 				<td>61</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Garrett Winters</td>
-				<td>Accountant</td>
-				<td>Tokyo</td>
-				<td>63</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Ashton Cox</td>
-				<td>Junior Technical Author</td>
-				<td>San Francisco</td>
-				<td>66</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Cedric Kelly</td>
-				<td>Senior Javascript Developer</td>
-				<td>Edinburgh</td>
-				<td>22</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Airi Satou</td>
-				<td>Accountant</td>
-				<td>Tokyo</td>
-				<td>33</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Brielle Williamson</td>
-				<td>Integration Specialist</td>
-				<td>New York</td>
-				<td>61</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Herrod Chandler</td>
-				<td>Sales Assistant</td>
-				<td>San Francisco</td>
-				<td>59</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Rhona Davidson</td>
-				<td>Integration Specialist</td>
-				<td>Tokyo</td>
-				<td>55</td>
 			</tr>
 		</tbody>
 		<tfoot>
@@ -114,9 +65,6 @@
 			</tr>
 		</tfoot>
 	</table>
-	
-	<form:hidden path="sDate"/>
-	<form:hidden path="eDate"/>
 	</form:form>
 	
 	<script>
@@ -138,6 +86,12 @@
 				cell.innerHTML = i + 1;
 			});
 		}).draw();
+		
+		//動態新增表格
+// 		function showInfo(i){
+// 		$('#insertHere').append('<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date">"'+ i.hallID +'"</a></td><td>"'+ i.price +'"</td><td>"'+ i.orderHours +'"</td><td>"'+ i.hallSubtotal +'"</td></tr>');
+// 		};
+// 		console.log("test=> " + ${HallSaleBeanList});
 	});
 
 	// timepicker
@@ -149,6 +103,22 @@
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
 		}
+		console.log("ssss" + start.format('YYYY-MM-DD'));
+		
+		//傳送日期的值
+		$.ajax({
+			url : "${pageContext.request.contextPath}/hall/sale",
+			data : {
+				start: start.format('YYYY-MM-DD'),
+				end: start.format('YYYY-MM-DD')
+			},
+			type : "POST",
+			success : function() {
+				alert("新增成功!");
+// 				window.location.href = "${pageContext.request.contextPath}/index-c";
+			}
+		});
+		
 		
 		// MMMM D, YYYY
 		$('#timePicker').daterangepicker(
@@ -171,23 +141,7 @@
 					}
 				}, cb);
 		cb(start, end);
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/seats/addSeats",
-			data : {
-				start: start,
-				end: end
-			},
-			type : "POST",
-			success : function() {
-				alert("新增成功!");
-// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-			}
-		});
 	});
-	
-	$("#start").value(start);
-	$("#end").value(end);
 </script>
 </body>
 </html>

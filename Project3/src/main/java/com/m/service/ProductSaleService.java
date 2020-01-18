@@ -6,17 +6,20 @@ import java.util.List;
 import com.m.model.ProductSaleBean;
 
 public interface ProductSaleService {
-	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB);
+	//新增cate下拉式選單
+	public String getCategoryNames();
+	
+	public List<ProductSaleBean> showAllProductOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders
 	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB);
 	//4, 5
 	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB);
 	//4+5
-	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA, String playStartTimeB);
+	public List<ProductSaleBean> showFoodOrders(String playStartTimeA, String playStartTimeB);
 	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))
-	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB);
-	//6+7+8..
-	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB);
+//	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB);
+//	//6+7+8..
+//	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB);
 	
 	//使用上面方法後要加這個方法才能輸出
 	public List<String> getDistinctProductNames();

@@ -19,11 +19,17 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	public void setDao(ProductSaleDao dao) {
 		this.dao = dao;
 	}
+	
+	@Transactional
+	@Override
+	public String getCategoryNames() {
+		return dao.getCategoryNames();
+	}
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB) {
-		return dao.showAllFoodOrders(playStartTimeA, playStartTimeB);
+	public List<ProductSaleBean> showAllProductOrders(String playStartTimeA, String playStartTimeB) {
+		return dao.showAllProductOrders(playStartTimeA, playStartTimeB);
 	}
 
 	@Transactional
@@ -40,23 +46,23 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA,
+	public List<ProductSaleBean> showFoodOrders(String playStartTimeA,
 			String playStartTimeB) {
-		return dao.showFoodOrders(categoryNameA, categoryNameB, playStartTimeA, playStartTimeB);
+		return dao.showFoodOrders(playStartTimeA, playStartTimeB);
 	}
 
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
-		return dao.showPeripheralOrder(categoryName, orderDateA, orderDateB);
-	}
+//	@Transactional
+//	@Override
+//	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
+//		return dao.showPeripheralOrder(categoryName, orderDateA, orderDateB);
+//	}
 
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA,
-			String orderDateB) {
-		return dao.showPeriperalOrders(categoryNameA, categoryNameB, orderDateA, orderDateB);
-	}
+//	@Transactional
+//	@Override
+//	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA,
+//			String orderDateB) {
+//		return dao.showPeriperalOrders(categoryNameA, categoryNameB, orderDateA, orderDateB);
+//	}
 	
 	
 	@Transactional
@@ -146,5 +152,4 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		}
 		return PSBList;
 	}
-	
 }

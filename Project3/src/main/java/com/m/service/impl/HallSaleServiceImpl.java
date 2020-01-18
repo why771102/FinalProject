@@ -2,6 +2,7 @@ package com.m.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,8 @@ public class HallSaleServiceImpl implements HallSaleService {
 		LocalDate Ed = LocalDate.parse(eDate);
 
 		for (HallOrderBean hob : getHobList) {
-			LocalDate orderDate = LocalDateTime.parse(hob.getOrderDate()).toLocalDate();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+			LocalDate orderDate = LocalDateTime.parse(hob.getOrderDate(),formatter).toLocalDate();
 			long SdOdDays = ChronoUnit.DAYS.between(Sd, orderDate);
 			long OdEdDays = ChronoUnit.DAYS.between(orderDate, Ed);
 

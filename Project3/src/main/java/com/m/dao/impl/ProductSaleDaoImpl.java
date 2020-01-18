@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.l.model.CategoriesBean;
 import com.m.dao.ProductSaleDao;
 import com.m.model.ProductSaleBean;
 
@@ -22,13 +24,17 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String getCategoryNames() {
-		String hql = "SELECT c.categoryName FROM categories c";
+		String hql = "SELECT c.categoryName FROM CategoriesBean c "
+				+ "WHERE c.categoryID BETWEEN 4 AND 6";
 		Session session = factory.getCurrentSession();
 		List<String> categoryNames = new ArrayList<>();
 		categoryNames = session.createQuery(hql).getResultList();
         
 		String ans = "";
-        ans += "<SELECT name='categoryNames'><option value=''>請選擇</option>";
+        ans += "<SELECT id='categoryNames' onchange='showCate()'>"
+        		+ "<option value='' selected='' disabled=''>請選擇</option>"
+        		+ "<option value='all'>全部商品</option>"
+        		+ "<option value='allFood'>餐點總覽</option>";
         for (String cate : categoryNames) {
                 ans += "<option value='" + cate + "'>" + cate + "</option>";
         }
@@ -39,7 +45,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	//全部之總飲食
-	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB) {
+	public List<ProductSaleBean> showAllProductOrders(String playStartTimeA, String playStartTimeB) {
 		String hql = "SELECT productName, mod.unitPrice, mod.discount, mod.quantity, cost FROM products p left join p.mOrderDetail mod"
 				+ "left join mod.mOrder mo left join mo.showTimeHistory sth "
 				+ "WHERE sth.playStartTime BETWEEN :playStartTimeA AND :playStartTimeB";
@@ -91,10 +97,10 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	//選下拉總飲食p1 
-	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA, String playStartTimeB) {
+	public List<ProductSaleBean> showFoodOrders(String playStartTimeA, String playStartTimeB) {
 		String hql = "SELECT p.productName, mod.unitPrice, mod.discount, mod.quantity, p.cost FROM products p left join p.categories c"
 				+ "p.mOrderDetail mod left join mod.mOrder mo left join mo.showTimeHistory sth WHERE sth.playStartTime BETWEEN"
-				+ ":playStartTimeA AND :playStartTimeB AND c.categoryName BETWEEN :categoryNameA AND :categoryNameB";
+				+ ":playStartTimeA AND :playStartTimeB AND c.categoryID BETWEEN 4 AND 5";
 		//		on p.categoryID = c.categoryID
 		//		on p.productID = mod.productID
 		//	    on mod.ordersID = mo.ordersID
@@ -102,48 +108,46 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		Session session = factory.getCurrentSession();
 		List<ProductSaleBean> foodOrdersList = new ArrayList<>();
 		foodOrdersList = session.createQuery(hql).setParameter("playStartTimeA", playStartTimeA)
-				.setParameter("playStartTimeB", playStartTimeB)
-				.setParameter("categoryNameA", categoryNameA)
-				.setParameter("categoryNameB", categoryNameB).getResultList();
+				.setParameter("playStartTimeB", playStartTimeB).getResultList();
 		return foodOrdersList;
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	//選下拉單個周邊p1
-	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
-		String hql = "SELECT p.productName, scod.unitPrice, scod.discount, scod.quantity, p.cost FROM products p left join"
-				+ "p.categories c left join p.SCOrderDetail scod left join scod.SCOrders sco WHERE c.categoryName = :categoryName"
-				+ "AND sco.orderDate BETWEEN :orderDateA AND :orderDateB";
-		//	on p.categoryID = c.categoryID
-		//	on p.productID = scod.productID;
-		//	on scod.SCOrderID = sco.SCOrderID;
-		Session session = factory.getCurrentSession();
-		List<ProductSaleBean> periperalOrderList  = new ArrayList<>();
-		periperalOrderList = session.createQuery(hql).setParameter("categoryName", categoryName)
-				.setParameter("orderDateA", orderDateA)
-				.setParameter("orderDateB", orderDateB).getResultList();
-		return periperalOrderList;
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	//選下拉單個周邊p1
+//	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
+//		String hql = "SELECT p.productName, scod.unitPrice, scod.discount, scod.quantity, p.cost FROM products p left join"
+//				+ "p.categories c left join p.SCOrderDetail scod left join scod.SCOrders sco WHERE c.categoryName = :categoryName"
+//				+ "AND sco.orderDate BETWEEN :orderDateA AND :orderDateB";
+//		//	on p.categoryID = c.categoryID
+//		//	on p.productID = scod.productID;
+//		//	on scod.SCOrderID = sco.SCOrderID;
+//		Session session = factory.getCurrentSession();
+//		List<ProductSaleBean> periperalOrderList  = new ArrayList<>();
+//		periperalOrderList = session.createQuery(hql).setParameter("categoryName", categoryName)
+//				.setParameter("orderDateA", orderDateA)
+//				.setParameter("orderDateB", orderDateB).getResultList();
+//		return periperalOrderList;
+//	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	//選下拉總周邊p1 
-	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB) {
-		String hql = "SELECT p.productName, scod.unitPrice, scod.discount, scod.quantity, p.cost FROM products p left join "
-				+ "p.categories c left join p.SCOrderDetail scod left join scod.SCOrders sco WHERE c.categoryName"
-				+ "BETWEEN :categoryNameA AND :categoryNameB AND sco.orderDate BETWEEN :orderDateA AND :orderDateB";
-		//	on p.categoryID = c.categoryID
-		//	on p.productID = scod.productID;
-		//	on scod.SCOrderID = sco.SCOrderID;
-		Session session = factory.getCurrentSession();
-		List<ProductSaleBean> periperalOrders  = new ArrayList<>();
-		periperalOrders = session.createQuery(hql).setParameter("categoryNameA", categoryNameA)
-				.setParameter("categoryNameB", categoryNameB)
-				.setParameter("orderDateA", orderDateA)
-				.setParameter("orderDateB", orderDateB).getResultList();
-		return periperalOrders;
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	//選下拉總周邊p1 
+//	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB) {
+//		String hql = "SELECT p.productName, scod.unitPrice, scod.discount, scod.quantity, p.cost FROM products p left join "
+//				+ "p.categories c left join p.SCOrderDetail scod left join scod.SCOrders sco WHERE c.categoryName"
+//				+ "BETWEEN :categoryNameA AND :categoryNameB AND sco.orderDate BETWEEN :orderDateA AND :orderDateB";
+//		//	on p.categoryID = c.categoryID
+//		//	on p.productID = scod.productID;
+//		//	on scod.SCOrderID = sco.SCOrderID;
+//		Session session = factory.getCurrentSession();
+//		List<ProductSaleBean> periperalOrders  = new ArrayList<>();
+//		periperalOrders = session.createQuery(hql).setParameter("categoryNameA", categoryNameA)
+//				.setParameter("categoryNameB", categoryNameB)
+//				.setParameter("orderDateA", orderDateA)
+//				.setParameter("orderDateB", orderDateB).getResultList();
+//		return periperalOrders;
+//	}
 
 	@SuppressWarnings("unchecked")
 	@Override
