@@ -30,7 +30,8 @@ public class ProductsBean implements Serializable {
 	
 //	Integer category;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="category")
+	
+	@JoinColumn(name="categoryID")
 	private CategoriesBean CategoriesBean;
 
 

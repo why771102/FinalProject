@@ -48,7 +48,7 @@ public class MovieBean implements Serializable {
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String plotSummary;
 	Blob photo;
-	@Column(nullable=false, columnDefinition = "tinyint")
+	@Transient
 	Integer status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -59,12 +59,16 @@ public class MovieBean implements Serializable {
 	@JoinColumn(name="movieRating")
 	private MovieRatingBean movieRatingBean;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="movieStatus")
+	private  MovieStatusBean movieStatusBean;
+	
 	
 	public MovieBean() {}
 	
 	public MovieBean(Integer movieID, String title, String contractDate, Integer expectedProfit, Double profitRatio,
 			Integer runningTime, String director, String cast, MovieRatingBean movieRatingBean, GenreBean genreBean, String trailer,
-			String plotSummary, Blob photo, Integer status) {
+			String plotSummary, Blob photo, MovieStatusBean movieStatusBean) {
 		super();
 		this.movieID = movieID;
 		this.title = title;
@@ -79,12 +83,12 @@ public class MovieBean implements Serializable {
 		this.trailer = trailer;
 		this.plotSummary = plotSummary;
 		this.photo = photo;
-		this.status = status;
+		this.movieStatusBean = movieStatusBean;
 	}
 
 	public MovieBean(Integer movieID, String title, String contractDate, Integer expectedProfit, Double profitRatio,
 			Integer runningTime, String director, String cast, Integer movieRating, Integer genre, String trailer,
-			String plotSummary, Blob photo, Integer status) {
+			String plotSummary, Blob photo ,Integer status) {
 		this.movieID = movieID;
 		this.title = title;
 		this.contractDate = contractDate;
@@ -206,6 +210,14 @@ public class MovieBean implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public MovieStatusBean getMovieStatusBean() {
+		return movieStatusBean;
+	}
+
+	public void setMovieStatusBean(MovieStatusBean movieStatusBean) {
+		this.movieStatusBean = movieStatusBean;
 	}
 
 

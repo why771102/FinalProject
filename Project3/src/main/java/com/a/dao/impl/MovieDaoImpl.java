@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.a.dao.MovieDao;
 import com.a.model.GenreBean;
 import com.a.model.MovieBean;
+import com.a.model.MovieRatingBean;
+import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
 import com.p.model.HallOrderBean;
 @Repository
@@ -28,7 +30,11 @@ public class MovieDaoImpl implements MovieDao {
 		Session session =factory.getCurrentSession();
 		System.out.println(movie.getGenre());
 		GenreBean gb = getGenreBeanById(movie.getGenre());
+		MovieStatusBean msb = getMovieStatusBeanById(movie.getStatus());
+		MovieRatingBean mrb  = getMovieRatingBeanById (movie.getMovieRating());
 		movie.setGenreBean(gb);
+		movie.setMovieStatusBean(msb);
+		movie.setMovieRatingBean(mrb);
 		session.save(movie);
 		
 
@@ -102,6 +108,20 @@ public class MovieDaoImpl implements MovieDao {
 		Session session =factory.getCurrentSession();
 		GenreBean gb =session.get(GenreBean.class,  genreID);
 		return gb;
+	}
+	
+	@Override
+	public MovieRatingBean getMovieRatingBeanById(Integer movieRatingID) {
+		Session session =factory.getCurrentSession();
+		MovieRatingBean mrb =session.get(MovieRatingBean.class,  movieRatingID);
+		return mrb;
+	}
+	
+	@Override
+	public MovieStatusBean getMovieStatusBeanById(Integer movieStatusID) {
+		Session session =factory.getCurrentSession();
+		 MovieStatusBean msb =session.get(MovieStatusBean.class,  movieStatusID);
+		return msb;
 	}
 
 //	@Override

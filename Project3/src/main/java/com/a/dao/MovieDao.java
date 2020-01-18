@@ -2,6 +2,8 @@ package com.a.dao;
 
 import com.a.model.GenreBean;
 import com.a.model.MovieBean;
+import com.a.model.MovieRatingBean;
+import com.a.model.MovieStatusBean;
 
 public interface MovieDao {
 
@@ -23,6 +25,12 @@ public interface MovieDao {
 	MovieBean getMovieBeanById(int movieID);
 
 	GenreBean getGenreBeanById(Integer genreID);
+
+
+	MovieRatingBean getMovieRatingBeanById(Integer movieRatingID);
+
+
+	MovieStatusBean getMovieStatusBeanById(Integer movieStatusID);
 	
 	// 拿電影ID 取出movieBean 塞進 runningBean(select 出來就有不用取)
 
