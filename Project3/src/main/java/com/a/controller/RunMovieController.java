@@ -76,7 +76,7 @@ public class RunMovieController {
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("傳入不允許的欄位");
 		}
-		mb.setStatus(0);
+
 //			System.out.println("title:"+mb.getTitle()+"合約:"+mb.getContractDate()+"預估 :"+mb.getExpectedProfit()
 //			                   +"拆帳:"+mb.getProfitRatio()+"狀態:"+mb.getStatus()+"片長:"+mb.getRunningTime()
 //					);
@@ -449,14 +449,14 @@ public class RunMovieController {
 		System.out.println( "--------------------------------- 所有可排片size:" + Allrb_list.size());
 		for (RunningBean rb : Allrb_list) {
 			// setPTValue
-			if (rb.getMovie().getStatus() == 0) {
+			if (rb.getMovie().getMovieStatusBean().getStatusID() == 0) {
 				// 新片取預估ＰＴ
 				ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
 						rb.getMovie().getExpectedProfit(), rb);
 				mService.updateMovieStatus(rb.getMovie().getMovieID(), 1);
 				runMovie_list.add(movie);
 
-			} else if (rb.getMovie().getStatus() == 1) {
+			} else if (rb.getMovie().getMovieStatusBean().getStatusID() == 1) {
 				// 舊片取上星期ＰＴ值
 				// 先取showtimeHitory
 				// 這邊會有問題runningID 一部電影可能有兩個

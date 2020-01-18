@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.a.model.RunningBean;
+import com.a.model.RunningStatusBean;
 
 public interface RunningDao {
 	// 加電影合約 進DB
@@ -28,5 +29,6 @@ public interface RunningDao {
 		List<RunningBean> getnRunningBeanByMovieID(int movieID);
 		boolean updateOnDate(RunningBean rb, int day);
 		boolean updateOffDate(RunningBean rb, LocalDateTime OffDate);
+		RunningStatusBean getRunningStatusBeanById(Integer runningStatusID);
 		
 }

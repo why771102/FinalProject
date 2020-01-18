@@ -6,7 +6,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.a.model.MovieBean;
+import com.a.model.MovieRatingBean;
+import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
+import com.a.model.RunningStatusBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.a.test.ShowtimeBean;
 import com.c.model.HallBean;
@@ -169,6 +172,9 @@ public interface MovieService {
 	List<ShowTimeHistoryBean> getshowMovie(LocalDate day);
 	List<RunningBean> checkContract(List<RunningBean> rb_list);
 	void sortPT(List<ShowtimeBean> runMovie_list);
+	MovieRatingBean getMovieRatingBeanById(Integer movieRatingID);
+	MovieStatusBean getMovieStatusBeanById(Integer movieStatusID);
+	RunningStatusBean getRunningStatusBeanById(Integer runningStatusID);
 	
 	
 

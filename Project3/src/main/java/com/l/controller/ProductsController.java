@@ -40,7 +40,7 @@ public class ProductsController {
 		//測試查詢類別用ID 
 			@RequestMapping("/products/{categoryID}")
 				public String queryCategory(@PathVariable("categoryID")Integer categoryID,Model model) {
-					List<ProductsBean> products=service.getCategory(categoryID);
+					List<ProductsBean> products=service.getCategoryID(categoryID);
 					model.addAttribute("Products", products);
 					return "l/products";
 				}

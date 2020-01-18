@@ -35,7 +35,8 @@ public class RunningBean implements Serializable {
 	String expectedOffDate;
 	@Column(nullable=false,columnDefinition = "datetime")
 	String offDate;
-	@Column(nullable=false, columnDefinition = "TINYINT")
+	
+	@Transient
 	Integer status;
 	
 	@Transient
@@ -45,11 +46,15 @@ public class RunningBean implements Serializable {
 	@JoinColumn(name="movieID")
 	private MovieBean movie;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="runningStatusID")
+	private  RunningStatusBean  runningStatus;
+	
 	public RunningBean() {
 	}
 //有movieBean
 	public RunningBean(Integer runID, String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
-			String offDate, Integer status, MovieBean movie) {
+			String offDate, RunningStatusBean  runningStatus, MovieBean movie) {
 		super();
 		this.runID = runID;
 		this.release = release;
@@ -57,10 +62,22 @@ public class RunningBean implements Serializable {
 		this.onDate = onDate;
 		this.expectedOffDate = expectedOffDate;
 		this.offDate = offDate;
-		this.status = status;
+		this.runningStatus = runningStatus;
 		this.movie = movie;
 	}
 	//沒有runID
+	public RunningBean( String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
+			String offDate, RunningStatusBean runningStatus, MovieBean movie) {
+		super();
+		this.release = release;
+		this.expectedOnDate = expectedOnDate;
+		this.onDate = onDate;
+		this.expectedOffDate = expectedOffDate;
+		this.offDate = offDate;
+		this.runningStatus = runningStatus;
+		this.movie = movie;
+	}
+	
 	public RunningBean( String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
 			String offDate, Integer status, MovieBean movie) {
 		super();
@@ -73,19 +90,19 @@ public class RunningBean implements Serializable {
 		this.movie = movie;
 	}
 	
-	//如果沒有movieBean 只有movieID
-	public RunningBean(Integer runID, String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
-			String offDate, Integer status, Integer movieID) {
-		super();
-		this.runID = runID;
-		this.release = release;
-		this.expectedOnDate = expectedOnDate;
-		this.onDate = onDate;
-		this.expectedOffDate = expectedOffDate;
-		this.offDate = offDate;
-		this.status = status;
-		this.movieID = movieID;
-	}
+//	//如果沒有movieBean 只有movieID
+//	public RunningBean(Integer runID, String release, Integer expectedOnDate, Integer onDate, String expectedOffDate,
+//			String offDate, Integer status, Integer movieID) {
+//		super();
+//		this.runID = runID;
+//		this.release = release;
+//		this.expectedOnDate = expectedOnDate;
+//		this.onDate = onDate;
+//		this.expectedOffDate = expectedOffDate;
+//		this.offDate = offDate;
+//		this.status = status;
+//		this.movieID = movieID;
+//	}
 	
 	public Integer getMovieID() {
 		return movieID;
@@ -156,6 +173,12 @@ public class RunningBean implements Serializable {
 		return movie;
 	}
 
+	public RunningStatusBean getRunningStatus() {
+		return runningStatus;
+	}
+	public void setRunningStatus(RunningStatusBean runningStatus) {
+		this.runningStatus = runningStatus;
+	}
 	public void setMovie(MovieBean movie) {
 		this.movie = movie;
 	}
