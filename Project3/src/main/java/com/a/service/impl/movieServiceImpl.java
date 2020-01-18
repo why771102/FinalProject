@@ -17,7 +17,10 @@ import com.a.dao.MovieDao;
 import com.a.dao.RunningDao;
 import com.a.dao.ShowTimeHistoryDao;
 import com.a.model.MovieBean;
+import com.a.model.MovieRatingBean;
+import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
+import com.a.model.RunningStatusBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.a.service.MovieService;
 import com.a.test.Hallcomparator;
@@ -35,6 +38,7 @@ public class movieServiceImpl implements MovieService {
 	MovieDao MDao;
 	RunningDao RDao;
 	ShowTimeHistoryDao   SDao;
+	
 	
 	
 	
@@ -165,7 +169,7 @@ public class movieServiceImpl implements MovieService {
 	public  List<RunningBean>  checkContract(List<RunningBean> rb_list){
 		List<RunningBean> shouldRB_list =new ArrayList<>();
 		for (RunningBean rb : rb_list) {
-				if (rb.getStatus() == 0) {
+				if (rb.getRunningStatus().getStatusID() == 0) {
 					shouldRB_list.add(rb);
 				} 
 		}
@@ -180,8 +184,24 @@ public class movieServiceImpl implements MovieService {
 		Collections.sort(runMovie_list, PTcomp);
 		
 		
-		
 	}
+	@Transactional
+	@Override
+	public MovieRatingBean getMovieRatingBeanById(Integer movieRatingID)  {
+		return  MDao.getMovieRatingBeanById(movieRatingID);
+		}
+
+	@Transactional
+	@Override
+	public MovieStatusBean getMovieStatusBeanById(Integer movieStatusID) {
+		return  MDao.getMovieStatusBeanById(movieStatusID);
+	}
+	@Transactional
+	@Override
+	public RunningStatusBean getRunningStatusBeanById(Integer runningStatusID) {
+		return  RDao.getRunningStatusBeanById( runningStatusID);
+	}
+	
 //	@Transactional
 //
 //	public void checkHallOrder(List<HallOrderBean> hob_list, int HallTime, ) {

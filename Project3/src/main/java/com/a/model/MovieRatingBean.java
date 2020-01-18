@@ -14,19 +14,21 @@ import javax.persistence.Table;
 public class MovieRatingBean implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable=false,columnDefinition="TINYINT")
 	Integer movieRatingID;
-	@Column(nullable=false)
+	@Column(nullable=false,columnDefinition="TINYINT")
 	Integer age;
 	@Column(nullable=false, columnDefinition="NVARCHAR(10)")
 	String rating;
 	
+	public MovieRatingBean() {
+		
+	}
 	public MovieRatingBean(Integer movieRatingID, Integer age, String rating) {
 		super();
 		this.movieRatingID = movieRatingID;
 		this.age = age;
 		this.rating = rating;
-		
 	}
 	public Integer getMovieRatingID() {
 		return movieRatingID;

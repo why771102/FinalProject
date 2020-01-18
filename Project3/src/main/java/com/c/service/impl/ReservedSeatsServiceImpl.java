@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.a.model.ShowTimeHistoryBean;
+import com.c.dao.NumberOfSeatsDao;
 import com.c.dao.ReservedSeatsDao;
 import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatsBean;
@@ -17,16 +18,18 @@ import com.c.service.ReservedSeatsService;
 public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 
 	ReservedSeatsDao dao;
+	NumberOfSeatsDao nosdao;
 	
 	@Autowired
-	public void setDao(ReservedSeatsDao dao) {
+	public void setDao(ReservedSeatsDao dao, NumberOfSeatsDao nosdao) {
 		this.dao = dao;
+		this.nosdao = nosdao;
 	}
 	
 	@Transactional
 	@Override
-	public void insertSeats() {
-		dao.insertSeats();
+	public List<ShowTimeHistoryBean> insertSeats() {
+		return dao.insertSeats();
 		
 	}
 
@@ -57,10 +60,11 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 
 	@Transactional
 	@Override
-	public List<ReservedSeatsBean> getAllSeats(Integer showTimeID, String date) {
-		return dao.getAllSeats(showTimeID, date);
+	public List<ReservedSeatsBean> getAllSeats(Integer showTimeID) {
+		return dao.getAllSeats(showTimeID);
 	}
 
+	@Transactional
 	@Override
 	public String[] showSeatChart(List<ReservedSeatsBean> listRSB, Integer colNum, Integer rowNum, String hallID) {
 		String[] seats = new String[colNum];
@@ -78,7 +82,7 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 				}
 				System.out.println("This is seatIDstr: " + seatIDstr);
 				for(int seat = 0; seat < listRSB.size(); seat++) {
-					String seatID = listRSB.get(seat).getSeatID();
+					String seatID = listRSB.get(seat).getSeatsBean().getSeatID();
 					System.out.println(seatID);
 					seatID = seatID.substring(1, seatID.length()).trim();//後面竟然有空格?!
 					System.out.println("This is seatID: " + seatID);
@@ -86,11 +90,12 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 					if(seatIDstr.equals(seatID)) {
 						Integer seatStatus = listRSB.get(seat).getReservationStatusBean().getReservationStatusID();
 						if(seatStatus == 1) { //不可出售
-							seatStr += "o";
+							seatStr += "u";
 							listRSB.remove(seat);
 							break;
 						}else {
-							Integer typeofSeat = listRSB.get(seat).;
+							
+							Integer typeofSeat = listRSB.get(seat).getSeatsBean().getTypeOfSeatBean().getTypeofSeatID();
 							if(typeofSeat == 0) { // 正常座位
 								seatStr += "f";
 								listRSB.remove(seat);
@@ -116,4 +121,4 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 	
 	
 
-}
+

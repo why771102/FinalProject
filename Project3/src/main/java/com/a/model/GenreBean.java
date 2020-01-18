@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class GenreBean implements Serializable {
 	
 	@Id
-	@Column(columnDefinition="TINYINT")
+	@Column(nullable=false,columnDefinition="TINYINT")
 	Integer genreID;
 	@Column(columnDefinition="NVARCHAR(10)")
 	String  genre;

@@ -26,14 +26,27 @@
 		<property name="connection_pool_size">8</property>
 
 		<!-- 3. 宣告程式使用的Mapping檔 ，每個永續類別都需要定義一個Mapping檔 -->
-		<mapping class="com.c.model.HallBean"></mapping>
+<!-- 		<mapping class="com.c.model.HallBean"></mapping> -->
 		<mapping class="com.z.model.EmpBean"></mapping>
 		<mapping class="com.z.model.AnnoBean"></mapping>
+		<mapping class="com.z.model.AnnoStatusBean"></mapping>
 		<mapping class="com.z.model.EmpStatusBean"></mapping>
 		<mapping class="com.z.model.RoleBean"></mapping>
-		<mapping class="com.z.model.AnnoStatusBean"></mapping>
-<!-- 		<mapping class="com.c.model/HallBean"></mapping> -->
-<!-- 		<mapping class="com.web.store.model.CompanyBean"></mapping> -->
+		<mapping class="com.l.model.CategoriesBean"></mapping>
+		<mapping class="com.a.model.GenreBean"></mapping>
+		<mapping class="com.p.model.HallOrderBean"></mapping>
+		<mapping class="com.p.model.HallOrderStatusBean"></mapping>
+		<mapping class="com.c.model.HallStatusBean"></mapping>
+		<mapping class="com.p.model.MemberBean"></mapping>
+		<mapping class="com.a.model.MovieRatingBean"></mapping>
+		<mapping class="com.p.model.PayStatusBean"></mapping>
+		<mapping class="com.l.model.ProductsBean"></mapping>
+		<mapping class="com.c.model.ReservationStatusBean"></mapping>
+		<mapping class="com.c.model.SeatStatusBean"></mapping>
+		<mapping class="com.c.model.TypeOfSeatBean"></mapping>
+		<mapping class="com.c.model.HallBean"></mapping>
+		<mapping class="com.c.model.SeatsBean"></mapping>
+
 
 	</session-factory>
 </hibernate-configuration>

@@ -13,6 +13,20 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.a.model.GenreBean;
+import com.a.model.MovieRatingBean;
+import com.c.model.HallBean;
+import com.c.model.HallStatusBean;
+import com.c.model.ReservationStatusBean;
+import com.c.model.SeatStatusBean;
+import com.c.model.SeatsBean;
+import com.c.model.TypeOfSeatBean;
+import com.l.model.CategoriesBean;
+import com.l.model.ProductsBean;
+import com.p.model.HallOrderBean;
+import com.p.model.HallOrderStatusBean;
+import com.p.model.MemberBean;
+import com.p.model.PayStatusBean;
 import com.z.model.AnnoBean;
 import com.z.model.AnnoStatusBean;
 import com.z.model.EmpBean;
@@ -22,6 +36,9 @@ import com.z.model.RoleBean;
 public class EDMTableResetHibernate {
 	public static final String UTF8_BOM = "\uFEFF"; // 定義 UTF-8的BOM字元
 
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 
 		String line = "";
@@ -98,7 +115,8 @@ public class EDMTableResetHibernate {
 			System.out.println("Emp資料新增成功");
 			
 			
-			try (FileReader fr = new FileReader("data/annoStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+			try (FileReader fr = new FileReader("data/annoStatus.dat");
+					BufferedReader br = new BufferedReader(fr);) {
 				while ((line = br.readLine()) != null) {
 					if (line.startsWith(UTF8_BOM)) {
 						line = line.substring(1);
@@ -141,94 +159,330 @@ public class EDMTableResetHibernate {
 			session.flush();
 			System.out.println("Anno資料新增成功");
 			
-			// 以下是範本
-			/*
-			 * try ( FileReader fr = new FileReader("data/bookCompany.dat"); BufferedReader
-			 * br = new BufferedReader(fr); ) { while ((line = br.readLine()) != null) { if
-			 * (line.startsWith(UTF8_BOM)) { line = line.substring(1); } String[] token =
-			 * line.split("\\|"); String name = token[0]; String address = token[1]; String
-			 * url = token[2]; CompanyBean cb = new CompanyBean(null, name, address, url);
-			 * session.save(cb); } } catch (IOException e) {
-			 * System.err.println("新建RoleBean表格時發生IO例外: " + e.getMessage()); }
-			 * session.flush(); System.out.println("RoleBean 資料新增成功");
-			 */
-//			File file = new File("data/book.dat");
-//			// 2. 由"data/book.dat"逐筆讀入Book表格內的初始資料，然後依序新增
-//			// 到Book表格中
-//			try (
-//				FileInputStream fis = new FileInputStream(file);
-//				InputStreamReader isr = new InputStreamReader(fis, "UTF8");
-//				BufferedReader br = new BufferedReader(isr);
-//			) {
-//				while ((line = br.readLine()) != null) {
-//					System.out.println("line=" + line);
-//					// 去除 UTF8_BOM: \uFEFF
-//					if (line.startsWith(UTF8_BOM)) {
-//						line = line.substring(1);
-//					}
-//					String[] token = line.split("\\|");
-//					BookBean book = new BookBean();
-//					book.setTitle(token[0]);
-//					book.setAuthor(token[1]);
-//					book.setPrice(Double.parseDouble(token[2].trim()));
-//					book.setDiscount(Double.parseDouble(token[3].trim()));
-//					// book.setCompanyId(Integer.parseInt(token[4].trim()));
-//					int companyId = Integer.parseInt(token[4].trim());
-//					CompanyBean cb = session.get(CompanyBean.class, companyId);
-//					book.setCompanyBean(cb);
-//					// 讀取圖片檔
-//					Blob blob = SystemUtils2018.fileToBlob(token[5].trim());
-//					book.setCoverImage(blob);
-//					book.setFileName(SystemUtils2018.extractFileName(token[5].trim()));
-//					book.setBookNo(token[6].trim());
-//					book.setStock(Integer.parseInt(token[7].trim()));
-//					book.setCategory(token[8].trim());
-//					session.save(book);
-//					System.out.println("新增一筆Book紀錄成功");
-//				}
-//				// 印出資料新增成功的訊息
-//				session.flush();
-//				System.out.println("Book資料新增成功");
-//			}
-//
-//			// 3. Member表格
-//			// 由"data/Input.txt"逐筆讀入Member表格內的初始資料，
-//			// 然後依序新增到Member表格中
-//			try (
-//				FileInputStream fis = new FileInputStream("data/Input.txt");
-//				InputStreamReader isr0 = new InputStreamReader(fis, "UTF-8");
-//				BufferedReader br = new BufferedReader(isr0);
-//			) {
-//				while ((line = br.readLine()) != null) {
-//					String[] sa = line.split("\\|");
-//					MemberBean bean = new MemberBean();
-//					bean.setMemberId(sa[0]);
-//					bean.setName(sa[1]);
-//					String pswd = GlobalService.getMD5Endocing(GlobalService.encryptString(sa[2]));
-//					bean.setPassword(pswd);
-//					bean.setAddress(sa[3]);
-//					bean.setEmail(sa[4]);
-//					bean.setTel(sa[5]);
-//					bean.setUserType(sa[6]);
-//					bean.setTotalAmt(Double.parseDouble(sa[7]));
-//					bean.setTs(new java.sql.Timestamp(System.currentTimeMillis()));
-//					// --------------處理Blob(圖片)欄位----------------
-//					Blob sb = SystemUtils2018.fileToBlob(sa[8]);
-//					bean.setMemberImage(sb);
-//					String imageFileName = sa[8].substring(sa[8].lastIndexOf("/") + 1);
-//					bean.setFileName(imageFileName);
-//					Clob clob = SystemUtils2018.fileToClob(sa[9]);
-//					bean.setComment(clob);
-//					bean.setUnpaid_amount(0.0);
-//					session.save(bean);
-//					count++;
-//					System.out.println("新增" + count + "筆記錄:" + sa[1]);
-//				}
-//				session.flush();
-//				System.out.println("Member表格資料新增成功");
-//			} catch (Exception ex) {
-//				ex.printStackTrace();
-//			}
+//這邊開始
+//ReservationStatusBean	
+			try (FileReader fr = new FileReader("data/reservationStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+			    while ((line = br.readLine()) != null) {
+			     if (line.startsWith(UTF8_BOM)) {
+			      line = line.substring(1);
+			     }
+			     String[] token = line.split("\\|");
+			     ReservationStatusBean cb = new ReservationStatusBean();
+			     
+			     cb.setReservationStatusID(Integer.parseInt(token[0]));
+			     cb.setReservationStatusName(token[1]);
+			     
+			     session.save(cb);
+			    }
+			   } catch (IOException e) {
+			    System.err.println("新建ReservationStatusBean表格時發生IO例外: " + e.getMessage());
+			   }
+			   session.flush();
+			   System.out.println("ReservationStatusBean資料新增成功");   
+//CategoriesBean	
+			try (FileReader fr = new FileReader("data/Categories.dat"); BufferedReader br = new BufferedReader(fr);) {
+			    while ((line = br.readLine()) != null) {
+			     if (line.startsWith(UTF8_BOM)) {
+			      line = line.substring(1);
+			     }
+			     String[] token = line.split("\\|");
+			     CategoriesBean cb = new CategoriesBean();
+			     
+			     cb.setCategoryName(token[0]);
+			    
+			     
+			     session.save(cb);
+			    }
+			   } catch (IOException e) {
+			    System.err.println("新建Categories表格時發生IO例外: " + e.getMessage());
+			   }
+			   session.flush();
+			   System.out.println("Categories資料新增成功");   
+//ProductsBean	
+				try (FileReader fr = new FileReader("data/Products.dat"); BufferedReader br = new BufferedReader(fr);) {
+				    while ((line = br.readLine()) != null) {
+				     if (line.startsWith(UTF8_BOM)) {
+				      line = line.substring(1);
+				     }
+				     String[] token = line.split("\\|");
+				     ProductsBean cb = new ProductsBean();
+				     
+				     cb.setProductName(token[0]);
+				     Integer category = Integer.parseInt(token[1]);
+				     CategoriesBean CategoriesBean = session.get(CategoriesBean.class, category);
+				     cb.setCategoriesBean(CategoriesBean);
+				     cb.setUnitPrice(Integer.parseInt(token[2]));
+				     cb.setUnitStock(Integer.parseInt(token[3]));
+				     cb.setCost(Integer.parseInt(token[4]));
+				     
+				     
+				     session.save(cb);
+				    }
+				   } catch (IOException e) {
+				    System.err.println("新建ProductsBean表格時發生IO例外: " + e.getMessage());
+				   }
+				   session.flush();
+				   System.out.println("ProductsBean資料新增成功");  
+//GenreBean
+			   try (FileReader fr = new FileReader("data/genre.dat"); BufferedReader br = new BufferedReader(fr);) {
+				    while ((line = br.readLine()) != null) {
+				     if (line.startsWith(UTF8_BOM)) {
+				      line = line.substring(1);
+				     }
+				     String[] token = line.split("\\|");
+				     GenreBean eb = new GenreBean();
+				     
+				     eb.setGenreID(Integer.parseInt(token[0]));
+				     eb.setGenre(token[1]);
+				     
+				     session.save(eb);
+				    }
+				   } catch (IOException e) {
+				    System.err.println("新建Genre表格時發生IO例外: " + e.getMessage());
+				   }
+				   session.flush();
+				   System.out.println("Genre資料新增成功");  
+//PayStatusBean
+				   try (FileReader fr = new FileReader("data/payStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+					    while ((line = br.readLine()) != null) {
+					     if (line.startsWith(UTF8_BOM)) {
+					      line = line.substring(1);
+					     }
+					     String[] token = line.split("\\|");
+					     PayStatusBean eb = new PayStatusBean();
+					     
+					     eb.setPayStatusNO(Integer.parseInt(token[0]));
+					     eb.setPayStatus(token[1]);
+					     
+					     session.save(eb);
+					    }
+					   } catch (IOException e) {
+					    System.err.println("新建PayStatusBean表格時發生IO例外: " + e.getMessage());
+					   }
+					   session.flush();
+					   System.out.println("PayStatusBean資料新增成功");  
+//HallStatusBean
+				   try (FileReader fr = new FileReader("data/hallStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+				    while ((line = br.readLine()) != null) {
+					     if (line.startsWith(UTF8_BOM)) {
+					      line = line.substring(1);
+					     }
+					     String[] token = line.split("\\|");
+					     HallStatusBean eb = new HallStatusBean();
+					     
+					     eb.setHallStatusID(Integer.parseInt(token[0]));
+					     eb.setHallStatusName(token[1]);
+					     
+					     session.save(eb);
+					    }
+					   } catch (IOException e) {
+					    System.err.println("新建HallStatusBean表格時發生IO例外: " + e.getMessage());
+					   }
+					   session.flush();
+					   System.out.println("HallStatusBean資料新增成功");				   
+//HallOrderStatusBean
+				   try (FileReader fr = new FileReader("data/hallOrderStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+					    while ((line = br.readLine()) != null) {
+					     if (line.startsWith(UTF8_BOM)) {
+					      line = line.substring(1);
+					     }
+					     String[] token = line.split("\\|");
+					     HallOrderStatusBean eb = new HallOrderStatusBean();
+					     
+					     eb.setHallOrderStatusNo(Integer.parseInt(token[0]));
+					     eb.setHallOrderStatus(token[1]);
+					     
+					     session.save(eb);
+					    }
+					   } catch (IOException e) {
+					    System.err.println("新建HallOrderStatusBean表格時發生IO例外: " + e.getMessage());
+					   }
+					   session.flush();
+					   System.out.println("HallOrderStatusBean資料新增成功");
+//HallBean
+					   try (FileReader fr = new FileReader("data/hall.dat"); BufferedReader br = new BufferedReader(fr);) {
+						    while ((line = br.readLine()) != null) {
+						     if (line.startsWith(UTF8_BOM)) {
+						      line = line.substring(1);
+						     }
+						     String[] token = line.split("\\|");
+						     HallBean eb = new HallBean();
+						     
+						     eb.setHallID(token[0]);
+						     eb.setColNum(Integer.parseInt(token[1]));
+						     eb.setNoOfSeats(Integer.parseInt(token[2]));
+						     eb.setPrice(Integer.parseInt(token[3]));
+						     eb.setRowNum(Integer.parseInt(token[4]));
+						     Integer hallStatus = Integer.parseInt(token[5]);
+						     HallStatusBean HallStatusBean = session.get(HallStatusBean.class, hallStatus);
+						     eb.setHallStatusBean(HallStatusBean);
+						     
+						     
+						     session.save(eb);
+						    }
+						   } catch (IOException e) {
+						    System.err.println("新建HallBean表格時發生IO例外: " + e.getMessage());
+						   }
+						   session.flush();
+						   System.out.println("HallBean資料新增成功");
+//MovieRatingBean
+					   try (FileReader fr = new FileReader("data/MovieRating.dat"); BufferedReader br = new BufferedReader(fr);) {
+						    while ((line = br.readLine()) != null) {
+						     if (line.startsWith(UTF8_BOM)) {
+						      line = line.substring(1);
+						     }
+						     String[] token = line.split("\\|");
+						     MovieRatingBean eb = new MovieRatingBean();
+						     eb.setMovieRatingID(Integer.parseInt(token[0]));
+						     eb.setAge(Integer.parseInt(token[1]));
+						     eb.setrating(token[1]);
+						     
+						     session.save(eb);
+						    }
+						   } catch (IOException e) {
+						    System.err.println("新建MovieRatingBean表格時發生IO例外: " + e.getMessage());
+						   }
+						   session.flush();
+						   System.out.println("MovieRatingBean資料新增成功");
+//MemberBean
+					   try (FileReader fr = new FileReader("data/Member.dat"); BufferedReader br = new BufferedReader(fr);) {
+						    while ((line = br.readLine()) != null) {
+						     if (line.startsWith(UTF8_BOM)) {
+						      line = line.substring(1);
+						     }
+						     String[] token = line.split("\\|");
+						     MemberBean eb = new MemberBean();
+						     
+						     eb.setAccount(token[0]);
+						     eb.setAddress(token[1]);
+						     eb.setBirth(token[2]);
+						     eb.setEmail(token[3]);
+						     eb.setGender(token[4]);
+						     eb.setLastLogInTime(token[5]);
+						     eb.setMobile(token[6]);
+						     eb.setName(token[7]);
+						     eb.setPassword(token[8]);
+						     eb.setRegisterTime(token[9]);
+						     eb.setuID(token[10]);
+
+						     
+						     session.save(eb);
+						    }
+						   } catch (IOException e) {
+						    System.err.println("新建MemberBean表格時發生IO例外: " + e.getMessage());
+						   }
+						   session.flush();
+						   System.out.println("MemberBean資料新增成功");			  				   
+//HallOrderBean
+				   try (FileReader fr = new FileReader("data/hallOrder.dat"); BufferedReader br = new BufferedReader(fr);) {
+					    while ((line = br.readLine()) != null) {
+					     if (line.startsWith(UTF8_BOM)) {
+					      line = line.substring(1);
+					     }
+					     String[] token = line.split("\\|");
+					     HallOrderBean eb = new HallOrderBean();
+					     
+					     eb.setContactPerson(token[0]);
+					     eb.setEndTime(token[1]);
+					     eb.setHallPurpose(token[2]);
+					     eb.setHallPurposeDetail(token[3]);
+					     eb.setHallSubtotal(Integer.parseInt(token[4]));
+					     eb.setMobile(token[5]);
+					     eb.setOrderDate(token[6]);
+					     eb.setOrderHours(Integer.parseInt(token[7]));
+					     eb.setStartTime(token[8]);
+					     HallBean HallBean = session.get(HallBean.class, token[9]);
+					     eb.setHb(HallBean);
+					     Integer hallOrderStatusNo = Integer.parseInt(token[10]);
+					     HallOrderStatusBean HallOrderStatusBean = session.get(HallOrderStatusBean.class, hallOrderStatusNo);
+					     eb.setHob(HallOrderStatusBean);
+					     Integer memberId = Integer.parseInt(token[11]);
+					     MemberBean MemberBean = session.get(MemberBean.class, memberId);
+					     eb.setMb(MemberBean);
+					     Integer payStatusNo = Integer.parseInt(token[12]);
+					     PayStatusBean PayStatusBean = session.get(PayStatusBean.class, payStatusNo);
+					     eb.setPsb(PayStatusBean);
+
+					     
+					     session.save(eb);
+					    }
+					   } catch (IOException e) {
+					    System.err.println("新建HallOrderBean表格時發生IO例外: " + e.getMessage());
+					   }
+					   session.flush();
+					   System.out.println("HallOrderBean資料新增成功");
+					   
+//SeatStatusBean
+					   try (FileReader fr = new FileReader("data/seatStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+						    while ((line = br.readLine()) != null) {
+						     if (line.startsWith(UTF8_BOM)) {
+						      line = line.substring(1);
+						     }
+						     String[] token = line.split("\\|");
+						     SeatStatusBean eb = new SeatStatusBean();
+						     
+						     eb.setSeatStatusID(Integer.parseInt(token[0]));
+						     eb.setSeatStatusName(token[1]);
+						     
+						     session.save(eb);
+						    }
+						   } catch (IOException e) {
+						    System.err.println("新建SeatStatusBean表格時發生IO例外: " + e.getMessage());
+						   }
+						   session.flush();
+						   System.out.println("SeatStatusBean資料新增成功");
+						   
+//TypeOfSeatBean
+						   try (FileReader fr = new FileReader("data/typeofSeat.dat"); BufferedReader br = new BufferedReader(fr);) {
+							    while ((line = br.readLine()) != null) {
+							     if (line.startsWith(UTF8_BOM)) {
+							      line = line.substring(1);
+							     }
+							     String[] token = line.split("\\|");
+							     TypeOfSeatBean eb = new TypeOfSeatBean();
+							     
+							     eb.setTypeofSeatID(Integer.parseInt(token[0]));
+							     eb.setTypeofSeatName(token[1]);
+							     
+							     session.save(eb);
+							    }
+							   } catch (IOException e) {
+							    System.err.println("新建TypeOfSeatBean表格時發生IO例外: " + e.getMessage());
+							   }
+							   session.flush();
+							   System.out.println("TypeOfSeatBean資料新增成功");
+//SeatsBean
+							   try (FileReader fr = new FileReader("data/seats.dat"); BufferedReader br = new BufferedReader(fr);) {
+								    while ((line = br.readLine()) != null) {
+								     if (line.startsWith(UTF8_BOM)) {
+								      line = line.substring(1);
+								     }
+								     String[] token = line.split("\\|");
+								     SeatsBean eb = new SeatsBean();
+								     
+								     eb.setSeatID(token[0]);
+								     eb.setRow(token[1]);
+								     eb.setSeatNo(Integer.parseInt(token[2]));
+								     HallBean HallBean = session.get(HallBean.class, token[3]);
+								     eb.setHallBean(HallBean);
+								     Integer seatStatus = Integer.parseInt(token[4]);
+								     SeatStatusBean SeatStatusBean = session.get(SeatStatusBean.class, seatStatus);
+								     eb.setSeatStatusBean(SeatStatusBean);
+								     Integer typeOfSeat = Integer.parseInt(token[5]);
+								     TypeOfSeatBean TypeOfSeatBean = session.get(TypeOfSeatBean.class, typeOfSeat);
+								     eb.setTypeOfSeatBean(TypeOfSeatBean);
+								     
+								     
+								     
+								     session.save(eb);
+								    }
+								   } catch (IOException e) {
+								    System.err.println("新建seats表格時發生IO例外: " + e.getMessage());
+								   }
+								   session.flush();
+								   System.out.println("seats資料新增成功");
+				   
+				   	   
 			tx.commit();
 		} catch (Exception e) {
 			System.err.println("新建表格時發生例外: " + e.getMessage());
