@@ -36,19 +36,17 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		// ShowTimeHistoryBean
 
 		List<ShowTimeHistoryBean> listSTHB = new ArrayList<>();
-		for (int days = 0; days <= 7; days++) {
 			// first get today's date + 7 days
-			String currentDate = ((LocalDate.now().toString())+" "+"00:00:00"); 
-			String currentDatePlusAWeek = (((LocalDate.now().plusDays(days)).toString())+" "+"23:59:59");
+		String currentDate = ((LocalDate.now().toString())+" "+"00:00:00"); 
+		String currentDatePlusAWeek = (((LocalDate.now().plusDays(7)).toString())+" "+"23:59:59");
 //			LocalDate currentDate = LocalDate.now();
 //			LocalDate currentDatePlusAWeek = currentDate.plusDays(days);
 			// 先判斷日期是今天加一週 -->
-			String hql = "FROM ShowTimeHistoryBean WHERE playStartTime >= :currentDate and playStartTime <= :currentDatePlusAWeek";
-			listSTHB = session.createQuery(hql)
-					   .setParameter("currentDate", currentDate)
-					   .setParameter("currentDatePlusAWeek", currentDatePlusAWeek)
-					   .getResultList();
-		}
+		String listSTHBhql = "FROM ShowTimeHistoryBean WHERE playStartTime >= :currentDate and playStartTime <= :currentDatePlusAWeek";
+		listSTHB = session.createQuery(listSTHBhql)
+				   .setParameter("currentDate", currentDate)
+				   .setParameter("currentDatePlusAWeek", currentDatePlusAWeek)
+				   .getResultList();
 		System.out.println("listSTHB.size() = " + listSTHB.size());
 		// 取得showtimeID and hallID
 		List<SeatsBean> listSB = new ArrayList<>();
@@ -56,7 +54,6 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 			String hallID = stBean.getHall().getHallID();
 			String hql = "FROM SeatsBean WHERE hallID = :hallID";
 			listSB = session.createQuery(hql).setParameter("hallID", hallID).getResultList();
-			
 		}
 		System.out.println("listSB.size() = " + listSB.size());
 		for (ShowTimeHistoryBean sthBean : listSTHB) {
