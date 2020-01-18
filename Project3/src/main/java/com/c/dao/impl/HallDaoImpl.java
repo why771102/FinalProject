@@ -76,7 +76,8 @@ public class HallDaoImpl implements HallDao{
 	public void updateStatus(Integer hallId, Integer status) {
 		Session session = factory.getCurrentSession();
 		String hql = "UPDATE HallBean SET hallStatus = :hallStatus WHERE hallID = :hallID";
-		session.createQuery(hql).setParameter("hallStatus", status)
+		HallStatusBean hsb = getHallStatusById(status);
+		session.createQuery(hql).setParameter("hallStatus", hsb)
 								.setParameter("hallID", hallId).executeUpdate();
 	}
 
@@ -92,6 +93,8 @@ public class HallDaoImpl implements HallDao{
 	@Override
 	public void updateHall(HallBean hb) {
 		Session session = factory.getCurrentSession();
+		HallStatusBean hsb = getHallStatusById(hb.getHallStatus());
+		hb.setHallStatusBean(hsb);
 		session.saveOrUpdate(hb);
 	}
 

@@ -603,6 +603,9 @@ to {
 					.getElementsByClassName("seatCharts-seat seatCharts-cell normal-seats");
 			var selectedHandicapSeats = document
 					.getElementsByClassName("seatCharts-seat seatCharts-cell handicap-seats");
+			var aisle = document
+					.getElementsByClassName("seatCharts-seat seatCharts-cell aisle").length-1;
+			console.log("aisle" + aisle);
 			var NseatArray = [];
 			var Nseatobj = {};
 			var HseatArray = [];
@@ -632,6 +635,8 @@ to {
 			var handicapSeats = JSON.stringify(HseatArray);
 			var rowNum = document.getElementById('rows').value;
 			var colNum = document.getElementById('col').value;
+			var noOfSeats =  (rowNum*colNum)-aisle;
+			console.log(noOfSeats);
 			// 		var aisle={aisle:JSON.stringify(SseatArray)};
 			$
 					.ajax({
@@ -642,7 +647,7 @@ to {
 							hallID : hallID,
 							rowNum : rowNum,
 							colNum : colNum,
-							noOfSeats : selectedNormalSeats.length+selectedHandicapSeats.length
+							noOfSeats : noOfSeats
 						},
 						type : "POST",
 						success : function() {
