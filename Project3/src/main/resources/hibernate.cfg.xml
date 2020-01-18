@@ -45,6 +45,7 @@
 		<mapping class="com.c.model.SeatStatusBean"></mapping>
 		<mapping class="com.c.model.TypeOfSeatBean"></mapping>
 		<mapping class="com.c.model.HallBean"></mapping>
+		<mapping class="com.c.model.SeatsBean"></mapping>
 
 
 	</session-factory>
