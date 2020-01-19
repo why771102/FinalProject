@@ -67,7 +67,7 @@ public class RunMovieController {
 	}
 
 	@PostMapping(value = "/movie/add")
-	public RedirectView addNewMove(Model model, @ModelAttribute("Movie") MovieBean mb, BindingResult result,
+	public String addNewMove(Model model, @ModelAttribute("Movie") MovieBean mb, BindingResult result,
 			HttpServletRequest request, @RequestParam("release") String release,
 			@RequestParam("expectedOffDate") String expectedOffDate, @RequestParam("MustShowDay") String MustShowDay) {
 		String url = request.getContextPath();
@@ -98,7 +98,7 @@ public class RunMovieController {
 		RunningBean rb1 = new RunningBean();
 //	 		int totalDay = Integer.parseInt(expectedOnDate);
 		int mustDay = Integer.parseInt(MustShowDay);
-		LocalDate endDate = startDate.plusDays(mustDay);
+		LocalDate endDate = startDate.plusDays(mustDay-1);
 		LocalDate startDate2 = startDate.plusDays(mustDay);
 		if (totalDay - mustDay > 0 && mustDay != 0) {
 			RunningBean rb2 = new RunningBean(release, mustDay, 0, endDate.toString(), "2999-01-01", 0, mb);
@@ -125,7 +125,7 @@ public class RunMovieController {
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(url + "/addmovie/suseece");
 		// 換URL
-		return redirectView;
+		return "index-a";
 	}
 
 	// 一部電影的畫面
