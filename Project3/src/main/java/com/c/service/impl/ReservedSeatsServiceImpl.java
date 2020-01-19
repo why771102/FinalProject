@@ -35,11 +35,17 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 
 	@Transactional
 	@Override
-	public void reserveSeat(Integer showTimeID, String seatID) {
-		dao.reserveSeat(showTimeID, seatID);
+	public void reserveSeat(ReservedSeatsBean rsb) {
+		dao.reserveSeat(rsb);
 
 	}
 
+	@Transactional
+	@Override
+	public ReservedSeatsBean getSeat(Integer showTimeID, String seatID) {
+		return dao.getSeat(showTimeID, seatID);
+	}
+	
 	@Transactional
 	@Override
 	public SeatsBean getSeatsById(String seatID) {

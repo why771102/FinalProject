@@ -62,7 +62,6 @@ public class CommentDaoImpl implements CommentDao{
 	
 	@Override
 	public void reportComment(Integer commentID) {
-		System.out.println(commentID);
 		String hql = "update CommentBean set reportComment = 1 where commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();
@@ -158,6 +157,15 @@ public class CommentDaoImpl implements CommentDao{
 					.setParameter("newcommentTime", cb.getCommentTime())
 					.setParameter("id", cb.getCommentID())
 					.executeUpdate();
+	}
+
+	@Override
+	public List<CommentBean> findAllReportComment() {
+		String hql = "From CommentBean where reportComment = 1 and commentDelete = 0";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

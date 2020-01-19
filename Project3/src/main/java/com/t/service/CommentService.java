@@ -51,4 +51,5 @@ public interface CommentService {
 	void reportComment(Integer commentID);
 
 	// 將檢舉的短評ID傳送至後台
+	public List<CommentBean> findAllReportComment();
 }
