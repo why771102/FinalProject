@@ -17,7 +17,7 @@ import com.a.model.GenreBean;
 import com.a.model.MovieBean;
 import com.a.model.MovieRatingBean;
 import com.a.model.MovieStatusBean;
-import com.a.model.ShowTimeHistoryBean;
+import com.a.model.RunningStatusBean;
 import com.c.model.HallBean;
 import com.c.model.HallStatusBean;
 import com.c.model.ReservationStatusBean;
@@ -25,8 +25,6 @@ import com.c.model.SeatStatusBean;
 import com.c.model.SeatsBean;
 import com.c.model.TypeOfSeatBean;
 import com.l.model.CategoriesBean;
-import com.l.model.MOrderBean;
-import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
@@ -536,7 +534,26 @@ public class EDMTableResetHibernate {
 			}
 			session.flush();
 			System.out.println("Movie資料新增成功");
-
+//RunningStatusBean
+			try (FileReader fr = new FileReader("data/runningStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+			    while ((line = br.readLine()) != null) {
+			     if (line.startsWith(UTF8_BOM)) {
+			      line = line.substring(1);
+			     }
+			     String[] token = line.split("\\|");
+			     RunningStatusBean rsb = new RunningStatusBean();
+			     
+			     rsb.setStatusID(Integer.parseInt(token[0]));
+			     rsb.setStatus(token[1]);
+			     
+			     session.save(rsb);
+			    }
+			   } catch (IOException e) {
+			    System.err.println("新建RunningStatus表格時發生IO例外: " + e.getMessage());
+			   }
+			   session.flush();
+			   System.out.println("RunningStatus資料新增成功");
+			   
 ////MOrderBean	
 //			try (FileReader fr = new FileReader("data/mOrder.dat"); BufferedReader br = new BufferedReader(fr);) {
 //			    while ((line = br.readLine()) != null) {
