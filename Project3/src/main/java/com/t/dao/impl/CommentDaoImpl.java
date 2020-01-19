@@ -130,7 +130,7 @@ public class CommentDaoImpl implements CommentDao{
 		return list;
 	}
 
-	//查詢單筆comment(用來讓員工查詢被檢舉的comment)
+	//查詢單筆comment
 	@Override
 	public CommentBean getTheCommentBean(Integer commentID) {
 		Session session = factory.getCurrentSession();

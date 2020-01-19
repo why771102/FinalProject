@@ -92,9 +92,10 @@ public class CommentController {
 	}
 	
 	@RequestMapping("/comments/delete/{commentID}")
-	public String getDeleteComment(@PathVariable("commentID")Integer commentID,Model model) {
+	public String getDeleteComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+		cb.setCommentID(commentID);
 		service.deleteComment(commentID);
-		return "t/comments";		
+		return "redirect:/findAllComment";		
 	}
 	
 	//查詢單筆
