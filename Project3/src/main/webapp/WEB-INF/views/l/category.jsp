@@ -11,8 +11,8 @@
 <body>
 	<div style="text-align: center">
 		<h1>請依照類別來挑選產品:</h1>
-		<c:forEach var="categoryID" items="${CategoryList}">
-			<a href="products/${categoryID.categoryID}">${categoryID.categoryID}</a>
+		<c:forEach var="category" items="${CategoryList}">
+			<a href="products/${category.categoryID}">${category.categoryID}</a>
 			<br>
 		</c:forEach>
 	</div>
