@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.a.model.SCOrdersBean;
+import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.dao.ProductSaleDao;
 import com.m.model.ProductSaleBean;
@@ -48,9 +50,43 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	}
 	@Transactional
 	@Override
-	public List<ProductSaleBean> getPeripheralSCOD(List<ProductsBean> pbList, List<SCOrdersBean> scbList) {
+	public List<ProductSaleBean> getPeripheralOutput(List<ProductsBean> pbList, List<SCOrdersBean> scbList) {
 		return dao.getPeripheralSCOD(pbList, scbList);
 	}
+	
+	//取得食物方法
+	@Override
+	public List<ShowTimeHistoryBean> getMovieDate(String playStartTimeA, String playStartTimeB) {
+		return dao.getMovieDate(playStartTimeA, playStartTimeB);
+	}
+
+	@Override
+	public List<MOrderDetailBean> getMODBList() {
+		return dao.getMODBList();
+	}
+
+	@Override
+	public List<ProductsBean> getFoodPB4() {
+		return dao.getFoodPB4();
+	}
+
+	@Override
+	public List<ProductsBean> getFoodPB5() {
+		return dao.getFoodPB5();
+	}
+
+	@Override
+	public List<ProductSaleBean> showFoodOutput(List<ShowTimeHistoryBean> sthbList, List<MOrderDetailBean> modbList,
+			List<ProductsBean> pbList) {
+		return dao.showFoodOutput(sthbList, modbList, pbList);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 //	@Transactional
 //	@Override
@@ -78,45 +114,45 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 //		return dao.showPeriperalOrders(categoryNameA, categoryNameB, orderDateA, orderDateB);
 //	}
 	
-	
-	@Transactional
-	@Override
-	public List<String> getDistinctProductNames() {
-		List<String> productNamesList = dao.getDistinctProductNames();
-		return productNamesList;
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> getProductSaleOutput(List<ProductSaleBean> psbList) {
-		List<ProductSaleBean> PSBList = new ArrayList<>();
-		List<String> productNames = dao.getDistinctProductNames();
-
-		for (String productName : productNames) {
-			String saveProductName = null;
-			Integer unitPrice = 0;
-			Double discount = 0.0;
-			Integer qty = 0;
-			Double productSubtotal = 0.0;
-			
-			for (ProductSaleBean psb : psbList) {
-				//如果產品名稱相同就存
-				if(productName.equals(psb.getProductName())) {
-					saveProductName = productName;
-					qty = qty + psb.getQty();
-					unitPrice = psb.getUnitPrice();
-					discount = psb.getDiscount();
-					productSubtotal = productSubtotal + unitPrice*discount*qty;
-					psbList.remove(psb);
-				}else {
-					System.out.println("比對時,DB產品名稱&psb名稱不同");
-				}
-			}
-			ProductSaleBean psb = new ProductSaleBean(saveProductName, unitPrice, qty, productSubtotal);
-			PSBList.add(psb);
-		}
-		return PSBList;
-	}
+//	
+//	@Transactional
+//	@Override
+//	public List<String> getDistinctProductNames() {
+//		List<String> productNamesList = dao.getDistinctProductNames();
+//		return productNamesList;
+//	}
+//
+//	@Transactional
+//	@Override
+//	public List<ProductSaleBean> getProductSaleOutput(List<ProductSaleBean> psbList) {
+//		List<ProductSaleBean> PSBList = new ArrayList<>();
+//		List<String> productNames = dao.getDistinctProductNames();
+//
+//		for (String productName : productNames) {
+//			String saveProductName = null;
+//			Integer unitPrice = 0;
+//			Double discount = 0.0;
+//			Integer qty = 0;
+//			Double productSubtotal = 0.0;
+//			
+//			for (ProductSaleBean psb : psbList) {
+//				//如果產品名稱相同就存
+//				if(productName.equals(psb.getProductName())) {
+//					saveProductName = productName;
+//					qty = qty + psb.getQty();
+//					unitPrice = psb.getUnitPrice();
+//					discount = psb.getDiscount();
+//					productSubtotal = productSubtotal + unitPrice*discount*qty;
+//					psbList.remove(psb);
+//				}else {
+//					System.out.println("比對時,DB產品名稱&psb名稱不同");
+//				}
+//			}
+//			ProductSaleBean psb = new ProductSaleBean(saveProductName, unitPrice, qty, productSubtotal);
+//			PSBList.add(psb);
+//		}
+//		return PSBList;
+//	}
 
 	@Transactional
 	@Override

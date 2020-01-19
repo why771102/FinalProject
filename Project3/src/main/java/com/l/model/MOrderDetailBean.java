@@ -22,17 +22,17 @@ public class MOrderDetailBean implements Serializable {
 //	Integer ordersID; 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
-	private MOrderBean ordersID;
+	private MOrderBean mOrderBean;
 //	Integer productID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="productID")
-	private ProductsBean productID;
+	private ProductsBean productsBean;
 	@NotNull
 	@Column(nullable=false)
 	Integer sellUnitPrice;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "REAL")
-	double discount;
+	Double discount;
 	@NotNull
 	@Column(nullable=false)
 	Integer quantity;
@@ -46,12 +46,7 @@ public class MOrderDetailBean implements Serializable {
 //	}
 //	
 	
-	public MOrderBean getOrdersID() {
-		return ordersID;
-	}
-	public void setOrdersID(MOrderBean ordersID) {
-		this.ordersID = ordersID;
-	}
+
 	
 //	
 //	public Integer getProductID() {
@@ -60,12 +55,20 @@ public class MOrderDetailBean implements Serializable {
 //	public void setProductID(Integer productID) {
 //		this.productID = productID;
 //	}
-	public ProductsBean getProductID() {
-		return productID;
+
+	public MOrderBean getmOrderBean() {
+		return mOrderBean;
 	}
-	public void setProductID(ProductsBean productID) {
-		this.productID = productID;
+	public void setmOrderBean(MOrderBean mOrderBean) {
+		this.mOrderBean = mOrderBean;
 	}
+	public ProductsBean getProductsBean() {
+		return productsBean;
+	}
+	public void setProductsBean(ProductsBean productsBean) {
+		this.productsBean = productsBean;
+	}
+	
 	public Integer getSellUnitPrice() {
 		return sellUnitPrice;
 	}
@@ -83,7 +86,7 @@ public class MOrderDetailBean implements Serializable {
 	public double getDiscount() {
 		return discount;
 	}
-	public void setDiscount(Integer discount) {
+	public void setDiscount(Double discount) {
 		this.discount = discount;
 	}
 	

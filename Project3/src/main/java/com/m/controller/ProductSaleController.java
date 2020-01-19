@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.a.model.SCOrdersBean;
+import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderDetailBean;
+import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
 import com.m.service.ProductSaleService;
 
@@ -47,20 +52,20 @@ public class ProductSaleController {
 		return "m/productSale1";
 	}
 	
-	@ModelAttribute("defaultInfo")
-	public String showDefaultInfo(Model model, @RequestParam("start") String sDate, 
-			@RequestParam("end") String eDate) {
-		List<ProductSaleBean> psbList = new ArrayList<>();
-		HashMap<Integer, List<ProductSaleBean>> allFPlists = 
-				new HashMap<Integer, List<ProductSaleBean>>();
-	
-		psbList = service.getProductSaleOutput(service.showFoodOrders(sDate, eDate));
-		allFPlists.put(1, psbList);
-		psbList = service.getProductSaleOutput(service.showPeripheralOrders(sDate, eDate));
-		allFPlists.put(2, psbList);
-		model.addAttribute("defaultInfo", allFPlists);
-		return "m/productSale1";
-	}
+//	@PostMapping(value = "product/sale")
+//	public String showDefaultInfo(Model model, @RequestParam("start") String sDate, 
+//			@RequestParam("end") String eDate) {
+//		List<ProductSaleBean> psbList = new ArrayList<>();
+//		HashMap<Integer, List<ProductSaleBean>> allFPlists = 
+//				new HashMap<Integer, List<ProductSaleBean>>();
+//		psbList = service.getProductSaleOutput(service.showFoodOrders(sDate, eDate));
+//		allFPlists.put(1, psbList);
+//		psbList = service.getProductSaleOutput(service.showPeripheralOrders(sDate, eDate));
+//		allFPlists.put(2, psbList);
+//		
+//		model.addAttribute("allFPlists", allFPlists);
+//		return "m/productSale1";
+//	}
 	
 	@PostMapping(value = "product/sale")
 	public List<ProductSaleBean> showProductInfo(Model model, @RequestParam("cate") String cate
@@ -68,25 +73,35 @@ public class ProductSaleController {
 		
 		List<ProductSaleBean> psbList = new ArrayList<>();
 		HashMap<Integer, List<ProductSaleBean>> allFPlists = new HashMap<Integer, List<ProductSaleBean>>();
-		
+		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
+		List<MOrderDetailBean> modbList = new ArrayList<>();
+		List<ProductsBean> pbList = new ArrayList<>();
 		switch (cate) {
 		case "all":
-			psbList = service.getProductSaleOutput(service.showFoodOrders(sDate, eDate));
-			allFPlists.put(1, psbList);
-			psbList = service.getProductSaleOutput(service.showPeripheralOrders(sDate, eDate));
-			allFPlists.put(2, psbList);
+//			psbList = service.getProductSaleOutput(service.showFoodOrders(sDate, eDate));
+//			allFPlists.put(1, psbList);
+//			psbList = service.getProductSaleOutput(service.showPeripheralOrders(sDate, eDate));
+//			allFPlists.put(2, psbList);
 			break;
 		case "allFood":
-			psbList = service.getProductSaleOutput(service.showFoodOrders(sDate, eDate));
+//			psbList = service.getProductSaleOutput(service.showFoodOrders(sDate, eDate));
 			break;
 		case "套餐的餐點":
-			psbList = service.getProductSaleOutput(service.showFoodOrder(cate, sDate, eDate));
+			sthbList = service.getMovieDate(sDate, eDate);
+			modbList = service.getMODBList();
+			pbList = service.getFoodPB4();
+			psbList = service.showFoodOutput(sthbList, modbList, pbList);
 			break;
 		case "餐點":
-			psbList = service.getProductSaleOutput(service.showFoodOrder(cate, sDate, eDate));
+			sthbList = service.getMovieDate(sDate, eDate);
+			modbList = service.getMODBList();
+			pbList = service.getFoodPB5();
+			psbList = service.showFoodOutput(sthbList, modbList, pbList);
 			break;
 		case "周邊商品":
-			psbList = service.getProductSaleOutput(service.showPeripheralOrders(sDate, eDate));
+			pbList = service.getPeripheralPB();
+			List<SCOrdersBean> scodList =  service.getPeripheralSCOrders(sDate, eDate);
+			psbList = service.getPeripheralOutput(pbList, scodList);
 			break;
 		default:
 			System.out.println("compare cate and related method..");
