@@ -24,39 +24,50 @@ fieldset {
 			<h1 style="text-align: center">新增產品資料</h1>
 		</div>
 	</section>
-	<hr style="height: 1px; border: none; color: #333; background-color: #333;">
+	<hr
+		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="ProductsBean" class='form-horizontal'>
-			<fieldset >
+		<form:form method='POST' modelAttribute="ProductsBean"
+			class='form-horizontal'>
+			<fieldset>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='productName'>
 						產品名稱 </label>
 					<div class="col-lg-10">
-						 <form:input id="productName" path="productName" type='text'
+						<form:input id="productName" path="productName" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2"  for='categoryID'>
-						分類 </label>
+					<label class="control-label col-lg-2 col-lg-2"
+						for='category.categoryID'> 分類 </label>
 					<div class="col-lg-10">
-						<form:input id="categoryID" path="categoryID" type='text'
-							class='form:input-large' />
+						<form:input id="category.categoryID"
+							path="category.categoryID" type='text' class='form:input-large' />
 					</div>
 				</div>
 
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="category"> -->
-<!-- 						類型 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select path="category"> --%>
-<%-- 							<form:option value="-1" label="請挑選" /> --%>
-<%-- 							<form:options items="${categoryList}" /> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2"
+						for='category.categoryName'> 分類NAme </label>
+					<div class="col-lg-10">
+						<form:input id="category.categoryName"
+							path="category.categoryName" type='text' class='form:input-large' />
+					</div>
+				</div>
+
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<label class='control-label col-lg-2 col-lg-2' for="category"> -->
+				<!-- 						類型 </label> -->
+				<!-- 					<div class='col-lg-10'> -->
+				<%-- 						<form:select path="category"> --%>
+				<%-- 							<form:option value="-1" label="請挑選" /> --%>
+				<%-- 							<form:options items="${categoryList}" /> --%>
+				<%-- 						</form:select> --%>
+				<!-- 					</div> -->
+				<!-- 				</div> -->
 
 				<div class="form-group">
 					<label class='control-label col-lg-2 col-lg-2' for="unitPrice">
@@ -82,16 +93,16 @@ fieldset {
 							class='form:input-large' />
 					</div>
 				</div>
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="companyId"> -->
-<!-- 						書商 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select path="companyId"> --%>
-<%-- 							<form:option value="-1" label="請挑選" /> --%>
-<%-- 							<form:options items="${companyList}" /> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<label class='control-label col-lg-2 col-lg-2' for="companyId"> -->
+				<!-- 						書商 </label> -->
+				<!-- 					<div class='col-lg-10'> -->
+				<%-- 						<form:select path="companyId"> --%>
+				<%-- 							<form:option value="-1" label="請挑選" /> --%>
+				<%-- 							<form:options items="${companyList}" /> --%>
+				<%-- 						</form:select> --%>
+				<!-- 					</div> -->
+				<!-- 				</div> -->
 				<div class="form-group">
 					<div class='col-lg-offset-2 col-lg-10'>
 						<input id="btnAdd" type='submit' class='btn btn-primary'

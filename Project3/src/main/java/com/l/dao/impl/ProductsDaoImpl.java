@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.l.dao.ProductsDao;
+import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 
 
@@ -69,7 +70,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		Session session=factory.getCurrentSession();
 			int n=session.createQuery(hql)	
 					.setParameter("newproductName",product.getProductName())
-					.setParameter("newcategoryID", product.getCategoryID())
+					.setParameter("newcategoryID", product.getCategory())
 					.setParameter("newunitPrice", product.getUnitPrice())
 					.setParameter("newunitStock", product.getUnitStock())
 					.setParameter("newcost",product.getCost())

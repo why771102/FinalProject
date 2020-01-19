@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-md-5">
 				<h3>產品ID:${Product.productID}</h3>
-				<p>分類: ${Product.categoryID}</p>
+				<p>分類: ${Product.category.categoryID}</p>
 				<p>單價: ${Product.unitPrice}</p>
 				<p>產品名稱: ${Product.productName}</p>
 				<p>產品庫存: ${Product.unitStock}</p>

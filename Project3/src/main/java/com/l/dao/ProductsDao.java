@@ -3,6 +3,7 @@ package com.l.dao;
 import java.util.List;
 
 import com.c.model.HallBean;
+import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 
 public interface ProductsDao {

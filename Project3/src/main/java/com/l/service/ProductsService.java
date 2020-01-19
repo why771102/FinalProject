@@ -2,6 +2,7 @@ package com.l.service;
 
 import java.util.List;
 
+import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 
 public interface ProductsService {
