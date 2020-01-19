@@ -1,5 +1,6 @@
 package com.a.controller;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -247,7 +248,7 @@ public class RunMovieController {
 
 			// 確認包場
 			// void checkHallOrder(LocalDateTime runDateTime ,int i, List<HallBean> hb_list)
-			HallTime = HallTime - checkHallOrder( runDateTime , hb_list.get(Hall_i) , HallTime) ;
+			HallTime = HallTime - checkHallOrder( runDateTime , hb_list.get(Hall_i) , HallTime,	 OrderHall_list) ;
 			System.out.println("=============包場 結束:================= " );
 			System.out.println("合約數量:" + Contract_list.size());
 			System.out.println("必須排數量:" + shouldRB_list.size());
@@ -288,7 +289,7 @@ public class RunMovieController {
 			System.out.println("MovieInsetHall_list:" + MovieInsetHall_list.size());
 			System.out.println("runMovie Size:" + runMovie_list.size());
 			System.out.println("HallTime :" + HallTime);
-			int RunCount = 0;
+			
 			// public void runMovieByPT(int HallTime,runMovie_list ) {}
 			System.out.println("runMovie_list in MovieInsetHall_list-----------------------------------------------");
 
@@ -316,6 +317,7 @@ public class RunMovieController {
 				}
 			}
 			System.out.println("MovieInsertHall Size:" + MovieInsetHall_list.size());
+			System.out.println("決定電影ＰＴ值順序結束" + MovieInsetHall_list.size());
 
 			// 把合約跟ＰＴ排片合併 Contract_list MovieInsetHall_list
 			for (ShowtimeBean stb : Contract_list) {
@@ -332,7 +334,7 @@ public class RunMovieController {
 
 			// int minusTime = minusTime(MovieInsetHall_list);
 			int runtimeTotal = 0;
-			int thisTime = 960;
+			int thisTime = 900;
 
 			for (ShowtimeBean stb : MovieInsetHall_list) {
 
@@ -381,8 +383,42 @@ public class RunMovieController {
 					runtime = runtimeTotal;
 				}
 			}
+			
+			//處理包場問題
+			
+				List<ShowtimeBean> FinalShowMovie_list2 =null;
+	     for(int o=0;o<OrderHall_list.size();o++) {
+	    	 OrderHall_list.get(o).getStartTime();//LoalDateTime
+	    	 
+	    	 Duration duration = Duration.between( OrderHall_list.get(o).getStartTime(), runDateTime );
+		       int minust1 =(int) duration.toMinutes();
+	    	 for(int t=0 ;t <FinalShowMovie_list.size();t++) {
+	    		 runtime=0;
+	    		 runtimeTotal = runtime + FinalShowMovie_list.get(t).getRunningTime();
+	    		 if(runtime <minust1 && runtimeTotal>minust1) {
+	    			 
+	    			 if(minust1-runtime>HallTime) {
+	    				 FinalShowMovie_list2.add(t, OrderHall_list.get(o));
+	    				
+	    				 
+	    			 }else {
+	    				 FinalShowMovie_list2.add(t,OrderHall_list.get(o));
+	    				 FinalShowMovie_list2.add(FinalShowMovie_list.get(t));
+//	    				 HallTime =HallTime-(OrderHall_list.get(o).getRunningTime());
+	    			 }
+	    			
+	    		 }else {
+	    			 FinalShowMovie_list2.add(FinalShowMovie_list.get(t));
+	    		 }
+	    		 runtime = runtimeTotal;
+	    	 }
+//	    	
+	     }
+			
+			
 
 			System.out.println(" FinalShowMovie_list size:" + FinalShowMovie_list.size());
+			System.out.println(" FinalShowMovie_list size2:" + FinalShowMovie_list2.size());
 			System.out.println(" MovieInsetHall_list size:" + MovieInsetHall_list.size());
 			System.out.println("-----------------------------------------------");
 			// save showTimeHitory(List<ShowtimeBean> FinalShowMovie_list)
@@ -402,7 +438,7 @@ public class RunMovieController {
 
 					mService.addShowTimeHistory(show);
 					System.out.println("stb.RunID()" + stb.getRb().getRunID());
-					System.out.println("MovieInsertHallsize:" + MovieInsetHall_list.size());// 85
+					System.out.println("MovieInsertHallsize:" + MovieInsetHall_list.size());
 					System.out.println("----------------------------------------------");
 				}
 
@@ -415,18 +451,18 @@ public class RunMovieController {
 		return "index-a";// URL 跟 eclip 擺放位置相關
 	}
 
-	public int checkHallOrder(LocalDateTime runDateTime ,HallBean hb ,int HallTime) {
+	public int checkHallOrder(LocalDateTime runDateTime ,HallBean hb ,int HallTime,	List<ShowtimeBean> OrderHall_list) {
 		int HallOrderTime = 0;
 		List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
 		if (hob_list.size() != 0) {
 			for (HallOrderBean hob : hob_list) {
 				if (hob.getHallID().equalsIgnoreCase(hb.getHallID())) {
 //					HallTime = HallTime - (hob.getOrderHours()) - (restTime.getRunningTime());
-					ShowtimeBean hall = new ShowtimeBean(0, hob.getOrderHours(), hob);
+					ShowtimeBean hall = new ShowtimeBean(0, hob.getOrderHours()*60, hob);
 					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 					LocalDateTime date2 = LocalDateTime.parse(hob.getStartTime(), fmt);
 					hall.setStartTime(date2);
-//					OrderHall_list.add(hall);
+     				OrderHall_list.add(hall);
 					// 創一個統稱包廳的Bean Running
                    
 				} else {}
