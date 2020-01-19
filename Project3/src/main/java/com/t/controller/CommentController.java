@@ -100,10 +100,7 @@ public class CommentController {
 	
 	@RequestMapping("/comments/report")
 	public String reportComment(@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
-		System.out.println("123");
-		System.out.println(commentID);
 		cb.setCommentID(commentID);
-		System.out.println(commentID);
 		service.reportComment(commentID);
 		return "redirect:/findAllComment";
 	}
@@ -138,6 +135,14 @@ public class CommentController {
 		service.updateComment(cb);
 		model.addAttribute("Comment",service.getTheCommentBean(commentID));
 		return "t/onecomment";
+	}
+	
+	//列出所有被檢舉的Comment
+	@RequestMapping("/findAllReportComment")
+	public String findAllReportComment(Model model) {
+		List<CommentBean> list=service.findAllComment();
+		model.addAttribute("ReportComments", list);
+		return "t/reportedcomment";
 	}
 	
 	@ModelAttribute("movieList")

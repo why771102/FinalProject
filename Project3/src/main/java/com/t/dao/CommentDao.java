@@ -51,5 +51,5 @@ public interface CommentDao {
 	void reportComment(Integer commentID);
 
 	//將檢舉的短評ID傳送至後台
-
+	List<CommentBean> findAllReportComment();
 }
