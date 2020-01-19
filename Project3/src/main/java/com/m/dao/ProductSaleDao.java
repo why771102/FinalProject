@@ -5,6 +5,7 @@ import java.util.List;
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
 
@@ -19,8 +20,12 @@ public interface ProductSaleDao {
 	public List<ProductSaleBean> getPeripheralSCOD(List<ProductsBean> pbList, List<SCOrdersBean> scbList);
 //	public List<ProductSaleBean> getPeripheralOrders(String orderDateA, String orderDateB);
 	//4, 5
-	public List<ProductSaleBean> showFoodOrder(List<ShowTimeHistoryBean> sthbList);
-	
+	public List<ShowTimeHistoryBean> getMovieDate(String playStartTimeA, String playStartTimeB);
+	public List<MOrderDetailBean> getMODBList();
+	public List<ProductsBean> getFoodPB4();
+	public List<ProductsBean> getFoodPB5();
+	public List<ProductSaleBean> showFoodOutput(List<ShowTimeHistoryBean> sthbList, List<MOrderDetailBean> modbList,
+			List<ProductsBean> pbList);
 	//4+5
 	public List<ProductSaleBean> showFoodOrders(String playStartTimeA, String playStartTimeB);
 	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))
@@ -29,7 +34,7 @@ public interface ProductSaleDao {
 //	//6+7+8..
 //	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB);
 	
-	public List<String> getDistinctProductNames();
+//	public List<String> getDistinctProductNames();
 	
 	//根據產品名稱進入單日資訊
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);

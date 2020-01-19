@@ -16,17 +16,17 @@ public class ProductSaleBean implements Serializable {
 	Double discount;
 	Integer cost;
 	Integer earn;
-	Double productSubtotal;
+	Integer productSubtotal;
 	Integer earnSubtotal;
 	
-	public ProductSaleBean(String productName, Integer unitPrice, Integer qty, Double productSubtotal) {
+	public ProductSaleBean(String productName, Integer unitPrice, Integer qty, Integer productSubtotal) {
 		this.productName = productName;
 		this.unitPrice = unitPrice;
 		this.qty = qty;
 		this.productSubtotal = productSubtotal;
 	}
 	
-	public ProductSaleBean(String productName, Integer qty, Integer unitPrice, Integer cost, Integer earn, Double productSubtotal, Integer earnSubtotal) {
+	public ProductSaleBean(String productName, Integer qty, Integer unitPrice, Integer cost, Integer earn, Integer productSubtotal, Integer earnSubtotal) {
 		this.productName = productName;
 		this.qty = qty;
 		this.unitPrice = unitPrice;
@@ -67,10 +67,10 @@ public class ProductSaleBean implements Serializable {
 		this.cost = cost;
 	}	
 	
-	public Double getProductSubtotal() {
+	public Integer getProductSubtotal() {
 		return productSubtotal;
 	}
-	public void setProductSubtotal(Double productSubtotal) {
+	public void setProductSubtotal(Integer productSubtotal) {
 		this.productSubtotal = productSubtotal;
 	}
 }
