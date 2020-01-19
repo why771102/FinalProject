@@ -104,7 +104,7 @@
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
 		}
-		console.log("ssss" + start.format('YYYY-MM-DD'));
+		console.log("hhhh" + start.format('YYYY-MM-DD'));
 		
 		//傳送日期的值
 		$.ajax({

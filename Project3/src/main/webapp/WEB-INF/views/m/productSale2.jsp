@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>hallSale1</title>
+<title>productSale1</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -26,97 +26,43 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">包廳銷售資訊總覽</h2>
-	<form:form method='POST' modelAttribute="hallSaleBean2" enctype="multipart/form-data" >
-	<div>
-		<div id="timePicker"
-			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
-			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
-				class="fa fa-caret-down"></i>
+	<h2 style="text-align: center">產品銷售總覽</h2>
+	<form:form method='POST' modelAttribute="ProductSaleBean2"
+		enctype="multipart/form-data">
+		<div>
+			<div id="reportrange"
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
+					class="fa fa-caret-down"></i>
+			</div>
 		</div>
-	</div>
-	<br>
-	<table id="example" class="display" style="width: 100%;">
-		<thead>
-			<tr>
-				<th></th>
-				<th>xxx廳</th>
-				<th>單價</th>
-				<th>時數</th>
-				<th>銷售總金額</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td></td>
-				<td>Tiger Nixo</td>
-				<td>System Architect</td>
-				<td>Edinburgh</td>
-				<td>61</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Garrett Winters</td>
-				<td>Accountant</td>
-				<td>Tokyo</td>
-				<td>63</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Ashton Cox</td>
-				<td>Junior Technical Author</td>
-				<td>San Francisco</td>
-				<td>66</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Cedric Kelly</td>
-				<td>Senior Javascript Developer</td>
-				<td>Edinburgh</td>
-				<td>22</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Airi Satou</td>
-				<td>Accountant</td>
-				<td>Tokyo</td>
-				<td>33</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Brielle Williamson</td>
-				<td>Integration Specialist</td>
-				<td>New York</td>
-				<td>61</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Herrod Chandler</td>
-				<td>Sales Assistant</td>
-				<td>San Francisco</td>
-				<td>59</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Rhona Davidson</td>
-				<td>Integration Specialist</td>
-				<td>Tokyo</td>
-				<td>55</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</tfoot>
-	</table>
+		<br>
+		<table id="example" class="display" style="width: 100%;">
+			<thead>
+				<tr>
+					<th></th>
+					<th>產品名稱</th>
+					<th>單價</th>
+					<th>數量</th>
+					<th>總金額</th>
+				</tr>
+			</thead>
+			<tbody id="insertHere">
+
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
 	</form:form>
-	
-	<script>
+</body>
+<script>
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
 			"columnDefs" : [ {
@@ -142,13 +88,27 @@
 		var start = moment().subtract(7, 'days');
 		var end = moment();
 		function cb(start, end) {
-			$('#timePicker span').html(
+			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
 		}
-		
+		console.log("pppp" + start.format('YYYY-MM-DD'));
+		//傳送日期的值
+		$.ajax({
+			url : "${pageContext.request.contextPath}/product/sale",
+			data : {
+				start : start.format('YYYY-MM-DD'),
+				end : end.format('YYYY-MM-DD')
+			},
+			type : "POST",
+			success : function() {
+				alert("到第二頁囉!");
+				// 				window.location.href = "${pageContext.request.contextPath}/index-c";
+			}
+		});
+
 		// MMMM D, YYYY
-		$('#timePicker').daterangepicker(
+		$('#reportrange').daterangepicker(
 				{
 					startDate : start,
 					endDate : end,
@@ -168,22 +128,27 @@
 					}
 				}, cb);
 		cb(start, end);
-		
-		//傳送日期的值
-		$.ajax({
-			url : "${pageContext.request.contextPath}/hall/sale",
-			data : {
-				sDate: start,
-				eDate: end
-			},
-			type : "POST",
-			success : function() {
-				alert("新增成功!");
-// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-			}
-		});
 	});
 
+	//傳送cate selection值
+	function showCate() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/product/sale/date",
+			data : {
+				cate : document.getElementById("categoryNames").value
+			},
+			type : "Get",
+// 			success : function() {
+// 				alert("新增成功!");
+				//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
+// 			}
+		});
+	}
+
+	//動態新增表格
+	//動態新增表格
+	$('#insertHere')
+			.append(
+					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">產品名稱</a></td><td>單價</td><td>數量</td><td>總金額</td></tr>');
 </script>
-</body>
 </html>

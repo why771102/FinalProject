@@ -121,10 +121,11 @@ public class RunMovieControllerMakeData {
 		// 換URL
 		return "index-a";
 	}
-	@PostMapping(value = "/Allrunning/add")
-	public String addAllRunning() {
+
+	@GetMapping(value = "/Allrunning/add")
+	 public String addAllRunning(Model model) {
 //		List<MovieBean> Allmovie_list=new ArrayList<>();
-		int dataCount= 51;
+		int dataCount= 52;
 		LocalDateTime startTime =LocalDateTime.parse("2019/10/01 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 		for(int i=1;i<= dataCount;i++) {
 		

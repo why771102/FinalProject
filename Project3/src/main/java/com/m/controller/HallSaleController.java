@@ -51,7 +51,6 @@ public class HallSaleController {
 		return hsbList;
 	}
 	
-	
 //	//到hs2
 //	@GetMapping(value = "/hall/sale/date")
 //	public String toHallSaleDate(Model model) {

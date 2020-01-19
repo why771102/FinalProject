@@ -22,51 +22,6 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 		this.dao = dao;
 	}
 	
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB) {
-		return dao.showAllProductOrders(playStartTimeA, playStartTimeB);
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> getPeripheralOrders(String orderDateA, String orderDateB) {
-		return dao.getPeripheralOrders(orderDateA, orderDateB);
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB) {
-		return dao.showFoodOrder(categoryName, playStartTimeA, playStartTimeB);
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA,
-			String playStartTimeB) {
-		return dao.showFoodOrders(categoryNameA, categoryNameB, playStartTimeA, playStartTimeB);
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
-		return dao.showPeripheralOrder(categoryName, orderDateA, orderDateB);
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA,
-			String orderDateB) {
-		return dao.showPeriperalOrders(categoryNameA, categoryNameB, orderDateA, orderDateB);
-	}
-
-	
-	@Transactional
-	@Override
-	public List<String> getDistinctProductNames() {
-		List<String> productNamesList = dao.getDistinctProductNames();
-		return productNamesList;
-	}
 	
 	@Transactional
 	@Override
@@ -84,7 +39,7 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 			Integer qty = 0;
 			Integer cost = 0;
 			Integer earn = 0;
-			Double productSubtotal = 0.0;
+			Integer productSubtotal = 0;
 			Integer earnSubtotal = 0;
 			
 			for (ProductSaleBean psb : psbList) {
@@ -94,7 +49,7 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 					unitPrice = psb.getUnitPrice();
 					discount = psb.getDiscount();
 					cost = psb.getCost();
-					productSubtotal = productSubtotal + (unitPrice*discount*qty);
+//					productSubtotal = productSubtotal + (unitPrice*discount*qty);
 					psbList.remove(psb);
 				}
 				earn = unitPrice - cost;
@@ -107,17 +62,6 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 		return PSBList;
 	}
 	
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB) {
-		return dao.showFoodOrderByTime(productName, playStartTimeA, playStartTimeB);
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB) {
-		return dao.showPeripheralOrderByTime(productName, orderDateA, orderDateB);
-	}
 
 	@Transactional
 	@Override
@@ -125,26 +69,85 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 		List<LocalDate> datesList = service.showEachDate(sDate, eDate);
 		return datesList;
 	}
-	
-	@Transactional
+
+
+	@Override
+	public List<ProductSaleBean> showAllFoodOrders(String playStartTimeA, String playStartTimeB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ProductSaleBean> getPeripheralOrders(String orderDateA, String orderDateB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ProductSaleBean> showFoodOrders(String categoryNameA, String categoryNameB, String playStartTimeA,
+			String playStartTimeB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA,
+			String orderDateB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<String> getDistinctProductNames() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	@Override
 	public List<ProductSaleBean> getFoodEarnByDateOutput(List<LocalDate> datesList, String productName) {
-		List<ProductSaleBean> PSBList = new ArrayList<>();
-		
-		for (LocalDate date : datesList) {
-			PSBList = dao.showFoodOrderByTime(productName, date.toString(), date.toString());
-		}
-		return PSBList;
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	@Transactional
+
+
 	@Override
 	public List<ProductSaleBean> getPeripheralEarnByDateOutput(List<LocalDate> datesList, String productName) {
-		List<ProductSaleBean> PSBList = new ArrayList<>();
-		
-		for (LocalDate date : datesList) {
-			PSBList = dao.showPeripheralOrderByTime(productName, date.toString(), date.toString());
-		}
-		return PSBList;
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+
 }

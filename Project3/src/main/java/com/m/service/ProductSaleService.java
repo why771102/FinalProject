@@ -14,21 +14,25 @@ public interface ProductSaleService {
 	//新增cate下拉式選單
 	public String getCategoryNames();
 	
-	public List<ProductSaleBean> showAllProductOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders
 	public List<SCOrdersBean> getPeripheralSCOrders(String orderDateA, String orderDateB);
 	public List<ProductsBean> getPeripheralPB();
 	public List<ProductSaleBean> getPeripheralOutput(List<ProductsBean> pbList, List<SCOrdersBean> scbList);	
 //	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB);
-	//4, 5
+	//4, 5, 4+5
 	public List<ShowTimeHistoryBean> getMovieDate(String playStartTimeA, String playStartTimeB);
 	public List<MOrderDetailBean> getMODBList();
 	public List<ProductsBean> getFoodPB4();
 	public List<ProductsBean> getFoodPB5();
+	public List<ProductsBean> getAllFoodPB();
 	public List<ProductSaleBean> showFoodOutput(List<ShowTimeHistoryBean> sthbList, List<MOrderDetailBean> modbList,
 			List<ProductsBean> pbList);
-	//4+5
-	public List<ProductSaleBean> showFoodOrders(String playStartTimeA, String playStartTimeB);
+	
+	//根據產品名稱進入單日資訊
+	public List<LocalDate> showEachDate(String sDate, String eDate);
+	public List<ProductSaleBean> getByDateOutput(List<LocalDate> datesList, String pName);
+	
+	
 	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))
 //	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB);
 //	//6+7+8..
@@ -39,11 +43,11 @@ public interface ProductSaleService {
 //	public List<ProductSaleBean> getProductSaleOutput(List<ProductSaleBean> psbList);
 
 	//根據產品名稱進入單日資訊
-	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
-	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);
+//	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
+//	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);
 	
 	//使用單日資訊需要加入這個方法才能輸出
-	public List<LocalDate> showEachDate(String sDate, String eDate);
-	public List<ProductSaleBean> getFoodSaleByDateOutput(List<LocalDate> datesList, String productName);
-	public List<ProductSaleBean> getPeripheralSaleByDateOutput(List<LocalDate> datesList, String productName);
+//	public List<LocalDate> showEachDate(String sDate, String eDate);
+//	public List<ProductSaleBean> getFoodSaleByDateOutput(List<LocalDate> datesList, String productName);
+//	public List<ProductSaleBean> getPeripheralSaleByDateOutput(List<LocalDate> datesList, String productName);
 }
