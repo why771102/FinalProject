@@ -54,7 +54,7 @@ public class ProductsController {
 			}
 			
 	//測試更新方法*3  1.在查詢單筆內 2.丟到update頁面 3.丟回查單筆
-		@RequestMapping(value = "/update/products", method = RequestMethod.GET)
+		@RequestMapping("/update/products")
 		public String getupdateProducts(Model model) {
 			List<ProductsBean> list=service.getProducts();
 			model.addAttribute("Product", list);
