@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
+import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
 
@@ -16,13 +18,15 @@ public interface ProductSaleService {
 	//show all peripheral orders
 	public List<SCOrdersBean> getPeripheralSCOrders(String orderDateA, String orderDateB);
 	public List<ProductsBean> getPeripheralPB();
-	public List<ProductSaleBean> getPeripheralSCOD(List<ProductsBean> pbList, List<SCOrdersBean> scbList);	
+	public List<ProductSaleBean> getPeripheralOutput(List<ProductsBean> pbList, List<SCOrdersBean> scbList);	
 //	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB);
 	//4, 5
-//	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB);
-	
-	
-	
+	public List<ShowTimeHistoryBean> getMovieDate(String playStartTimeA, String playStartTimeB);
+	public List<MOrderDetailBean> getMODBList();
+	public List<ProductsBean> getFoodPB4();
+	public List<ProductsBean> getFoodPB5();
+	public List<ProductSaleBean> showFoodOutput(List<ShowTimeHistoryBean> sthbList, List<MOrderDetailBean> modbList,
+			List<ProductsBean> pbList);
 	//4+5
 	public List<ProductSaleBean> showFoodOrders(String playStartTimeA, String playStartTimeB);
 	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))
@@ -31,9 +35,9 @@ public interface ProductSaleService {
 //	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA, String orderDateB);
 	
 	//使用上面方法後要加這個方法才能輸出
-	public List<String> getDistinctProductNames();
-	public List<ProductSaleBean> getProductSaleOutput(List<ProductSaleBean> psbList);
-	
+//	public List<String> getDistinctProductNames();
+//	public List<ProductSaleBean> getProductSaleOutput(List<ProductSaleBean> psbList);
+
 	//根據產品名稱進入單日資訊
 	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB);
 	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB);
