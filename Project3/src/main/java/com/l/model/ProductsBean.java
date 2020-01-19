@@ -35,9 +35,9 @@ public class ProductsBean implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="categoryID")
-	private CategoriesBean categoryID;
+	private CategoriesBean category;
 	@Transient
-	Integer Category;
+	Integer CategoryID;
 	
 	
 	@NotNull
@@ -51,10 +51,10 @@ public class ProductsBean implements Serializable {
 	Integer cost;
 
 	public ProductsBean() {}
-	public ProductsBean(Integer productID,String productName,CategoriesBean categoryID,Integer unitPrice,Integer unitStock,Integer cost) {
+	public ProductsBean(Integer productID,String productName,CategoriesBean category,Integer unitPrice,Integer unitStock,Integer cost) {
 		this.productID=productID;
 		this.productName=productName;
-		this.categoryID=categoryID;
+		this.category=category;
 		this.unitPrice=unitPrice;
 		this.unitStock=unitStock;
 		this.cost=cost;
@@ -80,17 +80,18 @@ public class ProductsBean implements Serializable {
 
 
 
-	public CategoriesBean getCategoryID() {
-		return categoryID;
+	
+	public CategoriesBean getCategory() {
+		return category;
 	}
-	public void setCategoryID(CategoriesBean categoryID) {
-		this.categoryID = categoryID;
+	public void setCategory(CategoriesBean category) {
+		this.category = category;
 	}
-	public Integer getCategory() {
-		return Category;
+	public Integer getCategoryID() {
+		return CategoryID;
 	}
-	public void setCategory(Integer category) {
-		Category = category;
+	public void setCategoryID(Integer categoryID) {
+		CategoryID = categoryID;
 	}
 	public Integer getUnitPrice() {
 		return unitPrice;
