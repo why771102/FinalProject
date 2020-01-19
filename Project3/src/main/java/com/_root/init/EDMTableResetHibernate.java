@@ -14,7 +14,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.a.model.GenreBean;
+import com.a.model.MovieBean;
 import com.a.model.MovieRatingBean;
+import com.a.model.MovieStatusBean;
 import com.c.model.HallBean;
 import com.c.model.HallStatusBean;
 import com.c.model.ReservationStatusBean;
@@ -22,7 +24,6 @@ import com.c.model.SeatStatusBean;
 import com.c.model.SeatsBean;
 import com.c.model.TypeOfSeatBean;
 import com.l.model.CategoriesBean;
-import com.l.model.ProductsBean;
 import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
 import com.p.model.MemberBean;
@@ -199,30 +200,30 @@ public class EDMTableResetHibernate {
 			   session.flush();
 			   System.out.println("Categories資料新增成功");   
 //ProductsBean	
-				try (FileReader fr = new FileReader("data/Products.dat"); BufferedReader br = new BufferedReader(fr);) {
-				    while ((line = br.readLine()) != null) {
-				     if (line.startsWith(UTF8_BOM)) {
-				      line = line.substring(1);
-				     }
-				     String[] token = line.split("\\|");
-				     ProductsBean cb = new ProductsBean();
-				     
-				     cb.setProductName(token[0]);
-				     Integer category = Integer.parseInt(token[1]);
-				     CategoriesBean CategoriesBean = session.get(CategoriesBean.class, category);
-				     cb.setCategoriesBean(CategoriesBean);
-				     cb.setUnitPrice(Integer.parseInt(token[2]));
-				     cb.setUnitStock(Integer.parseInt(token[3]));
-				     cb.setCost(Integer.parseInt(token[4]));
-				     
-				     
-				     session.save(cb);
-				    }
-				   } catch (IOException e) {
-				    System.err.println("新建ProductsBean表格時發生IO例外: " + e.getMessage());
-				   }
-				   session.flush();
-				   System.out.println("ProductsBean資料新增成功");  
+//				try (FileReader fr = new FileReader("data/Products.dat"); BufferedReader br = new BufferedReader(fr);) {
+//				    while ((line = br.readLine()) != null) {
+//				     if (line.startsWith(UTF8_BOM)) {
+//				      line = line.substring(1);
+//				     }
+//				     String[] token = line.split("\\|");
+//				     ProductsBean cb = new ProductsBean();
+//				     
+//				     cb.setProductName(token[0]);
+//				     Integer category = Integer.parseInt(token[1]);
+//				     CategoriesBean CategoriesBean = session.get(CategoriesBean.class, category);
+//				     cb.setCategoriesBean(CategoriesBean);
+//				     cb.setUnitPrice(Integer.parseInt(token[2]));
+//				     cb.setUnitStock(Integer.parseInt(token[3]));
+//				     cb.setCost(Integer.parseInt(token[4]));
+//				     
+//				     
+//				     session.save(cb);
+//				    }
+//				   } catch (IOException e) {
+//				    System.err.println("新建ProductsBean表格時發生IO例外: " + e.getMessage());
+//				   }
+//				   session.flush();
+//				   System.out.println("ProductsBean資料新增成功");  
 //GenreBean
 			   try (FileReader fr = new FileReader("data/genre.dat"); BufferedReader br = new BufferedReader(fr);) {
 				    while ((line = br.readLine()) != null) {
@@ -481,8 +482,59 @@ public class EDMTableResetHibernate {
 								   }
 								   session.flush();
 								   System.out.println("seats資料新增成功");
-				   
-				   	   
+//MovieStatusBean
+			try (FileReader fr = new FileReader("data/movieStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+			    while ((line = br.readLine()) != null) {
+			     if (line.startsWith(UTF8_BOM)) {
+			      line = line.substring(1);
+			     }
+			     String[] token = line.split("\\|");
+			     MovieStatusBean msb = new MovieStatusBean();
+			     msb.setStatusID(Integer.parseInt(token[0]));
+			     msb.setStatus(token[1]);
+			     session.save(msb);
+			     
+			    }
+			   } catch (IOException e) {
+			    System.err.println("新建MovieStatus表格時發生IO例外: " + e.getMessage());
+			   }
+			   session.flush();
+			   System.out.println("MovieStatus資料新增成功");  
+
+//MovieBean
+			try (FileReader fr = new FileReader("data/movie.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					MovieBean mb = new MovieBean();
+					mb.setMovieID(Integer.parseInt(token[0]));
+					mb.setCast(token[1]);
+					mb.setContractDate(token[2]);
+					mb.setDirector(token[3]);
+					mb.setExpectedProfit(Integer.parseInt(token[4]));
+					// 先null因為還沒放照片的假資料
+					mb.setPhoto(null);
+					mb.setPlotSummary(token[6]);
+					mb.setProfitRatio(Double.parseDouble(token[7]));
+					mb.setRunningTime(Integer.parseInt(token[8]));
+					mb.setTitle(token[9]);
+					mb.setTrailer(token[10]);
+					GenreBean gb = session.get(GenreBean.class, Integer.parseInt(token[11]));
+					mb.setGenreBean(gb);
+					MovieRatingBean mrb = session.get(MovieRatingBean.class, Integer.parseInt(token[12]));
+					mb.setMovieRatingBean(mrb);
+					MovieStatusBean msb = session.get(MovieStatusBean.class, Integer.parseInt(token[13]));
+					mb.setMovieStatusBean(msb);
+					session.save(mb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建Movie表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("Movie資料新增成功");
+
 			tx.commit();
 		} catch (Exception e) {
 			System.err.println("新建表格時發生例外: " + e.getMessage());

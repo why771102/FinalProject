@@ -39,6 +39,8 @@
 		<mapping class="com.c.model.HallStatusBean"></mapping>
 		<mapping class="com.p.model.MemberBean"></mapping>
 		<mapping class="com.a.model.MovieRatingBean"></mapping>
+		<mapping class="com.a.model.MovieStatusBean"></mapping>
+		<mapping class="com.a.model.MovieBean"></mapping>
 		<mapping class="com.p.model.PayStatusBean"></mapping>
 		<mapping class="com.l.model.ProductsBean"></mapping>
 		<mapping class="com.c.model.ReservationStatusBean"></mapping>
