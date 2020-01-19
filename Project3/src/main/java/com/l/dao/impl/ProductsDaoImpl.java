@@ -44,7 +44,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	//查詢分類產品們
 		@Override
 		public List<String> getCategoriesID(){
-			String hql="Select Distinct p.categoryID from ProductsBean p";
+			String hql="Select Distinct category from ProductsBean";
 			Session session=factory.getCurrentSession();
 			List<String> list=new ArrayList<>();
 			list=session.createQuery(hql).getResultList();
@@ -54,7 +54,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	//用ID查詢分類產品 
 		@Override
 		public List<ProductsBean> getCategoryID(Integer categoryID){
-			String hql="from ProductsBean pb where pb.categoryID=:categoryID";
+			String hql="from ProductsBean where category=:categoryID";
 			Session session=factory.getCurrentSession();
 			List<ProductsBean> list=new ArrayList<>();
 			list=session.createQuery(hql).setParameter("categoryID", categoryID).getResultList();
