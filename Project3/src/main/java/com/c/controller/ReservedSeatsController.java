@@ -61,7 +61,10 @@ public class ReservedSeatsController {
 //	應該傳到前端 電影名稱、廳、訂票數、日期
 	@PostMapping("/reservedSeats/showSeats")
 	public @ResponseBody Map<Integer, String>showReservedSeats() {
-		List<ReservedSeatsBean> listsb = rservice.getAllSeats(2);
+		//由前端傳入
+		Integer showTimeID = 2;
+		List<ReservedSeatsBean> listsb = rservice.getAllSeats(showTimeID);
+		String date = listsb.get(0).getShowtimeHistoryBean().getPalyStartTime();
 		System.out.println(listsb.get(0).getSeatID());
 		String hallID = listsb.get(0).getSeatsBean().getSeatID().toString().substring(0,1);
 		HallBean hb = hservice.getHall(hallID);
@@ -72,18 +75,23 @@ public class ReservedSeatsController {
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		Gson g = new Gson();
 		String seat = g.toJson(seats);
-		map.put(1, seat);
-		map.put(2, "2"); //number of tickets user wishes to buy
+		map.put(1, seat);//座位表
+		map.put(2, "2"); //訂票數number of tickets user wishes to buy
+		map.put(3, hb.getHallID());//廳
+		map.put(4, "Inception");//電影名稱
+		map.put(5, date);//日期
 //		map.put(2, showTimeID.toString());
 		return map;
 	}
 	
+	//需要傳入廳
 	@PostMapping("/reservedSeats/reserveSeats")
 	public String reservedSeats(@RequestParam("seats") String seats) {
-		Gson gson = new Gson();
-		String[] seatsArray = gson.fromJson(seats, String[].class);
+		String[] seatsArray = sservice.stringToStringArray(seats, "A");
 		for(int seat = 0; seat < seatsArray.length; seat++) {
-			rservice.reserveSeat(2, seatsArray[seat]);	
+			ReservedSeatsBean rsb = rservice.getSeat(2, seatsArray[seat]);
+			System.out.println("reservedSeats rsb.getShowtimeHistoryBean().getShowTimeId(): " + rsb.getShowtimeHistoryBean().getShowTimeId());
+			rservice.reserveSeat(rsb);
 		}
 		return "/index-c";
 	}

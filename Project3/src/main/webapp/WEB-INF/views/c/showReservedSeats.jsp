@@ -165,7 +165,9 @@ span.seatCharts-legendDescription {
 		<h1>Create Movie Theatre Seatings</h1>
 <%-- 		<div> ${hallID} 廳</div> --%>
 		<div id="numberOfTickets"></div>
-		<div id="numberOfTickets"></div>
+		<div id="hallID"></div>
+		<div id="movieTitle">電影:  </div>
+		<div id="date">日期: </div>
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
@@ -181,7 +183,7 @@ span.seatCharts-legendDescription {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="changeStatus()">bring out seating chart</button>
+	<button class="checkout-button" id="callSeatingChart" onclick="changeStatus()">bring out seating chart</button>
 	<button class="checkout-button" id="checkout" onclick="confirmReservation()">確認&raquo;</button>
 	
 	<div id="legend"></div>
@@ -200,6 +202,8 @@ span.seatCharts-legendDescription {
 		return arr;
 	}
 
+	
+	
 	//showing the seating chart through calling controller using ajax
 	function changeStatus(){
 		$('.seatCharts-row').remove();
@@ -212,9 +216,12 @@ span.seatCharts-legendDescription {
 			type : "POST",
 			success : function(data) {
 				var seat = JSON.parse(data[1]);
-				var noOfTickets = parseInt(data[2]);
 				seatmain(seat, 1)
-				document.getElementById("numberOfTickets").innerHTML = data[2];
+				window.noOfTickets = parseInt(data[2]);
+				document.getElementById("numberOfTickets").innerText = window.noOfTickets;
+				document.getElementById("hallID").innerText = data[3] + "廳";
+				document.getElementById("movieTitle").innerText += data[4];
+				document.getElementById("date").innerText += data[5];
 			}
 		});
 	}
@@ -242,11 +249,11 @@ span.seatCharts-legendDescription {
 								_ : {
 									classes : 'seatCharts-space',
 									category : 'Aisle'
+								},
+								u : {
+									classes : 'unavailable',
+									category : 'Already Booked'
 								}
-// 								o : {
-// 									classes : 'out-of-order',
-// 									category : 'Out Of Order'
-// 								}
 
 							},
 							naming : {
@@ -271,7 +278,8 @@ span.seatCharts-legendDescription {
 										]
 							},
 							click : function() {
-								if (this.status() == 'available') {
+								console.log(window.noOfTickets);
+								if (this.status() == 'available' && parseInt(document.getElementById("counter").innerText) < window.noOfTickets) {
 									//let's create a new <li> which we'll add to the cart items
 									$(
 											'<li>'

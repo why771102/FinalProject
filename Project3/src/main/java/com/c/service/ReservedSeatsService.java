@@ -12,7 +12,9 @@ public interface ReservedSeatsService {
 	public List<ShowTimeHistoryBean> insertSeats();
 	
 	//使用者定位將status從0(可訂位)改為1(已訂位)
-	public void reserveSeat(Integer showTimeID, String seatID);
+	public void reserveSeat(ReservedSeatsBean rsb);
+	
+	public ReservedSeatsBean getSeat(Integer showTimeID, String seatID);
 	
 	public SeatsBean getSeatsById(String seatID);
 	
