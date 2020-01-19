@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.a.model.SCOrdersBean;
+import com.l.model.ProductsBean;
 import com.m.dao.ProductSaleDao;
 import com.m.model.ProductSaleBean;
 import com.m.service.ProductSaleService;
@@ -31,18 +34,29 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	public List<ProductSaleBean> showAllProductOrders(String playStartTimeA, String playStartTimeB) {
 		return dao.showAllProductOrders(playStartTimeA, playStartTimeB);
 	}
-
+	
+	//取得周邊商品3方法
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showPeripheralOrders(String orderDateA, String orderDateB) {
-		return dao.getPeripheralOrders(orderDateA, orderDateB);
+	public List<SCOrdersBean> getPeripheralSCOrders(String orderDateA, String orderDateB) {
+		return dao.getPeripheralSCOrders(orderDateA, orderDateB);
 	}
-
 	@Transactional
 	@Override
-	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB) {
-		return dao.showFoodOrder(categoryName, playStartTimeA, playStartTimeB);
+	public List<ProductsBean> getPeripheralPB() {
+		return dao.getPeripheralPB();
 	}
+	@Transactional
+	@Override
+	public List<ProductSaleBean> getPeripheralSCOD(List<ProductsBean> pbList, List<SCOrdersBean> scbList) {
+		return dao.getPeripheralSCOD(pbList, scbList);
+	}
+	
+//	@Transactional
+//	@Override
+//	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB) {
+//		return dao.showFoodOrder(categoryName, playStartTimeA, playStartTimeB);
+//	}
 
 	@Transactional
 	@Override

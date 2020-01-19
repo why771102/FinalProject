@@ -2,6 +2,10 @@ package com.m.dao;
 
 import java.util.List;
 
+import com.a.model.SCOrderDetailBean;
+import com.a.model.SCOrdersBean;
+import com.a.model.ShowTimeHistoryBean;
+import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
 
 public interface ProductSaleDao {
@@ -10,9 +14,13 @@ public interface ProductSaleDao {
 	//show all food orders
 	public List<ProductSaleBean> showAllProductOrders(String playStartTimeA, String playStartTimeB);
 	//show all peripheral orders
-	public List<ProductSaleBean> getPeripheralOrders(String orderDateA, String orderDateB);
+	public List<SCOrdersBean> getPeripheralSCOrders(String orderDateA, String orderDateB);
+	public List<ProductsBean> getPeripheralPB();
+	public List<ProductSaleBean> getPeripheralSCOD(List<ProductsBean> pbList, List<SCOrdersBean> scbList);
+//	public List<ProductSaleBean> getPeripheralOrders(String orderDateA, String orderDateB);
 	//4, 5
-	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB);
+	public List<ProductSaleBean> showFoodOrder(List<ShowTimeHistoryBean> sthbList);
+	
 	//4+5
 	public List<ProductSaleBean> showFoodOrders(String playStartTimeA, String playStartTimeB);
 	// 6, 7, 8.. (DBT: SCOrderDetail(QTY), mOrderDetail(price, discount?), SCOrders(total))

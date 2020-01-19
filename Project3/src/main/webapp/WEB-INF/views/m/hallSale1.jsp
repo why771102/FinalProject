@@ -27,7 +27,7 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">包廳銷售總覽</h2>
-	<form:form method='POST' modelAttribute="hallSaleBean1" enctype="multipart/form-data" >
+	<form:form method='POST' modelAttribute="HallSaleBeanList" enctype="multipart/form-data" >
 	<div>
 		<div id="timePicker"
 			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
@@ -88,10 +88,11 @@
 		}).draw();
 		
 		//動態新增表格
-// 		function showInfo(i){
-// 		$('#insertHere').append('<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date">"'+ i.hallID +'"</a></td><td>"'+ i.price +'"</td><td>"'+ i.orderHours +'"</td><td>"'+ i.hallSubtotal +'"</td></tr>');
-// 		};
 // 		console.log("test=> " + ${HallSaleBeanList});
+// 		${HallSaleBeanList}.forEach(showInfo);
+		function showInfo(i){
+		$('#insertHere').append('<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date">"'+ i.hallID +'"</a></td><td>"'+ i.price +'"</td><td>"'+ i.orderHours +'"</td><td>"'+ i.hallSubtotal +'"</td></tr>');
+		};
 	});
 
 	// timepicker
@@ -110,7 +111,7 @@
 			url : "${pageContext.request.contextPath}/hall/sale",
 			data : {
 				start: start.format('YYYY-MM-DD'),
-				end: start.format('YYYY-MM-DD')
+				end: end.format('YYYY-MM-DD')
 			},
 			type : "POST",
 			success : function() {

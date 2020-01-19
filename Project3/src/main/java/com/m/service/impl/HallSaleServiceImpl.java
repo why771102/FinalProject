@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,28 +37,35 @@ public class HallSaleServiceImpl implements HallSaleService {
 	public List<HallOrderBean> getHallOrder() {
 		return dao.getHallOrder();
 	}
-	
+
 	@Transactional
 	@Override
 	public List<HallOrderBean> getHallHrSubtotal(String sDate, String eDate) {
 		List<HallOrderBean> getHobList = dao.getHallOrder();
 		List<HallOrderBean> hobList = new ArrayList<>();
-
 		LocalDate Sd = LocalDate.parse(sDate);
 		LocalDate Ed = LocalDate.parse(eDate);
 
 		for (HallOrderBean hob : getHobList) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
-			LocalDate orderDate = LocalDateTime.parse(hob.getOrderDate(),formatter).toLocalDate();
+			LocalDate orderDate = LocalDateTime.parse(hob.getOrderDate(), formatter).toLocalDate();
 			long SdOdDays = ChronoUnit.DAYS.between(Sd, orderDate);
-			long OdEdDays = ChronoUnit.DAYS.between(orderDate, Ed);
-
-			if (SdOdDays >= 0 && OdEdDays <= 0) {
+			long EdOdDays = ChronoUnit.DAYS.between(Ed, orderDate);
+			System.out.println("step1: getHallHrSubtotal()");
+			System.out.println("sDate=>" + Sd);
+			System.out.println("eDate=>" + Ed);
+			System.out.println("orderDate=>" + orderDate);
+			System.out.println("SdOdDays=>" + SdOdDays);
+			System.out.println("EdOdDays=>" + EdOdDays);
+			if (SdOdDays >= 0 && EdOdDays <= 0) {
 				hobList.add(hob);
+				System.out.println("符合 輸入查詢區間與hob日期比較");
+				System.out.println("hob=>" + hobList.size());
 			} else {
-				System.out.println("不符合所需輸入查詢區間與hob日期比較");
+				System.out.println("不符合 輸入查詢區間與hob日期比較");
 			}
 		}
+		System.out.println("step1: getHallHrSubtotal(), hobList=>" + Arrays.toString(hobList.toArray()));
 		return hobList;
 	}
 
@@ -73,43 +81,49 @@ public class HallSaleServiceImpl implements HallSaleService {
 
 		for (HallOrderBean hob : hobList) {
 //			if(hob.getHallID() == hob.getHb().getHallID()) {
-			HallSaleBean hsb = new HallSaleBean(hob.getHallID(), hob.getHb().getPrice(), hob.getOrderHours(),
+			HallSaleBean hsb = new HallSaleBean(hob.getHb().getHallID(), hob.getHb().getPrice(), hob.getOrderHours(),
 					hob.getHallSubtotal());
 			hsbList.add(hsb);
 //			}else {
 //				System.out.println("產生List<HallSaleBean>錯誤");
 //			}
 		}
+		System.out.println("step2: getHallSaleLists(), hsbList=>" + hsbList.size());
 		return hsbList;
 	}
-	
+
 	@Transactional
 	@Override
 	public List<HallSaleBean> getHallSaleOutput(List<HallSaleBean> hsbList) {
 		List<HallSaleBean> hsbListToPage = new ArrayList<>();
 		String[] hallName = "ABCDEFGH".split("");
-		
+
 		for (int x = 0; x < hallName.length; x++) {
 			String savehallName = null;
 			Integer hallSubtotal = 0;
 			Integer orderHours = 0;
 			Integer hallPrice = 0;
-			for (HallSaleBean hsb: hsbList) {
-				//if HallID相等就存
-				if(hallName[x].equals(hsb.getHallID())) {
-				savehallName = hallName[x];
-				hallSubtotal = hallSubtotal + hsb.getHallSubtotal();
-				orderHours = orderHours + hsb.getOrderHours();
-				hallPrice = hsb.getPrice();
-				hsbList.remove(hsb);
-				}else {
+			System.out.println("aaaa: " + hsbList.size());
+			for (HallSaleBean hsb : hsbList) {
+				// if HallID相等就存
+				System.out.println("hallName[x]=>" + hallName[x]);
+				System.out.println("hsb.getHallID()=>" + hsb.getHallID());
+
+				if (hallName[x].equals(hsb.getHallID())) {
+					savehallName = hallName[x];
+					hallSubtotal = hallSubtotal + hsb.getHallSubtotal();
+					orderHours = orderHours + hsb.getOrderHours();
+					hallPrice = hsb.getPrice();
+//					hsbList.remove(hsb);
+					HallSaleBean hsbTemp = new HallSaleBean(savehallName, hallPrice, orderHours, hallSubtotal);
+					hsbListToPage.add(hsbTemp);
+					System.out.println("比對時,DB廳名&hsb廳名相同");
+				} else {
 					System.out.println("比對時,DB廳名&hsb廳名不同");
 				}
 			}
-			HallSaleBean hsbTemp =  new HallSaleBean(savehallName, hallPrice, orderHours, hallSubtotal);
-			hsbListToPage.add(hsbTemp);
 		}
+		System.out.println("取得完整資料待傳輸=>" + hsbListToPage.size());
 		return hsbListToPage;
 	}
-
 }

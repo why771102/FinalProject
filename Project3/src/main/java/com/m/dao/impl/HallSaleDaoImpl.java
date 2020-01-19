@@ -15,12 +15,12 @@ import com.p.model.HallOrderBean;
 public class HallSaleDaoImpl implements HallSaleDao {
 
 	SessionFactory factory;
-	
+
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HallOrderBean> getHallOrder() {
@@ -43,5 +43,5 @@ public class HallSaleDaoImpl implements HallSaleDao {
 //		}
 //		return hbList;
 //	}
-	
+
 }

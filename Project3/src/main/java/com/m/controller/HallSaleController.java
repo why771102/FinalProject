@@ -1,13 +1,18 @@
 package com.m.controller;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.m.model.HallSaleBean;
 import com.m.service.HallSaleService;
 
@@ -29,22 +34,23 @@ public class HallSaleController {
 	
 	//到hs1
 	@GetMapping(value = "/hall/sale")
-	public String toHallSale(Model model) {
-		HallSaleBean hsb = new HallSaleBean();
-		model.addAttribute("hallSaleBean1", hsb);
+	public String toHallSale() {
+//		HallSaleBean hsb = new HallSaleBean();
+//		model.addAttribute("hallSaleBean1", hsb);
 		return "m/hallSale1";
 	}
 	
 	//hallSale1資料傳輸
-	@PostMapping(value = "/hall/sale")
-	public String getHallSaleOrders(Model model,
+	@PostMapping("/hall/sale")
+	public @ResponseBody List<HallSaleBean> getHallSaleOrders(Model model,
 			@RequestParam("start")String sDate, 
 			@RequestParam("end")String eDate){
 		List<HallSaleBean> hsbList = service.getHallSaleOutput(service.getHallSaleLists
 				(service.getHallHrSubtotal(sDate,eDate)));
-		model.addAttribute("HallSaleBeanList", hsbList);
-		return "m/hallSale1";
+//		model.addAttribute("HallSaleBeanList", hsbList);
+		return hsbList;
 	}
+	
 	
 //	//到hs2
 //	@GetMapping(value = "/hall/sale/date")
