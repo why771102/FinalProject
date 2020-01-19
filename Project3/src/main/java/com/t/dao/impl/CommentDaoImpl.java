@@ -59,6 +59,15 @@ public class CommentDaoImpl implements CommentDao{
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();		
 	}
+	
+	@Override
+	public void reportComment(Integer commentID) {
+		System.out.println(commentID);
+		String hql = "update CommentBean set reportComment = 1 where commentID = :commentID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();
+	}
+
 
 	@Override
 	public ExpectationBean getAvgGrade(Integer grade) {
