@@ -21,4 +21,6 @@ public interface ShowTimeHistoryDao {
 
 		//拿指定orderID的上映日到下檔日全部的show
 		List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release);
+
+		List<ShowTimeHistoryBean>  getRunBeanLastSTHB(String startdate);
 }
