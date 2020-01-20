@@ -36,7 +36,6 @@ public class ProductsBean implements Serializable {
 	@Column(nullable=false)
 	Integer categoryID;
 	
-	
 	@NotNull
 	@Column(nullable=false)
 	Integer unitPrice;
