@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketSale1</title>
+<title>productSale1</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -26,59 +26,40 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">票房銷售總覽</h2>
-	<form:form method='POST' modelAttribute="TicketSaleBean1" enctype="multipart/form-data" >
-	<div>
-		電影類型： <select>
-			<option>輔導級</option>
-		</select> &nbsp; &nbsp; &nbsp;電影名稱 <select>
-			<option>Java人生</option>
-		</select>
-		<div id="reportrange"
-			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
-			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
-				class="fa fa-caret-down"></i>
+	<h2 style="text-align: center">產品銷售總覽</h2>
+	<form:form method='POST' modelAttribute="ProductSaleBean2"
+		enctype="multipart/form-data">
+		<div>
+			<div id="reportrange"
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
+					class="fa fa-caret-down"></i>
+			</div>
 		</div>
-	</div>
-	<br>
-	<table id="example" class="display" style="width: 100%;">
-		<thead>
-			<tr>
-				<th></th>
-				<th>電影名稱</th>
-				<th>場次數</th>
-				<th>總座位數</th>
-				<th>售出座位數</th>
-				<th>平均滿座率</th>
-				<th>平均單筆消費</th>
-				<th>銷售總金額</th>
-			</tr>
-		</thead>
-		<tbody  id="insertHere">
-			<tr>
-				<td></td>
-				<td><a href="${pageContext.request.contextPath}/ticket/sale/date">電影名稱</a></td>
-				<td>場次數</td>
-				<td>總座位數</td>
-				<td>售出座位數</td>
-				<td>平均滿座率</td>
-				<td>平均單筆消費</td>
-				<td>銷售總金額</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</tfoot>
-	</table>
+		<br>
+		<table id="example" class="display" style="width: 100%;">
+			<thead>
+				<tr>
+					<th></th>
+					<th>產品名稱</th>
+					<th>單價</th>
+					<th>數量</th>
+					<th>總金額</th>
+				</tr>
+			</thead>
+			<tbody id="insertHere">
+
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
 	</form:form>
 </body>
 <script>
@@ -109,23 +90,23 @@
 		function cb(start, end) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
-					+ end.format('YYYY-MM-DD'));
-			
-			//傳送日期的值
-			$.ajax({
-				url : "${pageContext.request.contextPath}/hall/sale",
-				data : {
-					start: start,
-					end: end
-				},
-				type : "POST",
-				success : function() {
-					alert("新增成功!");
-//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-				}
-			});
-			
+							+ end.format('YYYY-MM-DD'));
 		}
+		console.log("pppp" + start.format('YYYY-MM-DD'));
+		//傳送日期的值
+		$.ajax({
+			url : "${pageContext.request.contextPath}/product/sale",
+			data : {
+				start : start.format('YYYY-MM-DD'),
+				end : end.format('YYYY-MM-DD')
+			},
+			type : "POST",
+			success : function() {
+				alert("到第二頁囉!");
+				// 				window.location.href = "${pageContext.request.contextPath}/index-c";
+			}
+		});
+
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
 				{
@@ -148,6 +129,26 @@
 				}, cb);
 		cb(start, end);
 	});
-	
+
+	//傳送cate selection值
+	function showCate() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/product/sale/date",
+			data : {
+				cate : document.getElementById("categoryNames").value
+			},
+			type : "Get",
+// 			success : function() {
+// 				alert("新增成功!");
+				//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
+// 			}
+		});
+	}
+
+	//動態新增表格
+	//動態新增表格
+	$('#insertHere')
+			.append(
+					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">產品名稱</a></td><td>單價</td><td>數量</td><td>總金額</td></tr>');
 </script>
 </html>

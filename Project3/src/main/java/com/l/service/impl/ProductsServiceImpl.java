@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.l.dao.ProductsDao;
+import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
 

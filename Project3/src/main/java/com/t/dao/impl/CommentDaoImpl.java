@@ -59,6 +59,14 @@ public class CommentDaoImpl implements CommentDao{
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();		
 	}
+	
+	@Override
+	public void reportComment(Integer commentID) {
+		String hql = "update CommentBean set reportComment = 1 where commentID = :commentID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();
+	}
+
 
 	@Override
 	public ExpectationBean getAvgGrade(Integer grade) {
@@ -130,7 +138,7 @@ public class CommentDaoImpl implements CommentDao{
 		return list;
 	}
 
-	//查詢單筆comment(用來讓員工查詢被檢舉的comment)
+	//查詢單筆comment
 	@Override
 	public CommentBean getTheCommentBean(Integer commentID) {
 		Session session = factory.getCurrentSession();
@@ -149,6 +157,15 @@ public class CommentDaoImpl implements CommentDao{
 					.setParameter("newcommentTime", cb.getCommentTime())
 					.setParameter("id", cb.getCommentID())
 					.executeUpdate();
+	}
+
+	@Override
+	public List<CommentBean> findAllReportComment() {
+		String hql = "From CommentBean where reportComment = 1 and commentDelete = 0";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

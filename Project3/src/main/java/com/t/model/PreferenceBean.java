@@ -28,12 +28,12 @@ public class PreferenceBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@NotNull
-	@Column(nullable=false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer preferenceID;
-//	Integer commentID;
-//	Integer memberID;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="commentID")
+	private CommentBean commentID;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="memberID")
+	private MemberBean memberID;
 	@NotNull
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer good;
@@ -44,20 +44,11 @@ public class PreferenceBean implements Serializable{
 	@Column(nullable=false, columnDefinition = "TINYINT")
 	Integer block;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="commentID")
-	private CommentBean commentID;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="memberID")
-	private MemberBean memberID;
-	
 	public PreferenceBean() {
 		
 	}
 	
-	public PreferenceBean(Integer preferenceID, Integer good, Integer bad, Integer block, CommentBean commentID, MemberBean memberID) {
-		this.preferenceID = preferenceID;
+	public PreferenceBean(Integer good, Integer bad, Integer block, CommentBean commentID, MemberBean memberID) {
 		this.good = good;
 		this.bad = bad;
 		this.block = block;
@@ -71,14 +62,6 @@ public class PreferenceBean implements Serializable{
 
 	public void setMovieID(CommentBean commentID) {
 		this.commentID = commentID;
-	}
-	
-	public Integer getPreferenceID() {
-		return preferenceID;
-	}
-
-	public void setPreferenceID(Integer preferenceID) {
-		this.preferenceID = preferenceID;
 	}
 
 	public MemberBean getmemberID() {

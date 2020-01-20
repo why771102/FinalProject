@@ -32,7 +32,7 @@
 				<a href='comments/add'>新增留言</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href='comments/delete'>刪除留言</a><BR>
+				<a href='findAllReportComment'>檢視被檢舉留言</a><BR>
 			</td>
 		</tr>
 		

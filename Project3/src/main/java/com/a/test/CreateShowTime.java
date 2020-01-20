@@ -120,8 +120,9 @@ public class CreateShowTime {
 		
 		
 		for(int i = 0;i<(list.size());i++) {
-			list.remove(bat);
-			list.add(0,bat);
+			
+			list.add(i,bat);
+			list.remove(i-1);
 			System.out.println(i+"  "+list.get(i));
 		}
 		System.out.println("-------");

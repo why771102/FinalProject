@@ -45,6 +45,7 @@ public class mOrdersServiceImpl implements mOrdersService{
 	public List<MovieBean> getMovieName() {
 		return dao.getMovieName();
 	}
+
 //	@Transactional
 //	@Override
 //	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
 
@@ -35,7 +36,7 @@ public class ProductsController {
 		public String queryCategoriesID(Model model) {
 			List<String> list=service.getCategoriesID();
 			model.addAttribute("CategoryList", list);
-			return "l/categoryID";
+			return "l/category";
 		}
 		//測試查詢類別用ID 
 			@RequestMapping("/products/{categoryID}")
@@ -53,7 +54,7 @@ public class ProductsController {
 			}
 			
 	//測試更新方法*3  1.在查詢單筆內 2.丟到update頁面 3.丟回查單筆
-		@RequestMapping(value = "/update/products", method = RequestMethod.GET)
+		@RequestMapping("/update/products")
 		public String getupdateProducts(Model model) {
 			List<ProductsBean> list=service.getProducts();
 			model.addAttribute("Product", list);

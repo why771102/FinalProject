@@ -31,7 +31,7 @@
                         </p>
                        <p>
 >
-                       		 <a  style='font-size: 16px;'>電影名稱:${Movie.movie.title}<span id="title"></span></a>
+                       		 <a  href='/morders2' value='/morders?id=${Movie.runID}' style='font-size: 16px;'>電影名稱:${Movie.movie.title}<span id="title"></span></a>
                        		 
                         </p>
                         <p>

@@ -32,6 +32,7 @@ public class RunningDaoImpl implements RunningDao {
 	//新增runBean進DB ok
 	@Override
 	public void addrunning(RunningBean run) {
+		System.out.println(run.getStatus());
 		Session session =factory.getCurrentSession();
 		RunningStatusBean msb = getRunningStatusBeanById(run.getStatus());
 		run.setRunningStatus(msb);

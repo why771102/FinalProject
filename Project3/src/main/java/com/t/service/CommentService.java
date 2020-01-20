@@ -46,6 +46,10 @@ public interface CommentService {
 	
 	// 將刪除的短評commentDelete 0改1
 	void deleteComment(Integer commentID);
+	
+	//將檢舉的短評reportComment 0改1
+	void reportComment(Integer commentID);
 
 	// 將檢舉的短評ID傳送至後台
+	public List<CommentBean> findAllReportComment();
 }

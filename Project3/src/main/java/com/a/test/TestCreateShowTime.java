@@ -194,7 +194,7 @@ public class TestCreateShowTime {
 						// 新片取預估ＰＴ
 						ShowtimeBean movie = new ShowtimeBean(1, rb.getMovie().getRunningTime(),
 								rb.getMovie().getExpectedProfit(), rb);
-						mService.updateMovieStatus(rb.getMovie().getMovieID(), 1);
+						mService.updateMovieStatus(rb.getMovie(), 1);
 						runMovie_list.add(movie);
 					} else if (rb.getMovie().getStatus() == 1) {
 						// 舊片取上星期ＰＴ值

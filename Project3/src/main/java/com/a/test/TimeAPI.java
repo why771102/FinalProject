@@ -225,14 +225,18 @@ public class TimeAPI {
 			System.out.println(runDateTime2);//2020-01-27T09:00
 			
 		}
+	  
+		
+		LocalDateTime startTime =LocalDateTime.parse("2019/10/01 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+		LocalDateTime endTime =LocalDateTime.parse("2020/01/23 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+		int day=(int) Duration.between(startTime,endTime).toDays();
+		System.out.println("day:"+day);
 	}
 	int a=1;
 	int b=2;
 	int c=3;
 	List<Integer> list2 = new ArrayList<>(); 
-	
-	
-	
+
 	
 
 

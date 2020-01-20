@@ -79,15 +79,31 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 	}
 
 	@Override
-	public void reserveSeat(Integer showTimeID, String seatID) {
+	public void reserveSeat(ReservedSeatsBean rsb) {
 		Session session = factory.getCurrentSession();
+		ReservationStatusBean rs = getReservationStatusById(1);
+		ShowTimeHistoryBean sthb = getShowTimeById(rsb.getShowtimeHistoryBean().getShowTimeId());
+		SeatsBean sb = getSeatsById(rsb.getSeatsBean().getSeatID());
+		System.out.println("reserve seats reservation status: " + rs.getReservationStatusID());
+		System.out.println("reserve seats showtime: " + sthb.getShowTimeId());
+		System.out.println("reserve seats seatID: " + rsb.getSeatsBean().getSeatID());
+		
+		rsb.setShowtimeHistoryBean(sthb);
+		rsb.setReservationStatusBean(rs);
+		rsb.setSeatsBean(sb);
+		session.saveOrUpdate(rsb);
+	}
+	
+	@Override
+	public ReservedSeatsBean getSeat(Integer showTimeID, String seatID) {
+		Session session = factory.getCurrentSession();
+		System.out.println("Getseat seatID: " + seatID);
 		String hql = "FROM ReservedSeatsBean WHERE seatID= :seatID and showTimeID = :showTimeID and reservationStatus = 0";
 		ReservedSeatsBean rsb = (ReservedSeatsBean) session.createQuery(hql).setParameter("seatID", seatID)
 				.setParameter("showTimeID", showTimeID).getSingleResult();
-		rsb.setReservationStatus(1);
-		session.saveOrUpdate(rsb);
+		return rsb;
 	}
-
+	
 	@Override
 	public SeatsBean getSeatsById(String seatID) {
 		Session session = factory.getCurrentSession();
@@ -119,16 +135,18 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		List<ReservedSeatsBean> list = new ArrayList<>();
 		System.out.println("List<ReservedSeatsBean> getAllSeats");
 		Session session = factory.getCurrentSession();
+		System.out.println(showTimeID);
 		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID";
 		list = session.createQuery(hql).setParameter("showTimeID", showTimeID)
 				.getResultList();
-		System.out.println(list.get(0).getSeatsBean().getSeatID());
+		System.out.println(list.get(0));
 		return list;
 	}
 
 	@Override
 	public ReservationStatusBean getReservationStatusById(Integer reservationStatus) {
 		Session session = factory.getCurrentSession();
+		System.out.println("reservationStatus: " + reservationStatus);
 		ReservationStatusBean rsb = session.get(ReservationStatusBean.class, reservationStatus);
 		return rsb;
 	}

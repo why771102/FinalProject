@@ -114,4 +114,16 @@ public class CommentServiceImpl implements CommentService{
 		dao.updateComment(cb);
 	}
 
+	@Transactional
+	@Override
+	public void reportComment(Integer commentID) {
+		dao.reportComment(commentID);
+	}
+	
+	@Transactional
+	@Override
+	public List<CommentBean> findAllReportComment() {
+		return dao.findAllReportComment();
+	}
+
 }
