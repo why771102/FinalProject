@@ -66,6 +66,78 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //				.setParameter("playStartTimeB", playStartTimeB).getResultList();
 //		return foodOrdersList;
 //	}
+
+	// 存飲食到資料庫方法step 1 ---- NEW
+	// 計算目前資料數的日期
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LocalDate> getFoodDates() {
+		String hql = "SELECT DISTINCT playStartTime FROM ShowTimeHistoryBean " + "ORDER BY playStartTime ASC ";
+		Session session = factory.getCurrentSession();
+		List<String> dates = new ArrayList<>();
+		List<LocalDate> dates1 = new ArrayList<>();
+		dates = session.createQuery(hql).getResultList();
+		for (String date : dates) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+			LocalDate orderDate = LocalDateTime.parse(date, formatter).toLocalDate();
+			dates1.add(orderDate);
+		}
+		return dates1;
+	}
+
+	//第一次比完後, 之後用當天日期每天比較就好!!
+	
+	// 存到DB過程step2 ===========NEW
+	@SuppressWarnings("unchecked")
+	public List<SCOrdersBean> getPeripheralSCOrders(List<LocalDate> dates) {
+		String hql = "FROM SCOrdersBean";
+		Session session = factory.getCurrentSession();
+		List<SCOrdersBean> SCOrdersList = new ArrayList<>();
+		List<SCOrdersBean> SCODList = new ArrayList<>();
+		SCOrdersList = session.createQuery(hql).getResultList();
+		for (LocalDate date : dates) {
+			for (SCOrdersBean scob : SCOrdersList) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+				LocalDate orderDate = LocalDateTime.parse(scob.getOrderDate(), formatter).toLocalDate();
+				long DOdDays = ChronoUnit.DAYS.between(date, orderDate);
+				if (DOdDays == 0) {
+					SCODList.add(scob);
+//					System.out.println("符合 假資料中該日與scob日期比較");
+					System.out.println("scob=>" + SCODList.size());
+				} else {
+					System.out.println("不符合 假資料中該日與scob日期比較");
+				}
+			}
+		}
+//		LocalDate Sd = LocalDate.parse(orderDateA);
+//		LocalDate Ed = LocalDate.parse(orderDateB);
+
+		return SCODList;
+		// SELECT productName, scod.unitPrice, scod.discount, scod.quantity, cost
+	}
+
+	// 存周邊商品到資料庫方法step 1 ---- NEW
+	// 計算目前資料數的日期
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LocalDate> getPeripheralDates() {
+		String hql = "SELECT DISTINCT orderDate FROM SCOrdersBean" + " ORDER BY orderDate ASC";
+		Session session = factory.getCurrentSession();
+		List<String> dates = new ArrayList<>();
+		List<LocalDate> dates1 = new ArrayList<>();
+		dates = session.createQuery(hql).getResultList();
+		for (String date : dates) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+			LocalDate orderDate = LocalDateTime.parse(date, formatter).toLocalDate();
+			dates1.add(orderDate);
+		}
+		return dates1;
+	}
+	
+	
+	
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -81,10 +153,10 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		List<SCOrdersBean> SCOrdersList = new ArrayList<>();
 		List<SCOrdersBean> SCODList = new ArrayList<>();
 		SCOrdersList = session.createQuery(hql).getResultList();
-		
+
 		LocalDate Sd = LocalDate.parse(orderDateA);
 		LocalDate Ed = LocalDate.parse(orderDateB);
-		for(SCOrdersBean scob : SCOrdersList) {
+		for (SCOrdersBean scob : SCOrdersList) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
 			LocalDate orderDate = LocalDateTime.parse(scob.getOrderDate(), formatter).toLocalDate();
 			long SdOdDays = ChronoUnit.DAYS.between(Sd, orderDate);
@@ -143,7 +215,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 							cost = cost + scodb.getPrducts().getCost();
 							earn = earn + (unitPrice - cost);
 							earnTotal = earnTotal + earn;
-							productSubtotal = productSubtotal + (unitPrice*qty);
+							productSubtotal = productSubtotal + (unitPrice * qty);
 							ProductSaleBean psb = new ProductSaleBean(saveProductName, qty, unitPrice, cost, earn,
 									productSubtotal, earnTotal);
 							psbList.add(psb);
@@ -159,7 +231,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return psbList;
 	}
 
-	
 	// 計算4,5的過程step1 ===========NEW
 	@SuppressWarnings("unchecked")
 	@Override
@@ -168,19 +239,19 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		Session session = factory.getCurrentSession();
 		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
 		sthbList = session.createQuery(hql).getResultList();
-		
+
 		List<ShowTimeHistoryBean> sthbList1 = new ArrayList<>();
-		
+
 		LocalDate Sd = LocalDate.parse(playStartTimeA);
 		LocalDate Ed = LocalDate.parse(playStartTimeB);
-		
-		for(ShowTimeHistoryBean sthb: sthbList) {
+
+		for (ShowTimeHistoryBean sthb : sthbList) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
 			LocalDate orderDate = LocalDateTime.parse(sthb.getPalyStartTime(), formatter).toLocalDate();
-			
+
 			long SdOdDays = ChronoUnit.DAYS.between(Sd, orderDate);
 			long EdOdDays = ChronoUnit.DAYS.between(Ed, orderDate);
-			
+
 			if (SdOdDays >= 0 && EdOdDays <= 0) {
 				sthbList1.add(sthb);
 				System.out.println("符合 輸入查詢區間與sthb日期比較");
@@ -225,7 +296,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		pbList = session.createQuery(hql).getResultList();
 		return pbList;
 	}
-	
+
 	// 計算4+5的過程step3 ===========NEW
 	@SuppressWarnings("unchecked")
 	@Override
@@ -264,13 +335,14 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 								if (pb.getProductID() == modb.getProductsBean().getProductID()) {
 									saveProductName = pb.getProductName();
 									qty = qty + modb.getQuantity();
-									unitPrice = unitPrice + (int)Math.round(modb.getSellUnitPrice() * modb.getDiscount());
+									unitPrice = unitPrice
+											+ (int) Math.round(modb.getSellUnitPrice() * modb.getDiscount());
 									productSubtotal = productSubtotal + (unitPrice * qty);
 									cost = cost + pb.getCost();
 									earn = earn + (unitPrice - cost);
 									earnTotal = earnTotal + earn;
-									ProductSaleBean psb = new ProductSaleBean(saveProductName, qty, unitPrice, cost, earn,
-											productSubtotal, earnTotal);
+									ProductSaleBean psb = new ProductSaleBean(saveProductName, qty, unitPrice, cost,
+											earn, productSubtotal, earnTotal);
 									psbList.add(psb);
 								} else {
 									System.out.println("比對時, pb & modb的PID不同");
@@ -287,7 +359,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		}
 		return psbList;
 	}
-	
+
 	@Override
 	public Integer getCategory(String pName) {
 		String hql = "SELECT category FROM ProductsBean WHERE productName= :pName";
@@ -295,10 +367,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		Integer CID = (Integer) session.createQuery(hql).getSingleResult();
 		return CID;
 	}
-	
-	
-	
-	
+
 //	@SuppressWarnings("unchecked")
 //	@Override
 //	//選下拉單個周邊p1

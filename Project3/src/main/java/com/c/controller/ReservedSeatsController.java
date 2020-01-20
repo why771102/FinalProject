@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
+import com.c.model.NumberOfSeatsBean;
 import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatOrderBean;
 import com.c.model.SeatsBean;
@@ -69,7 +70,7 @@ public class ReservedSeatsController {
 	@PostMapping("/reservedSeats/showSeats")
 	public @ResponseBody Map<Integer, String> showReservedSeats() {
 		// 由前端傳入
-		Integer showTimeID = 2;
+		Integer showTimeID = 4487;
 		List<ReservedSeatsBean> listsb = rservice.getAllSeats(showTimeID);
 		String date = listsb.get(0).getShowtimeHistoryBean().getPalyStartTime();
 		System.out.println(listsb.get(0).getSeatID());

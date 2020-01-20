@@ -51,7 +51,8 @@
 		<mapping class="com.c.model.SeatsBean"></mapping>
 		<mapping class="com.a.model.RunningBean"></mapping>
 		<mapping class="com.a.model.ShowTimeHistoryBean"></mapping>
-		
+		<mapping class="com.l.model.MOrderBean"></mapping>
+		<mapping class="com.l.model.MOrderDetailBean"></mapping>
 
 
 	</session-factory>

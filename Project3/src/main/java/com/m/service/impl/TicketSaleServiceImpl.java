@@ -170,6 +170,7 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 			if (title.equals(tsblfm.getTitle())) {
 				Integer sID = tsblfm.getShowtimeID();
 				showTimeLists.add(sID);
+				//要存不同時段的播放場次
 				movieTitle = title;
 				genre = tsblfm.getGenre();
 				movieHours = tsblfm.getMovieHours();
