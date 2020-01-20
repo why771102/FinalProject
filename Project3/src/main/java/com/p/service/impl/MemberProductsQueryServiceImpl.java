@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.TicketBean;
-import com.p.dao.HallOrderDao;
 import com.p.dao.MemberProductsQueryDao;
-import com.p.model.HallOrderBean;
 import com.p.service.MemberProductsQueryService;
 
+@Service
 public class MemberProductsQueryServiceImpl implements MemberProductsQueryService {
 	
 	MemberProductsQueryDao dao;
@@ -48,17 +48,20 @@ public class MemberProductsQueryServiceImpl implements MemberProductsQueryServic
 		return mdb_list;
 	}
 
+	@Transactional
 	@Override
 	public TicketBean getTicketBeanByOrdersID(Integer ordersID) {
 		return dao.getTicketBeanByOrdersID(ordersID);
 	}
 
+	@Transactional
 	@Override
 	public List<TicketBean> checkTicket(Integer memberID) {
 		List<MOrderBean> list = dao.getMOrderBeanByMemberID(memberID);
 		List<TicketBean> tb_list = new ArrayList<>();
 		for(MOrderBean mob:list) {
 			Integer ordersID = mob.getOrdersID();
+			System.out.println("看這邊" + ordersID);
 			TicketBean tb = dao.getTicketBeanByOrdersID(ordersID);
 			tb_list.add(tb);
 		}

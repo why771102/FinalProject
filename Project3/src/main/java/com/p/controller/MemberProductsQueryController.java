@@ -7,7 +7,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
@@ -15,7 +17,7 @@ import com.l.model.TicketBean;
 import com.p.service.MemberProductsQueryService;
 
 
-
+@Controller
 public class MemberProductsQueryController {
 	MemberProductsQueryService service;
 	ServletContext context;
@@ -29,6 +31,7 @@ public class MemberProductsQueryController {
 		this.service = service;
 	}
 	
+	@RequestMapping(value="/member/ticket")
 	public String memberTicketQuery(Model model,HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
@@ -46,6 +49,7 @@ public class MemberProductsQueryController {
 	    model.addAttribute("molist", molist);
 		model.addAttribute("modetaillist",modetaillist);
 		model.addAttribute("tblist", tblist);
+		
 	    
 		return "memberOrderQuery";
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
@@ -21,6 +22,7 @@ import com.p.dao.MemberProductsQueryDao;
 import com.p.model.HallOrderBean;
 import com.p.model.MemberBean;
 
+@Repository
 public class MemberProductsQueryDaoImpl implements MemberProductsQueryDao {
 	
 	SessionFactory factory;
@@ -53,9 +55,8 @@ public class MemberProductsQueryDaoImpl implements MemberProductsQueryDao {
 	public TicketBean getTicketBeanByOrdersID(Integer ordersID) {
 		String hql = "From TicketBean where ordersID = :ordersID";
 		Session session = factory.getCurrentSession();
-		TicketBean tb = (TicketBean) session.createQuery(hql)
-											.setParameter("ordersID", ordersID).getSingleResult();
-		return null;
+		TicketBean tb = session.get(TicketBean.class, ordersID);
+		return tb;
 	}
 
 

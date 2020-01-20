@@ -30,20 +30,20 @@
 			
 		<tr>
 			<c:forEach var="mo" items="${molist}">
-				<td>${mo.orderID}</td>
-				<td>${mo.MemberBean.memberID}</td>
-				<td>${mo.ShowTimeHistoryBean.RunningBean.MovieBean.title}</td>
-				<td>${mo.ShowTimeHistoryBean.playStartTime}</td>
+				<td>${mo.ordersID}</td>
+				<td>${mo.memberBean.memberID}</td>
+<%-- 				<td>${mo.ShowTimeHistoryBean.run.movie.title}</td> --%>
+<%-- 				<td>${mo.ShowTimeHistoryBean.playStartTime}</td> --%>
 			</c:forEach>
 			
-			<c:forEach var="modetail" items="${modetaillist}">
-				<td>${modetail.productsBean.categoriesBean.categoryName}</td>
-				<td id="ticketCount"></td>
-			</c:forEach>
+<%-- 			<c:forEach var="modetail" items="${modetaillist}"> --%>
+<%-- 				<td>${modetail.productsBean.categoriesBean.categoryName}</td> --%>
+<!-- 				<td id="ticketCount"></td> -->
+<%-- 			</c:forEach> --%>
 			
-			<c:forEach var="tb" items="${tblist}">
-				<td>${tb.SeatsBean.seatID}</td>
-			</c:forEach>
+<%-- 			<c:forEach var="tb" items="${tblist}"> --%>
+<%-- 				<td>${tb.SeatsBean.seatID}</td> --%>
+<%-- 			</c:forEach> --%>
 		</tr>
 			
 		</table>
