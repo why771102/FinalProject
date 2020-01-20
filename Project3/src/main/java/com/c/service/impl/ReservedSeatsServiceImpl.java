@@ -109,18 +109,18 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 						Integer seatStatus = listRSB.get(seat).getReservationStatusBean().getReservationStatusID();
 						if (seatStatus == 1) { // 不可出售
 							seatStr += "u";
-							listRSB.remove(seat);
+//							listRSB.remove(seat);
 							break;
 						} else {
 
 							Integer typeofSeat = listRSB.get(seat).getSeatsBean().getTypeOfSeatBean().getTypeofSeatID();
 							if (typeofSeat == 0) { // 正常座位
 								seatStr += "f";
-								listRSB.remove(seat);
+//								listRSB.remove(seat);
 								break;
 							} else if (typeofSeat == 1) { // 輪椅座
 								seatStr += "e";
-								listRSB.remove(seat);
+//								listRSB.remove(seat);
 								break;
 							}
 						}

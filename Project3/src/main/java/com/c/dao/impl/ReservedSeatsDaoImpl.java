@@ -48,20 +48,19 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 			String hallID = stBean.getHall().getHallID();
 			String hql = "FROM SeatsBean WHERE hallID = :hallID";
 			listSB = session.createQuery(hql).setParameter("hallID", hallID).getResultList();
-		}
-		System.out.println("listSB.size() = " + listSB.size());
-		for (ShowTimeHistoryBean sthBean : listSTHB) {
-			String sthbHallID = sthBean.getHall().getHallID();
-			System.out.println("sthbHallID in for (ShowTimeHistoryBean sthBean : listSTHB)" + sthbHallID);
-			String date = sthBean.getPalyStartTime();
+//		}
+//		System.out.println("listSB.size() = " + listSB.size());
+//		for (ShowTimeHistoryBean sthBean : listSTHB) {
+			String sthbHallID = stBean.getHall().getHallID();
+//			System.out.println("sthbHallID in for (ShowTimeHistoryBean sthBean : listSTHB)" + sthbHallID);
+			String date = stBean.getPalyStartTime();
 			date = date.substring(0, 10);
 			System.out.println(date);
 			for (SeatsBean sBean : listSB) {
-				boolean result = false;
 				String sbHallID = sBean.getHallBean().getHallID();
 				System.out.println("sbHallID in for (SeatsBean sBean : listSB)" + sbHallID);
 				if (sthbHallID.equalsIgnoreCase(sbHallID)) {
-					ShowTimeHistoryBean showTimeID = getShowTimeById(sthBean.getShowTimeId());
+					ShowTimeHistoryBean showTimeID = getShowTimeById(stBean.getShowTimeId());
 					SeatsBean seatID = getSeatsById(sBean.getSeatID());
 					Integer seatStatus = sBean.getSeatStatusBean().getSeatStatusID();
 					ReservationStatusBean rstatusb = getReservationStatusById(seatStatus);
