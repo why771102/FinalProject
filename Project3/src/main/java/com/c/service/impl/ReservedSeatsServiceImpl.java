@@ -39,6 +39,18 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 		dao.reserveSeat(rsb);
 
 	}
+	
+	@Transactional
+	@Override
+	public void reserveSeatRule(String[] seatsArray, Integer showTime, String hallID) {
+		//["AA01", "AA03", "AB01", "AB04"]
+//		for(int seats = 0; seats < seatsArray.length; seats++) {
+//			String seatonLft = seatsArray[seats].substring(0, 2) + (Integer.parseInt(seatsArray[seats].substring(2, seatsArray[seats].length()))-1);
+//			String seatonRight = seatsArray[seats].substring(0, 2) + (Integer.parseInt(seatsArray[seats].substring(2, seatsArray[seats].length()))+1);
+//			ReservedSeatsBean rsb = getSeat(showTime, seatonLft);
+//			
+//		}
+	}
 
 	@Transactional
 	@Override
@@ -122,5 +134,19 @@ public class ReservedSeatsServiceImpl implements ReservedSeatsService {
 			}
 		}
 		return seats;
+	}
+
+	@Transactional
+	@Override
+	public List<ReservedSeatsBean> getAllSeats(String seatID) {
+		// TODO Auto-generated method stub
+		return dao.getAllSeats(seatID);
+	}
+
+	@Transactional
+	@Override
+	public void updateSeatStatusForOutOfOrder(List<ReservedSeatsBean> list) {
+		dao.updateSeatStatusForOutOfOrder(list);
+		
 	}
 }
