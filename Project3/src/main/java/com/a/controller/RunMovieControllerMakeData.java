@@ -227,9 +227,10 @@ public class RunMovieControllerMakeData {
 
 	@GetMapping(value = "/movie/autoRun") // URL 跟<a href='movie/show'> 相關
 	public String RunningMovie(Model model) {
+		System.out.println("sart===================");
 
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
-		LocalDateTime startTime =LocalDateTime.parse("2019/10/01 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+		LocalDateTime startTime =LocalDateTime.parse("2019/10/09 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 		LocalDateTime endTime =LocalDateTime.parse("2020/01/23 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 		int day=(int) Duration.between(startTime,endTime).toDays();
 		for (int d = 1; d <= day; d++) {
@@ -241,7 +242,7 @@ public class RunMovieControllerMakeData {
 
 		double rate = 0.8;// 遞減函數
 
-		LocalDateTime runDateTime = startTime.toLocalDate().plusDays(1).atTime(9, 0); // 初始時間
+		LocalDateTime runDateTime = startTime.toLocalDate().plusDays(d).atTime(9, 0); // 初始時間
 		// 確認廳數 //checkUseHall
 		// 確認那些影廳可以用 status =0=ok
 		List<HallBean> hb_list = hService.getAllHalls(0);
@@ -260,8 +261,11 @@ public class RunMovieControllerMakeData {
 //     }esle{
 
 		// 取出今天可以排片的片
-		Allrb_list = mService.getAllOnMoive(runDateTime.toLocalDate());
-		System.out.println("今天可以排片的片:" + Allrb_list);
+		
+//		Allrb_list = mService.getAllOnMoive(runDateTime.toLocalDate());
+		Allrb_list = mService.getAllOnMoive(runDateTime.toLocalDate() );
+		System.out.println("今天可以排片的片:" + Allrb_list.size());
+		System.out.println("排片日期:" + runDateTime.toLocalDate());
 
 //	 }
 		// 取出今天一定要排片
@@ -275,8 +279,8 @@ public class RunMovieControllerMakeData {
 		System.out.println("=============setAllMoviePT 結束:================= " );
 		// 從第一廳開始排
 		for (int Hall_i = 0; Hall_i < Hallcount; Hall_i++) {
-			System.out.println("第幾廳: " + (Hall_i + 1)+hb_list.get(Hall_i));
-			runDateTime = LocalDate.now().plusDays(1).atTime(9, 0);
+			System.out.println("第幾廳: " + (Hall_i + 1)+hb_list.get(Hall_i).getHallID());
+			runDateTime = startTime.toLocalDate().plusDays(d).atTime(9, 0);
 		
 			List<ShowtimeBean> OrderHall_list = new ArrayList<>(); // 存包場
 			List<ShowtimeBean> Contract_list = new ArrayList<>(); // 存合約
