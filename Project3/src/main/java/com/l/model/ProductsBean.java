@@ -39,7 +39,6 @@ public class ProductsBean implements Serializable {
 	@Transient
 	Integer CategoryID;
 	
-	
 	@NotNull
 	@Column(nullable=false)
 	Integer unitPrice;

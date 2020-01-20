@@ -150,6 +150,28 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		ReservationStatusBean rsb = session.get(ReservationStatusBean.class, reservationStatus);
 		return rsb;
 	}
+
+
+	@Override
+	public List<ReservedSeatsBean> getAllSeats(String seatID) {
+		Session session = factory.getCurrentSession();
+		List<ReservedSeatsBean> list = new ArrayList<>();
+		String hql = "FROM ReservedSeatsBean WHERE seatID = :seatID";
+		list = session.createQuery(hql).setParameter("seatID", seatID).getResultList();
+		return list;
+	}
+
+
+	@Override
+	public void updateSeatStatusForOutOfOrder(List<ReservedSeatsBean> list) {
+		Session session = factory.getCurrentSession();
+		for(ReservedSeatsBean rsb : list) {
+			ReservationStatusBean rs = getReservationStatusById(1);
+			rsb.setReservationStatusBean(rs);
+			session.saveOrUpdate(rsb);
+		}
+		
+	}
 	
 //	@Override
 //	public Integer calculateNumberOfSeats(List<ReservedSeatsBean> listRSB) {

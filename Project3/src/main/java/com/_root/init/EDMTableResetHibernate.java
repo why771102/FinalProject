@@ -17,6 +17,7 @@ import com.a.model.GenreBean;
 import com.a.model.MovieBean;
 import com.a.model.MovieRatingBean;
 import com.a.model.MovieStatusBean;
+import com.a.model.RunningBean;
 import com.a.model.RunningStatusBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
@@ -26,8 +27,6 @@ import com.c.model.SeatStatusBean;
 import com.c.model.SeatsBean;
 import com.c.model.TypeOfSeatBean;
 import com.l.model.CategoriesBean;
-import com.l.model.MOrderBean;
-import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
@@ -556,7 +555,56 @@ public class EDMTableResetHibernate {
 			   }
 			   session.flush();
 			   System.out.println("RunningStatus資料新增成功");
-			   
+//RunningBean
+				try (FileReader fr = new FileReader("data/running.dat"); BufferedReader br = new BufferedReader(fr);) {
+				    while ((line = br.readLine()) != null) {
+				     if (line.startsWith(UTF8_BOM)) {
+				      line = line.substring(1);
+				     }
+				     String[] token = line.split("\\|");
+				     RunningBean rb = new RunningBean();
+				     
+				     rb.setRunID(Integer.parseInt(token[0]));
+				     rb.setExpectedOffDate(token[1]);
+				     rb.setExpectedOnDate(Integer.parseInt(token[2]));
+				     rb.setOffDate(token[3]);
+				     rb.setOnDate(Integer.parseInt(token[4]));
+				     rb.setRelease(token[5]);
+				     MovieBean mb = session.get(MovieBean.class, Integer.parseInt(token[6]));
+				     rb.setMovie(mb);
+				     RunningStatusBean rsb = session.get(RunningStatusBean.class, Integer.parseInt(token[7]));
+				     rb.setRunningStatus(rsb);
+			  
+				     session.save(rb);
+				    }
+				   } catch (IOException e) {
+				    System.err.println("新建Running表格時發生IO例外: " + e.getMessage());
+				   }
+				   session.flush();
+				   System.out.println("Running資料新增成功");
+//ShowTimeHistoryBean
+					try (FileReader fr = new FileReader("data/ShowTimeHistory.dat"); BufferedReader br = new BufferedReader(fr);) {
+					    while ((line = br.readLine()) != null) {
+					     if (line.startsWith(UTF8_BOM)) {
+					      line = line.substring(1);
+					     }
+					     String[] token = line.split("\\|");
+					     ShowTimeHistoryBean sthb = new ShowTimeHistoryBean();
+					     
+					     sthb.setShowTimeId(Integer.parseInt(token[0]));
+					     sthb.setPalyStartTime(token[1]);
+					     HallBean hb = session.get(HallBean.class, token[2]);
+					     sthb.setHall(hb);
+					     RunningBean rb = session.get(RunningBean.class, Integer.parseInt(token[3]));
+					     sthb.setRun(rb);
+					    
+					     session.save(sthb);
+					    }
+					   } catch (IOException e) {
+					    System.err.println("新建ShowTimeHistory表格時發生IO例外: " + e.getMessage());
+					   }
+					   session.flush();
+					   System.out.println("ShowTimeHistory資料新增成功");
 ////MOrderBean	
 //			try (FileReader fr = new FileReader("data/mOrder.dat"); BufferedReader br = new BufferedReader(fr);) {
 //			    while ((line = br.readLine()) != null) {

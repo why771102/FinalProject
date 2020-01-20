@@ -49,6 +49,9 @@
 		<mapping class="com.c.model.TypeOfSeatBean"></mapping>
 		<mapping class="com.c.model.HallBean"></mapping>
 		<mapping class="com.c.model.SeatsBean"></mapping>
+		<mapping class="com.a.model.RunningBean"></mapping>
+		<mapping class="com.a.model.ShowTimeHistoryBean"></mapping>
+		
 
 
 	</session-factory>
