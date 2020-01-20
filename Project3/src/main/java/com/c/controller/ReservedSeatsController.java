@@ -73,6 +73,7 @@ public class ReservedSeatsController {
 		Integer showTimeID = 4487;
 		List<ReservedSeatsBean> listsb = rservice.getAllSeats(showTimeID);
 		String date = listsb.get(0).getShowtimeHistoryBean().getPalyStartTime();
+		String movie = listsb.get(0).getShowtimeHistoryBean().getRun().getMovie().getTitle();
 		System.out.println(listsb.get(0).getSeatID());
 		String hallID = listsb.get(0).getSeatsBean().getSeatID().toString().substring(0, 1);
 		HallBean hb = hservice.getHall(hallID);
@@ -86,35 +87,32 @@ public class ReservedSeatsController {
 		map.put(1, seat);// 座位表
 		map.put(2, "2"); // 訂票數number of tickets user wishes to buy
 		map.put(3, hb.getHallID());// 廳
-		map.put(4, listsb.get(0).getShowtimeHistoryBean().getRun().getMovie().getTitle());// 電影名稱
+		map.put(4, movie);// 電影名稱
 		map.put(5, date);// 日期
-		map.put(6, showTimeID.toString());//showTimeID
+		map.put(6, showTimeID.toString());// showTimeID
 //		map.put(2, showTimeID.toString());
 		return map;
 	}
 
 	// 需要傳入廳
 	@PostMapping("/reservedSeats/reserveSeats")
-	public String reservedSeats(@RequestParam("seats") String seats, @RequestParam("showTimeID") String showTimeID, @RequestParam("hallID") String hallID) {
+	public String reservedSeats(@RequestParam("seats") String seats, @RequestParam("showTimeID") String showTimeID,
+			@RequestParam("hallID") String hallID) {
 		String[] seatsArray = sservice.stringToStringArray(seats, hallID);
-		Integer showTime = Integer.parseInt(showTimeID);
 		String date = LocalDate.now().toString();
-		ShowTimeHistoryBean sthb = soservice.getShowTimeById(showTime);
-		if (seatsArray.length > 2) {
-			rservice.reserveSeatRule(seatsArray, showTime, hallID);
-		} else {
-			for (String seat : seatsArray) {
-				ReservedSeatsBean rsb = rservice.getSeat(Integer.parseInt(showTimeID), seat);
-				System.out.println("reservedSeats rsb.getShowtimeHistoryBean().getShowTimeId(): "
-						+ rsb.getShowtimeHistoryBean().getShowTimeId());
-				rservice.reserveSeat(rsb);
-				
-				//確認付款後應存入SeatsOrderTable
-				SeatsBean sb = soservice.getSeatsById(seat);
-				SeatOrderBean sob = new SeatOrderBean(date, sthb, sb);
-				soservice.insertSeatOrder(sob);
-			}
+		for (int seat = 0; seat < seatsArray.length; seat++) {
+			Integer showTime = Integer.parseInt(showTimeID);
+			ReservedSeatsBean rsb = rservice.getSeat(Integer.parseInt(showTimeID), seatsArray[seat]);
+			System.out.println("reservedSeats rsb.getShowtimeHistoryBean().getShowTimeId(): "
+					+ rsb.getShowtimeHistoryBean().getShowTimeId());
+			rservice.reserveSeat(rsb);
+//			ShowTimeHistoryBean sthb = soservice.getShowTimeById(showTime);
+			// 確認付款後應存入SeatsOrderTable
+//			SeatsBean sb = soservice.getSeatsById(seatsArray[seat]);
+			SeatOrderBean sob = new SeatOrderBean(date, showTime, seatsArray[seat]);
+			soservice.insertSeatOrder(sob);
 		}
+
 		return "/index-c";
 	}
 }
