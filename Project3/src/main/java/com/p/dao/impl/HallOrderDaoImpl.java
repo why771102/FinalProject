@@ -63,11 +63,8 @@ public class HallOrderDaoImpl implements HallOrderDao {
 	//用戶自行查詢包廳狀況，用MemberID去找
 	@Override
 	public List<HallOrderBean> hallOrderMQuery(Integer MemberID) {
-		System.out.println("hallOrderMQuery");
-		System.out.println("看這裡--->" + MemberID);
 		String hql = "From HallOrderBean Where memberID = :memberID";
 		Session session = factory.getCurrentSession();
-//		MemberBean mb = getMemberByMemberID(MemberID);
 		List<HallOrderBean> list = new ArrayList<>();
 		
 		list = session.createQuery(hql).setParameter("memberID", MemberID).getResultList();
