@@ -61,7 +61,7 @@ public class ProductsDaoImpl implements ProductsDao{
 			return list;
 		}
 	
-	
+	//test
 	
 	//用productID更新
 	@Override
