@@ -1,18 +1,15 @@
 package com.m.controller;
 
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.m.model.HallSaleBean;
 import com.m.service.HallSaleService;
 
@@ -32,7 +29,7 @@ public class HallSaleController {
 		this.service = service;
 	}
 	
-	//到hs1
+//	//到hs1
 	@GetMapping(value = "/hall/sale")
 	public String toHallSale() {
 //		HallSaleBean hsb = new HallSaleBean();
@@ -42,12 +39,19 @@ public class HallSaleController {
 	
 	//hallSale1資料傳輸
 	@PostMapping("/hall/sale")
-	public @ResponseBody List<HallSaleBean> getHallSaleOrders(Model model,
+	public @ResponseBody List<HallSaleBean> getHallSaleOrders(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("start")String sDate, 
 			@RequestParam("end")String eDate){
 		List<HallSaleBean> hsbList = service.getHallSaleOutput(service.getHallSaleLists
 				(service.getHallHrSubtotal(sDate,eDate)));
+//		request.setAttribute("HallSaleBeanList", hsbList);
+//		try {
+//			request.getRequestDispatcher("m/hallSale1.jsp").forward(request, response);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 //		model.addAttribute("HallSaleBeanList", hsbList);
+		System.out.println("hsbList=> " + hsbList.size() + "==="+ hsbList.get(0).getHallID());
 		return hsbList;
 	}
 	

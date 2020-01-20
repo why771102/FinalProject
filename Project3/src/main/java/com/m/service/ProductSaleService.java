@@ -11,6 +11,8 @@ import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
 
 public interface ProductSaleService {
+	public List<LocalDate> getFoodDates();
+	public List<LocalDate> getPeripheralDates();
 	//新增cate下拉式選單
 	public String getCategoryNames();
 	

@@ -1,5 +1,6 @@
 package com.m.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.a.model.SCOrderDetailBean;
@@ -10,6 +11,9 @@ import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
 
 public interface ProductSaleDao {
+	public List<LocalDate> getFoodDates();
+	public List<LocalDate> getPeripheralDates();
+	
 	//get categoryNames as select option
 	public String getCategoryNames();
 	//show all food orders

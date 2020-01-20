@@ -17,14 +17,26 @@ import com.m.service.ProductSaleService;
 
 @Service
 public class ProductSaleServiceImpl implements ProductSaleService {
-
+	
 	ProductSaleDao dao;
 
 	@Autowired
 	public void setDao(ProductSaleDao dao) {
 		this.dao = dao;
 	}
-
+	
+	@Transactional
+	@Override
+	public List<LocalDate> getPeripheralDates(){
+		return dao.getPeripheralDates();
+	}
+	
+	@Transactional
+	@Override
+	public List<LocalDate> getFoodDates(){
+		return dao.getFoodDates();
+	}
+	
 	@Transactional
 	@Override
 	public String getCategoryNames() {

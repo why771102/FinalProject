@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.model.MOrderDetailBean;
@@ -34,7 +36,7 @@ public class ProductSaleController {
 	@Autowired
 	public void setService(ProductSaleService service) {
 		this.service = service;
-	}
+	} 
 
 	// to ps1
 	@GetMapping(value = "product/sale")
@@ -77,13 +79,13 @@ public class ProductSaleController {
 	
 	//productSale P1資料傳輸
 	@PostMapping(value = "product/sale")
-	public String showProductInfo(Model model, @RequestParam(value = "cate", required=false) String cate
+	public @ResponseBody HashMap<Integer, List<ProductSaleBean>> showProductInfo(Model model, @RequestParam(value = "cate", required=false) String cate
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
 		System.out.println("start to get sth..");
 		System.out.println("cate =>" + cate);
 		System.out.println(sDate + "====" + eDate);
 		List<ProductSaleBean> psbList = new ArrayList<>();
-		HashMap<Integer, List<ProductSaleBean>> allFPlists = new HashMap<Integer, List<ProductSaleBean>>();
+		HashMap<Integer, List<ProductSaleBean>> allFPmap = new HashMap<Integer, List<ProductSaleBean>>();
 		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
 		List<MOrderDetailBean> modbList = new ArrayList<>();
 		List<ProductsBean> pbList = new ArrayList<>();
@@ -96,12 +98,12 @@ public class ProductSaleController {
 			modbList = service.getMODBList();
 			pbList = service.getAllFoodPB();
 			psbList = service.showFoodOutput(sthbList, modbList, pbList);
-			allFPlists.put(1, psbList); 
+			allFPmap.put(1, psbList); 
 			//放入周邊
 			pbList = service.getPeripheralPB();
 			scodList =  service.getPeripheralSCOrders(sDate, eDate);
 			psbList = service.getPeripheralOutput(pbList, scodList);
-			allFPlists.put(2, psbList);
+			allFPmap.put(2, psbList);
 		} else {
 			System.out.println("start to get Info!!");
 			switch (cate) {
@@ -111,35 +113,39 @@ public class ProductSaleController {
 				modbList = service.getMODBList();
 				pbList = service.getAllFoodPB();
 				psbList = service.showFoodOutput(sthbList, modbList, pbList);
-				allFPlists.put(1, psbList); 
+				allFPmap.put(1, psbList); 
 				//放入周邊
 				pbList = service.getPeripheralPB();
 				scodList =  service.getPeripheralSCOrders(sDate, eDate);
 				psbList = service.getPeripheralOutput(pbList, scodList);
-				allFPlists.put(2, psbList);
+				allFPmap.put(2, psbList);
 				break;
 			case "allFood":
 				sthbList = service.getMovieDate(sDate, eDate);
 				modbList = service.getMODBList();
 				pbList = service.getAllFoodPB();
 				psbList = service.showFoodOutput(sthbList, modbList, pbList);
+				allFPmap.put(1, psbList);
 				break;
 			case "套餐的餐點":
 				sthbList = service.getMovieDate(sDate, eDate);
 				modbList = service.getMODBList();
 				pbList = service.getFoodPB4();
 				psbList = service.showFoodOutput(sthbList, modbList, pbList);
+				allFPmap.put(1, psbList); 
 				break;
 			case "餐點":
 				sthbList = service.getMovieDate(sDate, eDate);
 				modbList = service.getMODBList();
 				pbList = service.getFoodPB5();
 				psbList = service.showFoodOutput(sthbList, modbList, pbList);
+				allFPmap.put(1, psbList); 
 				break;
 			case "周邊商品":
 				pbList = service.getPeripheralPB();
 				scodList =  service.getPeripheralSCOrders(sDate, eDate);
 				psbList = service.getPeripheralOutput(pbList, scodList);
+				allFPmap.put(1, psbList); 
 				break;
 			default:
 				//放入總食物
@@ -147,31 +153,31 @@ public class ProductSaleController {
 				modbList = service.getMODBList();
 				pbList = service.getAllFoodPB();
 				psbList = service.showFoodOutput(sthbList, modbList, pbList);
-				allFPlists.put(1, psbList); 
+				allFPmap.put(1, psbList); 
 				//放入周邊
 				pbList = service.getPeripheralPB();
 				scodList =  service.getPeripheralSCOrders(sDate, eDate);
 				psbList = service.getPeripheralOutput(pbList, scodList);
-				allFPlists.put(2, psbList);
+				allFPmap.put(2, psbList);
 				System.out.println("this is default..compare cate and related method");
 				break;
 		    }
 		}
 		//輸出List psbBean to p1
-		model.addAttribute("psbListOut", psbList);
-		model.addAttribute("allFPlistsOut", allFPlists);
-		System.out.println(psbList + "~~~~" +  allFPlists);
+//		model.addAttribute("psbListOut", psbList);
+		model.addAttribute("allFPlistsOut", allFPmap);
+		System.out.println(psbList + "~~~~" +  allFPmap);
 		System.out.println("---end1---");
-		return "m/productSale1"; //檢查這邊!!!
+		return allFPmap; //檢查這邊!!!
 	}
 	
 	//productSale P2資料傳輸
 	//抓取前一頁點選的產品名稱 
 	//怎麼拿到呢???
-	@GetMapping
-	public String getProductName(Model model, @RequestParam("productName") String pName) { //productName
+	@PostMapping(value = "product/sale1")
+	public String getProductName(@RequestParam("productName") String pName) { //productName
 		System.out.println("pName=>" + pName);
-		return pName; //第一頁拿到之後要傳去第二頁
+		return "m/productSale2"; //第一頁拿到之後要傳去第二頁
 	}
 	
 	@PostMapping(value= "product/sale/date")
