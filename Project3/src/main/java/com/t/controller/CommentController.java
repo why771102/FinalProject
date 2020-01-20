@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.a.model.MovieBean;
-import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.t.model.CommentBean;
 import com.t.service.CommentService;
