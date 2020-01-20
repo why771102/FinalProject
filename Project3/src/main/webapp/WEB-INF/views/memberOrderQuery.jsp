@@ -21,23 +21,31 @@
 		<tr>
 			<td>訂單編號</td>
 			<td>會員編號</td>
+			<td>電影名稱</td>
 			<td>場次時間</td>
+			<td>票種</td>
+			<td>張數</td>
 			<td>座位代碼</td>
-			<td>產品名稱</td>
-			<td>總金額</td>
 		</tr>
-			<c:forEach var="hoA" items="${allMHO}">
+			
 		<tr>
-			<td>${hoA.hallOrderNo}</td>
-			<td>${hoA.hb.hallID}</td>
-			<td>${hoA.startTime}</td>
-			<td>${hoA.endTime}</td>
-			<td>${hoA.orderHours}</td>
-			<td>${hoA.hallSubtotal}</td>
-			<td>${hoA.hob.hallOrderStatus}</td> 
-			<td>${hoA.psb.payStatus}</td> 
-		</tr>
+			<c:forEach var="mo" items="${molist}">
+				<td>${mo.ordersID}</td>
+				<td>${mo.memberBean.memberID}</td>
+<%-- 				<td>${mo.ShowTimeHistoryBean.run.movie.title}</td> --%>
+<%-- 				<td>${mo.ShowTimeHistoryBean.playStartTime}</td> --%>
 			</c:forEach>
+			
+<%-- 			<c:forEach var="modetail" items="${modetaillist}"> --%>
+<%-- 				<td>${modetail.productsBean.categoriesBean.categoryName}</td> --%>
+<!-- 				<td id="ticketCount"></td> -->
+<%-- 			</c:forEach> --%>
+			
+<%-- 			<c:forEach var="tb" items="${tblist}"> --%>
+<%-- 				<td>${tb.SeatsBean.seatID}</td> --%>
+<%-- 			</c:forEach> --%>
+		</tr>
+			
 		</table>
 	</div>
 </body>

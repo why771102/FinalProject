@@ -222,6 +222,7 @@ span.seatCharts-legendDescription {
 				document.getElementById("hallID").innerText = data[3] + "廳";
 				document.getElementById("movieTitle").innerText += data[4];
 				document.getElementById("date").innerText += data[5];
+				window.showTimeID = parseInt(data[6]);
 			}
 		});
 	}
@@ -370,7 +371,7 @@ span.seatCharts-legendDescription {
 		var bookSeats=JSON.stringify(SseatArray);
 		$.ajax({
 			url : "${pageContext.request.contextPath}/reservedSeats/reserveSeats",
-			data : {seats: bookSeats},
+			data : {seats: bookSeats, showTimeID: window.showTimeID, hallID: document.getElementById("hallID").innerText},
 			type : "POST",
 			success : function() {
 				alert("訂"+bookSeats+"成功!");

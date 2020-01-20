@@ -52,6 +52,7 @@ public class SeatsServiceImpl implements SeatsService {
 	}
 	
 
+	//輸出["AA01"....]格式
 	@Override
 	public String[] stringToStringArray(String seats, String hallID) {
 		Gson gson = new Gson();

@@ -29,6 +29,12 @@ public interface ReservedSeatsDao {
 	
 	//要顯示給使用者看的畫面
 	public List<ReservedSeatsBean> getAllSeats(Integer showTimeID);
+
+	//for changing seat status ----for when out-of-order---
+	public List<ReservedSeatsBean> getAllSeats(String seatID);
+	
+	//updating a large number of seats
+	public void updateSeatStatusForOutOfOrder(List<ReservedSeatsBean> list);
 	
 //	public Integer calculateNumberOfSeats(List<ReservedSeatsBean> listRSB);
 }

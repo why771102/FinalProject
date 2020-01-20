@@ -42,19 +42,19 @@ fieldset {
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2"
-						for='category.categoryID'> 分類 </label>
+						for='categoriesBean.categoryID'> 分類 </label>
 					<div class="col-lg-10">
-						<form:input id="category.categoryID"
-							path="category.categoryID" type='text' class='form:input-large' />
+						<form:input id="categoriesBean.categoryID"
+							path="categoriesBean.categoryID" type='text' class='form:input-large' />
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2"
-						for='category.categoryName'> 分類NAme </label>
+						for='categoriesBean.categoryName'> 分類NAme </label>
 					<div class="col-lg-10">
-						<form:input id="category.categoryName"
-							path="category.categoryName" type='text' class='form:input-large' />
+						<form:input id="categoriesBean.categoryName"
+							path="categoriesBean.categoryName" type='text' class='form:input-large' />
 					</div>
 				</div>
 
