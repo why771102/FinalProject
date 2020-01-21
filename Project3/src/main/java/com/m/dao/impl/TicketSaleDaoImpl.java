@@ -70,7 +70,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			String offDate = rb.getOffDate(); // 實際下檔
 			String expectOffDate = rb.getExpectedOffDate(); // 預計下檔
 			//用來比對input輸入欄位的時間值
-			String playStartTime = sth.getPalyStartTime(); // 電影播放年月日 => 消費計算的日期
+			String playStartTime = sth.getPlayStartTime(); // 電影播放年月日 => 消費計算的日期
 
 			TicketSaleBean tsb = new TicketSaleBean(showtimeID, title, genre, movieHours, 0, hallSeats, 0, 0,
 					0.0, 0L, releaseDate, expectOffDate, offDate, playStartTime);

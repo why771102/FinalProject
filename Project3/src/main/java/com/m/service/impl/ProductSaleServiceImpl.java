@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.dao.ProductSaleDao;
 import com.m.model.ProductSaleBean;
+import com.m.model.ProductSaleEarnBean;
 import com.m.service.ProductSaleService;
 
 @Service
@@ -30,12 +33,52 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	public List<LocalDate> getPeripheralDates(){
 		return dao.getPeripheralDates();
 	}
+
+	@Override
+	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate) {
+		return dao.getPeripheralSCOrder(orderDate);
+	}
+
+	@Override
+	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList) {
+		return dao.getPeripheralSCODs(scbList);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList) {
+		return dao.getPeripheralPBs(scodList);
+	}
 	
 	@Transactional
 	@Override
 	public List<LocalDate> getFoodDates(){
 		return dao.getFoodDates();
 	}
+	
+	@Override
+	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate) {
+		return dao.getFoodSCOrder(orderDate);
+	}
+
+	@Override
+	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList) {
+		return dao.getFoodSCODs(moList);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList) {
+		return dao.getFoodPBs(modbList);
+	}
+
+	@Override
+	public void savePSEB() {}
+	
+	
+	
+	
+	
+	
+	
 	
 	@Transactional
 	@Override
@@ -221,6 +264,8 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		}
 		return psbList;
 	}
+
+
 
 //	@Transactional
 //	@Override

@@ -20,10 +20,19 @@ public class ProductSaleEarnBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="productID")
 	private ProductsBean productsBean;
-	
 	Integer qtyTotal;
+	Integer price; //每天單價是浮動的要存,有時候會有折扣
 	
 	public ProductSaleEarnBean() {}
+
+	
+	
+	public ProductSaleEarnBean(String orderDate, ProductsBean productsBean, Integer qtyTotal, Integer price) {
+		this.orderDate = orderDate;
+		this.productsBean = productsBean;
+		this.qtyTotal = qtyTotal;
+		this.price = price;
+	}
 
 	public String getOrderDate() {
 		return orderDate;
@@ -47,5 +56,13 @@ public class ProductSaleEarnBean implements Serializable {
 
 	public void setQtyTotal(Integer qtyTotal) {
 		this.qtyTotal = qtyTotal;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 }

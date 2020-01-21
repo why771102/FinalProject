@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,17 +22,24 @@ import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.dao.ProductSaleDao;
 import com.m.model.ProductSaleBean;
+import com.m.model.ProductSaleEarnBean;
 
 @Repository
 public class ProductSaleDaoImpl implements ProductSaleDao {
 
 	SessionFactory factory;
-
+	ProductSaleDao dao;
+	
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
 
+	@Autowired
+	public void setDao(ProductSaleDao dao) {
+		this.dao = dao;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public String getCategoryNames() {
@@ -66,13 +75,15 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //				.setParameter("playStartTimeB", playStartTimeB).getResultList();
 //		return foodOrdersList;
 //	}
-
+	
+	// 第一次比完後, 之後用當天日期每天比就好!!
+	
 	// 存飲食到資料庫方法step 1 ---- NEW
 	// 計算目前資料數的日期
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LocalDate> getFoodDates() {
-		String hql = "SELECT DISTINCT playStartTime FROM ShowTimeHistoryBean " + "ORDER BY playStartTime ASC ";
+		String hql = "SELECT DISTINCT playStartTime FROM ShowTimeHistoryBean ORDER BY playStartTime ASC";
 		Session session = factory.getCurrentSession();
 		List<String> dates = new ArrayList<>();
 		List<LocalDate> dates1 = new ArrayList<>();
@@ -84,44 +95,113 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		}
 		return dates1;
 	}
-
-	//第一次比完後, 之後用當天日期每天比較就好!!
 	
-	// 存到DB過程step2 ===========NEW
+//========================================待解決：dates會重複問題,set?????
+	
+	// 存飲食到資料庫方法step 2 ---- NEW
 	@SuppressWarnings("unchecked")
-	public List<SCOrdersBean> getPeripheralSCOrders(List<LocalDate> dates) {
-		String hql = "FROM SCOrdersBean";
+	@Override
+	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate) {
+		String hql = "FROM MOrderBean";
 		Session session = factory.getCurrentSession();
-		List<SCOrdersBean> SCOrdersList = new ArrayList<>();
-		List<SCOrdersBean> SCODList = new ArrayList<>();
-		SCOrdersList = session.createQuery(hql).getResultList();
-		for (LocalDate date : dates) {
-			for (SCOrdersBean scob : SCOrdersList) {
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
-				LocalDate orderDate = LocalDateTime.parse(scob.getOrderDate(), formatter).toLocalDate();
-				long DOdDays = ChronoUnit.DAYS.between(date, orderDate);
-				if (DOdDays == 0) {
-					SCODList.add(scob);
+		List<MOrderBean> mOrdersList = new ArrayList<>();
+		mOrdersList = session.createQuery(hql).getResultList();
+		List<MOrderBean> moList = new ArrayList<>();
+
+		for (MOrderBean mob : mOrdersList) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+			LocalDate mOrderDate = LocalDateTime.parse(mob.getShowTimeHistoryBean().getPlayStartTime(), formatter).toLocalDate();
+			long Days = ChronoUnit.DAYS.between(mOrderDate, orderDate);
+			if (Days == 0) {
+				moList.add(mob);
 //					System.out.println("符合 假資料中該日與scob日期比較");
-					System.out.println("scob=>" + SCODList.size());
+				System.out.println("mob=>" + moList.size());
+			} else {
+				System.out.println("不符合 假資料中該日與mob(showid>playtime)比較");
+			}
+		}
+		return moList;
+	}
+
+	// 存飲食到資料庫方法step 3 ---- NEW
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM MOrderDetailBean";
+		List<MOrderDetailBean> MODList = new ArrayList<>();
+		MODList = session.createQuery(hql).getResultList();
+
+		List<MOrderDetailBean> modbList = new ArrayList<>();
+		for (MOrderBean mob : moList) {
+			for (MOrderDetailBean modb : MODList) {
+				if (mob.getOrdersID() == modb.getmOrderBean().getOrdersID()) {
+					modbList.add(modb);
 				} else {
-					System.out.println("不符合 假資料中該日與scob日期比較");
+					System.out.println("比對時mob & modb OID不相同");
 				}
 			}
 		}
-//		LocalDate Sd = LocalDate.parse(orderDateA);
-//		LocalDate Ed = LocalDate.parse(orderDateB);
+		return modbList;
+	}
+	
+	// 存飲食到資料庫方法step 4 ---- NEW
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList) {
+		List<ProductsBean> pbList = new ArrayList<>();
+		String hql = "FROM ProductsBean WHERE categoryID BETWEEN 4 and 5";
+		Session session = factory.getCurrentSession();
+		pbList = session.createQuery(hql).getResultList();
 
-		return SCODList;
-		// SELECT productName, scod.unitPrice, scod.discount, scod.quantity, cost
+		List<ProductSaleEarnBean> psebList = new ArrayList<>();
+//		Integer productID = null; //要存DB
+//		LocalDate orderDate = null; //要存DB
+//		Double discount = 0.0; //拿unitprice出來算
+		ProductsBean productb = null;
+		Integer qty = 0; //加總存db
+		Integer price = 0;
+
+		for (ProductsBean pb : pbList) {
+			productb = pb;
+			for (MOrderDetailBean modb : modbList) {
+				if (pb.getProductID() == modb.getProductsBean().getProductID()) {
+//					productID = pb.getProductID();
+					price = (int) Math.round(modb.getProductsBean().getUnitPrice() * (1-modb.getDiscount()));
+					qty = qty + modb.getQuantity();
+				} else {
+					System.out.println("比對時pb & modb產品名稱不相同");
+				}
+			}
+			ProductSaleEarnBean pseb = new ProductSaleEarnBean(null, productb, qty, price);
+			psebList.add(pseb);
+		}
+		return psebList;
 	}
 
+	//模擬service呼叫方法
+	@Override
+	public void savePSEB() {
+		Session session = factory.getCurrentSession();
+		List<LocalDate> dates = dao.getFoodDates();
+		
+		for(LocalDate date : dates) {
+			List<ProductSaleEarnBean> psebList = 
+					dao.getPeripheralPBs(getPeripheralSCODs(getPeripheralSCOrder(date)));
+			for(ProductSaleEarnBean pseb : psebList) {
+				pseb.setOrderDate(date.toString());
+				session.save(pseb);
+			}
+		}
+	}
+
+	
 	// 存周邊商品到資料庫方法step 1 ---- NEW
 	// 計算目前資料數的日期
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LocalDate> getPeripheralDates() {
-		String hql = "SELECT DISTINCT orderDate FROM SCOrdersBean" + " ORDER BY orderDate ASC";
+		String hql = "SELECT DISTINCT orderDate FROM SCOrdersBean ORDER BY orderDate ASC";
 		Session session = factory.getCurrentSession();
 		List<String> dates = new ArrayList<>();
 		List<LocalDate> dates1 = new ArrayList<>();
@@ -134,11 +214,128 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return dates1;
 	}
 	
+	//========================================待解決：dates會重複問題,set?????
+	
+	// 存周邊商品到資料庫方法step 2 ---- NEW
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate) {
+		String hql = "FROM SCOrdersBean";
+		Session session = factory.getCurrentSession();
+		List<SCOrdersBean> SCOrdersList = new ArrayList<>();
+		SCOrdersList = session.createQuery(hql).getResultList();
+		List<SCOrdersBean> SCOList = new ArrayList<>();
+
+		for (SCOrdersBean scob : SCOrdersList) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+			LocalDate SCOorderDate = LocalDateTime.parse(scob.getOrderDate(), formatter).toLocalDate();
+			long Days = ChronoUnit.DAYS.between(SCOorderDate, orderDate);
+			if (Days == 0) {
+				SCOList.add(scob);
+//					System.out.println("符合 假資料中該日與scob日期比較");
+				System.out.println("scob=>" + SCOList.size());
+			} else {
+				System.out.println("不符合 假資料中該日與scob日期比較");
+			}
+		}
+		return SCOList;
+	}
+
+	// 存周邊商品到資料庫方法step 3 ---- NEW
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM SCOrderDetailBean";
+		List<SCOrderDetailBean> SCODList1 = new ArrayList<>();
+		SCODList1 = session.createQuery(hql).getResultList();
+
+		List<SCOrderDetailBean> scodList = new ArrayList<>();
+		for (SCOrdersBean scb : scbList) {
+			for (SCOrderDetailBean scodb : SCODList1) {
+				if (scb.getsCOrderID() == scodb.getSCOrdersBean().getsCOrderID()) {
+					scodList.add(scodb);
+
+				} else {
+					System.out.println("比對時od & odb OID不相同");
+				}
+			}
+		}
+		return scodList;
+	}
+	
+	// 存周邊商品到資料庫方法step 4 ---- NEW
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList) {
+		List<ProductsBean> pbList = new ArrayList<>();
+		String hql = "FROM ProductsBean WHERE categoryID = 6";
+		Session session = factory.getCurrentSession();
+		pbList = session.createQuery(hql).getResultList();
+
+		List<ProductSaleEarnBean> psebList = new ArrayList<>();
+//		Integer productID = null; //要存DB
+//		LocalDate orderDate = null; //要存DB
+//		Double discount = 0.0; //拿unitprice出來算
+		ProductsBean productb = null;
+		Integer qty = 0; //加總存db
+		Integer price = 0;
+
+		for (ProductsBean pb : pbList) {
+			productb = pb;
+			for (SCOrderDetailBean scodb : scodList) {
+				if (pb.getProductID() == scodb.getProductsBean().getProductID()) {
+//					productID = pb.getProductID();
+					price = Math.round(scodb.getProductsBean().getUnitPrice() * (1-scodb.getDiscount()));
+					qty = qty + scodb.getQuantity();
+				} else {
+					System.out.println("比對時pb & scod產品名稱不相同");
+				}
+			}
+			ProductSaleEarnBean pseb = new ProductSaleEarnBean(null, productb, qty, price);
+			psebList.add(pseb);
+		}
+		return psebList;
+	}
+
+	
+//	//模擬service呼叫方法
+//	@Override
+//	public void savePSEB() {
+//		Session session = factory.getCurrentSession();
+//		List<LocalDate> dates = dao.getPeripheralDates();
+//		
+//		for(LocalDate date : dates) {
+//			List<ProductSaleEarnBean> psebList = 
+//					dao.getPeripheralPBs(getPeripheralSCODs(getPeripheralSCOrder(date)));
+//			for(ProductSaleEarnBean pseb : psebList) {
+//				pseb.setOrderDate(date.toString());
+//				session.save(pseb);
+//			}
+//		}
+//	}
 	
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	// 計算周邊商品的過程step1 ===========NEW
@@ -204,15 +401,15 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		Integer earnTotal = 0;
 		for (SCOrdersBean scb : scbList) {
 			for (SCOrderDetailBean scodb : SCODList1) {
-				if (scb.getSCOrderID() == scodb.getSCOrderID()) {
+				if (scb.getsCOrderID() == scodb.getSCOrderID()) {
 					for (ProductsBean pb : pbList) {
-						if (pb.getProductName().equals(scodb.getPrducts().getProductName())) {
+						if (pb.getProductName().equals(scodb.getProductsBean().getProductName())) {
 							productSubtotal = productSubtotal + scb.getTotal();
-							unitPrice = unitPrice + scodb.getPrducts().getUnitPrice(); // getPBean
-							saveProductName = scodb.getPrducts().getProductName();
+							unitPrice = unitPrice + scodb.getProductsBean().getUnitPrice(); // getPBean
+							saveProductName = scodb.getProductsBean().getProductName();
 //							scodb.getProductsID();
 							qty = qty + scodb.getQuantity();
-							cost = cost + scodb.getPrducts().getCost();
+							cost = cost + scodb.getProductsBean().getCost();
 							earn = earn + (unitPrice - cost);
 							earnTotal = earnTotal + earn;
 							productSubtotal = productSubtotal + (unitPrice * qty);
@@ -247,7 +444,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 
 		for (ShowTimeHistoryBean sthb : sthbList) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
-			LocalDate orderDate = LocalDateTime.parse(sthb.getPalyStartTime(), formatter).toLocalDate();
+			LocalDate orderDate = LocalDateTime.parse(sthb.getPlayStartTime(), formatter).toLocalDate();
 
 			long SdOdDays = ChronoUnit.DAYS.between(Sd, orderDate);
 			long EdOdDays = ChronoUnit.DAYS.between(Ed, orderDate);

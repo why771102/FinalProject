@@ -6,14 +6,23 @@ import java.util.List;
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
+import com.m.model.ProductSaleEarnBean;
 
 public interface ProductSaleDao {
 	public List<LocalDate> getFoodDates();
-	public List<LocalDate> getPeripheralDates();
+	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate);
+	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList);
+	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList);
 	
+	public List<LocalDate> getPeripheralDates();
+	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate);
+	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList);
+	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList);
+	public void savePSEB();
 	//get categoryNames as select option
 	public String getCategoryNames();
 	//show all food orders
