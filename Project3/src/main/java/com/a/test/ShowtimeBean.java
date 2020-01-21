@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.a.model.RunningBean;
+import com.a.model.ShowTimeHistoryBean;
+import com.c.model.HallBean;
 import com.p.model.HallOrderBean;
 import com.sun.istack.NotNull;
 
@@ -34,10 +36,17 @@ public class ShowtimeBean implements Serializable {
     RunningBean rb;
     HallOrderBean hob;
     LocalDateTime StartTime;
+    LocalDate day;
+    LocalTime time;
+    HallBean hall;
+    ShowTimeHistoryBean sthb;
     
 //	Integer expectedOnDay;
 //	LocalDate expectedOffDate;
 	
+
+
+
 
 	public ShowtimeBean() {}
 
@@ -49,6 +58,21 @@ public class ShowtimeBean implements Serializable {
 		this.rb = rb;
 		this.hob = hob;
 	}
+	public ShowtimeBean(Integer stID,  ShowTimeHistoryBean sthb,  LocalDate day, LocalTime time) {
+		super();
+		this.day =day;
+		this.time= time;
+		this.stID = stID;
+		this.sthb=sthb;
+	}
+	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb,HallBean hall) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		this.price_time = price_time;
+		this.rb = rb;
+		this.hall=hall;
+	}
 	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb) {
 		super();
 		this.stID = stID;
@@ -57,11 +81,32 @@ public class ShowtimeBean implements Serializable {
 		this.rb = rb;
 		
 	}
+	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb,LocalDate day, LocalTime time,HallBean hall) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		this.price_time = price_time;
+		this.rb = rb;
+		this.day =day;
+		this.time= time;
+		this.hall =hall;
+	}
+		
+	
 	public ShowtimeBean(Integer stID, int runningTime, HallOrderBean hob) {
 		super();
 		this.stID = stID;
 		this.runningTime = runningTime;
 		this.hob = hob;
+	}
+	public ShowtimeBean(Integer stID, int runningTime, HallOrderBean hob, LocalDate day, LocalTime time,HallBean hall) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		this.hob = hob;
+		this.day =day;
+		this.time= time;
+		this.hall=hall;
 	}
 	public ShowtimeBean(Integer stID, int runningTime) {
 		
@@ -120,7 +165,38 @@ public Integer getStID() {
 	}
 
 
-	
+	public LocalDate getDay() {
+		return day;
+	}
+
+	public void setDay(LocalDate day) {
+		this.day = day;
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
+	public HallBean getHall() {
+		return hall;
+	}
+
+	public void setHall(HallBean hall) {
+		this.hall = hall;
+	}
+
+	public ShowTimeHistoryBean getSthb() {
+		return sthb;
+	}
+
+	public void setSthb(ShowTimeHistoryBean sthb) {
+		this.sthb = sthb;
+	}
+
 
 }
 	
