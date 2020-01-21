@@ -60,14 +60,14 @@ public class MOrderBean implements Serializable {
 	Integer empId;
 	
 	public MOrderBean() {}
-	public MOrderBean(Integer ordersID,Integer ticketStatus,String OrderTime,Integer showTimeID,Integer memberID,String ticketTime,Integer empId) {
+	public MOrderBean(Integer ordersID,Integer ticketStatus,String OrderTime,ShowTimeHistoryBean showTimeHistoryBean,MemberBean memberBean,String ticketTime,EmpBean empBean) {
 		this.ordersID=ordersID;
 		this.ticketStatus=ticketStatus;
 		this.OrderTime=OrderTime;
-		this.showTimeID=showTimeID;
-		this.memberID=memberID;
+		this.showTimeHistoryBean=showTimeHistoryBean;
+		this.memberBean=memberBean;
 		this.ticketTime=ticketTime;
-		this.empId=empId;
+		this.empBean=empBean;
 	}
 	
 	public Integer getOrdersID() {
