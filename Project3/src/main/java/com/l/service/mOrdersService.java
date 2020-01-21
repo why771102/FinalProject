@@ -9,14 +9,14 @@ import com.l.model.MOrderBean;
 import com.z.model.EmpBean;
 
 public interface mOrdersService {
-		//查詢排片ID之電影ID
-		public List<RunningBean> getRunbyID();
-		//查詢電影ID之所有電影名字
-		public List<MovieBean> getMovieName();
-		//查詢所有場次ID
-		public List<String> getAllShowTimeID();
-		//查詢場次ID之播放日期時間
-		public List<ShowTimeHistoryBean> getShowTimebyID(Integer runID);
+		//查詢所有電影之狀態為1
+		public List<MovieBean> getMovieStatus1();
+		//查詢播放時間
+		public List<ShowTimeHistoryBean> getplayStartTime(Integer runID);
+	
+
+	
+	
 		//新增訂單
 		public void addMOrder(MOrderBean mob);
 		//修改訂單之員工ID原本null

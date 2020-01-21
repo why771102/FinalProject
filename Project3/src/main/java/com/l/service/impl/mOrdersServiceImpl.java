@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 
 import com.a.model.MovieBean;
-import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
@@ -27,39 +26,19 @@ public class mOrdersServiceImpl implements mOrdersService{
 	public void setDao(mOrdersDao dao) {
 		this.dao = dao;
 	}
-	
-	//查詢排片ID之電影ID
-	@Transactional
-	@Override
-	public List<RunningBean> getRunbyID(){
-		List<RunningBean> list = dao.getRunbyID();
-//		ArrayList<Object> midList = new ArrayList<>();
-//		for(int i = 0; i < list.size(); i++) {
-//			Integer movieId = list.get(i).getMovieID();
-//			midList.add(movieId);
-//		}
-		return list;
-	}
-	
-	//查詢電影ID之電影名字
-	@Transactional
-	@Override
-	public List<MovieBean> getMovieName() {
-		return dao.getMovieName();
-	}
 	//查詢所有場次ID	
 	@Transactional
 	@Override
-	public List<String> getAllShowTimeID() {
-		return dao.getAllShowTimeID();
+	public List<MovieBean> getMovieStatus1() {
+		return dao.getMovieStatus1();
 	}
 	
-	//用runID查詢播放日期時間
 	@Transactional
 	@Override
-	public List<ShowTimeHistoryBean> getShowTimebyID(Integer runID) {
-		return dao.getShowTimebyID(runID);
+	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID) {
+		return dao.getplayStartTime(runID);
 	}
+
 	
 	
 	@Transactional

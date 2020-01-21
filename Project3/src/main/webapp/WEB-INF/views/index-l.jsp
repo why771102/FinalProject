@@ -30,7 +30,7 @@
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			
-			<td width="350"><p align="left" /><a href="morders">購票</a><BR>
+			<td width="350"><p align="left" /><a href="queryMovie">查詢上映電影</a><BR>
 			</td>
 		</tr>
 

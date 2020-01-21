@@ -20,31 +20,27 @@
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
         <div class="row">
-          <c:forEach var='Movie' items='${Movies}'>
+          <c:forEach var='MovieId' items='${AllMovies}'>
             <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
                 <div class="thumbnail" style="width: 320px; height: 340px">
                     <div class="caption">
-                        <p>
-<%--                             <a href='/morders/${runid}' style='font-size: 16px;'>電影ID:${Movie.movieID}</a> --%>
-                       		 <b  style='font-size: 16px;'>編號:${Movie.runID}</b>
-                       		 
-                        </p>
+                       
                        <p>
->
-                       		 <a  href='morders2/${ShowTimeHistoryBean.showTimeID}' value='/morders?id=${Movie.runID}' style='font-size: 16px;'>電影名稱:${Movie.movie.title}<span id="title"></span></a>
+                       		 <a  href='morders/${runID}'>電影名稱:${MovieId.title}</a>
+                       </p>
+<!--                        <p> -->
+<!-- > -->
+<%-- 						<b  style='font-size: 16px;'>廳別代碼:${MovieId.hall.hallID}</b> --%>
+<%-- <%--                        		 <a  href='queryShowTimeID' value='/morders?id=${Movie.runID}' style='font-size: 16px;'>電影名稱:${Movie.movie.title}<span id="title"></span></a> --%> 
                        		 
-                        </p>
-                        <p>
->
-                       		 <b  style='font-size: 16px;'>電影ID:<span id="movieid">${Movie.movie.movieID}</span></b>
+<!--                         </p> -->
+                       
+<!--                         <p> -->
+<!-- > -->
+<%--                        		 <b  style='font-size: 16px;'>播放日期時間:${MovieId.playStartTime}</b> --%>
                        		 
-                        </p>
-                        <p>
->
-                       		 <b  style='font-size: 16px;'>實際播放天數:${Movie.onDate}</b>
-                       		 
-                        </p>
-                        <p>
+<!--                         </p> -->
+<!--                         <p> -->
 <%--                         <a href="<spring:url value='/product?id=${Movie.productID}' />" --%>
 <!--     							class="btn btn-primary"> -->
 <!--     							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
@@ -54,13 +50,7 @@
             </div>
         </c:forEach>
         </div>
-         <div style="text-align:center">
-        <h1>時間</h1>
-        <c:forEach var='showTimeID' items='${AllShowTimeID}'>
-       	 <a href='morders/${showTimeID}'>${showTimeID}</a><br>
-        </c:forEach>
-        </div>
-    </section>
+         </section>
 
     
 </body>
