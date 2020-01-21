@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
@@ -85,7 +86,10 @@ public class ShoppingCartController {
 	}
 
 	@PostMapping("/deleteProduct")
-	public String showShoppingCartItem() {
+	public String showShoppingCartItem(@RequestParam("orderID") String orderID, @RequestParam("productID") String productID) {
+		System.out.println(orderID + " " + productID);
+		scservice.deleteProduct(Integer.parseInt(orderID), Integer.parseInt(productID));
+		System.out.println("This is deleteProducts");
 		return "a/ShoppingCart";
 	}
 }

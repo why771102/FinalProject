@@ -67,7 +67,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
 	@Override
 	public void deleteProduct(Integer SCOrderID, Integer productID) {
-		String hql = "DELETE FROM SCOrderDetailBean WHERE SCOrderID=? and productId=?";
+		String hql = "DELETE FROM SCOrderDetailBean WHERE SCOrderID= :SCOrderID and productId= :productID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql)
 					.setParameter("SCOrderID", SCOrderID)
