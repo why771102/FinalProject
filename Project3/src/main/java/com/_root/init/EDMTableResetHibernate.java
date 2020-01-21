@@ -528,7 +528,6 @@ public class EDMTableResetHibernate {
 			session.flush();
 			System.out.println("Movie資料新增成功");
 //RunningStatusBean
-<<<<<<< HEAD
 			try (FileReader fr = new FileReader("data/runningStatus.dat");
 					BufferedReader br = new BufferedReader(fr);) {
 				while ((line = br.readLine()) != null) {
@@ -599,7 +598,6 @@ public class EDMTableResetHibernate {
 //				   session.flush();
 //				   System.out.println("MOrderDetailBean資料新增成功");  
 
-=======
 			try (FileReader fr = new FileReader("data/runningStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
 			    while ((line = br.readLine()) != null) {
 			     if (line.startsWith(UTF8_BOM)) {
@@ -718,7 +716,6 @@ public class EDMTableResetHibernate {
 				   session.flush();
 				   System.out.println("MOrderDetailBean資料新增成功");  
 			
->>>>>>> 0ee50f5f2e2098bf33fc521cba6de6c7bc8f2610
 //======假資料表格往上新增=======================================================================			
 
 			tx.commit();

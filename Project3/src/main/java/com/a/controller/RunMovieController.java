@@ -214,7 +214,7 @@ public class RunMovieController {
 			ShowTimeHistoryBean show = new ShowTimeHistoryBean();
 			show.setHall(a);
 			show.setRun(rb);
-			show.setPalyStartTime(dateTime);
+			show.setPlayStartTime(dateTime);
 			mService.addShowTimeHistory(show);
 			List<ShowTimeHistoryBean> sthb_list = mService.getshowMovie(today);
 			for (ShowTimeHistoryBean sb : sthb_list) {
@@ -274,7 +274,7 @@ public class RunMovieController {
 		System.out.println("--------------------THE END--------------------------");
 
 //		} //七天的迴圈
-		return "index-a";// URL 跟 eclip 擺放位置相關
+		return "\"a/addMovie\"";// URL 跟 eclip 擺放位置相關
 	}
 	
 	
