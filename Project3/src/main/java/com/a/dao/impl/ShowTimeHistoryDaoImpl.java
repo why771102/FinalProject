@@ -17,7 +17,7 @@ import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 
 @Repository
-public class ShowTimeHistroyDaoImpl implements ShowTimeHistoryDao {
+public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 	SessionFactory factory;
 	@Autowired
 	public void setFactory(SessionFactory factory) {
