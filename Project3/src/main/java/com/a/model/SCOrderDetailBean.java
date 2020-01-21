@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +20,10 @@ import com.l.model.ProductsBean;
 public class SCOrderDetailBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer orderno;
+	Integer unitPrice;
+	Integer Discount;
 	Integer quantity;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="SCOrderID")
@@ -30,20 +36,74 @@ public class SCOrderDetailBean implements Serializable {
 	private Integer SCOrderID;
 	
 	@Transient
-	private Integer productsID;
+	private Integer productID;
 	
 	public SCOrderDetailBean() {}
 
-	public SCOrderDetailBean(Integer quantity, Integer sCOrderID, Integer productsID) {
+	public SCOrderDetailBean(Integer unitPrice, Integer discount, Integer quantity, Integer sCOrderID,
+			Integer productID) {
+		this.unitPrice = unitPrice;
+		this.Discount = discount;
 		this.quantity = quantity;
 		this.SCOrderID = sCOrderID;
-		this.productsID = productsID;
+		this.productID = productID;
 	}
 
-	public SCOrderDetailBean(Integer quantity, SCOrdersBean SCOrdersBean, ProductsBean productsBean) {
-		super();
+	public SCOrderDetailBean(Integer orderno, Integer unitPrice, Integer discount, Integer quantity,
+			SCOrdersBean sCOrdersBean, ProductsBean productsBean) {
+		this.orderno = orderno;
+		this.unitPrice = unitPrice;
+		this.Discount = discount;
 		this.quantity = quantity;
-		this.SCOrdersBean = SCOrdersBean;
+		this.SCOrdersBean = sCOrdersBean;
+		this.productsBean = productsBean;
+	}
+
+	public Integer getOrderno() {
+		return orderno;
+	}
+
+	public void setOrderno(Integer orderno) {
+		this.orderno = orderno;
+	}
+
+	public Integer getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(Integer unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public Integer getDiscount() {
+		return Discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		Discount = discount;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public SCOrdersBean getSCOrdersBean() {
+		return SCOrdersBean;
+	}
+
+	public void setSCOrdersBean(SCOrdersBean sCOrdersBean) {
+		SCOrdersBean = sCOrdersBean;
+	}
+
+	public ProductsBean getProductsBean() {
+		return productsBean;
+	}
+
+	public void setProductsBean(ProductsBean productsBean) {
 		this.productsBean = productsBean;
 	}
 
@@ -55,33 +115,14 @@ public class SCOrderDetailBean implements Serializable {
 		SCOrderID = sCOrderID;
 	}
 
-	public Integer getProductsID() {
-		return productsID;
+	public Integer getProductID() {
+		return productID;
 	}
 
-	public void setProductsID(Integer productsID) {
-		this.productsID = productsID;
+	public void setProductID(Integer productID) {
+		this.productID = productID;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-	public SCOrdersBean getScorders() {
-		return SCOrdersBean;
-	}
-	public void setScorders(SCOrdersBean scorders) {
-		this.SCOrdersBean = scorders;
-	}
-	public ProductsBean getPrducts() {
-		return productsBean;
-	}
-	public void setPrducts(ProductsBean prducts) {
-		this.productsBean = prducts;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
+	
 }

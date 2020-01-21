@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,8 +21,11 @@ public class SeatOrderBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer seatsno;
+	
 	@NotNull
-	@Column(nullable=false, columnDefinition = "DATE")
+	@Column(columnDefinition = "DATE")
 	String date;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -42,7 +47,7 @@ public class SeatOrderBean implements Serializable{
 	}
 	
 	public SeatOrderBean(String date, Integer showTimeID, String seatID) {
-		super();
+//		super();
 		this.date = date;
 		this.showTimeID = showTimeID;
 		this.seatID = seatID;

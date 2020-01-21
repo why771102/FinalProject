@@ -11,8 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.a.model.ShowTimeHistoryBean;
+import com.p.model.MemberBean;
 import com.sun.istack.NotNull;
+import com.z.model.EmpBean;
 
 @Entity
 @Table(name="mOrderDetail")
@@ -23,10 +27,16 @@ public class MOrderDetailBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
 	private MOrderBean mOrderBean;
-//	Integer productID;
+	@Transient
+	Integer ordersID;
+	
+	//	Integer productID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="productID")
 	private ProductsBean productsBean;
+	@Transient
+	Integer productID;
+	
 	@NotNull
 	@Column(nullable=false)
 	Integer sellUnitPrice;
@@ -56,6 +66,16 @@ public class MOrderDetailBean implements Serializable {
 //		this.productID = productID;
 //	}
 
+	public MOrderDetailBean() {}
+	public MOrderDetailBean(MOrderBean mOrderBean,ProductsBean productsBean,Integer sellUnitPrice,Double discount,Integer quantity) {
+		this.mOrderBean=mOrderBean;
+		this.productsBean=productsBean;
+		this.sellUnitPrice=sellUnitPrice;
+		this.discount=discount;
+		this.quantity=quantity;
+		
+	}
+	
 	public MOrderBean getmOrderBean() {
 		return mOrderBean;
 	}

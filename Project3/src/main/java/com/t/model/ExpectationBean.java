@@ -20,19 +20,13 @@ import com.sun.istack.NotNull;
 @Table(name="Expectation")
 public class ExpectationBean implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@NotNull
 	@Column(nullable=false)
 	Integer expective;
-	@NotNull
-	@Column(nullable=false)
-	Integer unexpective;
-
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
 	private MovieBean MovieBean;
@@ -47,9 +41,8 @@ public class ExpectationBean implements Serializable{
 	@Transient
 	Integer memberID;
 	
-	public ExpectationBean(Integer expective, Integer unexpective, Integer movieID, Integer memberID) {
+	public ExpectationBean(Integer expective, Integer movieID, Integer memberID) {
 		this.expective = expective;
-		this.unexpective = unexpective;
 		this.movieID = movieID;
 		this.memberID = memberID;
 	}
@@ -72,14 +65,6 @@ public class ExpectationBean implements Serializable{
 
 	public ExpectationBean() {
 		
-	}
-
-	public Integer getUnexpective() {
-		return unexpective;
-	}
-
-	public void setUnexpective(Integer unexpective) {
-		this.unexpective = unexpective;
 	}
 
 	public MovieBean getMovieBean() {
@@ -105,14 +90,6 @@ public class ExpectationBean implements Serializable{
 
 	public void setExpective(Integer expective) {
 		this.expective = expective;
-	}
-	
-	public Integer getUnexpect() {
-		return unexpective;
-	}
-
-	public void setUnexpect(Integer unexpective) {
-		this.unexpective = unexpective;
 	}
 
 	public static long getSerialversionuid() {

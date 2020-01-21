@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.a.model.MovieBean;
-import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
@@ -66,7 +65,6 @@ public class CommentDaoImpl implements CommentDao{
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();
 	}
-
 
 	@Override
 	public ExpectationBean getAvgGrade(Integer grade) {

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.p.model.MemberBean;
+import com.p.model.PayStatusBean;
 
 @Entity
 @Table(name="SCOrders")
@@ -27,7 +28,12 @@ public class SCOrdersBean implements Serializable{
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean MemberBean;
-	@Column(nullable=false, columnDefinition = "tinyint")
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="payStatusNO")
+	private PayStatusBean payStatusBean;
+	
+	@Transient
 	Integer paymentStatus;
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String shippingAddress;
@@ -49,8 +55,7 @@ public class SCOrdersBean implements Serializable{
 	
 	public SCOrdersBean(Integer sCOrderID, Integer paymentStatus, String shippingAddress, String orderDate,
 			Integer shippingStatus, Integer total, String memo, Integer memberID) {
-		super();
-		SCOrderID = sCOrderID;
+		this.SCOrderID = sCOrderID;
 		this.paymentStatus = paymentStatus;
 		this.shippingAddress = shippingAddress;
 		this.orderDate = orderDate;
@@ -60,17 +65,27 @@ public class SCOrdersBean implements Serializable{
 		this.memberID = memberID;
 	}
 
-	public SCOrdersBean(Integer sCOrderID, MemberBean memberBean, Integer paymentStatus,
-			String shippingAddress, String orderDate, Integer shippingStatus, Integer total, String memo) {
-		super();
-		SCOrderID = sCOrderID;
-		MemberBean = memberBean;
-		this.paymentStatus = paymentStatus;
+	
+	
+	public SCOrdersBean(Integer sCOrderID, MemberBean memberBean,
+			PayStatusBean payStatusBean, String shippingAddress, String orderDate,
+			Integer shippingStatus, Integer total, String memo) {
+		this.SCOrderID = sCOrderID;
+		this.MemberBean = memberBean;
+		this.payStatusBean = payStatusBean;
 		this.shippingAddress = shippingAddress;
 		this.orderDate = orderDate;
 		this.shippingStatus = shippingStatus;
 		this.total = total;
 		this.memo = memo;
+	}
+
+	public PayStatusBean getPaymentStatusBean() {
+		return payStatusBean;
+	}
+
+	public void setPaymentStatusBean(PayStatusBean payStatusBean) {
+		payStatusBean = payStatusBean;
 	}
 
 	public Integer getMemberID() {
@@ -145,13 +160,5 @@ public class SCOrdersBean implements Serializable{
 		this.memo = memo;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-
-	
-	
 	
 }

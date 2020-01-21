@@ -12,9 +12,8 @@
 	<hr>
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
-			<td width="350"><p align="left" /> <a href='123'>Hello
-					Spring MVC</a><BR></td>
-			<td width="350"><p align="left" /> <a href='emps'>查詢所有員工</a><BR>
+			<td width="350"><p align="left" /> <a href='getMovieIDaddexpect'>填寫期待度</a><BR></td>
+			<td width="350"><p align="left" /> <a href='getMovieIDforexpect'>查詢個別電影期待度</a><BR>
 			</td>
 		</tr>
 

@@ -20,24 +20,48 @@ public class TicketBean implements Serializable {
 //	Integer ordersID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
-	private MOrderBean ordersID;
+	private MOrderBean mOrderBean;
+	@Transient
+	Integer ordersID;
 	
 //	String seatID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="seatID", columnDefinition = "NCHAR(4)")
-	private SeatsBean seatID;
+	private SeatsBean seatsBean;
+	@Transient
+	Integer seatID;
 	
+	public TicketBean() {}
 	
-	public MOrderBean getOrdersID() {
+	public TicketBean(MOrderBean mOrderBean,SeatsBean seatsBean) {
+		this.mOrderBean=mOrderBean;
+		this.seatsBean=seatsBean;
+
+	}
+	public MOrderBean getmOrderBean() {
+		return mOrderBean;
+	}
+	public void setmOrderBean(MOrderBean mOrderBean) {
+		this.mOrderBean = mOrderBean;
+	}
+	public Integer getOrdersID() {
 		return ordersID;
 	}
-	public void setOrdersID(MOrderBean ordersID) {
+	public void setOrdersID(Integer ordersID) {
 		this.ordersID = ordersID;
 	}
-	public SeatsBean getSeatID() {
+	public SeatsBean getSeatsBean() {
+		return seatsBean;
+	}
+	public void setSeatsBean(SeatsBean seatsBean) {
+		this.seatsBean = seatsBean;
+	}
+	public Integer getSeatID() {
 		return seatID;
 	}
-	public void setSeatID(SeatsBean seatID) {
+	public void setSeatID(Integer seatID) {
 		this.seatID = seatID;
 	}
+	
+	
 }

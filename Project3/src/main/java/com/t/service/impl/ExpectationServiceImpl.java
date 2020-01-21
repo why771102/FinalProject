@@ -2,6 +2,7 @@ package com.t.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,12 @@ import com.t.service.ExpectationService;
 @Service
 public class ExpectationServiceImpl implements ExpectationService{
 	ExpectionDao dao;
+	
+	@Transactional
+	@Autowired
+	public void setDao(ExpectionDao dao) {
+		this.dao = dao;
+	}	
 
 	@Transactional
 	@Override
@@ -44,6 +51,18 @@ public class ExpectationServiceImpl implements ExpectationService{
 	@Override
 	public MemberBean getMemberById(int memberID) {
 		return dao.getMemberById(memberID);
+	}
+
+	@Transactional
+	@Override
+	public List<String> getMovies() {
+		return dao.getMovies();
+	}
+
+	@Transactional
+	@Override
+	public List<ExpectationBean> getExpectationByMovie(Integer movieID) {
+		return dao.getExpectationByMovie(movieID);
 	}
 
 }

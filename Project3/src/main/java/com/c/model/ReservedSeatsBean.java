@@ -76,6 +76,14 @@ public class ReservedSeatsBean implements Serializable{
 		this.showtimeHistoryBean = showtimeHistoryBean;
 		this.seatsBean = seatsBean;
 	}
+	
+	public Integer getSeatsno() {
+		return seatsno;
+	}
+
+	public void setSeatsno(Integer seatsno) {
+		this.seatsno = seatsno;
+	}
 
 	public ReservationStatusBean getReservationStatusBean() {
 		return reservationStatusBean;
