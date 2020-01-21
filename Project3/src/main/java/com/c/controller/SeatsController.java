@@ -1,12 +1,12 @@
 package com.c.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.c.model.HallBean;
+import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatsBean;
 import com.c.service.HallService;
+import com.c.service.ReservedSeatsService;
 import com.c.service.SeatsService;
 import com.google.gson.Gson;
 
@@ -26,6 +28,7 @@ public class SeatsController {
 
 	SeatsService sservice;
 	HallService hservice;
+	ReservedSeatsService rsservice;
 	ServletContext context;
 
 	@Autowired
@@ -34,9 +37,10 @@ public class SeatsController {
 	}
 
 	@Autowired
-	public void setService(SeatsService sservice, HallService hservice) {
+	public void setService(SeatsService sservice, HallService hservice, ReservedSeatsService rsservice) {
 		this.sservice = sservice;
 		this.hservice = hservice;
+		this.rsservice = rsservice;
 	}
 
 	@GetMapping(value = "/seats/addSeats")
@@ -97,9 +101,11 @@ public class SeatsController {
 		String s = "seats";
 		String[] seatsArray = sservice.stringToStringArray(seats, hallID);
 		System.out.println(hallID);
-		for(int seat = 0 ; seat < seatsArray.length; seat++) {
-			System.out.println(seatsArray[seat]);
-			sservice.updateSeatStatus(1, seatsArray[seat], s);
+		for(String seat : seatsArray) {
+			System.out.println(seat);
+			sservice.updateSeatStatus(1, seat, s);
+			List<ReservedSeatsBean> listRSB = rsservice.getAllSeats(seat);
+			rsservice.updateSeatStatusForOutOfOrder(listRSB);
 		}
 		return "/index-c";
 	}

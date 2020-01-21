@@ -64,6 +64,19 @@ public class ShowTimeHistroyDaoImpl implements ShowTimeHistoryDao {
 		
 	}
 	
+	@Override
+	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(String startdate) {
+		String hql="from ShowTimeHistoryBean where    playStartTime >= :startdate ";
+		Session session =factory.getCurrentSession();
+		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
+		STHB_List= session.createQuery(hql).setParameter("startdate",  startdate)
+                                           .getResultList();
+		System.out.println(hql);
+		System.out.println(startdate);
+		return STHB_List;
+		
+	}
+	
 	
   // 把runBean 換成 showTime List ok
 	@Override

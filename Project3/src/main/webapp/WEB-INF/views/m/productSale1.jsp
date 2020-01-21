@@ -165,21 +165,21 @@
 
 	function sendpName(){
 		$.ajax({
-			url : "${pageContext.request.contextPath}/product/sale",
+			url : "${pageContext.request.contextPath}/product/sale1",
 			data : {
-				productName : document.getElementById("pName").value
+				productName : document.getElementById("pName").innerText //要更動innerHTML!!
 			},
-			type : "GET",
+			type : "Post",
 						success : function() {
 							alert("you click me!");
-			 				window.location.href = "${pageContext.request.contextPath}/product/sale/date";
+			 				window.location.href = "${pageContext.request.contextPath}/product/sal e/date";
 						}
 		});
 	}
 // 	console.log("pName =>" + document.getElementById("pName").value);
 	//動態新增表格
 	$('#insertHere')
-			.append(
-					'<tr><td></td><td><a href="" id="pName" onclick="sendpName()">產品名稱</a></td><td>單價</td><td>數量</td><td>總金額</td></tr>');
+			.append( //動態新增的時候id要加i
+					'<tr><td></td><td><div id="pName" onclick="sendpName()">產品名稱</div></td><td>單價</td><td>數量</td><td>總金額</td></tr>');
 </script>
 </html>

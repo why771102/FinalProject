@@ -218,10 +218,12 @@ span.seatCharts-legendDescription {
 				var seat = JSON.parse(data[1]);
 				seatmain(seat, 1)
 				window.noOfTickets = parseInt(data[2]);
+				window.hallID = data[3];
 				document.getElementById("numberOfTickets").innerText = window.noOfTickets;
-				document.getElementById("hallID").innerText = data[3] + "廳";
+				document.getElementById("hallID").innerText = window.hallID + "廳";
 				document.getElementById("movieTitle").innerText += data[4];
 				document.getElementById("date").innerText += data[5];
+				window.showTimeID = parseInt(data[6]);
 			}
 		});
 	}
@@ -370,7 +372,7 @@ span.seatCharts-legendDescription {
 		var bookSeats=JSON.stringify(SseatArray);
 		$.ajax({
 			url : "${pageContext.request.contextPath}/reservedSeats/reserveSeats",
-			data : {seats: bookSeats},
+			data : {seats: bookSeats, showTimeID: window.showTimeID, hallID: window.hallID },
 			type : "POST",
 			success : function() {
 				alert("訂"+bookSeats+"成功!");
@@ -397,24 +399,24 @@ span.seatCharts-legendDescription {
 	}
 
 	//刪除此廳
-	function updateHallStatus(){
-		var hallID = document.getElementById("hallID").value;
-		var hallStatus = document.getElementById("updateHallStatus").value;
-		console.log(hallStatus);
-		if(confirm("確認關閉此廳嗎?")){
-			$.ajax({
-				url : "${pageContext.request.contextPath}/hall/updateHallStatus",
-				data : {hallID: hallID, hallStatus: hallStatus},
-				type : "POST",
-				success : function() {
-					alert("更改成功");
-					window.location.href = "${pageContext.request.contextPath}/index-c";
-				}
-			});
-		}else{
-			//取消關閉此廳的選項
-		}
-	}
+// 	function updateHallStatus(){
+// 		var hallID = document.getElementById("hallID").value;
+// 		var hallStatus = document.getElementById("updateHallStatus").value;
+// 		console.log(hallStatus);
+// 		if(confirm("確認關閉此廳嗎?")){
+// 			$.ajax({
+// 				url : "${pageContext.request.contextPath}/hall/updateHallStatus",
+// 				data : {hallID: hallID, hallStatus: hallStatus},
+// 				type : "POST",
+// 				success : function() {
+// 					alert("更改成功");
+// 					window.location.href = "${pageContext.request.contextPath}/index-c";
+// 				}
+// 			});
+// 		}else{
+// 			//取消關閉此廳的選項
+// 		}
+// 	}
 	
 	function recalculateTotal(sc) {
 		var total = 0;

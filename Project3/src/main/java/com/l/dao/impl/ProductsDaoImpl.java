@@ -54,7 +54,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	//用ID查詢分類產品 
 		@Override
 		public List<ProductsBean> getCategoryID(Integer categoryID){
-			String hql="from ProductsBean where categoriesBean=:categoryID";
+			String hql="from ProductsBean where categoryID = :categoryID";
 			Session session=factory.getCurrentSession();
 			List<ProductsBean> list=new ArrayList<>();
 			list=session.createQuery(hql).setParameter("categoryID", categoryID).getResultList();

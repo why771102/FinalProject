@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import com.c.model.HallBean;
 import com.c.model.SeatsBean;
 
 @Entity
@@ -21,10 +21,12 @@ public class TicketBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
 	private MOrderBean ordersID;
+	
 //	String seatID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="seatID", columnDefinition = "NCHAR(4)")
 	private SeatsBean seatID;
+	
 	
 	public MOrderBean getOrdersID() {
 		return ordersID;

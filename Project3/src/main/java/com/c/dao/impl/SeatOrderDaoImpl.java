@@ -27,7 +27,10 @@ public class SeatOrderDaoImpl implements SeatOrderDao {
 		ShowTimeHistoryBean sthb = getShowTimeById(sob.getShowTimeID());
 		SeatsBean sb = getSeatsById(sob.getSeatID());
 		sob.setShowtimeHistoryBean(sthb);
+		System.out.println("insert showtimeID: " + sob.getShowtimeHistoryBean().getShowTimeId());
 		sob.setSeatsBean(sb);
+		System.out.println("insert seatID: " + sob.getSeatsBean().getSeatID());
+		System.out.println("insert seatOrder date" + sob.getDate());
 		session.save(sob);
 		
 	}
@@ -42,6 +45,7 @@ public class SeatOrderDaoImpl implements SeatOrderDao {
 	@Override
 	public ShowTimeHistoryBean getShowTimeById(Integer showTimeID) {
 		Session session = factory.getCurrentSession();
+		System.out.println("getShowTimeById showTimeID: " + showTimeID);
 		ShowTimeHistoryBean sthb = session.get(ShowTimeHistoryBean.class, showTimeID);
 		return sthb;
 	}

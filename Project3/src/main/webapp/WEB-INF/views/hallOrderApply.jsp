@@ -77,7 +77,7 @@
 				</tr>
 				<tr>
 					<td>選擇影廳:</td>
-					<td><form:select path="hallID">
+					<td><form:select path="hallID" id="hallID">
 								<form:option value="-1">
 									請選擇
 								</form:option>
@@ -127,16 +127,46 @@
 <script>
 var s;
 var e;
+var h;
 
 $("#startTime").change(function(){
 	s = $("#startTime").val().substring(0,2);
 	$("#endTime").change(function(){
 		e = $("#endTime").val().substring(0,2);
-		if(s!=null && e!=null){
+		$("#hallID").change(function(){
+			h = $("#hallID").val();
+			if(s!=null && e!=null && h!=null){
+				var s2 = parseInt(s);
+				var e2 = parseInt(e);
+				var hours = e2-s2;
+				var price;
+				if(h == "A" || h == "B" || h == "C" || h == "D"){
+					price = parseInt("80000");
+				}else{
+					price = parseInt("40000");
+				}
+				var st = (hours)*price;
+				if(hours<=0){
+					alert("時間輸入有誤!請重新輸入");
+					$("#orderHours").val("時間輸入有誤");
+					$("#hallSubtotal").val("0");
+				}else{
+					$("#orderHours").val(hours);
+					$("#hallSubtotal").val(st);
+				} 
+			}
+		});
+		if(s!=null && e!=null && h!=null){
 			var s2 = parseInt(s);
 			var e2 = parseInt(e);
 			var hours = e2-s2;
-			var st = (hours)*10000;
+			var price;
+			if(h == "A" || h == "B" || h == "C" || h == "D"){
+				price = parseInt("80000");
+			}else{
+				price = parseInt("40000");
+			}
+			var st = (hours)*price;
 			if(hours<=0){
 				alert("時間輸入有誤!請重新輸入");
 				$("#orderHours").val("時間輸入有誤");
@@ -147,11 +177,17 @@ $("#startTime").change(function(){
 			}
 		}
 	});
-	if(s!=null && e!=null){
+	if(s!=null && e!=null && h!=null){
 		var s2 = parseInt(s);
 		var e2 = parseInt(e);
 		var hours = e2-s2;
-		var st = (hours)*10000;
+		var price;
+		if(h == "A" || h == "B" || h == "C" || h == "D"){
+			price = parseInt("80000");
+		}else{
+			price = parseInt("40000");
+		}
+		var st = (hours)*price;
 		if(hours<=0){
 			alert("時間輸入有誤!請重新輸入");
 			$("#orderHours").val("時間輸入有誤");
@@ -159,8 +195,9 @@ $("#startTime").change(function(){
 		}else{
 			$("#orderHours").val(hours);
 			$("#hallSubtotal").val(st);
-		}
+		} 
 	}
+	
 });
 
 

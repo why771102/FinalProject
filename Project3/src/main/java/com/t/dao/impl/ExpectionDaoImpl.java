@@ -25,8 +25,8 @@ public class ExpectionDaoImpl implements ExpectionDao{
 	@Override
 	public void addExpect(ExpectationBean eb) {
 		Session session = factory.getCurrentSession();
-		MovieBean mvb = getMovieById(eb.getMovieID());
-		eb.setMovieBean(mvb);
+		MemberBean mb = getMemberById(eb.getMemberID());
+		eb.setMemberBean(mb);
 		session.save(eb);
 	}
 	
@@ -52,12 +52,6 @@ public class ExpectionDaoImpl implements ExpectionDao{
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
-	
-	@Override
-	public List<ExpectationBean> getExpectation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public MemberBean getMemberById(int memberID) {
@@ -66,5 +60,25 @@ public class ExpectionDaoImpl implements ExpectionDao{
 		mb = session.get(MemberBean.class,memberID);
 		return mb;
 	}
+
+	//列出電影ID
+	@Override
+	public List<String> getMovies() {
+		String hql="Select Distinct movieID from MovieBean";
+		Session session=factory.getCurrentSession();
+		List<String> list=new ArrayList<>();
+		list=session.createQuery(hql).getResultList();
+		return list;
+	}
 	
+	//用列出的電影ID查Expectation
+	@Override
+	public List<ExpectationBean> getExpectationByMovie(Integer movieID) {
+		String hql="from ExpectationBean where movieID = :movieID";
+		Session session=factory.getCurrentSession();
+		List<ExpectationBean> list=new ArrayList<>();
+		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		return list;
+	}
+
 }

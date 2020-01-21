@@ -54,6 +54,15 @@
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
+			<td width="350"><p align="left" /> 
+				<a href='member/ticket'>我的票夾</a><BR>
+			</td>
+			<td width="350"><p align="left" />
+				<a href="member/logout">無</a><BR>
+			</td>
+		</tr>
+		
+		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
     			<a href='forwardDemo'>RedirectView: forwardDemo</a><br> 
     		</td>
