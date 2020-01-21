@@ -113,11 +113,11 @@ public class ShowTimeHistoryBean implements Serializable {
 		this.runID = runID;
 	}
 
-	public String getPalyStartTime() {
+	public String getPlayStartTime() {
 		return playStartTime;
 	}
 
-	public void setPalyStartTime(String palyStartTime) {
+	public void setPlayStartTime(String palyStartTime) {
 		this.playStartTime = palyStartTime;
 	}
 

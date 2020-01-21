@@ -38,14 +38,14 @@ public class MOrderBean implements Serializable {
 	//	Integer showTimeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="showTimeID")
-	private ShowTimeHistoryBean ShowTimeHistoryBean;
+	private ShowTimeHistoryBean showTimeHistoryBean;
 	@Transient
 	Integer showTimeID;
 	
 	//	Integer memberID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
-	private MemberBean MemberBean;
+	private MemberBean memberBean;
 	@Transient
 	Integer memberID;
 	
@@ -55,19 +55,19 @@ public class MOrderBean implements Serializable {
 //	Integer employeeID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="employeeID")
-	private EmpBean EmpBean;
+	private EmpBean empBean;
 	@Transient
 	Integer empId;
 	
 	public MOrderBean() {}
-	public MOrderBean(Integer ordersID,Integer ticketStatus,String OrderTime,Integer showTimeID,Integer memberID,String ticketTime,Integer empId) {
+	public MOrderBean(Integer ordersID,Integer ticketStatus,String OrderTime,ShowTimeHistoryBean showTimeHistoryBean,MemberBean memberBean,String ticketTime,EmpBean empBean) {
 		this.ordersID=ordersID;
 		this.ticketStatus=ticketStatus;
 		this.OrderTime=OrderTime;
-		this.showTimeID=showTimeID;
-		this.memberID=memberID;
+		this.showTimeHistoryBean=showTimeHistoryBean;
+		this.memberBean=memberBean;
 		this.ticketTime=ticketTime;
-		this.empId=empId;
+		this.empBean=empBean;
 	}
 	
 	public Integer getOrdersID() {
@@ -113,22 +113,23 @@ public class MOrderBean implements Serializable {
 		this.empId = empId;
 	}
 	public ShowTimeHistoryBean getShowTimeHistoryBean() {
-		return ShowTimeHistoryBean;
+		return showTimeHistoryBean;
 	}
-	public void setShowTimeHistoryBean(ShowTimeHistoryBean showTimeHistoryBean) {
-		ShowTimeHistoryBean = showTimeHistoryBean;
-	}
+	
 	public MemberBean getMemberBean() {
-		return MemberBean;
+		return memberBean;
 	}
 	public void setMemberBean(MemberBean memberBean) {
-		MemberBean = memberBean;
+		this.memberBean = memberBean;
 	}
 	public EmpBean getEmpBean() {
-		return EmpBean;
+		return empBean;
 	}
 	public void setEmpBean(EmpBean empBean) {
-		EmpBean = empBean;
+		this.empBean = empBean;
+	}
+	public void setShowTimeHistoryBean(ShowTimeHistoryBean showTimeHistoryBean) {
+		this.showTimeHistoryBean = showTimeHistoryBean;
 	}
 	public Integer getEmpId() {
 		return empId;
