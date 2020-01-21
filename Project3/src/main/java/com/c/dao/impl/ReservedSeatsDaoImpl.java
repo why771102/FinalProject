@@ -151,11 +151,13 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ReservedSeatsBean> getAllSeats(String seatID) {
 		Session session = factory.getCurrentSession();
 		List<ReservedSeatsBean> list = new ArrayList<>();
 		String hql = "FROM ReservedSeatsBean WHERE seatID = :seatID";
+		System.out.println("ReservedSeatsDaoImpl --- List<ReservedSeatsBean> getAllSeats(String seatID): " + seatID);
 		list = session.createQuery(hql).setParameter("seatID", seatID).getResultList();
 		return list;
 	}
@@ -167,6 +169,7 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		for(ReservedSeatsBean rsb : list) {
 			ReservationStatusBean rs = getReservationStatusById(1);
 			rsb.setReservationStatusBean(rs);
+			System.out.println("updateSeatStatusForOutOfOrder seatID: " + rsb.getSeatID());
 			session.saveOrUpdate(rsb);
 		}
 		

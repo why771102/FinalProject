@@ -43,7 +43,7 @@ public class SCOrdersBean implements Serializable{
 	Integer shippingStatus;
 	@Column(nullable=false)
 	Integer total;
-	@Column(nullable=false, columnDefinition = "nvarchar(max)")
+	@Column(columnDefinition = "nvarchar(max)")
 	String memo;
 	
 	@Transient

@@ -41,7 +41,7 @@
 				<a href='Method/test'>testMethod</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href='products/add'>新增產品資料</a><BR>
+				<a href='getShoppingCart'>購物車測試</a><BR>
 			</td>
 		</tr>
 		

@@ -70,7 +70,7 @@ public class ReservedSeatsController {
 	@PostMapping("/reservedSeats/showSeats")
 	public @ResponseBody Map<Integer, String> showReservedSeats() {
 		// 由前端傳入
-		Integer showTimeID = 4487;
+		Integer showTimeID = 4568;
 		List<ReservedSeatsBean> listsb = rservice.getAllSeats(showTimeID);
 		String date = listsb.get(0).getShowtimeHistoryBean().getPalyStartTime();
 		String movie = listsb.get(0).getShowtimeHistoryBean().getRun().getMovie().getTitle();
