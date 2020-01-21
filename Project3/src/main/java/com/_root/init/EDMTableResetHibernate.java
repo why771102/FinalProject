@@ -19,6 +19,7 @@ import com.a.model.MovieRatingBean;
 import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
 import com.a.model.RunningStatusBean;
+import com.a.model.ShippingStatusBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
 import com.c.model.HallStatusBean;
@@ -27,8 +28,6 @@ import com.c.model.SeatStatusBean;
 import com.c.model.SeatsBean;
 import com.c.model.TypeOfSeatBean;
 import com.l.model.CategoriesBean;
-import com.l.model.MOrderBean;
-import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
@@ -666,56 +665,75 @@ public class EDMTableResetHibernate {
 					   }
 					   session.flush();
 					   System.out.println("ShowTimeHistory資料新增成功");
+//ShippingStatusBean
+						try (FileReader fr = new FileReader("data/shippingStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+						    while ((line = br.readLine()) != null) {
+						     if (line.startsWith(UTF8_BOM)) {
+						      line = line.substring(1);
+						     }
+						     String[] token = line.split("\\|");
+						     ShippingStatusBean ssb = new ShippingStatusBean();
+						     
+						     ssb.setShippingStatusID(Integer.parseInt(token[0]));
+						     ssb.setShippingStatus(token[1]);
+						    
+						     session.save(ssb);
+						    }
+						   } catch (IOException e) {
+						    System.err.println("新建ShippingStatus表格時發生IO例外: " + e.getMessage());
+						   }
+						   session.flush();
+						   System.out.println("ShippingStatus資料新增成功");
 //MOrderBean	
-			try (FileReader fr = new FileReader("data/mOrder.dat"); BufferedReader br = new BufferedReader(fr);) {
-			    while ((line = br.readLine()) != null) {
-			     if (line.startsWith(UTF8_BOM)) {
-			      line = line.substring(1);
-			     }
-			     String[] token = line.split("\\|");
-			     MOrderBean mob = new MOrderBean();
-			     
-			     mob.setTicketStatus(Integer.parseInt(token[0]));
-			     mob.setOrderTime(token[1]);
-			     ShowTimeHistoryBean sthb = session.get(ShowTimeHistoryBean.class, Integer.parseInt(token[2]));
-			     mob.setShowTimeHistoryBean(sthb);
-			     MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[3]));
-			     mob.setMemberBean(mb);
-			     mob.setTicketTime(token[4]);
-			     EmpBean eb = session.get(EmpBean.class, Integer.parseInt(token[5]));
-			     mob.setEmpBean(eb);
-			     session.save(mob);
-			    }
-			   } catch (IOException e) {
-			    System.err.println("新建MOrderBean表格時發生IO例外: " + e.getMessage());
-			   }
-			   session.flush();
-			   System.out.println("MOrderBean資料新增成功");  
-
-//MOrderDetailBean	
-				try (FileReader fr = new FileReader("data/mOrderDetail.dat"); BufferedReader br = new BufferedReader(fr);) {
-				    while ((line = br.readLine()) != null) {
-				     if (line.startsWith(UTF8_BOM)) {
-				      line = line.substring(1);
-				     }
-				     String[] token = line.split("\\|");
-				     MOrderDetailBean modb = new MOrderDetailBean();
-				    
-				     MOrderBean mb = session.get(MOrderBean.class, Integer.parseInt(token[0]));
-				     modb.setmOrderBean(mb);
-				     ProductsBean pb = session.get(ProductsBean.class, Integer.parseInt(token[1]));
-				     modb.setProductsBean(pb);
-				     modb.setSellUnitPrice(Integer.parseInt(token[2]));
-				     modb.setDiscount(Double.parseDouble(token[3]));
-				     modb.setQuantity(Integer.parseInt(token[4]));
-				     session.save(modb);
-				    }
-				   } catch (IOException e) {
-				    System.err.println("新建MOrderDetailBean表格時發生IO例外: " + e.getMessage());
-				   }
-				   session.flush();
-				   System.out.println("MOrderDetailBean資料新增成功");  
-			
+//			try (FileReader fr = new FileReader("data/mOrder.dat"); BufferedReader br = new BufferedReader(fr);) {
+//			    while ((line = br.readLine()) != null) {
+//			     if (line.startsWith(UTF8_BOM)) {
+//			      line = line.substring(1);
+//			     }
+//			     String[] token = line.split("\\|");
+//			     MOrderBean mob = new MOrderBean();
+//			     
+//			     mob.setTicketStatus(Integer.parseInt(token[0]));
+//			     mob.setOrderTime(token[1]);
+//			     ShowTimeHistoryBean sthb = session.get(ShowTimeHistoryBean.class, Integer.parseInt(token[2]));
+//			     mob.setShowTimeHistoryBean(sthb);
+//			     MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[3]));
+//			     mob.setMemberBean(mb);
+//			     mob.setTicketTime(token[4]);
+//			     EmpBean eb = session.get(EmpBean.class, Integer.parseInt(token[5]));
+//			     mob.setEmpBean(eb);
+//			     session.save(mob);
+//			    }
+//			   } catch (IOException e) {
+//			    System.err.println("新建MOrderBean表格時發生IO例外: " + e.getMessage());
+//			   }
+//			   session.flush();
+//			   System.out.println("MOrderBean資料新增成功");  
+//
+////MOrderDetailBean	
+//				try (FileReader fr = new FileReader("data/mOrderDetail.dat"); BufferedReader br = new BufferedReader(fr);) {
+//				    while ((line = br.readLine()) != null) {
+//				     if (line.startsWith(UTF8_BOM)) {
+//				      line = line.substring(1);
+//				     }
+//				     String[] token = line.split("\\|");
+//				     MOrderDetailBean modb = new MOrderDetailBean();
+//				    
+//				     MOrderBean mb = session.get(MOrderBean.class, Integer.parseInt(token[0]));
+//				     modb.setmOrderBean(mb);
+//				     ProductsBean pb = session.get(ProductsBean.class, Integer.parseInt(token[1]));
+//				     modb.setProductsBean(pb);
+//				     modb.setSellUnitPrice(Integer.parseInt(token[2]));
+//				     modb.setDiscount(Double.parseDouble(token[3]));
+//				     modb.setQuantity(Integer.parseInt(token[4]));
+//				     session.save(modb);
+//				    }
+//				   } catch (IOException e) {
+//				    System.err.println("新建MOrderDetailBean表格時發生IO例外: " + e.getMessage());
+//				   }
+//				   session.flush();
+//				   System.out.println("MOrderDetailBean資料新增成功");  
+//			
 //======假資料表格往上新增=======================================================================			
 
 			tx.commit();

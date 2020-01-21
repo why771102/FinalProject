@@ -6,12 +6,14 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.a.dao.SCOrderDetailsDao;
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.l.model.ProductsBean;
 
+@Repository
 public class SCOrderDetailsDaoImpl implements SCOrderDetailsDao {
 	
 	SessionFactory factory;
