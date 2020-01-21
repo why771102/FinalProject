@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,16 +18,18 @@ import com.sun.istack.NotNull;
 
 
 @Entity
+@IdClass(com.t.model.ExpectiveID.class)
 @Table(name="Expectation")
 public class ExpectationBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
+	
 	@NotNull
 	@Column(nullable=false)
 	Integer expective;
 	
+	@Id
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="movieID")
 	private MovieBean MovieBean;
@@ -34,6 +37,7 @@ public class ExpectationBean implements Serializable{
 	@Transient
 	Integer movieID;
 	
+	@Id
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean MemberBean;
