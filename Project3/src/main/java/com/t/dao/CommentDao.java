@@ -25,7 +25,7 @@ public interface CommentDao {
 	//抓出該會員在該電影所留的短評 && deleteComment = 0
 	CommentBean getComment(Integer commentId);
 	
-	//抓到commentId後把資料都列出來
+	//抓到commentID後把資料都列出來
 	List<CommentBean> memberComment();
 
 	//印出所有該電影的評價(commentDelete不為1 && block不為1)及評論時間  要標示 已觀賞是否為1

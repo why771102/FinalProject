@@ -35,15 +35,15 @@
                         <p>
                         <a href="<spring:url value='/comments/report?id=${comment.commentID}' />"
     							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>檢舉
+    							<span class="glyphicon-info-sigh glyphicon"></span>讚
  							</a></p>
  						<a href="<spring:url value='/comments/report?id=${comment.commentID}' />"
     							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>檢舉
+    							<span class="glyphicon-info-sigh glyphicon"></span>噓
  							</a></p>
  						<a href="<spring:url value='/comments/report?id=${comment.commentID}' />"
     							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>檢舉
+    							<span class="glyphicon-info-sigh glyphicon"></span>屏蔽
  							</a></p>
                         <a href="<spring:url value='/onecomment?id=${comment.commentID}' />"
     							class="btn btn-primary">
