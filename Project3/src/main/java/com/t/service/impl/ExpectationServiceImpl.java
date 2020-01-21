@@ -38,7 +38,7 @@ public class ExpectationServiceImpl implements ExpectationService{
 	@Transactional
 	@Override
 	public void addExpect(ExpectationBean eb) {
-		
+		dao.addExpect(eb);
 	}
 
 	@Transactional
@@ -63,6 +63,12 @@ public class ExpectationServiceImpl implements ExpectationService{
 	@Override
 	public List<ExpectationBean> getExpectationByMovie(Integer movieID) {
 		return dao.getExpectationByMovie(movieID);
+	}
+
+	@Transactional
+	@Override
+	public List<MemberBean> getMemberList() {
+		return dao.getMemberList();
 	}
 
 }
