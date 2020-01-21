@@ -16,7 +16,7 @@ import com.a.model.ShowTimeHistoryBean;
 
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
-import com.l.model.ProductsBean;
+
 import com.z.model.EmpBean;
 
 
@@ -47,27 +47,44 @@ public class mOrdersDaoImpl implements mOrdersDao{
 				Session session=factory.getCurrentSession();;
 				List<MovieBean> list=new ArrayList<>();
 				list=session.createQuery(hql).getResultList();
-				
 				return list;
 	}
-	//用排片ID查詢播放日期時間
-//	public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb){
-//			String hql="from showTimeHistoryBean sthb where sthb.playStartTime=:playStartTime";
-//			Session session=factory.getCurrentSession();
-//			List<ShowTimeHistoryBean> list=new ArrayList<>();
-//			list= session.createQuery(hql).setParameter("playStartTime", rb).getResultList();
-//			return list;
-//		}
+	
+	//查詢所有場次ID
+	@Override
+	public List<String> getAllShowTimeID() {
+			String hql="Select Distinct playStartTime from showTimeID";
+			Session session=factory.getCurrentSession();
+			List<String> list=new ArrayList<>();
+			list=session.createQuery(hql).getResultList();
+			return list;
+		}
+	
+	
+	//用runID查詢播放日期時間
+	@Override
+	@SuppressWarnings("unchecked")	
+	public List<ShowTimeHistoryBean> getShowTimebyID(Integer runID){
+			String hql="from showTimeHistoryBean sthb where sthb.runID=:runID";
+			Session session=factory.getCurrentSession();
+			List<ShowTimeHistoryBean> list=new ArrayList<>();
+			list= session.createQuery(hql).setParameter("showTimeID", runID).getResultList();
+			return list;
+	}
 		//新增訂單
 		public void addMOrder(MOrderBean mob) {
 			
 		}
 		//修改訂單之員工ID原本null
 		public List<EmpBean> updateEmpbyID(EmpBean eb){
-			
+			return null;
 		}
 		//修改票狀態、領票時間
 		public MOrderBean updateTicket(MOrderBean mob) {
-			
+			return null;
 		}
+
+	
+
+		
 }

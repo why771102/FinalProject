@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -13,6 +14,7 @@ import javax.persistence.Transient;
 import com.c.model.SeatsBean;
 
 @Entity
+@IdClass(com.l.model.TicketID.class)
 @Table(name="ticket")
 public class TicketBean implements Serializable {
 	private static final long serialVersionUID = 1L;
