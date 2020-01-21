@@ -80,7 +80,6 @@ public class ExpectationController {
 	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.POST)
 	public String processAddNewExpection(@PathVariable("movieID")Integer movieID,ExpectationBean eb) {
 //		eb.setMovieID(movieID);
-		System.out.println("顯示eb" + eb + "結束");
 		service.addExpect(eb);
 		return "redirect:/getMovieIDforexpect";
 	}
