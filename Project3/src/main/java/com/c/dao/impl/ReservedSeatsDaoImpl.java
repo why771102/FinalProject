@@ -53,7 +53,7 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 //		for (ShowTimeHistoryBean sthBean : listSTHB) {
 			String sthbHallID = stBean.getHall().getHallID();
 //			System.out.println("sthbHallID in for (ShowTimeHistoryBean sthBean : listSTHB)" + sthbHallID);
-			String date = stBean.getPalyStartTime();
+			String date = stBean.getPlayStartTime();
 			date = date.substring(0, 10);
 			System.out.println(date);
 			for (SeatsBean sBean : listSB) {

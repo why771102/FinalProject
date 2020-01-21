@@ -652,7 +652,7 @@ public class EDMTableResetHibernate {
 					     ShowTimeHistoryBean sthb = new ShowTimeHistoryBean();
 					     
 					     sthb.setShowTimeId(Integer.parseInt(token[0]));
-					     sthb.setPalyStartTime(token[1]);
+					     sthb.setPlayStartTime(token[1]);
 					     HallBean hb = session.get(HallBean.class, token[2]);
 					     sthb.setHall(hb);
 					     RunningBean rb = session.get(RunningBean.class, Integer.parseInt(token[3]));
