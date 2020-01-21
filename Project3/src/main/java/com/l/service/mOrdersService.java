@@ -13,8 +13,10 @@ public interface mOrdersService {
 		public List<RunningBean> getRunbyID();
 		//查詢電影ID之所有電影名字
 		public List<MovieBean> getMovieName();
-		//用排片ID查詢播放日期時間
-		public List<ShowTimeHistoryBean> getShowTimebyID(RunningBean rb);
+		//查詢所有場次ID
+		public List<String> getAllShowTimeID();
+		//查詢場次ID之播放日期時間
+		public List<ShowTimeHistoryBean> getShowTimebyID(Integer runID);
 		//新增訂單
 		public void addMOrder(MOrderBean mob);
 		//修改訂單之員工ID原本null

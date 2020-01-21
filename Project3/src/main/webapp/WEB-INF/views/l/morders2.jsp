@@ -26,17 +26,17 @@
                     <div class="caption">
                         <p>
 <%--                             <a href='/morders/${runid}' style='font-size: 16px;'>電影ID:${Movie.movieID}</a> --%>
-                       		 <b  style='font-size: 16px;'>排片ID:${Movie.runID}</b>
+                       		 <b  style='font-size: 16px;'>編號:${Movie.runID}</b>
                        		 
                         </p>
                        <p>
 >
-                       		 <a  style='font-size: 16px;'>電影名稱:"${mtitle}"</a>
+                       		 <a  href='morders2/${ShowTimeHistoryBean.showTimeID}' value='/morders?id=${Movie.runID}' style='font-size: 16px;'>電影名稱:${Movie.movie.title}<span id="title"></span></a>
                        		 
                         </p>
                         <p>
 >
-                       		 <b  style='font-size: 16px;'>電影ID:${Movie.movie.movieID}</b>
+                       		 <b  style='font-size: 16px;'>電影ID:<span id="movieid">${Movie.movie.movieID}</span></b>
                        		 
                         </p>
                         <p>
@@ -54,7 +54,15 @@
             </div>
         </c:forEach>
         </div>
+         <div style="text-align:center">
+        <h1>時間</h1>
+        <c:forEach var='showTimeID' items='${AllShowTimeID}'>
+       	 <a href='morders/${showTimeID}'>${showTimeID}</a><br>
+        </c:forEach>
+        </div>
     </section>
+
+    
 </body>
 </html>
     

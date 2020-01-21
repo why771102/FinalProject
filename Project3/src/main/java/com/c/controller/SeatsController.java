@@ -101,10 +101,10 @@ public class SeatsController {
 		String s = "seats";
 		String[] seatsArray = sservice.stringToStringArray(seats, hallID);
 		System.out.println(hallID);
-		for(String seat : seatsArray) {
-			System.out.println(seat);
-			sservice.updateSeatStatus(1, seat, s);
-			List<ReservedSeatsBean> listRSB = rsservice.getAllSeats(seat);
+		for(int seat = 0 ; seat < seatsArray.length; seat++) {
+			System.out.println(seatsArray[seat]);
+			sservice.updateSeatStatus(1, seatsArray[seat], s);
+			List<ReservedSeatsBean> listRSB = rsservice.getAllSeats(seatsArray[seat]);
 			rsservice.updateSeatStatusForOutOfOrder(listRSB);
 		}
 		return "/index-c";

@@ -33,17 +33,18 @@
 				<td>${mo.ordersID}</td>
 				<td>${mo.memberBean.memberID}</td>
 				<td>${mo.showTimeHistoryBean.run.movie.title}</td>
-				<td>${mo.showTimeHistoryBean.playStartTime}</td>
+				<td>${mo.showTimeHistoryBean.palyStartTime}</td>
 			</c:forEach>
 			
-<%-- 			<c:forEach var="modetail" items="${modetaillist}"> --%>
-<%-- 				<td>${modetail.productsBean.categoriesBean.categoryName}</td> --%>
-<!-- 				<td id="ticketCount"></td> -->
-<%-- 			</c:forEach> --%>
+
+			<c:forEach var="modetail" items="${modetaillist}">
+				<td>${modetail.productsBean.productName}</td>
+				<td>${modetail.quantity}</td>
+			</c:forEach>
 			
-<%-- 			<c:forEach var="tb" items="${tblist}"> --%>
-<%-- 				<td>${tb.SeatsBean.seatID}</td> --%>
-<%-- 			</c:forEach> --%>
+			<c:forEach var="tb" items="${tblist}">
+				<td>${tb.seatsBean.seatID}</td>
+			</c:forEach>
 		</tr>
 			
 		</table>

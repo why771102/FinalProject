@@ -1,6 +1,8 @@
 package com.t.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.p.model.MemberBean;
 import com.t.model.ExpectationBean;
 import com.t.service.ExpectationService;
 
@@ -68,17 +71,26 @@ public class ExpectationController {
 	}
 	
 	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.GET)
-	public String getAddNewExpection(Model model) {
+	public String getAddNewExpection(@PathVariable("movieID")Integer movieID,Model model) {
 		ExpectationBean eb = new ExpectationBean();
 		model.addAttribute("ExpectationBean",eb);
 		return "t/addexpectation";
 	}
 	
-	@RequestMapping(value = "/expection/add/{movieID}", method = RequestMethod.POST)
-	public String processAddNewExpection(@PathVariable("movieID")Integer movieID, @ModelAttribute("ExpectionBean") ExpectationBean eb) {
-		eb.setMovieID(movieID);
+	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.POST)
+	public String processAddNewExpection(@PathVariable("movieID")Integer movieID,ExpectationBean eb) {
+//		eb.setMovieID(movieID);
 		service.addExpect(eb);
-		return "redirect:/selectmovieIDforexpect";
+		return "redirect:/getMovieIDforexpect";
 	}
-	
+
+	@ModelAttribute("memberList")
+	public Map<Integer, String> getMemberList() {
+		Map<Integer, String> MemberMap = new HashMap<>();
+		List<MemberBean> list = service.getMemberList();
+		for (MemberBean mb : list) {
+			MemberMap.put(mb.getMemberID(),mb.getAccount());
+		}
+		return MemberMap;
+	}
 }

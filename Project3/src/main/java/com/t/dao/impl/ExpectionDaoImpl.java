@@ -25,7 +25,9 @@ public class ExpectionDaoImpl implements ExpectionDao{
 	@Override
 	public void addExpect(ExpectationBean eb) {
 		Session session = factory.getCurrentSession();
+		MovieBean mvb = getMovieById(eb.getMovieID());
 		MemberBean mb = getMemberById(eb.getMemberID());
+		eb.setMovieBean(mvb);
 		eb.setMemberBean(mb);
 		session.save(eb);
 	}
@@ -81,4 +83,11 @@ public class ExpectionDaoImpl implements ExpectionDao{
 		return list;
 	}
 
+	@Override
+	public List<MemberBean> getMemberList() {
+		String hql = "FROM MemberBean";
+		Session session = factory.getCurrentSession();
+		List<MemberBean> list = session.createQuery(hql).getResultList();
+		return list;
+	}
 }
