@@ -30,8 +30,8 @@ public class SCOrdersBean implements Serializable{
 	private MemberBean MemberBean;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="paymentStatus")
-	private PayStatusBean PayStatusBean;
+	@JoinColumn(name="payStatusNO")
+	private PayStatusBean payStatusBean;
 	
 	@Transient
 	Integer paymentStatus;
@@ -72,7 +72,7 @@ public class SCOrdersBean implements Serializable{
 			Integer shippingStatus, Integer total, String memo) {
 		this.SCOrderID = sCOrderID;
 		this.MemberBean = memberBean;
-		this.PayStatusBean = payStatusBean;
+		this.payStatusBean = payStatusBean;
 		this.shippingAddress = shippingAddress;
 		this.orderDate = orderDate;
 		this.shippingStatus = shippingStatus;
@@ -81,11 +81,11 @@ public class SCOrdersBean implements Serializable{
 	}
 
 	public PayStatusBean getPaymentStatusBean() {
-		return PayStatusBean;
+		return payStatusBean;
 	}
 
 	public void setPaymentStatusBean(PayStatusBean payStatusBean) {
-		PayStatusBean = payStatusBean;
+		payStatusBean = payStatusBean;
 	}
 
 	public Integer getMemberID() {

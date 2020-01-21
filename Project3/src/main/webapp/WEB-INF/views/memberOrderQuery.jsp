@@ -32,8 +32,8 @@
 			<c:forEach var="mo" items="${molist}">
 				<td>${mo.ordersID}</td>
 				<td>${mo.memberBean.memberID}</td>
-<%-- 				<td>${mo.ShowTimeHistoryBean.run.movie.title}</td> --%>
-<%-- 				<td>${mo.ShowTimeHistoryBean.playStartTime}</td> --%>
+				<td>${mo.showTimeHistoryBean.run.movie.title}</td>
+				<td>${mo.showTimeHistoryBean.playStartTime}</td>
 			</c:forEach>
 			
 <%-- 			<c:forEach var="modetail" items="${modetaillist}"> --%>

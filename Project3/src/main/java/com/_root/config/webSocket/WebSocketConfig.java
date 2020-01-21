@@ -7,17 +7,17 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-@Configuration
-@EnableWebSocketMessageBroker
+//@Configuration
+//@EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketConfigurer {
 
-	@Autowired
+//	@Autowired
 	private MyHandler myWebSocketHandler;
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		
-		registry.addHandler(myWebSocketHandler, "/myHandler").addInterceptors(newHttpSessionHandshakeInterceptor());
+		registry.addHandler(myWebSocketHandler, "/myHandler").addInterceptors();
 		
 	}
 }
@@ -27,4 +27,4 @@ public class WebSocketConfig implements WebSocketConfigurer {
 	
 	
 
-}
+
