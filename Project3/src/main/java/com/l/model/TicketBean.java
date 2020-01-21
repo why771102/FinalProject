@@ -25,6 +25,7 @@ public class TicketBean implements Serializable {
 	Integer ordersID;
 	
 //	String seatID;
+	@Id
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="seatID", columnDefinition = "NCHAR(4)")
 	private SeatsBean seatsBean;
