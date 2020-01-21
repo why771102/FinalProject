@@ -13,10 +13,6 @@ import javax.persistence.Table;
 @Table(name = "runningStatus")
 public class RunningStatusBean implements Serializable {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(nullable=false,columnDefinition="TINYINT")
 	Integer StatusID;
