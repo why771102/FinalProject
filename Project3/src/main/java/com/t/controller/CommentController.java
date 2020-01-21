@@ -80,7 +80,7 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value = "/comments/add", method = RequestMethod.POST)
-	public String processAddNewComment(@ModelAttribute("CommentBean") CommentBean cb) {
+	public String processAddNewComment(CommentBean cb) {
 		//預設刪除檢舉為0
 		if(cb.getCommentDelete() == null || cb.getReportComment() == null) {
 			cb.setCommentDelete(0);
@@ -139,7 +139,7 @@ public class CommentController {
 	//列出所有被檢舉的Comment
 	@RequestMapping("/findAllReportComment")
 	public String findAllReportComment(Model model) {
-		List<CommentBean> list=service.findAllComment();
+		List<CommentBean> list=service.findAllReportComment();
 		model.addAttribute("ReportComments", list);
 		return "t/reportedcomment";
 	}

@@ -29,7 +29,6 @@
                         </p>
                         <p>會員ID:${expect.memberBean.memberID}</p>
                         <p>期待:${expect.expective}</p>
-                        <p>不期待:${expect.unexpective}</p>
                         <p>
                    </div>
                 </div>

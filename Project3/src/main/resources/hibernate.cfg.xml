@@ -53,6 +53,7 @@
 		<mapping class="com.a.model.ShowTimeHistoryBean"></mapping>
 		<mapping class="com.l.model.MOrderBean"></mapping>
 		<mapping class="com.l.model.MOrderDetailBean"></mapping>
+		<mapping class="com.a.model.ShippingStatusBean"></mapping>
 
 
 	</session-factory>

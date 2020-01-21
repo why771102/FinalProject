@@ -31,7 +31,7 @@ fieldset {
 	<hr style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="expectationBean" class='form-horizontal'>
+		<form:form method='POST' modelAttribute="ExpectationBean" class='form-horizontal'>
 			<fieldset >
 				
 <!-- 				<div class="form-group"> -->
