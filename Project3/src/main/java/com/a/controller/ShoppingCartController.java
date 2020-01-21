@@ -39,6 +39,9 @@ public class ShoppingCartController {
 	@GetMapping("/getShoppingCart")
 	public String getShoppingCart(Model model, HttpServletRequest request) {
 		SCOrdersBean scob = new SCOrdersBean();
+		scob.setMemberID(5);
+		scob.setPaymentStatus(0);
+		scob.setShippingStatus(0);
 		scoservice.insertOrder(scob);
 //		HttpSession session = request.getSession();
 //		Cookie[] cookies = request.getCookies();
