@@ -29,12 +29,13 @@ public class SCOrdersDaoImpl implements SCOrdersDao {
 	public void insertOrder(SCOrdersBean scob) {
 		Session session = factory.getCurrentSession();
 		MemberBean mb = getMemberBeanById(scob.getMemberID());
-		ShippingStatusBean ssb = getShippingStatusBeanById(scob.getShippingStatus());
-		PayStatusBean psb = getPayStatusBeanById(scob.getPaymentStatus());
+		ShippingStatusBean ssb = getShippingStatusBeanById(0);
+		PayStatusBean psb = getPayStatusBeanById(0);
 		String today = LocalDate.now().toString();
 		System.out.println(mb.getAddress());
 		scob.setShippingAddress(mb.getAddress());
 		scob.setOrderDate(today);
+		scob.setTotal(0);
 		scob.setMemberBean(mb);
 		scob.setShippingStatusBean(ssb);
 		scob.setPayStatusBean(psb);

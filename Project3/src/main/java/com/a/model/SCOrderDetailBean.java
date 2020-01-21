@@ -23,7 +23,7 @@ public class SCOrderDetailBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer orderno;
 	Integer unitPrice;
-	Integer Discount;
+	Integer discount;
 	Integer quantity;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="SCOrderID")
@@ -43,7 +43,7 @@ public class SCOrderDetailBean implements Serializable {
 	public SCOrderDetailBean(Integer unitPrice, Integer discount, Integer quantity, Integer sCOrderID,
 			Integer productID) {
 		this.unitPrice = unitPrice;
-		this.Discount = discount;
+		this.discount = discount;
 		this.quantity = quantity;
 		this.SCOrderID = sCOrderID;
 		this.productID = productID;
@@ -53,7 +53,7 @@ public class SCOrderDetailBean implements Serializable {
 			SCOrdersBean sCOrdersBean, ProductsBean productsBean) {
 		this.orderno = orderno;
 		this.unitPrice = unitPrice;
-		this.Discount = discount;
+		this.discount = discount;
 		this.quantity = quantity;
 		this.SCOrdersBean = sCOrdersBean;
 		this.productsBean = productsBean;
@@ -76,11 +76,11 @@ public class SCOrderDetailBean implements Serializable {
 	}
 
 	public Integer getDiscount() {
-		return Discount;
+		return discount;
 	}
 
 	public void setDiscount(Integer discount) {
-		Discount = discount;
+		discount = discount;
 	}
 
 	public Integer getQuantity() {

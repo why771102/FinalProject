@@ -28,7 +28,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 	@Override
 	public Integer getShoppingCart(Integer memberID) {
 		Session session = factory.getCurrentSession();
-		String hql = "SELECT SCOrderID FROM SCOrdersBean WHERE memberID = :memberID AND payStatusNO = 0";
+		String hql = "SELECT sCOrderID FROM SCOrdersBean WHERE memberID = :memberID AND payStatusNO = 0";
 		Integer SCOrderID = null;
 		try {
 			SCOrderID = (Integer) session.createQuery(hql).setParameter("memberID", memberID).getSingleResult();
