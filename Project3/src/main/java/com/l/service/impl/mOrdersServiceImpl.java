@@ -1,6 +1,10 @@
 package com.l.service.impl;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -34,18 +38,32 @@ public class mOrdersServiceImpl implements mOrdersService{
 		return dao.getMovieStatus1();
 	}
 	
-	//查詢播放時間
+	//用電影Id查詢runId;用offDate實際下映日擋
 	@Transactional
 	@Override
-	public List<RunningBean> getRunningsByMovieId(Integer movieId) {
-		return dao.getRunningsByMovieId(movieId);
+	public List<RunningBean> getRunningsByMovieId(Integer movieID) {
+		List<RunningBean> Allmovies = null;
+		for(RunningBean rb:Allmovies) {
+			DateFormat sdf = null;
+			try {
+				Date date = new Date();
+				if(sdf.parse(rb.getOffDate()).after(date)) {
+					dao.getRunningsByMovieId(movieID);
+				}
+			} catch (ParseException e) {
+			
+				e.printStackTrace();
+			}
+		}
+		return Allmovies;
+		
 	}
 	
 	//查詢播放時間
 	@Transactional
 	@Override
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID) {
-		return dao.getplayStartTime(runID);
+	public List<ShowTimeHistoryBean> getplayStartTime(RunningBean rb) {
+		return dao.getplayStartTime(rb);
 	}
 
 	

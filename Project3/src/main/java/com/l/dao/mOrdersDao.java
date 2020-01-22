@@ -14,12 +14,13 @@ public interface mOrdersDao {
 	//查詢所有電影之狀態為1
 	public List<MovieBean> getMovieStatus1();
 
-	//用電影Id查詢runId
-	public List<RunningBean> getRunningsByMovieId(Integer movieId);
+	//用電影ID查詢runId
+	public List<RunningBean> getRunningsByMovieId(Integer movieID);
 	
 	//查詢播放時間
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID);
+	public List<ShowTimeHistoryBean> getplayStartTime(RunningBean rb);
 
+	
 	//新增訂單
 	public void addMOrder(MOrderBean mob);
 	//修改訂單之員工ID原本null
