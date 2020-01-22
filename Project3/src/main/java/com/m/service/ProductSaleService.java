@@ -14,15 +14,16 @@ import com.m.model.ProductSaleEarnBean;
 
 public interface ProductSaleService {
 	public List<LocalDate> getFoodDates();
-	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate);
+	public List<MOrderBean> getFoodSCOrder(LocalDate date);
 	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList);
 	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList);
+//	public List<ProductSaleEarnBean> savePSEB1();
+	public void savePSEB(List<ProductSaleEarnBean> psebList);
 	
 	public List<LocalDate> getPeripheralDates();
 	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate);
 	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList);
 	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList);
-	public void savePSEB();
 	
 	//新增cate下拉式選單
 	public String getCategoryNames();
