@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,12 +43,6 @@ public class CommentController {
 //		model.addAttribute("movie", service.getMovieById(movieID));
 //		return "movieID";
 //	}
-//	
-//	@RequestMapping("/commentGetMemberID")
-//	public String getMemberById(@RequestParam("id") Integer memberID, Model model) {
-//		model.addAttribute("member", service.getMovieById(memberID));
-//		return "memberID";
-//	}
 	
 	//列出所有Comment
 	@RequestMapping("/findAllComment")
@@ -80,7 +76,17 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value = "/comments/add", method = RequestMethod.POST)
-	public String processAddNewComment(CommentBean cb) {
+	public String processAddNewComment(CommentBean cb,HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		int nMID = Integer.parseInt(mID);
+		cb.setMemberID(nMID);
 		//預設刪除檢舉為0
 		if(cb.getCommentDelete() == null || cb.getReportComment() == null) {
 			cb.setCommentDelete(0);
@@ -153,14 +159,14 @@ public class CommentController {
 		}
 		return MovieMap;
 	}
-	
-	@ModelAttribute("memberList")
-	public Map<Integer, String> getMemberList() {
-		Map<Integer, String> MemberMap = new HashMap<>();
-		List<MemberBean> list = service.getMemberList();
-		for (MemberBean mb : list) {
-			MemberMap.put(mb.getMemberID(),mb.getAccount());
-		}
-		return MemberMap;
-	}
+//	
+//	@ModelAttribute("memberList")
+//	public Map<Integer, String> getMemberList() {
+//		Map<Integer, String> MemberMap = new HashMap<>();
+//		List<MemberBean> list = service.getMemberList();
+//		for (MemberBean mb : list) {
+//			MemberMap.put(mb.getMemberID(),mb.getAccount());
+//		}
+//		return MemberMap;
+//	}
 }

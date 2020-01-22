@@ -45,17 +45,17 @@ fieldset {
 <%-- 						</form:select> --%>
 <!-- 					</div> -->
 <!-- 				</div> -->
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="memberID">
-						會員ID</label>
-					<div class='col-lg-10'>
-						<form:select id="memberID" path="memberID"
-							class='form:input-large' >
-							<form:option value = "-1" label = "請挑選"/>
-							<form:options items = "${memberList }"/>
-						</form:select>
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class='control-label col-lg-2 col-lg-2' for="memberID"> -->
+<!-- 						會員ID</label> -->
+<!-- 					<div class='col-lg-10'> -->
+<%-- 						<form:select id="memberID" path="memberID" --%>
+<%-- 							class='form:input-large' > --%>
+<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
+<%-- 							<form:options items = "${memberList }"/> --%>
+<%-- 						</form:select> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='expective'>
 						期待度 </label>

@@ -12,6 +12,9 @@ public interface ExpectionDao {
 	//查詢並列出電影ID們
 	public List<String> getMovies();
 	
+	//列出未上映電影ID
+	public List<String> getStandbyMovies();
+	
 	//抓出該會員所留的資料
 	List<ExpectationBean> getMemberExpectation();
 
@@ -25,6 +28,6 @@ public interface ExpectionDao {
 	void addExpect(ExpectationBean eb);
 	MemberBean getMemberById(int memberID);
 	MovieBean getMovieById(int movieID);
-	public List<MemberBean> getMemberList();
+//	public List<MemberBean> getMemberList();
 
 }
