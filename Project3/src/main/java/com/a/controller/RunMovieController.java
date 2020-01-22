@@ -268,6 +268,8 @@ public class RunMovieController {
 				
 			}
 		}
+		Gson gson = new Gson();
+		String jsonstring = gson.toJson(AllShowTime);
 		request.setAttribute("AllShowTime", AllShowTime);
 
 
