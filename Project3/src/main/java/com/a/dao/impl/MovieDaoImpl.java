@@ -2,7 +2,9 @@ package com.a.dao.impl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,6 +21,7 @@ import com.p.model.HallOrderBean;
 @Repository
 public class MovieDaoImpl implements MovieDao {
 	SessionFactory factory;
+	public static final int recordsPerPage = 8;
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
@@ -41,7 +44,57 @@ public class MovieDaoImpl implements MovieDao {
 		
 
 	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public long getRecordCounts(int count) {
+//		long count = 0; // 必須使用 long 型態
+//        String hql = "SELECT count(*) FROM BookBean";
+//        Session session = factory.getCurrentSession();
+//        List<Long> list = session.createQuery(hql).getResultList();
+//        if (list.size() > 0) {
+//            count = list.get(0);
+//        }
+        return count;
+	}
+	
+		// 計算販售的商品總共有幾頁
+	@Override
+	public int getTotalPages(int count) {
+		// 注意下一列敘述的每一個型態轉換
+	Integer	totalPages = (int) (Math.ceil(getRecordCounts(count) / (double) recordsPerPage));
+		return totalPages;
+	}
+	
+	// 查詢某一頁的商品(書籍)資料，執行本方法前，一定要先設定實例變數pageNo的初值
+	@SuppressWarnings("unchecked")
+	@Override
+	public Map<Integer, MovieBean> getPageBooks(int pageNo,List<RunningBean> run) {
+		Map<Integer, MovieBean> map = new HashMap<>();
+		
+//		List<MovieBean> list = new ArrayList<MovieBean>();
+////        String hql = "FROM MovieBean";
+////        Session session = factory.getCurrentSession();
 //
+//        int startRecordNo = (pageNo - 1) * recordsPerPage;
+//        
+//          for(RunningBean rb:run) {
+//        	  list.add(rb.getMovie());
+//          }
+//        
+////        list = session.createQuery(hql)
+////                      .setFirstResult(startRecordNo)
+////                      .setMaxResults(recordsPerPage)
+////                      .getResultList();
+//        for(int i=startRecordNo;i<recordsPerPage;i++) {
+//        	map.put(list.get(i).getMovieID(), list.get(i));
+//        }
+      
+		return map;
+	}
+	
 //	@Override
 //	public List<MovieBean> getmovie(List<RunningBean> RunList) {
 //		Session session =factory.getCurrentSession();

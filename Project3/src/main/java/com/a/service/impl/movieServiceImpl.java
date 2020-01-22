@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -200,6 +201,15 @@ public class movieServiceImpl implements MovieService {
 	@Override
 	public RunningStatusBean getRunningStatusBeanById(Integer runningStatusID) {
 		return  RDao.getRunningStatusBeanById( runningStatusID);
+	}
+	
+	@Override
+	public Map<Integer, MovieBean> getPageBooks(int pageNo,List<RunningBean> run){
+		return  MDao.getPageBooks(pageNo, run);
+	}
+	@Override
+	public int getTotalPages(int count) {
+		return  MDao.getTotalPages(count);
 	}
 	
 //	@Transactional
