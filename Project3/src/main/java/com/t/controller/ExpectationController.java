@@ -92,6 +92,7 @@ public class ExpectationController {
 		return "redirect:/getMovieIDforexpect";
 	}
 
+	
 //	@ModelAttribute("memberList")
 //	public Map<Integer, String> getMemberList() {
 //		Map<Integer, String> MemberMap = new HashMap<>();

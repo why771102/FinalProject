@@ -11,12 +11,15 @@ public interface PreferenceDao {
 	//抓出該會員是否在該留言執行過偏好設定
 	public boolean checkLikeExist(Integer memberID, Integer commentID);
 	
+	//抓出他填入過的Like
+	public PreferenceBean getLike(Integer good);
+	
 	//建立新欄位
 	void addLike(PreferenceBean pb);	
 	
 	//選擇memberID
 	MemberBean getMemberById(int memberID);
-	List<MemberBean> getMemberList();
+//	List<MemberBean> getMemberList();
 	
 	//抓commentID
 	public CommentBean getCommentById(int commentID);
