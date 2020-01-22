@@ -42,7 +42,7 @@ public class mOrdersServiceImpl implements mOrdersService{
 	@Transactional
 	@Override
 	public List<RunningBean> getRunningsByMovieId(Integer movieID) {
-		List<RunningBean> Allmovies = null;
+		List<RunningBean> Allmovies = null ;
 		for(RunningBean rb:Allmovies) {
 			DateFormat sdf = null;
 			try {
