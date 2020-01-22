@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.a.model.MovieBean;
+import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
@@ -33,6 +34,18 @@ public class mOrdersDaoImpl implements mOrdersDao{
 				list=session.createQuery(hql).getResultList();
 				return list;
 			}
+	
+	//查詢播放時間
+	@Override
+	public List<RunningBean> getRunningsByMovieId(Integer movieId){
+			String hql="from RunningBean where movieId = :movieId";
+			List<RunningBean> list=new ArrayList<>();
+			Session session=factory.getCurrentSession();
+			list=session.createQuery(hql).setParameter(movieId, movieId).getResultList();
+			return list;
+		
+	}
+	
 	//查詢播放時間
 	@Override
 	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID){

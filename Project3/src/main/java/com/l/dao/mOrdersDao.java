@@ -3,6 +3,7 @@ package com.l.dao;
 import java.util.List;
 
 import com.a.model.MovieBean;
+import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.model.MOrderBean;
 import com.z.model.EmpBean;
@@ -13,6 +14,9 @@ public interface mOrdersDao {
 	//查詢所有電影之狀態為1
 	public List<MovieBean> getMovieStatus1();
 
+	//用電影Id查詢runId
+	public List<RunningBean> getRunningsByMovieId(Integer movieId);
+	
 	//查詢播放時間
 	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID);
 
