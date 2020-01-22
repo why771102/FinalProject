@@ -49,12 +49,12 @@ public class ProductSaveDBController {
 	@ModelAttribute
 	public void saveDB() {
 		System.out.println("---開始---");
-		List<LocalDate> lds = service.getFoodDates();
+//		List<LocalDate> lds = service.getFoodDates();
 //		System.out.println("lds.size >>>> " + lds.size());
-		for(LocalDate ld : lds) {
-			System.out.println("Q____Q: " + ld);
-			List<MOrderBean> mod = service.getFoodSCOrder(ld);
-		}
+//		for(LocalDate ld : lds) {
+//			System.out.println("Q____Q: " + ld);
+//			List<MOrderBean> mod = service.getFoodSCOrder(ld);
+//		}
 //		System.out.println("lds >>>> " + lds.get(0) + lds.get(1));
 //		for(int i=0; i<lds.size(); i++) {
 //			System.out.println("check date===> " + lds.get(i));
@@ -62,7 +62,8 @@ public class ProductSaveDBController {
 //			System.out.println("date >>>> " + date);			
 //			System.out.println("mod >>>>" + mod.size());
 //		}
-//		service.savePSEB(service.savePSEB1());
+//		Boolean b = service.savePSEB(service.savePSEB1());
+		System.out.println(service.savePSEB(service.savePSEB1()));
 		System.out.println("---is saving to DB---");
 	}
 	

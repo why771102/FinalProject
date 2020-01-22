@@ -17,8 +17,8 @@ public interface ProductSaleDao {
 	public List<MOrderBean> getFoodSCOrder(LocalDate date);
 	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList);
 	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList);
-//	public List<ProductSaleEarnBean> savePSEB1();
-	public void savePSEB(List<ProductSaleEarnBean> psebList);
+	public List<ProductSaleEarnBean> savePSEB1();
+	public Boolean savePSEB(List<ProductSaleEarnBean> psebList);
 	
 	public List<LocalDate> getPeripheralDates();
 	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate);

@@ -73,17 +73,18 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		return dao.getFoodPBs(modbList);
 	}
 	
-//	@Transactional
-//	@Override
-//	public List<ProductSaleEarnBean> savePSEB1(){
-//		return dao.savePSEB1();
-//	}
-	
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> savePSEB1(){
+		return dao.savePSEB1();
+	}
 	
 	@Transactional
 	@Override
-	public void savePSEB(List<ProductSaleEarnBean> psebList) {
+	public Boolean savePSEB(List<ProductSaleEarnBean> psebList) {
 		System.out.println("service call savePSEB()");
+		System.out.println(dao.savePSEB(psebList));
+		return dao.savePSEB(psebList);
 	}
 
 	
