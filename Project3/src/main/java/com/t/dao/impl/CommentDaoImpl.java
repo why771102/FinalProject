@@ -28,9 +28,6 @@ public class CommentDaoImpl implements CommentDao{
 	public CommentBean getComment(Integer commentId) {
 		Session session = factory.getCurrentSession();
 		CommentBean cb = session.get(CommentBean.class, commentId);
-		if(cb == null) {
-//			throw new EmpNotFoundException("", commentId);
-		}
 		return cb;
 	}
 
@@ -116,7 +113,7 @@ public class CommentDaoImpl implements CommentDao{
 //		return list;
 //	}
 
-	//列出上映中電影ID
+	//列出電影ID
 	@Override
 	public List<String> getMovies(){
 		String hql="Select Distinct movieID from MovieBean Where movieStatus = 1";

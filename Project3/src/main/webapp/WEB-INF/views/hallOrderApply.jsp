@@ -112,6 +112,10 @@
 					<td><form:input id="mobile" path="mobile" type='text' /></td>
 				</tr>
 				<tr>
+					<td>電子郵件:</td>
+					<td><form:input id="mail" path="mail" type='text' /></td>
+				</tr>
+				<tr>
 					<td><form:input id="hallOrderStatusNo" path="hallOrderStatusNo" value="0" type='hidden' /></td>
 				</tr>
 				<tr>

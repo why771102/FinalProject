@@ -39,29 +39,17 @@ public class PreferenceServiceImpl implements PreferenceService{
 		return dao.getMemberById(commentID);
 	}
 	
+//	@Transactional
+//	@Override
+//	public List<MemberBean> getMemberList() {
+//		return dao.getMemberList();
+//	}
+	
 	@Transactional
 	@Override
-	public List<MemberBean> getMemberList() {
-		return dao.getMemberList();
-	}
-
-	@Override
 	public void addLike(PreferenceBean pb) {
-		// TODO Auto-generated method stub
-		
+		dao.addLike(pb);
 	}
 
-	@Override
-	public void addBad(PreferenceBean pb) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addBlock(PreferenceBean pb) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
 

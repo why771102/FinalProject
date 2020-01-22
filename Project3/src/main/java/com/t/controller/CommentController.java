@@ -101,7 +101,7 @@ public class CommentController {
 			cb.setReportComment(0);
 		}
 		service.addComment(cb);
-		return "redirect:/findAllComment";	
+		return "redirect:/comments/{movieID}";	
 	}
 	
 	@RequestMapping("/comments/delete/{commentID}")

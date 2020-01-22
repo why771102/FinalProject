@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import com.a.model.MovieBean;
 import com.a.model.MovieRatingBean;
@@ -176,6 +177,8 @@ public interface MovieService {
 	MovieStatusBean getMovieStatusBeanById(Integer movieStatusID);
 	RunningStatusBean getRunningStatusBeanById(Integer runningStatusID);
 	boolean updateMovieStatus(MovieBean movie, int status);
+	Map<Integer, MovieBean> getPageBooks(int pageNo, List<RunningBean> run);
+	int getTotalPages(int count);
 	
 	
 

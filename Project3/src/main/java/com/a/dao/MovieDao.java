@@ -1,9 +1,13 @@
 package com.a.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.a.model.GenreBean;
 import com.a.model.MovieBean;
 import com.a.model.MovieRatingBean;
 import com.a.model.MovieStatusBean;
+import com.a.model.RunningBean;
 
 public interface MovieDao {
 
@@ -31,6 +35,18 @@ public interface MovieDao {
 
 
 	MovieStatusBean getMovieStatusBeanById(Integer movieStatusID);
+
+
+	long getRecordCounts(int count);
+
+
+	int getTotalPages(int count);
+
+
+	
+
+
+	Map<Integer, MovieBean> getPageBooks(int pageNo, List<RunningBean> run);
 	
 	// 拿電影ID 取出movieBean 塞進 runningBean(select 出來就有不用取)
 

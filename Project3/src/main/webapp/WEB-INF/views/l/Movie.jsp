@@ -31,6 +31,13 @@
 							
 							
                        </p>
+                       <p>
+                       		 <b  >MOVIEID:${MovieID.movieID}</b>
+                     		
+							
+							
+                       </p>
+                       
 						<p>
              	                			
 							<form:input id="NowTime" path="NowTime" value="" type='hidden' />

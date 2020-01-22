@@ -1,39 +1,44 @@
-//package com.p.service.impl;
-//
-//import org.springframework.mail.SimpleMailMessage;
-//import org.springframework.mail.javamail.JavaMailSender;
-//import org.springframework.stereotype.Service;
-//
-//
-//import com.p.service.MailService;
-//
-//@Service
-//public class MailServiceImpl implements MailService {
-//	
-//private static final Logger LOGGER = LoggerFactory.getLogger(MailDaoImpl.class);
-//
-//	
-//	private JavaMailSender javaMailSender;
-//
-//	private SimpleMailMessage simpleMailMessage;
-//
-//	@Override
-//	public void sendMailSimple(String to, String subject, String content) {
-//		try {
-//	           //用于接收邮件的邮箱
-//	           simpleMailMessage.setTo(to);
-//	           //邮件的主题
-//	           simpleMailMessage.setSubject(subject);
-//	           //邮件的正文，第二个boolean类型的参数代表html格式
-//	           simpleMailMessage.setText(content);
-//
-//	           LOGGER.info("---------------------------{}", simpleMailMessage);
-//	           //发送
-//	           javaMailSender.send(simpleMailMessage);
-//
-//	       } catch (Exception e) {
-//	           throw new MessagingException("failed to send mail!", e);
-//	       }
-//	}
-//
-//}
+package com.p.service.impl;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.p.service.MailService;
+
+@Service
+public class MailServiceImpl implements MailService {
+	
+private static final Logger LOGGER = Logger.getLogger(MailServiceImpl.class);
+
+	
+	JavaMailSender javaMailSender;
+
+	SimpleMailMessage simpleMailMessage;
+
+	@Transactional
+	@Override
+	public void sendMailSimple(String from, String to, String subject, String content) {
+	     try {
+	            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+	            
+	            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
+	            messageHelper.setFrom(from); //設寄件人
+	            messageHelper.setSubject(subject); //設郵件標題
+	            messageHelper.setText(content);   //設郵件內容
+	            messageHelper.setTo(to);          //設收信人
+	            javaMailSender.send(mimeMessage);    //發送html郵件
+	 
+	        } catch (Exception e) {
+	            System.out.println("異常信息：" + e);
+	        }
+	}
+
+}
