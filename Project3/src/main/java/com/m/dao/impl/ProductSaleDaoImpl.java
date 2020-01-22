@@ -111,6 +111,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 
 //		for (LocalDate date : dates) {
 			for (MOrderBean mob : mOrdersList) {
+				System.out.println(mob.getShowTimeHistoryBean().getPlayStartTime());
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
 				LocalDate mOrderDate = LocalDateTime.parse(mob.getShowTimeHistoryBean().getPlayStartTime(), formatter)
 						.toLocalDate();
