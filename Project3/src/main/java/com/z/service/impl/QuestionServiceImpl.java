@@ -1,0 +1,43 @@
+package com.z.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.z.dao.AnnoDao;
+import com.z.dao.QuestionDao;
+import com.z.model.AnnoBean;
+import com.z.model.AnnoStatusBean;
+import com.z.model.QuestionBean;
+import com.z.service.QuestionService;
+
+@Service
+public class QuestionServiceImpl implements QuestionService {
+
+	QuestionDao dao;
+	
+	@Transactional
+	@Autowired
+	public void setDao(QuestionDao dao) {
+		this.dao = dao;
+	}
+
+	@Override
+	public List<QuestionBean> allQuestion(Integer memberId) {
+		return dao.allQuestion(memberId);
+	}
+
+	@Override
+	public Integer newQuestion(Integer memberId) {
+		return dao.newQuestion(memberId);
+		
+	}
+
+	@Override
+	public boolean checkMember(Integer memberId, Integer questionId) {
+		return dao.checkMember(memberId, questionId);
+	}
+
+}
