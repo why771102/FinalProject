@@ -30,7 +30,7 @@ public class QuestionBean implements Serializable{
 	Integer questionId;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="userId")
+	@JoinColumn(name="memberId")
 	MemberBean memberBean;
 	Integer status;
 	

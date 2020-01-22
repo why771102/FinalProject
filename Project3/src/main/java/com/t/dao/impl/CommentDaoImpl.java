@@ -28,9 +28,6 @@ public class CommentDaoImpl implements CommentDao{
 	public CommentBean getComment(Integer commentId) {
 		Session session = factory.getCurrentSession();
 		CommentBean cb = session.get(CommentBean.class, commentId);
-		if(cb == null) {
-//			throw new EmpNotFoundException("", commentId);
-		}
 		return cb;
 	}
 
@@ -102,24 +99,24 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public List<MovieBean> getMovieList() {
-		String hql = "FROM MovieBean";
+		String hql = "FROM MovieBean Where movieStatus = 1";
 		Session session = factory.getCurrentSession();
 		List<MovieBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
 
-	@Override
-	public List<MemberBean> getMemberList() {
-		String hql = "FROM MemberBean";
-		Session session = factory.getCurrentSession();
-		List<MemberBean> list = session.createQuery(hql).getResultList();
-		return list;
-	}
+//	@Override
+//	public List<MemberBean> getMemberList() {
+//		String hql = "FROM MemberBean";
+//		Session session = factory.getCurrentSession();
+//		List<MemberBean> list = session.createQuery(hql).getResultList();
+//		return list;
+//	}
 
 	//列出電影ID
 	@Override
 	public List<String> getMovies(){
-		String hql="Select Distinct movieID from MovieBean";
+		String hql="Select Distinct movieID from MovieBean Where movieStatus = 1";
 		Session session=factory.getCurrentSession();
 		List<String> list=new ArrayList<>();
 		list=session.createQuery(hql).getResultList();

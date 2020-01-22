@@ -11,6 +11,9 @@ public interface ExpectationService {
 	//查詢並列出電影ID們
 	public List<String> getMovies();
 	
+	//列出未上映電影ID
+	public List<String> getStandbyMovies();
+	
 	//用列出的電影ID查Expectation
 	List<ExpectationBean> getExpectationByMovie(Integer movieID);
 	

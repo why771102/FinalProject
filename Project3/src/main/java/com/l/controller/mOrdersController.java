@@ -33,17 +33,18 @@ public class mOrdersController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/morders/{movieId}")
-	public List<ShowTimeHistoryBean> getPlayStartTime(@PathVariable("movieId") Integer movieId) {
+	@RequestMapping("/morders/{movieID}")
+	public List<ShowTimeHistoryBean> getPlayStartTime(@PathVariable("movieID") Integer movieID) {
 
-		// 用movieId跟status查runningBean
-		RunningBean runningBean = service.getRunningsByMovieId(movieId).get(0);
+		// 用movieId查runningBean
+		List <RunningBean> runningBean= service.getRunningsByMovieId(movieID);
 		
-		// 用runningId查PlayStartTimeBean
-		List<ShowTimeHistoryBean> beans =service.getplayStartTime(runningBean.getRunID());
+		RunningBean rb = runningBean.get(0);
+		// 用runningId查ShowTimeHistoryBean
+		List<ShowTimeHistoryBean> sthb =service.getplayStartTime(rb);
 		
 		// 返回一串PlayStartTime
-		return beans;
+		return sthb;
 		
 		
 	}

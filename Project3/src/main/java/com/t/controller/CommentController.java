@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,12 +43,6 @@ public class CommentController {
 //		model.addAttribute("movie", service.getMovieById(movieID));
 //		return "movieID";
 //	}
-//	
-//	@RequestMapping("/commentGetMemberID")
-//	public String getMemberById(@RequestParam("id") Integer memberID, Model model) {
-//		model.addAttribute("member", service.getMovieById(memberID));
-//		return "memberID";
-//	}
 	
 	//列出所有Comment
 	@RequestMapping("/findAllComment")
@@ -56,12 +52,20 @@ public class CommentController {
 		return "t/comments";
 	}
 	
-	//查詢並列出電影ID們
+	//查詢並列出上映中電影ID給查詢comment
 	@RequestMapping("/getMovieID")
 	public String seleteMovieID(Model model) {
 		List<String> list=service.getMovies();
 		model.addAttribute("movieIDList", list);
 		return "t/selectmovieID";
+	}
+	
+	//查詢並列出上映中電影ID給新增comment
+	@RequestMapping("/getMovieIDforadd")
+	public String seleteMovieIDForAdd(Model model) {
+		List<String> list=service.getMovies();
+		model.addAttribute("movieIDList", list);
+		return "t/addcommentbymovieID";
 	}
 	
 	//用movieID查詢comment
@@ -72,22 +76,32 @@ public class CommentController {
 		return "t/comments";
 	}
 	
-	@RequestMapping(value = "/comments/add", method = RequestMethod.GET)
-	public String getAddNewComment(Model model) {
+	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.GET)
+	public String getAddNewComment(@PathVariable("movieID")Integer movieID,Model model) {
 		CommentBean cb = new CommentBean();
 		model.addAttribute("commentBean",cb);
 		return "t/addcomment";		
 	}
 	
-	@RequestMapping(value = "/comments/add", method = RequestMethod.POST)
-	public String processAddNewComment(CommentBean cb) {
+	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.POST)
+	public String processAddNewComment(@PathVariable("movieID")Integer movieID,CommentBean cb,HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		int nMID = Integer.parseInt(mID);
+		cb.setMemberID(nMID);
 		//預設刪除檢舉為0
 		if(cb.getCommentDelete() == null || cb.getReportComment() == null) {
 			cb.setCommentDelete(0);
 			cb.setReportComment(0);
 		}
 		service.addComment(cb);
-		return "redirect:/findAllComment";	
+		return "redirect:/comments/{movieID}";	
 	}
 	
 	@RequestMapping("/comments/delete/{commentID}")
@@ -153,14 +167,14 @@ public class CommentController {
 		}
 		return MovieMap;
 	}
-	
-	@ModelAttribute("memberList")
-	public Map<Integer, String> getMemberList() {
-		Map<Integer, String> MemberMap = new HashMap<>();
-		List<MemberBean> list = service.getMemberList();
-		for (MemberBean mb : list) {
-			MemberMap.put(mb.getMemberID(),mb.getAccount());
-		}
-		return MemberMap;
-	}
+//	
+//	@ModelAttribute("memberList")
+//	public Map<Integer, String> getMemberList() {
+//		Map<Integer, String> MemberMap = new HashMap<>();
+//		List<MemberBean> list = service.getMemberList();
+//		for (MemberBean mb : list) {
+//			MemberMap.put(mb.getMemberID(),mb.getAccount());
+//		}
+//		return MemberMap;
+//	}
 }

@@ -13,10 +13,10 @@ public interface mOrdersService {
 		public List<MovieBean> getMovieStatus1();
 
 		//用電影Id查詢runId
-		public List<RunningBean> getRunningsByMovieId(Integer movieId);
+		public List<RunningBean> getRunningsByMovieId(Integer movieID);
 		
 		//查詢播放時間
-		public List<ShowTimeHistoryBean> getplayStartTime(Integer runID);
+		public List<ShowTimeHistoryBean> getplayStartTime(RunningBean rb);
 
 	
 	

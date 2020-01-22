@@ -28,7 +28,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='comments/add'>新增留言</a><BR>
+				<a href='getMovieIDforadd'>新增留言</a><BR>
 			</td>
 			<td width="350"><p align="left" />
 				<a href='findAllReportComment'>檢視被檢舉留言</a><BR>

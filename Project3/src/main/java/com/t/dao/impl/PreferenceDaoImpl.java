@@ -29,12 +29,12 @@ public class PreferenceDaoImpl implements PreferenceDao{
 	@Override
 	public boolean checkLikeExist(Integer memberID, Integer commentID) {
 		boolean exist = false;
-		String hql = "From PrefereceBean Where MemberID = :MemberID and CommentID = :CommentID";
+		String hql = "From PreferenceBean Where memberID = :memberID and commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		try{
 			PreferenceBean pb = (PreferenceBean) session.createQuery(hql)
-												.setParameter("MemberID",memberID)
-												.setParameter("CommentID",commentID)
+												.setParameter("memberID",memberID)
+												.setParameter("commentID",commentID)
 												.getSingleResult();
 			if(pb != null) {
 				exist = true;
@@ -45,6 +45,16 @@ public class PreferenceDaoImpl implements PreferenceDao{
 			exist = false;
 		}
 		return exist;
+	}
+	
+	//抓出他填入過的Like
+	@Override
+	public PreferenceBean getLike(Integer good) {
+		Integer Like = null;
+		String hql = "From PreferenceBean Where memberID = :memberID and commentID = :commentID";
+		Session session = factory.getCurrentSession();
+		Like = session.createQuery(hql).setParameter("good",good).getSingleResult();
+		return Like;
 	}
 	
 	@Override
@@ -63,13 +73,13 @@ public class PreferenceDaoImpl implements PreferenceDao{
 		return cb;
 	}
 	
-	@Override
-	public List<MemberBean> getMemberList() {
-		String hql = "FROM MemberBean";
-		Session session = factory.getCurrentSession();
-		List<MemberBean> list = session.createQuery(hql).getResultList();
-		return list;
-	}
+//	@Override
+//	public List<MemberBean> getMemberList() {
+//		String hql = "FROM MemberBean";
+//		Session session = factory.getCurrentSession();
+//		List<MemberBean> list = session.createQuery(hql).getResultList();
+//		return list;
+//	}
 
 	@Override
 	public void addLike(PreferenceBean pb) {
@@ -82,36 +92,7 @@ public class PreferenceDaoImpl implements PreferenceDao{
 	}
 
 	@Override
-	public void addBad(PreferenceBean pb) {
-		Session session = factory.getCurrentSession();
-		CommentBean cb = getCommentById(pb.getCommentID());
-		MemberBean mb = getMemberById(pb.getMemberID());
-		pb.setCommentBean(cb);
-		pb.setMemberBean(mb);
-		session.save(pb);
-	}
-
-	@Override
-	public void addBlock(PreferenceBean pb) {
-		Session session = factory.getCurrentSession();
-		CommentBean cb = getCommentById(pb.getCommentID());
-		MemberBean mb = getMemberById(pb.getMemberID());
-		pb.setCommentBean(cb);
-		pb.setMemberBean(mb);
-		session.save(pb);
-	}
-
-	@Override
 	public void fixLike(Integer memberID, Integer commentID) {
-		String hql = "update PreferenceBean set  where commentID = :commentID and memberID = :memberID";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("commentID", commentID)
-								.setParameter("memberID", memberID)
-								.executeUpdate();
-	}
-
-	@Override
-	public void fixBad(Integer memberID, Integer commentID) {
 		String hql = "update PreferenceBean set  where commentID = :commentID and memberID = :memberID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID)
