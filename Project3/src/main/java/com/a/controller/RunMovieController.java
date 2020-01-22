@@ -10,9 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +25,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -181,22 +187,96 @@ public class RunMovieController {
 	}
 
 	@GetMapping(value = "/AllMovie/show") // URL 跟<a href='movie/show'> 相關
-	public String showAllMovie(Model model) {
-		LocalDate today = (LocalDate.now()).plusDays(1);
+	public String showAllMovie(Model model,HttpServletRequest request,HttpServletResponse response) {
+		LocalDate today = (LocalDate.now());
 		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
 		String dateTime = today.toString() + " " + time.toString();
-
 		List<RunningBean> rb_list = mService.getAllOnMoive(today);
-		System.out.println("size:" + rb_list.size());
-	
-		model.addAttribute(rb_list);
-	
+		List<MovieBean> mb_list = new ArrayList<>();
+		rb_list.size();
+		int pageNo =-1;
+	   String pageNoStr = request.getParameter("pageNo");
+        int totalPage =mService.getTotalPages(rb_list.size());
+        
+//        Map<Integer,MovieBean>movie= mService.getPageBooks(pageNo, rb_list);
+		
+        if (pageNoStr == null) {  
+			pageNo = 1;
+//			// 讀取瀏覽器送來的所有 Cookies
+//			Cookie[] cookies = request.getCookies();
+//			if (cookies != null) {
+//				// 逐筆檢視Cookie內的資料
+//				for (Cookie c : cookies) {
+//					if (c.getName().equals(memberId + "pageNo")) {
+//						try {
+//							pageNo = Integer.parseInt(c.getValue().trim());
+//						} catch (NumberFormatException e) {
+//							;
+//						}
+//						break;
+//					}
+//				}
+//			}
+		} else {
+			try {
+				pageNo = Integer.parseInt(pageNoStr.trim());
+			} catch (NumberFormatException e) {
+				pageNo = 1;
+			}
+		}
+        
+        for(int i=pageNo;i<pageNo*8-1;i++) {
+        	mb_list.add(rb_list.get(i).getMovie());
+        }
+     // 讀取一頁的書籍資料之前，告訴service，現在要讀哪一頁
+     		// service.setPageNo(pageNo);
+     		model.addAttribute("mb_list",mb_list);
+     		// service.getPageBooks()方法開始讀取一頁的書籍資料
+//     		 Map<Integer,MovieBean>movie2 = mService.getPageBooks(pageNo, rb_list);
+     		 
+//     		Map<Integer, BookBean> bookMap = service.getPageBooks(pageNo);
+     	    request.setAttribute("pageNo", String.valueOf(pageNo));
+     		request.setAttribute("totalPages", totalPage);
+     		// 將讀到的一頁資料放入request物件內，成為它的屬性物件
+//     		request.setAttribute("movie", movie2);
+
+     		// 使用Cookie來儲存目前讀取的網頁編號，Cookie的名稱為memberId + "pageNo"
+     		// -----------------------
+     		Cookie pnCookie = new Cookie( "pageNo", String.valueOf(pageNo));
+     	    // 設定Cookie的存活期為30天
+     		pnCookie.setMaxAge(30 * 24 * 60 * 60);
+     	    // 設定Cookie的路徑為 Context Path		
+     		pnCookie.setPath(request.getContextPath());
+     		// 將Cookie加入回應物件內
+     		response.addCookie(pnCookie);
+     		// -----------------------
+     		// 交由listBooks.jsp來顯示某頁的書籍資料，同時準備『第一頁』、
+     		// 『前一頁』、『下一頁』、『最末頁』等資料
+//     		RequestDispatcher rd = request.getRequestDispatcher("a/showAllMovie.jsp");
+//     		rd.forward(request, response);
+//     		return;
 
 		// 傳空的Bean去前端//如果controller有資料要
 //			model.addAttribute("Movie", rb_list);
 
 		return "a/showAllMovie";// URL 跟 eclip 擺放位置相關
 
+	}
+	
+	@RequestMapping(value="/AllMovie/MoviesPageNo=2")
+	public String queryOnMovie(Model model) {
+		LocalDate today = (LocalDate.now());
+		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+		String dateTime = today.toString() + " " + time.toString();
+		List<RunningBean> rb_list = mService.getAllOnMoive(today);
+		List<MovieBean> mb_list = new ArrayList<>();
+		for(int i=1;i<2*8-1;i++) {
+			if(i<rb_list.size()) {
+        	mb_list.add(rb_list.get(i).getMovie());
+        }
+			}
+		System.out.println("123");
+		return "a/showAllMovie";
 	}
 
 	@GetMapping(value = "/Method/test") // URL 跟<a href='movie/show'> 相關
