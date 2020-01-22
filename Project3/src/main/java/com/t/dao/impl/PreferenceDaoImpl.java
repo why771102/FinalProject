@@ -82,36 +82,7 @@ public class PreferenceDaoImpl implements PreferenceDao{
 	}
 
 	@Override
-	public void addBad(PreferenceBean pb) {
-		Session session = factory.getCurrentSession();
-		CommentBean cb = getCommentById(pb.getCommentID());
-		MemberBean mb = getMemberById(pb.getMemberID());
-		pb.setCommentBean(cb);
-		pb.setMemberBean(mb);
-		session.save(pb);
-	}
-
-	@Override
-	public void addBlock(PreferenceBean pb) {
-		Session session = factory.getCurrentSession();
-		CommentBean cb = getCommentById(pb.getCommentID());
-		MemberBean mb = getMemberById(pb.getMemberID());
-		pb.setCommentBean(cb);
-		pb.setMemberBean(mb);
-		session.save(pb);
-	}
-
-	@Override
 	public void fixLike(Integer memberID, Integer commentID) {
-		String hql = "update PreferenceBean set  where commentID = :commentID and memberID = :memberID";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("commentID", commentID)
-								.setParameter("memberID", memberID)
-								.executeUpdate();
-	}
-
-	@Override
-	public void fixBad(Integer memberID, Integer commentID) {
 		String hql = "update PreferenceBean set  where commentID = :commentID and memberID = :memberID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID)

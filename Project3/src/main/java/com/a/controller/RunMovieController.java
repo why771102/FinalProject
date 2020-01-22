@@ -274,7 +274,7 @@ public class RunMovieController {
 
 
 
-		return "a/showTimeHistory";// URL 跟 eclip 擺放位置相關
+		return "a/dataTable";// URL 跟 eclip 擺放位置相關
 
 	}
 	

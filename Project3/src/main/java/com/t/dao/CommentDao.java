@@ -36,7 +36,7 @@ public interface CommentDao {
 	MovieBean getMovieById(int movieID);
 	MemberBean getMemberById(int memberID);
 	List<MovieBean> getMovieList();
-	List<MemberBean> getMemberList();
+//	List<MemberBean> getMemberList();
 	
 	//查詢單筆留言
 	public CommentBean getTheCommentBean(Integer commentID);

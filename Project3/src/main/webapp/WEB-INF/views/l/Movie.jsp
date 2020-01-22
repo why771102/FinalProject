@@ -20,39 +20,41 @@
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
         <div class="row">
-          <c:forEach var='MovieId' items='${AllMovies}'>
+          <c:forEach var='MovieID' items='${AllMovies}'>
             <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
                 <div class="thumbnail" style="width: 320px; height: 340px">
                     <div class="caption">
                        
                        <p>
-                       		 <a  href='morders/${runID}'>電影名稱:${MovieId.title}</a>
+                       		 <a  href='morders/${movieID}'>電影名稱:${MovieID.title}</a>
+                     		
+							
+							
                        </p>
-<!--                        <p> -->
-<!-- > -->
-<%-- 						<b  style='font-size: 16px;'>廳別代碼:${MovieId.hall.hallID}</b> --%>
-<%-- <%--                        		 <a  href='queryShowTimeID' value='/morders?id=${Movie.runID}' style='font-size: 16px;'>電影名稱:${Movie.movie.title}<span id="title"></span></a> --%> 
-                       		 
-<!--                         </p> -->
+                       <p>
+                       		 <b  >MOVIEID:${MovieID.movieID}</b>
+                     		
+							
+							
+                       </p>
                        
-<!--                         <p> -->
-<!-- > -->
-<%--                        		 <b  style='font-size: 16px;'>播放日期時間:${MovieId.playStartTime}</b> --%>
-                       		 
-<!--                         </p> -->
-<!--                         <p> -->
-<%--                         <a href="<spring:url value='/product?id=${Movie.productID}' />" --%>
-<!--     							class="btn btn-primary"> -->
-<!--     							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
-<!--  							</a></p> -->
+						<p>
+             	                			
+							<form:input id="NowTime" path="NowTime" value="" type='hidden' />
+							
+                       </p>
                    </div>
                 </div>
             </div>
         </c:forEach>
         </div>
          </section>
-
-    
+<script>
+$("#sumit1").click(function(){
+	var d = new Date();
+	$("#NowTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
+});
+</script>
 </body>
 </html>
     

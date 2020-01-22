@@ -71,4 +71,10 @@ public class ExpectationServiceImpl implements ExpectationService{
 		return dao.getMemberList();
 	}
 
+	@Transactional
+	@Override
+	public List<String> getStandbyMovies() {
+		return dao.getStandbyMovies();
+	}
+
 }

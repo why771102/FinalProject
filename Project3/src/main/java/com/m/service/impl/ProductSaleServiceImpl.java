@@ -55,25 +55,37 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		return dao.getFoodDates();
 	}
 	
+	@Transactional
 	@Override
-	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate) {
-		return dao.getFoodSCOrder(orderDate);
+	public List<MOrderBean> getFoodSCOrder(LocalDate date) {
+		return dao.getFoodSCOrder(date);
 	}
-
+	
+	@Transactional
 	@Override
 	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList) {
 		return dao.getFoodSCODs(moList);
 	}
-
+	
+	@Transactional
 	@Override
 	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList) {
 		return dao.getFoodPBs(modbList);
 	}
-
+	
+//	@Transactional
+//	@Override
+//	public List<ProductSaleEarnBean> savePSEB1(){
+//		return dao.savePSEB1();
+//	}
+	
+	
+	@Transactional
 	@Override
-	public void savePSEB() {}
-	
-	
+	public void savePSEB(List<ProductSaleEarnBean> psebList) {
+		System.out.println("service call savePSEB()");
+	}
+
 	
 	
 	
