@@ -186,46 +186,16 @@ public class RunMovieController {
 		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
 		String dateTime = today.toString() + " " + time.toString();
 
-//		  try {
-//			//找出來後runningBean直接是有帶Bean值得
-//			  List<RunningBean> rb_list=mService.getAllOnMoive(today, today.plusDays(7));
-//			  for(RunningBean rb :rb_list) {
-//			      
-//				  System.out.println(rb.getRunID());
-//				  System.out.println(rb.getMovie().getTitle());
-//			  }
-//			  System.out.println("------------");
-//		} catch (Exception e) {
-//			  System.out.println("erro");
-//		}
-
 		List<RunningBean> rb_list = mService.getAllOnMoive(today);
 		System.out.println("size:" + rb_list.size());
-		for (RunningBean rb : rb_list) {
-
-			System.out.println("runID:" + rb.getRunID());
-			System.out.println(rb.getMovie().getTitle());
-//				  mService.updateOffDate( rb , LocalDateTime.now());
-			System.out.println("======a");
-			HallBean a = hService.getHall("A");
-			System.out.println("======b");
-			ShowTimeHistoryBean show = new ShowTimeHistoryBean();
-			show.setHall(a);
-			show.setRun(rb);
-			show.setPlayStartTime(dateTime);
-			mService.addShowTimeHistory(show);
-			List<ShowTimeHistoryBean> sthb_list = mService.getshowMovie(today);
-			for (ShowTimeHistoryBean sb : sthb_list) {
-				System.out.println("======c");
-				System.out.println("ShowID:" + sb.getShowTimeId());
-				System.out.println("" + sb.getHall().getHallID());
-			}
-		}
+	
+		model.addAttribute(rb_list);
+	
 
 		// 傳空的Bean去前端//如果controller有資料要
 //			model.addAttribute("Movie", rb_list);
 
-		return "index-a";// URL 跟 eclip 擺放位置相關
+		return "a/showAllMovie";// URL 跟 eclip 擺放位置相關
 
 	}
 

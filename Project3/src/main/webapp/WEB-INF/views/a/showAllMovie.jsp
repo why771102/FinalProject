@@ -10,35 +10,35 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-<title>AddMovie</title>
+<title>ShowAllMovie</title>
 
 </head>
 <body>
 
-
+<div id =father></div>
 <div>
-<a href='movie/show'> <div> <img class="mySlides P_Bimg" src="HTML/img/5.jpg" ><p>圖片A</p></div></a>
-
-
-<img class="mySlides P_Bimg" src="HTML/img/6.jpg">
- <img class="mySlides P_Bimg" src="HTML/img/7.jpg" >
- <img class="mySlides P_Bimg" src="HTML/img/8.jpg" >
-
+    <a href="">
+     <div>
+         <img src="" alt="">
+         <p>${rb_list}</p>
+         <p>上映日 2020-02-02</p>
+     </div>
+</a>
 </div>
-	  
-	   
-	   
-		
-	
-		
 
-
-		
+		<c:forEach var="rb" items="${rb_list}"> 
 		<script>
-	
-		function ThisMovie()
-		  {
-// 	   var movieID =${};	 
+		$(document).ready(function(){
+			$("#father").prepend("<div> <a href=""><div><img src="" alt=""><p>${rb_list.movie.title}</p><p>上映日 2020-02-02</p></div></a></div>");
+			})	
+	   </script>
+	   
+	   </c:forEach>  
+	   
+	   <script>
+//		function ThisMovie()
+//		  {
+/* 
 		  
 		
 //		var release = document.getElementById("release").value;
@@ -47,7 +47,7 @@
 //      var MustShowDay =$('#MustShowDay').val();
         
 		
-		
+/* 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/movie/show",
 			data : {movieID: movieID, expectedOffDate: expectedOffDate, MustShowDay: MustShowDay},
@@ -57,7 +57,7 @@
 				window.location.href = "${pageContext.request.contextPath}/index-a";
 			}
 		});
-		  }
+		  } */
 		</script>
 </body>
 </html>
