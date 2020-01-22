@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.a.model.MovieBean;
+import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
@@ -33,12 +34,22 @@ public class mOrdersServiceImpl implements mOrdersService{
 		return dao.getMovieStatus1();
 	}
 	
+	//查詢播放時間
+	@Transactional
+	@Override
+	public List<RunningBean> getRunningsByMovieId(Integer movieId) {
+		return dao.getRunningsByMovieId(movieId);
+	}
+	
+	//查詢播放時間
 	@Transactional
 	@Override
 	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID) {
 		return dao.getplayStartTime(runID);
 	}
 
+	
+	
 	
 	
 	@Transactional

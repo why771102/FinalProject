@@ -6,13 +6,24 @@ import java.util.List;
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.model.ProductSaleBean;
+import com.m.model.ProductSaleEarnBean;
 
 public interface ProductSaleService {
 	public List<LocalDate> getFoodDates();
+	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate);
+	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList);
+	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList);
+	
 	public List<LocalDate> getPeripheralDates();
+	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate);
+	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList);
+	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList);
+	public void savePSEB();
+	
 	//新增cate下拉式選單
 	public String getCategoryNames();
 	
