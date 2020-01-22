@@ -116,7 +116,7 @@ public class CommentDaoImpl implements CommentDao{
 //		return list;
 //	}
 
-	//列出電影ID
+	//列出上映中電影ID
 	@Override
 	public List<String> getMovies(){
 		String hql="Select Distinct movieID from MovieBean Where movieStatus = 1";

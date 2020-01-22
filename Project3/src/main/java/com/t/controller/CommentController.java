@@ -52,12 +52,20 @@ public class CommentController {
 		return "t/comments";
 	}
 	
-	//查詢並列出電影ID們
+	//查詢並列出上映中電影ID給查詢comment
 	@RequestMapping("/getMovieID")
 	public String seleteMovieID(Model model) {
 		List<String> list=service.getMovies();
 		model.addAttribute("movieIDList", list);
 		return "t/selectmovieID";
+	}
+	
+	//查詢並列出上映中電影ID給新增comment
+	@RequestMapping("/getMovieIDforadd")
+	public String seleteMovieIDForAdd(Model model) {
+		List<String> list=service.getMovies();
+		model.addAttribute("movieIDList", list);
+		return "t/addcommentbymovieID";
 	}
 	
 	//用movieID查詢comment
@@ -68,15 +76,15 @@ public class CommentController {
 		return "t/comments";
 	}
 	
-	@RequestMapping(value = "/comments/add", method = RequestMethod.GET)
-	public String getAddNewComment(Model model) {
+	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.GET)
+	public String getAddNewComment(@PathVariable("movieID")Integer movieID,Model model) {
 		CommentBean cb = new CommentBean();
 		model.addAttribute("commentBean",cb);
 		return "t/addcomment";		
 	}
 	
-	@RequestMapping(value = "/comments/add", method = RequestMethod.POST)
-	public String processAddNewComment(CommentBean cb,HttpServletRequest request) {
+	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.POST)
+	public String processAddNewComment(@PathVariable("movieID")Integer movieID,CommentBean cb,HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.a.model.MovieBean;
 import com.p.model.MemberBean;
-import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
 
 public interface ExpectionDao {

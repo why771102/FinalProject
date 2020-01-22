@@ -34,17 +34,17 @@ fieldset {
 		<form:form method='POST' modelAttribute="commentBean" class='form-horizontal'>
 			<fieldset >
 				
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="movieID">
-						電影ID</label>
-					<div class='col-lg-10'>
-						<form:select id="movieID" path="movieID"
-							class='form:input-large' >
-							<form:option value = "-1" label = "請挑選"/>
-							<form:options items = "${movieList }"/>
-						</form:select>
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class='control-label col-lg-2 col-lg-2' for="movieID"> -->
+<!-- 						電影ID</label> -->
+<!-- 					<div class='col-lg-10'> -->
+<%-- 						<form:select id="movieID" path="movieID" --%>
+<%-- 							class='form:input-large' > --%>
+<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
+<%-- 							<form:options items = "${movieList }"/> --%>
+<%-- 						</form:select> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 <!-- 				<div class="form-group"> -->
 <!-- 					<label class='control-label col-lg-2 col-lg-2' for="memberID"> -->
 <!-- 						會員ID</label> -->
