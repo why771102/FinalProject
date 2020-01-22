@@ -23,4 +23,6 @@ public interface ShowTimeHistoryDao {
 		List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb, String exOffDay, String release);
 
 		List<ShowTimeHistoryBean>  getRunBeanLastSTHB(String startdate);
+
+		List<ShowTimeHistoryBean> getRunBeanLastSTHB(String exOffDay, String release);
 }

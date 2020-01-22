@@ -1,6 +1,10 @@
 package com.l.service.impl;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.a.model.MovieBean;
+import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
@@ -33,12 +38,36 @@ public class mOrdersServiceImpl implements mOrdersService{
 		return dao.getMovieStatus1();
 	}
 	
+	//用電影Id查詢runId;用offDate實際下映日擋
 	@Transactional
 	@Override
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID) {
-		return dao.getplayStartTime(runID);
+	public List<RunningBean> getRunningsByMovieId(Integer movieID) {
+		List<RunningBean> Allmovies = null ;
+		for(RunningBean rb:Allmovies) {
+			DateFormat sdf = null;
+			try {
+				Date date = new Date();
+				if(sdf.parse(rb.getOffDate()).after(date)) {
+					dao.getRunningsByMovieId(movieID);
+				}
+			} catch (ParseException e) {
+			
+				e.printStackTrace();
+			}
+		}
+		return Allmovies;
+		
+	}
+	
+	//查詢播放時間
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getplayStartTime(RunningBean rb) {
+		return dao.getplayStartTime(rb);
 	}
 
+	
+	
 	
 	
 	@Transactional

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,7 +30,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 
 	SessionFactory factory;
 	ProductSaleDao dao;
-	
+
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
@@ -39,7 +40,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	public void setDao(ProductSaleDao dao) {
 		this.dao = dao;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public String getCategoryNames() {
@@ -75,9 +76,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //				.setParameter("playStartTimeB", playStartTimeB).getResultList();
 //		return foodOrdersList;
 //	}
-	
+
 	// 第一次比完後, 之後用當天日期每天比就好!!
-	
+
 	// 存飲食到資料庫方法step 1 ---- NEW
 	// 計算目前資料數的日期
 	@SuppressWarnings("unchecked")
@@ -93,35 +94,69 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			LocalDate orderDate = LocalDateTime.parse(date, formatter).toLocalDate();
 			dates1.add(orderDate);
 		}
-		return dates1;
+		List<LocalDate> newList = dates1.stream().distinct().collect(Collectors.toList());
+		return newList;
 	}
-	
-//========================================待解決：dates會重複問題,set?????
-	
+
 	// 存飲食到資料庫方法step 2 ---- NEW
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate) {
+	public List<MOrderBean> getFoodSCOrder(LocalDate date) {
 		String hql = "FROM MOrderBean";
 		Session session = factory.getCurrentSession();
 		List<MOrderBean> mOrdersList = new ArrayList<>();
 		mOrdersList = session.createQuery(hql).getResultList();
 		List<MOrderBean> moList = new ArrayList<>();
+		System.out.println("check here===" + mOrdersList.size());
 
-		for (MOrderBean mob : mOrdersList) {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
-			LocalDate mOrderDate = LocalDateTime.parse(mob.getShowTimeHistoryBean().getPlayStartTime(), formatter).toLocalDate();
-			long Days = ChronoUnit.DAYS.between(mOrderDate, orderDate);
-			if (Days == 0) {
-				moList.add(mob);
+//		for (LocalDate date : dates) {
+			for (MOrderBean mob : mOrdersList) {
+				System.out.println(mob.getShowTimeHistoryBean().getPlayStartTime());
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+				LocalDate mOrderDate = LocalDateTime.parse(mob.getShowTimeHistoryBean().getPlayStartTime(), formatter)
+						.toLocalDate();
+				System.out.println("mOrderDate=== " + mOrderDate);
+				System.out.println("orderDate=== " + date);
+				long Days = ChronoUnit.DAYS.between(mOrderDate, date);
+				if (Days == 0) {
+					moList.add(mob);
 //					System.out.println("符合 假資料中該日與scob日期比較");
-				System.out.println("mob=>" + moList.size());
-			} else {
+					System.out.println("符合日期=>" + moList.size());
+				} else {
 				System.out.println("不符合 假資料中該日與mob(showid>playtime)比較");
+				}
 			}
-		}
+//		}
 		return moList;
 	}
+//	
+//	// 存飲食到資料庫方法step 2 ---- NEW
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<MOrderBean> getFoodSCOrder(LocalDate orderDate) {
+//		String hql = "FROM MOrderBean";
+//		Session session = factory.getCurrentSession();
+//		List<MOrderBean> mOrdersList = new ArrayList<>();
+//		mOrdersList = session.createQuery(hql).getResultList();
+//		List<MOrderBean> moList = new ArrayList<>();
+//		System.out.println("check here===" + mOrdersList.size());
+//		System.out.println("orderDate=== " + orderDate);
+//		for (MOrderBean mob : mOrdersList) {
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+//			LocalDate mOrderDate = LocalDateTime.parse(mob.getShowTimeHistoryBean().getPlayStartTime(), formatter).toLocalDate();
+//			System.out.println("mOrderDate=== " + mOrderDate);
+//			System.out.println("orderDate=== " + orderDate);
+//			long Days = ChronoUnit.DAYS.between(mOrderDate, orderDate);
+//			if (Days == 0) {
+//				moList.add(mob);
+////					System.out.println("符合 假資料中該日與scob日期比較");
+//				System.out.println("符合日期=>" + moList.size());
+//			} else {
+////				System.out.println("不符合 假資料中該日與mob(showid>playtime)比較");
+//			}
+//		}
+//		return moList;
+//	}
 
 	// 存飲食到資料庫方法step 3 ---- NEW
 	@SuppressWarnings("unchecked")
@@ -144,7 +179,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		}
 		return modbList;
 	}
-	
+
 	// 存飲食到資料庫方法step 4 ---- NEW
 	@SuppressWarnings("unchecked")
 	@Override
@@ -159,7 +194,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //		LocalDate orderDate = null; //要存DB
 //		Double discount = 0.0; //拿unitprice出來算
 		ProductsBean productb = null;
-		Integer qty = 0; //加總存db
+		Integer qty = 0; // 加總存db
 		Integer price = 0;
 
 		for (ProductsBean pb : pbList) {
@@ -167,7 +202,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			for (MOrderDetailBean modb : modbList) {
 				if (pb.getProductID() == modb.getProductsBean().getProductID()) {
 //					productID = pb.getProductID();
-					price = (int) Math.round(modb.getProductsBean().getUnitPrice() * (1-modb.getDiscount()));
+					price = (int) Math.round(modb.getProductsBean().getUnitPrice() * (1 - modb.getDiscount()));
 					qty = qty + modb.getQuantity();
 				} else {
 					System.out.println("比對時pb & modb產品名稱不相同");
@@ -179,23 +214,41 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return psebList;
 	}
 
-	//模擬service呼叫方法
+//	// 模擬service呼叫方法
+//	@Override
+//	public List<ProductSaleEarnBean> savePSEB1() {
+//		
+//		Session session = factory.getCurrentSession();
+//		List<LocalDate> dates = dao.getFoodDates(); 
+//		System.out.println("Food Dates ==> " + dates.size());
+//
+//		List<ProductSaleEarnBean> psebList = new ArrayList<>();
+//
+//		for (LocalDate date : dates) {
+//			List<MOrderBean> mob = dao.getFoodSCOrder(date);
+//			System.out.println("Food morderBean ==> " + mob.size());
+//
+//			List<MOrderDetailBean> modb = dao.getFoodSCODs(mob);
+//			System.out.println("Food morderDetailBean ==> " + modb.size());
+//
+//			psebList = dao.getFoodPBs((modb));
+//			System.out.println("Food ProductSaleEarnBean ==> " + psebList.size());
+//
+//			for (ProductSaleEarnBean pseb : psebList) {
+//				pseb.setOrderDate(date.toString());
+//			}
+//		}
+//		return psebList;
+//	}
+
 	@Override
-	public void savePSEB() {
+	public void savePSEB(List<ProductSaleEarnBean> psebList) {
 		Session session = factory.getCurrentSession();
-		List<LocalDate> dates = dao.getFoodDates();
-		
-		for(LocalDate date : dates) {
-			List<ProductSaleEarnBean> psebList = 
-					dao.getPeripheralPBs(getPeripheralSCODs(getPeripheralSCOrder(date)));
-			for(ProductSaleEarnBean pseb : psebList) {
-				pseb.setOrderDate(date.toString());
-				session.save(pseb);
-			}
+		for (ProductSaleEarnBean pseb : psebList) {
+			session.save(pseb);
 		}
 	}
 
-	
 	// 存周邊商品到資料庫方法step 1 ---- NEW
 	// 計算目前資料數的日期
 	@SuppressWarnings("unchecked")
@@ -211,11 +264,13 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			LocalDate orderDate = LocalDateTime.parse(date, formatter).toLocalDate();
 			dates1.add(orderDate);
 		}
-		return dates1;
+		List<LocalDate> newList = dates1.stream().distinct().collect(Collectors.toList());
+
+		return newList;
 	}
-	
-	//========================================待解決：dates會重複問題,set?????
-	
+
+	// ========================================待解決：dates會重複問題,set?????
+
 	// 存周邊商品到資料庫方法step 2 ---- NEW
 	@SuppressWarnings("unchecked")
 	@Override
@@ -263,7 +318,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		}
 		return scodList;
 	}
-	
+
 	// 存周邊商品到資料庫方法step 4 ---- NEW
 	@SuppressWarnings("unchecked")
 	@Override
@@ -278,7 +333,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //		LocalDate orderDate = null; //要存DB
 //		Double discount = 0.0; //拿unitprice出來算
 		ProductsBean productb = null;
-		Integer qty = 0; //加總存db
+		Integer qty = 0; // 加總存db
 		Integer price = 0;
 
 		for (ProductsBean pb : pbList) {
@@ -286,7 +341,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			for (SCOrderDetailBean scodb : scodList) {
 				if (pb.getProductID() == scodb.getProductsBean().getProductID()) {
 //					productID = pb.getProductID();
-					price = Math.round(scodb.getProductsBean().getUnitPrice() * (1-scodb.getDiscount()));
+					price = Math.round(scodb.getProductsBean().getUnitPrice() * (1 - scodb.getDiscount()));
 					qty = qty + scodb.getQuantity();
 				} else {
 					System.out.println("比對時pb & scod產品名稱不相同");
@@ -298,7 +353,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return psebList;
 	}
 
-	
 //	//模擬service呼叫方法
 //	@Override
 //	public void savePSEB() {
@@ -314,27 +368,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //			}
 //		}
 //	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@SuppressWarnings("unchecked")
 	@Override

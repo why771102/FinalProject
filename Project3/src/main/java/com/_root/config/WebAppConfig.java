@@ -21,7 +21,7 @@ public class WebAppConfig implements WebMvcConfigurer {				//本類別提供組�
 	@Bean
 	public ViewResolver internalResourceViewResolver() {								//做一個視圖解析器
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();		//new 一個 resolver
-		resolver.setPrefix("/WEB-INF/views/");											//設定前綴路徑
+		resolver.setPrefix("/WEB-INF/views/");										//設定前綴路徑
 		resolver.setSuffix(".jsp");														//設定後綴路徑
 		return resolver;																//回傳這個物件
 	}

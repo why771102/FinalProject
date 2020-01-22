@@ -10,35 +10,79 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-<title>AddMovie</title>
+<title>ShowAllMovie</title>
 
 </head>
 <body>
+<c:forEach var="movie" items="${mb_list}">
+ <div class="col-md-3 col-sm-4 col-xs-6">
+                    <div class="movie1">
+                        <div>
+                            <img src="img/feature8.jpg">
+                        </div>
+                        <div class="m-name">
+                            <h3>${movie.title}</h3>
+                            <h4>English, Hindi</h4>
+                            <a href="" class="movie-btn1">Action</a>
+                            <a href="" class="movie-btn1">Thriller</a>
+                            <a href="" class="movie-btn1">Drama</a>
+                        </div>
+                    </div>
+                    <a href="" class="book-now">BOOK NOW</a>
+                </div>
 
+<br>
 
-<div>
-<a href='movie/show'> <div> <img class="mySlides P_Bimg" src="HTML/img/5.jpg" ><p>圖片A</p></div></a>
-
-
-<img class="mySlides P_Bimg" src="HTML/img/6.jpg">
- <img class="mySlides P_Bimg" src="HTML/img/7.jpg" >
- <img class="mySlides P_Bimg" src="HTML/img/8.jpg" >
-
+<div id="paging">
+</c:forEach >
+<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
+<table border="1">
+  <tr>
+    <td width='76'>
+        <c:if test="${pageNo > 1}">
+           <div id="pfirst">
+              <a href="<c:url value='DisplayPageProducts?pageNo=1' />">第一頁</a>
+           </div>
+        </c:if>
+     </td>
+     <td width='76'>
+        <c:if test="${pageNo > 1}">
+           <div id="pprev">
+              <a href="<c:url value='MoviesPageNo=${pageNo-1}' />">上一頁</a>
+           </div>
+        </c:if>  
+     </td>
+     <td width='76'>
+            <c:if test="${pageNo != totalPages}">
+                <div id="pnext">
+                   <a href="<c:url value='MoviesPageNo=${pageNo+1}' />">下一頁</a>
+                </div>
+            </c:if>
+     </td>  
+     <td width='76'>
+            <c:if test="${pageNo != totalPages}">
+                <div id="plast">
+                    <a href="<c:url value='MoviesPageNo=${totalPages}' />">最末頁</a>
+                </div>
+            </c:if>
+     </td>
+     <td width='176' align="center">
+                      第${pageNo}頁 / 共${totalPages}頁
+     </td>  
+</tr>
+</table>
 </div>
-	  
-	   
-	   
-		
-	
-		
 
-
-		
 		<script>
-	
-		function ThisMovie()
-		  {
-// 	   var movieID =${};	 
+
+	   </script>
+	   
+
+	   
+	   <script>
+//		function ThisMovie()
+//		  {
+/* 
 		  
 		
 //		var release = document.getElementById("release").value;
@@ -47,7 +91,7 @@
 //      var MustShowDay =$('#MustShowDay').val();
         
 		
-		
+/* 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/movie/show",
 			data : {movieID: movieID, expectedOffDate: expectedOffDate, MustShowDay: MustShowDay},
@@ -57,7 +101,7 @@
 				window.location.href = "${pageContext.request.contextPath}/index-a";
 			}
 		});
-		  }
+		  } */
 		</script>
 </body>
 </html>

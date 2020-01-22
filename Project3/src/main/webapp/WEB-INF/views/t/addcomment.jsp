@@ -34,34 +34,34 @@ fieldset {
 		<form:form method='POST' modelAttribute="commentBean" class='form-horizontal'>
 			<fieldset >
 				
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="movieID">
-						電影ID</label>
-					<div class='col-lg-10'>
-						<form:select id="movieID" path="movieID"
-							class='form:input-large' >
-							<form:option value = "-1" label = "請挑選"/>
-							<form:options items = "${movieList }"/>
-						</form:select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="memberID">
-						會員ID</label>
-					<div class='col-lg-10'>
-						<form:select id="memberID" path="memberID"
-							class='form:input-large' >
-							<form:option value = "-1" label = "請挑選"/>
-							<form:options items = "${memberList }"/>
-						</form:select>
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class='control-label col-lg-2 col-lg-2' for="movieID"> -->
+<!-- 						電影ID</label> -->
+<!-- 					<div class='col-lg-10'> -->
+<%-- 						<form:select id="movieID" path="movieID" --%>
+<%-- 							class='form:input-large' > --%>
+<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
+<%-- 							<form:options items = "${movieList }"/> --%>
+<%-- 						</form:select> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class='control-label col-lg-2 col-lg-2' for="memberID"> -->
+<!-- 						會員ID</label> -->
+<!-- 					<div class='col-lg-10'> -->
+<%-- 						<form:select id="memberID" path="memberID" --%>
+<%-- 							class='form:input-large' > --%>
+<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
+<%-- 							<form:options items = "${memberList }"/> --%>
+<%-- 						</form:select> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='watched'>
 						已觀賞 </label>
 					<div class="col-lg-10">
-						 <form:input id="watched" path="watched" type='text'
-							class='form:input-large' />
+						<form:radiobutton id="watched" path="watched" value="1" />已觀看
+						<form:radiobutton id="watched" path="watched" value="0" />未觀看
 					</div>
 				</div>
 
@@ -69,8 +69,15 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2"  for='grade'>
 						評分 </label>
 					<div class="col-lg-10">
-						<form:input id="grade" path="grade" type='text'
-							class='form:input-large' />
+						<form:select id="grade" path="grade"
+							class='form:input-large' >
+							<form:option value = "-1" label = "請挑選"/>
+							<form:option value = "1" label = "1"/>
+							<form:option value = "2" label = "2"/>
+							<form:option value = "3" label = "3"/>
+							<form:option value = "4" label = "4"/>
+							<form:option value = "5" label = "5"/>
+						</form:select>
 					</div>
 				</div>
 				<div class="form-group">
