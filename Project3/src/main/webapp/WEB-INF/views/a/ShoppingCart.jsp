@@ -11,7 +11,6 @@
 </head>
 <body>
 	<p>This is Shopping Cart</p>
-	<p>${shoppingCart[0].discount}</p>
 	<table>
 	<% int product = 0; %>
 	<c:forEach var="SC" items="${shoppingCart}">
@@ -27,6 +26,8 @@
 	</table>
 	
 	<script>
+	var sc = ${shoppingCart};
+	console.log(sc);
 	 function del(orderID, productID){
 		 console.log(orderID, productID);
 		 $.ajax({

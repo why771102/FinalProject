@@ -1,6 +1,6 @@
 package com.a.dao.impl;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class SCOrdersDaoImpl implements SCOrdersDao {
 		MemberBean mb = getMemberBeanById(scob.getMemberID());
 		ShippingStatusBean ssb = getShippingStatusBeanById(0);
 		PayStatusBean psb = getPayStatusBeanById(0);
-		String today = LocalDate.now().toString();
+		String today = LocalDateTime.now().toString();
 		System.out.println(mb.getAddress());
 		scob.setShippingAddress(mb.getAddress());
 		scob.setOrderDate(today);

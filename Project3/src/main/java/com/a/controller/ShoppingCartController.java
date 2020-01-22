@@ -1,5 +1,6 @@
 package com.a.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -56,9 +57,10 @@ public class ShoppingCartController {
 		Integer memberID = scservice.getMemberID(request);
 		System.out.println(memberID);
 		Integer SCOrderID = scservice.getShoppingCart(memberID);
+		List<SCOrderDetailBean> list = scservice.getOrderDetails(SCOrderID);
 		if (SCOrderID != null) {
 			// showShoppingCart
-			List<SCOrderDetailBean> list = scservice.getOrderDetails(SCOrderID);
+			
 			if (list.size() == 0) {
 				System.out.println("Shopping cart is empty");
 				model.addAttribute("shoppingCart", 0);
@@ -80,7 +82,7 @@ public class ShoppingCartController {
 			scob.setMemberID(memberID);
 			scoservice.insertOrder(scob);
 			System.out.println("Shopping cart is empty");
-			model.addAttribute("shoppingCart", 0);
+			model.addAttribute("shoppingCart", list);
 		}
 		return "a/ShoppingCart";
 	}
