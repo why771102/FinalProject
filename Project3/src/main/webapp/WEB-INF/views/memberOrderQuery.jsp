@@ -33,7 +33,7 @@
 				<td>${mo.ordersID}</td>
 				<td>${mo.memberBean.memberID}</td>
 				<td>${mo.showTimeHistoryBean.run.movie.title}</td>
-				<td>${mo.showTimeHistoryBean.palyStartTime}</td>
+				<td>${mo.showTimeHistoryBean.playStartTime}</td>
 			</c:forEach>
 			
 

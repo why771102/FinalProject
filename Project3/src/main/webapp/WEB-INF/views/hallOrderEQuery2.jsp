@@ -32,14 +32,16 @@
 			<td>申請總金額</td>
 			<td>聯絡人</td>
 			<td>連絡電話</td>
+			<td>電子郵件</td>
 			<td>包廳申請狀態</td>
 			<td>包廳付款狀態</td>
 			<td>送出修改資料</td>
 		</tr>
 			
 			<c:forEach var="AHO" items="${allEHO}">
-			<form:form method='POST' modelAttribute="hallOrderBean" enctype="multipart/form-data" >
+			
 		<tr>
+		<form:form method='POST' modelAttribute="hallOrderBean" enctype="multipart/form-data" >
 			
 			<td><form:input id="hallOrderNo" path="hallOrderNo" value="${AHO.hallOrderNo}" type='text' readonly="true"/></td>
 			
@@ -61,6 +63,8 @@
 			
 			<td><form:input id="mobile" path="mobile" value="${AHO.mobile}" type='text' readonly="true"/></td>
 			
+			<td><form:input id="mail" path="mail" value="${AHO.mail}" type='text' readonly="true"/></td>
+			
 			<td><form:select path="hallOrderStatusNo" id="no">
 				<form:option value="${AHO.hob.hallOrderStatusNo}">${AHO.hob.hallOrderStatus}</form:option>
 				<form:options items="${hallOrderStatusList}" />
@@ -71,11 +75,14 @@
 				</form:select></td>
 	
 			<td><input type='submit' value="修改" /></td>
+			
 			<td><form:input id="orderDate" path="orderDate" value="${AHO.orderDate}" type='hidden' readonly="true"/></td>
 			
 			<td><form:input id="memberID" path="memberID" value="${AHO.mb.memberID}" type='hidden' readonly="true"/></td>
-		</tr>
 			</form:form>
+			<td><a href="<c:url value="/hallOrder/mail/${AHO.mail}"/>">發送付款通知信</a></td>
+		</tr>
+			
 			</c:forEach>
 
 		</table>

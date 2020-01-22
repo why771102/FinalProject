@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -21,7 +22,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:db.properties")
+@PropertySource(value = {"classpath:db.properties","classpath:mail.properties"})
 public class RootAppConfig {
 	
 	
@@ -31,11 +32,11 @@ public class RootAppConfig {
 	@Value("${spring.database.maxPoolSize}")
 	int mps;
 	
-//	@Value("${email.host}") //發送email用
-//	private String host;
-//
-//	@Value("${email.port}") //發送email用
-//	private Integer port;
+	@Value("${email.host}") //發送email用
+	private String host;
+
+	@Value("${email.port}") //發送email用
+	private Integer port;
 	
 	Environment env;
 	
@@ -97,25 +98,25 @@ public class RootAppConfig {
 		return properties;
 	}
 	
-//	@Bean //以下兩個為發送email用
-//    public JavaMailSender javaMailService() {
-//        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-//
-//        javaMailSender.setHost(host);
-//        javaMailSender.setPort(port);
-//
-//        javaMailSender.setJavaMailProperties(getMailProperties());
-//
-//        return javaMailSender;
-//    }
-//
-//    private Properties getMailProperties() {
-//        Properties properties = new Properties();
-//        properties.setProperty("mail.transport.protocol", "smtp");
-//        properties.setProperty("mail.smtp.auth", "false");
-//        properties.setProperty("mail.smtp.starttls.enable", "false");
-//        properties.setProperty("mail.debug", "false");
-//        return properties;
-//    }
+	@Bean //以下兩個為發送email用
+    public JavaMailSender javaMailService() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+
+        javaMailSender.setHost(host);
+        javaMailSender.setPort(port);
+
+        javaMailSender.setJavaMailProperties(getMailProperties());
+
+        return javaMailSender;
+    }
+
+    private Properties getMailProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("mail.transport.protocol", "smtp");
+        properties.setProperty("mail.smtp.auth", "false");
+        properties.setProperty("mail.smtp.starttls.enable", "false");
+        properties.setProperty("mail.debug", "false");
+        return properties;
+    }
 
 }
