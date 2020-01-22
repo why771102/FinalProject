@@ -19,6 +19,7 @@ import com.a.model.MovieRatingBean;
 import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
 import com.a.model.RunningStatusBean;
+import com.a.model.ShippingStatusBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
 import com.c.model.HallStatusBean;

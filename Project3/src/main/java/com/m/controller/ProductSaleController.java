@@ -1,75 +1,68 @@
-package com.m.controller;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import javax.servlet.ServletContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.a.model.SCOrdersBean;
-import com.a.model.ShowTimeHistoryBean;
-import com.l.model.MOrderDetailBean;
-import com.l.model.ProductsBean;
-import com.m.model.ProductSaleBean;
-import com.m.service.ProductSaleService;
-
-@Controller
-
-public class ProductSaleController {
-
-	ServletContext context;
-	ProductSaleService service;
-
-	@Autowired
-	public void setContext(ServletContext context) {
-		this.context = context;
-	}
-
-	@Autowired
-	public void setService(ProductSaleService service) {
-		this.service = service;
-	} 
-
-	
-	// to ps1
-	@GetMapping(value = "product/sale")
-	public String toProductSale(Model model) {
-		ProductSaleBean psb = new ProductSaleBean();
-		model.addAttribute("ProductSaleBean1", psb);
-		return "m/productSale1";
-	}
-	
-	@ModelAttribute
-	public void saveDB() {
-		System.out.println("---is saving to DB---");
-		service.savePSEB();
-	}
-	
-	// to ps2
-	@GetMapping(value = "product/sale/date")
-	public String toProductSale2(Model model) {
-		ProductSaleBean psb = new ProductSaleBean();
-		model.addAttribute("ProductSaleBean2", psb);
-		return "m/productSale2";
-	}
-	
-	//show cate selection
-	@ModelAttribute("cateSelection")
-	public String addCateSelection(Model model) {
-		String cateSelection = service.getCategoryNames();
-		model.addAttribute("cateSelection", cateSelection);
-		System.out.println(service.getFoodDates());
-		return "m/productSale1";
-	}
-	
+//package com.m.controller;
+//
+//import java.time.LocalDate;
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+//import javax.servlet.ServletContext;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.ResponseBody;
+//
+//import com.a.model.SCOrdersBean;
+//import com.a.model.ShowTimeHistoryBean;
+//import com.l.model.MOrderDetailBean;
+//import com.l.model.ProductsBean;
+//import com.m.model.ProductSaleBean;
+//import com.m.service.ProductSaleService;
+//
+//@Controller
+//
+//public class ProductSaleController {
+//
+//	ServletContext context;
+//	ProductSaleService service;
+//
+//	@Autowired
+//	public void setContext(ServletContext context) {
+//		this.context = context;
+//	}
+//
+//	@Autowired
+//	public void setService(ProductSaleService service) {
+//		this.service = service;
+//	} 
+//	
+//	// to ps1
+//	@GetMapping(value = "product/sale")
+//	public String toProductSale(Model model) {
+////		ProductSaleBean psb = new ProductSaleBean();
+////		model.addAttribute("ProductSaleBean1", psb);
+//		return "m/productSale1";
+//	}
+//	
+//	// to ps2
+//	@GetMapping(value = "product/sale/date")
+//	public String toProductSale2(Model model) {
+////		ProductSaleBean psb = new ProductSaleBean();
+////		model.addAttribute("ProductSaleBean2", psb);
+//		return "m/productSale2";
+//	}
+//	
+//	//show cate selection
+//	@ModelAttribute("cateSelection")
+//	public String addCateSelection(Model model) {
+//		String cateSelection = service.getCategoryNames();
+//		model.addAttribute("cateSelection", cateSelection);
+//		System.out.println(service.getFoodDates());
+//		return "m/productSale1";
+//	}
+//	
 //	@PostMapping(value = "product/sale")
 //	public String showDefaultInfo(Model model, @RequestParam("start") String sDate, 
 //			@RequestParam("end") String eDate) {
@@ -84,7 +77,7 @@ public class ProductSaleController {
 //		model.addAttribute("allFPlists", allFPlists);
 //		return "m/productSale1";
 //	}
-	
+//	
 //	//productSale P1資料傳輸
 //	@PostMapping(value = "product/sale")
 //	public @ResponseBody HashMap<Integer, List<ProductSaleBean>> showProductInfo(Model model, @RequestParam(value = "cate", required=false) String cate
@@ -171,6 +164,7 @@ public class ProductSaleController {
 //				break;
 //		    }
 //		}
+//		
 //		//輸出List psbBean to p1
 ////		model.addAttribute("psbListOut", psbList);
 //		model.addAttribute("allFPlistsOut", allFPmap);
@@ -197,4 +191,4 @@ public class ProductSaleController {
 //		return "m/productSale2"; //檢查這邊!!!
 //	}
 //	
-}
+//}

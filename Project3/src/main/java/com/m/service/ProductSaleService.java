@@ -13,20 +13,34 @@ import com.m.model.ProductSaleBean;
 import com.m.model.ProductSaleEarnBean;
 
 public interface ProductSaleService {
-	public List<LocalDate> getFoodDates();
-	public List<MOrderBean> getFoodSCOrder(LocalDate date);
-	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList);
-	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList);
-	public List<ProductSaleEarnBean> savePSEB1();
-	public Boolean savePSEB(List<ProductSaleEarnBean> psebList);
-	
-	public List<LocalDate> getPeripheralDates();
-	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate);
-	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList);
-	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList);
-	
 	//新增cate下拉式選單
 	public String getCategoryNames();
+	public List<ProductSaleEarnBean> getAllProductInfo(String sDate, String eDate);
+	public List<ProductSaleEarnBean> getAllFoodInfo(String sDate, String eDate);
+	public List<ProductSaleEarnBean> getFoodInfo4(String sDate, String eDate);
+	public List<ProductSaleEarnBean> getFoodInfo5(String sDate, String eDate);
+	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate);
+	
+//	public List<MOrderDetailBean> getFoodSCOrder1();
+	
+	
+	public List<LocalDate> getFoodDates();
+//	public List<MOrderBean> getFoodSCOrder(LocalDate date);
+//	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList);
+//	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList);
+//	public List<ProductSaleEarnBean> savePSEB1();
+//	public Boolean savePSEB(List<ProductSaleEarnBean> psebList);
+	
+	//test
+//	public List<ProductSaleEarnBean> savePSEB1();
+//	
+//	
+//	public List<LocalDate> getPeripheralDates();
+//	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate);
+//	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList);
+//	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList);
+	
+
 	
 	//show all peripheral orders
 	public List<SCOrdersBean> getPeripheralSCOrders(String orderDateA, String orderDateB);

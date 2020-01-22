@@ -30,24 +30,60 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	
 	@Transactional
 	@Override
-	public List<LocalDate> getPeripheralDates(){
-		return dao.getPeripheralDates();
+	public String getCategoryNames() {
+		return dao.getCategoryNames();
 	}
-
+	
+	@Transactional
 	@Override
-	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate) {
-		return dao.getPeripheralSCOrder(orderDate);
+	public List<ProductSaleEarnBean> getAllProductInfo(String sDate, String eDate) {
+		return dao.getAllProductInfo(sDate, eDate);
 	}
-
+	@Transactional
 	@Override
-	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList) {
-		return dao.getPeripheralSCODs(scbList);
+	public List<ProductSaleEarnBean> getAllFoodInfo(String sDate, String eDate){
+		return dao.getAllFoodInfo(sDate, eDate);
 	}
-
+	
+	@Transactional
 	@Override
-	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList) {
-		return dao.getPeripheralPBs(scodList);
+	public List<ProductSaleEarnBean> getFoodInfo4(String sDate, String eDate) {
+		return dao.getFoodInfo4(sDate, eDate);
 	}
+	
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getFoodInfo5(String sDate, String eDate) {
+		return dao.getFoodInfo5(sDate, eDate);
+	}
+	
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate){
+		return dao.getPeripheralInfo(sDate, eDate);
+	}
+	
+	
+//	@Transactional
+//	@Override
+//	public List<LocalDate> getPeripheralDates(){
+//		return dao.getPeripheralDates();
+//	}
+//
+//	@Override
+//	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate) {
+//		return dao.getPeripheralSCOrder(orderDate);
+//	}
+//
+//	@Override
+//	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList) {
+//		return dao.getPeripheralSCODs(scbList);
+//	}
+//
+//	@Override
+//	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList) {
+//		return dao.getPeripheralPBs(scodList);
+//	}
 	
 	@Transactional
 	@Override
@@ -55,37 +91,43 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		return dao.getFoodDates();
 	}
 	
-	@Transactional
-	@Override
-	public List<MOrderBean> getFoodSCOrder(LocalDate date) {
-		return dao.getFoodSCOrder(date);
-	}
+//	@Transactional
+//	@Override
+//	public List<MOrderBean> getFoodSCOrder(LocalDate date) {
+//		return dao.getFoodSCOrder(date);
+//	}
+//	
+//	@Transactional
+//	@Override
+//	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList) {
+//		return dao.getFoodSCODs(moList);
+//	}
+//	
+//	@Transactional
+//	@Override
+//	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList) {
+//		return dao.getFoodPBs(modbList);
+//	}
 	
-	@Transactional
-	@Override
-	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList) {
-		return dao.getFoodSCODs(moList);
-	}
+//	@Transactional
+//	@Override
+//	public List<ProductSaleEarnBean> savePSEB1(){
+//		return dao.savePSEB1();
+//	}
 	
-	@Transactional
-	@Override
-	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList) {
-		return dao.getFoodPBs(modbList);
-	}
-	
-	@Transactional
-	@Override
-	public List<ProductSaleEarnBean> savePSEB1(){
-		return dao.savePSEB1();
-	}
-	
-	@Transactional
-	@Override
-	public Boolean savePSEB(List<ProductSaleEarnBean> psebList) {
-		System.out.println("service call savePSEB()");
-		System.out.println(dao.savePSEB(psebList));
-		return dao.savePSEB(psebList);
-	}
+//	@Transactional
+//	@Override
+//	public List<ProductSaleEarnBean> savePSEB1(){
+//		return dao.savePSEB1();
+//	}
+//	
+//	@Transactional
+//	@Override
+//	public Boolean savePSEB(List<ProductSaleEarnBean> psebList) {
+//		System.out.println("service call savePSEB()");
+//		System.out.println(dao.savePSEB(psebList));
+//		return dao.savePSEB(psebList);
+//	}
 
 	
 	
@@ -93,11 +135,7 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	
 	
 	
-	@Transactional
-	@Override
-	public String getCategoryNames() {
-		return dao.getCategoryNames();
-	}
+
 
 	// 取得周邊商品3方法
 	@Transactional
@@ -277,6 +315,13 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		}
 		return psbList;
 	}
+
+
+
+//	@Override
+//	public List<MOrderDetailBean>  getFoodSCOrder1() {
+//		return dao.getFoodSCOrder1();
+//	}
 
 
 

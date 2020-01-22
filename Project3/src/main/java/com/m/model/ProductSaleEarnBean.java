@@ -10,7 +10,9 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 
 @Entity
@@ -30,15 +32,54 @@ public class ProductSaleEarnBean implements Serializable {
 	Integer qtyTotal;
 	Integer price; //每天單價是浮動的要存,有時候會有折扣
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="categoryID")
+	private CategoriesBean categoriesBean;
+	
 	public ProductSaleEarnBean() {}
-
 	
-	
-	public ProductSaleEarnBean(String orderDate, ProductsBean productsBean, Integer qtyTotal, Integer price) {
+	public ProductSaleEarnBean(String orderDate, ProductsBean productsBean, Integer qtyTotal, Integer price, CategoriesBean categoriesBean) {
 		this.orderDate = orderDate;
 		this.productsBean = productsBean;
 		this.qtyTotal = qtyTotal;
 		this.price = price;
+		this.categoriesBean = categoriesBean;
+	}
+
+	@Transient
+	Integer subtotal;
+	@Transient
+	String productName;
+	
+	public ProductSaleEarnBean(String productName, Integer price, Integer qtyTotal, Integer subtotal) {
+		this.productName = productName;
+		this.qtyTotal = qtyTotal;
+		this.price = price;
+		this.subtotal = subtotal;
+	}
+
+	public CategoriesBean getCategoriesBean() {
+		return categoriesBean;
+	}
+
+	public void setCategoriesBean(CategoriesBean categoriesBean) {
+		this.categoriesBean = categoriesBean;
+	}
+
+	public Integer getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(Integer subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getOrderDate() {
