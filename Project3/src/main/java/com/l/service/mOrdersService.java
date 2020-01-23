@@ -15,8 +15,10 @@ public interface mOrdersService {
 	public List<RunningBean> getAllOnMoive(LocalDate today);	
 	
 	//用runID查所有上映時間
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID);
+	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay);
 	
+	//用runID查出exOffDay和release
+	public RunningBean getDayAndRelease(Integer runID);
 	
 	
 	

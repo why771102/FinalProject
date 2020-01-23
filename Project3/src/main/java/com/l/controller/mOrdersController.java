@@ -44,8 +44,14 @@ public class mOrdersController {
 	}
 	
 	@RequestMapping("/queryStartTime/{runID}") 
-		public String queryStartTime(@PathVariable("runID")Integer runID,Model model,HttpServletRequest request,HttpServletResponse response) {
-			List<ShowTimeHistoryBean> sthb=service.getplayStartTime(runID);
+		public String queryStartTime(@PathVariable("runID")Integer runID,String exOffDay,Model model,HttpServletRequest request,HttpServletResponse response) {
+			LocalDate today = (LocalDate.now());
+			LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+			String dateTime = today.toString() + " " + time.toString();
+			RunningBean rb=service.getDayAndRelease(runID);
+			exOffDay=rb.getExpectedOffDate();
+			
+			List<ShowTimeHistoryBean> sthb=service.getplayStartTime(runID,today,exOffDay);
 			model.addAttribute("playStartTime",sthb);
 			return "l/queryStartTime";
 		}

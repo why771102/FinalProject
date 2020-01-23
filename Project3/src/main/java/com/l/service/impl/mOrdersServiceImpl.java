@@ -35,16 +35,24 @@ public class mOrdersServiceImpl implements mOrdersService{
 
 	//查詢所有runID時間在現在時間和expectedOffDate之間之電影ID
 	@Transactional
-//	@Override
+	@Override
 	public List<RunningBean> getAllOnMoive(LocalDate day){
 		return dao.getAllOnMoive(day);
 	}
-		
+	
+	//用runID查出exOffDay和release
+	@Transactional
+	@Override
+	public RunningBean getDayAndRelease(Integer runID){
+		return dao.getDayAndRelease(runID);
+	}
+	
+	
 	//用runID查所有上映時間
 	@Transactional
 //	@Override
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID){
-		return dao.getplayStartTime(runID);
+	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay){
+		return dao.getplayStartTime(runID,day,exOffDay);
 	}
 	
 	

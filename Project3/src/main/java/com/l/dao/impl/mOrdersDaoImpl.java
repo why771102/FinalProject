@@ -15,7 +15,7 @@ import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
-
+import com.l.model.ProductsBean;
 import com.z.model.EmpBean;
 
 
@@ -41,13 +41,28 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			
 			return rbList;
 		}
+		
+		//用runID查出exOffDay和release
+		@Override
+		public RunningBean getDayAndRelease(Integer runID){
+			Session session = factory.getCurrentSession();
+			RunningBean rb = session.get(RunningBean.class, runID);
+			return rb;
+		}
+		
+		
 		//用runID查playStartTime
 		@Override
-		public List<ShowTimeHistoryBean> getplayStartTime(Integer runID){
-			String hql="from ShowTimeHistoryBean where runID = :runID";
+		public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay){
+			String hql="from ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate and runID = :runID";
+			String startTime = (day.toString())+" "+"00:00:00"; 
 			List<ShowTimeHistoryBean> list=new ArrayList<>();
 			Session session=factory.getCurrentSession();
-			list=session.createQuery(hql).setParameter("runID", runID).getResultList();
+			list=session.createQuery(hql).setParameter("enddate", exOffDay)
+										.setParameter("startdate", startTime)
+										.setParameter("runID", runID).getResultList();
+			System.out.println(exOffDay);
+			System.out.println(startTime);
 			return list;
 		}
 

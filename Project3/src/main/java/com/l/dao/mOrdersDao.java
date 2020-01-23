@@ -16,9 +16,10 @@ public interface mOrdersDao {
 	public List<RunningBean> getAllOnMoive(LocalDate day);
 	
 	//用runID查出playStartTime
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID);
+	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay);
 	
-	
+	//用runID查出exOffDay和release
+	public RunningBean getDayAndRelease(Integer runID);
 	
 	
 //	//查詢所有電影之狀態為1
