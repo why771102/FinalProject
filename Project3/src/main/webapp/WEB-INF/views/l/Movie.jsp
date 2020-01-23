@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
@@ -21,28 +22,24 @@
     <section class="container">
         <div class="row">
           <c:forEach var='MovieID' items='${AllMovies}'>
-            <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
-                <div class="thumbnail" style="width: 320px; height: 340px">
+            <div class="col-sm-6 col-md-3" style="width: 200px; height: 100px">
+                <div class="thumbnail" style="width: 200px; height: 100px">
                     <div class="caption">
                        
                        <p>
-                       		 <a  href='morders/${movieID}'>電影名稱:${MovieID.title}</a>
+                       		 <a  href='queryStartTime/${MovieID.runID}'>電影名稱:${MovieID.movie.title}</a>
                      		
 							
 							
                        </p>
                        <p>
-                       		 <b  >MOVIEID:${MovieID.movieID}</b>
+                       		 <b  >RUNID:${MovieID.runID}</b>
                      		
 							
 							
                        </p>
                        
-						<p>
-             	                			
-							<form:input id="NowTime" path="NowTime" value="" type='hidden' />
-							
-                       </p>
+						
                    </div>
                 </div>
             </div>
