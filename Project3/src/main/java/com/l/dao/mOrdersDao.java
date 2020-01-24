@@ -16,7 +16,7 @@ public interface mOrdersDao {
 	public List<RunningBean> getAllOnMoive(LocalDate day);
 	
 	//用runID查出playStartTime
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay);
+	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,String dateTime,String exOffDay);
 	
 	//用runID查出exOffDay和release
 	public RunningBean getDayAndRelease(Integer runID);

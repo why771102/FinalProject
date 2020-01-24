@@ -34,11 +34,10 @@
                        </p>
                        <p>
                        		 <b  >RUNID:${MovieID.runID}</b>
-                     		
-							
-							
-                       </p>
-                       
+                     	</p>
+                        <p>
+                       		 <b  >電影分類:${MovieID.movie.movieRatingBean.movieRatingID}</b>
+                     	</p>
 						
                    </div>
                 </div>

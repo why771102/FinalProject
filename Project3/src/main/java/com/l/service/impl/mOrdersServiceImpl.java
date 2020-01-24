@@ -51,8 +51,8 @@ public class mOrdersServiceImpl implements mOrdersService{
 	//用runID查所有上映時間
 	@Transactional
 //	@Override
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay){
-		return dao.getplayStartTime(runID,day,exOffDay);
+	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,String dateTime,String exOffDay){
+		return dao.getplayStartTime(runID,dateTime,exOffDay);
 	}
 	
 	

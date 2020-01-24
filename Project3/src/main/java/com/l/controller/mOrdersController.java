@@ -40,7 +40,7 @@ public class mOrdersController {
 		String dateTime = today.toString() + " " + time.toString();
 		List<RunningBean> rb = service.getAllOnMoive(today);
 		model.addAttribute("AllMovies", rb);   
- 		return "l/Movie";
+ 		return "l/movie";
 	}
 	
 	@RequestMapping("/queryStartTime/{runID}") 
@@ -51,7 +51,7 @@ public class mOrdersController {
 			RunningBean rb=service.getDayAndRelease(runID);
 			exOffDay=rb.getExpectedOffDate();
 			
-			List<ShowTimeHistoryBean> sthb=service.getplayStartTime(runID,today,exOffDay);
+			List<ShowTimeHistoryBean> sthb=service.getplayStartTime(runID,dateTime,exOffDay);
 			model.addAttribute("playStartTime",sthb);
 			return "l/queryStartTime";
 		}
