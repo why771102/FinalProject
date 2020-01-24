@@ -14,30 +14,26 @@
     <section>
         <div>
             <div class="container" style="text-align: center" >
-                <h1>電影上映清單</h1>
+                <h1>電影時間</h1>
             </div>
         </div>
     </section>
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
         <div class="row">
-          <c:forEach var='MovieID' items='${AllMovies}'>
+          <c:forEach var='MovieID' items='${playStartTime}'>
             <div class="col-sm-6 col-md-3" style="width: 200px; height: 100px">
                 <div class="thumbnail" style="width: 200px; height: 100px">
                     <div class="caption">
-                       
                        <p>
-                       		 <a  href='queryStartTime/${MovieID.runID}'>電影名稱:${MovieID.movie.title}</a>
-                     		
-							
-							
-                       </p>
+                       		 <b >showtimeId:${MovieID.showTimeId}</b>
+              		  </p>
+              		  <p>
+                       		 <b >時間:${MovieID.playStartTime}</b>
+              		  </p>
                        <p>
-                       		 <b  >RUNID:${MovieID.runID}</b>
-                     		
-							
-							
-                       </p>
+                       		 <b >RUNID:${MovieID.run.runID}</b>
+              		  </p>
                        
 						
                    </div>

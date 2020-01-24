@@ -1,6 +1,7 @@
 package com.l.dao.impl;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
-
+import com.l.model.ProductsBean;
 import com.z.model.EmpBean;
 
 
@@ -25,36 +26,80 @@ public class mOrdersDaoImpl implements mOrdersDao{
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
-	//查詢所有電影之狀態為1
-	@Override
-	public List<MovieBean> getMovieStatus1() {
-				String hql="from MovieBean where movieStatus = 1";
-				Session session=factory.getCurrentSession();
-				List<MovieBean> list=new ArrayList<>();
-				list=session.createQuery(hql).getResultList();
-				return list;
-			}
-	
-	//查詢播放時間
-	@Override
-	public List<RunningBean> getRunningsByMovieId(Integer movieID){
-			String hql="from RunningBean where movieID = :movieID";
-			List<RunningBean> list=new ArrayList<>();
-			Session session=factory.getCurrentSession();
-			list=session.createQuery(hql).setParameter(movieID, movieID).getResultList();
-			return list;
+
+	//查詢所有runID時間在現在時間和expectedOffDate之間之電影ID
+		@Override
+		public List<RunningBean> getAllOnMoive(LocalDate day){
+			List<RunningBean>rbList =new ArrayList<RunningBean>(); 
+			String hql ="from RunningBean where  release <= :endTime  and expectedOffDate >= :startTime ";
+			String startTime = (day.toString())+" "+"00:00:00"; 
+			String endTime = (day.toString())+" "+"23:59:59"; 
+			Session session =factory.getCurrentSession();
+			rbList=session.createQuery(hql).setParameter("endTime", endTime)
+	                                       .setParameter("startTime", startTime)
+	                                       .getResultList();
+			
+			return rbList;
+		}
 		
-	}
+		//用runID查出exOffDay和release
+		@Override
+		public RunningBean getDayAndRelease(Integer runID){
+			Session session = factory.getCurrentSession();
+			RunningBean rb = session.get(RunningBean.class, runID);
+			return rb;
+		}
+		
+		
+		//用runID查playStartTime
+		@Override
+		public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay){
+			String hql="from ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate and runID = :runID";
+			String startTime = (day.toString())+" "+"00:00:00"; 
+			List<ShowTimeHistoryBean> list=new ArrayList<>();
+			Session session=factory.getCurrentSession();
+			list=session.createQuery(hql).setParameter("enddate", exOffDay)
+										.setParameter("startdate", startTime)
+										.setParameter("runID", runID).getResultList();
+			System.out.println(exOffDay);
+			System.out.println(startTime);
+			return list;
+		}
+
 	
-	//查詢播放時間
-	@Override
-	public List<ShowTimeHistoryBean> getplayStartTime(RunningBean rb){
-		String hql="from ShowTimeHistoryBean where runID = :runID";
-		List<ShowTimeHistoryBean> list=new ArrayList<>();
-		Session session=factory.getCurrentSession();
-		list=session.createQuery(hql).setParameter("runID", rb).getResultList();
-		return list;
-	}
+	
+	
+	
+	//	//查詢所有電影之狀態為1
+//	@Override
+//	public List<MovieBean> getMovieStatus1() {
+//				String hql="from MovieBean where movieStatus = 1";
+//				Session session=factory.getCurrentSession();
+//				List<MovieBean> list=new ArrayList<>();
+//				list=session.createQuery(hql).getResultList();
+//				return list;
+//			}
+//	
+//	//用電影ID查詢runID
+//	@Override
+//	public List<RunningBean> getRunningsByMovieId(Integer movieID){
+//			String hql="from RunningBean where movieID = :movieID";
+//			List<RunningBean> list=new ArrayList<>();
+//			Session session=factory.getCurrentSession();
+//			list=session.createQuery(hql).setParameter(movieID, movieID).getResultList();
+//			return list;
+//		
+//	}
+//	
+//	//查詢播放時間
+//	@Override
+//	public List<ShowTimeHistoryBean> getplayStartTime(Integer rb){
+//		String hql="from ShowTimeHistoryBean where runID = :runID";
+//		List<ShowTimeHistoryBean> list=new ArrayList<>();
+//		Session session=factory.getCurrentSession();
+//		list=session.createQuery(hql).setParameter("runID", rb).getResultList();
+//		return list;
+//	}
 
 	
 	
@@ -72,6 +117,7 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			return null;
 		}
 
+	
 	
 
 		
