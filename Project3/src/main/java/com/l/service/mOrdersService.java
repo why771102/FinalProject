@@ -20,7 +20,8 @@ public interface mOrdersService {
 	//用runID查出exOffDay和release
 	public RunningBean getDayAndRelease(Integer runID);
 	
-	
+	//用StartTimeID查	單筆
+	public Object getStartTimeByID(Integer showTimeId);
 	
 	
 	
@@ -41,6 +42,8 @@ public interface mOrdersService {
 		public List<EmpBean> updateEmpbyID(EmpBean eb);
 		//修改票狀態、領票時間
 		public MOrderBean updateTicket(MOrderBean mob);
+
+		
 
 		
 }

@@ -65,8 +65,14 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			System.out.println(startTime);
 			return list;
 		}
-
-	
+		
+		//用StartTimeID查	單筆
+		@Override
+		public Object getStartTimeByID(Integer showTimeId) {
+		Session session =factory.getCurrentSession();
+		ShowTimeHistoryBean sthb=session.get(ShowTimeHistoryBean.class, showTimeId);
+			return sthb;
+		}
 	
 	
 	
@@ -116,6 +122,8 @@ public class mOrdersDaoImpl implements mOrdersDao{
 		public MOrderBean updateTicket(MOrderBean mob) {
 			return null;
 		}
+
+		
 
 	
 	

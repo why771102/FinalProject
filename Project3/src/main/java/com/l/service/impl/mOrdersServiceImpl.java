@@ -55,7 +55,11 @@ public class mOrdersServiceImpl implements mOrdersService{
 		return dao.getplayStartTime(runID,dateTime,exOffDay);
 	}
 	
-	
+	@Transactional
+	@Override
+	public Object getStartTimeByID(Integer showTimeId) {
+		return dao.getStartTimeByID(showTimeId);
+		}
 	
 //	//查詢所有場次ID	
 //	@Transactional
@@ -118,8 +122,11 @@ public class mOrdersServiceImpl implements mOrdersService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	}
 	
 	
 
 
-}
+

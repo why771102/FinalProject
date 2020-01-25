@@ -21,6 +21,8 @@ public interface mOrdersDao {
 	//用runID查出exOffDay和release
 	public RunningBean getDayAndRelease(Integer runID);
 	
+	//用StartTimeID查	單筆
+	public Object getStartTimeByID(Integer showTimeId);
 	
 //	//查詢所有電影之狀態為1
 //	public List<MovieBean> getMovieStatus1();
