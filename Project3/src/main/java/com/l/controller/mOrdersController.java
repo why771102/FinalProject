@@ -93,7 +93,10 @@ public class mOrdersController {
 			return "l/queryStartTime";
 		}
 
-	
+		@RequestMapping("/buyticket")
+		public String buyTicket(){
+			return "l/tickets";
+		}
 	
 //	//用電影ID查詢所有RUNID時間在release和expectedOffDate之間
 //	@RequestMapping("/queryMovie")

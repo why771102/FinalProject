@@ -34,7 +34,11 @@
 				 <p>
                        		 <b >hallID:${queryStartTime.hall.hallID}</b>
               		  </p>
-			
+					<p>
+					<a href="<spring:url value='/buyticket' />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span>買票啦
+					</a> 
+					</p>
 			</div>
 		</div>
 	</section>
