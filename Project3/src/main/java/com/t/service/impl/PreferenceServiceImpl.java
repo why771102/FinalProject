@@ -71,20 +71,14 @@ public class PreferenceServiceImpl implements PreferenceService{
 
 	@Transactional
 	@Override
-	public void cancelGood(Integer memberID, Integer commentID) {
-		dao.cancelGood(memberID, commentID);
+	public void cancel(Integer memberID, Integer commentID) {
+		dao.cancel(memberID, commentID);
 	}
 
 	@Transactional
 	@Override
 	public void addBad(Integer memberID, Integer commentID) {
 		dao.addBad(memberID, commentID);
-	}
-
-	@Transactional
-	@Override
-	public void cancelBad(Integer memberID, Integer commentID) {
-		dao.cancelBad(memberID, commentID);
 	}
 
 	@Transactional

@@ -47,7 +47,7 @@ public class PreferenceDaoImpl implements PreferenceDao{
 		return exist;
 	}
 	
-	//抓出該會員是否在該留言執行過偏好設定
+	//抓出該會員在該留言的讚是否為1
 	@Override
 	public boolean checkLikeTrue(Integer memberID, Integer commentID) {
 		boolean exist = false;
@@ -69,7 +69,7 @@ public class PreferenceDaoImpl implements PreferenceDao{
 		return exist;
 	}
 	
-	//抓出該會員是否在該留言執行過偏好設定
+	//抓出該會員在該留言的噓是否為1
 	@Override
 	public boolean checkDislikeTrue(Integer memberID, Integer commentID) {
 		boolean exist = false;
@@ -125,6 +125,7 @@ public class PreferenceDaoImpl implements PreferenceDao{
 //		return list;
 //	}
 
+	//新建欄位
 	@Override
 	public void addLike(PreferenceBean pb) {
 		Session session = factory.getCurrentSession();
@@ -155,9 +156,9 @@ public class PreferenceDaoImpl implements PreferenceDao{
 								.executeUpdate();
 	}
 
-	//把good取消
+	//把讚噓取消0,0
 	@Override
-	public void cancelGood(Integer memberID, Integer commentID) {
+	public void cancel(Integer memberID, Integer commentID) {
 		String hql = "update PreferenceBean set good = 0, bad = 0 where memberID = :memberID and commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID)
@@ -169,16 +170,6 @@ public class PreferenceDaoImpl implements PreferenceDao{
 	@Override
 	public void addBad(Integer memberID, Integer commentID) {
 		String hql = "update PreferenceBean set good = 0, bad = 1 where memberID = :memberID and commentID = :commentID";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("commentID", commentID)
-								.setParameter("memberID", memberID)
-								.executeUpdate();
-	}
-
-	//把bad取消
-	@Override
-	public void cancelBad(Integer memberID, Integer commentID) {
-		String hql = "update PreferenceBean set good = 0, bad = 0 where memberID = :memberID and commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID)
 								.setParameter("memberID", memberID)

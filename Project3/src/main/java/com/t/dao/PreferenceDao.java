@@ -26,15 +26,12 @@ public interface PreferenceDao {
 	//good,bad改成1,0
 	public void addGood(Integer memberID, Integer commentID);
 	
-	//把good取消
-	public void cancelGood(Integer memberID, Integer commentID);
+	//把讚噓取消
+	public void cancel(Integer memberID, Integer commentID);
 	
 	//good,bad改成0,1
 	public void addBad(Integer memberID, Integer commentID);
 
-	//把bad取消
-	public void cancelBad(Integer memberID, Integer commentID);
-	
 	//抓memberID
 	MemberBean getMemberById(int memberID);
 //	List<MemberBean> getMemberList();

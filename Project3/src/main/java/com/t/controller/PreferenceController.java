@@ -44,25 +44,21 @@ public class PreferenceController {
 			}
 		}
 		int memberID = Integer.parseInt(mID);
+		pb.setCommentID(commentID);
+		pb.setMemberID(memberID);
 		//檢查是否有在該留言建立過喜好欄位
 		boolean le = service.checkLikeExist(memberID, commentID);
 		if(le == true){
 			//檢查good是否為1
 			boolean lt = service.checkLikeTrue(memberID, commentID);
 			if(lt == true) {
-				pb.setCommentID(commentID);
-				pb.setMemberID(memberID);
-				service.cancelGood(memberID, commentID);
+				service.cancel(memberID, commentID);
 			}
 			if(lt == false) {
-				pb.setCommentID(commentID);
-				pb.setMemberID(memberID);
 				service.addGood(memberID, commentID);
 			}
 		}
 		if(le == false) {
-			pb.setCommentID(commentID);
-			pb.setMemberID(memberID);
 			pb.setGood(1);
 			pb.setBad(0);
 			pb.setBlock(0);
@@ -82,25 +78,21 @@ public class PreferenceController {
 			}
 		}
 		int memberID = Integer.parseInt(mID);
+		pb.setCommentID(commentID);
+		pb.setMemberID(memberID);
 		//檢查是否有在該留言建立過喜好欄位
 		boolean le = service.checkLikeExist(memberID, commentID);
 		if(le == true){
 			//檢查bad是否為1
 			boolean dt = service.checkDislikeTrue(memberID, commentID);
 			if(dt == true) {
-				pb.setCommentID(commentID);
-				pb.setMemberID(memberID);
-				service.cancelBad(memberID, commentID);
+				service.cancel(memberID, commentID);
 			}
 			if(dt == false) {
-				pb.setCommentID(commentID);
-				pb.setMemberID(memberID);
 				service.addBad(memberID, commentID);
 			}
 		}
 		if(le == false) {
-			pb.setCommentID(commentID);
-			pb.setMemberID(memberID);
 			pb.setGood(0);
 			pb.setBad(1);
 			pb.setBlock(0);
@@ -120,15 +112,13 @@ public class PreferenceController {
 			}
 		}
 		int memberID = Integer.parseInt(mID);
+		pb.setCommentID(commentID);
+		pb.setMemberID(memberID);
 		boolean le = service.checkLikeExist(memberID, commentID);
 		if(le == true){
-			pb.setCommentID(commentID);
-			pb.setMemberID(memberID);
 			service.fixBlock(memberID, commentID);
 		}
 		if(le == false) {
-			pb.setCommentID(commentID);
-			pb.setMemberID(memberID);
 			pb.setGood(0);
 			pb.setBad(0);
 			pb.setBlock(1);
@@ -136,6 +126,5 @@ public class PreferenceController {
 		}			
 		return "redirect:/findAllComment";	
 	}
-	
 	
 }
