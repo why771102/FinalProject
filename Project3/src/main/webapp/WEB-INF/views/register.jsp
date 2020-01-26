@@ -5,90 +5,112 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/flexslider.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 
 <title>會員註冊</title>
 
 </head>
 <body>
+	<section class="login-block">
+		<div class="container">
+			<div class="login-inner">
+				<h2>註冊會員</h2>
 
-<table>
-		<form:form method='POST' modelAttribute="memberBean" enctype="multipart/form-data" >
-		
-			<fieldset>
-				<tr>
-					<td>姓名:</td>
-					<td><form:input id="name" path="name" type='text' /><br>
-					<form:errors path="name" cssClass="error"/></td>
-					
-				</tr>
-				<tr>
-					<td>帳號:</td>
-					<td><form:input id="account" path="account" type='text'  /><span class="notice">${errorMsgMap.accountExistError}</span><br>
-					<form:errors path="account" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<td>密碼:</td>
-					<td><form:input id="password" path="password" type='text' /><br>
-					<form:errors path="password" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<td>性別:</td>
-					<td><form:radiobutton path="gender" value="男性" />男性
-						<form:radiobutton path="gender" value="女性" />女性
-						<form:radiobutton path="gender" value="其他" />其他</td>
-				</tr>
-				<tr>
-					<td>身分證字號:</td>
-					<td><form:input id="uID" path="uID" type='text'  /><span>${errorMsgMap.uIDtExistError}</span><br>
-					<form:errors path="uID" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<td>出生年月日:</td>
-					<td><form:input id="birth" path="birth" type='date'  /><br>
-					<form:errors path="birth" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<td>聯絡電話:</td>
-					<td><form:input id="mobile" path="mobile" type='text' /><br>
-					<form:errors path="mobile" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<td>email:</td>
-					<td><form:input id="email" path="email" type='text'  /><br>
-					<form:errors path="email" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<td>住址:</td>
-					<td><form:input id="address" path="address" type='text'  /><br>
-					<form:errors path="address" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<td><form:input id="registerTime" path="registerTime" value="" type='hidden' /></td>
-				</tr>
-				<tr>
-					<td><input type='submit' id="sumit1"/></td>
-				</tr>
-			</fieldset>
-		</form:form>
-</table>
-<script>
-$("#sumit1").click(function(){
-	var d = new Date();
-	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
-});
+				<div class="login-form">
+					<table>
+						<form:form method='POST' modelAttribute="memberBean"
+							enctype="multipart/form-data">
 
-// $(document).ready(function(){
-// 	var d = new Date();
-// 	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
-// });
+							<fieldset>
+								<tr>
+									<td>姓名:</td>
+									<td><form:input id="name" path="name" type='text' /><br>
+										<form:errors path="name" cssClass="error" /></td>
 
-</script>
+								</tr>
+								<tr>
+									<td>帳號:</td>
+									<td><form:input id="account" path="account" type='text' /><span
+										class="notice">${errorMsgMap.accountExistError}</span><br>
+										<form:errors path="account" cssClass="error" /></td>
+								</tr>
+								<tr>
+									<td>密碼:</td>
+									<td><form:input id="password" path="password" type='text' /><br>
+										<form:errors path="password" cssClass="error" /></td>
+								</tr>
+								<tr>
+									<td>性別:</td>
+									<td><form:radiobutton path="gender" value="男性" />男性 <form:radiobutton
+											path="gender" value="女性" />女性 <form:radiobutton
+											path="gender" value="其他" />其他</td>
+								</tr>
+								<tr>
+									<td>身分證字號:</td>
+									<td><form:input id="uID" path="uID" type='text' /><span>${errorMsgMap.uIDtExistError}</span><br>
+										<form:errors path="uID" cssClass="error" /></td>
+								</tr>
+								<tr>
+									<td>出生年月日:</td>
+									<td><form:input id="birth" path="birth" type='date' /><br>
+										<form:errors path="birth" cssClass="error" /></td>
+								</tr>
+								<tr>
+									<td>聯絡電話:</td>
+									<td><form:input id="mobile" path="mobile" type='text' /><br>
+										<form:errors path="mobile" cssClass="error" /></td>
+								</tr>
+								<tr>
+									<td>email:</td>
+									<td><form:input id="email" path="email" type='text' /><br>
+										<form:errors path="email" cssClass="error" /></td>
+								</tr>
+								<tr>
+									<td>住址:</td>
+									<td><form:input id="address" path="address" type='text' /><br>
+										<form:errors path="address" cssClass="error" /></td>
+								</tr>
+								<tr>
+									<td><form:input id="registerTime" path="registerTime"
+											value="" type='hidden' /></td>
+								</tr>
+								<tr>
+									<td><input type='submit' id="sumit1" /></td>
+								</tr>
+							</fieldset>
+						</form:form>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+		$("#sumit1").click(
+				function() {
+					var d = new Date();
+					$("#registerTime").val(
+							d.getFullYear() + "-" + d.getMonth() + 1 + "-"
+									+ d.getDate() + " " + d.getHours() + ":"
+									+ d.getMinutes() + ":" + d.getSeconds()
+									+ ".000");
+				});
+
+		// $(document).ready(function(){
+		// 	var d = new Date();
+		// 	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
+		// });
+	</script>
 </body>
 </html>
