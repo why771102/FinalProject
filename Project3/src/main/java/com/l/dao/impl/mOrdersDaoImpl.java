@@ -53,9 +53,9 @@ public class mOrdersDaoImpl implements mOrdersDao{
 		
 		//用runID查playStartTime
 		@Override
-		public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay){
+		public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,String dateTime,String exOffDay){
 			String hql="from ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate and runID = :runID";
-			String startTime = (day.toString())+" "+"00:00:00"; 
+			String startTime = dateTime; 
 			List<ShowTimeHistoryBean> list=new ArrayList<>();
 			Session session=factory.getCurrentSession();
 			list=session.createQuery(hql).setParameter("enddate", exOffDay)
@@ -65,8 +65,14 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			System.out.println(startTime);
 			return list;
 		}
-
-	
+		
+		//用StartTimeID查	單筆
+		@Override
+		public Object getStartTimeByID(Integer showTimeId) {
+		Session session =factory.getCurrentSession();
+		ShowTimeHistoryBean sthb=session.get(ShowTimeHistoryBean.class, showTimeId);
+			return sthb;
+		}
 	
 	
 	
@@ -116,6 +122,8 @@ public class mOrdersDaoImpl implements mOrdersDao{
 		public MOrderBean updateTicket(MOrderBean mob) {
 			return null;
 		}
+
+		
 
 	
 	

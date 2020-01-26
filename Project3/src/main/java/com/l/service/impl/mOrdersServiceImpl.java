@@ -51,11 +51,15 @@ public class mOrdersServiceImpl implements mOrdersService{
 	//用runID查所有上映時間
 	@Transactional
 //	@Override
-	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,LocalDate day,String exOffDay){
-		return dao.getplayStartTime(runID,day,exOffDay);
+	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID,String dateTime,String exOffDay){
+		return dao.getplayStartTime(runID,dateTime,exOffDay);
 	}
 	
-	
+	@Transactional
+	@Override
+	public Object getStartTimeByID(Integer showTimeId) {
+		return dao.getStartTimeByID(showTimeId);
+		}
 	
 //	//查詢所有場次ID	
 //	@Transactional
@@ -118,8 +122,11 @@ public class mOrdersServiceImpl implements mOrdersService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	}
 	
 	
 
 
-}
+

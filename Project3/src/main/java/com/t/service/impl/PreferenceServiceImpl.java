@@ -51,5 +51,41 @@ public class PreferenceServiceImpl implements PreferenceService{
 		dao.addLike(pb);
 	}
 
+	@Transactional
+	@Override
+	public boolean checkLikeTrue(Integer memberID, Integer commentID) {
+		return dao.checkLikeTrue(memberID, commentID);
+	}
+
+	@Transactional
+	@Override
+	public boolean checkDislikeTrue(Integer memberID, Integer commentID) {
+		return dao.checkDislikeTrue(memberID, commentID);
+	}
+
+	@Transactional
+	@Override
+	public void addGood(Integer memberID, Integer commentID) {
+		dao.addGood(memberID, commentID);
+	}
+
+	@Transactional
+	@Override
+	public void cancel(Integer memberID, Integer commentID) {
+		dao.cancel(memberID, commentID);
+	}
+
+	@Transactional
+	@Override
+	public void addBad(Integer memberID, Integer commentID) {
+		dao.addBad(memberID, commentID);
+	}
+
+	@Transactional
+	@Override
+	public void fixBlock(Integer memberID, Integer commentID) {
+		dao.fixBlock(memberID, commentID);
+	}
+
 }
 

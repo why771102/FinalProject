@@ -27,18 +27,17 @@
                     <div class="caption">
                        
                        <p>
-                       		 <a  href='queryStartTime/${MovieID.runID}'>電影名稱:${MovieID.movie.title}</a>
+                       		 <a  href='queryStartTimes/${MovieID.runID}'>電影名稱:${MovieID.movie.title}</a>
                      		
 							
 							
                        </p>
                        <p>
                        		 <b  >RUNID:${MovieID.runID}</b>
-                     		
-							
-							
-                       </p>
-                       
+                     	</p>
+                        <p>
+                       		 <b  >電影分類:${MovieID.movie.movieRatingBean.movieRatingID}</b>
+                     	</p>
 						
                    </div>
                 </div>
