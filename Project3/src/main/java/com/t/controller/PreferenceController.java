@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,8 +33,8 @@ public class PreferenceController {
 	}
 	
 	//新增欄位 填入讚 噓 屏蔽
-	@RequestMapping(value = "/preference/addlike")
-	public String processAddLike(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request) {
+	@RequestMapping("/preference/addlike")
+	public String processAddLike(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -43,9 +44,21 @@ public class PreferenceController {
 			}
 		}
 		int memberID = Integer.parseInt(mID);
+		//檢查是否有在該留言建立過喜好欄位
 		boolean le = service.checkLikeExist(memberID, commentID);
 		if(le == true){
-			
+			//檢查good是否為1
+			boolean lt = service.checkLikeTrue(memberID, commentID);
+			if(lt == true) {
+				pb.setCommentID(commentID);
+				pb.setMemberID(memberID);
+				service.cancelGood(memberID, commentID);
+			}
+			if(lt == false) {
+				pb.setCommentID(commentID);
+				pb.setMemberID(memberID);
+				service.addGood(memberID, commentID);
+			}
 		}
 		if(le == false) {
 			pb.setCommentID(commentID);
@@ -58,8 +71,8 @@ public class PreferenceController {
 		return "redirect:/findAllComment";	
 	}
 	
-	@RequestMapping(value = "/preference/addbad")
-	public String processAddBad(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request) {
+	@RequestMapping("/preference/addbad")
+	public String processAddBad(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -68,18 +81,36 @@ public class PreferenceController {
 				mID = cookie.getValue();
 			}
 		}
-		int nMID = Integer.parseInt(mID);
-		pb.setCommentID(commentID);
-		pb.setMemberID(nMID);
-		pb.setGood(0);
-		pb.setBad(1);
-		pb.setBlock(0);
-		service.addLike(pb);
+		int memberID = Integer.parseInt(mID);
+		//檢查是否有在該留言建立過喜好欄位
+		boolean le = service.checkLikeExist(memberID, commentID);
+		if(le == true){
+			//檢查bad是否為1
+			boolean dt = service.checkDislikeTrue(memberID, commentID);
+			if(dt == true) {
+				pb.setCommentID(commentID);
+				pb.setMemberID(memberID);
+				service.cancelBad(memberID, commentID);
+			}
+			if(dt == false) {
+				pb.setCommentID(commentID);
+				pb.setMemberID(memberID);
+				service.addBad(memberID, commentID);
+			}
+		}
+		if(le == false) {
+			pb.setCommentID(commentID);
+			pb.setMemberID(memberID);
+			pb.setGood(0);
+			pb.setBad(1);
+			pb.setBlock(0);
+			service.addLike(pb);
+		}	
 		return "redirect:/findAllComment";	
 	}
 	
-	@RequestMapping(value = "/preference/addblock")
-	public String processAddBlock(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request) {
+	@RequestMapping("/preference/addblock")
+	public String processAddBlock(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -88,13 +119,23 @@ public class PreferenceController {
 				mID = cookie.getValue();
 			}
 		}
-		int nMID = Integer.parseInt(mID);
-		pb.setCommentID(commentID);
-		pb.setMemberID(nMID);
-		pb.setGood(0);
-		pb.setBad(0);
-		pb.setBlock(1);
-		service.addLike(pb);				
+		int memberID = Integer.parseInt(mID);
+		boolean le = service.checkLikeExist(memberID, commentID);
+		if(le == true){
+			pb.setCommentID(commentID);
+			pb.setMemberID(memberID);
+			service.fixBlock(memberID, commentID);
+		}
+		if(le == false) {
+			pb.setCommentID(commentID);
+			pb.setMemberID(memberID);
+			pb.setGood(0);
+			pb.setBad(0);
+			pb.setBlock(1);
+			service.addLike(pb);
+		}			
 		return "redirect:/findAllComment";	
 	}
+	
+	
 }

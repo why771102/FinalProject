@@ -27,6 +27,6 @@ public interface ExpectationService {
 	void addExpect(ExpectationBean eb);
 	MemberBean getMemberById(int memberID);
 	MovieBean getMovieById(int movieID);
-	public List<MemberBean> getMemberList();
+//	public List<MemberBean> getMemberList();
 	
 }

@@ -65,11 +65,11 @@ public class ExpectationServiceImpl implements ExpectationService{
 		return dao.getExpectationByMovie(movieID);
 	}
 
-	@Transactional
-	@Override
-	public List<MemberBean> getMemberList() {
-		return dao.getMemberList();
-	}
+//	@Transactional
+//	@Override
+//	public List<MemberBean> getMemberList() {
+//		return dao.getMemberList();
+//	}
 
 	@Transactional
 	@Override

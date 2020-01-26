@@ -47,15 +47,59 @@ public class PreferenceDaoImpl implements PreferenceDao{
 		return exist;
 	}
 	
-	//抓出他填入過的Like
+	//抓出該會員是否在該留言執行過偏好設定
 	@Override
-	public PreferenceBean getLike(Integer good) {
-		Integer Like = null;
-		String hql = "From PreferenceBean Where memberID = :memberID and commentID = :commentID";
+	public boolean checkLikeTrue(Integer memberID, Integer commentID) {
+		boolean exist = false;
+		String hql = "From PreferenceBean Where memberID = :memberID and commentID = :commentID and good = 1";
 		Session session = factory.getCurrentSession();
-		Like = session.createQuery(hql).setParameter("good",good).getSingleResult();
-		return Like;
+		try{
+			PreferenceBean pb = (PreferenceBean) session.createQuery(hql)
+												.setParameter("memberID",memberID)
+												.setParameter("commentID",commentID)
+												.getSingleResult();
+			if(pb != null) {
+				exist = true;
+			}
+		}catch(NoResultException ex) {
+			exist = false;
+		}catch(NonUniqueResultException ex) {
+			exist = false;
+		}
+		return exist;
 	}
+	
+	//抓出該會員是否在該留言執行過偏好設定
+	@Override
+	public boolean checkDislikeTrue(Integer memberID, Integer commentID) {
+		boolean exist = false;
+		String hql = "From PreferenceBean Where memberID = :memberID and commentID = :commentID and bad = 1";
+		Session session = factory.getCurrentSession();
+		try{
+			PreferenceBean pb = (PreferenceBean) session.createQuery(hql)
+												.setParameter("memberID",memberID)
+												.setParameter("commentID",commentID)
+												.getSingleResult();
+			if(pb != null) {
+				exist = true;
+			}
+		}catch(NoResultException ex) {
+			exist = false;
+		}catch(NonUniqueResultException ex) {
+			exist = false;
+		}
+		return exist;
+	}
+	
+//	//抓出他填入過的Like
+//	@Override
+//	public PreferenceBean getLike(Integer good) {
+//		Integer Like = null;
+//		String hql = "From PreferenceBean Where memberID = :memberID and commentID = :commentID";
+//		Session session = factory.getCurrentSession();
+//		Like = session.createQuery(hql).setParameter("good",good).getSingleResult();
+//		return Like;
+//	}
 	
 	@Override
 	public MemberBean getMemberById(int memberID) {
@@ -91,19 +135,50 @@ public class PreferenceDaoImpl implements PreferenceDao{
 		session.save(pb);
 	}
 
+	//屏蔽改1
 	@Override
-	public void fixLike(Integer memberID, Integer commentID) {
-		String hql = "update PreferenceBean set  where commentID = :commentID and memberID = :memberID";
+	public void fixBlock(Integer memberID, Integer commentID) {
+		String hql = "update PreferenceBean set block = 1 where commentID = :commentID and memberID = :memberID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID)
 								.setParameter("memberID", memberID)
 								.executeUpdate();
 	}
 
-	//屏蔽改1
+	//good,bad改成1,0
 	@Override
-	public void fixBlock(Integer memberID, Integer commentID) {
-		String hql = "update PreferenceBean set block = 1 where commentID = :commentID and memberID = :memberID";
+	public void addGood(Integer memberID, Integer commentID) {
+		String hql = "update PreferenceBean set good = 1, bad = 0 where memberID = :memberID and commentID = :commentID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("commentID", commentID)
+								.setParameter("memberID", memberID)
+								.executeUpdate();
+	}
+
+	//把good取消
+	@Override
+	public void cancelGood(Integer memberID, Integer commentID) {
+		String hql = "update PreferenceBean set good = 0, bad = 0 where memberID = :memberID and commentID = :commentID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("commentID", commentID)
+								.setParameter("memberID", memberID)
+								.executeUpdate();
+	}
+
+	//good,bad改成0,1
+	@Override
+	public void addBad(Integer memberID, Integer commentID) {
+		String hql = "update PreferenceBean set good = 0, bad = 1 where memberID = :memberID and commentID = :commentID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("commentID", commentID)
+								.setParameter("memberID", memberID)
+								.executeUpdate();
+	}
+
+	//把bad取消
+	@Override
+	public void cancelBad(Integer memberID, Integer commentID) {
+		String hql = "update PreferenceBean set good = 0, bad = 0 where memberID = :memberID and commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID)
 								.setParameter("memberID", memberID)
