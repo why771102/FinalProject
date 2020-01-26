@@ -12,11 +12,11 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <!-- stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/flexslider.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/flexslider.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
 
 <title>包廳申請</title>
 
@@ -107,7 +107,7 @@
 								</tr>
 								<tr>
 									<td>原因詳述:</td>
-									<td><form:textarea cols="50" rows="5"
+									<td><form:textarea cols="30" rows="5"
 											name="hallPurposeDetail" path="hallPurposeDetail"
 											type='textarea'></form:textarea></td>
 								</tr>
@@ -138,8 +138,8 @@
 											value="0" type='hidden' /></td>
 								</tr>
 								<tr>
-									<td><input type='submit' value="送出申請" /></td>
-									<td><a href="<c:url value='/' />">回首頁</a></td>
+									<td><input type='submit' value="送出申請" class="inlog-btn" /></td>
+									<td><a href="<c:url value='/'/>" class="inlog-btn" >回首頁</a></td>
 								</tr>
 							</fieldset>
 						</form:form>

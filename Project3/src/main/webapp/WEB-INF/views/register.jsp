@@ -13,11 +13,11 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/flexslider.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/flexslider.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
 
 <title>會員註冊</title>
 
@@ -48,7 +48,7 @@
 								</tr>
 								<tr>
 									<td>密碼:</td>
-									<td><form:input id="password" path="password" type='text' /><br>
+									<td><form:input id="password" path="password" type='password' /><br>
 										<form:errors path="password" cssClass="error" /></td>
 								</tr>
 								<tr>
@@ -87,7 +87,7 @@
 											value="" type='hidden' /></td>
 								</tr>
 								<tr>
-									<td><input type='submit' id="sumit1" /></td>
+									<td colspan="2"><input type='submit' id="sumit1" class="inlog-btn" /></td>
 								</tr>
 							</fieldset>
 						</form:form>

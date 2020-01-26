@@ -13,11 +13,11 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	
 <!-- stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/flexslider.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/flexslider.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
 
 <title>會員登入</title>
 
@@ -40,13 +40,13 @@
 								</tr>
 								<tr>
 									<td>密碼:</td>
-									<td><form:input id="password" path="password" type='text' /></td>
+									<td><form:input id="password" path="password" type='password' /></td>
 								</tr>
 								<td><form:input id="lastLogInTime" path="lastLogInTime"
 										type='hidden' /></td>
 								<tr>
-									<td><input type='submit' vaiue="確定" id="sumit1"  class="inlog-btn"/></td>
-									<td><input type='reset' vaiue="取消"  class="inlog-btn" /></td>
+									<td colspan="2"><input type='submit' vaiue="確定" id="sumit1"  class="inlog-btn"/></td>
+<!-- 									<td><input type='reset' value="取消"  class="inlog-btn" /></td> -->
 								</tr>
 							</fieldset>
 						</form:form>
