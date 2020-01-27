@@ -24,17 +24,18 @@ public class QuestionServiceImpl implements QuestionService {
 		this.dao = dao;
 	}
 
+	@Transactional
 	@Override
 	public List<QuestionBean> allQuestion(Integer memberId) {
 		return dao.allQuestion(memberId);
 	}
-
+	@Transactional
 	@Override
 	public Integer newQuestion(Integer memberId) {
 		return dao.newQuestion(memberId);
 		
 	}
-
+	@Transactional
 	@Override
 	public boolean checkMember(Integer memberId, Integer questionId) {
 		return dao.checkMember(memberId, questionId);

@@ -25,7 +25,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<QuestionBean> allQuestion(Integer memberId) {
-		String hql = "from Question where memberId = :memberId";
+		String hql = "from QuestionBean where memberId = :memberId";
 		Session session = factory.getCurrentSession();
 		List<QuestionBean> list = null;
 		list = session.createQuery(hql).setParameter("memberId", memberId).getResultList();
@@ -43,13 +43,13 @@ public class QuestionDaoImpl implements QuestionDao {
 		newQues.setStatus(1);
 		session.save(newQues);
 		
-		String hql = "from Question where memberId = :memberId";
+		String hql = "from QuestionBean where memberId = :memberId";
 		List<QuestionBean> list = null;
 		list = session.createQuery(hql).setParameter("memberId", memberId).getResultList();
 		Integer questionId = null;
 		for(QuestionBean qb : list) {
 			Integer qid = qb.getQuestionId();
-			if(qid > questionId) {
+			if(questionId == null || qid > questionId) {
 				questionId = qid;
 			}
 		}
