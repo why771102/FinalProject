@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import com.m.dao.HallSaleDao;
 import com.m.model.HallSaleBean;
@@ -16,6 +17,7 @@ import com.m.service.HallSaleService;
 import com.p.model.HallOrderBean;
 
 @Service
+//@EnableTransactionManagement
 public class HallSaleServiceImpl implements HallSaleService {
 
 	HallSaleDao dao;

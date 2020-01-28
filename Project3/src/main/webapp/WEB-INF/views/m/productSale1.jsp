@@ -125,6 +125,7 @@
 					alert("新增成功!");
 					showInfo(data);
 					console.log(data);
+// 					window.location.href = "${pageContext.request.contextPath}/product/sale";
 				}
 			});
 			
@@ -215,7 +216,7 @@
 			$.ajax({
 						url : "${pageContext.request.contextPath}/product/sale1",
 						data : {
-							productName : document.getElementById("pName"+i).innerText //要更動innerHTML!!
+							productName : document.getElementById("pn").innerText //要更動innerHTML!!
 						},
 						type : "Post",
 						success : function() {
