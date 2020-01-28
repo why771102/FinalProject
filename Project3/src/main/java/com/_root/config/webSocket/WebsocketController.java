@@ -11,6 +11,7 @@ public class WebsocketController {
 	@MessageMapping("/sendMessage")
 	@SendTo("/topic/message")
 	public Chat sendMessage(Chat message) throws Exception {
+		System.out.println("123");
 		System.out.println("sendMessage...ConversationMessage=" + message);
 		System.out.println("sendMessage...message.getName()=" + HtmlUtils.htmlEscape(message.getName()));
 		System.out.println("sendMessage...message.getMessage()=" + HtmlUtils.htmlEscape(message.getContent()));

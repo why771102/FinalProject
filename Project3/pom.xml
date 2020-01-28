@@ -198,25 +198,25 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		
-			<dependency>
+
+		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
 			<version>0.35</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>sockjs-client</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>stomp-websocket</artifactId>
@@ -232,6 +232,7 @@
 			<artifactId>jquery</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+
 
 	</dependencies>
 </project>
