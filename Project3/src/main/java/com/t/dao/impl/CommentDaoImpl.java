@@ -126,7 +126,7 @@ public class CommentDaoImpl implements CommentDao{
 	//用電影ID 查出各個comment
 	@Override
 	public List<CommentBean> getCommentByMovie(Integer movieID){
-		String hql="from CommentBean where movieID = :movieID and commentDelete = 0";
+		String hql="Select movieID,memberID,grade,watched,commentContent,commentTime from CommentBean where movieID = :movieID and commentDelete = 0";
 		Session session=factory.getCurrentSession();
 		List<CommentBean> list=new ArrayList<>();
 		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();

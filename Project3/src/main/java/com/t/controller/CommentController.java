@@ -104,11 +104,21 @@ public class CommentController {
 		return "redirect:/comments/{movieID}";	
 	}
 	
+	//用戶自行刪除
 	@RequestMapping("/comments/delete/{commentID}")
 	public String getDeleteComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
 		cb.setCommentID(commentID);
 		service.deleteComment(commentID);
 		return "redirect:/findAllComment";		
+	}
+	
+	
+	//從後台刪除
+	@RequestMapping("/comments/delete")
+	public String deleteComment(@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+		cb.setCommentID(commentID);
+		service.deleteComment(commentID);
+		return "redirect:/findAllReportComment";		
 	}
 	
 	@RequestMapping("/comments/report")
@@ -125,13 +135,13 @@ public class CommentController {
 		return "t/onecomment";
 	}
 	
-	//抓出所有commentBean裡的東西
-	@RequestMapping(value = "/update/comment")
-	public String getupdateProducts(Model model) {
-		List<CommentBean> list=service.findAllComment();
-		model.addAttribute("comment", list);
-		return "t/onecomment";
-	}
+//	//抓出所有commentBean裡的東西
+//	@RequestMapping(value = "/update/comment")
+//	public String getupdateProducts(Model model) {
+//		List<CommentBean> list=service.findAllComment();
+//		model.addAttribute("comment", list);
+//		return "t/onecomment";
+//	}
 	
 	//用對應的commentID找出該comment的資料
 	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET)

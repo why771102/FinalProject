@@ -27,9 +27,9 @@
                         <p>會員ID:${comment.memberBean.memberID}</p>
                         <p>短評內文:${comment.commentContent}</p>
                         <p>
-                        <a href="<spring:url value='/onecomment?id=${comment.commentID}' />"
+                        <a href="<spring:url value='/comments/delete?id=${comment.commentID}' />"
     							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
+    							<span class="glyphicon-info-sigh glyphicon"></span>刪除留言
  							</a></p>
                    </div>
                 </div>
