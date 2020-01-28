@@ -18,10 +18,10 @@
     </section>
 <div class="ticketInfo bookBtn">
               <ul>
-	            <li><a href="#bookNormal" class="icon-vsgeneral">
+	            <li><a href="<spring:url value='/bookNormal' />"class="icon-vsgroup">
 	                <h1>一般 / 銀行優惠 / iShow會員票種</h1>
 	                <h2>GENERAL / BANK PRIVILEGE TICKET / iShow SVC DISCOUNT TICKET</h2></a></li>
-	            <li><a href="#bookGroup" class="icon-vsgroup">
+	            <li><a href="#bookGroup" class="icon-vsgroup" >
 	                <h1>團體優待票券 / 愛心票 / 敬老票 / 免費兌換券</h1>
 	                <h2>CORPORATE MOVIE MONEY / DISABILITY TICKET / ELDERLY TICKET / READMISSION</h2></a></li>
 	          </ul>
