@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>productSale1</title>
+<title>ticketSave</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -27,11 +26,8 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">產品銷售總覽</h2>
-	<form:form method='POST' modelAttribute="ProductSaleBean1"
-		enctype="multipart/form-data">
+	<h2 style="text-align: center">票卷存DB</h2>
 		<div>
-			類型： ${cateSelection}
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
@@ -48,28 +44,7 @@
 					<th>數量</th>
 					<th>總金額</th>
 				</tr>
-				<c:forEach var="pseb" items="${psebList}">
-					<tr>
-						<td>${pseb.productName}</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-					</tr>
-				</c:forEach>
-<!-- 				<tr> -->
-<!-- 					<td></td> -->
-<!-- 					<td><div id="pName" onclick="sendpName()">產品名稱</div></td> -->
-<!-- 					<td>單價</td> -->
-<!-- 					<td>數量</td> -->
-<!-- 					<td>總金額</td> -->
-<!-- 				</tr> -->
 			</thead>
-			<tbody id="insertHere">
-
-			</tbody>
 			<tfoot>
 				<tr>
 					<th></th>
@@ -80,7 +55,6 @@
 				</tr>
 			</tfoot>
 		</table>
-	</form:form>
 </body>
 <script>
 	$(document).ready(function() {
@@ -107,33 +81,13 @@
 	$(function() {
 		var start = moment().subtract(7, 'days');
 		var end = moment();
-		function cb(start, end, label) {
+		function cb(start, end) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
-			
-			//傳送日期的值
-			$.ajax({
-				url : "${pageContext.request.contextPath}/product/sale",
-				data : {
-					start : start.format('YYYY-MM-DD'),
-					end : end.format('YYYY-MM-DD'),
-// 					cate : document.getElementById("categoryNames").value
-				},
-				type : "POST",
-				success : function(data) {
-					alert("新增成功!");
-					showInfo(data);
-					console.log(data);
-				}
-			});
-			
-			
 		}
 		console.log("ssss" + start.format('YYYY-MM-DD'));
 		console.log("eeee" + end.format('YYYY-MM-DD'));
-
-
 
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
@@ -159,74 +113,7 @@
 		console.log("start" + start.format('YYYY-MM-DD'));
 		console.log("end" + end.format('YYYY-MM-DD'));
 		console.log("reportrange=>" + $('#reportrange span').text());
+
 	});
-
-// 	//傳送cate selection值
-	function sendCate() {
-		console.log("cate=>" + document.getElementById("categoryNames").value);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/product/sale",
-			data : {
-				cate : document.getElementById("categoryNames").value
-			},
-			type : "POST",
-		// 				success : function() {
-		// 					alert("新增成功!");
-		// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-		// 				}
-		});
-	}
-
-// 	function sendpName() {
-// 		$.ajax({
-// 					url : "${pageContext.request.contextPath}/product/sale1",
-// 					data : {
-// 						productName : document.getElementById(x).innerText //要更動innerHTML!!
-// 					},
-// 					type : "Post",
-// 					success : function() {
-// 						alert("you click me!");
-// 						window.location.href = "${pageContext.request.contextPath}/product/sale/date";
-// 					}
-// 				});
-// 	}
-	// 	console.log("pName =>" + document.getElementById("pName").value);
-	//動態新增表格
-	function showInfo(pseb) {
-		var pn;
-		for(var i =0; i < pseb.length; i++){
-			
-		$('#insertHere')
-				.append(
-						//動態新增的時候id要加i
-						'<tr><td></td><td><div id="pName'+ i +'" onclick="sendpName()">'
-						+ pseb[i].productName +
-						'</div></td><td>' + pseb[i].price +
-						'</td><td>' + pseb[i].qtyTotal +
-						'</td><td>' + pseb[i].subtotal + '</td></tr>');
-		
-		pn = "pName"+i;
-		console.log(pn);
-		console.log('~~hello~~~');
-		console.log(document.getElementById(pn).innerText);
-		}
-		
-		function sendpName() {
-			$.ajax({
-						url : "${pageContext.request.contextPath}/product/sale1",
-						data : {
-							productName : document.getElementById("pName"+i).innerText //要更動innerHTML!!
-						},
-						type : "Post",
-						success : function() {
-							alert("you click me!");
-							window.location.href = "${pageContext.request.contextPath}/product/sale/date";
-						}
-					});
-		}
-		
-	}
-
-	
 </script>
 </html>

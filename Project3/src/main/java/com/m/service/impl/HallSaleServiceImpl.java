@@ -97,10 +97,12 @@ public class HallSaleServiceImpl implements HallSaleService {
 		String[] hallName = "ABCDEFGH".split("");
 
 		for (int x = 0; x < hallName.length; x++) {
-			String savehallName = null;
+			String savehallName = hallName[x];
 			Integer hallSubtotal = 0;
 			Integer orderHours = 0;
 			Integer hallPrice = 0;
+			HallSaleBean hsbTemp = new HallSaleBean();
+
 			System.out.println("aaaa: " + hsbList.size());
 			for (HallSaleBean hsb : hsbList) {
 				// if HallID相等就存
@@ -108,17 +110,29 @@ public class HallSaleServiceImpl implements HallSaleService {
 				System.out.println("hsb.getHallID()=>" + hsb.getHallID());
 
 				if (hallName[x].equals(hsb.getHallID())) {
-					savehallName = hallName[x];
+					System.out.println("123~~~");
+					System.out.println("hallSubtotal" + hallSubtotal);
+					System.out.println("orderHours" + orderHours);
+//					savehallName = hallName[x];
 					hallSubtotal = hallSubtotal + hsb.getHallSubtotal();
 					orderHours = orderHours + hsb.getOrderHours();
+
 					hallPrice = hsb.getPrice();
+					hsbTemp.setHallID(savehallName);
+					hsbTemp.setPrice(hallPrice);
+					hsbTemp.setOrderHours(orderHours);
+					hsbTemp.setHallSubtotal(hallSubtotal);
 //					hsbList.remove(hsb);
-					HallSaleBean hsbTemp = new HallSaleBean(savehallName, hallPrice, orderHours, hallSubtotal);
-					hsbListToPage.add(hsbTemp);
 					System.out.println("比對時,DB廳名&hsb廳名相同");
 				} else {
 					System.out.println("比對時,DB廳名&hsb廳名不同");
 				}
+//				HallSaleBean hsbTemp = new HallSaleBean(savehallName, hallPrice, orderHours, hallSubtotal);
+//				hsbListToPage.add(hsbTemp);
+			}
+			if (hsbTemp.getHallID() != null) {
+				hsbListToPage.add(hsbTemp);
+			} else {
 			}
 		}
 		System.out.println("取得完整資料待傳輸=>" + hsbListToPage.size());

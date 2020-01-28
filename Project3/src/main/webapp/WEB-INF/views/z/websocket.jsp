@@ -14,8 +14,7 @@
     <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
 
-<body>
-<img src='/websocket/kitty2.png'/>
+<body>  
 <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
     enabled. Please enable
     Javascript and reload this page!</h2></noscript>

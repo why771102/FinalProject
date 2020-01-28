@@ -22,8 +22,11 @@ public interface ProductSaleDao {
 	public List<ProductSaleEarnBean> getFoodInfo4(String sDate, String eDate);
 	public List<ProductSaleEarnBean> getFoodInfo5(String sDate, String eDate);
 	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate);
+	//by date
+	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate);
 	
-
+	
+	
 	public List<LocalDate> getFoodDates();
 //	public List<MOrderBean> getFoodSCOrder();
 //	public List<LocalDate> getPeripheralDates();

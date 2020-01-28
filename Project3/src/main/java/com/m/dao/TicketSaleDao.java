@@ -1,29 +1,25 @@
 package com.m.dao;
 
 import java.util.List;
-import com.l.model.MOrderBean;
-import com.m.model.TicketSaleBean;
+
+import com.a.model.ShowTimeHistoryBean;
+import com.m.model.TicketSaleEarnBean;
 
 public interface TicketSaleDao {
+	//下拉式genre
+	public String getGenre();
+	
+	public List<TicketSaleEarnBean> getTicketSaleInfo(String sDate, String eDate);
+	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String sDate, String eDate);
+	
 	
 	//回傳order, od, product表內的資訊
 //	public List<TicketSaleBean> getMOrderDetailBeanList();
-	public List<MOrderBean> getMOrderBean();
-	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList);
-	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
-	
-	public List<String> getDistinctTitles();
+//	public List<MOrderBean> getMOrderBean();
+//	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList);
+//	public List<TicketSaleBean> getMOrderDetailBeanList(List<TicketSaleBean> tsbList);
+//	
+//	public List<String> getDistinctTitles();
 	//取得票卷銷售相關資訊
 //	public List<TicketSaleBean> getTicketSale(List<TicketSaleBean> tsbList);
-	
-	//在特定時間區內, 根據類別下拉式選項出現相對的電影名稱DBT => movies: genre(0,1,2,3,4,全(全部是上面的方法DEFAULT))
-//	public List<String> GetTitlesByGenre();
-	
-//	//根據輸入的起迄時間, 取得廳院的mID跟RunID, DBT => running
-//	public List<RunningBean> getRunningInfo(Date sDate, Date eDate);
-
-//	//ShowTimeID: 取得x電影的場次DBT => (movies & running) & showTimeHistory
-//	public Integer getShowTime(Integer movieID);
-
-//	//DBT: movies => movieID, title, runningTime片長, status上映狀態
 }

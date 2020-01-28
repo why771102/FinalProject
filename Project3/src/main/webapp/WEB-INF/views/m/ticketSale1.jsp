@@ -29,9 +29,8 @@
 	<h2 style="text-align: center">票房銷售總覽</h2>
 	<form:form method='POST' modelAttribute="TicketSaleBean1" enctype="multipart/form-data" >
 	<div>
-		電影類型： <select>
-			<option>輔導級</option>
-		</select> &nbsp; &nbsp; &nbsp;電影名稱 <select>
+		類型： ${genreSelection}
+		&nbsp; &nbsp; &nbsp;電影名稱 <select>
 			<option>Java人生</option>
 		</select>
 		<div id="reportrange"
@@ -106,26 +105,30 @@
 	$(function() {
 		var start = moment().subtract(7, 'days');
 		var end = moment();
-		function cb(start, end) {
+		function cb(start, end, label) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
 					+ end.format('YYYY-MM-DD'));
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/hall/sale",
+				url : "${pageContext.request.contextPath}/ticket/sale",
 				data : {
-					start: start,
-					end: end
+					start : start.format('YYYY-MM-DD'),
+					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function() {
+				success : function(data) {
 					alert("新增成功!");
-//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
+					showInfo(data);
+					console.log(data);
 				}
 			});
 			
 		}
+		
+
+		
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
 				{
@@ -148,6 +151,43 @@
 				}, cb);
 		cb(start, end);
 	});
+	
+	//傳送cate selection值
+	function sendGen() {
+		console.log("Gen =>" + document.getElementById("genres").value);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/ticket/sale",
+			data : {
+				genre : document.getElementById("genres").value
+			},
+			type : "POST",
+		// 				success : function() {
+		// 					alert("新增成功!");
+		// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
+		// 				}
+		});
+	}
+	
+	function showInfo(ts) {
+		for(var i =0; i < ts.length; i++){
+		$('#insertHere')
+				.append(
+						'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/sale/date" id="hallID">'
+								+ ts[i].title
+								+ '</a></td><td>'
+								+ ts[i].noPlayTimes
+								+ '</td><td>'
+								+ ts[i].hallSeats
+								+ '</td><td>'
+								+ ts[i].hallSaleSeats
+								+ '</td><td>'
+								+ ts[i].avgSeats
+								+ '</td><td>'
+								+ ts[i].pricePerSeat
+								+ '</td><td>'
+								+ ts[i].subtotal + '</td></tr>');
+		}
+	};
 	
 </script>
 </html>

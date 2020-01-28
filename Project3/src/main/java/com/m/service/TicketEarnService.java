@@ -1,11 +1,11 @@
-package com.m.dao;
+package com.m.service;
 
 import java.util.List;
 
 import com.m.model.TicketSaleEarnBean;
 
-public interface TicketEarnDao {
-	
+public interface TicketEarnService {
+	public String getGenre();
 	public List<TicketSaleEarnBean> getTicketEarnInfo(String sDate, String eDate);
 	public List<TicketSaleEarnBean> getTicketEarnInfo0(String sDate, String eDate);
 	public List<TicketSaleEarnBean> getTicketEarnInfo1(String sDate, String eDate);
