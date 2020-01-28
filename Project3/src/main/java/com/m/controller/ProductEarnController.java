@@ -1,9 +1,8 @@
 package com.m.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,22 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.a.model.SCOrdersBean;
-import com.a.model.ShowTimeHistoryBean;
-import com.google.gson.Gson;
-import com.l.model.MOrderDetailBean;
-import com.l.model.ProductsBean;
-import com.m.model.HallSaleBean;
-import com.m.model.ProductSaleBean;
 import com.m.model.ProductSaleEarnBean;
-import com.m.service.ProductSaleService;
+import com.m.service.ProductEarnService;
 
 @Controller
 
-public class ProductSaleController {
+public class ProductEarnController {
 
 	ServletContext context;
-	ProductSaleService service;
+	ProductEarnService service;
 
 	@Autowired
 	public void setContext(ServletContext context) {
@@ -40,25 +32,25 @@ public class ProductSaleController {
 	}
 
 	@Autowired
-	public void setService(ProductSaleService service) {
+	public void setService(ProductEarnService service) {
 		this.service = service;
 	} 
-	//================================== product/sale ===========================================
+	//================================== product/earn ===========================================
 	
 	// to ps1
-	@GetMapping(value = "product/sale")
+	@GetMapping(value = "product/earn")
 	public String toProductSale(Model model) {
 //		ProductSaleBean psb = new ProductSaleBean();
 //		model.addAttribute("ProductSaleBean1", psb);
-		return "m/productSale1";
+		return "m/productEarn1";
 	}
 	
 	// to ps2
-	@GetMapping(value = "product/sale/date")
+	@GetMapping(value = "product/earn/date")
 	public String toProductSale2(Model model) {
 //		ProductSaleBean psb = new ProductSaleBean();
 //		model.addAttribute("ProductSaleBean2", psb);
-		return "m/productSale2";
+		return "m/productEarn2";
 	}
 	
 	//show cate selection
@@ -67,7 +59,7 @@ public class ProductSaleController {
 		String cateSelection = service.getCategoryNames();
 		model.addAttribute("cateSelection", cateSelection);
 		System.out.println(service.getFoodDates());
-		return "m/productSale1";
+		return "m/productEarn1";
 	}
 	
 //	@PostMapping(value = "product/sale")
@@ -86,7 +78,7 @@ public class ProductSaleController {
 //	}
 	
 	//productSale P1資料傳輸
-	@PostMapping(value = "product/sale")
+	@PostMapping(value = "product/earn")
 	public @ResponseBody List<ProductSaleEarnBean> showProductInfo(Model model, HttpServletRequest request
 			, @RequestParam(value = "cate", required=false) String cate
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
@@ -132,23 +124,23 @@ public class ProductSaleController {
 	//productSale P2資料傳輸
 	//抓取前一頁點選的產品名稱 
 	//怎麼拿到呢???
-	@RequestMapping(value = "product/sale")
+	@RequestMapping(value = "product/earn")
 	public String getProductName(@RequestParam("productName") String pName, HttpServletRequest request) { //productName
 		System.out.println("看這邊~~~~~~~~~~~~~~~~~~~");
 		System.out.println("pName=>" + pName);
 		
 		request.setAttribute("pName", pName);
-		return "m/productSale2"; //第一頁拿到之後要傳去第二頁
+		return "m/productEarn2"; //第一頁拿到之後要傳去第二頁
 	}
 	
-	@PostMapping(value= "product/sale/date")
-	public String getDates(Model model, @RequestParam("productName") String pName,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
-		List<LocalDate> datesList = service.showEachDate(sDate, eDate);
-		List<ProductSaleBean> psbListByDate= service.getByDateOutput(datesList, pName);
-		model.addAttribute("psbListByDate",psbListByDate); //jsp要接取資料
-		System.out.println("---傳送psbListByDate---");
-		return "m/productSale2"; //檢查這邊!!!
-	}
+//	@PostMapping(value= "product/sale/date")
+//	public String getDates(Model model, @RequestParam("productName") String pName,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
+//		List<LocalDate> datesList = service.showEachDate(sDate, eDate);
+//		List<ProductSaleBean> psbListByDate= service.getByDateOutput(datesList, pName);
+//		model.addAttribute("psbListByDate",psbListByDate); //jsp要接取資料
+//		System.out.println("---傳送psbListByDate---");
+//		return "m/productSale2"; //檢查這邊!!!
+//	}
 	
 //	// to ps1
 //	@GetMapping(value = "product/sale")

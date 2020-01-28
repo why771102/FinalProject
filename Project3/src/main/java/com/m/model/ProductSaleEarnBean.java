@@ -16,7 +16,6 @@ import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 
 @Entity
-//@IdClass(com.m.model.ProductSaleEarnID.class)
 @Table(name="productSaleEarn")
 public class ProductSaleEarnBean implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -50,12 +49,46 @@ public class ProductSaleEarnBean implements Serializable {
 	Integer subtotal;
 	@Transient
 	String productName;
+	@Transient
+	Integer cost;
+	@Transient
+	Integer earn;
+	@Transient
+	Integer earnSubtotal;
 	
-	public ProductSaleEarnBean(String productName, Integer price, Integer qtyTotal, Integer subtotal) {
+	public ProductSaleEarnBean(String productName, Integer price, Integer qtyTotal, Integer cost, 
+			Integer earn, Integer subtotal, Integer earnSubtotal) {
 		this.productName = productName;
 		this.qtyTotal = qtyTotal;
 		this.price = price;
 		this.subtotal = subtotal;
+		this.cost = cost;
+		this.earn = earn;
+		this.earnSubtotal = earnSubtotal;
+	}
+
+	public Integer getCost() {
+		return cost;
+	}
+
+	public void setCost(Integer cost) {
+		this.cost = cost;
+	}
+
+	public Integer getEarn() {
+		return earn;
+	}
+
+	public void setEarn(Integer earn) {
+		this.earn = earn;
+	}
+
+	public Integer getEarnSubtotal() {
+		return earnSubtotal;
+	}
+
+	public void setEarnSubtotal(Integer earnSubtotal) {
+		this.earnSubtotal = earnSubtotal;
 	}
 
 	public CategoriesBean getCategoriesBean() {

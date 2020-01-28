@@ -63,6 +63,11 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		return dao.getPeripheralInfo(sDate, eDate);
 	}
 	
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate){
+		return dao.getInfoByDate(pName, sDate, eDate);
+	}
 	
 //	@Transactional
 //	@Override

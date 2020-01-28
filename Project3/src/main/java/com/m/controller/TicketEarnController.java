@@ -20,13 +20,14 @@ import com.m.model.HallSaleBean;
 import com.m.model.ProductSaleEarnBean;
 import com.m.model.TicketSaleBean;
 import com.m.model.TicketSaleEarnBean;
+import com.m.service.TicketEarnService;
 import com.m.service.TicketSaleService;
 
 @Controller
-public class TicketSaleController {
+public class TicketEarnController {
 	
 	ServletContext context;
-	TicketSaleService service;
+	TicketEarnService service;
 	
 //	@Autowired
 	public void setContext(ServletContext context) {
@@ -34,16 +35,16 @@ public class TicketSaleController {
 	}
 	
 	@Autowired
-	public void setService(TicketSaleService service) {
+	public void setService(TicketEarnService service) {
 		this.service = service;
 	}
 	
 	//to ts page1
-	@GetMapping(value= "/ticket/sale")
+	@GetMapping(value= "/ticket/earn")
 	public String toTicketSale(Model model) {
 		TicketSaleBean tsb = new TicketSaleBean();
 		model.addAttribute("TicketSaleBean1", tsb);
-		return "m/ticketSale1";
+		return "m/ticketEarn1";
 	}
 	
 	//新增genre下拉式選單
@@ -51,10 +52,10 @@ public class TicketSaleController {
 	public String addSelection(Model model) {
 		String genreSelection = service.getGenre();
 		model.addAttribute("genreSelection", genreSelection);
-		return "m/ticketSale1";
+		return "m/ticketEarn1";
 	}
 	
-	@PostMapping(value = "ticket/sale")
+	@PostMapping(value = "ticket/earn")
 	public @ResponseBody List<TicketSaleEarnBean> showTicketInfo(Model model, HttpServletRequest request
 			, @RequestParam(value = "genre", required=false) String genre
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
@@ -64,31 +65,31 @@ public class TicketSaleController {
 		List<TicketSaleEarnBean> tsebList = new ArrayList<>();
 		
 		if (genre == null) {
-			tsebList = service.getTicketSaleInfo(sDate, eDate);
+			tsebList = service.getTicketEarnInfo(sDate, eDate);
 			System.out.println("this is default!");
 		} else {
 			System.out.println("start to get Info!!");
 			switch (genre) {
 			case "all":
-				tsebList = service.getTicketSaleInfo(sDate, eDate);
+				tsebList = service.getTicketEarnInfo(sDate, eDate);
 				break;
 			case "其他": //0(其他)1(劇情)2(喜劇)3(愛情)4(恐怖懸疑)
-//				tsebList = service.getAllFoodInfo(sDate, eDate);
+				tsebList = service.getTicketEarnInfo0(sDate, eDate);
 				break;
 			case "劇情":
-//				tsebList = service.getFoodInfo4(sDate, eDate);
+				tsebList = service.getTicketEarnInfo1(sDate, eDate);
 				break;
 			case "喜劇":
-//				tsebList = service.getFoodInfo5(sDate, eDate);
+				tsebList = service.getTicketEarnInfo2(sDate, eDate);
 				break;
 			case "愛情":
-//				tsebList = service.getPeripheralInfo(sDate, eDate);
+				tsebList = service.getTicketEarnInfo3(sDate, eDate);
 				break;
 			case "恐怖懸疑":
-//				tsebList = service.getPeripheralInfo(sDate, eDate);
+				tsebList = service.getTicketEarnInfo4(sDate, eDate);
 				break;
 			default:
-				tsebList = service.getTicketSaleInfo(sDate, eDate);
+				tsebList = service.getTicketEarnInfo(sDate, eDate);
 				System.out.println("this is default..compare cate and related method");
 				break;
 		    }
