@@ -18,11 +18,12 @@
  <div class="col-md-3 col-sm-4 col-xs-6">
                     <div class="movie1">
                         <div>
-                            <img src="img/feature8.jpg">
+<!--                         修改處from line 22 to 26 -->
+                            <img src="<c:url value='/getPicture/${movie.movieID}' />"width="70%" height="50%">
                         </div>
                         <div class="m-name">
                             <h3>${movie.title}</h3>
-                            <h4>English, Hindi</h4>
+                            <h4>${movie.genreBean.genre}</h4>
                             <a href="" class="movie-btn1">Action</a>
                             <a href="" class="movie-btn1">Thriller</a>
                             <a href="" class="movie-btn1">Drama</a>
