@@ -14,6 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -50,6 +54,11 @@ public class MovieBean implements Serializable {
 	Blob photo;
 	@Transient
 	Integer status;
+	@JsonIgnore
+	@Transient
+	private MultipartFile	movieImage;  
+	
+	String fileName; 
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="genre")
@@ -63,12 +72,27 @@ public class MovieBean implements Serializable {
 	@JoinColumn(name="movieStatus")
 	private  MovieStatusBean movieStatusBean;
 	
-	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public MultipartFile getMovieImage() {
+		return movieImage;
+	}
+
+	public void setMovieImage(MultipartFile movieImage) {
+		this.movieImage = movieImage;
+	}
+
 	public MovieBean() {}
 	
 	public MovieBean(Integer movieID, String title, String contractDate, Integer expectedProfit, Double profitRatio,
 			Integer runningTime, String director, String cast, MovieRatingBean movieRatingBean, GenreBean genreBean, String trailer,
-			String plotSummary, Blob photo, MovieStatusBean movieStatusBean) {
+			String plotSummary, Blob photo,String fileName, MovieStatusBean movieStatusBean) {
 		super();
 		this.movieID = movieID;
 		this.title = title;
@@ -83,12 +107,13 @@ public class MovieBean implements Serializable {
 		this.trailer = trailer;
 		this.plotSummary = plotSummary;
 		this.photo = photo;
+		this.fileName = fileName;
 		this.movieStatusBean = movieStatusBean;
 	}
 
 	public MovieBean(Integer movieID, String title, String contractDate, Integer expectedProfit, Double profitRatio,
 			Integer runningTime, String director, String cast, Integer movieRating, Integer genre, String trailer,
-			String plotSummary, Blob photo ,Integer status) {
+			String plotSummary, Blob photo, String fileName, Integer status) {
 		this.movieID = movieID;
 		this.title = title;
 		this.contractDate = contractDate;
@@ -102,6 +127,7 @@ public class MovieBean implements Serializable {
 		this.trailer = trailer;
 		this.plotSummary = plotSummary;
 		this.photo = photo;
+		this.fileName = fileName;
 		this.status = status;
 	}
 

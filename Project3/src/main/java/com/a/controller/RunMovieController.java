@@ -1,5 +1,11 @@
 package com.a.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,16 +16,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
 
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +38,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.a.model.MovieBean;
@@ -85,8 +95,20 @@ public class RunMovieController {
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("傳入不允許的欄位");
 		}
+		MultipartFile movieImage = mb.getMovieImage();
+		String originalFilename = movieImage.getOriginalFilename();
+		mb.setFileName(originalFilename);
+		if (movieImage != null && !movieImage.isEmpty() ) {
+			try {
+				byte[] b = movieImage.getBytes();
+				Blob blob = new SerialBlob(b);
+				mb.setPhoto(blob);
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+		}
 		mb.setStatus(0);
-
 
 		mService.addmovie(mb);
 
@@ -125,7 +147,7 @@ public class RunMovieController {
 
 		// 換URL
 		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl(url + "/addmovie/suseece");
+		redirectView.setUrl(url + "/addmovie/success");
 		// 換URL
 		return "index-a";
 	}
@@ -184,6 +206,63 @@ public class RunMovieController {
 		model.addAttribute("Movie", mb);
 
 		return "a/showMovie";// URL 跟 eclip 擺放位置相關
+	}
+	
+	//顯示電影圖
+	//Added getPicture to RunMovieController + getByteArray
+	@GetMapping("/getPicture/{movieID}")
+	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer movieID) {
+	    String filePath = "/resources/images/NoImage.jpg";
+	    System.out.println(movieID);
+	    byte[] media = null;
+	    HttpHeaders headers = new HttpHeaders();
+	    String filename = "";
+	    int len = 0;
+	    MovieBean bean = mService.getMovieBeanById(movieID);
+	    System.out.println(bean);
+	    if (bean != null) {
+	        Blob blob = bean.getPhoto();
+	        filename = bean.getFileName();
+	        if (blob != null) {
+	            try {
+	                len = (int) blob.length();
+	                media = blob.getBytes(1, len); //  blob.getBytes(1, len): 是 1 開頭。Jdbc相關的類別都是1 開頭。
+	            } catch (SQLException e) {
+	                throw new RuntimeException("RunMovieController的getPicture()發生SQLException: " + e.getMessage());
+	            }
+	        } else {
+	            media = toByteArray(filePath);    
+	            filename = filePath;            
+	        }
+	    } else {
+	    	media = toByteArray(filePath);    
+	        filename = filePath;            
+	    }
+	       headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+	       String mimeType = context.getMimeType(filename);
+	    MediaType mediaType = MediaType.valueOf(mimeType);
+	    System.out.println("mediaType =" + mediaType);
+	    headers.setContentType(mediaType);
+	    ResponseEntity<byte[]> responseEntity = 
+	                new ResponseEntity<>(media, headers, HttpStatus.OK);
+	    return responseEntity;
+	}
+	
+	private byte[] toByteArray(String filepath) {
+	    byte[] b = null;
+	    String realPath = context.getRealPath(filepath);
+	    try {
+	          File file = new File(realPath);
+	          long size = file.length();
+	          b = new byte[(int)size];
+	          InputStream fis = context.getResourceAsStream(filepath);
+	          fis.read(b);
+	    } catch (FileNotFoundException e) {
+	          e.printStackTrace();
+	    } catch (IOException e) {
+	          e.printStackTrace();
+	    }
+	    return b;
 	}
 
 	@GetMapping(value = "/AllMovie/show") // URL 跟<a href='movie/show'> 相關
