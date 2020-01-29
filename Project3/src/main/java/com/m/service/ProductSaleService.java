@@ -21,6 +21,7 @@ public interface ProductSaleService {
 	public List<ProductSaleEarnBean> getFoodInfo5(String sDate, String eDate);
 	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate);
 	
+	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate);
 //	public List<MOrderDetailBean> getFoodSCOrder1();
 	
 	

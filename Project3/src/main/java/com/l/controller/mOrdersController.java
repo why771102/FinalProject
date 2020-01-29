@@ -80,24 +80,33 @@ public class mOrdersController {
 //		    cookie.setPath("/");
 //		    response.addCookie(cookie);
 //		    
-		    cookie = new Cookie("hallID",sthb.getHall().getHallID());
-		    cookie.setMaxAge(7 * 24 * 60 * 60);
-		    cookie.setPath("/");
-		    response.addCookie(cookie);
-
-		    cookie = new Cookie("runID",sthb.getRun().getRunID().toString());
-		    cookie.setMaxAge(7 * 24 * 60 * 60);
-		    cookie.setPath("/");
-		    response.addCookie(cookie);
+//		    cookie = new Cookie("hallID",sthb.getHall().getHallID());
+//		    cookie.setMaxAge(7 * 24 * 60 * 60);
+//		    cookie.setPath("/");
+//		    response.addCookie(cookie);
+//
+//		    cookie = new Cookie("runID",sthb.getRun().getRunID().toString());
+//		    cookie.setMaxAge(7 * 24 * 60 * 60);
+//		    cookie.setPath("/");
+//		    response.addCookie(cookie);
 		    
 			return "l/queryStartTime";
 		}
 
+		//連接購票畫面
 		@RequestMapping("/buyticket")
 		public String buyTicket(){
 			return "l/tickets";
 		}
-	
+		//連接購票畫面
+		@RequestMapping("/bookNormal")
+		public String bookNormal(){
+			return "l/bookNormal";
+		}
+		
+		
+		
+		
 //	//用電影ID查詢所有RUNID時間在release和expectedOffDate之間
 //	@RequestMapping("/queryMovie")
 //	public String getRunningID(Model model,HttpServletRequest request,HttpServletResponse response){

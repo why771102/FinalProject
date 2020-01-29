@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>productSale1</title>
+<title>productSale2</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -87,25 +87,29 @@
 	$(function() {
 		var start = moment().subtract(7, 'days');
 		var end = moment();
-		function cb(start, end) {
+		function cb(start, end, label) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
+			
+			//傳送日期的值
+			$.ajax({
+				url : "${pageContext.request.contextPath}/product/sale/date",
+				data : {
+					start : start.format('YYYY-MM-DD'),
+					end : end.format('YYYY-MM-DD')
+				},
+				type : "POST",
+				success : function() {
+					alert("到第二頁囉!");
+					// 				window.location.href = "${pageContext.request.contextPath}/index-c";
+				}
+			});
+			
+			
 		}
 		console.log("pppp" + start.format('YYYY-MM-DD'));
-		//傳送日期的值
-		$.ajax({
-			url : "${pageContext.request.contextPath}/product/sale",
-			data : {
-				start : start.format('YYYY-MM-DD'),
-				end : end.format('YYYY-MM-DD')
-			},
-			type : "POST",
-			success : function() {
-				alert("到第二頁囉!");
-				// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-			}
-		});
+
 
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
@@ -130,25 +134,28 @@
 		cb(start, end);
 	});
 
-	//傳送cate selection值
-	function showCate() {
-		$.ajax({
-			url : "${pageContext.request.contextPath}/product/sale/date",
-			data : {
-				cate : document.getElementById("categoryNames").value
-			},
-			type : "Get",
-// 			success : function() {
-// 				alert("新增成功!");
-				//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-// 			}
-		});
-	}
+// 	//傳送cate selection值
+// 	function showCate() {
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/product/sale/date",
+// 			data : {
+// 				cate : document.getElementById("categoryNames").value
+// 			},
+// 			type : "Get",
+// // 			success : function() {
+// // 				alert("新增成功!");
+// 				//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
+// // 			}
+// 		});
+// 	}
 
-	//動態新增表格
 	//動態新增表格
 	$('#insertHere')
 			.append(
-					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">產品名稱</a></td><td>單價</td><td>數量</td><td>總金額</td></tr>');
+					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">'
+					+日期+'</a></td><td>'
+					+單價+'</td><td>'
+					+數量+'</td><td>'
+					+總金額+'</td></tr>');
 </script>
 </html>

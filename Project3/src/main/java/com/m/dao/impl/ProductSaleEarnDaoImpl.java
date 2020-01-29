@@ -115,7 +115,7 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 				Integer qty = 0; // 加總存db
 				Integer price = 0;
 				CategoriesBean cb = null;
-//				productb = pb;
+
 				for (MOrderDetailBean modb : mdList) {
 					if (pb.getProductID() == modb.getProductsBean().getProductID()) {
 						price = (int) Math.round(modb.getProductsBean().getUnitPrice() * modb.getDiscount());

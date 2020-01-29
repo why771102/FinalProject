@@ -45,7 +45,7 @@ public class test {
 		
 	public static void main(String[] args) {
 		
-
+		System.out.println("2019-02-07 12:12:33.000".substring(0, 10));
 		
 		
 		

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.m.model.HallSaleBean, java.util.*"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%-- <% List<HallSaleBean> hsbList = (ArrayList<HallSaleBean>)request.getAttribute("HallSaleBeanList"); --%>
 <%-- System.out.println(hsbList.get(0).getHallID());%> --%>
 <!DOCTYPE html>
@@ -30,106 +31,128 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">包廳銷售總覽</h2>
-	<form:form method='POST' modelAttribute="HallSaleBeanList"
-		enctype="multipart/form-data">
-		<div>
-			<div id="timePicker"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
-				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
-					class="fa fa-caret-down"></i>
-			</div>
+	<div>
+		<div id="timePicker"
+			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
+				class="fa fa-caret-down"></i>
 		</div>
-		<br>
-		<table id="example" class="display" style="width: 100%;">
-			<thead>
+	</div>
+	<br>
+	<table id="example" class="display" style="width: 100%;">
+		<thead>
+			<tr>
+				<th></th>
+				<th>廳名</th>
+				<th>單價</th>
+				<th>時數</th>
+				<th>銷售總金額</th>
+			</tr>
+		</thead>
+		<tbody id="insertHere">
+			<c:forEach var="x" items="${hsbList}">
 				<tr>
-					<th></th>
-					<th>廳名</th>
-					<th>單價</th>
-					<th>時數</th>
-					<th>銷售總金額</th>
+					<td>${x.hallID}</td>
+					<td>aa</td>
+					<td>aa</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				</tr>
-			</thead>
-			<tbody id="insertHere">
-<!-- 				<tr> -->
-<!-- 					<td></td> -->
-<!-- 					<td><a -->
-<%-- 						href="${pageContext.request.contextPath}/hall/sale/date">Tiger --%>
-<!-- 							Nixo</a></td> -->
-<!-- 					<td>System Architect</td> -->
-<!-- 					<td>Edinburgh</td> -->
-<!-- 					<td>61</td> -->
-<!-- 				</tr> -->
-			</tbody>
-			<tfoot>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</tfoot>
-		</table>
-	</form:form>
-
+			</c:forEach>
+			<!-- 				<tr> -->
+			<!-- 					<td></td> -->
+			<!-- 					<td><a -->
+			<%-- 						href="${pageContext.request.contextPath}/hall/sale/date">Tiger --%>
+			<!-- 							Nixo</a></td> -->
+			<!-- 					<td>System Architect</td> -->
+			<!-- 					<td>Edinburgh</td> -->
+			<!-- 					<td>61</td> -->
+			<!-- 				</tr> -->
+		</tbody>
+		<!-- 			<tfoot> -->
+		<!-- 				<tr> -->
+		<!-- 					<th></th> -->
+		<!-- 					<th></th> -->
+		<!-- 					<th></th> -->
+		<!-- 					<th></th> -->
+		<!-- 					<th></th> -->
+		<!-- 				</tr> -->
+		<!-- 			</tfoot> -->
+	</table>
+	<a href="<spring:url value="/hallSale.xls"/>" class="button info">Export To Excel</a>
+	
 	<script>
-	
-	
-// 	console.log("HallSaleBeanList" + ${HallSaleBeanList});
-		$(document)
-				.ready(
-						function() {
-							var t = $('#example').DataTable({
-								"columnDefs" : [ {
-									"searchable" : false,
-									"orderable" : false,
-									"targets" : 0
-								} ],
-								"order" : [ [ 1, 'asc' ] ]
-							});
+		$(document).ready(function() {
+			
+			var t = $('#example').DataTable({
+				"columnDefs" : [ {
+					"searchable" : false,
+					"orderable" : false,
+					"targets" : 0
+				} ],
+				"order" : [ [ 1, 'asc' ] ]
+			});
 
-							t.on('order.dt search.dt', function() {
-								t.column(0, {
-									search : 'applied',
-									order : 'applied'
-								}).nodes().each(function(cell, i) {
-									cell.innerHTML = i + 1;
-								});
-							}).draw();
+			t.on('order.dt search.dt', function() {
+				t.column(0, {
+					search : 'applied',
+					order : 'applied'
+				}).nodes().each(function(cell, i) {
+					cell.innerHTML = i + 1;
+				});
+			}).draw();
 
-							//動態新增表格
-							// 		console.log("test=> " + ${HallSaleBeanList});
-							// 		${HallSaleBeanList}.forEach(showInfo);
-							
-						});
+			//動態新增表格
+			// 		console.log("test=> " + ${HallSaleBeanList});
+			// 		${HallSaleBeanList}.forEach(showInfo);
+
+		});
 
 		// timepicker
 		$(function() {
 			var start = moment().subtract(7, 'days');
 			var end = moment();
-			function cb(start, end) {
+			function cb(start, end, label) {
 				$('#timePicker span').html(
 						start.format('YYYY-MM-DD') + ' ~ '
 								+ end.format('YYYY-MM-DD'));
+				//傳送日期的值
+				$.ajax({
+					url : "${pageContext.request.contextPath}/hall/sale",
+					data : {
+						start : start.format('YYYY-MM-DD'),
+						end : end.format('YYYY-MM-DD')
+					},
+					type : "POST",
+					success : function(hall) {
+						alert("搜尋成功!");
+// 						showInfo(data);
+						console.log(hall);
+							for(var i =0; i < hall.length; i++){
+							$('#insertHere')
+									.append(
+											'<c:forEach var="x" items="'+${hall}+'"><tr><td>'
+											+${x.hallID}+'</td><td>'+${x.price}+'</td><td>'
+											+${x.orderHours}+'</td><td>'+${x.hallSubtotal}+
+											'</td></tr></c:forEach>');
+// 				 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
+// 		 									+ hall[i].hallID
+// 		 									+ '廳'
+// 		 									+ '</a></td><td>'
+// 		 									+ hall[i].price
+// 		 									+ '</td><td>'
+// 		 									+ hall[i].orderHours
+// 		 									+ '</td><td>'
+// 		 									+ hall[i].hallSubtotal + '</td></tr>');
+							}
+					}	
+				});
 			}
 			console.log("hhhh" + start.format('YYYY-MM-DD'));
 
-			//傳送日期的值
-			$.ajax({
-				url : "${pageContext.request.contextPath}/hall/sale",
-				data : {
-					start : start.format('YYYY-MM-DD'),
-					end : end.format('YYYY-MM-DD')
-				},
-				type : "POST",
-				success : function(data) {
-					alert("新增成功!");
-					showInfo(data);
-					console.log(data);
-					// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-				}
-			});
+
 
 			// MMMM D, YYYY
 			$('#timePicker').daterangepicker(
@@ -155,20 +178,28 @@
 					}, cb);
 			cb(start, end);
 		});
-		function showInfo(hall) {
-			$('#insertHere')
-					.append(
-							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
-									+ hall[0].hallID + '廳'
-									+ '</a></td><td>'
-									+ hall[0].price
-									+ '</td><td>'
-									+ hall[0].orderHours
-									+ '</td><td>'
-									+ hall[0].hallSubtotal
-									+ '</td></tr>');
-		}
-		;
+		
+		
+		
+// 		function showInfo(hall) {
+// 			for(var i =0; i < hall.length; i++){
+// 			$('#insertHere')
+// 					.append(
+// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
+// 									+ hall[i].hallID
+// 									+ '廳'
+// 									+ '</a></td><td>'
+// 									+ hall[i].price
+// 									+ '</td><td>'
+// 									+ hall[i].orderHours
+// 									+ '</td><td>'
+// 									+ hall[i].hallSubtotal + '</td></tr>');
+// 			}
+// 		};
+		
+		
+		
+		
 		// 	function (){
 		// 	$.ajax({
 		// 		url : "${pageContext.request.contextPath}/hall/sale",

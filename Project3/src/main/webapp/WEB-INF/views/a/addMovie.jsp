@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <title>AddMovie</title>
 
 </head>
@@ -31,11 +31,15 @@
 					分級:		<form:input name="MovieRating" path="MovieRating" type='text' value='0'  /><br>
 					預告:		<form:input name="trailer" path="trailer" type='text' value='wjiojfkisdjf' /><br>
 					電影介紹:		<form:input name="plotSummary" path="plotSummary" type='text' value='雅菁怡瑩'  /><br>
-<%-- 					照片:		<form:input name="photo" path="photo" type='text' /><br> --%>
+					照片:		<form:input name="movieImage" path="movieImage" id="movieImage" type='file' onclick="getclass(this)"/><br>
+					<div>
+						<img class="preview" style="max-width: 150px; max-height: 150px;">
+						<div class="size"></div>
+					</div>
                  
 			</fieldset>
 		
-	  
+	  				
 	   
 	   
 		
@@ -60,6 +64,27 @@
 
 		
 		<script>
+		
+		//照片預覽功能
+		function getclass(obj) {
+			//get photo input id
+			var photo = "#" + obj.id;
+// 			var p = photo.substring(photo.length-1, photo.length);
+			$("body").on("change", photo, function() {
+				preview(this);
+			})
+		}
+		function preview(input) {
+			if (input.files && input.files[0]) {
+				var image = ".preview";
+				console.log(image);
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$(image).attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
 	
 		function formSubmit()
 		  {

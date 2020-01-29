@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +48,24 @@
 					<th>數量</th>
 					<th>總金額</th>
 				</tr>
+				<c:forEach var="pseb" items="${psebList}">
+					<tr>
+						<td>${pseb.productName}</td>
+						<td>zz</td>
+						<td>zz</td>
+						<td>zz</td>
+						<td>zz</td>
+						<td>zz</td>
+						<td>zz</td>
+					</tr>
+				</c:forEach>
+<!-- 				<tr> -->
+<!-- 					<td></td> -->
+<!-- 					<td><div id="pName" onclick="sendpName()">產品名稱</div></td> -->
+<!-- 					<td>單價</td> -->
+<!-- 					<td>數量</td> -->
+<!-- 					<td>總金額</td> -->
+<!-- 				</tr> -->
 			</thead>
 			<tbody id="insertHere">
 
@@ -88,26 +107,34 @@
 	$(function() {
 		var start = moment().subtract(7, 'days');
 		var end = moment();
-		function cb(start, end) {
+		function cb(start, end, label) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
+			
+			//傳送日期的值
+			$.ajax({
+				url : "${pageContext.request.contextPath}/product/sale",
+				data : {
+					start : start.format('YYYY-MM-DD'),
+					end : end.format('YYYY-MM-DD'),
+// 					cate : document.getElementById("categoryNames").value
+				},
+				type : "POST",
+				success : function(data) {
+					alert("新增成功!");
+					showInfo(data);
+					console.log(data);
+// 					window.location.href = "${pageContext.request.contextPath}/product/sale";
+				}
+			});
+			
+			
 		}
 		console.log("ssss" + start.format('YYYY-MM-DD'));
 		console.log("eeee" + end.format('YYYY-MM-DD'));
-				//傳送日期的值
-				$.ajax({
-					url : "${pageContext.request.contextPath}/product/sale",
-					data : {
-						start: start.format('YYYY-MM-DD'),
-						end: end.format('YYYY-MM-DD')
-					},
-					type : "POST",
-// 					success : function() {
-// 						alert("新增成功!");
-		// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-// 					}
-				});
+
+
 
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
@@ -133,21 +160,9 @@
 		console.log("start" + start.format('YYYY-MM-DD'));
 		console.log("end" + end.format('YYYY-MM-DD'));
 		console.log("reportrange=>" + $('#reportrange span').text());
-// 		//傳送日期的值
-// 		$.ajax({
-// 			url : "${pageContext.request.contextPath}/product/sale",
-// 			data : {
-// 				start : start.format('YYYY-MM-DD'),
-// 				end : end.format('YYYY-MM-DD')
-// 			},
-// 			type : "POST",
-// 			success : function() {
-// 				alert("新增成功!");
-// 				// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-// 			}
-// 		});
 	});
-	//傳送cate selection值
+
+// 	//傳送cate selection值
 	function sendCate() {
 		console.log("cate=>" + document.getElementById("categoryNames").value);
 		$.ajax({
@@ -163,23 +178,56 @@
 		});
 	}
 
-	function sendpName(){
-		$.ajax({
-			url : "${pageContext.request.contextPath}/product/sale1",
-			data : {
-				productName : document.getElementById("pName").innerText //要更動innerHTML!!
-			},
-			type : "Post",
+// 	function sendpName() {
+// 		$.ajax({
+// 					url : "${pageContext.request.contextPath}/product/sale1",
+// 					data : {
+// 						productName : document.getElementById(x).innerText //要更動innerHTML!!
+// 					},
+// 					type : "Post",
+// 					success : function() {
+// 						alert("you click me!");
+// 						window.location.href = "${pageContext.request.contextPath}/product/sale/date";
+// 					}
+// 				});
+// 	}
+	// 	console.log("pName =>" + document.getElementById("pName").value);
+	//動態新增表格
+	function showInfo(pseb) {
+		var pn;
+		for(var i =0; i < pseb.length; i++){
+			
+		$('#insertHere')
+				.append(
+						//動態新增的時候id要加i
+						'<tr><td></td><td><div id="pName'+ i +'" onclick="sendpName()">'
+						+ pseb[i].productName +
+						'</div></td><td>' + pseb[i].price +
+						'</td><td>' + pseb[i].qtyTotal +
+						'</td><td>' + pseb[i].subtotal + '</td></tr>');
+		
+		pn = "pName"+i;
+		console.log(pn);
+		console.log('~~hello~~~');
+		console.log(document.getElementById(pn).innerText);
+		}
+		
+		function sendpName() {
+			$.ajax({
+						url : "${pageContext.request.contextPath}/product/sale1",
+						data : {
+							productName : document.getElementById("pn").innerText //要更動innerHTML!!
+						},
+						type : "Post",
 						success : function() {
 							alert("you click me!");
-			 				window.location.href = "${pageContext.request.contextPath}/product/sal e/date";
+							window.location.href = "${pageContext.request.contextPath}/product/sale/date";
 						}
-		});
+					});
+		}
+		
 	}
-// 	console.log("pName =>" + document.getElementById("pName").value);
-	//動態新增表格
-	$('#insertHere')
-			.append( //動態新增的時候id要加i
-					'<tr><td></td><td><div id="pName" onclick="sendpName()">產品名稱</div></td><td>單價</td><td>數量</td><td>總金額</td></tr>');
+
+	
 </script>
 </html>

@@ -1,20 +1,15 @@
 package com.m.dao;
 
+import java.util.List;
+
+import com.m.model.TicketSaleEarnBean;
+
 public interface TicketEarnDao {
 	
-	//線上票券收入DBT: Products => productID, productName(電影名稱?), category(1純票/2優惠票), cost(拆帳成本?)
-	
-	//實體票券收入DBT: PaymentReceived => amount,　numberOfTickets
-	
-	//實體票券電影名稱待整理DBT: seatOrder？　場次數？
-	
-	//DBT: movies => movieID, title, profitRatio拆帳, runningTime片長, status上映狀態
-	
-	//DBT: running => release上映日, offDate實際下映日
-
-	
-	//線上隨餐收入DBT: Products => productID, productName, category(3隨餐收入), cost
-
-	//DBT: OrderDetail => productID, unitPrice, quantity, discount
-
+	public List<TicketSaleEarnBean> getTicketEarnInfo(String sDate, String eDate);
+	public List<TicketSaleEarnBean> getTicketEarnInfo0(String sDate, String eDate);
+	public List<TicketSaleEarnBean> getTicketEarnInfo1(String sDate, String eDate);
+	public List<TicketSaleEarnBean> getTicketEarnInfo2(String sDate, String eDate);
+	public List<TicketSaleEarnBean> getTicketEarnInfo3(String sDate, String eDate);
+	public List<TicketSaleEarnBean> getTicketEarnInfo4(String sDate, String eDate);
 }

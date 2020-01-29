@@ -1,40 +1,27 @@
 package com.z.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.WebRequest;
 
-import com.z.model.AnnoBean;
-import com.z.model.AnnoStatusBean;
 import com.z.model.QuestionBean;
-import com.z.service.AnnoService;
+import com.z.model.QuestionContentBean;
+import com.z.service.QuestionContentService;
 import com.z.service.QuestionService;
 
 @Controller
 public class QuestionController {
 	
 	QuestionService service;
+	QuestionContentService ConService;
 	
 	ServletContext context;
 	
@@ -48,6 +35,12 @@ public class QuestionController {
 		this.service = service;
 	}
 	
+	@Autowired
+	public void setService(QuestionContentService service) {
+		this.ConService = service;
+	}
+	
+	//透過用戶ID查詢客服紀錄
 	@RequestMapping(value = "/questionList")
 	public String getAllQuestion(Model model, HttpServletRequest request) {
 		
@@ -61,7 +54,7 @@ public class QuestionController {
 		}
 		List<QuestionBean> allQuestion = service.allQuestion(memberId);
 		model.addAttribute("allQuestion", allQuestion);
-		return "z/QuestionList";
+		return "z/questionList";
 	}
 	
 	
@@ -78,10 +71,11 @@ public class QuestionController {
 		}
 		Integer questionId = service.newQuestion(memberId);
 		model.addAttribute("questionId", questionId);
-		return null;	
+		return "redirect:/question/" + questionId;	
 	}
 	
 	
+	//進到專屬客服區
 	@RequestMapping(value = "/question/{questionId}")
 	public String ques(Model model, HttpServletRequest request, @PathVariable("questionId") Integer questionId) {
 		
@@ -96,13 +90,12 @@ public class QuestionController {
 		}
 		if(!service.checkMember(memberId, questionId)) {
 			return null;    //表示驗證沒過，不是同一個用戶
-		}
-		
-		
-		
-		
-		
-		return null;
+		}					
+		//查詢歷史訊息
+		List<QuestionContentBean> list = ConService.historyContent(questionId);
+		model.addAttribute("content", list);
+		return "z/websocket";
+
 	}
 	
 	

@@ -60,151 +60,317 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return ans;
 	}
 
-	//default and 全部選項
+	// default and 全部選項
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductSaleEarnBean> getAllProductInfo(String sDate, String eDate) {
-		Session session = factory.getCurrentSession();
+		System.out.println("sDate---" + sDate);
+		System.out.println("eDate---" + eDate);
+
+		Session session = factory.openSession();
 		String hql = "FROM ProductSaleEarnBean WHERE orderDate BETWEEN :sDate AND :eDate";
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
-		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate)
-				.getResultList();
-		
+		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
+		System.out.println("psebList.size()" + psebList.size());
+//		System.out.println("psebList: " + psebList.get(0).getProductsBean().getProductName());
+
+		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID " + "BETWEEN 4 AND 6";
+		List<Integer> PIDs = new ArrayList<>();
+		PIDs = session.createQuery(hql1).getResultList();
+		System.out.println("PIDs.size()" + PIDs.size());
+
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
-		String productName = null;
-		Integer unitPrice = null;
-		Integer qty = 0;
-		Integer subtotal  = 0;
-		for(ProductSaleEarnBean pseb: psebList) {
-			productName = pseb.getProductsBean().getProductName();
-			unitPrice = pseb.getPrice();
-			qty = pseb.getQtyTotal();
-			subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
-			
-			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			psList.add(pseb1);
+
+		for (Integer i : PIDs) {
+			String productName = null;
+			Integer unitPrice = 0;
+			Integer cost = 0;
+			Integer earn = 0;
+			Integer qty = 0;
+			Integer subtotal = 0;
+			Integer earnSubtotal = 0;
+			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
+			for (ProductSaleEarnBean pseb : psebList) {
+				if (i == pseb.getProductsBean().getProductID()) {
+					productName = pseb.getProductsBean().getProductName();
+					unitPrice = pseb.getPrice();
+					qty = qty + pseb.getQtyTotal();
+					subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
+					
+					cost = pseb.getProductsBean().getCost();
+					earn = unitPrice - cost;
+					earnSubtotal = qty * earn;
+					
+					pseb1.setProductName(productName);
+					pseb1.setPrice(unitPrice);
+					pseb1.setQtyTotal(qty);
+					pseb1.setSubtotal(subtotal);
+					pseb1.setCost(cost);
+					pseb1.setEarn(earn);
+					pseb1.setEarnSubtotal(earnSubtotal);
+					
+				} else {
+//					System.out.println("出現不應該會有的PID比對!");
+				}
+			}
+//			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
+			if (pseb1.getPrice() != null) {
+				psList.add(pseb1);
+			} else {
+			}
 		}
+		session.close();
 		return psList;
 	}
-	
-	//選擇all food
+
+	// 選擇all food
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductSaleEarnBean> getAllFoodInfo(String sDate, String eDate) {
-		Session session = factory.getCurrentSession();
+		Session session = factory.openSession();
 		String hql = "FROM ProductSaleEarnBean WHERE categoryID BETWEEN 4 AND 5 AND orderDate BETWEEN :sDate AND :eDate";
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
-		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate)
-				.getResultList();
-		
+		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
+		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID " + "BETWEEN 4 AND 5";
+		List<Integer> PIDs = new ArrayList<>();
+		PIDs = session.createQuery(hql1).getResultList();
+
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
-		String productName = null;
-		Integer unitPrice = null;
-		Integer qty = 0;
-		Integer subtotal  = 0;
-		for(ProductSaleEarnBean pseb: psebList) {
-			productName = pseb.getProductsBean().getProductName();
-			unitPrice = pseb.getPrice();
-			qty = pseb.getQtyTotal();
-			subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
-			
-			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			psList.add(pseb1);
+
+		for (Integer i : PIDs) {
+			String productName = null;
+			Integer unitPrice = 0;
+			Integer cost = 0;
+			Integer earn = 0;
+			Integer qty = 0;
+			Integer subtotal = 0;
+			Integer earnSubtotal = 0;
+			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
+			for (ProductSaleEarnBean pseb : psebList) {
+				if (i == pseb.getProductsBean().getProductID()) {
+					productName = pseb.getProductsBean().getProductName();
+					unitPrice = pseb.getPrice();
+					qty = qty + pseb.getQtyTotal();
+					subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
+					
+					cost = pseb.getProductsBean().getCost();
+					earn = unitPrice - cost;
+					earnSubtotal = qty * earn;
+					
+					pseb1.setProductName(productName);
+					pseb1.setPrice(unitPrice);
+					pseb1.setQtyTotal(qty);
+					pseb1.setSubtotal(subtotal);
+					pseb1.setCost(cost);
+					pseb1.setEarn(earn);
+					pseb1.setEarnSubtotal(earnSubtotal);
+					
+				} else {
+//					System.out.println("出現不應該會有的PID比對!");
+				}
+			}
+//			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
+			if (pseb1.getPrice() != 0) {
+				psList.add(pseb1);
+			} else {
+			}
 		}
+		session.close();
 		return psList;
 	}
-	
-	//選擇4
+
+	// 選擇4
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductSaleEarnBean> getFoodInfo4(String sDate, String eDate) {
-		Session session = factory.getCurrentSession();
+		Session session = factory.openSession();
 		String hql = "FROM ProductSaleEarnBean WHERE categoryID = 4 AND orderDate BETWEEN :sDate AND :eDate";
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
-		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate)
-				.getResultList();
-		
+		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
+		String hql1 = "SELECT DISTINCT productID FROM ProductSaleEarnBean WHERE categoryID = 4 AND orderDate "
+				+ "BETWEEN :sDate AND :eDate";
+		List<Integer> PIDs = new ArrayList<>();
+		PIDs = session.createQuery(hql1).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
-		String productName = null;
-		Integer unitPrice = null;
-		Integer qty = 0;
-		Integer subtotal  = 0;
-		for(ProductSaleEarnBean pseb: psebList) {
-			productName = pseb.getProductsBean().getProductName();
-			unitPrice = pseb.getPrice();
-			qty = pseb.getQtyTotal();
-			subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
-			
-			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			psList.add(pseb1);
+
+		for (Integer i : PIDs) {
+			String productName = null;
+			Integer unitPrice = 0;
+			Integer cost = 0;
+			Integer earn = 0;
+			Integer qty = 0;
+			Integer subtotal = 0;
+			Integer earnSubtotal = 0;
+			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
+			for (ProductSaleEarnBean pseb : psebList) {
+				if (i == pseb.getProductsBean().getProductID()) {
+					productName = pseb.getProductsBean().getProductName();
+					unitPrice = pseb.getPrice();
+					qty = qty + pseb.getQtyTotal();
+					subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
+					
+					cost = pseb.getProductsBean().getCost();
+					earn = unitPrice - cost;
+					earnSubtotal = qty * earn;
+					
+					pseb1.setProductName(productName);
+					pseb1.setPrice(unitPrice);
+					pseb1.setQtyTotal(qty);
+					pseb1.setSubtotal(subtotal);
+					pseb1.setCost(cost);
+					pseb1.setEarn(earn);
+					pseb1.setEarnSubtotal(earnSubtotal);
+					
+				} else {
+//					System.out.println("出現不應該會有的PID比對!");
+				}
+			}
+//			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
+			if (pseb1.getPrice() != 0) {
+				psList.add(pseb1);
+			} else {
+			}
 		}
+		session.close();
 		return psList;
 	}
-	
-	//選擇5
+
+	// 選擇5
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductSaleEarnBean> getFoodInfo5(String sDate, String eDate) {
-		Session session = factory.getCurrentSession();
+		Session session = factory.openSession();
 		String hql = "FROM ProductSaleEarnBean WHERE categoryID = 5 AND orderDate BETWEEN :sDate AND :eDate";
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
-		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate)
-				.getResultList();
-		
+		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
+		String hql1 = "SELECT DISTINCT productID FROM ProductSaleEarnBean WHERE categoryID = 5 AND orderDate "
+				+ "BETWEEN :sDate AND :eDate";
+		List<Integer> PIDs = new ArrayList<>();
+		PIDs = session.createQuery(hql1).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
-		String productName = null;
-		Integer unitPrice = null;
-		Integer qty = 0;
-		Integer subtotal  = 0;
-		for(ProductSaleEarnBean pseb: psebList) {
-			productName = pseb.getProductsBean().getProductName();
-			unitPrice = pseb.getPrice();
-			qty = pseb.getQtyTotal();
-			subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
-			
-			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			psList.add(pseb1);
+
+		for (Integer i : PIDs) {
+			String productName = null;
+			Integer unitPrice = 0;
+			Integer cost = 0;
+			Integer earn = 0;
+			Integer qty = 0;
+			Integer subtotal = 0;
+			Integer earnSubtotal = 0;
+			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
+			for (ProductSaleEarnBean pseb : psebList) {
+				if (i == pseb.getProductsBean().getProductID()) {
+					productName = pseb.getProductsBean().getProductName();
+					unitPrice = pseb.getPrice();
+					qty = qty + pseb.getQtyTotal();
+					subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
+					
+					cost = pseb.getProductsBean().getCost();
+					earn = unitPrice - cost;
+					earnSubtotal = qty * earn;
+					
+					pseb1.setProductName(productName);
+					pseb1.setPrice(unitPrice);
+					pseb1.setQtyTotal(qty);
+					pseb1.setSubtotal(subtotal);
+					pseb1.setCost(cost);
+					pseb1.setEarn(earn);
+					pseb1.setEarnSubtotal(earnSubtotal);
+					
+				} else {
+//					System.out.println("出現不應該會有的PID比對!");
+				}
+			}
+//			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
+			if (pseb1.getPrice() != 0) {
+				psList.add(pseb1);
+			} else {
+			}
 		}
+		session.close();
 		return psList;
 	}
-	
-	//選擇6
+
+	// 選擇6
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate) {
-		Session session = factory.getCurrentSession();
+		Session session = factory.openSession();
 		String hql = "FROM ProductSaleEarnBean WHERE categoryID = 6 AND orderDate BETWEEN :sDate AND :eDate";
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
-		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate)
-				.getResultList();
-		
+		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
+		String hql1 = "SELECT DISTINCT productID FROM ProductSaleEarnBean WHERE categoryID = 6 AND orderDate "
+				+ "BETWEEN :sDate AND :eDate";
+		List<Integer> PIDs = new ArrayList<>();
+		PIDs = session.createQuery(hql1).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
-		String productName = null;
-		Integer unitPrice = null;
-		Integer qty = 0;
-		Integer subtotal  = 0;
-		for(ProductSaleEarnBean pseb: psebList) {
-			productName = pseb.getProductsBean().getProductName();
-			unitPrice = pseb.getPrice();
-			qty = pseb.getQtyTotal();
-			subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
-			
-			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			psList.add(pseb1);
+
+		for (Integer i : PIDs) {
+			String productName = null;
+			Integer unitPrice = 0;
+			Integer cost = 0;
+			Integer earn = 0;
+			Integer qty = 0;
+			Integer subtotal = 0;
+			Integer earnSubtotal = 0;
+			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
+			for (ProductSaleEarnBean pseb : psebList) {
+				if (i == pseb.getProductsBean().getProductID()) {
+					productName = pseb.getProductsBean().getProductName();
+					unitPrice = pseb.getPrice();
+					qty = qty + pseb.getQtyTotal();
+					subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
+					
+					cost = pseb.getProductsBean().getCost();
+					earn = unitPrice - cost;
+					earnSubtotal = qty * earn;
+					
+					pseb1.setProductName(productName);
+					pseb1.setPrice(unitPrice);
+					pseb1.setQtyTotal(qty);
+					pseb1.setSubtotal(subtotal);
+					pseb1.setCost(cost);
+					pseb1.setEarn(earn);
+					pseb1.setEarnSubtotal(earnSubtotal);
+					
+				} else {
+//					System.out.println("出現不應該會有的PID比對!");
+				}
+			}
+//			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
+			if (pseb1.getPrice() != 0) {
+				psList.add(pseb1);
+			} else {
+			}
 		}
+		session.close();
 		return psList;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate) {
+		Session session = factory.openSession();
+//		String hql = "SELECT productID FROM ProductsBean WHERE productName = :productName";
+		Integer pid = session.get(ProductsBean.class, pName).getProductID();
+		String hql = "FROM ProductSaleEarnBean WHERE productID = :pid AND orderDate BETWEEN :sDate AND :eDate";
+		List<ProductSaleEarnBean> psebList = new ArrayList<>();
+		psebList = session.createQuery(hql).setParameter("pid", pid).setParameter("sDate", sDate)
+				.setParameter("eDate", eDate).getResultList();
+
+		session.close();
+		return psebList;
+	}
+
+	// ==================================================================================================================
 	// 存飲食到資料庫方法step 1 ---- NEW
 	// 計算目前資料數的日期
 	@SuppressWarnings("unchecked")
@@ -223,9 +389,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		List<LocalDate> newList = dates1.stream().distinct().collect(Collectors.toList());
 		return newList;
 	}
-	
-
-
 
 //	// 存周邊商品到資料庫方法step 1 ---- NEW
 //	// 計算目前資料數的日期
@@ -328,10 +491,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //		}
 //		return psebList;
 //	}
-
-	
-	
-	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -562,7 +721,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return CID;
 	}
 
-
 //	@SuppressWarnings("unchecked")
 //	@Override
 //	public List<String> getDistinctProductNames() {
@@ -573,7 +731,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 //		return productNames;
 //	}
 
-	
 //	// 存飲食到資料庫方法step 2 ---- NEW
 //	@SuppressWarnings("unchecked")
 //	@Override

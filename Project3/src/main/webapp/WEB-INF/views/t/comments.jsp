@@ -33,14 +33,14 @@
                         <p>短評內文:${comment.commentContent}</p>
                         <p>時間:${comment.commentTime}</p>
                         <p>
-                        <a href="<spring:url value='/preference/addlike?id=${comment.commentID}' />"
-    							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>讚
- 							</a></p>
- 						<a href="<spring:url value='/preference/addbad?id=${comment.commentID}' />"
-    							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>噓
- 							</a></p>
+<%--                         <a href="<spring:url value='/preference/addlike?id=${comment.commentID}' />" --%>
+<!--     							class="btn btn-primary"> -->
+<%--     							<span class="glyphicon-info-sigh glyphicon"></span>${comment.good} 讚 --%>
+<!--  							</a></p> -->
+<%--  						<a href="<spring:url value='/preference/addbad?id=${comment.commentID}' />" --%>
+<!--     							class="btn btn-primary"> -->
+<%--     							<span class="glyphicon-info-sigh glyphicon"></span>噓${comment.bad} --%>
+<!--  							</a></p> -->
  						<a href="<spring:url value='/preference/addblock?id=${comment.commentID}' />"
     							class="btn btn-primary">
     							<span class="glyphicon-info-sigh glyphicon"></span>屏蔽

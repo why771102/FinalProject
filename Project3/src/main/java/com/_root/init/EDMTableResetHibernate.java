@@ -8,6 +8,7 @@ package com._root.init;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Blob;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -508,8 +509,15 @@ public class EDMTableResetHibernate {
 					mb.setContractDate(token[2]);
 					mb.setDirector(token[3]);
 					mb.setExpectedProfit(Integer.parseInt(token[4]));
-					// 先null因為還沒放照片的假資料
-					mb.setPhoto(null);
+					//若有圖就放
+					if(!token[5].equalsIgnoreCase("NULL")) {
+						Blob blob = SystemUtils2018.fileToBlob(token[5].trim());
+						mb.setPhoto(blob);
+						mb.setFileName(SystemUtils2018.extractFileName(token[5].trim()));
+					}else {
+						// 先null因為還沒放照片的假資料
+						mb.setPhoto(null);
+					}
 					mb.setPlotSummary(token[6]);
 					mb.setProfitRatio(Double.parseDouble(token[7]));
 					mb.setRunningTime(Integer.parseInt(token[8]));
