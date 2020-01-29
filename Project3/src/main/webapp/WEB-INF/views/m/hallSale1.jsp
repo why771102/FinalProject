@@ -128,15 +128,21 @@
 					type : "POST",
 					success : function(hall) {
 						alert("搜尋成功!");
-// 						showInfo(data);
+						showInfo(hall);
+						window.hallOrder = hall;
+						alert(hall);
 						console.log(hall);
-							for(var i =0; i < hall.length; i++){
-							$('#insertHere')
-									.append(
-											'<c:forEach var="x" items="'+${hall}+'"><tr><td>'
-											+${x.hallID}+'</td><td>'+${x.price}+'</td><td>'
-											+${x.orderHours}+'</td><td>'+${x.hallSubtotal}+
-											'</td></tr></c:forEach>');
+// 						$("#insertHere").html(hall);
+						
+// 						console.log(hall);
+// 						<c:forEach var="x" items="${hall}">
+// 							for(var i =0; i < hall.length; i++){
+// 							$('#insertHere')
+// 									.append(
+// 											'<tr><td>'
+// 											+${x.hallID}+'</td><td>'+${x.price}+'</td><td>'
+// 											+${x.orderHours}+'</td><td>'+${x.hallSubtotal}+
+// 											'</td></tr></c:forEach>');
 // 				 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
 // 		 									+ hall[i].hallID
 // 		 									+ '廳'
@@ -146,7 +152,7 @@
 // 		 									+ hall[i].orderHours
 // 		 									+ '</td><td>'
 // 		 									+ hall[i].hallSubtotal + '</td></tr>');
-							}
+// 							}
 					}	
 				});
 			}
@@ -181,21 +187,21 @@
 		
 		
 		
-// 		function showInfo(hall) {
-// 			for(var i =0; i < hall.length; i++){
-// 			$('#insertHere')
-// 					.append(
-// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
-// 									+ hall[i].hallID
-// 									+ '廳'
-// 									+ '</a></td><td>'
-// 									+ hall[i].price
-// 									+ '</td><td>'
-// 									+ hall[i].orderHours
-// 									+ '</td><td>'
-// 									+ hall[i].hallSubtotal + '</td></tr>');
-// 			}
-// 		};
+		function showInfo(hall) {
+			for(var i =0; i < hall.length; i++){
+			$('#insertHere')
+					.append(
+							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
+									+ hall[i].hallID
+									+ '廳'
+									+ '</a></td><td>'
+									+ hall[i].price
+									+ '</td><td>'
+									+ hall[i].orderHours
+									+ '</td><td>'
+									+ hall[i].hallSubtotal + '</td></tr>');
+			}
+		};
 		
 		
 		
