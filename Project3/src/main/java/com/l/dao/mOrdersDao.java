@@ -23,17 +23,7 @@ public interface mOrdersDao {
 	
 	//用StartTimeID查	單筆
 	public Object getStartTimeByID(Integer showTimeId);
-	
-//	//查詢所有電影之狀態為1
-//	public List<MovieBean> getMovieStatus1();
-//
-//	//用電影ID查詢runID
-//	public List<RunningBean> getRunningsByMovieId(Integer movieID);
-//	
-//	//查詢播放時間
-//	public List<ShowTimeHistoryBean> getplayStartTime(Integer runID);
 
-	
 	//新增訂單
 	public void addMOrder(MOrderBean mob);
 	//修改訂單之員工ID原本null

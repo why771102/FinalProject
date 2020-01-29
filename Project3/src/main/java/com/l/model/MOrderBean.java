@@ -54,7 +54,7 @@ public class MOrderBean implements Serializable {
 	String ticketTime;
 //	Integer employeeID;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="employeeID")
+	@JoinColumn(name="empId")
 	private EmpBean empBean;
 	@Transient
 	Integer empId;

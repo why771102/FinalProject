@@ -76,43 +76,10 @@ public class mOrdersDaoImpl implements mOrdersDao{
 	
 	
 	
-	//	//查詢所有電影之狀態為1
-//	@Override
-//	public List<MovieBean> getMovieStatus1() {
-//				String hql="from MovieBean where movieStatus = 1";
-//				Session session=factory.getCurrentSession();
-//				List<MovieBean> list=new ArrayList<>();
-//				list=session.createQuery(hql).getResultList();
-//				return list;
-//			}
-//	
-//	//用電影ID查詢runID
-//	@Override
-//	public List<RunningBean> getRunningsByMovieId(Integer movieID){
-//			String hql="from RunningBean where movieID = :movieID";
-//			List<RunningBean> list=new ArrayList<>();
-//			Session session=factory.getCurrentSession();
-//			list=session.createQuery(hql).setParameter(movieID, movieID).getResultList();
-//			return list;
-//		
-//	}
-//	
-//	//查詢播放時間
-//	@Override
-//	public List<ShowTimeHistoryBean> getplayStartTime(Integer rb){
-//		String hql="from ShowTimeHistoryBean where runID = :runID";
-//		List<ShowTimeHistoryBean> list=new ArrayList<>();
-//		Session session=factory.getCurrentSession();
-//		list=session.createQuery(hql).setParameter("runID", rb).getResultList();
-//		return list;
-//	}
-
-	
-	
-	
 		//新增訂單
 		public void addMOrder(MOrderBean mob) {
-			
+			Session session =factory.getCurrentSession();
+			session.save(mob);
 		}
 		//修改訂單之員工ID原本null
 		public List<EmpBean> updateEmpbyID(EmpBean eb){

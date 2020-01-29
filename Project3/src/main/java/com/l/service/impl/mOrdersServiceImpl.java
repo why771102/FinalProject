@@ -61,51 +61,12 @@ public class mOrdersServiceImpl implements mOrdersService{
 		return dao.getStartTimeByID(showTimeId);
 		}
 	
-//	//查詢所有場次ID	
-//	@Transactional
-//	@Override
-//	public List<MovieBean> getMovieStatus1() {
-//		return dao.getMovieStatus1();
-//	}
-//	
-//	//用電影Id查詢runId;用offDate實際下映日擋
-//	@Transactional
-//	@Override
-//	public List<RunningBean> getRunningsByMovieId(Integer movieID) {
-//		
-//		List<RunningBean> Allmovies = null ;
-//		for(RunningBean rb:Allmovies) {
-//			DateFormat sdf = null;
-//			try {
-//				Date date = new Date();
-//				if(sdf.parse(rb.getOffDate()).after(date)) {
-//					Allmovies=dao.getRunningsByMovieId(movieID);
-//				}
-//			} catch (ParseException e) {
-//			
-//				e.printStackTrace();
-//			}
-//		}
-//	
-//		return Allmovies;
-//		
-//	}
-//	
-//	//查詢播放時間
-//	@Transactional
-//	@Override
-//	public List<ShowTimeHistoryBean> getplayStartTime(Integer rb) {
-//		return dao.getplayStartTime(rb);
-//	}
 
-	
-	
-	
 	
 	@Transactional
 	@Override
 	public void addMOrder(MOrderBean mob) {
-		// TODO Auto-generated method stub
+		 dao.addMOrder(mob);
 		
 	}
 	
