@@ -27,16 +27,14 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Transactional
 	@Override
-	public ExpectationBean getAvgGrade(Integer grade) {
-		// TODO Auto-generated method stub
-		return null;
+	public ExpectationBean getAvgGrade(Integer movieID) {
+		return dao.getAvgGrade(movieID);
 	}
 	
 	@Transactional
 	@Override
-	public CommentBean getComment(Integer commentId) {
-		// TODO Auto-generated method stub
-		return null;
+	public CommentBean getComment(Integer memberID) {
+		return dao.getComment(memberID);
 	}
 	
 	@Transactional

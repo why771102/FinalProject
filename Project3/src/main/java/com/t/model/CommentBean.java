@@ -24,9 +24,6 @@ import com.sun.istack.NotNull;
 @Table(name="Comment")
 public class CommentBean implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -150,6 +147,10 @@ public class CommentBean implements Serializable{
 	public MovieBean getMovieBean() {
 		return movieBean;
 	}
+	
+//	public MovieBean getPreferenceBean() {
+//		return getPreferenceBean();
+//	}
 
 	public void setMovieBean(MovieBean movieBean) {
 		this.movieBean = movieBean;

@@ -9,7 +9,6 @@ import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
 
 public interface CommentDao {
-	//從cookie抓會員ID
 	
 	//從前端抓電影ID	
 	
@@ -19,11 +18,11 @@ public interface CommentDao {
 	//用列出的電影ID查comment
 	public List<CommentBean> getCommentByMovie(Integer movieID);
 	
-	//抓出該電影的平均星數(小數點後1位)
-	public ExpectationBean getAvgGrade(Integer grade);
+	//抓出該電影的平均星數
+	public ExpectationBean getAvgGrade(Integer movieID);
 	
 	//抓出該會員在該電影所留的短評 && deleteComment = 0
-	CommentBean getComment(Integer commentId);
+	CommentBean getComment(Integer memberID);
 	
 	//抓到commentID後把資料都列出來
 	List<CommentBean> memberComment();
@@ -52,4 +51,5 @@ public interface CommentDao {
 
 	//將檢舉的短評ID傳送至後台
 	List<CommentBean> findAllReportComment();
+	
 }

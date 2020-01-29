@@ -46,8 +46,9 @@ public interface PreferenceDao {
 	//建立新欄位，讚 噓 屏蔽設為0,0,1，若已有過設定，將屏蔽設為1
 
 	//抓出每則短評的讚數
+	public List<PreferenceBean> findAllGood();
 	
+	//抓出每則短評的噓數
+	public List<PreferenceBean> findAllBad();
 	
-	//抓出每則短評的讚數
-
 }

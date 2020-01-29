@@ -19,11 +19,11 @@ public interface CommentService {
 	//用列出的電影ID查comment
 	public List<CommentBean> getCommentByMovie(Integer movieID);
 
-	// 抓出該電影的平均星數(小數點後1位)
-	public ExpectationBean getAvgGrade(Integer grade);
+	// 抓出該電影的平均星數
+	public ExpectationBean getAvgGrade(Integer movieID);
 
-	// 抓出該會員在該電影所留的短評 && deleteComment = 0
-	CommentBean getComment(Integer commentId);
+	//抓出該會員在該電影所留的短評 && deleteComment = 0
+	CommentBean getComment(Integer memberID);
 
 	// 抓到commentId後把資料都列出來
 	List<CommentBean> memberComment();

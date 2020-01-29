@@ -1,5 +1,6 @@
 package com.t.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -174,6 +175,26 @@ public class PreferenceDaoImpl implements PreferenceDao{
 		session.createQuery(hql).setParameter("commentID", commentID)
 								.setParameter("memberID", memberID)
 								.executeUpdate();
+	}
+
+	//抓出每則短評的讚數
+	@Override
+	public List<PreferenceBean> findAllGood() {
+		String hql = "Select SUM(good) good From PreferenceBean group by commentID";
+		Session session = factory.getCurrentSession();
+		List<PreferenceBean> list = new ArrayList<>();
+		list = session.createQuery(hql).getResultList();
+		return list;
+	}
+
+	//抓出每則短評的噓數
+	@Override
+	public List<PreferenceBean> findAllBad() {
+		String hql = "Select SUM(bad) bad From PreferenceBean group by commentID";
+		Session session = factory.getCurrentSession();
+		List<PreferenceBean> list = new ArrayList<>();
+		list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

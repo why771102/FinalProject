@@ -87,5 +87,17 @@ public class PreferenceServiceImpl implements PreferenceService{
 		dao.fixBlock(memberID, commentID);
 	}
 
+	@Transactional
+	@Override
+	public List<PreferenceBean> findAllGood() {
+		return dao.findAllGood();
+	}
+
+	@Transactional
+	@Override
+	public List<PreferenceBean> findAllBad() {
+		return dao.findAllBad();
+	}
+
 }
 

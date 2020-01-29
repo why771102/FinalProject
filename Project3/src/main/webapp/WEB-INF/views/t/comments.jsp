@@ -27,20 +27,20 @@
                         <p>
                             <b style='font-size: 16px;'>電影名稱:${comment.movieBean.title}</b>
                         </p>
-                        <p>會員ID:${comment.memberBean.memberID}</p>
+                        <p>會員ID:${comment.memberBean.account}</p>
                         <p>評分等級:${comment.grade}</p>
                         <p>已觀賞:${comment.watched}</p>
                         <p>短評內文:${comment.commentContent}</p>
                         <p>時間:${comment.commentTime}</p>
                         <p>
-<%--                         <a href="<spring:url value='/preference/addlike?id=${comment.commentID}' />" --%>
-<!--     							class="btn btn-primary"> -->
-<%--     							<span class="glyphicon-info-sigh glyphicon"></span>${comment.good} 讚 --%>
-<!--  							</a></p> -->
-<%--  						<a href="<spring:url value='/preference/addbad?id=${comment.commentID}' />" --%>
-<!--     							class="btn btn-primary"> -->
-<%--     							<span class="glyphicon-info-sigh glyphicon"></span>噓${comment.bad} --%>
-<!--  							</a></p> -->
+                        <a href="<spring:url value='/preference/addlike?id=${comment.commentID}' />"
+    							class="btn btn-primary">
+    							<span class="glyphicon-info-sigh glyphicon"></span>讚
+ 							</a></p>
+ 						<a href="<spring:url value='/preference/addbad?id=${comment.commentID}' />"
+    							class="btn btn-primary">
+    							<span class="glyphicon-info-sigh glyphicon"></span>噓
+ 							</a></p>
  						<a href="<spring:url value='/preference/addblock?id=${comment.commentID}' />"
     							class="btn btn-primary">
     							<span class="glyphicon-info-sigh glyphicon"></span>屏蔽

@@ -13,6 +13,7 @@ import com.p.model.MemberBean;
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
+import com.t.model.PreferenceBean;
 
 @Repository
 public class CommentDaoImpl implements CommentDao{
@@ -24,16 +25,19 @@ public class CommentDaoImpl implements CommentDao{
 		this.factory = factory;
 	}
 	
+	//抓出該會員在該電影所留的短評 && deleteComment = 0
 	@Override
-	public CommentBean getComment(Integer commentId) {
+	public CommentBean getComment(Integer memberID) {
+		String hql="from CommentBean where memberID = :memberID and commentDelete = 0";
 		Session session = factory.getCurrentSession();
-		CommentBean cb = session.get(CommentBean.class, commentId);
+		CommentBean cb = session.get(CommentBean.class, memberID);
 		return cb;
 	}
 
+	//用指定commentID抓留言
 	@Override
 	public List<CommentBean> memberComment() {
-		String hql = "From CommentBean where commentID = :commitID";
+		String hql = "From CommentBean where commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
@@ -64,10 +68,10 @@ public class CommentDaoImpl implements CommentDao{
 	}
 
 	@Override
-	public ExpectationBean getAvgGrade(Integer grade) {
-		String hql = "Select grade where movieID = :movieID";
+	public ExpectationBean getAvgGrade(Integer movieID) {
+		String hql = "Select AVG(grade) where movieID = :movieID";
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql).executeUpdate();
+		session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		return null;
 	}
 
@@ -122,16 +126,64 @@ public class CommentDaoImpl implements CommentDao{
 		list=session.createQuery(hql).getResultList();
 		return list;
 	}
-		
+
 	//用電影ID 查出各個comment
 	@Override
 	public List<CommentBean> getCommentByMovie(Integer movieID){
-		String hql="Select movieID,memberID,grade,watched,commentContent,commentTime from CommentBean where movieID = :movieID and commentDelete = 0";
+		//String hql = "Select movieID, memberID, grade, watched, commentContent, commentTime, SUM(good) good, SUM(bad) bad"
+		//+ "From CommentBean c join PreferenceBean p group by c.commentID, c.commentContent,c.commentDelete,c.commentTime,c.grade,c.reportComment,c.watched,c.movieID,c.memberID where movieID = :movieID and commentDelete = 0";
+		String hql="from CommentBean where movieID = :movieID and commentDelete = 0";
 		Session session=factory.getCurrentSession();
 		List<CommentBean> list=new ArrayList<>();
 		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		return list;
 	}
+	
+	//用電影ID 查出各個comment
+//	@Override
+//	public List<CommentBean> getCommentByMovie(Integer movieID){
+//		String hql="from CommentBean where movieID = :movieID and commentDelete = 0";
+//		Session session=factory.getCurrentSession();
+//		List<CommentBean> cmdlist=new ArrayList<>();
+//		cmdlist=session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+//		
+//		String hql0 = "Select commentID from CommentBean where movieID = :movieID";
+//		List<Integer> cmdidlist=new ArrayList<>();
+//		cmdidlist=session.createQuery(hql0).setParameter("movieID", movieID).getResultList();
+//		
+//		String hql1 = "Select SUM(good) good,SUM(bad) bad From PreferenceBean group by commentID";
+//		List<PreferenceBean> likelist=new ArrayList<>();
+//		likelist=session.createQuery(hql1).getResultList();
+//		
+//		List<CommentBean> cblist = new ArrayList<>();
+//		
+//		for(Integer i : cmdidlist) {
+//			//Integer movieID = 0;
+//			String memberID = null;
+//			Integer grade = 0;
+//			Integer watched = 0;
+//			String commentContent = null;
+//			String commentTime = null;
+//			Integer deleteComment = 0;
+//			Integer reportComment = 0;
+//			CommentBean cb1 = new CommentBean();
+//			for(CommentBean cb : cmdlist) {
+//				if(i == cb.getCommentID()) {
+//					memberID = cb.getMemberBean().getAccount();
+//					grade = cb.getGrade();
+//					watched = cb.getWatched();
+//					commentContent = cb.getCommentContent();
+//					commentTime = cb.getCommentTime();
+//					deleteComment = 0;
+//					reportComment = 0;
+//					
+//					cb1.setMemberID(memberID);
+//				}
+//			}
+//		}
+//		cblist.add(cb1);
+//		return cblist;
+//	}
 
 	//查詢單筆comment
 	@Override
