@@ -1,7 +1,7 @@
 package com.m.service;
 
-import java.time.LocalDate;
 import java.util.List;
+
 import com.m.model.ProductSaleEarnBean;
 
 public interface ProductEarnService {
@@ -12,7 +12,7 @@ public interface ProductEarnService {
 	public List<ProductSaleEarnBean> getFoodInfo5(String sDate, String eDate);
 	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate);
 	
-	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate);
-	
-	public List<LocalDate> getFoodDates();
+	public List<ProductSaleEarnBean> getInfoByDate(Integer productID, String sDate, String eDate);
+	public String getPname(Integer productID);
+//	public List<LocalDate> getFoodDates();
 }

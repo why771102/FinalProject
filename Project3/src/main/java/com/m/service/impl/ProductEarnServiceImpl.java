@@ -1,16 +1,15 @@
 package com.m.service.impl;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.m.dao.ProductSaleDao;
-import com.m.model.ProductSaleBean;
 import com.m.model.ProductSaleEarnBean;
 import com.m.service.ProductEarnService;
-import com.m.service.ProductSaleService;
 
 @Service
 @Transactional
@@ -54,15 +53,17 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 	}
 
 	@Override
-	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate) {
-		return dao.getInfoByDate(pName, sDate, eDate);
+	public List<ProductSaleEarnBean> getInfoByDate(Integer productID, String sDate, String eDate) {
+		return dao.getInfoByDate(productID, sDate, eDate);
 	}
 
 	@Override
-	public List<LocalDate> getFoodDates() {
-		return dao.getFoodDates();
+	public String getPname(Integer productID) {
+		return dao.getPname(productID);
 	}
-	
 
-
+//	@Override
+//	public List<LocalDate> getFoodDates() {
+//		return dao.getFoodDates();
+//	}
 }

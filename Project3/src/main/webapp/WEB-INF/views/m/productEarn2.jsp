@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>productSale2</title>
+<title>productEarn2</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -26,9 +26,9 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">產品銷售總覽</h2>
-	<form:form method='POST' modelAttribute="ProductSaleBean2"
-		enctype="multipart/form-data">
+	<h2 style="text-align: center">產品營利細節</h2>
+<%-- 	<form:form method='POST' modelAttribute="ProductSaleBean2" --%>
+<%-- 		enctype="multipart/form-data"> --%>
 		<div>
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
@@ -41,10 +41,13 @@
 			<thead>
 				<tr>
 					<th>${productName}</th>
-					<th>日期</th>
+					<th>產品名稱</th>
 					<th>單價</th>
 					<th>數量</th>
-					<th>總金額</th>
+					<th>成本</th>
+					<th>利潤</th>
+					<th>銷售總額</th>
+					<th>利潤總額</th>
 				</tr>
 			</thead>
 			<tbody id="insertHere">
@@ -60,7 +63,7 @@
 				</tr>
 			</tfoot>
 		</table>
-	</form:form>
+<%-- 	</form:form> --%>
 </body>
 <script>
 
@@ -95,7 +98,7 @@
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/product/sale/"+${productID},
+				url : "${pageContext.request.contextPath}/product/earn/"+${productID},
 				data : {
 					start : start.format('YYYY-MM-DD'),
 					end : end.format('YYYY-MM-DD')
@@ -110,7 +113,8 @@
 
 					$.each(productsale, function(index, value) {
 						console.log(value);
-						dataTable.row.add(["",value.orderDate,value.price,value.qtyTotal,value.subtotal]).draw();
+						dataTable.row.add(["",value.orderDate,value.price,value.qtyTotal,
+							value.cost,value.earn,value.subtotal,value.earnSubtotal]).draw();
 					});
 // 					showInfo(data);
 			}	
