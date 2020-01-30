@@ -96,9 +96,9 @@
 								</tr>
 								<tr>
 									<td>帳號:</td>
-									<td><form:input id="account" path="account" type='text' /><span
-										class="notice">${errorMsgMap.accountExistError}</span><br>
-										<form:errors path="account" cssClass="error" /></td>
+									<td><form:input id="account" path="account" type='text' />
+									<br><span class="notice">${errorMsgMap.accountExistError}</span></td>
+<%-- 										<form:errors path="account" cssClass="error" /></td> --%>
 								</tr>
 								<tr>
 									<td>密碼:</td>

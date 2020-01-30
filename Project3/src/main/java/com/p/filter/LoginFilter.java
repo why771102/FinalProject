@@ -12,21 +12,22 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.p.model.MemberBean;
 
-@WebFilter("/LoginFilter") // 要在WebAppInitializer中宣告此Filter
-//@WebFilter(
-//		urlPatterns = { "/*" }, 
-//		initParams = { 
-//				@WebInitParam(name = "mustLogin1", value = "/_03_listBooks/*"), 
-//				@WebInitParam(name = "mustLogin2", value = "/_04_ShoppingCart/*"), 
-//				@WebInitParam(name = "mustLogin3", value = "/_05_orderProcess/*"),
+//@WebFilter("/LoginFilter")// 要在WebAppInitializer中宣告此Filter
+@WebFilter(
+		urlPatterns = { "/*" }, 
+		initParams = { 
+				@WebInitParam(name = "mustLogin1", value = "/member/query"), 
+				@WebInitParam(name = "mustLogin2", value = "/hallOrder/apply"), 
+				@WebInitParam(name = "mustLogin3", value = "/Member/hallOrderQuery"),
 //				@WebInitParam(name = "mustLogin4", value = "/_20_productMaintain/*")				
-//		})
+		})
 public class LoginFilter implements Filter {
 	List<String> url = new ArrayList<String>();
 	String servletPath;
@@ -51,7 +52,7 @@ public class LoginFilter implements Filter {
 			contextPath = req.getContextPath();
 			requestURI = req.getRequestURI();
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
-
+			System.out.println("看有沒有跑進來");
 			if (mustLogin()) {
 				if (checkLogin(req)) {
 					// 需要登入，但已經登入
@@ -67,7 +68,7 @@ public class LoginFilter implements Filter {
 						// 原本要執行的程式。
 						session.setAttribute("requestURI", requestURI);
 					}
-					resp.sendRedirect(contextPath + "/_02_login/login.jsp");
+					resp.sendRedirect(contextPath + "/member/login");
 					return;
 				}
 			} else { // 不需要登入，直接去執行他要執行的程式
