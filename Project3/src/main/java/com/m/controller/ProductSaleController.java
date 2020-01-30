@@ -34,7 +34,7 @@ public class ProductSaleController {
 	ServletContext context;
 	ProductSaleService service;
 
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}

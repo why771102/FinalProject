@@ -26,7 +26,7 @@ public class ProductEarnController {
 	ServletContext context;
 	ProductEarnService service;
 
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}

@@ -37,7 +37,7 @@ public class ReservedSeatsController {
 	NumberOfSeatsService nosservice;
 	ServletContext context;
 
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
