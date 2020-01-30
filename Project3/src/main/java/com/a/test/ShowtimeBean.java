@@ -40,10 +40,11 @@ public class ShowtimeBean implements Serializable {
     LocalTime time;
     HallBean hall;
     ShowTimeHistoryBean sthb;
-    
+    int showTimeId;
 //	Integer expectedOnDay;
 //	LocalDate expectedOffDate;
 	
+
 
 
 
@@ -73,6 +74,8 @@ public class ShowtimeBean implements Serializable {
 		this.rb = rb;
 		this.hall=hall;
 	}
+	
+
 	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb) {
 		super();
 		this.stID = stID;
@@ -81,6 +84,30 @@ public class ShowtimeBean implements Serializable {
 		this.rb = rb;
 		
 	}
+	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb,LocalDate day, LocalTime time,HallBean hall,int showTimeId) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		this.price_time = price_time;
+		this.rb = rb;
+		this.day =day;
+		this.time= time;
+		this.hall =hall;
+		this.showTimeId =showTimeId;
+	}
+	
+	public ShowtimeBean(Integer stID, int runningTime, double price_time,LocalDate day, LocalTime time,ShowTimeHistoryBean sthb) {
+		super();
+		this.stID = stID;
+		this.runningTime = runningTime;
+		this.price_time = price_time;
+		this.day =day;
+		this.time= time;
+		this.sthb =sthb;
+		
+	}
+	
+	
 	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb,LocalDate day, LocalTime time,HallBean hall) {
 		super();
 		this.stID = stID;
@@ -90,6 +117,7 @@ public class ShowtimeBean implements Serializable {
 		this.day =day;
 		this.time= time;
 		this.hall =hall;
+		
 	}
 		
 	
@@ -114,6 +142,17 @@ public class ShowtimeBean implements Serializable {
 		this.runningTime = runningTime;
 		
 	}
+	
+	
+
+	public int getShowTimeId() {
+		return showTimeId;
+	}
+
+	public void setShowTimeId(int showTimeId) {
+		this.showTimeId = showTimeId;
+	}
+	
 	public LocalDateTime getStartTime() {
 		return StartTime;
 	}
