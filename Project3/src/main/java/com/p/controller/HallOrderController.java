@@ -7,31 +7,36 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.p.mail.SpringEmailConfig;
 import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
-import com.p.model.MemberBean;
 import com.p.model.PayStatusBean;
 import com.p.service.HallOrderService;
+import com.p.service.MailService;
 
 @Controller
 public class HallOrderController {
 	HallOrderService service;
 	ServletContext context;
+//	ApplicationContext ctxt;
 	
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
+//		this.ctxt = ctxt;
 	}
 	@Autowired
 	public void setService(HallOrderService service) {
@@ -103,6 +108,29 @@ public class HallOrderController {
 		service.payStatusChange(hob);
 		return "redirect:/Employee/hallOrderQuery";
 	}
+	
+//	@RequestMapping(value="/hallOrder/mail/{mail}")
+//	public String hallOrderMail(@PathVariable("mail") String mail, Model model) {
+////		這邊要設定信件的內容
+//		System.out.println("SENDING EMAIL");
+////		ctxt = new AnnotationConfigApplicationContext(SpringEmailConfig.class);
+////		MailService mailservice = ctxt.getBean(MailService.class);
+//		
+//		String from = "fanshuwei1995@gmail.com";
+//		String to = mail;
+//		String subject = "76影城包廳繳款通知信";
+//		String content = "<html><body><P>親愛的客戶您好:</P>"
+//				+ "感謝您申請76影城包廳服務<br>"
+//				+ "經過我們的評估，您的包廳申請已經通過<br>"
+//				+ "請將包廳金額匯款至以下銀行帳戶:<br>"
+//				+ "銀行：兆豐銀行南台北分行(銀行代碼017)<br>"
+//				+ "帳號：３９２０６１０５８８８６８６<br>"
+//				+ "戶名:76影城"
+//				+ "轉帳後請email回覆「轉帳帳號末5碼」，以利確認，謝謝"
+//				+ "<body></html>"; 
+//		mailservice.sendMailSimple(from, to, subject, content);
+//		return "redirect:/Employee/hallOrderQuery";
+//	}
 	
 	//以下為讓前台可以選出相符的兩項狀態
 	

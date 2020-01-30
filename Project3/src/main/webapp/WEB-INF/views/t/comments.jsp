@@ -35,11 +35,11 @@
                         <p>
                         <a href="<spring:url value='/preference/addlike?id=${comment.commentID}' />"
     							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>讚
+    							<span class="glyphicon-info-sigh glyphicon"></span>${comment.likeNum}讚
  							</a></p>
  						<a href="<spring:url value='/preference/addbad?id=${comment.commentID}' />"
     							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>噓
+    							<span class="glyphicon-info-sigh glyphicon"></span>${comment.badNum}噓
  							</a></p>
  						<a href="<spring:url value='/preference/addblock?id=${comment.commentID}' />"
     							class="btn btn-primary">

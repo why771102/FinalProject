@@ -31,7 +31,7 @@ public class ShoppingCartController {
 
 	ServletContext context;
 
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
@@ -49,7 +49,7 @@ public class ShoppingCartController {
 	public String getShoppingCart(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Cookie[] cookies = request.getCookies();
-		if (cookies.length < 2) {
+		if (cookies.length < 4) {
 			MemberBean mb = new MemberBean();
 			model.addAttribute("memberBean", mb);
 			return "redirect:/member/login";
@@ -63,7 +63,7 @@ public class ShoppingCartController {
 			
 			if (list.size() == 0) {
 				System.out.println("Shopping cart is empty");
-				model.addAttribute("shoppingCart", 0);
+				model.addAttribute("shoppingCart", list);
 			} else {
 				for(int products = 0; products < list.size(); products++) {
 					int shoppingCartQuantity = list.get(products).getQuantity();

@@ -50,8 +50,8 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		categoryNames = session.createQuery(hql).getResultList();
 
 		String ans = "";
-		ans += "<SELECT id='categoryNames' onclick='sendCate()'>"
-				+ "<option value='' selected='' disabled=''>請選擇</option>" + "<option value='all'>全部商品</option>"
+		ans += "<SELECT id='categoryNames'>"
+				+ "<option value='all' selected=''>全部商品</option>"
 				+ "<option value='allFood'>餐點總覽</option>";
 		for (String cate : categoryNames) {
 			ans += "<option value='" + cate + "'>" + cate + "</option>";
@@ -102,6 +102,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
 					
+					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);
 					pseb1.setQtyTotal(qty);
@@ -136,6 +137,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID " + "BETWEEN 4 AND 5";
 		List<Integer> PIDs = new ArrayList<>();
 		PIDs = session.createQuery(hql1).getResultList();
+		System.out.println("PIDs.size()" + PIDs.size());
 
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
 
@@ -159,6 +161,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
 					
+					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);
 					pseb1.setQtyTotal(qty);
@@ -172,7 +175,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 				}
 			}
 //			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			if (pseb1.getPrice() != 0) {
+			if (pseb1.getPrice() != null) {
 				psList.add(pseb1);
 			} else {
 			}
@@ -190,10 +193,10 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
 		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
 
-		String hql1 = "SELECT DISTINCT productID FROM ProductSaleEarnBean WHERE categoryID = 4 AND orderDate "
-				+ "BETWEEN :sDate AND :eDate";
+		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID = 4";
 		List<Integer> PIDs = new ArrayList<>();
-		PIDs = session.createQuery(hql1).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+		PIDs = session.createQuery(hql1).getResultList();
+		System.out.println("PIDs.size()" + PIDs.size());
 
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
 
@@ -217,6 +220,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
 					
+					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);
 					pseb1.setQtyTotal(qty);
@@ -230,7 +234,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 				}
 			}
 //			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			if (pseb1.getPrice() != 0) {
+			if (pseb1.getPrice() != null) {
 				psList.add(pseb1);
 			} else {
 			}
@@ -248,10 +252,10 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
 		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
 
-		String hql1 = "SELECT DISTINCT productID FROM ProductSaleEarnBean WHERE categoryID = 5 AND orderDate "
-				+ "BETWEEN :sDate AND :eDate";
+		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID = 5";
 		List<Integer> PIDs = new ArrayList<>();
-		PIDs = session.createQuery(hql1).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+		PIDs = session.createQuery(hql1).getResultList();
+		System.out.println("PIDs.size()" + PIDs.size());
 
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
 
@@ -275,6 +279,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
 					
+					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);
 					pseb1.setQtyTotal(qty);
@@ -288,7 +293,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 				}
 			}
 //			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			if (pseb1.getPrice() != 0) {
+			if (pseb1.getPrice() != null) {
 				psList.add(pseb1);
 			} else {
 			}
@@ -306,10 +311,10 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
 		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
 
-		String hql1 = "SELECT DISTINCT productID FROM ProductSaleEarnBean WHERE categoryID = 6 AND orderDate "
-				+ "BETWEEN :sDate AND :eDate";
+		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID = 6";
 		List<Integer> PIDs = new ArrayList<>();
-		PIDs = session.createQuery(hql1).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
+		PIDs = session.createQuery(hql1).getResultList();
+		System.out.println("PIDs.size()" + PIDs.size());
 
 		List<ProductSaleEarnBean> psList = new ArrayList<>();
 
@@ -333,6 +338,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
 					
+					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);
 					pseb1.setQtyTotal(qty);
@@ -346,7 +352,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 				}
 			}
 //			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean(productName, unitPrice, qty, subtotal);
-			if (pseb1.getPrice() != 0) {
+			if (pseb1.getPrice() != null) {
 				psList.add(pseb1);
 			} else {
 			}
@@ -357,16 +363,29 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate) {
+	public List<ProductSaleEarnBean> getInfoByDate(Integer productID, String sDate, String eDate) {
 		Session session = factory.openSession();
 //		String hql = "SELECT productID FROM ProductsBean WHERE productName = :productName";
-		Integer pid = session.get(ProductsBean.class, pName).getProductID();
-		String hql = "FROM ProductSaleEarnBean WHERE productID = :pid AND orderDate BETWEEN :sDate AND :eDate";
-		List<ProductSaleEarnBean> psebList = new ArrayList<>();
-		psebList = session.createQuery(hql).setParameter("pid", pid).setParameter("sDate", sDate)
+//		Integer pid = session.get(ProductsBean.class, pName).getProductID();
+		String hql = "FROM ProductSaleEarnBean WHERE productID = :productID AND orderDate BETWEEN :sDate AND :eDate";
+		List<ProductSaleEarnBean> psebList1 = new ArrayList<>();
+		psebList1 = session.createQuery(hql).setParameter("productID", productID).setParameter("sDate", sDate)
 				.setParameter("eDate", eDate).getResultList();
-
+		List<ProductSaleEarnBean> psebList = new ArrayList<>();
+		for(ProductSaleEarnBean pseb : psebList1) {
+			Integer sub = pseb.getPrice() * pseb.getQtyTotal();
+			Integer cost = pseb.getProductsBean().getCost();
+			Integer earn = pseb.getPrice() - cost;
+			Integer earnSubtotal = sub - cost * pseb.getQtyTotal();
+			pseb.setSubtotal(sub);
+			pseb.setCost(cost);
+			pseb.setEarn(earn);
+			pseb.setEarnSubtotal(earnSubtotal);
+			psebList.add(pseb);
+		}
+		
 		session.close();
+		System.out.println("psebList.size()=>" + psebList.size());
 		return psebList;
 	}
 
@@ -388,6 +407,13 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		}
 		List<LocalDate> newList = dates1.stream().distinct().collect(Collectors.toList());
 		return newList;
+	}
+	
+	@Override
+	public String getPname(Integer productID) {
+		Session session = factory.getCurrentSession();
+		String productName = session.get(ProductsBean.class, productID).getProductName();
+		return productName;
 	}
 
 //	// 存周邊商品到資料庫方法step 1 ---- NEW

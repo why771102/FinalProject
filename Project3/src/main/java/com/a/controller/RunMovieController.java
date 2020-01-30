@@ -60,7 +60,7 @@ public class RunMovieController {
 	HallService hService;
 	HallOrderService hoService;
 
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
