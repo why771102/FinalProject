@@ -126,7 +126,7 @@
 //	 public String addAllRunning(Model model) {
 ////		List<MovieBean> Allmovie_list=new ArrayList<>();
 //		int dataCount= 52;
-//		LocalDateTime startTime =LocalDateTime.parse("2019/10/01 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+//		LocalDateTime startTime =LocalDateTime.parse("2019/11/02 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 //		for(int i=1;i<= dataCount;i++) {
 //		
 //			MovieBean mb=mService.getMovieBeanById(i);
@@ -208,7 +208,7 @@
 //			ShowTimeHistoryBean show = new ShowTimeHistoryBean();
 //			show.setHall(a);
 //			show.setRun(rb);
-//			show.setPalyStartTime(dateTime);
+//			show.setPlayStartTime(dateTime);
 //			mService.addShowTimeHistory(show);
 //			List<ShowTimeHistoryBean> sthb_list = mService.getshowMovie(today);
 //			for (ShowTimeHistoryBean sb : sthb_list) {
@@ -230,8 +230,8 @@
 //		System.out.println("sart===================");
 //
 //		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
-//		LocalDateTime startTime =LocalDateTime.parse("2019/10/09 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
-//		LocalDateTime endTime =LocalDateTime.parse("2020/01/23 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+//		LocalDateTime startTime =LocalDateTime.parse("2019/11/09 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+//		LocalDateTime endTime =LocalDateTime.parse("2020/02/23 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 //		int day=(int) Duration.between(startTime,endTime).toDays();
 //		for (int d = 1; d <= day; d++) {
 ////		int startTime =9;
@@ -497,24 +497,24 @@
 //
 //	public int checkHallOrder(LocalDateTime runDateTime ,HallBean hb ,int HallTime,	List<ShowtimeBean> OrderHall_list) {
 //		int HallOrderTime = 0;
-//		List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
-//		if (hob_list.size() != 0) {
-//			for (HallOrderBean hob : hob_list) {
-//				if (hob.getHallID().equalsIgnoreCase(hb.getHallID())) {
-////					HallTime = HallTime - (hob.getOrderHours()) - (restTime.getRunningTime());
-//					ShowtimeBean hall = new ShowtimeBean(0, hob.getOrderHours()*60, hob);
-//					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//					LocalDateTime date2 = LocalDateTime.parse(hob.getStartTime(), fmt);
-//					hall.setStartTime(date2);
-//     				OrderHall_list.add(hall);
-//					// 創一個統稱包廳的Bean Running
-//                   
-//				} else {}
-//				HallOrderTime += hob.getOrderHours();
-//			}
-//			
-//		} else {
-//		}
+////		List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
+////		if (hob_list.size() != 0) {
+////			for (HallOrderBean hob : hob_list) {
+////				if (hob.getHallID().equalsIgnoreCase(hb.getHallID())) {
+//////					HallTime = HallTime - (hob.getOrderHours()) - (restTime.getRunningTime());
+////					ShowtimeBean hall = new ShowtimeBean(0, hob.getOrderHours()*60, hob);
+////					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+////					LocalDateTime date2 = LocalDateTime.parse(hob.getStartTime(), fmt);
+////					hall.setStartTime(date2);
+////     				OrderHall_list.add(hall);
+////					// 創一個統稱包廳的Bean Running
+////                   
+////				} else {}
+////				HallOrderTime += hob.getOrderHours();
+////			}
+////			
+////		} else {
+////		}
 //		return HallOrderTime;
 //		
 //	}
