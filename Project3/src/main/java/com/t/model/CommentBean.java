@@ -64,6 +64,28 @@ public class CommentBean implements Serializable{
 	@Transient
 	Integer memberID;
 	
+	@Transient
+	Integer likeNum;
+	
+	@Transient
+	Integer badNum;
+	
+	public Integer getLikeNum() {
+		return likeNum;
+	}
+
+	public void setLikeNum(Integer likeNum) {
+		this.likeNum = likeNum;
+	}
+
+	public Integer getBadNum() {
+		return badNum;
+	}
+
+	public void setBadNum(Integer badNum) {
+		this.badNum = badNum;
+	}
+
 	public CommentBean() {
 		
 	}	

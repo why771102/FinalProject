@@ -130,12 +130,30 @@ public class CommentDaoImpl implements CommentDao{
 	//用電影ID 查出各個comment
 	@Override
 	public List<CommentBean> getCommentByMovie(Integer movieID){
-		//String hql = "Select movieID, memberID, grade, watched, commentContent, commentTime, SUM(good) good, SUM(bad) bad"
-		//+ "From CommentBean c join PreferenceBean p group by c.commentID, c.commentContent,c.commentDelete,c.commentTime,c.grade,c.reportComment,c.watched,c.movieID,c.memberID where movieID = :movieID and commentDelete = 0";
 		String hql="from CommentBean where movieID = :movieID and commentDelete = 0";
 		Session session=factory.getCurrentSession();
 		List<CommentBean> list=new ArrayList<>();
 		list=session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		for(int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			System.out.println("留言ID:" + cid);
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			System.out.println("list1.size():" + list1.size());
+			for(int j = 0; j < list1.size(); j++) {
+				if(list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if(list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			System.out.println("目標"+list1.size());
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
 		return list;
 	}
 	
