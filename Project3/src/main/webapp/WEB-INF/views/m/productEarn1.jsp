@@ -27,7 +27,7 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">產品銷售總覽</h2>
+	<h2 style="text-align: center">產品營利總覽</h2>
 	<form:form method='POST' modelAttribute="ProductSaleBean1"
 		enctype="multipart/form-data">
 		<div>
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<br>
-		<table id="example" class="display" style="width: 100%;">
+		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
 					<th></th>
@@ -51,17 +51,6 @@
 					<th>銷售總額</th>
 					<th>利潤總額</th>
 				</tr>
-				<c:forEach var="pseb" items="${psebList}">
-					<tr>
-						<td>${pseb.productName}</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-					</tr>
-				</c:forEach>
 				<!-- 				<tr> -->
 				<!-- 					<td></td> -->
 				<!-- 					<td><div id="pName" onclick="sendpName()">產品名稱</div></td> -->
@@ -117,16 +106,26 @@
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/product/sale",
+				url : "${pageContext.request.contextPath}/product/earn",
 				data : {
 					start : start.format('YYYY-MM-DD'),
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function(data) {
+				type : "POST",
+				success : function(productearn) {
 					alert("新增成功!");
-					showInfo(data);
-					console.log(data);
+					
+					var dataTable = $("#example").DataTable();
+					dataTable.clear().draw();
+
+					$.each(productearn, function(index, value) {
+						console.log(value);
+						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/product/earn/"+value.productsBean.productID+"'>"+value.productName+"</a>",
+							value.price, value.qtyTotal, value.cost, value.earn, value.subtotal, value.earnSubtotal]).draw();
+					});
+// 					showInfo(data);
+					console.log(productearn);
 				}
 			});
 			
@@ -166,7 +165,7 @@
 	function sendCate() {
 		console.log("cate=>" + document.getElementById("categoryNames").value);
 		$.ajax({
-			url : "${pageContext.request.contextPath}/product/sale",
+			url : "${pageContext.request.contextPath}/product/earn",
 			data : {
 				cate : document.getElementById("categoryNames").value
 			},
@@ -178,42 +177,40 @@
 		});
 	}
 
-	function sendpName() {
-		$
-				.ajax({
-					url : "${pageContext.request.contextPath}/product/sale1",
-					data : {
-						productName : document.getElementById("pName" + i).innerText
-					//要更動innerHTML!!
-					},
-					type : "Post",
-					success : function() {
-						alert("you click me!");
-						window.location.href = "${pageContext.request.contextPath}/product/sale/date";
-					}
-				});
-	}
-	// 	console.log("pName =>" + document.getElementById("pName").value);
+// 	function sendpName() {
+// 		$
+// 				.ajax({
+// 					url : "${pageContext.request.contextPath}/product/sale1",
+// 					data : {
+// 						productName : document.getElementById("pName" + i).innerText
+// 					//要更動innerHTML!!
+// 					},
+// 					type : "Post",
+// 					success : function() {
+// 						alert("you click me!");
+// 						window.location.href = "${pageContext.request.contextPath}/product/sale/date";
+// 					}
+// 				});
+// 	}
+	
 	//動態新增表格
-	function showInfo(pseb) {
-		var pn;
-		for (var i = 0; i < pseb.length; i++) {
-
-			$('#insertHere').append(
-					//動態新增的時候id要加i
-					'<tr><td></td><td><div id="pName' + i
-							+ '" onclick="sendpName()">' + pseb[i].productName
-							+ '</div></td><td>' + pseb[i].price + '</td><td>'
-							+ pseb[i].qtyTotal + '</td><td>' + pseb[i].cost
-							+ '</td><td>' + pseb[i].earn + '</td><td>'
-							+ pseb[i].subtotal + '</td><td>'
-							+ pseb[i].earnSubtotal + '</td></tr>');
-
-			pn = "pName" + i;
-			console.log(pn);
-			console.log('~~hello~~~');
-			console.log(document.getElementById(pn).innerText);
-		}
-	}
+// 	function showInfo(pseb) {
+// 		var pn;
+// 		for (var i = 0; i < pseb.length; i++) {
+// 			$('#insertHere').append(
+// 					//動態新增的時候id要加i
+// 					'<tr><td></td><td><div id="pName' + i
+// 							+ '" onclick="sendpName()">' + pseb[i].productName
+// 							+ '</div></td><td>' + pseb[i].price + '</td><td>'
+// 							+ pseb[i].qtyTotal + '</td><td>' + pseb[i].cost
+// 							+ '</td><td>' + pseb[i].earn + '</td><td>'
+// 							+ pseb[i].subtotal + '</td><td>'
+// 							+ pseb[i].earnSubtotal + '</td></tr>');
+// 			pn = "pName" + i;
+// 			console.log(pn);
+// 			console.log('~~hello~~~');
+// 			console.log(document.getElementById(pn).innerText);
+// 		}
+// 	}
 </script>
 </html>

@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.a.model.MovieBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.m.dao.TicketEarnDao;
 import com.m.model.TicketSaleEarnBean;
@@ -59,7 +60,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			Integer foodEarn = 0;
 			
 			Integer earnSubtotal = 0;
-			
+			MovieBean mb = null;
 			List<ShowTimeHistoryBean> sthbList = service.getDetail(m, sDate, eDate);
 			System.out.println("sthbList.size() =>" +  sthbList.size());
 			noPlayTimes = sthbList.size();
@@ -67,7 +68,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
 					title = tseb.getMovieBean().getTitle();
-					
+					mb = tseb.getMovieBean();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					foodCost = foodCost + tseb.getFoodCost();
@@ -88,7 +89,8 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			}
 
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes,ticketCost,ticketEarn,
-					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal);
+					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
+
 
 			if (tb.getTicketSaleTotal() != 0) {
 				tbList.add(tb);
@@ -131,7 +133,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			Integer foodEarn = 0;
 			
 			Integer earnSubtotal = 0;
-			
+			MovieBean mb = null;
 			List<ShowTimeHistoryBean> sthbList = service.getDetail(m, sDate, eDate);
 			System.out.println("sthbList.size() =>" +  sthbList.size());
 			noPlayTimes = sthbList.size();
@@ -139,7 +141,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
 					title = tseb.getMovieBean().getTitle();
-					
+					mb = tseb.getMovieBean();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					foodCost = foodCost + tseb.getFoodCost();
@@ -160,7 +162,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			}
 
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes,ticketCost,ticketEarn,
-					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal);
+					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
 
 			if (tb.getTicketSaleTotal() != 0) {
 				tbList.add(tb);
@@ -203,7 +205,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			Integer foodEarn = 0;
 			
 			Integer earnSubtotal = 0;
-			
+			MovieBean mb = null;
 			List<ShowTimeHistoryBean> sthbList = service.getDetail(m, sDate, eDate);
 			System.out.println("sthbList.size() =>" +  sthbList.size());
 			noPlayTimes = sthbList.size();
@@ -211,7 +213,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
 					title = tseb.getMovieBean().getTitle();
-					
+					mb = tseb.getMovieBean();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					foodCost = foodCost + tseb.getFoodCost();
@@ -232,7 +234,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			}
 
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes,ticketCost,ticketEarn,
-					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal);
+					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
 
 			if (tb.getTicketSaleTotal() != 0) {
 				tbList.add(tb);
@@ -275,7 +277,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			Integer foodEarn = 0;
 			
 			Integer earnSubtotal = 0;
-			
+			MovieBean mb = null;
 			List<ShowTimeHistoryBean> sthbList = service.getDetail(m, sDate, eDate);
 			System.out.println("sthbList.size() =>" +  sthbList.size());
 			noPlayTimes = sthbList.size();
@@ -283,7 +285,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
 					title = tseb.getMovieBean().getTitle();
-					
+					mb = tseb.getMovieBean();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					foodCost = foodCost + tseb.getFoodCost();
@@ -304,7 +306,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			}
 
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes,ticketCost,ticketEarn,
-					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal);
+					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
 
 			if (tb.getTicketSaleTotal() != 0) {
 				tbList.add(tb);
@@ -347,7 +349,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			Integer foodEarn = 0;
 			
 			Integer earnSubtotal = 0;
-			
+			MovieBean mb = null;
 			List<ShowTimeHistoryBean> sthbList = service.getDetail(m, sDate, eDate);
 			System.out.println("sthbList.size() =>" +  sthbList.size());
 			noPlayTimes = sthbList.size();
@@ -355,7 +357,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
 					title = tseb.getMovieBean().getTitle();
-					
+					mb = tseb.getMovieBean();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					foodCost = foodCost + tseb.getFoodCost();
@@ -376,7 +378,8 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			}
 
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes,ticketCost,ticketEarn,
-					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal);
+					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
+
 
 			if (tb.getTicketSaleTotal() != 0) {
 				tbList.add(tb);
@@ -419,7 +422,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			Integer foodEarn = 0;
 			
 			Integer earnSubtotal = 0;
-			
+			MovieBean mb = null;
 			List<ShowTimeHistoryBean> sthbList = service.getDetail(m, sDate, eDate);
 			System.out.println("sthbList.size() =>" +  sthbList.size());
 			noPlayTimes = sthbList.size();
@@ -427,7 +430,7 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
 					title = tseb.getMovieBean().getTitle();
-					
+					mb = tseb.getMovieBean();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					foodCost = foodCost + tseb.getFoodCost();
@@ -448,7 +451,8 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 			}
 
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes,ticketCost,ticketEarn,
-					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal);
+					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
+
 
 			if (tb.getTicketSaleTotal() != 0) {
 				tbList.add(tb);

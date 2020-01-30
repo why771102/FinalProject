@@ -63,6 +63,7 @@ fieldset {
 						<form:radiobutton id="watched" path="watched" value="1" />已觀看
 						<form:radiobutton id="watched" path="watched" value="0" />未觀看
 					</div>
+					<form:errors path="watched" cssClass="error" />
 				</div>
 
 				<div class="form-group">
@@ -71,7 +72,7 @@ fieldset {
 					<div class="col-lg-10">
 						<form:select id="grade" path="grade"
 							class='form:input-large' >
-							<form:option value = "-1" label = "請挑選"/>
+<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
 							<form:option value = "1" label = "1"/>
 							<form:option value = "2" label = "2"/>
 							<form:option value = "3" label = "3"/>
@@ -79,6 +80,7 @@ fieldset {
 							<form:option value = "5" label = "5"/>
 						</form:select>
 					</div>
+					<form:errors path="grade" cssClass="error" />
 				</div>
 				<div class="form-group">
 					<label class='control-label col-lg-2 col-lg-2' for="commentContent">
@@ -87,6 +89,7 @@ fieldset {
 						<form:input id="commentContent" path="commentContent" type='text'
 							class='form:input-large' />
 					</div>
+					<form:errors path="commentContent" cssClass="error" />
 				</div>
 				<div class="form-group">
 					<label class='control-label col-lg-2 col-lg-2' for="commentTime">

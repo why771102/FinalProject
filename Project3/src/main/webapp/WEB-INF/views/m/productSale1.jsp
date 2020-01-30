@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<br>
-		<table id="example" class="display" style="width: 100%;">
+		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
 					<th></th>
@@ -48,17 +48,6 @@
 					<th>數量</th>
 					<th>總金額</th>
 				</tr>
-				<c:forEach var="pseb" items="${psebList}">
-					<tr>
-						<td>${pseb.productName}</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-						<td>zz</td>
-					</tr>
-				</c:forEach>
 <!-- 				<tr> -->
 <!-- 					<td></td> -->
 <!-- 					<td><div id="pName" onclick="sendpName()">產品名稱</div></td> -->
@@ -118,18 +107,23 @@
 				data : {
 					start : start.format('YYYY-MM-DD'),
 					end : end.format('YYYY-MM-DD'),
-// 					cate : document.getElementById("categoryNames").value
+					cate : document.getElementById("categoryNames").value
 				},
 				type : "POST",
-				success : function(data) {
+				success : function(productsale) {
 					alert("新增成功!");
-					showInfo(data);
-					console.log(data);
-// 					window.location.href = "${pageContext.request.contextPath}/product/sale";
+					
+					var dataTable = $("#example").DataTable();
+					dataTable.clear().draw();
+
+					$.each(productsale, function(index, value) {
+						console.log(value);
+						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/product/sale/"+value.productsBean.productID+"'>"+value.productName+"</a>",value.price,value.qtyTotal,value.subtotal]).draw();
+					});
+// 					showInfo(data);
+// 					console.log(productsale);
 				}
-			});
-			
-			
+			});	
 		}
 		console.log("ssss" + start.format('YYYY-MM-DD'));
 		console.log("eeee" + end.format('YYYY-MM-DD'));
@@ -162,21 +156,30 @@
 		console.log("reportrange=>" + $('#reportrange span').text());
 	});
 
-// 	//傳送cate selection值
-	function sendCate() {
+//傳送cate selection值
+	$("#categoryNames").click(function() {
 		console.log("cate=>" + document.getElementById("categoryNames").value);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/product/sale",
-			data : {
-				cate : document.getElementById("categoryNames").value
-			},
-			type : "POST",
-		// 				success : function() {
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/product/sale",
+// 			data : {
+// 				cate : document.getElementById("categoryNames").value
+// 			},
+// 			type : "POST",
+// 						success : function() {
+							var dataTable = $("#example").DataTable();
+							var cate = document.getElementById("categoryNames").value;
+							if(cate == '套餐的餐點'){
+								dataTable.search('雙人套票').search('個人套票').draw();
+							}else if(cate == '餐點'){
+								dataTable.search('大可樂').search('中可樂').search('小可樂').search('吉拿棒').draw();
+							}else if(cate == '周邊商品'){
+								dataTable.search('Fiona').draw();
+							}
 		// 					alert("新增成功!");
 		// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-		// 				}
-		});
-	}
+// 						}
+// 		});
+	});
 
 // 	function sendpName() {
 // 		$.ajax({
@@ -192,41 +195,42 @@
 // 				});
 // 	}
 	// 	console.log("pName =>" + document.getElementById("pName").value);
+	
 	//動態新增表格
-	function showInfo(pseb) {
-		var pn;
-		for(var i =0; i < pseb.length; i++){
+// 	function showInfo(pseb) {
+// 		var pn;
+// 		for(var i =0; i < pseb.length; i++){
 			
-		$('#insertHere')
-				.append(
-						//動態新增的時候id要加i
-						'<tr><td></td><td><div id="pName'+ i +'" onclick="sendpName()">'
-						+ pseb[i].productName +
-						'</div></td><td>' + pseb[i].price +
-						'</td><td>' + pseb[i].qtyTotal +
-						'</td><td>' + pseb[i].subtotal + '</td></tr>');
+// 		$('#insertHere')
+// 				.append(
+// 						//動態新增的時候id要加i
+// 						'<tr><td></td><td><div id="pName'+ i +'" onclick="sendpName()">'
+// 						+ pseb[i].productName +
+// 						'</div></td><td>' + pseb[i].price +
+// 						'</td><td>' + pseb[i].qtyTotal +
+// 						'</td><td>' + pseb[i].subtotal + '</td></tr>');
 		
-		pn = "pName"+i;
-		console.log(pn);
-		console.log('~~hello~~~');
-		console.log(document.getElementById(pn).innerText);
-		}
+// 		pn = "pName"+i;
+// 		console.log(pn);
+// 		console.log('~~hello~~~');
+// 		console.log(document.getElementById(pn).innerText);
+// 		}
 		
-		function sendpName() {
-			$.ajax({
-						url : "${pageContext.request.contextPath}/product/sale1",
-						data : {
-							productName : document.getElementById("pn").innerText //要更動innerHTML!!
-						},
-						type : "Post",
-						success : function() {
-							alert("you click me!");
-							window.location.href = "${pageContext.request.contextPath}/product/sale/date";
-						}
-					});
-		}
+// 		function sendpName() {
+// 			$.ajax({
+// 						url : "${pageContext.request.contextPath}/product/sale1",
+// 						data : {
+// 							productName : document.getElementById("pn").innerText //要更動innerHTML!!
+// 						},
+// 						type : "Post",
+// 						success : function() {
+// 							alert("you click me!");
+// 							window.location.href = "${pageContext.request.contextPath}/product/sale/date";
+// 						}
+// 					});
+// 		}
 		
-	}
+// 	}
 
 	
 </script>

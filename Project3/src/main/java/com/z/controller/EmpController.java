@@ -34,7 +34,7 @@ public class EmpController {
 	EmpService service;
 	ServletContext context;
 	
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}

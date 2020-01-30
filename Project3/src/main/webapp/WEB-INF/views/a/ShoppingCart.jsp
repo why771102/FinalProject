@@ -12,7 +12,7 @@
 <body>
 	<p>This is Shopping Cart</p>
 	<table>
-	<% int product = 0; %>
+<%-- 	<% int product = 0; %> --%>
 	<c:forEach var="SC" items="${shoppingCart}">
 		<tr>
 			<td>${SC.discount}</td>
@@ -21,7 +21,7 @@
 			<td>${SC.productsBean.productName}</td>
 		</tr>
 		<button id="delete" onclick="del(${SC.SCOrdersBean.sCOrderID}, ${SC.productsBean.productID})">刪除</button>
-		<% product++; %>
+<%-- 		<% product++; %> --%>
 	</c:forEach>
 	</table>
 	
