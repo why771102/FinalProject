@@ -96,8 +96,8 @@ public class CommentServiceImpl implements CommentService{
 	//用電影ID 查出各個comment
 	@Transactional
 	@Override
-	public List<CommentBean> getCommentByMovie(Integer movieID) {
-		return dao.getCommentByMovie(movieID);
+	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock) {
+		return dao.getCommentByMovie(movieID, memberIDBlock);
 	}
 
 	@Transactional

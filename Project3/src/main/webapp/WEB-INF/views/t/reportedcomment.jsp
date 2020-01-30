@@ -24,7 +24,7 @@
             <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
                 <div class="thumbnail" style="width: 320px; height: 340px">
                     <div class="caption">
-                        <p>會員ID:${comment.memberBean.memberID}</p>
+                        <p>會員ID:${comment.memberBean.account}</p>
                         <p>短評內文:${comment.commentContent}</p>
                         <p>
                         <a href="<spring:url value='/comments/delete?id=${comment.commentID}' />"

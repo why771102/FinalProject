@@ -16,7 +16,7 @@ public interface CommentDao {
 	public List<String> getMovies();
 	
 	//用列出的電影ID查comment
-	public List<CommentBean> getCommentByMovie(Integer movieID);
+	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock);
 	
 	//抓出該電影的平均星數
 	public ExpectationBean getAvgGrade(Integer movieID);
