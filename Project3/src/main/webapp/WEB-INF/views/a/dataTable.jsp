@@ -28,6 +28,7 @@
 				<td>片長:</td>
 				<td>播出時間:</td>
 				<td>權重:</td>
+				<td>修改:</td>
 
 			</tr>
 		</thead>
@@ -40,13 +41,62 @@
 				<td>${stb.runningTime}</td>
 				<td>${stb.time}</td>
 				<td>${stb.price_time}</td>
+				<td>${stb.showTimeId}<input id='a' type='submit' onclick="formSubmit()" value='修改'/></td>
+				<input type='hidden' name="date"   value='${stb.day}' id='date' />
+				<input type='hidden' name="time"   value='${stb.time}' id='time' />
 			</tr>
 		</c:forEach>
 	</table>
+<!-- 	<input id='b' type='submit' onclick="updateAllSubmit()" value='修改全部'/> -->
+<%-- 	<a href='${pageContext.request.contextPath}/a/updateShowTime'>修改</a> --%>
+	<a href='${pageContext.request.contextPath}/index-a'>確認</a>
 	<script>
 		$(document).ready(function() {
 			$("#table").dataTable();
 		});
+	   var a=${jsonString}
+		console.log(a[0].showTimeId);
+		
+		function updateAllSubmit(){
+			var date1 = a[0].day;
+			var time1 = a[0].time;
+			console.log(date1);
+			console.log(time1);
+			$.ajax({
+				url : "${pageContext.request.contextPath}/showTime/upadate",
+				data : {date: date1,time:time1},
+				type : "POST",
+				success : function() {
+					alert("修改成功");
+					window.location.href = "${pageContext.request.contextPath}/index-a";
+				}
+			});
+			
+		}
+		
+		
+		
+		
+		function formSubmit(){
+			
+			var date = document.getElementById("date").value;
+			var time = document.getElementById("time").value;
+			console.log(date);
+			console.log(time);
+			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"|"+time);
+
+// 			$.ajax({
+// 				url : "${pageContext.request.contextPath}/showTime/upadate",
+// 				data : {date: date,time:time},
+// 				type : "POST",
+// 				success : function() {
+// 					alert("修改成功");
+// // 					window.location.href = "${pageContext.request.contextPath}/showTime/upadate";
+// 				}
+// 			});
+		}
+		
+		
 	</script>
 </body>
 </html>

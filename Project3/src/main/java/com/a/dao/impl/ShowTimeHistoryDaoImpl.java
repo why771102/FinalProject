@@ -81,6 +81,17 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		return STHB_List;
 		
 	}
+	//拿指定的playStartTime 取showTimeId
+	@Override
+	public int  getShowTimeIdByTime(String playStartTime) {
+		int showTimeId=0;
+		Session session =factory.getCurrentSession();
+		String hql="select showTimeId from ShowTimeHistoryBean where playStartTime = :playStartTime ";
+		showTimeId = session.createQuery(hql).setParameter("playStartTime",  playStartTime)
+                     .getFirstResult();
+		return showTimeId;
+	}
+	
 	
 	@Override
 	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(String startdate) {

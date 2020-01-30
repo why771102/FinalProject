@@ -60,7 +60,7 @@ public class RunMovieController {
 	HallService hService;
 	HallOrderService hoService;
 
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
@@ -386,6 +386,62 @@ public class RunMovieController {
 		return "index-a";// URL 跟 eclip 擺放位置相關
 
 	}
+	
+	@GetMapping(value = "/showTime/update/{date}{time}")
+	public String addNewMovie(Model model, HttpServletRequest request, @PathVariable("date") String date ,@PathVariable("time") String time) {
+		String[] datetime = date.split("\\|");
+          System.out.println("0"+datetime[0]);
+          System.out.println("1"+datetime[1]);
+          for(String a :datetime) {
+        	  System.out.println("datetime:"+a);
+          }
+		System.out.println("date"+date);
+		System.out.println("time"+time);
+
+
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		String str =datetime[0]+" "+datetime[1];
+		System.out.println("str:"+str);
+		LocalTime time1 = LocalTime.parse(str,df);
+		LocalDate day1 = LocalDate.parse(str,df);
+		if(time1.getHour()<=2) {
+		   day1 = (LocalDate.parse(str,df)).minusDays(1);
+		}
+		//把指定日期(一天)的showTimeHistory 取出 並塞進showtimeBean
+		List<ShowTimeHistoryBean> STHB_List =mService.getshowMovie(day1);
+		List<ShowtimeBean> oneDayShowTime = new ArrayList();
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+		for(ShowTimeHistoryBean sthb :STHB_List) {
+			System.out.println(sthb.getPlayStartTime());
+		
+			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
+			oneDayShowTime.add(new ShowtimeBean(1, sthb.getRun().getMovie().getRunningTime(),sthb.getRun().getMovie().getExpectedProfit() ,
+					dateTime.toLocalDate(), dateTime.toLocalTime(), sthb));
+		}
+		//確認包場
+		List<HallOrderBean> hob_list = hoService.getHallOrder(day1);
+		if(hob_list.size()>0) {
+		   for(HallOrderBean hob : hob_list) {
+			LocalDateTime dateTime = LocalDateTime.parse(hob.getStartTime(), fmt);
+			oneDayShowTime.add(new ShowtimeBean(0, (hob.getOrderHours()*60), hob,dateTime.toLocalDate(), dateTime.toLocalTime(), hob.getHb()));
+			
+		   }
+		}
+	
+		Gson gson = new Gson();
+		String jsonstring = gson.toJson(oneDayShowTime);
+		request.setAttribute("jsonString", jsonstring);
+
+		
+		
+		return "a/updateShowTime";
+	}
+	
+	@GetMapping(value="update/go")
+	public String goToUpdate() {
+		
+		return "a/updateShowTime";
+	}
 
 	@GetMapping(value = "/movie/autoRun") // URL 跟<a href='movie/show'> 相關
 	public String RunningMovie(Model model, HttpServletRequest request) {
@@ -430,6 +486,7 @@ public class RunMovieController {
 		Gson gson = new Gson();
 		String jsonstring = gson.toJson(AllShowTime);
 		request.setAttribute("AllShowTime", AllShowTime);
+		request.setAttribute("jsonString", jsonstring);
 
 
 
@@ -613,11 +670,12 @@ public class RunMovieController {
 						+ (stb.getStartTime().toLocalTime()).toString();
 				System.out.println(showtime);
 				ShowTimeHistoryBean show = new ShowTimeHistoryBean(hall, stb.getRb(), showtime);
+				mService.addShowTimeHistory(show);
+//				int showTimeId =mService.getShowTimeIdByTime(showtime);
 				
-				
-				AllDayShowTime.add(new ShowtimeBean(1, stb.getRunningTime(), stb.getPrice_time(), stb.getRb(),
+				AllDayShowTime.add(new ShowtimeBean(1, stb.getRunningTime(),Math.round(stb.getPrice_time()) , stb.getRb(),
 						stb.getDay(), stb.getTime(), hall));
-      			mService.addShowTimeHistory(show);
+      			
       			System.out.println("AllDayShowTime1:"+AllDayShowTime.size());
 				System.out.println("stb.RunID()" + stb.getRb().getRunID());
 //				System.out.println("MovieInsertHallsize:" + MovieInsetHall_list.size());

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketEarn1</title>
+<title>ticketEarn2</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -26,14 +26,10 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">票房營收總覽</h2>
-	<form:form method='POST' modelAttribute="TicketSaleBean1"
-		enctype="multipart/form-data">
+	<h2 style="text-align: center">票劵營利細節</h2>
+<%-- 	<form:form method='POST' modelAttribute="ProductSaleBean2" --%>
+<%-- 		enctype="multipart/form-data"> --%>
 		<div>
-			類型： ${genreSelection}
-			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
-			<!-- 			<option>Java人生</option> -->
-			<!-- 		</select> -->
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
@@ -57,6 +53,7 @@
 				</tr>
 			</thead>
 			<tbody id="insertHere">
+
 			</tbody>
 			<tfoot>
 				<tr>
@@ -65,16 +62,13 @@
 					<th></th>
 					<th></th>
 					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
 				</tr>
 			</tfoot>
 		</table>
-	</form:form>
+<%-- 	</form:form> --%>
 </body>
 <script>
+
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
 			"columnDefs" : [ {
@@ -106,30 +100,33 @@
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/ticket/earn",
+				url : "${pageContext.request.contextPath}/ticket/earn/"+${movieID},
 				data : {
 					start : start.format('YYYY-MM-DD'),
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
 				success : function(ticketEarn) {
-					alert("新增成功!");
+// 					alert("新增成功!");
+					console.log(ticketEarn);
 					
 					var dataTable = $("#example").DataTable();
 					dataTable.clear().draw();
 
 					$.each(ticketEarn, function(index, value) {
 						console.log(value);
-						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticket/earn/"+value.movieBean.movieID+"'>"+value.title+"</a>"
+						dataTable.row.add(["",value.title
 							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
 							value.ticketSaleTotal,value.foodCos,value.foodEarn,
 							value.foodSaleTotal,value.subtotal]).draw();
 					});
-				}
-			});
+// 					showInfo(data);
+			}	
+		});
 		}
-
-
+		console.log("pppp" + start.format('YYYY-MM-DD'));
+		
+		
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
 				{
@@ -153,44 +150,29 @@
 		cb(start, end);
 	});
 
-	//傳送cate selection值
-	function sendGen() {
-		console.log("Gen =>" + document.getElementById("genres").value);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/ticket/sale",
-			data : {
-				genre : document.getElementById("genres").value
-			},
-			type : "POST",
-						success : function() {
-							alert("傳送成功!");
-						}
-		});
-	}
 
-// 	function showInfo(ts) {
-// 		for (var i = 0; i < ts.length; i++) {
-// 			$('#insertHere')
-// 					.append(
-// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/earn/date" id="hallID">'
-// 									+ ts[i].title
-// 									+ '</a></td><td>'
-// 									+ ts[i].noPlayTimes
-// 									+ '</td><td>'
-// 									+ ts[i].ticketCost
-// 									+ '</td><td>'
-// 									+ ts[i].ticketEarn
-// 									+ '</td><td>'
-// 									+ ts[i].ticketSaleTotal
-// 									+ '</td><td>'
-// 									+ ts[i].foodCos
-// 									+ '</td><td>'
-// 									+ ts[i].foodEarn
-// 									+ '</td><td>'
-// 									+ ts[i].foodSaleTotal
-// 									+ '</td><td>'
-// 									+ ts[i].subtotal + '</td></tr>');
-// 		}
-// 	};
+// 	//傳送cate selection值
+// 	function showCate() {
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/product/sale/date",
+// 			data : {
+// 				cate : document.getElementById("categoryNames").value
+// 			},
+// 			type : "Get",
+// // 			success : function() {
+// // 				alert("新增成功!");
+// 				//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
+// // 			}
+// 		});
+// 	}
+
+	//動態新增表格
+// 	$('#insertHere')
+// 			.append(
+// 					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">'
+// 					+日期+'</a></td><td>'
+// 					+單價+'</td><td>'
+// 					+數量+'</td><td>'
+// 					+總金額+'</td></tr>');
 </script>
 </html>

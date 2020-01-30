@@ -31,7 +31,7 @@ public class ProductSaveDBController {
 	ProductSaleService service;
 	ProductSaleEarnService pService;
 
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}

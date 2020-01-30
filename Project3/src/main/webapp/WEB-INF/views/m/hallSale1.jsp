@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<br>
-	<table id="example" class="display" style="width: 100%;">
+	<table id="example" class="display" style="width: 100%; text-align: center;">
 		<thead>
 			<tr>
 				<th></th>
@@ -50,17 +50,8 @@
 			</tr>
 		</thead>
 		<tbody id="insertHere">
-			<c:forEach var="x" items="${hsbList}">
-				<tr>
-					<td>${x.hallID}</td>
-					<td>aa</td>
-					<td>aa</td>
-					<td>a</td>
-					<td>a</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-			</c:forEach>
+
+
 			<!-- 				<tr> -->
 			<!-- 					<td></td> -->
 			<!-- 					<td><a -->
@@ -81,11 +72,12 @@
 		<!-- 				</tr> -->
 		<!-- 			</tfoot> -->
 	</table>
-	<a href="<spring:url value="/hallSale.xls"/>" class="button info">Export To Excel</a>
-	
+	<a href="<spring:url value="/hallSale.xls"/>" class="button info">Export
+		To Excel</a>
+
 	<script>
 		$(document).ready(function() {
-			
+
 			var t = $('#example').DataTable({
 				"columnDefs" : [ {
 					"searchable" : false,
@@ -128,37 +120,21 @@
 					type : "POST",
 					success : function(hall) {
 						alert("搜尋成功!");
-						showInfo(hall);
-						window.hallOrder = hall;
-						alert(hall);
+
+						var dataTable = $("#example").DataTable();
+						dataTable.clear().draw();
+
+						$.each(hall, function(index, value) {
+							console.log(value);
+							dataTable.row.add(["",value.hallID + "廳",value.price,value.orderHours,value.hallSubtotal]).draw();
+						});
+
+						// 						showInfo(data);
 						console.log(hall);
-// 						$("#insertHere").html(hall);
-						
-// 						console.log(hall);
-// 						<c:forEach var="x" items="${hall}">
-// 							for(var i =0; i < hall.length; i++){
-// 							$('#insertHere')
-// 									.append(
-// 											'<tr><td>'
-// 											+${x.hallID}+'</td><td>'+${x.price}+'</td><td>'
-// 											+${x.orderHours}+'</td><td>'+${x.hallSubtotal}+
-// 											'</td></tr></c:forEach>');
-// 				 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
-// 		 									+ hall[i].hallID
-// 		 									+ '廳'
-// 		 									+ '</a></td><td>'
-// 		 									+ hall[i].price
-// 		 									+ '</td><td>'
-// 		 									+ hall[i].orderHours
-// 		 									+ '</td><td>'
-// 		 									+ hall[i].hallSubtotal + '</td></tr>');
-// 							}
-					}	
+					}
 				});
 			}
 			console.log("hhhh" + start.format('YYYY-MM-DD'));
-
-
 
 			// MMMM D, YYYY
 			$('#timePicker').daterangepicker(
@@ -184,28 +160,23 @@
 					}, cb);
 			cb(start, end);
 		});
-		
-		
-		
-		function showInfo(hall) {
-			for(var i =0; i < hall.length; i++){
-			$('#insertHere')
-					.append(
-							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
-									+ hall[i].hallID
-									+ '廳'
-									+ '</a></td><td>'
-									+ hall[i].price
-									+ '</td><td>'
-									+ hall[i].orderHours
-									+ '</td><td>'
-									+ hall[i].hallSubtotal + '</td></tr>');
-			}
-		};
-		
-		
-		
-		
+
+		// 		function showInfo(hall) {
+		// 			for(var i =0; i < hall.length; i++){
+		// 			$('#insertHere')
+		// 					.append(
+		// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
+		// 									+ hall[i].hallID
+		// 									+ '廳'
+		// 									+ '</a></td><td>'
+		// 									+ hall[i].price
+		// 									+ '</td><td>'
+		// 									+ hall[i].orderHours
+		// 									+ '</td><td>'
+		// 									+ hall[i].hallSubtotal + '</td></tr>');
+		// 			}
+		// 		};
+
 		// 	function (){
 		// 	$.ajax({
 		// 		url : "${pageContext.request.contextPath}/hall/sale",

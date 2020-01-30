@@ -30,7 +30,7 @@ public class MemberController {
 	MemberService service;
 	ServletContext context;
 	
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}

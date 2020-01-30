@@ -25,4 +25,6 @@ public interface ShowTimeHistoryDao {
 		List<ShowTimeHistoryBean>  getRunBeanLastSTHB(String startdate);
 
 		List<ShowTimeHistoryBean> getRunBeanLastSTHB(String exOffDay, String release);
+
+		int getShowTimeIdByTime(String playStartTime);
 }

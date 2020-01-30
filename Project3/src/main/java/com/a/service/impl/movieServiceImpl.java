@@ -203,6 +203,12 @@ public class movieServiceImpl implements MovieService {
 		return  RDao.getRunningStatusBeanById( runningStatusID);
 	}
 	
+	@Transactional
+	@Override
+	public int  getShowTimeIdByTime(String playStartTime) {
+		 return SDao. getShowTimeIdByTime( playStartTime);
+	}
+	
 	@Override
 	public Map<Integer, MovieBean> getPageBooks(int pageNo,List<RunningBean> run){
 		return  MDao.getPageBooks(pageNo, run);
@@ -212,6 +218,7 @@ public class movieServiceImpl implements MovieService {
 		return  MDao.getTotalPages(count);
 	}
 	
+
 //	@Transactional
 //
 //	public void checkHallOrder(List<HallOrderBean> hob_list, int HallTime, ) {

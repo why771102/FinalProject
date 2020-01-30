@@ -70,6 +70,17 @@ public class CommentBean implements Serializable{
 	@Transient
 	Integer badNum;
 	
+	public Integer getMemberIDBlock() {
+		return memberIDBlock;
+	}
+
+	public void setMemberIDBlock(Integer memberIDBlock) {
+		this.memberIDBlock = memberIDBlock;
+	}
+
+	@Transient
+	Integer memberIDBlock;
+	
 	public Integer getLikeNum() {
 		return likeNum;
 	}

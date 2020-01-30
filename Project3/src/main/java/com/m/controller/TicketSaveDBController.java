@@ -16,7 +16,7 @@ public class TicketSaveDBController {
 	ServletContext context;
 	TicketSaleEarnService service;
 	
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
