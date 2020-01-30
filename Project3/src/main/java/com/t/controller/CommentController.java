@@ -70,7 +70,16 @@ public class CommentController {
 	
 	//用movieID查詢comment
 	@RequestMapping("/comments/{movieID}")
-	public String getCommentByMovie(@PathVariable("movieID")Integer movieID,Model model) {
+	public String getCommentByMovie(@PathVariable("movieID")Integer movieID,Model model,HttpServletRequest request) {
+//		Cookie[] cookies = request.getCookies();
+//		String mID = null;
+//		for (Cookie cookie : cookies) {
+//			String name = cookie.getName();
+//			if(name.equals("memberID")) {
+//				mID = cookie.getValue();
+//			}
+//		}
+//		int memberID = Integer.parseInt(mID);
 		List<CommentBean> comments=service.getCommentByMovie(movieID);
 		model.addAttribute("Comments", comments);
 		return "t/comments";
