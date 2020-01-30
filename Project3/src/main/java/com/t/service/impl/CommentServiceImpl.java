@@ -33,7 +33,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Transactional
 	@Override
-	public CommentBean getComment(Integer memberID) {
+	public List<CommentBean> getComment(Integer memberID) {
 		return dao.getComment(memberID);
 	}
 	

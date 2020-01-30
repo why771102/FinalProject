@@ -27,11 +27,12 @@ public class CommentDaoImpl implements CommentDao {
 
 	// 抓出該會員在該電影所留的短評 && deleteComment = 0
 	@Override
-	public CommentBean getComment(Integer memberID) {
+	public List<CommentBean> getComment(Integer memberID) {
 		String hql = "from CommentBean where memberID = :memberID and commentDelete = 0";
 		Session session = factory.getCurrentSession();
-		CommentBean cb = session.get(CommentBean.class, memberID);
-		return cb;
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("memberID", memberID).getResultList();
+		return list;
 	}
 
 	// 用指定commentID抓留言
@@ -135,18 +136,14 @@ public class CommentDaoImpl implements CommentDao {
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		int len = list.size() - 1;
-		System.out.println("list.size()-1 = " + (list.size() - 1));
 		for (int m = len; m >= 0; m--) {
 			String hql2 = "from PreferenceBean where memberID = :memberID and commentID = :id";
 			Integer cid = list.get(m).getCommentID();
 			List<PreferenceBean> list2 = session.createQuery(hql2).setParameter("memberID", memberIDBlock)
 					.setParameter("id", cid).getResultList();
-			int len1 = list2.size() -1;
-			System.out.println("list2.size()-1 = " + (list2.size() - 1));
+			int len1 = list2.size() - 1;
 			for (int k = len1; k >= 0; k--) {
 				if (list2.get(k).getBlock() == 1) {
-					System.out.println("目標" + list2.get(k).getBlock());
-					System.out.println("k = " + k);
 					list.remove(m);
 				}
 			}
@@ -168,7 +165,6 @@ public class CommentDaoImpl implements CommentDao {
 			list.get(i).setBadNum(badNum);
 			list.get(i).setLikeNum(likeNum);
 		}
-
 		return list;
 	}
 
