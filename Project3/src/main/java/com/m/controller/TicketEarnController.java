@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,8 +43,8 @@ public class TicketEarnController {
 	//to ts page1
 	@GetMapping(value= "/ticket/earn")
 	public String toTicketSale(Model model) {
-		TicketSaleBean tsb = new TicketSaleBean();
-		model.addAttribute("TicketSaleBean1", tsb);
+//		TicketSaleBean tsb = new TicketSaleBean();
+//		model.addAttribute("TicketSaleBean1", tsb);
 		return "m/ticketEarn1";
 	}
 	
@@ -100,4 +101,24 @@ public class TicketEarnController {
 //		System.out.println("psebList=> " + psebList.size() + "==="+ psebList.get(0).getProductsBean().getProductName());
 		return tsebList; //檢查這邊!!!
 	}
+	
+	//ticketEarn P2資料傳輸
+	@GetMapping("/ticket/earn/{movieID}")
+	public String getDates(Model model, @PathVariable Integer movieID) {
+		//抓title
+//		String productName = service.getPname(productID);
+		model.addAttribute("movieID", movieID);
+//		model.addAttribute("productName", productName);
+		System.out.println("---to page 2---");
+		return "m/productEarn2";
+	}
+	
+//	@PostMapping("/ticket/earn/{movieID}")
+//	public @ResponseBody List<TicketSaleEarnBean> getDate(Model model, @PathVariable Integer movieID,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
+//		List<TicketSaleEarnBean> tsebListByDate = service.getInfoByDate(productID, sDate, eDate);
+//		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
+//		System.out.println(tsebListByDate.size());
+//		System.out.println("---傳送tsebListByDate---");
+//		return tsebListByDate;
+//	}
 }

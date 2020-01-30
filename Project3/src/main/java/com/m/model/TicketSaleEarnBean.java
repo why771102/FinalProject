@@ -68,7 +68,8 @@ public class TicketSaleEarnBean implements Serializable {
 	
 	//p1 Sale
 	public TicketSaleEarnBean(String title, Integer noPlayTimes, Integer hallSeats, 
-			Integer hallSaleSeats, Double avgSeats, Double pricePerSeat, Integer subtotal) {
+			Integer hallSaleSeats, Double avgSeats, Double pricePerSeat, 
+			Integer subtotal, MovieBean movieBean) {
 		this.title = title;
 		this.noPlayTimes = noPlayTimes;
 		this.hallSeats = hallSeats;
@@ -76,6 +77,7 @@ public class TicketSaleEarnBean implements Serializable {
 		this.avgSeats = avgSeats;
 		this.pricePerSeat = pricePerSeat;
 		this.subtotal = subtotal;
+		this.movieBean = movieBean;
 	}
 	
 	@Transient
@@ -90,7 +92,7 @@ public class TicketSaleEarnBean implements Serializable {
 	//p1 Earn
 	public TicketSaleEarnBean(String title, Integer noPlayTimes, Integer ticketCost, 
 			Integer ticketEarn, Integer ticketSaleTotal, Integer foodCos, Integer foodEarn,
-			Integer foodSaleTotal, Integer subtotal) {
+			Integer foodSaleTotal, Integer subtotal, MovieBean movieBean) {
 		this.title = title;
 		this.noPlayTimes = noPlayTimes;
 		this.ticketCost = ticketCost;
@@ -100,6 +102,7 @@ public class TicketSaleEarnBean implements Serializable {
 		this.foodEarn = foodEarn;
 		this.foodSaleTotal = foodSaleTotal;
 		this.subtotal = subtotal;
+		this.movieBean = movieBean;
 	}
 	
 	
