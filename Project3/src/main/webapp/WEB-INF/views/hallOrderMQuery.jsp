@@ -34,8 +34,9 @@
 		<tr style="text-align: center">
 			<td><b>包廳申請編號</b></td>
 			<td><b>申請廳院</b></td>
-			<td><b>申請起始時間</b></td>
-			<td><b>申請結束時間</b></td>
+			<td><b>申請日期</b></td>
+			<td><b>起始時間</b></td>
+			<td><b>結束時間</b></td>
 			<td><b>申請總時數</b></td>
 			<td><b>申請總金額</b></td>
 			<td><b>包廳申請狀態</b></td>
@@ -45,11 +46,14 @@
 		<tr style="text-align: center">
 			<td>${hoA.hallOrderNo}</td>
 			<td>${hoA.hb.hallID}廳</td>
+			<c:set var="date1" value="${hoA.orderDate}"/>
+			<c:set var="date2" value="${fn:substring(date1, 0, 10)}" />
+			<td>${date2}</td>
 			<c:set var="startTime1" value="${hoA.startTime}"/>
-			<c:set var="startTime2" value="${fn:substring(startTime1, 0, 16)}" />
+			<c:set var="startTime2" value="${fn:substring(startTime1, 11, 16)}" />
 			<td>${startTime2}</td>
 			<c:set var="endTime1" value="${hoA.endTime}"/>
-			<c:set var="endTime2" value="${fn:substring(endTime1, 0, 16)}" />
+			<c:set var="endTime2" value="${fn:substring(endTime1, 11, 16)}" />
 			<td>${endTime2}</td>
 			<td>${hoA.orderHours}小時</td>
 			<td>${hoA.hallSubtotal}元</td>

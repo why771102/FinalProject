@@ -140,10 +140,10 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
 		if(mb.getAccount() == null || mb.getAccount().trim().length() == 0) {
-			errorMsgMap.put("IDError","帳號欄位不得空白，請重新輸入!");
+			errorMsgMap.put("IDError","請輸入帳號");
 		}
 		if(mb.getPassword() == null || mb.getPassword().trim().length() == 0) {
-			errorMsgMap.put("pwdError","密碼欄位不得空白，請重新輸入!");
+			errorMsgMap.put("pwdError","請輸入密碼");
 		}
 		
 		MemberBean mb2 = service.checkIdPassword(mb.getAccount(), mb.getPassword());
