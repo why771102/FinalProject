@@ -107,5 +107,14 @@ public class EmpDaoImpl implements EmpDao {
 	}
 	
 	
+	@Override
+	public EmpBean login(String email, String password) {
+		String hql = "from EmpBean where email = :email and password = :password";
+		Session session = factory.getCurrentSession();
+		EmpBean eb = null;
+		eb = (EmpBean) session.createQuery(hql).setParameter("email", email).setParameter("password", password).getSingleResult();
+		return eb;
+	}
+	
 
 }

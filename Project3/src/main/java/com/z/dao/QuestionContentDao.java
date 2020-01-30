@@ -8,4 +8,5 @@ public interface QuestionContentDao {
 	
 	public List<QuestionContentBean> historyContent(Integer questionId);
 	
+	public void saveMessage(QuestionContentBean ConBean);
 }

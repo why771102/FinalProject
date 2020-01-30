@@ -21,6 +21,8 @@ public interface EmpService {
 	List<RoleBean> getRoleList();
 
 	List<EmpStatusBean> getEmpStatusList();
+
+	EmpBean login(String email, String password);
 	
 	
 	

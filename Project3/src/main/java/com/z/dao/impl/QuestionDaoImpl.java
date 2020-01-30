@@ -69,6 +69,17 @@ public class QuestionDaoImpl implements QuestionDao {
 		}
 		return exist;
 	}
+
+
+	@Override
+	public List<QuestionBean> allQuestionForEmp() {
+		String hql = "from QuestionBean";
+		Session session = factory.getCurrentSession();
+		List<QuestionBean> list = null;
+		list = session.createQuery(hql).getResultList();
+		return list;
+		
+	}
 	
 	
 

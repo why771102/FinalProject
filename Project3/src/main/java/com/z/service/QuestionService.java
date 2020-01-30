@@ -13,5 +13,8 @@ public interface QuestionService {
 
 	// 判斷該questionID是否是同一個member的
 	public boolean checkMember(Integer memberId, Integer questionId);
+	
+	//用來顯示所有提問清單
+	public List<QuestionBean> allQuestionForEmp();
 
 }

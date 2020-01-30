@@ -41,4 +41,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return dao.checkMember(memberId, questionId);
 	}
 
+	@Transactional
+	@Override
+	public List<QuestionBean> allQuestionForEmp() {
+		return dao.allQuestionForEmp();
+	}
+
 }

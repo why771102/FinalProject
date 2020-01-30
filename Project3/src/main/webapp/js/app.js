@@ -21,7 +21,7 @@ function connect() {
 			showGreeting(JSON.parse(greeting.body).content, JSON
 					.parse(greeting.body).name);
 		});
-		stompClient.subscribe('/topic/message', function(greeting) {
+		stompClient.subscribe('/topic/message/' + list[3], function(greeting) {
 			showMessage(JSON.parse(greeting.body).name + ":"
 					+ JSON.parse(greeting.body).content);
 		});
@@ -44,9 +44,10 @@ function sendName() {
 
 function sendMessage() {
 	if ($("#message").val().trim().length > 0) {
-		stompClient.send("/sendMessage", {}, JSON.stringify({
+		stompClient.send("/sendMessage/" + list[3], {}, JSON.stringify({
 			'message' : $("#message").val(),
-			'name' : $("#name").val()
+			'name' : $("#name").val(),
+			'questionId' : list[3]
 		}));
 	}
 }
@@ -80,3 +81,13 @@ $(function() {
 		sendMessage();
 	});
 });
+
+console.log('location.pathname: '+location.pathname);
+
+var str = location.pathname;
+var list = str.split("/");
+
+console.log(list[1]);
+console.log(list[2]);
+console.log(list[3]);
+
