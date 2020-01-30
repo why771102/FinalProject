@@ -19,6 +19,13 @@
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/responsive.css">
 
+<style type="text/css">
+	table{
+		margin-left:auto; 
+		margin-right:auto;
+	}
+</style>
+
 <title>會員註冊</title>
 
 </head>

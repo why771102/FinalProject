@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="../css/flexslider.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    
+<style type="text/css">
+	table{
+		margin-left:auto; 
+		margin-right:auto;
+	}
+</style>
 
 <title>會員登入</title>
 
@@ -45,36 +52,19 @@
 								<td><form:input id="lastLogInTime" path="lastLogInTime"
 										type='hidden' /></td>
 								<tr>
-									<td colspan="2"><input type='submit' vaiue="確定" id="sumit1"  class="inlog-btn"/></td>
-<!-- 									<td><input type='reset' value="取消"  class="inlog-btn" /></td> -->
+									<td colspan="2"><input type='submit' value="確定" id="sumit1"  class="inlog-btn"/></td>
+<%-- 									<td><a href="<c:url value='/views/register.jsp' />" class="inlog-btn" >註冊</a></td> --%>
 								</tr>
 							</fieldset>
 						</form:form>
+								<tr>
+									<td colspan="2"><input type='button' value="現在註冊" onclick="javascript:location.href='<c:url value='/member/register' />'" class="inlog-btn"/></td>
+								</tr>
 					</table>
 				</div>
 			</div>
 		</div>
 	</section>
-
-	<!-- 樣板 -->
-	<!--     <section class="login-block"> -->
-	<!--         <div class="container"> -->
-	<!--             <div class="login-inner"> -->
-	<!--                 <h2>Login Here</h2> -->
-	<!--                 <div class="login-form"> -->
-	<%--                     <form> --%>
-	<!--                         <input type="text" name="nm" class="inp-fild" placeholder="Name"> -->
-	<!--                         <input type="password" id="mail" name="mail" class="inp-fild" placeholder="Password"> -->
-	<%--                     </form> --%>
-	<!--                     <button class="inlog-btn">Login</button> -->
-	<!--                     <h4><a href="#">Forgot Password</a></h4> -->
-	<!--                     <h4>Dont have an account? <a href="#">Create New</a></h4> -->
-	<!--                 </div> -->
-	<!--             </div> -->
-	<!--         </div> -->
-	<!--     </section> -->
-
-	<!-- 樣板 -->
 
 	<script>
 		$("#sumit1").click(
