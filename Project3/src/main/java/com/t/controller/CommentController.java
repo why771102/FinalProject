@@ -99,9 +99,14 @@ public class CommentController {
 				mID = cookie.getValue();
 			}
 		}
-		int memberIDBlock = Integer.parseInt(mID);
-		List<CommentBean> comments=service.getCommentByMovie(movieID, memberIDBlock);
-		model.addAttribute("Comments", comments);
+		if(mID == null) {
+			List<CommentBean> comments=service.getCommentByMovieNoLogin(movieID);
+			model.addAttribute("Comments", comments);
+		}else {
+			int memberIDBlock = Integer.parseInt(mID);
+			List<CommentBean> comments=service.getCommentByMovie(movieID, memberIDBlock);
+			model.addAttribute("Comments", comments);
+		}		
 		return "t/comments";
 	}
 	

@@ -11,8 +11,8 @@
 <body>
 	<div style="text-align: center">
 		<h1>請選擇movieID:</h1>
-		<c:forEach var="movieID" items="${movieIDList}">
-			<a href="comments/add/${movieID}">${movieID}</a>
+		<c:forEach var="movie" items="${movieIDList}">
+			<a href="comments/add/${movie.movieID}">${movie.title}</a>
 			<br>
 		</c:forEach>
 	</div>

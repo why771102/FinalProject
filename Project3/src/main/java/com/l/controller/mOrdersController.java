@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.model.MOrderBean;
+import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.l.service.mOrdersService;
 
@@ -45,7 +46,7 @@ public class mOrdersController {
 		String dateTime = today.toString() + " " + time.toString();
 		List<RunningBean> rb = service.getAllOnMoive(today);
 		model.addAttribute("AllMovies", rb);   
- 		return "l/movie";
+		return "l/movie";
 	}
 	
 	//查詢多個playStartTime
@@ -133,13 +134,12 @@ public class mOrdersController {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies){
 				if(cookie.getName().equals("showtimeId")) {
-					 String showtimeId=cookie.getValue();
-					 System.out.println(showtimeId+"123");
+					 String showtimeId = cookie.getValue();
 					 mb.setShowTimeID(Integer.parseInt(showtimeId));
 					 }
 				if(cookie.getName().equals("memberID")) {
-						 String memberID=cookie.getValue();
-						 mb.setMemberID(Integer.parseInt(memberID));
+					 String memberID = cookie.getValue();
+					 mb.setMemberID(Integer.parseInt(memberID));
 				}else{
 					mb.setMemberID(1);
 				}
@@ -152,6 +152,141 @@ public class mOrdersController {
 			mb.setTicketTime("2999-01-01");
 			mb.setEmpId(1);
 			service.addMOrder(mb);
+			
+			MOrderDetailBean mdb=new MOrderDetailBean();
+			MOrderDetailBean mdb1=new MOrderDetailBean();
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals("discount")) {
+					 String discount = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(13);
+					 mdb.setSellUnitPrice(195);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(discount));
+					 service.addMOrderDetail(mdb); 
+					 mdb1.setOrdersID(mb.getOrdersID());
+					 mdb1.setProductID(14);
+					 mdb1.setSellUnitPrice(175);
+					 mdb1.setDiscount(1.0);
+					 mdb1.setQuantity(Integer.parseInt(discount));
+					 service.addMOrderDetail(mdb1); 
+					}
+				if(cookie.getName().equals("discount2")) {
+					 String discount2 = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(15);
+					 mdb.setSellUnitPrice(370);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(discount2));
+					 service.addMOrderDetail(mdb);
+					 mdb1.setOrdersID(mb.getOrdersID());
+					 mdb1.setProductID(16);
+					 mdb1.setSellUnitPrice(330);
+					 mdb1.setDiscount(1.0);
+					 mdb1.setQuantity(Integer.parseInt(discount2));
+					 service.addMOrderDetail(mdb1); 
+					}
+				if(cookie.getName().equals("bankticket")) {
+					 String bankticket = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(3);
+					 mdb.setSellUnitPrice(220);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(bankticket));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("normal")) {
+					 String normal = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(1);
+					 mdb.setSellUnitPrice(290);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(normal));
+					 service.addMOrderDetail(mdb); 
+					}
+				if(cookie.getName().equals("hotdog")) {
+					 String hotdog = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(7);
+					 mdb.setSellUnitPrice(120);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(hotdog));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("churro")) {
+					 String churro = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(8);
+					 mdb.setSellUnitPrice(100);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(churro));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("friedChicken")) {
+					 String friedChicken = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(9);
+					 mdb.setSellUnitPrice(200);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(friedChicken));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("bigCoke")) {
+					 String bigCoke = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(4);
+					 mdb.setSellUnitPrice(70);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(bigCoke));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("normalCoke")) {
+					 String normalCoke = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(5);
+					 mdb.setSellUnitPrice(60);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(normalCoke));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("smallCoke")) {
+					 String smallCoke = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(6);
+					 mdb.setSellUnitPrice(54);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(smallCoke));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("bigPopcorn")) {
+					 String bigPopcorn = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(10);
+					 mdb.setSellUnitPrice(140);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(bigPopcorn));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("normalPopcorn")) {
+					 String normalPopcorn = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(11);
+					 mdb.setSellUnitPrice(130);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(normalPopcorn));
+					 service.addMOrderDetail(mdb);
+					 }
+				if(cookie.getName().equals("smallPopcorn")) {
+					 String smallPopcorn = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(12);
+					 mdb.setSellUnitPrice(120);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(smallPopcorn));
+					 service.addMOrderDetail(mdb);
+					 }
+			}
+			
 			return "l/orderconfirmOK";
 		}
 

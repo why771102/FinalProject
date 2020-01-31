@@ -81,4 +81,10 @@ public class HallOrderServiceImpl implements HallOrderService {
 		return dao.getHallOrder(today);
 	}
 
+	@Transactional
+	@Override
+	public HallOrderBean hallOrderQueryForMail(Integer hallOrderNo) {
+		return dao.hallOrderQueryForMail(hallOrderNo);
+	}
+
 }
