@@ -202,7 +202,7 @@ public class EmpController {
 	}
 	
 	//以下為登出方法
-	@GetMapping("/member/logout")
+	@GetMapping("/emp/logout")
 	public String EmpLogout(HttpServletRequest request,HttpServletResponse response,Model model) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("LoginOK");
