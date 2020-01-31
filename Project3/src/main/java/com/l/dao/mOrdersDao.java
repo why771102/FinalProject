@@ -7,6 +7,8 @@ import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.model.MOrderBean;
+import com.l.model.MOrderDetailBean;
+import com.l.model.ProductsBean;
 import com.p.model.MemberBean;
 import com.z.model.EmpBean;
 
@@ -27,6 +29,9 @@ public interface mOrdersDao {
 
 	//新增訂單
 	public void addMOrder(MOrderBean mob);
+	//新增訂單明細
+	public void addMOrderDetail(MOrderDetailBean modb);
+	
 	//修改訂單之員工ID原本null
 	public List<EmpBean> updateEmpbyID(EmpBean eb);
 	//修改票狀態、領票時間
@@ -40,4 +45,8 @@ public interface mOrdersDao {
 	EmpBean getEmp(int empID);
 
 	MemberBean getMemberById(int memberID);
+
+	MOrderBean getOrderBeanID(int OrderID);
+
+	ProductsBean getProductBeanID(int ProductsID);
 }

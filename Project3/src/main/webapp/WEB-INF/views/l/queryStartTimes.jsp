@@ -22,8 +22,8 @@
     <section class="container">
         <div class="row">
           <c:forEach var='MovieID' items='${playStartTime}'>
-            <div class="col-sm-6 col-md-3" style="width: 200px; height: 100px">
-                <div class="thumbnail" style="width: 200px; height: 100px">
+            <div class="col-sm-6 col-md-3" style="width: 200px; height: 200px">
+                <div class="thumbnail" style="width: 200px; height: 200px">
                     <div class="caption">
                        <p>
                        		 <b >showtimeId:${MovieID.showTimeId}</b>

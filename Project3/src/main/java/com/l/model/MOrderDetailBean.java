@@ -32,6 +32,7 @@ public class MOrderDetailBean implements Serializable {
 	@Transient
 	Integer ordersID;
 	
+	
 	//	Integer productID;
 	@Id
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -84,6 +85,18 @@ public class MOrderDetailBean implements Serializable {
 	}
 	public void setmOrderBean(MOrderBean mOrderBean) {
 		this.mOrderBean = mOrderBean;
+	}
+	public Integer getOrdersID() {
+		return ordersID;
+	}
+	public void setOrdersID(Integer ordersID) {
+		this.ordersID = ordersID;
+	}
+	public Integer getProductID() {
+		return productID;
+	}
+	public void setProductID(Integer productID) {
+		this.productID = productID;
 	}
 	public ProductsBean getProductsBean() {
 		return productsBean;
