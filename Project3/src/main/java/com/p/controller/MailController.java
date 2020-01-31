@@ -1,7 +1,5 @@
 package com.p.controller;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -10,12 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com._root.config.RootAppConfig;
+import com.p.service.HallOrderService;
 import com.p.service.MailService;
 
 @Controller
 public class MailController {
 
 	MailService service;
+	HallOrderService hoservice;
 //	@Autowired
 	ApplicationContext context;
 	
@@ -26,16 +27,17 @@ public class MailController {
 	
 	
 	@Autowired
-	public void setService(MailService service) {
+	public void setService(MailService service, HallOrderService hoservice) {
 		this.service = service;
+		this.hoservice = hoservice;
 	}
 	
-	@RequestMapping(value="/hallOrder/mail/{mail}")
-	public String hallOrderMail(@PathVariable("mail") String mail, Model model) {
+	@RequestMapping(value="/hallOrder/mail/{hallOrderNo}")
+	public String hallOrderMail(@PathVariable("hallOrderNo") Integer hallOrderNo, Model model) {
 //		這邊要設定信件的內容
 		System.out.println("SENDING EMAIL");
 		AnnotationConfigApplicationContext cntxt = new AnnotationConfigApplicationContext();
-		cntxt.register(com.p.mail.SpringEmailConfig.class);
+		cntxt.register(RootAppConfig.class);
 		cntxt.refresh();
 		MailService emailService = cntxt.getBean(MailService.class);
 		cntxt.close();

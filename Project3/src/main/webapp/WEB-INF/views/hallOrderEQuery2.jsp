@@ -80,7 +80,7 @@
 			
 			<td><form:input id="memberID" path="memberID" value="${AHO.mb.memberID}" type='hidden' readonly="true"/></td>
 			</form:form>
-			<td><a href="<c:url value="/hallOrder/mail/${AHO.mobile}"/>">發送付款通知信</a></td>
+			<td><a href="<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>">發送付款通知信</a></td>
 		</tr>
 			
 			</c:forEach>
