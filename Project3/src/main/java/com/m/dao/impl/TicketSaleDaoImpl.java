@@ -61,7 +61,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 	// =======================================================================================
 
 	// p1 method
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TicketSaleEarnBean> getTicketSaleInfo(String sDate, String eDate) {

@@ -50,7 +50,7 @@
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='forwardDemo'>Ticket利潤
 					p3</a><br></td>
-			<td width="350"><p align="left" /> <a href='redirectDemo'>x
+			<td width="350"><p align="left" /> <a href='test'>test
 					</a><br></td>
 		</tr>
 		</tr>
