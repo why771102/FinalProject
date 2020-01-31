@@ -60,7 +60,18 @@ public class HallOrderDaoImpl implements HallOrderDao {
 		return null;
 	}
 	
+	//用包廳申請編號取得包廳資料
+	@Override
+	public HallOrderBean hallOrderQueryForMail(Integer hallOrderNo) {
+		String hql = "From HallOrderBean Where hallOrderNo = :hallOrderNo";
+		Session session = factory.getCurrentSession();
+		HallOrderBean hob = new HallOrderBean();
+		hob = (HallOrderBean) session.createQuery(hql).setParameter("hallOrderNo", hallOrderNo).getSingleResult();
+		return hob;
+	}
+	
 	//用戶自行查詢包廳狀況，用MemberID去找
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<HallOrderBean> hallOrderMQuery(Integer MemberID) {
 		String hql = "From HallOrderBean Where memberID = :memberID";

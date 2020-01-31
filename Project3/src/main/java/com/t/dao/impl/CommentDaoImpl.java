@@ -69,14 +69,6 @@ public class CommentDaoImpl implements CommentDao {
 	}
 
 	@Override
-	public ExpectationBean getAvgGrade(Integer movieID) {
-		String hql = "Select AVG(grade) where movieID = :movieID";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("movieID", movieID).getResultList();
-		return null;
-	}
-
-	@Override
 	public void addComment(CommentBean cb) {
 		Session session = factory.getCurrentSession();
 		MovieBean mvb = getMovieById(cb.getMovieID());
@@ -121,11 +113,28 @@ public class CommentDaoImpl implements CommentDao {
 	// 列出電影ID
 	@Override
 	public List<String> getMovies() {
-		String hql = "Select Distinct movieID from MovieBean Where movieStatus = 1";
+		String hql = "from MovieBean Where movieStatus = 1";
 		Session session = factory.getCurrentSession();
 		List<String> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
 		return list;
+	}
+	
+	//印出平均評分
+	@Override
+	public Integer getAvgGrade(Integer movieID) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		Integer totalGrade = 0;
+		Integer avgGrade = 0;
+		for (int i = 0; i < list.size(); i++) {
+			Integer grade = list.get(i).getGrade();
+			totalGrade = totalGrade + grade;
+		}
+		avgGrade = totalGrade/list.size();
+		return avgGrade;
 	}
 
 	// 用電影ID 查出各個comment
@@ -148,6 +157,33 @@ public class CommentDaoImpl implements CommentDao {
 				}
 			}
 		}
+		for (int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			for (int j = 0; j < list1.size(); j++) {
+				if (list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if (list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
+		return list;
+	}
+	
+	// 用電影ID 查出各個comment(未登入)
+	@Override
+	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		for (int i = 0; i < list.size(); i++) {
 			Integer cid = list.get(i).getCommentID();
 			String hql1 = "from PreferenceBean where commentID = :id";

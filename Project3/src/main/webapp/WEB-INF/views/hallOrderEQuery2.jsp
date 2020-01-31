@@ -61,9 +61,9 @@
 			
 			<td><form:input id="contactPerson" path="contactPerson" value="${AHO.contactPerson}" type='text' readonly="true"/></td>
 			
-			<td><form:input id="mobile" path="mobile" value="${AHO.mail}" type='text' readonly="true"/></td>
+			<td><form:input id="mobile" path="mobile" value="${AHO.mobile}" type='text' readonly="true"/></td>
 			
-			<td><form:input id="mail" path="mail" value="${AHO.mobile}" type='text' readonly="true"/></td>
+			<td><form:input id="mail" path="mail" value="${AHO.mail}" type='text' readonly="true"/></td>
 			
 			<td><form:select path="hallOrderStatusNo" id="no">
 				<form:option value="${AHO.hob.hallOrderStatusNo}">${AHO.hob.hallOrderStatus}</form:option>
@@ -80,7 +80,9 @@
 			
 			<td><form:input id="memberID" path="memberID" value="${AHO.mb.memberID}" type='hidden' readonly="true"/></td>
 			</form:form>
-			<td><a href="<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>">發送付款通知信</a></td>
+			
+			<td><input type='button' value="發送付款通知信" onclick="javascript:location.href='<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>'" class="inlog-btn"/></td>
+<%-- 			<td><a href="<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>">發送付款通知信</a></td> --%>
 		</tr>
 			
 			</c:forEach>

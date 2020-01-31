@@ -1,5 +1,6 @@
 package com.m.controller;
 
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.model.HallSaleBean;
@@ -50,6 +52,8 @@ public class ProductSaleController {
 	// to ps1
 	@GetMapping(value = "product/sale")
 	public String toProductSale(Model model) {
+		List<ProductSaleEarnBean> psebList = service.getAllPSEB();
+		model.addAttribute("psebList", psebList);
 		return "m/productSale1";
 	}
 	
@@ -123,5 +127,22 @@ public class ProductSaleController {
 		System.out.println(psebListByDate.size());
 		System.out.println("---傳送psebListByDate---");
 		return psebListByDate; 
+	}
+	
+	//excel
+	@GetMapping(value = "product/sale/excel", produces ="application/vnd.ms-excel")
+	public String queryAllpsebExcel(Model model, @RequestParam("exportExcel")String ps) {
+		System.out.println("123321");
+//		Gson gson = new Gson();
+//		String ps1 = gson.toJson(ps);
+//		System.out.println(ps1);
+		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
+		List<ProductSaleEarnBean> psebList = new Gson().fromJson(ps, listType);
+//		List<ProductSaleEarnBean> psebList = service.getAllPSEB();
+		model.addAttribute("psebList", psebList);
+		System.out.println("psebList==> " + psebList);
+	      System.out.println("@@@@@ " + psebList.get(0).getPrice());
+//		request.setAttribute("hsbList", hsbList);
+	    return "product/sale/excel";
 	}
 }

@@ -1,20 +1,34 @@
 package com.a.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.a.model.MovieBean;
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.a.service.SCOrderDetailsService;
@@ -47,13 +61,13 @@ public class ShoppingCartController {
 	@SuppressWarnings("unused")
 	@GetMapping("/getShoppingCart")
 	public String getShoppingCart(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Cookie[] cookies = request.getCookies();
-		if (cookies.length < 4) {
-			MemberBean mb = new MemberBean();
-			model.addAttribute("memberBean", mb);
-			return "redirect:/member/login";
-		}
+//		HttpSession session = request.getSession();
+//		Cookie[] cookies = request.getCookies();
+//		if (cookies.length < 4) {
+//			MemberBean mb = new MemberBean();
+//			model.addAttribute("memberBean", mb);
+//			return "redirect:/member/login";
+//		}
 		Integer memberID = scservice.getMemberID(request);
 		System.out.println(memberID);
 		Integer SCOrderID = scservice.getShoppingCart(memberID);
@@ -93,5 +107,65 @@ public class ShoppingCartController {
 		scservice.deleteProduct(Integer.parseInt(orderID), Integer.parseInt(productID));
 		System.out.println("This is deleteProducts");
 		return "a/ShoppingCart";
+	}
+	
+	@GetMapping("/showAllProducts")
+	public String showAllProducts() {
+		return "a/allProducts";
+	}
+	
+//	@GetMapping("/getPicture/{productID}")
+//	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer movieID) {
+//	    String filePath = "/resources/images/NoImage.jpg";
+//	    System.out.println(movieID);
+//	    byte[] media = null;
+//	    HttpHeaders headers = new HttpHeaders();
+//	    String filename = "";
+//	    int len = 0;
+//	    
+//	    System.out.println(bean);
+//	    if (bean != null) {
+//	        Blob blob = bean.getPhoto();
+//	        filename = bean.getFileName();
+//	        if (blob != null) {
+//	            try {
+//	                len = (int) blob.length();
+//	                media = blob.getBytes(1, len); //  blob.getBytes(1, len): 是 1 開頭。Jdbc相關的類別都是1 開頭。
+//	            } catch (SQLException e) {
+//	                throw new RuntimeException("RunMovieController的getPicture()發生SQLException: " + e.getMessage());
+//	            }
+//	        } else {
+//	            media = toByteArray(filePath);    
+//	            filename = filePath;            
+//	        }
+//	    } else {
+//	    	media = toByteArray(filePath);    
+//	        filename = filePath;            
+//	    }
+//	       headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+//	       String mimeType = context.getMimeType(filename);
+//	    MediaType mediaType = MediaType.valueOf(mimeType);
+//	    System.out.println("mediaType =" + mediaType);
+//	    headers.setContentType(mediaType);
+//	    ResponseEntity<byte[]> responseEntity = 
+//	                new ResponseEntity<>(media, headers, HttpStatus.OK);
+//	    return responseEntity;
+//	}
+	
+	private byte[] toByteArray(String filepath) {
+	    byte[] b = null;
+	    String realPath = context.getRealPath(filepath);
+	    try {
+	          File file = new File(realPath);
+	          long size = file.length();
+	          b = new byte[(int)size];
+	          InputStream fis = context.getResourceAsStream(filepath);
+	          fis.read(b);
+	    } catch (FileNotFoundException e) {
+	          e.printStackTrace();
+	    } catch (IOException e) {
+	          e.printStackTrace();
+	    }
+	    return b;
 	}
 }

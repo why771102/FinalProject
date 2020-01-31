@@ -105,6 +105,11 @@
 									<td><form:input id="password" path="password" type='password' /><br>
 										<form:errors path="password" cssClass="error" /></td>
 								</tr>
+<!-- 								<tr> -->
+<!-- 									<td>確認密碼:</td> -->
+<%-- 									<td><form:input id="checkPassword" path="checkPassword" type='password' /><br> --%>
+<%-- 										<form:errors path="checkPassword" cssClass="error" /><span>${errorMsgMap.checkPasswordError}</span></td> --%>
+<!-- 								</tr> -->
 								<tr>
 									<td>性別:</td>
 									<td><form:radiobutton path="gender" value="男性" />男性 
@@ -244,6 +249,12 @@
     </div>
     <!-- footer -->
 	<script>
+// 		$("#sumit1").click(function(){
+// 			if($("#checkPassword").val() != $("#password").val() || $("#checkPassword").val() == ""){
+// 				alert("「確認密碼」不得空白，且需與密碼欄位內容一致!");
+// 			}
+// 		});
+		
 		$("#sumit1").click(
 				function() {
 					var d = new Date();
@@ -253,6 +264,7 @@
 									+ d.getMinutes() + ":" + d.getSeconds()
 									+ ".000");
 				});
+
 
 		// $(document).ready(function(){
 		// 	var d = new Date();

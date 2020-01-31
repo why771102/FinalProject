@@ -57,6 +57,9 @@ public class CommentBean implements Serializable{
 	@Transient
 	Integer movieID;
 	
+	@Transient
+	Integer avgGrade;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean memberBean;
@@ -68,8 +71,16 @@ public class CommentBean implements Serializable{
 	Integer likeNum;
 	
 	@Transient
-	Integer badNum;
+	Integer badNum;	
 	
+	public Integer getAvgGrade() {
+		return avgGrade;
+	}
+
+	public void setAvgGrade(Integer avgGrade) {
+		this.avgGrade = avgGrade;
+	}
+
 	public Integer getMemberIDBlock() {
 		return memberIDBlock;
 	}

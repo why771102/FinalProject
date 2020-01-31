@@ -21,6 +21,7 @@ import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
+import com.l.model.MOrderDetailBean;
 import com.l.service.mOrdersService;
 import com.z.model.EmpBean;
 
@@ -69,6 +70,15 @@ public class mOrdersServiceImpl implements mOrdersService{
 		 dao.addMOrder(mob);
 		
 	}
+	@Transactional
+	@Override
+	public void addMOrderDetail(MOrderDetailBean modb) {
+		dao.addMOrderDetail(modb);
+		
+	}
+
+	
+	
 	
 	@Transactional
 	@Override
@@ -84,6 +94,7 @@ public class mOrdersServiceImpl implements mOrdersService{
 		return null;
 	}
 
+	
 	
 	}
 	
