@@ -416,17 +416,24 @@ public class RunMovieController {
 		
 			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
 			oneDayShowTime.add(new ShowtimeBean(1, sthb.getRun().getMovie().getRunningTime(),sthb.getRun().getMovie().getExpectedProfit() ,
-					dateTime.toLocalDate(), dateTime.toLocalTime(), sthb));
+					(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), sthb));
 		}
 		//確認包場
 		List<HallOrderBean> hob_list = hoService.getHallOrder(day1);
 		if(hob_list.size()>0) {
 		   for(HallOrderBean hob : hob_list) {
 			LocalDateTime dateTime = LocalDateTime.parse(hob.getStartTime(), fmt);
-			oneDayShowTime.add(new ShowtimeBean(0, (hob.getOrderHours()*60), hob,dateTime.toLocalDate(), dateTime.toLocalTime(), hob.getHb()));
+			oneDayShowTime.add(new ShowtimeBean(0, (hob.getOrderHours()*60), hob,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), hob.getHb()));
 			
 		   }
 		}
+		//取現在可以上映的movie
+		List<RunningBean> rb_List=mService.getAllOnMoive(day1);
+		
+		//有幾廳
+		List<HallBean> hb_list = hService.getAllHalls(0);
+		int Hallcount = hb_list.size();// 有幾個聽
+		
 	
 		Gson gson = new Gson();
 		String jsonstring = gson.toJson(oneDayShowTime);
