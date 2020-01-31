@@ -16,6 +16,33 @@
 <script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
+<style>
+  div {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        input[type="number"] {
+            width: 100px;
+        }
+
+        input+span {
+            padding-right: 30px;
+        }
+
+        input:invalid+span:after {
+            position: absolute;
+            content: '✖';
+            padding-left: 5px;
+        }
+
+        input:valid+span:after {
+            position: absolute;
+            content: '✓';
+            padding-left: 5px;
+        }
+</style>
+
 </head>
 <body>
 <h1>修改頁面</h1>
@@ -81,8 +108,29 @@
 	<a href=''>修改</a>
 	<a href='index-a'>確認</a>
 	<script>
- 	
-	   var a=${jsonString}
+	//準備movie 有多少個陣列
+	
+	var hall =${hall};
+	console.log(hall);
+	console.log(hall.length);
+	
+	
+	
+	var movie =${runMovie};
+	console.log(movie);
+	console.log(movie.length);
+	var movieTitle="";
+	for(let i =0 ;i<movie.length;i++){
+			
+			movieTitle+= "<option value='" + i + "' selected=''>" + movie[i].movie.title + "</option>"
+		
+	}
+	
+	
+	
+	
+	
+	   var a=${showTime};
 		console.log(a[0].stID);
 		console.log(a.length);
 		console.log(a);
@@ -96,20 +144,22 @@
 				$(document).ready(function () {
 	                   $("#table_tr").append(
 	                       " <tr id=tr" + i + ">" +
-	                       "<td>" + a[i].day + "</td>" +
+	                       "<td>" + a[i].strDay + "</td>" +
 	                       "<td>" + a[i].sthb.hall.hallID + "</td>" +
 	                       "<td>" + a[i].stID + "</td>" +
 	                       "<td>" +a[i].hob.hallPurpose+
 	                       "</td>" +
 	                       "<td><p id='runningTime" + i + "'>" + a[i].runningTime+ "</p></td>" +
-	                       "<td id='time" + i + "'>" +a[i].time
-	 
+	                       "<td id='time" + i + "'>" +a[i].strTime
+	                     
 	                       + "</td>" +
 	                       "<td>max</td>" +
 	 
 	                       "</tr>");
 	               });
 
+				
+				
 				
 		    //電影
 			}else if(a[i]["stID"]=="1"){
@@ -118,20 +168,20 @@
 				$(document).ready(function () {
 	                   $("#table_tr").append(
 	                       " <tr id=tr" + i + ">" +
-	                       "<td>" + a[i].day.year +"-"+a[i].day.month+"-"+a[i].day.day+ "</td>" +
+	                       "<td>" + a[i].strDay +"</td>" +
 	                       "<td>" + a[i].sthb.hall.hallID + "</td>" +
 	                       "<td>" + a[i].stID + "</td>" +
 	                       "<td>" +
 	                       "<select name='' id='title' onchange='change(this.value," + i + ")' value='" + i + "'>" +
-	 
+	                       movieTitle+
 	                       "<option  selected='' disabled='' value='" + i + "'>" + a[i].sthb.run.movie.title + "</option>" +
-	                      
+	                     
 	                       "</select>" +
-	 
+	                        
 	                       "</td>" +
 	                       "<td><p id='runningTime" + i + "'>" + a[i].runningTime + "</p></td>" +
 	                       "<td id='time" + i + "'>" + "<input id='appt-time' type='time' name='appt-time'" +
-	                       "value='" + a[i].time.hour+":"+ a[i].time.minute + "'min='" +  a[i].time.hour+":"+ a[i].time.minute + "' max='24:00' onchange='changeTime(this.value)'><span class='validity'></span>"
+	                       "value='" + a[i].strTime+ "'min='" +  a[i].strTime+ "' max='24:00' onchange='changeTime(this.value)'><span class='validity'></span>"
 	 
 	 
 	                       + "</td>" +
@@ -146,19 +196,52 @@
 			
 		}
 		
+
+        function change(value, row) {
+            var row = row;
+            alert(value + " " + row);
+
+            var runTime = "runningTime" + row.toString();
+            console.log(runTime);
+            var RTobj = document.getElementById("runningTime"+row);
+
+            RTobj.innerHTML = "";
+            RTobj.innerHTML = movie[value].movie.runningTime;  //change runningTime
+
+           
+            var time_obj0 = document.getElementById("time" + row);
+            time_obj0.removeChild(time_obj0.childNodes[0]);
+  /*          console.log(a[row].day);//2019-01-10
+            console.log(obj0.childNodes[0].value);//13:10:00
+            console.log(obj0.childNodes[0].innerText);// 空直
+            console.log(obj0.childNodes[0].innerHTML);// 空直
+            console.log(obj.innerHTML);//102
+            console.log(obj.innerText);//102
+         
+             var startTime2 = PlusTime(a[row].day, obj0.childNodes[0].value, obj.innerHTML, "time");
+            console.log("stTime2:"+startTime2);//15:02
+          
+
+            var time1 = "time" + (row * 1 + 1).toString();
+            var  time_obj1 = document.getElementById(time1);
+            console.log(time);
+
+            time_obj1.childNodes[0].value = startTime2;
+            time_obj1.childNodes[0].min = startTime2;
+            // time_obj1.removeChild(time_obj1.childNodes[0]);
+            // time_obj1.removeChild(time_obj1.childNodes[0]);
+
+*/
+
+
+
+          
+              
+            
+
+        }
 		
-		
-		
-		//準備movie 有多少個陣列
-		var movieTitle="";
-		for(let i =0 ;i<a.length;i++){
-			if(a[i]["stID"]=="0"){
-			}else if(a[i]["stID"]=="1"){
-				
-// 				movieTitle+=
-			}
-		}
-		
+	
 		
 		
 		

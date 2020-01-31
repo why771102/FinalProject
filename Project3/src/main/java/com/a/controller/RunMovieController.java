@@ -264,7 +264,7 @@ public class RunMovieController {
 	    }
 	    return b;
 	}
-
+    //顯示上映電影
 	@GetMapping(value = "/AllMovie/show") // URL 跟<a href='movie/show'> 相關
 	public String showAllMovie(Model model,HttpServletRequest request,HttpServletResponse response) {
 		LocalDate today = (LocalDate.now());
@@ -386,7 +386,7 @@ public class RunMovieController {
 		return "index-a";// URL 跟 eclip 擺放位置相關
 
 	}
-	
+	//把showtimemovie 修改
 	@GetMapping(value = "/showTime/update/{date}{time}")
 	public String addNewMovie(Model model, HttpServletRequest request, @PathVariable("date") String date ,@PathVariable("time") String time) {
 		String[] datetime = date.split("\\|");
@@ -436,19 +436,18 @@ public class RunMovieController {
 		
 	
 		Gson gson = new Gson();
-		String jsonstring = gson.toJson(oneDayShowTime);
-		request.setAttribute("jsonString", jsonstring);
+		String runMovie = gson.toJson(rb_List);
+		String hall = gson.toJson(hb_list);
+		String showTime = gson.toJson(oneDayShowTime);
+		request.setAttribute("showTime", showTime);
+		request.setAttribute("hall", hall);
+		request.setAttribute("runMovie", runMovie);
 
 		
 		
 		return "a/updateShowTime";
 	}
-	
-	@GetMapping(value="update/go")
-	public String goToUpdate() {
-		
-		return "a/updateShowTime";
-	}
+
 
 	@GetMapping(value = "/movie/autoRun") // URL 跟<a href='movie/show'> 相關
 	public String RunningMovie(Model model, HttpServletRequest request) {
