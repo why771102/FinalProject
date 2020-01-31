@@ -89,6 +89,9 @@
 
 							<fieldset>
 								<tr>
+									<td colspan="2"><span>${errorMsgMap.IDPwdError}</span></td>
+								</tr>
+								<tr>
 									<td>帳號:</td>
 									<td><form:input id="account" path="account" type='text' /></td>
 									<td><span>${errorMsgMap.IDError}</span></td>
@@ -97,9 +100,12 @@
 									<td>密碼:</td>
 									<td><form:input id="password" path="password" type='password' /></td>
 									<td><span>${errorMsgMap.pwdError}</span></td>
+									
 								</tr>
-								<td><form:input id="lastLogInTime" path="lastLogInTime"
+								<tr>
+									<td><form:input id="lastLogInTime" path="lastLogInTime"
 										type='hidden' /></td>
+								</tr>
 								<tr>
 									<td colspan="2"><input type='submit' value="登入" id="sumit1"  class="inlog-btn"/></td>
 <%-- 									<td><a href="<c:url value='/views/register.jsp' />" class="inlog-btn" >註冊</a></td> --%>
