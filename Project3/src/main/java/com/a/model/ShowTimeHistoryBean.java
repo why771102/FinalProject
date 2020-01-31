@@ -36,17 +36,36 @@ public class ShowTimeHistoryBean implements Serializable {
 	private HallBean hall;
 	
 	@Transient
-	Integer runID;
+	Integer runID_1;
+
+	@Transient
+	String runID;
 	@Transient
 	String hallID;
 	
-	
-  //runID hallID 都只有ID 
-	public ShowTimeHistoryBean(Integer showTimeId, String playStartTime, Integer runID, String hallID) {
+//	
+//	"showTimeId":showTimeId,
+//    "playStartTime":playStartTime,
+//    "hallID":hallID,
+//    "runID":runID,
+    public ShowTimeHistoryBean(Integer showTimeId, String playStartTime, String hallID, String runID) {
 		super();
 		this.showTimeId = showTimeId;
 		this.playStartTime = playStartTime;
 		this.runID = runID;
+		this.hallID = hallID;
+	}
+    
+	
+
+
+
+	//runID hallID 都只有ID 
+	public ShowTimeHistoryBean(Integer showTimeId, String playStartTime, Integer runID_1, String hallID) {
+		super();
+		this.showTimeId = showTimeId;
+		this.playStartTime = playStartTime;
+		this.runID_1 = runID_1;
 		this.hallID = hallID;
 	}
 
@@ -105,13 +124,25 @@ public class ShowTimeHistoryBean implements Serializable {
 		this.hallID = hallID;
 	}
 
-	public Integer getRunID() {
+	public String getRunID() {
 		return runID;
 	}
 
-	public void setRunID(Integer runID) {
+	public void setRunID(String runID) {
 		this.runID = runID;
 	}
+
+	
+	
+	  public Integer getRunID_1() {
+			return runID_1;
+		}
+
+
+		public void setRunID_1(Integer runID_1) {
+			this.runID_1 = runID_1;
+		}
+
 
 	public String getPlayStartTime() {
 		return playStartTime;
