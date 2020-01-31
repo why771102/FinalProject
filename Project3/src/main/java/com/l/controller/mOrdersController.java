@@ -1,9 +1,10 @@
 package com.l.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -15,12 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.l.model.MOrderBean;
+import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.l.service.mOrdersService;
 
@@ -41,7 +46,7 @@ public class mOrdersController {
 		String dateTime = today.toString() + " " + time.toString();
 		List<RunningBean> rb = service.getAllOnMoive(today);
 		model.addAttribute("AllMovies", rb);   
- 		return "l/movie";
+		return "l/movie";
 	}
 	
 	//查詢多個playStartTime
@@ -98,56 +103,217 @@ public class mOrdersController {
 		public String buyTicket(){
 			return "l/tickets";
 		}
-		//連接購票畫面
+		//連接購普通票畫面
 		@RequestMapping("/bookNormal")
 		public String bookNormal(){
 			return "l/bookNormal";
 		}
 		
+		//連接確定畫面並用cookie顯示購買資訊
+		@RequestMapping("/orderconfirm")
+		public String orderconfirm(Model model,HttpServletRequest request,HttpServletResponse response){
+		HttpSession session = request.getSession();
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies){
+			if(cookie.getName().equals("showtimeId")) {
+				 String value=cookie.getValue();
+				 ShowTimeHistoryBean sthb=(ShowTimeHistoryBean) service.getStartTimeByID(Integer.parseInt(value));
+				 model.addAttribute("queryStartTime",sthb);
+			}
+		}
 		
+		return "l/orderconfirm";
+		}
 		
+		//將cookie寫到order、orderdetail資料表,並且削掉cookie
 		
-//	//用電影ID查詢所有RUNID時間在release和expectedOffDate之間
-//	@RequestMapping("/queryMovie")
-//	public String getRunningID(Model model,HttpServletRequest request,HttpServletResponse response){
-//		LocalDate today = (LocalDate.now());
-//		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
-//		String dateTime = today.toString() + " " + time.toString();
-//		List<RunningBean> list=service.getRunningID();
-//		model.addAttribute("AllMovies", list);
-//		return "l/Movie";
-//	}
+		@RequestMapping("/orderconfirmOK")
+		public String orderconfirmOK(Model model,HttpServletRequest request,HttpServletResponse response){
+			MOrderBean mb=new MOrderBean();
+			HttpSession session = request.getSession();
+			Cookie[] cookies = request.getCookies();
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals("showtimeId")) {
+					 String showtimeId = cookie.getValue();
+					 mb.setShowTimeID(Integer.parseInt(showtimeId));
+					 }
+				if(cookie.getName().equals("memberID")) {
+					 String memberID = cookie.getValue();
+					 mb.setMemberID(Integer.parseInt(memberID));
+				}else{
+					mb.setMemberID(1);
+				}
+			}
+			LocalDate today = (LocalDate.now());
+			LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+			String dateTime = today.toString() + " " + time.toString();
+			mb.setOrderTime(dateTime);
+			mb.setTicketStatus(0);
+			mb.setTicketTime("2999-01-01");
+			mb.setEmpId(1);
+			service.addMOrder(mb);
+			
+			MOrderDetailBean mdb=new MOrderDetailBean();
+			MOrderDetailBean mdb1=new MOrderDetailBean();
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals("discount")) {
+					 String discount = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(13);
+					 mdb.setSellUnitPrice(195);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(discount));
+					 service.addMOrderDetail(mdb); 
+					 mdb1.setOrdersID(mb.getOrdersID());
+					 mdb1.setProductID(14);
+					 mdb1.setSellUnitPrice(175);
+					 mdb1.setDiscount(1.0);
+					 mdb1.setQuantity(Integer.parseInt(discount));
+					 service.addMOrderDetail(mdb1); 
+					 session.removeAttribute("discount");
+					 Cookie killMyCookie = new Cookie("discount", null);
+		             killMyCookie.setMaxAge(0);
+		             killMyCookie.setPath("/");
+		             response.addCookie(killMyCookie);
 	
-	
-	//	//查詢所有電影之狀態為1
-//	@RequestMapping("/queryMovie")
-//	public String getMovieStatus1(Model model) {
-//		List<MovieBean> list=service.getMovieStatus1();
-//		model.addAttribute("AllMovies", list);
-//		return "l/Movie";
-//	}
-//	
-//	@ResponseBody
-//	@RequestMapping("/morders/{movieID}")
-//	public List<ShowTimeHistoryBean> getPlayStartTime(@PathVariable("movieID") Integer movieID) {
-//
-//		// 用movieId查runningBean但只要一個runID
-//		List<Integer> runninglist =new ArrayList<>();
-//		List <RunningBean> runningBean= service.getRunningsByMovieId(movieID);
-//		for(RunningBean rb:runningBean) {
-//			runninglist.add(rb.getRunID());
-//		}
-//		
-//		// 用runningId查ShowTimeHistoryBean
-//		List<ShowTimeHistoryBean> sthb =service.getplayStartTime(runninglist.get(0));
-//		
-//		// 返回一串PlayStartTime
-//		return sthb;
-//		
-//		
-//	}
+				}
+				if(cookie.getName().equals("discount2")) {
+					 String discount2 = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(15);
+					 mdb.setSellUnitPrice(370);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(discount2));
+					 service.addMOrderDetail(mdb);
+					 mdb1.setOrdersID(mb.getOrdersID());
+					 mdb1.setProductID(16);
+					 mdb1.setSellUnitPrice(330);
+					 mdb1.setDiscount(1.0);
+					 mdb1.setQuantity(Integer.parseInt(discount2));
+					 service.addMOrderDetail(mdb1); 
+					 session.removeAttribute("discount2");
+				}
+				if(cookie.getName().equals("bankticket")) {
+					 String bankticket = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(3);
+					 mdb.setSellUnitPrice(220);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(bankticket));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("bankticket");
+					}
+				if(cookie.getName().equals("normal")) {
+					 String normal = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(1);
+					 mdb.setSellUnitPrice(290);
+					 mdb.setDiscount(1.0);
+					 mdb.setQuantity(Integer.parseInt(normal));
+					 service.addMOrderDetail(mdb); 
+					 session.removeAttribute("normal");
+					}
+				if(cookie.getName().equals("hotdog")) {
+					 String hotdog = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(7);
+					 mdb.setSellUnitPrice(120);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(hotdog));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("hotdog");
+				}
+				if(cookie.getName().equals("churro")) {
+					 String churro = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(8);
+					 mdb.setSellUnitPrice(100);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(churro));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("churro");
+					 }
+				if(cookie.getName().equals("friedChicken")) {
+					 String friedChicken = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(9);
+					 mdb.setSellUnitPrice(200);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(friedChicken));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("friedChicken");
+					 }
+				if(cookie.getName().equals("bigCoke")) {
+					 String bigCoke = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(4);
+					 mdb.setSellUnitPrice(70);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(bigCoke));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("bigCoke");
+					 }
+				if(cookie.getName().equals("normalCoke")) {
+					 String normalCoke = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(5);
+					 mdb.setSellUnitPrice(60);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(normalCoke));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("normalCoke");
+					 }
+				if(cookie.getName().equals("smallCoke")) {
+					 String smallCoke = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(6);
+					 mdb.setSellUnitPrice(54);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(smallCoke));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("smallCoke");
+					 }
+				if(cookie.getName().equals("bigPopcorn")) {
+					 String bigPopcorn = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(10);
+					 mdb.setSellUnitPrice(140);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(bigPopcorn));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("bigPopcorn");
+					 }
+				if(cookie.getName().equals("normalPopcorn")) {
+					 String normalPopcorn = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(11);
+					 mdb.setSellUnitPrice(130);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(normalPopcorn));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("normalPopcorn");
+					 }
+				if(cookie.getName().equals("smallPopcorn")) {
+					 String smallPopcorn = cookie.getValue();
+					 mdb.setOrdersID(mb.getOrdersID());
+					 mdb.setProductID(12);
+					 mdb.setSellUnitPrice(120);
+					 mdb.setDiscount(0.9);
+					 mdb.setQuantity(Integer.parseInt(smallPopcorn));
+					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("smallPopcorn");
+				}
+					cookie.setValue(null);
+		            cookie.setMaxAge(0);
+		            cookie.setPath("/");
+		            response.addCookie(cookie);
+				
+			}
+			
+			return "l/orderconfirmOK";
+		}
 
-	
-	
-	
+
+
+
 }

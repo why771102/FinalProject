@@ -68,5 +68,10 @@ public class EmpServiceImpl implements EmpService {
 		return dao.getEmpStatusList();
 	}
 	
+	@Transactional
+	@Override
+	public EmpBean login(String email, String password) {
+		return dao.login(email, password);
+	}
 
 }

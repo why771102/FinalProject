@@ -22,10 +22,10 @@
 	<div>
 		<table>
 		<tr>
-			<td>包廳申請編號</td>
-			<td>申請廳院</td>
-			<td>申請起始時間</td>
-			<td>申請結束時間</td>
+			<td>申請編號</td>
+			<td>廳院</td>
+			<td>起始時間</td>
+			<td>結束時間</td>
 			<td>包廳目的</td>
 			<td>詳細申請內容</td>
 			<td>申請總時數</td>
@@ -80,7 +80,9 @@
 			
 			<td><form:input id="memberID" path="memberID" value="${AHO.mb.memberID}" type='hidden' readonly="true"/></td>
 			</form:form>
-			<td><a href="<c:url value="/hallOrder/mail/${AHO.mail}"/>">發送付款通知信</a></td>
+			
+			<td><input type='button' value="發送付款通知信" onclick="javascript:location.href='<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>'" class="inlog-btn"/></td>
+<%-- 			<td><a href="<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>">發送付款通知信</a></td> --%>
 		</tr>
 			
 			</c:forEach>
@@ -88,6 +90,8 @@
 		</table>
 	</div>
 <script>
+
+
 // var hallOrderStatusNo = "${AHO.hob.hallOrderStatusNo}";
 // var a = $("#no option");
 

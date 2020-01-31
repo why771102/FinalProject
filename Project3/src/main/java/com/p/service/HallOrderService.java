@@ -35,4 +35,6 @@ public interface HallOrderService {
 	
 	//Ally用
 	public List<HallOrderBean> getHallOrder(LocalDate today);
+	
+	public HallOrderBean hallOrderQueryForMail(Integer hallOrderNo);
 }

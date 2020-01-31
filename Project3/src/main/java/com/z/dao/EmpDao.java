@@ -25,6 +25,8 @@ public interface EmpDao {
 	EmpStatusBean getEmpStatusById(Integer status);
 
 	List<EmpStatusBean> getEmpStatusList();
+
+	EmpBean login(String email, String password);
 	
 
 }

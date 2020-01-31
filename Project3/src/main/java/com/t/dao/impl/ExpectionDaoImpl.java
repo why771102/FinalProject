@@ -66,7 +66,7 @@ public class ExpectionDaoImpl implements ExpectionDao{
 	//列出未上映電影ID
 	@Override
 	public List<String> getStandbyMovies() {
-		String hql="Select Distinct movieID from MovieBean Where movieStatus = 0";
+		String hql="from MovieBean Where movieStatus = 0";
 		Session session=factory.getCurrentSession();
 		List<String> list=new ArrayList<>();
 		list=session.createQuery(hql).getResultList();
@@ -76,7 +76,7 @@ public class ExpectionDaoImpl implements ExpectionDao{
 	//列出電影ID
 	@Override
 	public List<String> getMovies() {
-		String hql="Select Distinct movieID from MovieBean Where movieStatus = 0 or movieStatus = 1";
+		String hql="from MovieBean Where movieStatus = 0 or movieStatus = 1";
 		Session session=factory.getCurrentSession();
 		List<String> list=new ArrayList<>();
 		list=session.createQuery(hql).getResultList();

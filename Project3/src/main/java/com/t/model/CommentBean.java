@@ -24,9 +24,6 @@ import com.sun.istack.NotNull;
 @Table(name="Comment")
 public class CommentBean implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -60,6 +57,9 @@ public class CommentBean implements Serializable{
 	@Transient
 	Integer movieID;
 	
+	@Transient
+	Integer avgGrade;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberID")
 	private MemberBean memberBean;
@@ -67,6 +67,47 @@ public class CommentBean implements Serializable{
 	@Transient
 	Integer memberID;
 	
+	@Transient
+	Integer likeNum;
+	
+	@Transient
+	Integer badNum;	
+	
+	public Integer getAvgGrade() {
+		return avgGrade;
+	}
+
+	public void setAvgGrade(Integer avgGrade) {
+		this.avgGrade = avgGrade;
+	}
+
+	public Integer getMemberIDBlock() {
+		return memberIDBlock;
+	}
+
+	public void setMemberIDBlock(Integer memberIDBlock) {
+		this.memberIDBlock = memberIDBlock;
+	}
+
+	@Transient
+	Integer memberIDBlock;
+	
+	public Integer getLikeNum() {
+		return likeNum;
+	}
+
+	public void setLikeNum(Integer likeNum) {
+		this.likeNum = likeNum;
+	}
+
+	public Integer getBadNum() {
+		return badNum;
+	}
+
+	public void setBadNum(Integer badNum) {
+		this.badNum = badNum;
+	}
+
 	public CommentBean() {
 		
 	}	
@@ -150,6 +191,10 @@ public class CommentBean implements Serializable{
 	public MovieBean getMovieBean() {
 		return movieBean;
 	}
+	
+//	public MovieBean getPreferenceBean() {
+//		return getPreferenceBean();
+//	}
 
 	public void setMovieBean(MovieBean movieBean) {
 		this.movieBean = movieBean;

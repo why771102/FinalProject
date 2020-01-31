@@ -21,11 +21,13 @@ public interface ProductSaleService {
 	public List<ProductSaleEarnBean> getFoodInfo5(String sDate, String eDate);
 	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate);
 	
-	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate);
-//	public List<MOrderDetailBean> getFoodSCOrder1();
-	
-	
-	public List<LocalDate> getFoodDates();
+	public List<ProductSaleEarnBean> getInfoByDate(Integer productID, String sDate, String eDate);
+	public String getPname(Integer productID);
+	public List<LocalDate> getFoodDates(); //cate要
+	//test
+	public List<ProductSaleEarnBean> getAllPSEB();
+	//==============================================================================
+
 //	public List<MOrderBean> getFoodSCOrder(LocalDate date);
 //	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList);
 //	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList);

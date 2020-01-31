@@ -15,7 +15,9 @@ import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
+import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
+import com.p.model.MemberBean;
 import com.z.model.EmpBean;
 
 
@@ -76,43 +78,28 @@ public class mOrdersDaoImpl implements mOrdersDao{
 	
 	
 	
-	//	//查詢所有電影之狀態為1
-//	@Override
-//	public List<MovieBean> getMovieStatus1() {
-//				String hql="from MovieBean where movieStatus = 1";
-//				Session session=factory.getCurrentSession();
-//				List<MovieBean> list=new ArrayList<>();
-//				list=session.createQuery(hql).getResultList();
-//				return list;
-//			}
-//	
-//	//用電影ID查詢runID
-//	@Override
-//	public List<RunningBean> getRunningsByMovieId(Integer movieID){
-//			String hql="from RunningBean where movieID = :movieID";
-//			List<RunningBean> list=new ArrayList<>();
-//			Session session=factory.getCurrentSession();
-//			list=session.createQuery(hql).setParameter(movieID, movieID).getResultList();
-//			return list;
-//		
-//	}
-//	
-//	//查詢播放時間
-//	@Override
-//	public List<ShowTimeHistoryBean> getplayStartTime(Integer rb){
-//		String hql="from ShowTimeHistoryBean where runID = :runID";
-//		List<ShowTimeHistoryBean> list=new ArrayList<>();
-//		Session session=factory.getCurrentSession();
-//		list=session.createQuery(hql).setParameter("runID", rb).getResultList();
-//		return list;
-//	}
-
-	
-	
-	
 		//新增訂單
+		@Override
 		public void addMOrder(MOrderBean mob) {
+			Session session =factory.getCurrentSession();
+			ShowTimeHistoryBean sthb = getShowTimeHistory(mob.getShowTimeID());
+			mob.setShowTimeHistoryBean(sthb);
+			EmpBean eb = getEmp(mob.getEmpId());
+			mob.setEmpBean(eb);
+			MemberBean mb = getMemberById(mob.getMemberID());
+			mob.setMemberBean(mb);
+			session.save(mob);
+		}
+		//新增訂單明細
+		@Override
+		public void addMOrderDetail(MOrderDetailBean modb) {
+			Session session =factory.getCurrentSession();
+			MOrderBean sthb = getOrderBeanID(modb.getOrdersID());
+			modb.setmOrderBean(sthb);
+			ProductsBean pb = getProductBeanID(modb.getProductID());
+			modb.setProductsBean(pb);
 			
+			session.save(modb);
 		}
 		//修改訂單之員工ID原本null
 		public List<EmpBean> updateEmpbyID(EmpBean eb){
@@ -124,9 +111,45 @@ public class mOrdersDaoImpl implements mOrdersDao{
 		}
 
 		
+		@Override
+		public ShowTimeHistoryBean getShowTimeHistory(int showTimeId) {
+			ShowTimeHistoryBean sthb = null;
+			Session session = factory.getCurrentSession();
+			sthb = session.get(ShowTimeHistoryBean.class, showTimeId);
+			return sthb;
+		}
+		
+		@Override
+		public EmpBean getEmp(int empID) {
+			EmpBean eb = null;
+			Session session = factory.getCurrentSession();
+			eb = session.get(EmpBean.class, empID);
+			return eb;
+		}
+		
+		
+		@Override
+		public MemberBean getMemberById(int memberID) {
+			MemberBean mb = null;
+			Session session = factory.getCurrentSession();
+			mb = session.get(MemberBean.class, memberID);
+			return mb;
+		}
 
+		@Override
+		public MOrderBean getOrderBeanID(int OrderID) {
+			MOrderBean mb = null;
+			Session session = factory.getCurrentSession();
+			mb = session.get(MOrderBean.class, OrderID);
+			return mb;
+		}
 	
-	
-
+		@Override
+		public ProductsBean getProductBeanID(int ProductsID) {
+			ProductsBean pb = null;
+			Session session = factory.getCurrentSession();
+			pb = session.get(ProductsBean.class, ProductsID);
+			return pb;
+		}
 		
 }

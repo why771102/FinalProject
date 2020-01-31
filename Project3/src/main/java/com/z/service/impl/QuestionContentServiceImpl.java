@@ -26,6 +26,12 @@ public class QuestionContentServiceImpl implements QuestionContentService {
 	public List<QuestionContentBean> historyContent(Integer questionId) {
 		return dao.historyContent(questionId);
 	}
+	
+	@Transactional
+	@Override
+	public void saveMessage(QuestionContentBean ConBean) {
+		dao.saveMessage(ConBean);	
+	}
 
 	
 	

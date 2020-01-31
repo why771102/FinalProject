@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -22,35 +23,41 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource(value = {"classpath:db.properties","classpath:mail.properties"})
+@PropertySource(value = { "classpath:db.properties", "classpath:mail.properties" })
+@ComponentScan(basePackages = "com")
 public class RootAppConfig {
-	
-	
+
 	@Value("${spring.database.initialPoolSize}")
 	int ips;
 
 	@Value("${spring.database.maxPoolSize}")
 	int mps;
-	
-	@Value("${email.host}") //發送email用
+
+	@Value("${email.host}") // 發送email用
 	private String host;
 
-	@Value("${email.port}") //發送email用
+	@Value("${email.port}") // 發送email用
 	private Integer port;
-	
+
+	@Value("${email.username}") // 發送email用
+	private String username;
+
+	@Value("${email.password}") // 發送email用
+	private String password;
+
 	Environment env;
-	
+
 	@Autowired
 	public void setEnv(Environment env) {
 		this.env = env;
 	}
-	
+
 	@Bean
-	public DataSource dataSource() {			//建立連線用的基本資訊，會提供給factory製作session工廠
+	public DataSource dataSource() { // 建立連線用的基本資訊，會提供給factory製作session工廠
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 		ds.setUser(env.getProperty("spring.database.user"));
 		ds.setPassword(env.getProperty("spring.database.password"));
-		
+
 		try {
 			ds.setDriverClass(env.getProperty("spring.database.driverclass"));
 		} catch (PropertyVetoException e) {
@@ -61,34 +68,26 @@ public class RootAppConfig {
 		ds.setMaxPoolSize(mps);
 		return ds;
 	}
-	
-	@Bean						//製作sessionFactory，其他DAO要用的時候直接AutoWired即可
+
+	@Bean // 製作sessionFactory，其他DAO要用的時候直接AutoWired即可
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
-		factory.setPackagesToScan(new String[] {
-				"com.c.model",
-				"com.a.model",
-				"com.l.model",
-				"com.p.model",
-				"com.m.model",
-				"com.z.model",
-				"com.t.model"		
-		});
+		factory.setPackagesToScan(new String[] { "com.c.model", "com.a.model", "com.l.model", "com.p.model",
+				"com.m.model", "com.z.model", "com.t.model" });
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
 	}
-	
-	@Bean(name="transactionManager")
-	@Autowired									//使用sessionFactory製作交易管理器
+
+	@Bean(name = "transactionManager")
+	@Autowired // 使用sessionFactory製作交易管理器
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
 		return txManager;
 	}
-	
-	
-	private Properties additionalProperties() {			//設定factory用的屬性值
+
+	private Properties additionalProperties() { // 設定factory用的屬性值
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", org.hibernate.dialect.SQLServer2012Dialect.class);
 		properties.put("hibernate.show_sql", Boolean.TRUE);
@@ -97,26 +96,28 @@ public class RootAppConfig {
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
-	
-	@Bean //以下兩個為發送email用
-    public JavaMailSender javaMailService() {
-        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
-        javaMailSender.setHost(host);
-        javaMailSender.setPort(port);
+	@Bean(name="javaMailSender") // 以下兩個為發送email用
+	public JavaMailSender javaMailService() {
+		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+		getMailProperties();
+		javaMailSender.setHost(host);
+		javaMailSender.setPort(port);
+		javaMailSender.setUsername(username);
+		javaMailSender.setPassword(password);
+		javaMailSender.setJavaMailProperties(getMailProperties());
+		System.out.println("This is JavaMailSender");
+		
+		return javaMailSender;
+	}
 
-        javaMailSender.setJavaMailProperties(getMailProperties());
-
-        return javaMailSender;
-    }
-
-    private Properties getMailProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("mail.transport.protocol", "smtp");
-        properties.setProperty("mail.smtp.auth", "false");
-        properties.setProperty("mail.smtp.starttls.enable", "false");
-        properties.setProperty("mail.debug", "false");
-        return properties;
-    }
+	private Properties getMailProperties() {
+		Properties properties = new Properties();
+		properties.setProperty("mail.transport.protocol", "smtp");
+		properties.setProperty("mail.smtp.auth", "true");
+		properties.setProperty("mail.smtp.starttls.enable", "true");
+//		properties.setProperty("mail.debug", "false");
+		return properties;
+	}
 
 }

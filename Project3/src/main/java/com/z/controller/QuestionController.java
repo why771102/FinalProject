@@ -25,7 +25,7 @@ public class QuestionController {
 	
 	ServletContext context;
 	
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
@@ -75,7 +75,7 @@ public class QuestionController {
 	}
 	
 	
-	//進到專屬客服區
+	//進到專屬客服區，用戶用
 	@RequestMapping(value = "/question/{questionId}")
 	public String ques(Model model, HttpServletRequest request, @PathVariable("questionId") Integer questionId) {
 		
@@ -90,11 +90,32 @@ public class QuestionController {
 		}
 		if(!service.checkMember(memberId, questionId)) {
 			return null;    //表示驗證沒過，不是同一個用戶
-		}					
+		}
 		//查詢歷史訊息
 		List<QuestionContentBean> list = ConService.historyContent(questionId);
 		model.addAttribute("content", list);
 		return "z/websocket";
+
+	}
+	
+	
+	//查詢所有客服
+	@RequestMapping(value = "/questionListForEmp")
+	public String getAllQuestionForEmp(Model model, HttpServletRequest request) {
+		
+		List<QuestionBean> allQuestion = service.allQuestionForEmp();
+		model.addAttribute("allQuestion", allQuestion);
+		return "z/questionListForEmp";
+	}
+	
+	
+	@RequestMapping(value = "/questionRep/{questionId}")
+	public String quesForEmp(Model model, HttpServletRequest request, @PathVariable("questionId") Integer questionId) {
+		
+		//查詢歷史訊息
+		List<QuestionContentBean> list = ConService.historyContent(questionId);
+		model.addAttribute("content", list);
+		return "z/websocketForEmp";
 
 	}
 	

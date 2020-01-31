@@ -65,9 +65,18 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	
 	@Transactional
 	@Override
-	public List<ProductSaleEarnBean> getInfoByDate(String pName, String sDate, String eDate){
-		return dao.getInfoByDate(pName, sDate, eDate);
+	public List<ProductSaleEarnBean> getInfoByDate(Integer productID, String sDate, String eDate){
+		return dao.getInfoByDate(productID, sDate, eDate);
 	}
+	
+	@Transactional
+	@Override
+	public String getPname(Integer productID) {
+		return dao.getPname(productID);
+	}
+
+	//================================================================================
+	
 	
 //	@Transactional
 //	@Override
@@ -320,6 +329,14 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		}
 		return psbList;
 	}
+
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getAllPSEB() {
+		return dao.getAllPSEB();
+	}
+
+
 
 
 

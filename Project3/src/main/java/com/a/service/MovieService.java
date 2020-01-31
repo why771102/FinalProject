@@ -179,6 +179,7 @@ public interface MovieService {
 	boolean updateMovieStatus(MovieBean movie, int status);
 	Map<Integer, MovieBean> getPageBooks(int pageNo, List<RunningBean> run);
 	int getTotalPages(int count);
+	int getShowTimeIdByTime(String playStartTime);
 	
 	
 

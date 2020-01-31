@@ -4,12 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/styles.css"
 	type="text/css">
 </head>
 <body>
+
 	<h1 style="text-align: center">MVC Exercise</h1>
 	<hr>
 	<table border="1" style="margin: 0px auto;">
@@ -42,5 +45,9 @@
 
 	</table>
 
+<script>
+cookieArray = document.cookie.split("; ");
+console.log(cookieArray);
+</script>
 </body>
 </html>

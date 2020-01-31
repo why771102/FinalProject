@@ -387,18 +387,19 @@ public class EDMTableResetHibernate {
 					eb.setHallPurposeDetail(token[3]);
 					eb.setHallSubtotal(Integer.parseInt(token[4]));
 					eb.setMobile(token[5]);
-					eb.setOrderDate(token[6]);
-					eb.setOrderHours(Integer.parseInt(token[7]));
-					eb.setStartTime(token[8]);
-					HallBean HallBean = session.get(HallBean.class, token[9]);
+					eb.setMail(token[6]);
+					eb.setOrderDate(token[7]);
+					eb.setOrderHours(Integer.parseInt(token[8]));
+					eb.setStartTime(token[9]);
+					HallBean HallBean = session.get(HallBean.class, token[10]);
 					eb.setHb(HallBean);
-					Integer hallOrderStatusNo = Integer.parseInt(token[10]);
+					Integer hallOrderStatusNo = Integer.parseInt(token[11]);
 					HallOrderStatusBean HallOrderStatusBean = session.get(HallOrderStatusBean.class, hallOrderStatusNo);
 					eb.setHob(HallOrderStatusBean);
-					Integer memberId = Integer.parseInt(token[11]);
+					Integer memberId = Integer.parseInt(token[12]);
 					MemberBean MemberBean = session.get(MemberBean.class, memberId);
 					eb.setMb(MemberBean);
-					Integer payStatusNo = Integer.parseInt(token[12]);
+					Integer payStatusNo = Integer.parseInt(token[13]);
 					PayStatusBean PayStatusBean = session.get(PayStatusBean.class, payStatusNo);
 					eb.setPsb(PayStatusBean);
 

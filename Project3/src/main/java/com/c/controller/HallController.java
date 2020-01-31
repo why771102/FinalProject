@@ -28,7 +28,7 @@ public class HallController {
 	SeatsService sservice;
 	ServletContext context;
 	
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}

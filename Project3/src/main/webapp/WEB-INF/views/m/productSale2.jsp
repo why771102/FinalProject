@@ -37,11 +37,11 @@
 			</div>
 		</div>
 		<br>
-		<table id="example" class="display" style="width: 100%;">
+		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
-					<th></th>
-					<th>產品名稱</th>
+					<th>${productName}</th>
+					<th>日期</th>
 					<th>單價</th>
 					<th>數量</th>
 					<th>總金額</th>
@@ -63,6 +63,7 @@
 	</form:form>
 </body>
 <script>
+
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
 			"columnDefs" : [ {
@@ -94,23 +95,30 @@
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/product/sale/date",
+				url : "${pageContext.request.contextPath}/product/sale/"+${productID},
 				data : {
 					start : start.format('YYYY-MM-DD'),
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function() {
-					alert("到第二頁囉!");
-					// 				window.location.href = "${pageContext.request.contextPath}/index-c";
-				}
-			});
-			
-			
+				success : function(productsale) {
+// 					alert("新增成功!");
+					console.log(productsale);
+					
+					var dataTable = $("#example").DataTable();
+					dataTable.clear().draw();
+
+					$.each(productsale, function(index, value) {
+						console.log(value);
+						dataTable.row.add(["",value.orderDate,value.price,value.qtyTotal,value.subtotal]).draw();
+					});
+// 					showInfo(data);
+			}	
+		});
 		}
 		console.log("pppp" + start.format('YYYY-MM-DD'));
-
-
+		
+		
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
 				{
@@ -134,6 +142,7 @@
 		cb(start, end);
 	});
 
+
 // 	//傳送cate selection值
 // 	function showCate() {
 // 		$.ajax({
@@ -150,12 +159,12 @@
 // 	}
 
 	//動態新增表格
-	$('#insertHere')
-			.append(
-					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">'
-					+日期+'</a></td><td>'
-					+單價+'</td><td>'
-					+數量+'</td><td>'
-					+總金額+'</td></tr>');
+// 	$('#insertHere')
+// 			.append(
+// 					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">'
+// 					+日期+'</a></td><td>'
+// 					+單價+'</td><td>'
+// 					+數量+'</td><td>'
+// 					+總金額+'</td></tr>');
 </script>
 </html>

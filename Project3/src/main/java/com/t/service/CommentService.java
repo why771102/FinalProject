@@ -15,15 +15,18 @@ public interface CommentService {
 	
 	//查詢並列出電影ID們
 	public List<String> getMovies();
-		
-	//用列出的電影ID查comment
-	public List<CommentBean> getCommentByMovie(Integer movieID);
+	
+	// 用電影ID 查出各個comment(未登入)
+	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID);
+	
+	//用列出的電影ID查comment(登入)
+	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock);
 
-	// 抓出該電影的平均星數(小數點後1位)
-	public ExpectationBean getAvgGrade(Integer grade);
+	// 抓出該電影的平均星數
+	public Integer getAvgGrade(Integer movieID);
 
-	// 抓出該會員在該電影所留的短評 && deleteComment = 0
-	CommentBean getComment(Integer commentId);
+	//抓出該會員在該電影所留的短評 && deleteComment = 0
+	List<CommentBean> getComment(Integer memberID);
 
 	// 抓到commentId後把資料都列出來
 	List<CommentBean> memberComment();

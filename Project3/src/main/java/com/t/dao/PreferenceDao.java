@@ -45,6 +45,10 @@ public interface PreferenceDao {
 	//屏蔽全部 到comment資料表抓出該短評的作者會員ID，列出該作者所有短評ID，再回到Preference 
 	//建立新欄位，讚 噓 屏蔽設為0,0,1，若已有過設定，將屏蔽設為1
 
-	//抓出每則短評的讚、噓總數
-
+	//抓出每則短評的讚數
+	public List<PreferenceBean> findAllGood();
+	
+	//抓出每則短評的噓數
+	public List<PreferenceBean> findAllBad();
+	
 }

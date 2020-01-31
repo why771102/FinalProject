@@ -212,7 +212,7 @@
 						</select>
 					</div>
 				</div>
-繼續
+<a href="orderconfirm">繼續</a>
 <script>
 var expDays=7;
 function setCookie(name,value){

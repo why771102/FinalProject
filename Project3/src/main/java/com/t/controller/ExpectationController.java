@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.t.model.ExpectationBean;
 import com.t.service.ExpectationService;
+import com.t.validator.ExpectationValidator;
 
 @Controller
 public class ExpectationController {
 	ExpectationService service;
 	ServletContext context;
 	
-	@Autowired
+//	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
@@ -50,7 +52,7 @@ public class ExpectationController {
 	
 	//用movieID查詢expectation
 	@RequestMapping("/expectation/{movieID}")
-	public String getCommentByMovie(@PathVariable("movieID")Integer movieID,Model model) {
+	public String getExpectationByMovie(@PathVariable("movieID")Integer movieID,Model model) {
 		List<ExpectationBean> expect=service.getExpectationByMovie(movieID);
 		model.addAttribute("Expectations", expect);
 		return "t/expectationbymovie";
@@ -76,8 +78,14 @@ public class ExpectationController {
 	}
 	
 	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.POST)
-	public String processAddNewExpection(@PathVariable("movieID")Integer movieID,ExpectationBean eb,HttpServletRequest request) {
+	public String processAddNewExpection(@PathVariable("movieID")Integer movieID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
 //		eb.setMovieID(movieID);
+		ExpectationValidator validator = new ExpectationValidator();
+		// 呼叫Validate進行資料檢查
+		validator.validate(eb, result);
+		if (result.hasErrors()) {
+			return "t/addexpectation";
+		}
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -86,9 +94,13 @@ public class ExpectationController {
 				mID = cookie.getValue();
 			}
 		}
+		if(mID == null) {
+			return "redirect:/member/login";
+		}else {
 		int nMID = Integer.parseInt(mID);
 		eb.setMemberID(nMID);
 		service.addExpect(eb);
+		}
 		return "redirect:/getMovieIDforexpect";
 	}
 

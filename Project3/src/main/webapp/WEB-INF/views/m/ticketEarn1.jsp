@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketSale1</title>
+<title>ticketEarn1</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -26,7 +26,7 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">票房銷售總覽</h2>
+	<h2 style="text-align: center">票房營收總覽</h2>
 	<form:form method='POST' modelAttribute="TicketSaleBean1"
 		enctype="multipart/form-data">
 		<div>
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 		<br>
-		<table id="example" class="display" style="width: 100%;">
+		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
 					<th></th>
@@ -57,19 +57,6 @@
 				</tr>
 			</thead>
 			<tbody id="insertHere">
-				<tr>
-					<td></td>
-					<td><a
-						href="${pageContext.request.contextPath}/ticket/earn/date">電影名稱</a></td>
-					<td>場次數</td>
-					<td>票卷總成本</td>
-					<td>票券總利潤</td>
-					<td>票券銷售總額</td>
-					<td>商品總成本</td>
-					<td>商品總利潤</td>
-					<td>商品銷售總額</td>
-					<td>營收小計</td>
-				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
@@ -125,15 +112,22 @@
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function(data) {
+				success : function(ticketEarn) {
 					alert("新增成功!");
-					showInfo(data);
-					console.log(data);
+					
+					var dataTable = $("#example").DataTable();
+					dataTable.clear().draw();
+
+					$.each(ticketEarn, function(index, value) {
+						console.log(value);
+						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticket/earn/"+value.movieBean.movieID+"'>"+value.title+"</a>"
+							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
+							value.ticketSaleTotal,value.foodCos,value.foodEarn,
+							value.foodSaleTotal,value.subtotal]).draw();
+					});
 				}
 			});
-
 		}
-
 
 
 		// MMMM D, YYYY
@@ -174,29 +168,29 @@
 		});
 	}
 
-	function showInfo(ts) {
-		for (var i = 0; i < ts.length; i++) {
-			$('#insertHere')
-					.append(
-							'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/earn/date" id="hallID">'
-									+ ts[i].title
-									+ '</a></td><td>'
-									+ ts[i].noPlayTimes
-									+ '</td><td>'
-									+ ts[i].ticketCost
-									+ '</td><td>'
-									+ ts[i].ticketEarn
-									+ '</td><td>'
-									+ ts[i].ticketSaleTotal
-									+ '</td><td>'
-									+ ts[i].foodCos
-									+ '</td><td>'
-									+ ts[i].foodEarn
-									+ '</td><td>'
-									+ ts[i].foodSaleTotal
-									+ '</td><td>'
-									+ ts[i].subtotal + '</td></tr>');
-		}
-	};
+// 	function showInfo(ts) {
+// 		for (var i = 0; i < ts.length; i++) {
+// 			$('#insertHere')
+// 					.append(
+// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/earn/date" id="hallID">'
+// 									+ ts[i].title
+// 									+ '</a></td><td>'
+// 									+ ts[i].noPlayTimes
+// 									+ '</td><td>'
+// 									+ ts[i].ticketCost
+// 									+ '</td><td>'
+// 									+ ts[i].ticketEarn
+// 									+ '</td><td>'
+// 									+ ts[i].ticketSaleTotal
+// 									+ '</td><td>'
+// 									+ ts[i].foodCos
+// 									+ '</td><td>'
+// 									+ ts[i].foodEarn
+// 									+ '</td><td>'
+// 									+ ts[i].foodSaleTotal
+// 									+ '</td><td>'
+// 									+ ts[i].subtotal + '</td></tr>');
+// 		}
+// 	};
 </script>
 </html>

@@ -7,6 +7,7 @@ import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.model.MOrderBean;
+import com.l.model.MOrderDetailBean;
 import com.z.model.EmpBean;
 
 public interface mOrdersService {
@@ -23,25 +24,15 @@ public interface mOrdersService {
 	//用StartTimeID查	單筆
 	public Object getStartTimeByID(Integer showTimeId);
 	
+	//新增訂單
+	public void addMOrder(MOrderBean mob);
+	//新增訂單明細
+	public void addMOrderDetail(MOrderDetailBean modb);
 	
-	
-	//		//查詢所有電影之狀態為1
-//		public List<MovieBean> getMovieStatus1();
-//
-//		//用電影Id查詢runId
-//		public List<RunningBean> getRunningsByMovieId(Integer movieID);
-//		
-//		//查詢播放時間
-//		public List<ShowTimeHistoryBean> getplayStartTime(Integer rb);
-
-	
-	
-		//新增訂單
-		public void addMOrder(MOrderBean mob);
-		//修改訂單之員工ID原本null
-		public List<EmpBean> updateEmpbyID(EmpBean eb);
-		//修改票狀態、領票時間
-		public MOrderBean updateTicket(MOrderBean mob);
+	//修改訂單之員工ID原本null
+	public List<EmpBean> updateEmpbyID(EmpBean eb);
+	//修改票狀態、領票時間
+	public MOrderBean updateTicket(MOrderBean mob);
 
 		
 

@@ -30,6 +30,12 @@ public interface PreferenceService {
 	//按屏蔽 修改欄位
 	void fixBlock(Integer memberID, Integer commentID);
 	
+	//抓出每則短評的讚數
+	public List<PreferenceBean> findAllGood();
+	
+	//抓出每則短評的噓數
+	public List<PreferenceBean> findAllBad();
+	
 	public MemberBean getMemberById(int memberID);
 //	public List<MemberBean> getMemberList();
 	

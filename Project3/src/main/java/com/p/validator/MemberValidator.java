@@ -28,6 +28,8 @@ public class MemberValidator implements Validator {
 			(errors, "name", "","姓名欄不能空白!");
 		ValidationUtils.rejectIfEmptyOrWhitespace
 			(errors, "password", "", "密碼欄位不能空白!");
+//		ValidationUtils.rejectIfEmptyOrWhitespace
+//			(errors, "checkPassword", "", "確認密碼欄位不能空白!");
 		ValidationUtils.rejectIfEmptyOrWhitespace
 			(errors, "uID", "", "身分證字號欄位不能空白!");
 		ValidationUtils.rejectIfEmptyOrWhitespace

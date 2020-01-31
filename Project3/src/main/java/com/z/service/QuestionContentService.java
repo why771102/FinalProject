@@ -9,4 +9,5 @@ public interface QuestionContentService {
 
 	public List<QuestionContentBean> historyContent(Integer questionId);
 
+	public void saveMessage(QuestionContentBean ConBean);
 }

@@ -57,7 +57,7 @@ public class ProductSaleEarnBean implements Serializable {
 	Integer earnSubtotal;
 	
 	public ProductSaleEarnBean(String productName, Integer price, Integer qtyTotal, Integer cost, 
-			Integer earn, Integer subtotal, Integer earnSubtotal) {
+			Integer earn, Integer subtotal, Integer earnSubtotal, CategoriesBean categoriesBean) {
 		this.productName = productName;
 		this.qtyTotal = qtyTotal;
 		this.price = price;
@@ -65,6 +65,7 @@ public class ProductSaleEarnBean implements Serializable {
 		this.cost = cost;
 		this.earn = earn;
 		this.earnSubtotal = earnSubtotal;
+		this.categoriesBean = categoriesBean;
 	}
 
 	public Integer getCost() {

@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<br>
-	<table id="example" class="display" style="width: 100%;">
+	<table id="example" class="display" style="width: 100%; text-align: center;">
 		<thead>
 			<tr>
 				<th></th>
