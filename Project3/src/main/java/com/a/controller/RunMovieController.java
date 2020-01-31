@@ -511,18 +511,45 @@ public class RunMovieController {
 		System.out.println("hihihi");
 		System.out.println(" 傳回來的東西:"+sth);
 		
-//		Gson gson = new Gson();
-//		Type listType = new TypeToken<ArrayList<ShowTimeHistoryBean>>(){}.getType();
-//		List<ShowTimeHistoryBean> sthb_list = new Gson().fromJson(sth, listType);
-//		
-//		System.out.println(sthb_list.size());
-//		for(ShowTimeHistoryBean sthb: sthb_list) {
-//			System.out.println(sthb.getPlayStartTime());
-//		}
+		Gson gson = new Gson();
+		Type listType = new TypeToken<ArrayList<ShowTimeHistoryBean>>(){}.getType();
+		List<ShowTimeHistoryBean> sthb_list = new Gson().fromJson(sth, listType);
+		
+		System.out.println(sthb_list.size());
+		for(ShowTimeHistoryBean sthb: sthb_list) {
+			System.out.println(sthb.getPlayStartTime());
+			boolean result=mService.updateShowTimeHistoryBean(sthb);
+			if(result == true) {
+				
+			}
+		}
 
 		
 		
-		return "index-a";
+		return "a/showTimeHistory";
+	}
+	
+	@GetMapping(value = "/showTimeHistory")
+	public String showTimeHistoryData(Model model,
+			HttpServletRequest request) {
+		//日期
+//		mService.getShowTimeHistoryByDate(endDay, startDay);
+		
+		
+		//廳
+		List<HallBean> hb_list = hService.getAllHalls(0);
+		model.addAttribute(hb_list);
+		return "a/oldShowTimeHitory";
+	}
+	
+	
+	@PostMapping(value = "/showTimeHistory/show")
+	public String showTimeHistoryData(Model model,
+			HttpServletRequest request, @RequestParam("release") String release) {
+		
+		
+		
+		return "a/oldShowTimeHitory";
 	}
 	
 	

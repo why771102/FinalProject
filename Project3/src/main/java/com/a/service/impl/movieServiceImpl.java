@@ -217,8 +217,16 @@ public class movieServiceImpl implements MovieService {
 	public int getTotalPages(int count) {
 		return  MDao.getTotalPages(count);
 	}
-	
-
+	@Transactional
+	@Override
+	public boolean updateShowTimeHistoryBean(ShowTimeHistoryBean sthb ) {
+		return SDao.updateShowTimeHistoryBean(sthb);
+	}
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay,String startDay){
+		return SDao.getShowTimeHistoryByDate(endDay,startDay);
+	}
 //	@Transactional
 //
 //	public void checkHallOrder(List<HallOrderBean> hob_list, int HallTime, ) {
