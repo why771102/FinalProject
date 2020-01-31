@@ -16,6 +16,7 @@ import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
 import com.l.model.ProductsBean;
+import com.p.model.MemberBean;
 import com.z.model.EmpBean;
 
 
@@ -77,8 +78,15 @@ public class mOrdersDaoImpl implements mOrdersDao{
 	
 	
 		//新增訂單
+		@Override
 		public void addMOrder(MOrderBean mob) {
 			Session session =factory.getCurrentSession();
+			ShowTimeHistoryBean sthb = getShowTimeHistory(mob.getShowTimeID());
+			mob.setShowTimeHistoryBean(sthb);
+			EmpBean eb = getEmp(mob.getEmpId());
+			mob.setEmpBean(eb);
+			MemberBean mb = getMemberById(mob.getMemberID());
+			mob.setMemberBean(mb);
 			session.save(mob);
 		}
 		//修改訂單之員工ID原本null
@@ -90,7 +98,30 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			return null;
 		}
 
+		@Override
+		public ShowTimeHistoryBean getShowTimeHistory(int showTimeId) {
+			ShowTimeHistoryBean sthb = null;
+			Session session = factory.getCurrentSession();
+			sthb = session.get(ShowTimeHistoryBean.class, showTimeId);
+			return sthb;
+		}
 		
+		@Override
+		public EmpBean getEmp(int empID) {
+			EmpBean eb = null;
+			Session session = factory.getCurrentSession();
+			eb = session.get(EmpBean.class, empID);
+			return eb;
+		}
+		
+		
+		@Override
+		public MemberBean getMemberById(int memberID) {
+			MemberBean mb = null;
+			Session session = factory.getCurrentSession();
+			mb = session.get(MemberBean.class, memberID);
+			return mb;
+		}
 
 	
 	
