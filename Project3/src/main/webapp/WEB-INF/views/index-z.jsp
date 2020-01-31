@@ -12,8 +12,7 @@
 	<hr>
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
-			<td width="350"><p align="left" /> <a href='123'>Hello
-					Spring MVC</a><BR></td>
+			<td width="350"><p align="left" /> <a href='questionListForEmp'>顯示客服列表(員工用)</a><BR></td>
 			<td width="350"><p align="left" /> <a href='emps'>查詢所有員工</a><BR>
 			</td>
 		</tr>
@@ -47,10 +46,10 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='questionListForEmp'>顯示客服列表(員工用)</a><br> 
+    			<a href='emp/login'>員工登入</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='redirectDemo'>RedirectView: redirectDemo</a><br>
+		    	<a href='emp/logout'>員工登出</a><br>
     		</td>
 		</tr>
 	</table>
