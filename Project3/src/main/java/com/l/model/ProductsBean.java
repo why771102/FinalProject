@@ -1,6 +1,7 @@
 package com.l.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.a.model.MovieBean;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -49,17 +49,52 @@ public class ProductsBean implements Serializable {
 	@Column(nullable=false)
 	Integer cost;
 
+	String productDescription;
+	
+	Blob productImage;
+	
+	
 	public ProductsBean() {}
-	public ProductsBean(Integer productID,String productName,CategoriesBean categoriesBean,Integer unitPrice,Integer unitStock,Integer cost) {
-		this.productID=productID;
-		this.productName=productName;
-		this.categoriesBean=categoriesBean;
-		this.unitPrice=unitPrice;
-		this.unitStock=unitStock;
-		this.cost=cost;
+	
+
+	public ProductsBean(Integer productID, String productName, Integer categoryID,
+			Integer unitPrice, Integer unitStock, Integer cost, String productDescription, Blob productImage) {
+		this.productID = productID;
+		this.productName = productName;
+		this.CategoryID = categoryID;
+		this.unitPrice = unitPrice;
+		this.unitStock = unitStock;
+		this.cost = cost;
+		this.productDescription = productDescription;
+		this.productImage = productImage;
 	}
-	
-	
+
+
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+
+
+	public Blob getProductImage() {
+		return productImage;
+	}
+
+
+
+	public void setProductImage(Blob productImage) {
+		this.productImage = productImage;
+	}
+
+
+
 	public Integer getProductID() {
 		return productID;
 	}

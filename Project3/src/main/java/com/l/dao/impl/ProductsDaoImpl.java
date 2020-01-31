@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.ProductsDao;
 import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
@@ -82,10 +83,18 @@ public class ProductsDaoImpl implements ProductsDao{
 	@Override
 	public void insertProduct(ProductsBean product) {
 		Session session=factory.getCurrentSession();
+		CategoriesBean cb = getCategories(product.getCategoryID());
+		product.setCategoriesBean(cb);
 		session.save(product);
 	}
 
-
+	@Override
+	public CategoriesBean getCategories(int getCategoryID) {
+		CategoriesBean cb = null;
+		Session session = factory.getCurrentSession();
+		cb = session.get(CategoriesBean.class, getCategoryID);
+		return cb;
+	}
 	
 
 

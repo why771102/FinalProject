@@ -45,7 +45,7 @@ public class mOrdersController {
 		String dateTime = today.toString() + " " + time.toString();
 		List<RunningBean> rb = service.getAllOnMoive(today);
 		model.addAttribute("AllMovies", rb);   
- 		return "l/movie";
+		return "l/movie";
 	}
 	
 	//查詢多個playStartTime
@@ -131,14 +131,15 @@ public class mOrdersController {
 			MOrderBean mb=new MOrderBean();
 			HttpSession session = request.getSession();
 			Cookie[] cookies = request.getCookies();
+			String showtimeId=null;
+			String memberID=null;
 			for(Cookie cookie : cookies){
 				if(cookie.getName().equals("showtimeId")) {
-					 String showtimeId=cookie.getValue();
-					 System.out.println(showtimeId+"123");
+					 showtimeId=cookie.getValue();
 					 mb.setShowTimeID(Integer.parseInt(showtimeId));
 					 }
 				if(cookie.getName().equals("memberID")) {
-						 String memberID=cookie.getValue();
+						 memberID=cookie.getValue();
 						 mb.setMemberID(Integer.parseInt(memberID));
 				}else{
 					mb.setMemberID(1);

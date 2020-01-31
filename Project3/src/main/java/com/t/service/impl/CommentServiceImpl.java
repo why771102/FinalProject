@@ -124,4 +124,10 @@ public class CommentServiceImpl implements CommentService{
 		return dao.findAllReportComment();
 	}
 
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID) {
+		return dao.getCommentByMovieNoLogin(movieID);
+	}
+
 }

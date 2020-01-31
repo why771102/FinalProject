@@ -23,4 +23,8 @@ public interface ProductsDao {
 	//新增產品
 	public void insertProduct(ProductsBean product);
 
+	
+	
+	CategoriesBean getCategories(int getCategoryID);
+
 }
