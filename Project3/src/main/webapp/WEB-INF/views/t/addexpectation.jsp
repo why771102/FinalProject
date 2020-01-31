@@ -63,6 +63,7 @@ fieldset {
 						 <form:radiobutton id="expective" path="expective" value="1" />期待
 						<form:radiobutton id="expective" path="expective" value="0" />不期待
 					</div>
+					<form:errors path="expective" cssClass="error" />
 				</div>
 				<div class="form-group">
 					<div class='col-lg-offset-2 col-lg-10'>
