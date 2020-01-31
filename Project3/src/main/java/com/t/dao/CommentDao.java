@@ -15,7 +15,10 @@ public interface CommentDao {
 	//查詢並列出電影ID們
 	public List<String> getMovies();
 	
-	//用列出的電影ID查comment
+	// 用電影ID 查出各個comment(未登入)
+	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID);
+	
+	//用列出的電影ID查comment(登入)
 	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock);
 	
 	//抓出該電影的平均星數

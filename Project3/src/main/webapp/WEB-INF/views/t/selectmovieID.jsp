@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div style="text-align: center">
-		<h1>請選擇movieID:</h1>
+		<h1>請選擇電影:</h1>
 		<c:forEach var="movie" items="${movieIDList}">
 			<a href="comments/${movie.movieID}">${movie.title}</a>
 			<br>
