@@ -100,22 +100,23 @@ public class RootAppConfig {
 	@Bean(name="javaMailSender") // 以下兩個為發送email用
 	public JavaMailSender javaMailService() {
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
+		getMailProperties();
 		javaMailSender.setHost(host);
 		javaMailSender.setPort(port);
 		javaMailSender.setUsername(username);
 		javaMailSender.setPassword(password);
 		javaMailSender.setJavaMailProperties(getMailProperties());
 		System.out.println("This is JavaMailSender");
+		
 		return javaMailSender;
 	}
 
 	private Properties getMailProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("mail.transport.protocol", "smtp");
-		properties.setProperty("mail.smtp.auth", "false");
-		properties.setProperty("mail.smtp.starttls.enable", "false");
-		properties.setProperty("mail.debug", "false");
+		properties.setProperty("mail.smtp.auth", "true");
+		properties.setProperty("mail.smtp.starttls.enable", "true");
+//		properties.setProperty("mail.debug", "false");
 		return properties;
 	}
 
