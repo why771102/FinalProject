@@ -121,7 +121,7 @@ public class CommentDaoImpl implements CommentDao {
 	// 列出電影ID
 	@Override
 	public List<String> getMovies() {
-		String hql = "Select Distinct movieID from MovieBean Where movieStatus = 1";
+		String hql = "from MovieBean Where movieStatus = 1";
 		Session session = factory.getCurrentSession();
 		List<String> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
