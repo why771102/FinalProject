@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.p.dao.util.CipherUtils;
+import com.p.model.MemberBean;
 import com.z.dao.EmpDao;
 import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
@@ -31,6 +33,10 @@ public class EmpDaoImpl implements EmpDao {
 		EmpStatusBean esb = getEmpStatusById(mb.getStatus());
 		mb.setRoleBean(rb);
 		mb.setEmpStatusBean(esb);
+		
+		String s1 = mb.getPassword();//幫密碼進行加密
+		String s2 = CipherUtils.getStringMD5(s1);
+		mb.setPassword(s2);	
 		session.saveOrUpdate(mb);
 	}
 	
@@ -109,10 +115,13 @@ public class EmpDaoImpl implements EmpDao {
 	
 	@Override
 	public EmpBean login(String email, String password) {
+		
+		String pwd = CipherUtils.getStringMD5(password);//將傳入的password進行加密
+		
 		String hql = "from EmpBean where email = :email and password = :password";
 		Session session = factory.getCurrentSession();
 		EmpBean eb = null;
-		eb = (EmpBean) session.createQuery(hql).setParameter("email", email).setParameter("password", password).getSingleResult();
+		eb = (EmpBean) session.createQuery(hql).setParameter("email", email).setParameter("password", pwd).getSingleResult();
 		return eb;
 	}
 	
