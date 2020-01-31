@@ -330,6 +330,12 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		return psbList;
 	}
 
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getAllPSEB() {
+		return dao.getAllPSEB();
+	}
+
 
 
 

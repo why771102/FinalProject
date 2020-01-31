@@ -24,6 +24,8 @@ public interface ProductSaleService {
 	public List<ProductSaleEarnBean> getInfoByDate(Integer productID, String sDate, String eDate);
 	public String getPname(Integer productID);
 	public List<LocalDate> getFoodDates(); //cate要
+	//test
+	public List<ProductSaleEarnBean> getAllPSEB();
 	//==============================================================================
 
 //	public List<MOrderBean> getFoodSCOrder(LocalDate date);

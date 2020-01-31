@@ -91,7 +91,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
-
+			MovieBean mb = null;
 			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
 			System.out.println("sthbList.size() =>" +  sthbList.size());
 			noPlayTimes = sthbList.size();
@@ -103,7 +103,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
-
+					mb = tseb.getMovieBean();
 					for (ShowTimeHistoryBean sthb : sthbList) {
 						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
 					}
@@ -126,7 +126,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 //			pricePerSeat = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue(); 
 			pricePerSeat = 100.2;
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes, hallSeats, hallSaleSeats, avgSeats,
-					pricePerSeat, Subtotal);
+					pricePerSeat, Subtotal, mb);
 
 			if (tb.getHallSaleSeats() != 0) {
 				tbList.add(tb);
