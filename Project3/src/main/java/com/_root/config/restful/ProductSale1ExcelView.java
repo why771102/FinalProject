@@ -1,6 +1,5 @@
 package com._root.config.restful;
   
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,26 +16,14 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
-import com.m.model.HallSaleBean;
 import com.m.model.ProductSaleEarnBean;
-import com.m.service.HallSaleService;
-import com.m.service.ProductSaleService;
-import com.p.model.HallOrderBean;
 
-public class MultipleMembersExcelView extends AbstractXlsView  {
-	
-	ProductSaleService service;
-	
-	@Autowired
-	public void setService(ProductSaleService service) {
-		this.service = service;
-	}
+public class ProductSale1ExcelView extends AbstractXlsView  {
 	
 	Sheet sheet;	
-	String sheetName = "sheet 1";
+	String sheetName = "產品銷售總表";
 	HSSFFont chiTextFont = null;
 	HSSFFont engTextFont = null;
 	HSSFFont titleFont = null;
@@ -79,6 +66,7 @@ public class MultipleMembersExcelView extends AbstractXlsView  {
 	private void populateExcelCells(Map<String, Object> model, Workbook workbook) {
 		Sheet sheet = workbook.getSheet(sheetName);
 		
+		
 		HSSFCellStyle styleCenter = (HSSFCellStyle)workbook.createCellStyle();
 		styleCenter.setFont(engTextFont);
 		
@@ -99,27 +87,20 @@ public class MultipleMembersExcelView extends AbstractXlsView  {
 		styleDate.setDataFormat(
 		    createHelper.createDataFormat().getFormat("yyyy/mm/dd"));
 		styleDate.setFont(engTextFont);
-		System.out.println("------>55555 ");
-//      List<HallSaleBean> hsbList = (List<HallSaleBean>) model.get("hsbList");
-//        List<ProductSaleEarnBean> psebList = service.getAllPSEB();
+		
+
+		
+		
+//		System.out.println("------>55555 ");
 
         List<ProductSaleEarnBean> psebList = (List<ProductSaleEarnBean>) model.get("psebList");
-      System.out.println("------> " + psebList.get(0).getPrice());
-//		List<Integer> psebList = new ArrayList<>();
-//		Integer a = 50;
-//		Integer b = 6;
-//		psebList.add(a);
-//		psebList.add(b);
+//      System.out.println("------> " + psebList.get(0).getPrice());
 		
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
 		for(ProductSaleEarnBean hsb : psebList) {
 			colCount = 0;
-//			row = sheet.createRow(rowCount++);
-//			cell = row.createCell(colCount++);
-//			cell.setCellStyle(styleCenter);
-//			cell.setCellValue(num);
 			
 			row = sheet.createRow(rowCount++);
 			cell = row.createCell(colCount++);
@@ -131,11 +112,11 @@ public class MultipleMembersExcelView extends AbstractXlsView  {
 			cell.setCellValue(hsb.getPrice());
 			
 			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleCenter);
+			cell.setCellStyle(styleName);
 			cell.setCellValue(hsb.getQtyTotal());
 			
 			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleCenter);
+			cell.setCellStyle(styleName);
 			cell.setCellValue(hsb.getSubtotal());
 			
 		}
@@ -146,8 +127,7 @@ public class MultipleMembersExcelView extends AbstractXlsView  {
 	}
 
 	private void createExcelHeaders(Workbook workbook) {
-		String[] labels = {"廳名", "單價", "時數", "銷售總金額"};
-//		String[] labels = {"number"};
+		String[] labels = {"廳名", "單價", "數量", "銷售總金額"};
 		
 		CellStyle titleStyle = workbook.createCellStyle();
 		
