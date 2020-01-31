@@ -69,14 +69,6 @@ public class CommentDaoImpl implements CommentDao {
 	}
 
 	@Override
-	public ExpectationBean getAvgGrade(Integer movieID) {
-		String hql = "Select AVG(grade) where movieID = :movieID";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("movieID", movieID).getResultList();
-		return null;
-	}
-
-	@Override
 	public void addComment(CommentBean cb) {
 		Session session = factory.getCurrentSession();
 		MovieBean mvb = getMovieById(cb.getMovieID());
@@ -126,6 +118,23 @@ public class CommentDaoImpl implements CommentDao {
 		List<String> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
 		return list;
+	}
+	
+	//印出平均評分
+	@Override
+	public Integer getAvgGrade(Integer movieID) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		Integer totalGrade = 0;
+		Integer avgGrade = 0;
+		for (int i = 0; i < list.size(); i++) {
+			Integer grade = list.get(i).getGrade();
+			totalGrade = totalGrade + grade;
+		}
+		avgGrade = totalGrade/list.size();
+		return avgGrade;
 	}
 
 	// 用電影ID 查出各個comment
