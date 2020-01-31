@@ -38,7 +38,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='Method/test'>testMethod</a><BR>
+				<a href='showAllProducts'>顯示全部商品頁面</a><BR>
 			</td>
 			<td width="350"><p align="left" />
 				<a href='getShoppingCart'>購物車測試</a><BR>
