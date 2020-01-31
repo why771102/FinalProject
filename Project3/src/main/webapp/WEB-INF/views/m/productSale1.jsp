@@ -48,13 +48,6 @@
 				<th>總金額</th>
 				<th>test</th>
 			</tr>
-			<!-- 				<tr> -->
-			<!-- 					<td></td> -->
-			<!-- 					<td><div id="pName" onclick="sendpName()">產品名稱</div></td> -->
-			<!-- 					<td>單價</td> -->
-			<!-- 					<td>數量</td> -->
-			<!-- 					<td>總金額</td> -->
-			<!-- 				</tr> -->
 		</thead>
 		<tbody id="insertHere">
 
@@ -70,7 +63,7 @@
 		</tfoot>
 	</table>
 	<form id="submitExcel"
-		action="${pageContext.request.contextPath}/product/sale/excel.xls"
+		action="${pageContext.request.contextPath}/product/sale/productSale.xls"
 		method="GET">
 		<input type="submit" id="exportE" value="Export To Excel">
 	</form>
@@ -106,8 +99,7 @@
 							+ end.format('YYYY-MM-DD'));
 
 			//傳送日期的值
-			$
-					.ajax({
+			$.ajax({
 						url : "${pageContext.request.contextPath}/product/sale",
 						data : {
 							start : start.format('YYYY-MM-DD'),
@@ -122,14 +114,9 @@
 							var dataTable = $("#example").DataTable();
 							dataTable.clear().draw();
 
-							$
-									.each(
-											productsale,
-											function(index, value) {
+							$.each(productsale,function(index, value) {
 												console.log(value);
-												dataTable.row
-														.add(
-																[
+												dataTable.row.add([
 																		"",
 																		"<a href='${pageContext.request.contextPath}/product/sale/"+value.productsBean.productID+"'>"
 																				+ value.productName
@@ -137,8 +124,7 @@
 																		value.price,
 																		value.qtyTotal,
 																		value.subtotal,
-																		"<input type='hidden' value='"+value.categoriesBean+"'>" ])
-														.draw();
+																		"<input type='hidden' value='"+value.categoriesBean+"'>" ]).draw();
 											});
 							// 					showInfo(data);
 							// 					console.log(productsale);

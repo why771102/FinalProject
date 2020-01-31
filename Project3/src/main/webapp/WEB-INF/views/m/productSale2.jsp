@@ -26,9 +26,7 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">產品銷售總覽</h2>
-	<form:form method='POST' modelAttribute="ProductSaleBean2"
-		enctype="multipart/form-data">
+	<h2 style="text-align: center">${productName}</h2>
 		<div>
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
@@ -40,11 +38,11 @@
 		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
-					<th>${productName}</th>
+					<th></th>
 					<th>日期</th>
 					<th>單價</th>
 					<th>數量</th>
-					<th>總金額</th>
+					<th>小計</th>
 				</tr>
 			</thead>
 			<tbody id="insertHere">
@@ -60,7 +58,11 @@
 				</tr>
 			</tfoot>
 		</table>
-	</form:form>
+	<form id="submitExcel"
+		action="${pageContext.request.contextPath}/productSaleDetail.xls"
+		method="POST">
+		<input type="submit" id="exportE" value="Export To Excel">
+	</form>
 </body>
 <script>
 
@@ -93,7 +95,7 @@
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
 			
-			//傳送日期的值
+	//傳送日期的值
 			$.ajax({
 				url : "${pageContext.request.contextPath}/product/sale/"+${productID},
 				data : {
@@ -101,18 +103,19 @@
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function(productsale) {
+				success : function(productsaleDetail) {
 // 					alert("新增成功!");
-					console.log(productsale);
-					
+					console.log(productsaleDetail);
+					window.productsaleDetail = productsaleDetail;
 					var dataTable = $("#example").DataTable();
 					dataTable.clear().draw();
 
-					$.each(productsale, function(index, value) {
+					$.each(productsaleDetail, function(index, value) {
 						console.log(value);
 						dataTable.row.add(["",value.orderDate,value.price,value.qtyTotal,value.subtotal]).draw();
 					});
-// 					showInfo(data);
+					document.getElementById("submitExcel").innerHTML += "<input type='hidden' name='exportExcel1' value='"
+						+ JSON.stringify(window.productsaleDetail) + "'>"
 			}	
 		});
 		}
