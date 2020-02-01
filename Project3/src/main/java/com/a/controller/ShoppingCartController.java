@@ -6,9 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -116,12 +115,14 @@ public class ShoppingCartController implements ServletContextAware{
 		return "a/ShoppingCart";
 	}
 	
+	//要顯示不同分類+分類裡其中一個產品的圖
 	@GetMapping("/showAllProducts")
 	public String showAllProducts(Model model) {
-		Map<String, List<ProductsBean>> map = new HashMap<String, List<ProductsBean>>();
+		List<ProductsBean> map = new ArrayList<>();
 		for(Integer cID = categoryID; cID <= endCatID; cID++) {
 			List<ProductsBean> list = pservice.getCategoryID(cID);
-			map.put(cID.toString(), list);
+			System.out.println(list.get(0).getProductID());
+			map.add(list.get(0));
 		}
 		model.addAttribute("product", map);
 		return "a/allProducts";

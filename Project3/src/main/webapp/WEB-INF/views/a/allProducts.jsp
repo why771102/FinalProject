@@ -81,16 +81,19 @@
 
     <section class="grey-bar">
         <div class="container">
-            <div class="row movies-list">
+            <div class="row movies-list" id="movies-list">
+ 
+            <c:forEach items="${product}" var="pd">
                 <div class="col-md-3 col-sm-4 col-xs-6">
                         <a href="product1.html">
                     <div class="movie1">
                         <div  >
-<!--                             <img src="img/product1.png"> -->
-                             <img src="<c:url value='/product/${product["6"].get(0).productID}' />">
+                            <img src="<c:url value='/product/${pd.productID}' />">
+
                         </div>
                         <div class="m-name">
-                            <h3>周邊衣服</h3>
+                            <h3>${pd.categoriesBean.categoryName}</h3>
+
                             
                         </div>
                     </div>
@@ -99,7 +102,8 @@
                             <br>
                         </div>
                 </div>
-
+                </c:forEach>
+                
                 <div class="col-md-3 col-sm-4 col-xs-6">
                     <div class="movie1">
                         <div>
@@ -450,9 +454,9 @@
     <script defer src="js/bootstrap.min.js"></script>
 <script>
 
-console.log(${product["6"].get(0).productID});
-console.log("testing: ");
+console.log(${product});
 
+document.getElementById("movies-list").innerHTML
 </script>
 
 </body>
