@@ -104,208 +104,208 @@
                 </div>
                 </c:forEach>
                 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature2.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>造型爆米花桶</h3>
-                            <h4>產地：日本 </h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature2.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>造型爆米花桶</h3> -->
+<!--                             <h4>產地：日本 </h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature3.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>電影海報、掛畫</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature3.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>電影海報、掛畫</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature4.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>紀念鑰匙圈</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Comedy</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature4.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>紀念鑰匙圈</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Comedy</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature5.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>Snow-White &amp; Huntsman</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature5.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>Snow-White &amp; Huntsman</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature6.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>抱枕</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature6.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>抱枕</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature7.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>毛巾</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature7.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>毛巾</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature8.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>Avatar</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature8.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>Avatar</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature9.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>Gangster Squad</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature9.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>Gangster Squad</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature10.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>X-Men</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature10.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>X-Men</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature11.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>Survivor</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature11.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>Survivor</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div> -->
+<!--                         <br> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="movie1">
-                        <div>
-                            <img src="img/feature6.jpg">
-                        </div>
-                        <div class="m-name">
-                            <h3>Fantastic-4</h3>
-                            <h4>English, Hindi</h4>
-                            <a href="" class="movie-btn1">Action</a>
-                            <a href="" class="movie-btn1">Thriller</a>
-                            <a href="" class="movie-btn1">Drama</a>
-                        </div>
-                    </div>
-                  <div>
-                      <br>
-                  </div>
-                </div>
+<!--                 <div class="col-md-3 col-sm-4 col-xs-6"> -->
+<!--                     <div class="movie1"> -->
+<!--                         <div> -->
+<!--                             <img src="img/feature6.jpg"> -->
+<!--                         </div> -->
+<!--                         <div class="m-name"> -->
+<!--                             <h3>Fantastic-4</h3> -->
+<!--                             <h4>English, Hindi</h4> -->
+<!--                             <a href="" class="movie-btn1">Action</a> -->
+<!--                             <a href="" class="movie-btn1">Thriller</a> -->
+<!--                             <a href="" class="movie-btn1">Drama</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                   <div> -->
+<!--                       <br> -->
+<!--                   </div> -->
+<!--                 </div> -->
 
 
-            </div>
-        </div>
-    </section>
+<!--             </div> -->
+<!--         </div> -->
+<!--     </section> -->
 
 
 
@@ -454,9 +454,6 @@
     <script defer src="js/bootstrap.min.js"></script>
 <script>
 
-console.log(${product});
-
-document.getElementById("movies-list").innerHTML
 </script>
 
 </body>
