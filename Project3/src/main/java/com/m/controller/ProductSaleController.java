@@ -1,5 +1,6 @@
 package com.m.controller;
 
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.model.HallSaleBean;
@@ -50,6 +52,8 @@ public class ProductSaleController {
 	// to ps1
 	@GetMapping(value = "product/sale")
 	public String toProductSale(Model model) {
+//		List<ProductSaleEarnBean> psebList = service.getAllPSEB();
+//		model.addAttribute("psebList", psebList);
 		return "m/productSale1";
 	}
 	
@@ -99,10 +103,8 @@ public class ProductSaleController {
 				break;
 		    }
 		}
-	
 		System.out.println("---end1---");
 		System.out.println("psebList=> " + psebList.size());
-//		System.out.println("psebList=> " + psebList.size() + "==="+ psebList.get(0).getProductsBean().getProductName());
 		return psebList;
 	}
 	
@@ -124,4 +126,29 @@ public class ProductSaleController {
 		System.out.println("---傳送psebListByDate---");
 		return psebListByDate; 
 	}
+	
+	//excel:ps
+	@GetMapping(value = "product/sale/productSale", produces ="application/vnd.ms-excel")
+	public String queryAllpsebExcel(Model model, @RequestParam("exportExcel")String ps) {
+		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
+		List<ProductSaleEarnBean> psebList = new Gson().fromJson(ps, listType);
+		model.addAttribute("psebList", psebList);
+		System.out.println("psebList==> " + psebList);
+	    return "product/sale/productSale";
+	}
+	
+	//excel:psd
+	@PostMapping(value = "productSaleDetail", produces ="application/vnd.ms-excel")
+	public String queryAllpseb1Excel(Model model, @RequestParam("exportExcel1")String psd) {
+		System.out.println("123321");
+//		Gson gson = new Gson();
+//		String ps1 = gson.toJson(ps);
+//		System.out.println(ps1);
+		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
+		List<ProductSaleEarnBean> psebDetailList = new Gson().fromJson(psd, listType);
+		model.addAttribute("psebDetailList", psebDetailList);
+		System.out.println("psebDetailList==> " + psebDetailList);
+	    return "productSaleDetail";
+	}
+	
 }

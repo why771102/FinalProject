@@ -180,6 +180,8 @@ public interface MovieService {
 	Map<Integer, MovieBean> getPageBooks(int pageNo, List<RunningBean> run);
 	int getTotalPages(int count);
 	int getShowTimeIdByTime(String playStartTime);
+	boolean updateShowTimeHistoryBean(ShowTimeHistoryBean sthb);
+	List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay, String startDay);
 	
 	
 

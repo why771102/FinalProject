@@ -99,6 +99,9 @@ public class CommentController {
 				mID = cookie.getValue();
 			}
 		}
+		Integer avgGrade = service.getAvgGrade(movieID);
+		System.out.println("avg = " + avgGrade);
+		model.addAttribute("AVGGrade", avgGrade);
 		if(mID == null) {
 			List<CommentBean> comments=service.getCommentByMovieNoLogin(movieID);
 			model.addAttribute("Comments", comments);
@@ -133,14 +136,15 @@ public class CommentController {
 				mID = cookie.getValue();
 			}
 		}
-		int nMID = Integer.parseInt(mID);
-		cb.setMemberID(nMID);
-		//預設刪除檢舉為0
-		if(cb.getCommentDelete() == null || cb.getReportComment() == null) {
+		if(mID == null) {
+			return "redirect:/member/login";
+		}else {
+			int nMID = Integer.parseInt(mID);
+			cb.setMemberID(nMID);
 			cb.setCommentDelete(0);
 			cb.setReportComment(0);
+			service.addComment(cb);
 		}
-		service.addComment(cb);
 		return "redirect:/comments/{movieID}";	
 	}
 	

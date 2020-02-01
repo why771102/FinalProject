@@ -48,10 +48,12 @@ public class ProductsBean implements Serializable {
 	@NotNull
 	@Column(nullable=false)
 	Integer cost;
-
+	
+	@Column(columnDefinition="NVARCHAR(MAX)")
 	String productDescription;
 	
 	Blob productImage;
+	String fileName;
 	
 	
 	public ProductsBean() {}
@@ -69,6 +71,14 @@ public class ProductsBean implements Serializable {
 		this.productImage = productImage;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 
 	public String getProductDescription() {

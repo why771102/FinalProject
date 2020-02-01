@@ -65,18 +65,18 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		return STHB_List;
 		
 	}
-	//拿指定runID的上映日到下檔日全部的show  ok
+	//拿的上映日到下檔日全部的show  ok
 	@Override
-	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(String exOffDay,String release) {
+	public List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay,String startDay) {
 		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate  ";
 		Session session =factory.getCurrentSession();
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
-		STHB_List= session.createQuery(hql).setParameter("enddate", exOffDay)
-				.setParameter("startdate", release)
+		STHB_List= session.createQuery(hql).setParameter("enddate", endDay)
+				.setParameter("startdate", startDay)
 				.getResultList();
 		System.out.println(hql);
-		System.out.println(exOffDay);
-		System.out.println(release);
+		System.out.println(endDay);
+		System.out.println(startDay);
 		
 		return STHB_List;
 		
@@ -94,6 +94,7 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 	
 	
 	@Override
+	//抓某天的showTime
 	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(String startdate) {
 		String hql="from ShowTimeHistoryBean where    playStartTime >= :startdate ";
 		Session session =factory.getCurrentSession();
@@ -126,6 +127,7 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 
 	}
 	//抓指定日期的某一聽
+	@Override
 	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day,String hallID) {
 		// TODO Auto-generated method stub
 		Session session =factory.getCurrentSession();
@@ -143,14 +145,16 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 	}
 	
 	//修改showtimeHistoryBean
+	@Override
 	public boolean updateShowTimeHistoryBean(ShowTimeHistoryBean sthb ) {
 		Session session =factory.getCurrentSession();
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
-		String hql="from ShowTimeHistoryBean set hallID =:hb ,runID=:rb,playStartTime=:sttime where   hallID=:ID";
-		int n = session.createQuery(hql).setParameter("hb", sthb.getHall())
+		String hql="from ShowTimeHistoryBean set hallID =:hb ,runID=:rb,playStartTime=:sttime where   showTimeId=:showID";
+		int n = session.createQuery(hql)
 				.setParameter("rb", sthb.getRun())
 				.setParameter("sttime",sthb.getPlayStartTime())
-                .setParameter("ID", sthb.getHallID())
+                .setParameter("hb", sthb.getHallID())
+                .setParameter("showID", sthb.getShowTimeId())
                 .executeUpdate();
 if(n==0) {
 return false;
@@ -181,6 +185,11 @@ return false;
 		Session session =factory.getCurrentSession();
 		ShowTimeHistoryBean sthb =session.get(ShowTimeHistoryBean.class,  showTimeID);
 		return sthb;
+	}
+	@Override
+	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(String exOffDay, String release) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

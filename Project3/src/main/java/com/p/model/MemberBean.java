@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="member")
@@ -21,6 +22,7 @@ public class MemberBean implements Serializable {
 	String name;
 	String account;
 	String password;
+//	String checkPassword;
 	String gender;
 	String uID;
 	@Column(columnDefinition = "date")
@@ -111,6 +113,14 @@ public class MemberBean implements Serializable {
 	public void setLastLogInTime(String lastLogInTime) {
 		this.lastLogInTime = lastLogInTime;
 	}
+
+//	public String getCheckPassword() {
+//		return checkPassword;
+//	}
+//
+//	public void setCheckPassword(String checkPassword) {
+//		this.checkPassword = checkPassword;
+//	}
 	
 	
 	

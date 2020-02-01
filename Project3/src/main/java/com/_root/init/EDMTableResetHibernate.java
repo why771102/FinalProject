@@ -215,7 +215,15 @@ public class EDMTableResetHibernate {
 					cb.setUnitPrice(Integer.parseInt(token[2]));
 					cb.setUnitStock(Integer.parseInt(token[3]));
 					cb.setCost(Integer.parseInt(token[4]));
-
+					if(!token[5].equalsIgnoreCase("NULL")) {
+						Blob blob = SystemUtils2018.fileToBlob(token[5].trim());
+						cb.setProductImage(blob);
+						cb.setFileName(SystemUtils2018.extractFileName(token[5].trim()));
+					}else {
+						// 先null因為還沒放照片的假資料
+						cb.setProductImage(null);
+					}
+					cb.setProductDescription(token[6]);
 					session.save(cb);
 				}
 			} catch (IOException e) {

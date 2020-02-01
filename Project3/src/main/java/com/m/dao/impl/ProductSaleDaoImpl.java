@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.l.model.CategoriesBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
@@ -90,6 +91,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			Integer qty = 0;
 			Integer subtotal = 0;
 			Integer earnSubtotal = 0;
+			CategoriesBean cb = null;
 			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
 			for (ProductSaleEarnBean pseb : psebList) {
 				if (i == pseb.getProductsBean().getProductID()) {
@@ -97,11 +99,13 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					unitPrice = pseb.getPrice();
 					qty = qty + pseb.getQtyTotal();
 					subtotal = subtotal + pseb.getPrice() * pseb.getQtyTotal();
-					
 					cost = pseb.getProductsBean().getCost();
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
-					
+					cb = pseb.getCategoriesBean();
+							
+					pseb.setCategoriesBean(cb);
+					System.out.println("__________" + cb + "________________");
 					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);
@@ -745,6 +749,16 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		Session session = factory.getCurrentSession();
 		Integer CID = (Integer) session.createQuery(hql).getSingleResult();
 		return CID;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductSaleEarnBean> getAllPSEB() {
+		String hql = "FROM ProductSaleEarnBean";
+		Session session = factory.getCurrentSession();
+		List<ProductSaleEarnBean> pseb = new ArrayList<>();
+		pseb = session.createQuery(hql).getResultList();
+		return pseb;
 	}
 
 //	@SuppressWarnings("unchecked")

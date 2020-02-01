@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Transactional
 	@Override
-	public ExpectationBean getAvgGrade(Integer movieID) {
+	public Integer getAvgGrade(Integer movieID) {
 		return dao.getAvgGrade(movieID);
 	}
 	

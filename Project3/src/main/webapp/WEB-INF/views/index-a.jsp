@@ -23,7 +23,7 @@
 				<a href='movie/autoRun'>排片</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='AllMovie/show'>查看所有電影</a><BR>
+				<a href='AllMovie/show'>查看所有上映電影</a><BR>
 			</td>
 		</tr>
 		
@@ -32,7 +32,7 @@
 				<a href='queryByCategory'>分類查詢</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href='Allrunning/add'>新增running by Data</a><BR>
+				<a href='Allrunning/add'>新增running by movieData</a><BR>
 			</td>
 		</tr>
 		
@@ -47,7 +47,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='forwardDemo'>RedirectView: forwardDemo</a><br> 
+    			<a href='showTimeHistory'>查看排片的歷史紀錄</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
 		    	<a href='redirectDemo'>RedirectView: redirectDemo</a><br>

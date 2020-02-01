@@ -102,7 +102,8 @@
 
 		});
 
-		// timepicker
+		// timepicker => window load??
+		// 		$(window).load(function() {
 		$(function() {
 			var start = moment().subtract(7, 'days');
 			var end = moment();

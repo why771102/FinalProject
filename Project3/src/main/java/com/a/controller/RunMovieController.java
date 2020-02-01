@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,6 +52,7 @@ import com.a.test.ShowtimeBean;
 import com.c.model.HallBean;
 import com.c.service.HallService;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.p.model.HallOrderBean;
 import com.p.service.HallOrderService;
 
@@ -498,6 +501,55 @@ public class RunMovieController {
 
 		return "a/dataTable";// URL 跟 eclip 擺放位置相關
 
+	}
+	
+	@PostMapping(value = "/update/check")
+	public String updateNewShowTime(Model model,
+			@RequestParam(value="updateShowTime") String sth) {
+//		@RequestParam("updateShowTime") String updateShowTime
+//		@RequestParam(value="showTimeHistory", required = false) String showTimeHistory
+		System.out.println("hihihi");
+		System.out.println(" 傳回來的東西:"+sth);
+		
+		Gson gson = new Gson();
+		Type listType = new TypeToken<ArrayList<ShowTimeHistoryBean>>(){}.getType();
+		List<ShowTimeHistoryBean> sthb_list = new Gson().fromJson(sth, listType);
+		
+		System.out.println(sthb_list.size());
+		for(ShowTimeHistoryBean sthb: sthb_list) {
+			System.out.println(sthb.getPlayStartTime());
+			boolean result=mService.updateShowTimeHistoryBean(sthb);
+			if(result == true) {
+				
+			}
+		}
+
+		
+		
+		return "a/showTimeHistory";
+	}
+	
+	@GetMapping(value = "/showTimeHistory")
+	public String showTimeHistoryData(Model model,
+			HttpServletRequest request) {
+		//日期
+//		mService.getShowTimeHistoryByDate(endDay, startDay);
+		
+		
+		//廳
+		List<HallBean> hb_list = hService.getAllHalls(0);
+		model.addAttribute(hb_list);
+		return "a/oldShowTimeHitory";
+	}
+	
+	
+	@PostMapping(value = "/showTimeHistory/show")
+	public String showTimeHistoryData(Model model,
+			HttpServletRequest request, @RequestParam("release") String release) {
+		
+		
+		
+		return "a/oldShowTimeHitory";
 	}
 	
 	

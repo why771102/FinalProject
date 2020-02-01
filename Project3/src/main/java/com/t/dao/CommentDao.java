@@ -22,7 +22,7 @@ public interface CommentDao {
 	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock);
 	
 	//抓出該電影的平均星數
-	public ExpectationBean getAvgGrade(Integer movieID);
+	public Integer getAvgGrade(Integer movieID);
 	
 	//抓出該會員在該電影所留的短評 && deleteComment = 0
 	List<CommentBean> getComment(Integer memberID);

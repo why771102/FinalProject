@@ -170,7 +170,13 @@ public class mOrdersController {
 					 mdb1.setDiscount(1.0);
 					 mdb1.setQuantity(Integer.parseInt(discount));
 					 service.addMOrderDetail(mdb1); 
-					}
+					 session.removeAttribute("discount");
+					 Cookie killMyCookie = new Cookie("discount", null);
+		             killMyCookie.setMaxAge(0);
+		             killMyCookie.setPath("/");
+		             response.addCookie(killMyCookie);
+	
+				}
 				if(cookie.getName().equals("discount2")) {
 					 String discount2 = cookie.getValue();
 					 mdb.setOrdersID(mb.getOrdersID());
@@ -185,7 +191,8 @@ public class mOrdersController {
 					 mdb1.setDiscount(1.0);
 					 mdb1.setQuantity(Integer.parseInt(discount2));
 					 service.addMOrderDetail(mdb1); 
-					}
+					 session.removeAttribute("discount2");
+				}
 				if(cookie.getName().equals("bankticket")) {
 					 String bankticket = cookie.getValue();
 					 mdb.setOrdersID(mb.getOrdersID());
@@ -194,7 +201,8 @@ public class mOrdersController {
 					 mdb.setDiscount(1.0);
 					 mdb.setQuantity(Integer.parseInt(bankticket));
 					 service.addMOrderDetail(mdb);
-					 }
+					 session.removeAttribute("bankticket");
+					}
 				if(cookie.getName().equals("normal")) {
 					 String normal = cookie.getValue();
 					 mdb.setOrdersID(mb.getOrdersID());
@@ -203,6 +211,7 @@ public class mOrdersController {
 					 mdb.setDiscount(1.0);
 					 mdb.setQuantity(Integer.parseInt(normal));
 					 service.addMOrderDetail(mdb); 
+					 session.removeAttribute("normal");
 					}
 				if(cookie.getName().equals("hotdog")) {
 					 String hotdog = cookie.getValue();
@@ -212,7 +221,8 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(hotdog));
 					 service.addMOrderDetail(mdb);
-					 }
+					 session.removeAttribute("hotdog");
+				}
 				if(cookie.getName().equals("churro")) {
 					 String churro = cookie.getValue();
 					 mdb.setOrdersID(mb.getOrdersID());
@@ -221,6 +231,7 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(churro));
 					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("churro");
 					 }
 				if(cookie.getName().equals("friedChicken")) {
 					 String friedChicken = cookie.getValue();
@@ -230,6 +241,7 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(friedChicken));
 					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("friedChicken");
 					 }
 				if(cookie.getName().equals("bigCoke")) {
 					 String bigCoke = cookie.getValue();
@@ -239,6 +251,7 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(bigCoke));
 					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("bigCoke");
 					 }
 				if(cookie.getName().equals("normalCoke")) {
 					 String normalCoke = cookie.getValue();
@@ -248,6 +261,7 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(normalCoke));
 					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("normalCoke");
 					 }
 				if(cookie.getName().equals("smallCoke")) {
 					 String smallCoke = cookie.getValue();
@@ -257,6 +271,7 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(smallCoke));
 					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("smallCoke");
 					 }
 				if(cookie.getName().equals("bigPopcorn")) {
 					 String bigPopcorn = cookie.getValue();
@@ -266,6 +281,7 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(bigPopcorn));
 					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("bigPopcorn");
 					 }
 				if(cookie.getName().equals("normalPopcorn")) {
 					 String normalPopcorn = cookie.getValue();
@@ -275,6 +291,7 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(normalPopcorn));
 					 service.addMOrderDetail(mdb);
+					 session.removeAttribute("normalPopcorn");
 					 }
 				if(cookie.getName().equals("smallPopcorn")) {
 					 String smallPopcorn = cookie.getValue();
@@ -284,7 +301,13 @@ public class mOrdersController {
 					 mdb.setDiscount(0.9);
 					 mdb.setQuantity(Integer.parseInt(smallPopcorn));
 					 service.addMOrderDetail(mdb);
-					 }
+					 session.removeAttribute("smallPopcorn");
+				}
+					cookie.setValue(null);
+		            cookie.setMaxAge(0);
+		            cookie.setPath("/");
+		            response.addCookie(cookie);
+				
 			}
 			
 			return "l/orderconfirmOK";
