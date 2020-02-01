@@ -93,7 +93,9 @@ public class QuestionController {
 		}
 		//查詢歷史訊息
 		List<QuestionContentBean> list = ConService.historyContent(questionId);
+		System.out.println("size : " + list.size());
 		model.addAttribute("content", list);
+		System.out.println(list);
 		return "z/websocket";
 
 	}
@@ -114,7 +116,12 @@ public class QuestionController {
 		
 		//查詢歷史訊息
 		List<QuestionContentBean> list = ConService.historyContent(questionId);
+		System.out.println("size : " + list.size());
 		model.addAttribute("content", list);
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getContent());
+		}
+		System.out.println(list);
 		return "z/websocketForEmp";
 
 	}
