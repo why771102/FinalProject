@@ -130,5 +130,27 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 		return scodb2;
             
     }
+//
+//	@Override
+//	public String getAllProductsFromCate() {
+//			String ans = "";
+//	        List<String> list = getAllHall();
+//	        ans += "<SELECT id='hallID' onchange='showSeats()'>";
+//	        ans += "<option value='' selected='' disabled=''>請選擇</option>";
+//	        for (String hallID : list) {
+//	            if (hallID.equals(selected)) {
+//	                ans += "<option value='" + hallID + "' selected>" + hallID + "</option>";
+//	            } else {
+//	                ans += "<option value='" + hallID + "'>" + hallID + "</option>";
+//	            }
+//	        }
+//	        ans += "</SELECT>";
+//	        return ans;
+//	}
+//	
+//	public List<String> getAllProducts(){
+//		String hql = "";
+//		return null;
+//	}
 
 }

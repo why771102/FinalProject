@@ -85,19 +85,19 @@
  
             <c:forEach items="${product}" var="pd">
                 <div class="col-md-3 col-sm-4 col-xs-6">
-                        <a href="product1.html">
+                        
                     <div class="movie1">
                         <div  >
-                            <img src="<c:url value='/product/${pd.productID}' />">
+                            <img src="<c:url value='/products/${pd.productID}' />">
 
                         </div>
                         <div class="m-name">
-                            <h3>${pd.categoriesBean.categoryName}</h3>
+                            <a href="<c:url value='/categoryProducts/${pd.categoriesBean.categoryID}' />"><h3>${pd.categoriesBean.categoryName}</h3></a>
 
                             
                         </div>
                     </div>
-                        </a>
+                        
                         <div>
                             <br>
                         </div>

@@ -32,6 +32,7 @@ import com.a.model.SCOrdersBean;
 import com.a.service.SCOrderDetailsService;
 import com.a.service.SCOrdersService;
 import com.a.service.ShoppingCartService;
+import com.google.gson.Gson;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
 
@@ -64,6 +65,8 @@ public class ShoppingCartController implements ServletContextAware{
 		this.pservice = pservice;
 	}
 
+	//取得會員購物車
+	//若無登入會先跳登入頁面
 	@SuppressWarnings("unused")
 	@GetMapping("/getShoppingCart")
 	public String getShoppingCart(Model model, HttpServletRequest request) {
@@ -128,7 +131,7 @@ public class ShoppingCartController implements ServletContextAware{
 		return "a/allProducts";
 	}
 	
-	@GetMapping("/product/{productID}")
+	@GetMapping("/products/{productID}")
 	public ResponseEntity<byte[]> productImage(HttpServletResponse resp, @PathVariable Integer productID) {
 	    String filePath = "/resources/images/NoImage.jpg";
 	    System.out.println(productID);
@@ -184,5 +187,33 @@ public class ShoppingCartController implements ServletContextAware{
 	    return b;
 	}
 
+	@GetMapping("/categoryProducts/{categoryID}")
+	public String getAllProductsFromCategory(Model model, @PathVariable("categoryID") Integer categoryID) {
+		System.out.println("this is product categoryID");
+		List<ProductsBean> list = pservice.getCategoryID(categoryID);
+		Gson gson = new Gson();
+		String prod = gson.toJson(list);
+		model.addAttribute("productList", list);
+		model.addAttribute("prod", prod);
+		return "a/categoryProducts";
+	}
+	
+	//加選購商品進入購物車
+	//需先確定會員有購物車
+	@GetMapping("/addToShoppingCart")
+	public String addProductsToShoppingCart(HttpServletRequest request) {
+		Integer memberID = scservice.getMemberID(request);
+		System.out.println(memberID);
+		Integer SCOrderID = scservice.getShoppingCart(memberID);
+		if(SCOrderID == null) {
+			SCOrdersBean scob = new SCOrdersBean();
+			scob.setMemberID(memberID);
+			scoservice.insertOrder(scob);
+
+		}
+		
+		return null;
+	}
+	
 	
 }

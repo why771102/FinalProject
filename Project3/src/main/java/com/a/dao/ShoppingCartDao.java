@@ -34,5 +34,10 @@ public interface ShoppingCartDao {
 	public void createShoppingCart(SCOrdersBean scob);
 
 	public SCOrderDetailBean querySameProduct(Integer SCOrderID, SCOrderDetailBean scodb);
+	
+	//加入商品頁的下拉式選單
+//	public String getAllProductsFromCate();
+	
+	
 
 }
