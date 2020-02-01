@@ -91,12 +91,16 @@
 								<tr>
 									<td>帳號:</td>
 									<td><form:input id="email" path="email" type='text' /></td>
-									<td><span>${errorMsgMap.IDError}</span></td>
+								</tr>
+								<tr>
+									<td colspan="2"><span>${errorMsgMap.IDError}</span></td>
 								</tr>
 								<tr>
 									<td>密碼:</td>
 									<td><form:input id="password" path="password" type='password' /></td>
-									<td><span>${errorMsgMap.pwdError}</span></td>
+								</tr>
+								<tr>
+									<td colspan="2"><span>${errorMsgMap.pwdError}</span></td>
 								</tr>
 
 								<tr>
@@ -203,16 +207,5 @@
     </div>
     <!-- footer -->
 
-	<script>
-		$("#sumit1").click(
-				function() {
-					var d = new Date();
-					$("#lastLogInTime").val(
-							d.getFullYear() + "-" + d.getMonth() + 1 + "-"
-									+ d.getDate() + " " + d.getHours() + ":"
-									+ d.getMinutes() + ":" + d.getSeconds()
-									+ ".000");
-				});
-	</script>
 </body>
 </html>

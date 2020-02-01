@@ -63,9 +63,19 @@
 					</thead>
 					<c:forEach var="list" items="${content}">
 						<c:choose>
-							<tr>
-								<td>${list.name }:${list.content }</td>
-							</tr>
+							<c:when test="${empty list.name}">
+								<tr>
+									<td>用戶：</td>
+									<td>${list.content }</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td>${list.name}：</td>
+									<td>${list.content}</td>
+								</tr>
+							</c:otherwise>
+
 						</c:choose>
 					</c:forEach>
 					<tbody id="greetings">

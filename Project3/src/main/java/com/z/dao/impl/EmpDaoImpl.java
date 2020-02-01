@@ -133,7 +133,11 @@ public class EmpDaoImpl implements EmpDao {
 		String hql = "from EmpBean where email = :email and password = :password";
 		Session session = factory.getCurrentSession();
 		EmpBean eb = null;
-		eb = (EmpBean) session.createQuery(hql).setParameter("email", email).setParameter("password", pwd).getSingleResult();
+		try{
+			eb = (EmpBean) session.createQuery(hql).setParameter("email", email).setParameter("password", pwd).getSingleResult();
+		} catch(Exception e) {
+			
+		}
 		return eb;
 	}
 	

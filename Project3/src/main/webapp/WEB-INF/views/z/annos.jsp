@@ -17,28 +17,16 @@
 	<hr
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<div>
-		<table>
-		<tr>
-			<td>公告編號</td>
-			<td>公告標題</td>
-			<td>公告內容</td>
-			<td>公告狀態</td>
-			<td>開始時間</td>
-<!-- 			<td>結束時間</td> -->
-			<td>權重</td>
-		</tr>
-			<c:forEach var="anno" items="${allAnnos}">
-		<tr>
-			<td>${anno.annoId}</td>
-			<td>${anno.title}</td>
-			<td>${anno.content}</td>
-			<td>${anno.annoStatusBean.statusName}</td>
-			<td>${anno.startTime}</td>
-<%-- 			<td>${anno.endTime}</td> --%>
-			<td>${anno.priority}</td>
-		</tr>
-			</c:forEach>
-		</table>
+
+		<c:forEach var="anno" items="${allAnnos}">
+			<div>
+				<h1>${anno.title}</h1>
+				<h4>${anno.startTime}</h4>
+				<h3>${anno.content}</h3>
+			</div>
+			<hr>
+		</c:forEach>
+
 	</div>
 </body>
 </html>

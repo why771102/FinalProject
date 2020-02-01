@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -21,7 +23,6 @@
 		<tr>
 			<td>公告編號</td>
 			<td>公告標題</td>
-			<td>公告內容</td>
 			<td>公告狀態</td>
 			<td>開始時間</td>
 			<td>結束時間</td>
@@ -32,10 +33,9 @@
 		<tr>
 			<td>${anno.annoId}</td>
 			<td>${anno.title}</td>
-			<td>${anno.content}</td>
 			<td>${anno.annoStatusBean.statusName}</td>
-			<td>${anno.startTime}</td>
-			<td>${anno.endTime}</td>
+			<td>${fn:substring(anno.startTime, 0, 10)}</td>
+			<td>${fn:substring(anno.endTime, 0, 10)}</td>
 			<td>${anno.priority}</td>
 			<td><a href="anno/update/${anno.annoId}">修改公告</a>
 			<a href="anno/launch/${anno.annoId}">上架</a>

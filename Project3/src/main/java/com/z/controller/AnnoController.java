@@ -106,13 +106,14 @@ public class AnnoController {
 		System.out.println("修改之後的時間(轉換前) ab.getStartTime() :  " + ab.getStartTime());
 		System.out.println("修改後但沒動的時間(轉換前) ab.getEndStartTime() :  " + ab.getEndTime());
 		LocalDateTime tranST = LocalDateTime.parse(ab.getStartTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		String nst =tranST.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		String nst =tranST.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:SS"));
 		System.out.println("nst : " + nst);
 		
 		ab.setStartTime(nst);
 		
 		LocalDateTime tranET = LocalDateTime.parse(ab.getEndTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		String net =tranET.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		System.out.println("ab.getEndTime().replace : " + ab.getEndTime().replace("T", " "));	
+		String net =tranET.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:SS"));
 		System.out.println("net : " + net);	
 		ab.setEndTime(net);
 		service.addNewAnno(ab);

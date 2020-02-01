@@ -59,10 +59,15 @@ public class EmpController {
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
 		
 		if(eb.getEmail() == null || eb.getEmail().trim().length() == 0) {
-			errorMsgMap.put("IDError","帳號欄位不得空白，請重新輸入!");
+			errorMsgMap.put("IDError","請輸入帳號");
 		}
 		if(eb.getPassword() == null || eb.getPassword().trim().length() == 0) {
-			errorMsgMap.put("pwdError","密碼欄位不得空白，請重新輸入!");
+			errorMsgMap.put("pwdError","請輸入密碼");
+		}
+		
+		if(!errorMsgMap.isEmpty()) {
+			model.addAttribute("errorMsgMap", errorMsgMap);
+			return "z/EmpLogin";
 		}
 		
 		EmpBean eb2 = service.login(eb.getEmail(), eb.getPassword());
@@ -90,7 +95,7 @@ public class EmpController {
 		}
 		if(!errorMsgMap.isEmpty()) {
 			model.addAttribute("errorMsgMap", errorMsgMap);
-			return "login";
+			return "z/EmpLogin";
 		}
 		return "z/loginSuccess"; //到時候要導到LoginSucess頁面
 	}
