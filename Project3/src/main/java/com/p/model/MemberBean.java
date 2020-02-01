@@ -22,7 +22,7 @@ public class MemberBean implements Serializable {
 	String name;
 	String account;
 	String password;
-//	String checkPassword;
+	String checkPassword;
 	String gender;
 	String uID;
 	@Column(columnDefinition = "date")
@@ -114,13 +114,13 @@ public class MemberBean implements Serializable {
 		this.lastLogInTime = lastLogInTime;
 	}
 
-//	public String getCheckPassword() {
-//		return checkPassword;
-//	}
-//
-//	public void setCheckPassword(String checkPassword) {
-//		this.checkPassword = checkPassword;
-//	}
+	public String getCheckPassword() {
+		return checkPassword;
+	}
+
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
+	}
 	
 	
 	

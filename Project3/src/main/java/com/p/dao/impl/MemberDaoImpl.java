@@ -23,7 +23,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void register(MemberBean mb) { //還要研究註冊時間跟最後登入時間要如何寫入
+	public void register(MemberBean mb) { 
 		String s1 = mb.getPassword();//幫密碼進行加密
 		String s2 = CipherUtils.getStringMD5(s1);
 		mb.setPassword(s2);
