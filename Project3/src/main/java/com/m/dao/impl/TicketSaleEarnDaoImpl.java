@@ -283,8 +283,6 @@ public class TicketSaleEarnDaoImpl implements TicketSaleEarnDao {
 
 				} else {
 				}
-//					}
-//				List<ShowTimeHistoryBean> sthb1 = dao.getDetail(movieID, date);
 			}
 			TicketSaleEarnBean tseb = new TicketSaleEarnBean();
 			tseb.setMovieBean(mb);

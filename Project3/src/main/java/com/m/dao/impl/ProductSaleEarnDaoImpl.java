@@ -36,7 +36,6 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 	}
 
 	// 第一次比完後, 之後用當天日期每天比就好!!
-	// 第一次比完後, 之後用當天日期每天比就好!!
 	
 	@SuppressWarnings("unchecked")
 	@Override

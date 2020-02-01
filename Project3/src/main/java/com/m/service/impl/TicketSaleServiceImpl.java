@@ -1,24 +1,14 @@
 package com.m.service.impl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.a.model.ShowTimeHistoryBean;
-import com.l.model.MOrderBean;
 import com.m.dao.TicketSaleDao;
-import com.m.model.TicketSaleBean;
 import com.m.model.TicketSaleEarnBean;
-import com.m.service.ProductSaleService;
 import com.m.service.TicketSaleService;
 
 @Service
@@ -52,8 +42,36 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String sDate, String eDate) {
 		return dao.getDetail(movieID, sDate, eDate);
 	}
-	
-	
+	@Transactional
+	@Override
+	public List<TicketSaleEarnBean> getTicketSaleInfo0(String sDate, String eDate) {
+		return dao.getTicketSaleInfo0(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<TicketSaleEarnBean> getTicketSaleInfo1(String sDate, String eDate) {
+		return dao.getTicketSaleInfo1(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<TicketSaleEarnBean> getTicketSaleInfo2(String sDate, String eDate) {
+		return dao.getTicketSaleInfo2(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<TicketSaleEarnBean> getTicketSaleInfo3(String sDate, String eDate) {
+		return dao.getTicketSaleInfo3(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<TicketSaleEarnBean> getTicketSaleInfo4(String sDate, String eDate) {
+		return dao.getTicketSaleInfo4(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public String getMovieTitle(Integer movieID) {
+		return dao.getMovieTitle(movieID);
+	}
 	
 	
 	
@@ -368,69 +386,5 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 //			}
 //		}
 //		return dateAndTsbMap3;
-//	}
-//
-//==============================================================================================================
-// 上面方法後,將得到的tsbList1計算電影名稱列表去比較
-//	public List<String> getSelectedTitlesToCompare(List<TicketSaleBean> tsbList1) {
-//		List<String> selectedTitles = new ArrayList<>();
-//		for (TicketSaleBean tsb : tsbList1) {
-//			String eachBeanTitle = tsb.getTitle();
-//			selectedTitles.add(eachBeanTitle);
-//		}
-//		return selectedTitles;
-//	}
-//
-//	// 取得每個tsb內的數字加總, 呼叫地方:tsbListFromMovieList跑for迴圈時
-//	@Transactional
-//	@Override
-//	public List<TicketSaleBean> getSum(List<TicketSaleBean> tsbListFromOrder) {
-//		List<TicketSaleBean> tsbSum = new ArrayList<>();
-//		Integer hallSaleSeats = 0;
-//		Long ticketSaleTotal = 0L; // 票卷類加總
-//		Long foodSaleTotal = 0L; // 餐點類加總
-//		Long ticketSaleSubtotal = 0L;
-//		// 用新的list去取得相對的販售數量與價格
-//		for (TicketSaleBean tsb : tsbListFromOrder) {
-//			Integer c = tsb.getCategory();
-//
-//			if ((c == 1) || (c == 2) || (c == 3 && tsb.getProductID() == 13)) { // c = 1,2 Ticket qty*1
-//				hallSaleSeats = hallSaleSeats + tsb.getQuantity();// 售出座位數
-//				ticketSaleTotal = ticketSaleTotal + (tsb.getUnitPrice() * tsb.getQuantity()); // 售出小計加總
-//
-//			} else if ((c == 3) && (tsb.getProductID() == 15)) { // c=3 Ticket qty*2
-//				hallSaleSeats = hallSaleSeats + (tsb.getQuantity() * 2); // 售出座位數
-//				ticketSaleTotal = ticketSaleTotal + (tsb.getUnitPrice() * tsb.getQuantity());// 售出小計加總
-//
-//			} else if (c == 4) { // food4
-//				foodSaleTotal = foodSaleTotal + (tsb.getUnitPrice() * tsb.getQuantity());// 售出小計加總
-//
-//			} else if (c == 5) { // food5: 有discount
-//				foodSaleTotal = foodSaleTotal + Math.round(tsb.getUnitPrice() * tsb.getQuantity() * tsb.getDiscount());// 售出小計加總
-//			} else {
-//				System.out.println("比較category發生例外--tssl");
-//			}
-//			tsbListFromOrder.remove(tsb); // ===檢查===
-//		}
-//		ticketSaleSubtotal = ticketSaleTotal + foodSaleTotal; // 票卷與食物消費總額
-//
-//		TicketSaleBean tsbSumInfo = new TicketSaleBean(hallSaleSeats, ticketSaleTotal, foodSaleTotal,
-//				ticketSaleSubtotal);
-//		tsbSum.add(tsbSumInfo);
-//		return tsbSum;
-//	}
-//
-//	@Transactional
-//	@Override
-//	public Integer countRepeatedIntegers(List<Integer> ints) {
-//		HashMap<Integer, String> repetitions = new HashMap<Integer, String>();
-//		for (Integer item : ints) {
-//			if (repetitions.containsKey(item)) {
-//				repetitions.put(item, repetitions.get(item) + 1);
-//			} else {
-//				repetitions.put(item, "else");
-//			}
-//		}
-//		return repetitions.size();
 //	}
 }

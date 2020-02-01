@@ -26,7 +26,7 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">產品營利細節</h2>
+	<h2 style="text-align: center">${productName}</h2>
 <%-- 	<form:form method='POST' modelAttribute="ProductSaleBean2" --%>
 <%-- 		enctype="multipart/form-data"> --%>
 		<div>
@@ -40,7 +40,7 @@
 		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
-					<th>${productName}</th>
+					<th></th>
 					<th>產品名稱</th>
 					<th>單價</th>
 					<th>數量</th>
@@ -116,7 +116,6 @@
 						dataTable.row.add(["",value.orderDate,value.price,value.qtyTotal,
 							value.cost,value.earn,value.subtotal,value.earnSubtotal]).draw();
 					});
-// 					showInfo(data);
 			}	
 		});
 		}

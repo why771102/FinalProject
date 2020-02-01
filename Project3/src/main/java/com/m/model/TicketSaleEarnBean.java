@@ -1,6 +1,8 @@
 package com.m.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -107,7 +109,34 @@ public class TicketSaleEarnBean implements Serializable {
 		this.movieBean = movieBean;
 	}
 	
+	@Transient
+	String playMovieDate;
 	
+	//p2 Earn
+	public TicketSaleEarnBean(String playMovieDate, String title, Integer noPlayTimes, Integer ticketCost, 
+			Integer ticketEarn, Integer ticketSaleTotal, Integer foodCos, Integer foodEarn,
+			Integer foodSaleTotal, Integer subtotal, MovieBean movieBean) {
+		this.playMovieDate = playMovieDate;
+		this.title = title;
+		this.noPlayTimes = noPlayTimes;
+		this.ticketCost = ticketCost;
+		this.ticketSaleTotal = ticketSaleTotal;
+		this.ticketEarn = ticketEarn;
+		this.foodCos = foodCos;
+		this.foodEarn = foodEarn;
+		this.foodSaleTotal = foodSaleTotal;
+		this.subtotal = subtotal;
+		this.movieBean = movieBean;
+	}
+	
+	public String getPlayMovieDate() {
+		return playMovieDate;
+	}
+
+	public void setPlayMovieDate(String playMovieDate) {
+		this.playMovieDate = playMovieDate;
+	}
+
 	public Integer getTicketCost() {
 		return ticketCost;
 	}

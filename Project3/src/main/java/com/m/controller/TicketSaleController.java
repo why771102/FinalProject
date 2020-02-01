@@ -41,8 +41,8 @@ public class TicketSaleController {
 	//to ts page1
 	@GetMapping(value= "/ticket/sale")
 	public String toTicketSale(Model model) {
-		TicketSaleBean tsb = new TicketSaleBean();
-		model.addAttribute("TicketSaleBean1", tsb);
+//		TicketSaleBean tsb = new TicketSaleBean();
+//		model.addAttribute("TicketSaleBean1", tsb);
 		return "m/ticketSale1";
 	}
 	
@@ -73,19 +73,19 @@ public class TicketSaleController {
 				tsebList = service.getTicketSaleInfo(sDate, eDate);
 				break;
 			case "其他": //0(其他)1(劇情)2(喜劇)3(愛情)4(恐怖懸疑)
-//				tsebList = service.getAllFoodInfo(sDate, eDate);
+				tsebList = service.getTicketSaleInfo0(sDate, eDate);
 				break;
 			case "劇情":
-//				tsebList = service.getFoodInfo4(sDate, eDate);
+				tsebList = service.getTicketSaleInfo1(sDate, eDate);
 				break;
 			case "喜劇":
-//				tsebList = service.getFoodInfo5(sDate, eDate);
+				tsebList = service.getTicketSaleInfo2(sDate, eDate);
 				break;
 			case "愛情":
-//				tsebList = service.getPeripheralInfo(sDate, eDate);
+				tsebList = service.getTicketSaleInfo3(sDate, eDate);
 				break;
 			case "恐怖懸疑":
-//				tsebList = service.getPeripheralInfo(sDate, eDate);
+				tsebList = service.getTicketSaleInfo4(sDate, eDate);
 				break;
 			default:
 				tsebList = service.getTicketSaleInfo(sDate, eDate);

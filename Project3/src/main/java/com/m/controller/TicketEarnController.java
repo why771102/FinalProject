@@ -106,18 +106,41 @@ public class TicketEarnController {
 	@GetMapping("/ticket/earn/{movieID}")
 	public String getDates(Model model, @PathVariable Integer movieID) {
 		//抓title
-//		String productName = service.getPname(productID);
+		String title = service.getMovieTitle(movieID);
 		model.addAttribute("movieID", movieID);
-//		model.addAttribute("productName", productName);
+		model.addAttribute("title", title);
 		System.out.println("---to page 2---");
-		return "m/productEarn2";
+		return "m/ticketEarn2";
 	}
 	
-//	@PostMapping("/ticket/earn/{movieID}")
-//	public @ResponseBody List<TicketSaleEarnBean> getDate(Model model, @PathVariable Integer movieID,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
-//		List<TicketSaleEarnBean> tsebListByDate = service.getInfoByDate(productID, sDate, eDate);
-//		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
-//		System.out.println(tsebListByDate.size());
+	@PostMapping("/ticket/earn/{movieID}")
+	public @ResponseBody List<TicketSaleEarnBean> getDate(Model model, @PathVariable Integer movieID,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
+		List<TicketSaleEarnBean> tsebListByDate = service.getTicketEarnInfoByDate(movieID, sDate, eDate);
+		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
+		System.out.println(tsebListByDate.size());
+		System.out.println("---傳送tsebListByDate---");
+		return tsebListByDate;
+	}
+	
+	//ticketEarn P3資料傳輸
+	@GetMapping("/ticket/earn/{date}")
+	public String getDetail(Model model, @PathVariable Integer movieID, 
+			@PathVariable String date) {
+		//抓title
+		String title = service.getMovieTitle(movieID);
+		model.addAttribute("movieID", movieID);
+		model.addAttribute("title", title);
+		System.out.println("---to page 3---");
+		return "m/ticketEarn3";
+	}
+	
+//	//ticketEarn P3資料傳輸
+//	@PostMapping("/ticket/earn/{date}")
+//	public @ResponseBody List<TicketSaleEarnBean> getDetail1(Model model, 
+//			@PathVariable Integer movieID, @PathVariable String date) {
+////		List<TicketSaleEarnBean> tsebListByDate = service.getTicketEarnInfoByDate(movieID, sDate, eDate);
+////		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
+////		System.out.println(tsebListByDate.size());
 //		System.out.println("---傳送tsebListByDate---");
 //		return tsebListByDate;
 //	}
