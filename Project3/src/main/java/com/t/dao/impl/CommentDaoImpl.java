@@ -129,11 +129,15 @@ public class CommentDaoImpl implements CommentDao {
 		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		Integer totalGrade = 0;
 		Integer avgGrade = 0;
-		for (int i = 0; i < list.size(); i++) {
-			Integer grade = list.get(i).getGrade();
-			totalGrade = totalGrade + grade;
+		if(list.size() == 0) {
+			avgGrade = 0;
+		}else {		
+			for (int i = 0; i < list.size(); i++) {
+				Integer grade = list.get(i).getGrade();
+				totalGrade = totalGrade + grade;
+			}
+			avgGrade = totalGrade/list.size();
 		}
-		avgGrade = totalGrade/list.size();
 		return avgGrade;
 	}
 
