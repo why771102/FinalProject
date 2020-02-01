@@ -372,6 +372,7 @@ public class EDMTableResetHibernate {
 					eb.setPassword(token[8]);
 					eb.setRegisterTime(token[9]);
 					eb.setuID(token[10]);
+					eb.setCheckPassword(token[11]);
 
 					session.save(eb);
 				}
