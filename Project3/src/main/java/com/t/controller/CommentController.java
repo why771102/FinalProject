@@ -100,7 +100,6 @@ public class CommentController {
 			}
 		}
 		Integer avgGrade = service.getAvgGrade(movieID);
-		System.out.println("avg = " + avgGrade);
 		model.addAttribute("AVGGrade", avgGrade);
 		if(mID == null) {
 			List<CommentBean> comments=service.getCommentByMovieNoLogin(movieID);
