@@ -62,12 +62,14 @@
 						</tr>
 					</thead>
 					<c:forEach var="list" items="${content}">
+						<c:choose>
 							<tr>
-								<td>${list.name }: ${list.content }</td>
+								<td>${list.name }:${list.content }</td>
 							</tr>
-						</c:forEach>
+						</c:choose>
+					</c:forEach>
 					<tbody id="greetings">
-						
+
 					</tbody>
 				</table>
 			</div>
