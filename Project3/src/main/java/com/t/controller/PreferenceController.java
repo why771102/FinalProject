@@ -33,8 +33,10 @@ public class PreferenceController {
 	}
 	
 	//新增欄位 填入讚 噓 屏蔽
-	@RequestMapping("/preference/addlike")
-	public String processAddLike(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addlike/{movieID}")
+	public String processAddLike(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+		System.out.println("movieID = "+movieID);
+		System.out.println("commentID = "+commentID);
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -64,11 +66,11 @@ public class PreferenceController {
 			pb.setBlock(0);
 			service.addLike(pb);
 		}
-		return "redirect:/findAllComment";	
+		return "redirect:/comments/{movieID}";	
 	}
 	
-	@RequestMapping("/preference/addbad")
-	public String processAddBad(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addbad/{movieID}")
+	public String processAddBad(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -98,11 +100,11 @@ public class PreferenceController {
 			pb.setBlock(0);
 			service.addLike(pb);
 		}	
-		return "redirect:/findAllComment";	
+		return "redirect:/comments/{movieID}";	
 	}
 	
-	@RequestMapping("/preference/addblock")
-	public String processAddBlock(@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addblock/{movieID}")
+	public String processAddBlock(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -124,7 +126,7 @@ public class PreferenceController {
 			pb.setBlock(1);
 			service.addLike(pb);
 		}			
-		return "redirect:/findAllComment";	
+		return "redirect:/comments/{movieID}";	
 	}
 	
 }
