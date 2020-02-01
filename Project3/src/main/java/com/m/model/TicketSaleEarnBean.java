@@ -14,6 +14,8 @@ import javax.persistence.Transient;
 import com.a.model.GenreBean;
 import com.a.model.MovieBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Entity
 @Table(name = "ticketSaleEarn")
