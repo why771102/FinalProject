@@ -27,6 +27,9 @@ public class MemberDaoImpl implements MemberDao {
 		String s1 = mb.getPassword();//幫密碼進行加密
 		String s2 = CipherUtils.getStringMD5(s1);
 		mb.setPassword(s2);
+		String c1 = mb.getCheckPassword();//幫確認密碼進行加密
+		String c2 = CipherUtils.getStringMD5(c1);
+		mb.setCheckPassword(c2);
 		Session session = factory.getCurrentSession();
 		session.save(mb);
 	}

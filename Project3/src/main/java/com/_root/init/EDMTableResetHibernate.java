@@ -36,6 +36,7 @@ import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
 import com.p.model.MemberBean;
 import com.p.model.PayStatusBean;
+import com.t.model.ExpectationBean;
 import com.z.model.AnnoBean;
 import com.z.model.AnnoStatusBean;
 import com.z.model.EmpBean;
@@ -372,6 +373,7 @@ public class EDMTableResetHibernate {
 					eb.setPassword(token[8]);
 					eb.setRegisterTime(token[9]);
 					eb.setuID(token[10]);
+					eb.setCheckPassword(token[11]);
 
 					session.save(eb);
 				}
@@ -688,27 +690,27 @@ public class EDMTableResetHibernate {
 				   System.out.println("MOrderDetailBean資料新增成功");  
 			
 //ExpectationBean
-//			try (FileReader fr = new FileReader("data/Expectation.dat"); BufferedReader br = new BufferedReader(fr);) {
-//				while ((line = br.readLine()) != null) {
-//					if (line.startsWith(UTF8_BOM)) {
-//						line = line.substring(1);
-//					}
-//					String[] token = line.split("\\|");
-//					ExpectationBean eb = new ExpectationBean();
-//
-//					eb.setExpective(Integer.parseInt(token[0]));
-//					MovieBean mvb = session.get(MovieBean.class, Integer.parseInt(token[1]));
-//					eb.setMovieBean(mvb);
-//					MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[2]));
-//					eb.setMemberBean(mb);
-//
-//					session.save(eb);
-//				}
-//			} catch (IOException e) {
-//				System.err.println("新建Expectation表格時發生IO例外: " + e.getMessage());
-//			}
-//			session.flush();
-//			System.out.println("Expectation資料新增成功");
+			try (FileReader fr = new FileReader("data/Expectation.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					ExpectationBean eb = new ExpectationBean();
+
+					eb.setExpective(Integer.parseInt(token[0]));
+					MovieBean mvb = session.get(MovieBean.class, Integer.parseInt(token[1]));
+					eb.setMovieBean(mvb);
+					MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[2]));
+					eb.setMemberBean(mb);
+
+					session.save(eb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建Expectation表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("Expectation資料新增成功");
 //======假資料表格往上新增=======================================================================			
 
 			tx.commit();

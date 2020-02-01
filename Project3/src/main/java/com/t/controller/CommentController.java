@@ -100,7 +100,11 @@ public class CommentController {
 			}
 		}
 		Integer avgGrade = service.getAvgGrade(movieID);
-		model.addAttribute("AVGGrade", avgGrade);
+		if(avgGrade == 0) {
+			model.addAttribute("AVGGrade", "尚無評價");
+		}else {
+			model.addAttribute("AVGGrade", avgGrade);
+		}		
 		if(mID == null) {
 			List<CommentBean> comments=service.getCommentByMovieNoLogin(movieID);
 			model.addAttribute("Comments", comments);
