@@ -47,7 +47,16 @@ public class QuestionContentBean implements Serializable{
 	@Transient
 	Integer empId;
 	
+	String name;
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public QuestionContentBean() {
 
 	}

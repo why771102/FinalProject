@@ -49,10 +49,18 @@
             <table id="conversation" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Greetings</th><th >使用者: <span id="user"></span></th>
+                    <th>Greetings</th>
+                    <th>使用者: <span id="user"></span></th>
                 </tr>
                 </thead>
                 <tbody id="greetings">
+                	<c:forEach var="list" items="${content}">
+                		<tr>
+                			<td>${list.content }</td>
+                		</tr>
+                	
+                	
+                	</c:forEach>
                 </tbody>
             </table>
         </div>
@@ -68,5 +76,4 @@
 
 
 </body>
-</html>
 </html>
