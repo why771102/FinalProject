@@ -35,8 +35,6 @@ public class PreferenceController {
 	//新增欄位 填入讚 噓 屏蔽
 	@RequestMapping("/preference/addlike/{movieID}")
 	public String processAddLike(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
-		System.out.println("movieID = "+movieID);
-		System.out.println("commentID = "+commentID);
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
