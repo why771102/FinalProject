@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketEarn2</title>
+<title>ticketEarn3</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -27,42 +27,50 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">${title}</h2>
-		<div>
-			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
-				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
-					class="fa fa-caret-down"></i>
-			</div>
-		</div>
-		<br>
-		<table id="example" class="display" style="width: 100%; text-align: center;">
-			<thead>
-				<tr>
-					<th></th>
-					<th>日期</th>
-					<th>場次數</th>
-					<th>票卷總成本</th>
-					<th>票券總利潤</th>
-					<th>票券銷售總額</th>
-					<th>商品總成本</th>
-					<th>商品總利潤</th>
-					<th>商品銷售總額</th>
-					<th>營收小計</th>
-				</tr>
-			</thead>
-			<tbody id="insertHere">
+<!-- 	<div> -->
+<!-- 		<div id="reportrange" -->
+<!-- 			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;"> -->
+<!-- 			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i -->
+<!-- 				class="fa fa-caret-down"></i> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	<br>
+	<table id="example" class="display"
+		style="width: 100%; text-align: center;">
+		<thead>
+			<tr>
+				<th></th>
+				<th>當日場次</th>
+				<th>廳號</th>
+				<th>場次數</th>
+				<th>票卷總成本</th>
+				<th>票券總利潤</th>
+				<th>票券銷售總額</th>
+				<th>商品總成本</th>
+				<th>商品總利潤</th>
+				<th>商品銷售總額</th>
+				<th>營收小計</th>
+			</tr>
+		</thead>
+		<tbody id="insertHere">
 
-			</tbody>
-			<tfoot>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</tfoot>
-		</table>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
 </body>
 <script>
 
@@ -85,32 +93,21 @@
 			});
 		}).draw();
 	});
-
-	// timepicker
-	$(function() {
-		var start = moment().subtract(7, 'days');
-		var end = moment();
-		function cb(start, end, label) {
-			$('#reportrange span').html(
-					start.format('YYYY-MM-DD') + ' ~ '
-							+ end.format('YYYY-MM-DD'));
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/ticket/earn/"+${movieID},
+				url : "${pageContext.request.contextPath}/ticket/earn/"+${date},
 				data : {
-					start : start.format('YYYY-MM-DD'),
-					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function(ticketEarn) {
+				success : function(ticketEarnDate) {
 // 					alert("新增成功!");
-					console.log(ticketEarn);
+					console.log(ticketEarnDate);
 					
 					var dataTable = $("#example").DataTable();
 					dataTable.clear().draw();
 
-					$.each(ticketEarn, function(index, value) {
+					$.each(ticketEarnDate, function(index, value) {
 						console.log(value);
 						dataTable.row.add(["",value.playMovieDate
 							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
@@ -119,32 +116,8 @@
 					});
 			}	
 		});
-		}
+
 		console.log("pppp" + start.format('YYYY-MM-DD'));
-		
-		
-		// MMMM D, YYYY
-		$('#reportrange').daterangepicker(
-				{
-					startDate : start,
-					endDate : end,
-					ranges : {
-						'Today' : [ moment(), moment() ],
-						'Yesterday' : [ moment().subtract(1, 'days'),
-								moment().subtract(1, 'days') ],
-						'Last 7 Days' : [ moment().subtract(6, 'days'),
-								moment() ],
-						'Last 30 Days' : [ moment().subtract(29, 'days'),
-								moment() ],
-						'This Month' : [ moment().startOf('month'),
-								moment().endOf('month') ],
-						'Last Month' : [
-								moment().subtract(1, 'month').startOf('month'),
-								moment().subtract(1, 'month').endOf('month') ]
-					}
-				}, cb);
-		cb(start, end);
-	});
 
 
 // 	//傳送cate selection值

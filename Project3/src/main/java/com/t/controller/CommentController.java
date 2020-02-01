@@ -99,9 +99,13 @@ public class CommentController {
 				mID = cookie.getValue();
 			}
 		}
-		Integer avgGrade = service.getAvgGrade(movieID);
-		System.out.println("avg = " + avgGrade);
-		model.addAttribute("AVGGrade", avgGrade);
+		Double avgGrade = service.getAvgGrade(movieID);
+		if(avgGrade == 0) {
+			model.addAttribute("AVGGrade", "尚無評價");
+		}else {
+			avgGrade = avgGrade/10;
+			model.addAttribute("AVGGrade", avgGrade);
+		}		
 		if(mID == null) {
 			List<CommentBean> comments=service.getCommentByMovieNoLogin(movieID);
 			model.addAttribute("Comments", comments);
@@ -114,10 +118,30 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.GET)
-	public String getAddNewComment(@PathVariable("movieID")Integer movieID,Model model) {
-		CommentBean cb = new CommentBean();
-		model.addAttribute("commentBean",cb);
-		return "t/addcomment";		
+	public String getAddNewComment(@PathVariable("movieID")Integer movieID,HttpServletRequest request,Model model) {
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		int memberID = Integer.parseInt(mID);
+		//檢查是否有在該電影留過言
+		boolean ce = service.checkCommentExist(memberID);
+		//如果有 印出該留言並提供修改或刪除選項
+		if(ce == true){
+			List<CommentBean> list = service.getComment(memberID);
+			model.addAttribute("CommentBean", list);
+			return "t/onecomment";
+		}
+		//如果無 顯示撰寫區
+		else{
+			CommentBean cb = new CommentBean();
+			model.addAttribute("commentBean",cb);
+			return "t/addcomment";
+		}		
 	}
 	
 	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.POST)

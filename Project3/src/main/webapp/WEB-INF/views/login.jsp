@@ -219,10 +219,11 @@
 				function() {
 					var d = new Date();
 					$("#lastLogInTime").val(
-							d.getFullYear() + "-" + d.getMonth() + 1 + "-"
+							d.getFullYear() + "-" + (parseInt(d.getMonth()) + 1 ) + "-"
 									+ d.getDate() + " " + d.getHours() + ":"
 									+ d.getMinutes() + ":" + d.getSeconds()
 									+ ".000");
+					console.log($("註冊時間:" + "#lastLogInTime").val());
 				});
 	</script>
 </body>

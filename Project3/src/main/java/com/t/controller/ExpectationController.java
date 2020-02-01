@@ -53,6 +53,12 @@ public class ExpectationController {
 	//用movieID查詢expectation
 	@RequestMapping("/expectation/{movieID}")
 	public String getExpectationByMovie(@PathVariable("movieID")Integer movieID,Model model) {
+		Integer avgExpectation = service.getAvgExpectation(movieID);
+		if(avgExpectation == null) {
+			model.addAttribute("AVGExpectation", "尚無資料");
+		}else {
+			model.addAttribute("AVGExpectation", avgExpectation);
+		}
 		List<ExpectationBean> expect=service.getExpectationByMovie(movieID);
 		model.addAttribute("Expectations", expect);
 		return "t/expectationbymovie";

@@ -121,11 +121,6 @@
 										</form:select></td>
 								</tr>
 								<tr>
-									<td>包廳總時數:</td>
-									<td><form:input id="orderHours" path="orderHours"
-											type='text' readonly="true" /></td>
-								</tr>
-								<tr>
 									<td>選擇影廳:</td>
 									<td><form:select path="hallID" id="hallID">
 											<form:option value="-1">
@@ -133,6 +128,11 @@
 								</form:option>
 											<form:options items="${hallList}" />
 										</form:select></td>
+								</tr>
+								<tr>
+									<td>包廳總時數:</td>
+									<td><form:input id="orderHours" path="orderHours"
+											type='text' readonly="true" /></td>
 								</tr>
 								<tr>
 									<td>包廳目的:</td>

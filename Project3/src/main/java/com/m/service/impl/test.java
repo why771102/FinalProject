@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -136,8 +139,18 @@ public class test {
 		}
 		System.out.println(elapsedDays);
 		
+		Calendar rightNow = Calendar.getInstance();
+		int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+		System.out.println("hour==" + hour);
+		
+		LocalTime fiveMinutesLater = LocalTime.now().plusMinutes(60);
+		System.out.println(fiveMinutesLater);
+		
+		String y = "2019-11-10 13:08:00.000";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+		LocalDateTime t = LocalDateTime.parse(y, formatter);
+		LocalTime t1 = t.toLocalTime();
+		String r = t1.plusMinutes(142).toString();
+		System.out.println("T => " + r);
 	}
-	
-
-	
 }

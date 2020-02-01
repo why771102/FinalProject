@@ -114,9 +114,4 @@ public class WebAppConfig implements WebMvcConfigurer {				//本類別提供組�
 		return context;
 	}
 	
-	@Bean
-	public ObjectMapper objectMapper() {
-	     return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-	}
-	
 }

@@ -77,80 +77,12 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 
 	//================================================================================
 	
-	
-//	@Transactional
-//	@Override
-//	public List<LocalDate> getPeripheralDates(){
-//		return dao.getPeripheralDates();
-//	}
-//
-//	@Override
-//	public List<SCOrdersBean> getPeripheralSCOrder(LocalDate orderDate) {
-//		return dao.getPeripheralSCOrder(orderDate);
-//	}
-//
-//	@Override
-//	public List<SCOrderDetailBean> getPeripheralSCODs(List<SCOrdersBean> scbList) {
-//		return dao.getPeripheralSCODs(scbList);
-//	}
-//
-//	@Override
-//	public List<ProductSaleEarnBean> getPeripheralPBs(List<SCOrderDetailBean> scodList) {
-//		return dao.getPeripheralPBs(scodList);
-//	}
-	
 	@Transactional
 	@Override
 	public List<LocalDate> getFoodDates(){
 		return dao.getFoodDates();
 	}
 	
-//	@Transactional
-//	@Override
-//	public List<MOrderBean> getFoodSCOrder(LocalDate date) {
-//		return dao.getFoodSCOrder(date);
-//	}
-//	
-//	@Transactional
-//	@Override
-//	public List<MOrderDetailBean> getFoodSCODs(List<MOrderBean> moList) {
-//		return dao.getFoodSCODs(moList);
-//	}
-//	
-//	@Transactional
-//	@Override
-//	public List<ProductSaleEarnBean> getFoodPBs(List<MOrderDetailBean> modbList) {
-//		return dao.getFoodPBs(modbList);
-//	}
-	
-//	@Transactional
-//	@Override
-//	public List<ProductSaleEarnBean> savePSEB1(){
-//		return dao.savePSEB1();
-//	}
-	
-//	@Transactional
-//	@Override
-//	public List<ProductSaleEarnBean> savePSEB1(){
-//		return dao.savePSEB1();
-//	}
-//	
-//	@Transactional
-//	@Override
-//	public Boolean savePSEB(List<ProductSaleEarnBean> psebList) {
-//		System.out.println("service call savePSEB()");
-//		System.out.println(dao.savePSEB(psebList));
-//		return dao.savePSEB(psebList);
-//	}
-
-	
-	
-	
-	
-	
-	
-
-
 	// 取得周邊商品3方法
 	@Transactional
 	@Override
@@ -170,78 +102,6 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		return dao.getPeripheralSCOD(pbList, scbList);
 	}
 
-	// 取得食物方法
-	@Transactional
-	@Override
-	public List<ShowTimeHistoryBean> getMovieDate(String playStartTimeA, String playStartTimeB) {
-		return dao.getMovieDate(playStartTimeA, playStartTimeB);
-	}
-
-	@Transactional
-	@Override
-	public List<MOrderDetailBean> getMODBList() {
-		return dao.getMODBList();
-	}
-
-	@Transactional
-	@Override
-	public List<ProductsBean> getFoodPB4() {
-		return dao.getFoodPB4();
-	}
-
-	@Transactional
-	@Override
-	public List<ProductsBean> getFoodPB5() {
-		return dao.getFoodPB5();
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleBean> showFoodOutput(List<ShowTimeHistoryBean> sthbList, List<MOrderDetailBean> modbList,
-			List<ProductsBean> pbList) {
-		return dao.showFoodOutput(sthbList, modbList, pbList);
-	}
-
-	@Transactional
-	@Override
-	public List<ProductsBean> getAllFoodPB() {
-		return dao.getAllFoodPB();
-	}
-
-//	@Transactional
-//	@Override
-//	public List<ProductSaleBean> showFoodOrder(String categoryName, String playStartTimeA, String playStartTimeB) {
-//		return dao.showFoodOrder(categoryName, playStartTimeA, playStartTimeB);
-//	}
-//
-//	@Transactional
-//	@Override
-//	public List<ProductSaleBean> showFoodOrders(String playStartTimeA,
-//			String playStartTimeB) {
-//		return dao.showFoodOrders(playStartTimeA, playStartTimeB);
-//	}
-//
-//	@Transactional
-//	@Override
-//	public List<ProductSaleBean> showPeripheralOrder(String categoryName, String orderDateA, String orderDateB) {
-//		return dao.showPeripheralOrder(categoryName, orderDateA, orderDateB);
-//	}
-
-//	@Transactional
-//	@Override
-//	public List<ProductSaleBean> showPeriperalOrders(String categoryNameA, String categoryNameB, String orderDateA,
-//			String orderDateB) {
-//		return dao.showPeriperalOrders(categoryNameA, categoryNameB, orderDateA, orderDateB);
-//	}
-
-//	
-//	@Transactional
-//	@Override
-//	public List<String> getDistinctProductNames() {
-//		List<String> productNamesList = dao.getDistinctProductNames();
-//		return productNamesList;
-//	}
-//
 //	@Transactional
 //	@Override
 //	public List<ProductSaleBean> getProductSaleOutput(List<ProductSaleBean> psbList) {
@@ -273,18 +133,6 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 //		}
 //		return PSBList;
 //	}
-//
-//	@Transactional
-//	@Override
-//	public List<ProductSaleBean> showFoodOrderByTime(String productName, String playStartTimeA, String playStartTimeB) {
-//		return dao.showFoodOrderByTime(productName, playStartTimeA, playStartTimeB);
-//	}
-//
-//	@Transactional
-//	@Override
-//	public List<ProductSaleBean> showPeripheralOrderByTime(String productName, String orderDateA, String orderDateB) {
-//		return dao.showPeripheralOrderByTime(productName, orderDateA, orderDateB);
-//	}
 
 	@Transactional
 	@Override
@@ -299,54 +147,36 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		return totalDates;
 	}
 
-	@Transactional
-	@Override
-	// showByDate
-	public List<ProductSaleBean> getByDateOutput(List<LocalDate> datesList, String pName) {
-		List<ProductSaleBean> psbList = new ArrayList<>();
-		List<SCOrdersBean> scobList = new ArrayList<>();
-		List<ProductsBean> pbList = new ArrayList<>();
-		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
-		List<MOrderDetailBean> modbList = new ArrayList<>();
-		for (LocalDate date : datesList) {
-			if (dao.getCategory(pName) == 6) {
-				scobList = dao.getPeripheralSCOrders(date.toString(), date.toString());
-				pbList = dao.getPeripheralPB();
-				psbList = dao.getPeripheralSCOD(pbList, scobList);
-			} else if (dao.getCategory(pName) == 4) {
-				sthbList = dao.getMovieDate(date.toString(), date.toString());
-				modbList = dao.getMODBList();
-				pbList = dao.getFoodPB4();
-				psbList = dao.showFoodOutput(sthbList, modbList, pbList);
-			} else if (dao.getCategory(pName) == 5) {
-				sthbList = dao.getMovieDate(date.toString(), date.toString());
-				modbList = dao.getMODBList();
-				pbList = dao.getFoodPB5();
-				psbList = dao.showFoodOutput(sthbList, modbList, pbList);
-			} else {
-				System.out.println("不應該出現在這裡的CID");
-			}
-		}
-		return psbList;
-	}
-
-	@Transactional
-	@Override
-	public List<ProductSaleEarnBean> getAllPSEB() {
-		return dao.getAllPSEB();
-	}
-
-
-
-
-
+//	@Transactional
 //	@Override
-//	public List<MOrderDetailBean>  getFoodSCOrder1() {
-//		return dao.getFoodSCOrder1();
+	// showByDate
+//	public List<ProductSaleBean> getByDateOutput(List<LocalDate> datesList, String pName) {
+//		List<ProductSaleBean> psbList = new ArrayList<>();
+//		List<SCOrdersBean> scobList = new ArrayList<>();
+//		List<ProductsBean> pbList = new ArrayList<>();
+//		List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
+//		List<MOrderDetailBean> modbList = new ArrayList<>();
+//		for (LocalDate date : datesList) {
+//			if (dao.getCategory(pName) == 6) {
+//				scobList = dao.getPeripheralSCOrders(date.toString(), date.toString());
+//				pbList = dao.getPeripheralPB();
+//				psbList = dao.getPeripheralSCOD(pbList, scobList);
+//			} else if (dao.getCategory(pName) == 4) {
+//				sthbList = dao.getMovieDate(date.toString(), date.toString());
+//				modbList = dao.getMODBList();
+//				pbList = dao.getFoodPB4();
+//				psbList = dao.showFoodOutput(sthbList, modbList, pbList);
+//			} else if (dao.getCategory(pName) == 5) {
+//				sthbList = dao.getMovieDate(date.toString(), date.toString());
+//				modbList = dao.getMODBList();
+//				pbList = dao.getFoodPB5();
+//				psbList = dao.showFoodOutput(sthbList, modbList, pbList);
+//			} else {
+//				System.out.println("不應該出現在這裡的CID");
+//			}
+//		}
+//		return psbList;
 //	}
-
-
-
 //	@Transactional
 //	@Override
 //	// showPeripheralSaleByDate

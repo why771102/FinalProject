@@ -13,6 +13,9 @@ public interface CommentService {
 
 	// 從前端抓電影ID
 	
+	//抓出該會員是否在該電影留過言
+	public boolean checkCommentExist(Integer memberID);
+	
 	//查詢並列出電影ID們
 	public List<String> getMovies();
 	
@@ -23,7 +26,7 @@ public interface CommentService {
 	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock);
 
 	// 抓出該電影的平均星數
-	public Integer getAvgGrade(Integer movieID);
+	public Double getAvgGrade(Integer movieID);
 
 	//抓出該會員在該電影所留的短評 && deleteComment = 0
 	List<CommentBean> getComment(Integer memberID);

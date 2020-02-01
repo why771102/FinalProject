@@ -55,7 +55,7 @@ public class LoginFilter implements Filter {
 			contextPath = req.getContextPath();
 			requestURI = req.getRequestURI();
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
-			System.out.println("看有沒有跑進來");
+//			System.out.println("看有沒有跑進來");
 			if (mustLogin()) {
 				if (checkLogin(req)) {
 					// 需要登入，但已經登入

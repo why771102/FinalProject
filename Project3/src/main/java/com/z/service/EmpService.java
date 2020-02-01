@@ -24,6 +24,10 @@ public interface EmpService {
 
 	EmpBean login(String email, String password);
 	
-	
+	String changeToMd5(String str);
+
+	String changeFromMd5(String str);
+
+	void changePwd(EmpBean eb);
 	
 }

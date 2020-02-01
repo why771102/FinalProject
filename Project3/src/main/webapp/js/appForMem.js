@@ -1,6 +1,16 @@
 var str = location.pathname;
 var list = str.split("/");
 
+var memberName = document.cookie;
+var cookies = memberName.split("; ");
+for(var i = 0; i < cookies.length; i++) {
+	var c = cookies[i];
+	if (c.indexOf("name=")==0) {
+		var nameeee = c.substring(5,c.length);
+	}
+}
+console.log(nameeee);
+
 var stompClient = null;
 
 function setConnected(connected) {
@@ -21,7 +31,9 @@ function connect() {
 		setConnected(true);
 		console.log('Connected: ' + frame);
 		stompClient.subscribe('/topic/message/' + list[3], function(greeting) {
-
+			
+			
+			
 			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content);
 		});
 	});
@@ -45,7 +57,7 @@ function sendMessage() {
 	if ($("#message").val().trim().length > 0) {
 		stompClient.send("/sendMessage/" + list[3], {}, JSON.stringify({
 			'message' : $("#message").val(),
-			'name' : $("#name").val(),
+			'name' : nameeee,
 			'questionId' : list[3]
 		}));
 	}

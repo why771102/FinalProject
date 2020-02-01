@@ -18,8 +18,8 @@ import com.sun.istack.NotNull;
 
 
 @Entity
-@IdClass(com.t.model.ExpectiveID.class)
 @Table(name="Expectation")
+@IdClass(com.t.model.ExpectiveID.class)
 public class ExpectationBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

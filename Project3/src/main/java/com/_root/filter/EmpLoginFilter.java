@@ -23,9 +23,9 @@ import com.z.model.EmpBean;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-				@WebInitParam(name = "mustLogin1", value = "/member/query"), 
-				@WebInitParam(name = "mustLogin2", value = "/hallOrder/apply"), 
-				@WebInitParam(name = "mustLogin3", value = "/Member/hallOrderQuery")	
+				@WebInitParam(name = "mustLogin11", value = ""), //""內要填controller的路徑
+				@WebInitParam(name = "mustLogin12", value = ""), 
+				@WebInitParam(name = "mustLogin13", value = "")	
 		})
 public class EmpLoginFilter implements Filter {
 	List<String> url = new ArrayList<String>();

@@ -22,28 +22,15 @@
 	<section class="container">
 		<div class="row">
 
-<section class="container">
-		<div class="row">
-			<div class="col-md-5">
-			
-				 <p>
-                   <b style='font-size: 16px;'>平均評分:${AVGGrade}</b>
-                     
-					
-					</p>
-			</div>
-		</div>
-	</section>
-
-<%-- 			<c:forEach var='AVG' items='${AVGGrade}'> --%>
-<!-- 				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px"> -->
-<!-- 					<div class="thumbnail" style="width: 320px; height: 340px"> -->
-<!-- 						<div class="caption"> -->
-<%-- 							<p>平均評分:${AVG.avgGrade}</p> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
+			<section class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<p>
+							<b style='font-size: 16px;'>平均評分:${AVGGrade}</b>
+						</p>
+					</div>
+				</div>
+			</section>
 			<c:forEach var='comment' items='${Comments}'>
 				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
 					<div class="thumbnail" style="width: 320px; height: 340px">
@@ -58,19 +45,19 @@
 							<p>時間:${comment.commentTime}</p>
 							<p>
 								<a
-									href="<spring:url value='/preference/addlike?id=${comment.commentID}' />"
+									href="<spring:url value='/preference/addlike/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sigh glyphicon"></span>${comment.likeNum}讚
 								</a>
 							</p>
 							<a
-								href="<spring:url value='/preference/addbad?id=${comment.commentID}' />"
+								href="<spring:url value='/preference/addbad/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
 								class="btn btn-primary"> <span
 								class="glyphicon-info-sigh glyphicon"></span>${comment.badNum}噓
 							</a>
 							</p>
 							<a
-								href="<spring:url value='/preference/addblock?id=${comment.commentID}' />"
+								href="<spring:url value='/preference/addblock/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
 								class="btn btn-primary"> <span
 								class="glyphicon-info-sigh glyphicon"></span>屏蔽
 							</a>

@@ -93,6 +93,26 @@ public class ExpectionDaoImpl implements ExpectionDao{
 		return list;
 	}
 
+	@Override
+	public Integer getAvgExpectation(Integer movieID) {
+		String hql = "From ExpectationBean where movieID = :movieID";
+		Session session = factory.getCurrentSession();
+		List<ExpectationBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		Integer totalGrade = 0;
+		Integer avgGrade = 0;
+		if(list.size() == 0) {
+			avgGrade = null;
+		}else {
+			for (int i = 0; i < list.size(); i++) {
+				Integer grade = list.get(i).getExpective();
+				totalGrade = totalGrade + grade*100;
+			}
+			avgGrade = totalGrade/list.size();
+		}
+		return avgGrade;
+	}
+
 //	@Override
 //	public List<MemberBean> getMemberList() {
 //		String hql = "FROM MemberBean";

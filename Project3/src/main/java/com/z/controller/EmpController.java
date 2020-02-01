@@ -1,5 +1,6 @@
 package com.z.controller;
 
+import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,10 +59,15 @@ public class EmpController {
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
 		
 		if(eb.getEmail() == null || eb.getEmail().trim().length() == 0) {
-			errorMsgMap.put("IDError","帳號欄位不得空白，請重新輸入!");
+			errorMsgMap.put("IDError","請輸入帳號");
 		}
 		if(eb.getPassword() == null || eb.getPassword().trim().length() == 0) {
-			errorMsgMap.put("pwdError","密碼欄位不得空白，請重新輸入!");
+			errorMsgMap.put("pwdError","請輸入密碼");
+		}
+		
+		if(!errorMsgMap.isEmpty()) {
+			model.addAttribute("errorMsgMap", errorMsgMap);
+			return "z/EmpLogin";
 		}
 		
 		EmpBean eb2 = service.login(eb.getEmail(), eb.getPassword());
@@ -69,7 +75,7 @@ public class EmpController {
 			//登入成功，將mb2物件放進session範圍中，識別字串為EmpLogin
 			session.setAttribute("EmpLogin", eb2);
 			
-			Cookie cookie = new Cookie("role",eb2.getRoleId().toString());
+			Cookie cookie = new Cookie("role",eb2.getRoleBean().getRoleId().toString());
 		    cookie.setMaxAge(7 * 24 * 60 * 60);
 		    cookie.setPath("/");
 		    response.addCookie(cookie);
@@ -89,7 +95,7 @@ public class EmpController {
 		}
 		if(!errorMsgMap.isEmpty()) {
 			model.addAttribute("errorMsgMap", errorMsgMap);
-			return "login";
+			return "z/EmpLogin";
 		}
 		return "z/loginSuccess"; //到時候要導到LoginSucess頁面
 	}
@@ -107,6 +113,36 @@ public class EmpController {
             response.addCookie(cookie);
 		}
 		return "redirect:/";
+	}
+	
+	
+	@RequestMapping(value = "/emp/updatePwd", method = RequestMethod.GET)
+	public String updateEmpPwd(Model model, HttpServletRequest request) {
+		
+		Cookie[] cookies = request.getCookies();
+		Integer empId = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("EmpID")) {
+				empId = Integer.parseInt(cookie.getValue());
+			}
+		}
+		EmpBean ab = service.getEmp(empId);
+		
+		model.addAttribute("empBean", ab);
+		//試著加上是否為員工本人的判斷，導向不同頁面
+		return "z/updatePwd";
+	}
+	
+	
+	@RequestMapping(value = "/emp/updatePwd", method = RequestMethod.POST)
+	public String processUdateEmpPwd(Model model, HttpServletRequest request, @ModelAttribute("empBean") EmpBean eb) {
+		
+		eb.setPassword(eb.getPwd());
+		eb.setRoleId(eb.getRoleBean().getRoleId());
+		eb.setStatus(eb.getEmpStatusBean().getStatus());
+		service.changePwd(eb);
+		return "redirect:/emps";
 	}
 	
 
