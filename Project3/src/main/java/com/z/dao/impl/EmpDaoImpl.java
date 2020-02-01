@@ -34,11 +34,23 @@ public class EmpDaoImpl implements EmpDao {
 		mb.setRoleBean(rb);
 		mb.setEmpStatusBean(esb);
 		
-		String s1 = mb.getPassword();//幫密碼進行加密
-		String s2 = CipherUtils.getStringMD5(s1);
-		mb.setPassword(s2);	
+		mb.setPassword(changeToMd5(mb.getPassword()));	
 		session.saveOrUpdate(mb);
 	}
+	
+	@Override
+	public String changeToMd5(String str) {
+		String strMd5 = CipherUtils.getStringMD5(str);
+		return strMd5;
+	}
+	
+	@Override
+	public String changeFromMd5(String str) {
+		String strMd5 = CipherUtils.encryptString(str , "MD5");
+		return strMd5;
+	}
+	
+	
 	
 	@Override
 	public RoleBean getRoleById(Integer roleId) {
@@ -116,13 +128,21 @@ public class EmpDaoImpl implements EmpDao {
 	@Override
 	public EmpBean login(String email, String password) {
 		
-		String pwd = CipherUtils.getStringMD5(password);//將傳入的password進行加密
+		String pwd = changeToMd5(password);//將傳入的password進行加密
 		
 		String hql = "from EmpBean where email = :email and password = :password";
 		Session session = factory.getCurrentSession();
 		EmpBean eb = null;
 		eb = (EmpBean) session.createQuery(hql).setParameter("email", email).setParameter("password", pwd).getSingleResult();
 		return eb;
+	}
+	
+	@Override
+	public void changePwd(EmpBean mb) {
+		Session session = factory.getCurrentSession();
+		String hql = "update EmpBean set password = :password where empId = :empId";
+		String newPwd = changeToMd5(mb.getPassword());
+		session.createQuery(hql).setParameter("password", newPwd).setParameter("empId", mb.getEmpId()).executeUpdate();
 	}
 	
 

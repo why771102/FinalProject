@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -57,15 +58,15 @@ import com.p.model.HallOrderBean;
 import com.p.service.HallOrderService;
 
 @Controller
-public class RunMovieController {
+public class RunMovieController implements ServletContextAware{
 	ServletContext context;
 	MovieService mService;
 	HallService hService;
 	HallOrderService hoService;
 
-//	@Autowired
-	public void setContext(ServletContext context) {
-		this.context = context;
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.context = servletContext;
 	}
 
 	@Autowired
@@ -984,5 +985,7 @@ public class RunMovieController {
 			System.out.println("--------------------THE END--------------------------");
 		} // 廳
 	}
+
+	
 
 }

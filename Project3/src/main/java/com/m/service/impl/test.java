@@ -78,8 +78,9 @@ public class test {
 		System.out.println("totalDates => " + totalDates);
 		
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-		String playStartTimeC = "2020-01-01";
-		String playStartTimeD = "2020-01-01";
+		String playStartTimeC = "2020-01-25";
+		String playStartTimeD = "2020-02-01";
+		String playStartTimeE = "2020-01-28";
 		
 		 Date date= new Date();
 		 long time = date.getTime();
@@ -96,6 +97,17 @@ public class test {
 		
 		LocalDate sd = LocalDate.parse(playStartTimeC);
 		LocalDate ed = LocalDate.parse(playStartTimeD);
+		LocalDate d = LocalDate.parse(playStartTimeE);
+		long sdc = ChronoUnit.DAYS.between(sd, d);
+		long edc = ChronoUnit.DAYS.between(ed, d);	
+		System.out.println(sdc + "====" + edc);
+		
+		if(sdc >= 0 && edc <= 0) {
+			System.out.println("is between");
+		}else {
+			System.out.println("not between");
+		}
+		
 //		LocalDate re = test2-test1;
 //		System.out.println(sd + "&" + ed);
 		

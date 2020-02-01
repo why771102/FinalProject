@@ -34,6 +34,7 @@ public class WebsocketController {
 		conBean.setContent(chat.getContent());
 		conBean.setQuestionId(questionId);
 		conBean.setDatetime(chat.getEndTime());
+		conBean.setName(name);
 		ConService.saveMessage(conBean);
 		return chat;
 	}

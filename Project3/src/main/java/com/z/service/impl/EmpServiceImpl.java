@@ -30,13 +30,7 @@ public class EmpServiceImpl implements EmpService {
 		dao.saveEmp(eb);
 		
 	}
-//	@Transactional
-//	@Override
-//	public void updateEmp(EmpBean eb) {
-//		
-//		dao.saveEmp(eb);
-//
-//	}
+
 	@Transactional
 	@Override
 	public EmpBean isExists(EmpBean eb) {
@@ -74,4 +68,23 @@ public class EmpServiceImpl implements EmpService {
 		return dao.login(email, password);
 	}
 
+	@Transactional
+	@Override
+	public String changeToMd5(String str) {
+		return dao.changeToMd5(str);
+	}
+	
+	@Transactional
+	@Override
+	public String changeFromMd5(String str) {
+		return dao.changeToMd5(str);
+	}
+	
+	@Transactional
+	@Override
+	public void changePwd(EmpBean eb) {
+		dao.changePwd(eb);
+	}
+	
+	
 }

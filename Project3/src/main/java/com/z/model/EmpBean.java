@@ -39,6 +39,9 @@ public class EmpBean implements Serializable{
 	String email;
 	String password;
 	
+	@Transient
+	String pwd;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "status")
 	EmpStatusBean empStatusBean;
@@ -122,6 +125,16 @@ public class EmpBean implements Serializable{
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+
+	public String getPwd() {
+		return pwd;
+	}
+
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	
 

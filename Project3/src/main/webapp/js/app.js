@@ -25,7 +25,7 @@ function connect() {
 					.parse(greeting.body).name);
 		});
 		stompClient.subscribe('/topic/message/' + list[3], function(greeting) {
-			showMessage(JSON.parse(greeting.body).name + ":"
+			showMessage(JSON.parse(greeting.body).name + "："
 					+ JSON.parse(greeting.body).content);
 		});
 	});
