@@ -22,15 +22,15 @@
 	<section class="container">
 		<div class="row">
 
-<section class="container">
-		<div class="row">
-			<div class="col-md-5">			
-				<p>
-                   <b style='font-size: 16px;'>平均評分:${AVGGrade}</b>  
-				</p>
-			</div>
-		</div>
-	</section>
+			<section class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<p>
+							<b style='font-size: 16px;'>平均評分:${AVGGrade}</b>
+						</p>
+					</div>
+				</div>
+			</section>
 			<c:forEach var='comment' items='${Comments}'>
 				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
 					<div class="thumbnail" style="width: 320px; height: 340px">

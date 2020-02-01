@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Transactional
 	@Override
-	public Integer getAvgGrade(Integer movieID) {
+	public Double getAvgGrade(Integer movieID) {
 		return dao.getAvgGrade(movieID);
 	}
 	
@@ -128,6 +128,12 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID) {
 		return dao.getCommentByMovieNoLogin(movieID);
+	}
+
+	@Transactional
+	@Override
+	public boolean checkCommentExist(Integer memberID) {
+		return dao.checkCommentExist(memberID);
 	}
 
 }

@@ -20,6 +20,9 @@ public interface ExpectionDao {
 	//抓出所有電影的平均期待度(百分比)
 	List<ExpectationBean> getAllExpectation();
 	
+	//抓出個別電影的平均期待度(百分比)
+	public Integer getAvgExpectation(Integer movieID);
+	
 	//用列出的電影ID查Expectation
 	List<ExpectationBean> getExpectationByMovie(Integer movieID);
 	

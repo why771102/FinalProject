@@ -77,4 +77,10 @@ public class ExpectationServiceImpl implements ExpectationService{
 		return dao.getStandbyMovies();
 	}
 
+	@Transactional
+	@Override
+	public Integer getAvgExpectation(Integer movieID) {
+		return dao.getAvgExpectation(movieID);
+	}
+
 }

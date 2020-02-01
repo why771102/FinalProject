@@ -3,6 +3,9 @@ package com.t.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,27 @@ public class CommentDaoImpl implements CommentDao {
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
+	}
+	
+	//抓出該會員是否在該電影留過言
+	@Override
+	public boolean checkCommentExist(Integer memberID) {
+		boolean exist = false;
+		String hql = "From PreferenceBean Where memberID = :memberID";
+		Session session = factory.getCurrentSession();
+		try{
+			CommentBean pb = (CommentBean) session.createQuery(hql)
+												.setParameter("memberID",memberID)
+												.getSingleResult();
+			if(pb != null) {
+				exist = true;
+			}
+		}catch(NoResultException ex) {
+			exist = false;
+		}catch(NonUniqueResultException ex) {
+			exist = false;
+		}
+		return exist;
 	}
 
 	// 抓出該會員在該電影所留的短評 && deleteComment = 0
@@ -122,19 +146,19 @@ public class CommentDaoImpl implements CommentDao {
 	
 	//印出平均評分
 	@Override
-	public Integer getAvgGrade(Integer movieID) {
+	public Double getAvgGrade(Integer movieID) {
 		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
-		Integer totalGrade = 0;
-		Integer avgGrade = 0;
+		Double totalGrade = 0.0;
+		Double avgGrade = 0.0;
 		if(list.size() == 0) {
-			avgGrade = 0;
+			avgGrade = 0.0;
 		}else {		
 			for (int i = 0; i < list.size(); i++) {
 				Integer grade = list.get(i).getGrade();
-				totalGrade = totalGrade + grade;
+				totalGrade = totalGrade + grade*10;
 			}
 			avgGrade = totalGrade/list.size();
 		}
