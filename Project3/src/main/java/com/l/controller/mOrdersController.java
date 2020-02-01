@@ -313,7 +313,32 @@ public class mOrdersController {
 			return "l/orderconfirmOK";
 		}
 
-
-
+		//假資料
+		@RequestMapping("/fakeTicket")
+		public String fakeTicket(){
+			MOrderBean mb=new MOrderBean();
+			MOrderDetailBean mdb=new MOrderDetailBean();
+			MOrderDetailBean mdb1=new MOrderDetailBean();
+			for(int i=1;i<=5078;i++) {
+			mb.setShowTimeID(i);
+			ShowTimeHistoryBean sthb=(ShowTimeHistoryBean) service.getStartTimeByID(i);
+			mb.setOrderTime(sthb.getPlayStartTime());
+			String hall = sthb.getHall().getHallID();
+			mb.setTicketStatus(0);
+			mb.setTicketTime("2999-01-01");
+			mb.setEmpId(1);
+			mb.setMemberID(1);
+			service.addMOrder(mb);
+			if (hall=="A") {
+				mdb.setOrdersID(mb.getOrdersID());
+				mdb.setProductID(1);
+				mdb.setSellUnitPrice(290);
+				mdb.setDiscount(1.0);
+				mdb.setQuantity(175);
+			}
+			
+			}
+			return "l/fakeTicket";
+		}
 
 }
