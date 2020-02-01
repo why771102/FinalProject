@@ -78,5 +78,10 @@ public class TicketEarnServiceImpl implements TicketEarnService {
 	public List<TicketSaleEarnBean> getTicketEarnInfoByDate(Integer movieID, String sDate, String eDate) {
 		return dao.getTicketEarnInfoByDate(movieID, sDate, eDate);
 	}
+	@Transactional
+	@Override
+	public List<TicketSaleEarnBean> getWithinDate(String date, Integer movieID) {
+		return dao.getWithinDate(date, movieID);
+	}
 
 }

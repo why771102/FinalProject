@@ -27,8 +27,6 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">${productName}</h2>
-<%-- 	<form:form method='POST' modelAttribute="ProductSaleBean2" --%>
-<%-- 		enctype="multipart/form-data"> --%>
 		<div>
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
@@ -63,7 +61,6 @@
 				</tr>
 			</tfoot>
 		</table>
-<%-- 	</form:form> --%>
 </body>
 <script>
 
@@ -104,7 +101,7 @@
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function(productsale) {
+				success: function(productsale) {
 // 					alert("新增成功!");
 					console.log(productsale);
 					

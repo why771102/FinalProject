@@ -114,7 +114,8 @@ public class TicketEarnController {
 	}
 	
 	@PostMapping("/ticket/earn/{movieID}")
-	public @ResponseBody List<TicketSaleEarnBean> getDate(Model model, @PathVariable Integer movieID,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
+	public @ResponseBody List<TicketSaleEarnBean> getDate(Model model, @PathVariable Integer movieID,
+			@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
 		List<TicketSaleEarnBean> tsebListByDate = service.getTicketEarnInfoByDate(movieID, sDate, eDate);
 		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
 		System.out.println(tsebListByDate.size());
@@ -123,25 +124,30 @@ public class TicketEarnController {
 	}
 	
 	//ticketEarn P3資料傳輸
-	@GetMapping("/ticket/earn/{date}")
-	public String getDetail(Model model, @PathVariable Integer movieID, 
+	@GetMapping("/ticket/{movieID}/{date}")
+	public String getDetail(Model model, @PathVariable Integer movieID,
 			@PathVariable String date) {
 		//抓title
 		String title = service.getMovieTitle(movieID);
 		model.addAttribute("movieID", movieID);
+		model.addAttribute("date", date);
 		model.addAttribute("title", title);
 		System.out.println("---to page 3---");
 		return "m/ticketEarn3";
 	}
 	
-//	//ticketEarn P3資料傳輸
-//	@PostMapping("/ticket/earn/{date}")
-//	public @ResponseBody List<TicketSaleEarnBean> getDetail1(Model model, 
-//			@PathVariable Integer movieID, @PathVariable String date) {
-////		List<TicketSaleEarnBean> tsebListByDate = service.getTicketEarnInfoByDate(movieID, sDate, eDate);
-////		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
-////		System.out.println(tsebListByDate.size());
-//		System.out.println("---傳送tsebListByDate---");
-//		return tsebListByDate;
-//	}
+	//ticketEarn P3資料傳輸
+	@PostMapping("/ticket//{movieID}/{date}")
+	public @ResponseBody List<TicketSaleEarnBean> getDetail1(Model model, 
+			@PathVariable Integer movieID, @PathVariable String date) {
+		List<TicketSaleEarnBean> tsebListByDate = service.getWithinDate(date, movieID);
+		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
+		
+		String title = service.getMovieTitle(movieID);
+		model.addAttribute("title", title);
+		
+		System.out.println(tsebListByDate.size());
+		System.out.println("---傳送tsebListByDate---");
+		return tsebListByDate;
+	}
 }

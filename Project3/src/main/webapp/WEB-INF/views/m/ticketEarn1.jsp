@@ -122,7 +122,7 @@
 						console.log(value);
 						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticket/earn/"+value.movieBean.movieID+"'>"+value.title+"</a>"
 							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
-							value.ticketSaleTotal,value.foodCos,value.foodEarn,
+							value.ticketSaleTotal,value.foodCost,value.foodEarn,
 							value.foodSaleTotal,value.subtotal]).draw();
 					});
 				}

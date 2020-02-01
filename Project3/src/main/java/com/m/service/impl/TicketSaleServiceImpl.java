@@ -72,6 +72,11 @@ public class TicketSaleServiceImpl implements TicketSaleService {
 	public String getMovieTitle(Integer movieID) {
 		return dao.getMovieTitle(movieID);
 	}
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String date) {
+		return dao.getDetail(movieID, date);
+	}
 	
 	
 	

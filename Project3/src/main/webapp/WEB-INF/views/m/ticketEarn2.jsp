@@ -111,10 +111,11 @@
 					dataTable.clear().draw();
 
 					$.each(ticketEarn, function(index, value) {
-						console.log(value);
-						dataTable.row.add(["",value.playMovieDate
+						console.log(ticketEarn);
+						dataTable.row.add(["",
+							"<a href='${pageContext.request.contextPath}/ticket/"+value.movieBean.movieID+"/"+value.playMovieDate+"'>"+value.playMovieDate+"</a>"
 							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
-							value.ticketSaleTotal,value.foodCos,value.foodEarn,
+							value.ticketSaleTotal,value.foodCost,value.foodEarn,
 							value.foodSaleTotal,value.subtotal]).draw();
 					});
 			}	

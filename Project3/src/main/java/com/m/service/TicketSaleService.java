@@ -15,7 +15,7 @@ public interface TicketSaleService {
 	public List<TicketSaleEarnBean> getTicketSaleInfo3(String sDate, String eDate);
 	public List<TicketSaleEarnBean> getTicketSaleInfo4(String sDate, String eDate);
 	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String sDate, String eDate);
-	
+	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String date);
 	
 
 //	public List<MOrderBean> getMOrderBean();

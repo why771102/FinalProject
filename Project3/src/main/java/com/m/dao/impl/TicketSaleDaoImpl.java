@@ -605,6 +605,47 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 //		System.out.println("sbList ##### " + sbList.size());
 		return sbList;
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String date) {
+		Session session = factory.openSession();
+		String hql = "SELECT runID FROM RunningBean WHERE movieID = :movieID";
+		List<Integer> runIDs = new ArrayList<>();
+		runIDs = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		System.out.println("runID.size() => " + runIDs.size());
+
+		List<ShowTimeHistoryBean> sbList = new ArrayList<>();
+//		List<TicketSaleEarnBean> tsebList = new ArrayList<>();
+
+		for (Integer i : runIDs) {
+			String hql1 = "FROM ShowTimeHistoryBean where runID = :runID";
+
+			List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
+			sthbList = session.createQuery(hql1).setParameter("runID", i).getResultList();
+//			System.out.println("sthbList ----> " + sthbList.size());
+
+			for (ShowTimeHistoryBean sthb : sthbList) {
+
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+				LocalDate playDate = LocalDateTime.parse(sthb.getPlayStartTime(), formatter).toLocalDate();
+				LocalDate Sd = LocalDate.parse(date);
+
+				long SdOdDays = ChronoUnit.DAYS.between(Sd, playDate);
+
+//				System.out.println("SdOdDays >>>> " + SdOdDays);
+//				System.out.println("EdOdDays >>>> " + EdOdDays);
+
+				if (SdOdDays == 0) {
+					sbList.add(sthb);
+				} else {
+				}
+			}
+		}
+		session.close();
+		System.out.println("sbList ##### " + sbList.size());
+		return sbList;
+	}
 
 	// =======================================================================================
 

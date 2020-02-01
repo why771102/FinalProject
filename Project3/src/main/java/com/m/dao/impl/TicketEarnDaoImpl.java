@@ -489,11 +489,11 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 		}
 		System.out.println("totalDates => " + totalDates);
 
-		Integer noPlayTimes = 0;
-		List<ShowTimeHistoryBean> sthbList = service.getDetail(movieID, sDate, eDate);
-		noPlayTimes = sthbList.size();
-
 		for (LocalDate d : totalDates) {
+			Integer noPlayTimes = 0;
+			List<ShowTimeHistoryBean> sthbList = service.getDetail(movieID, d.toString());
+			noPlayTimes = sthbList.size();
+			
 			String eachDate = null;
 			String title = null;
 			Integer ticketCost = 0;
@@ -535,30 +535,132 @@ public class TicketEarnDaoImpl implements TicketEarnDao {
 		System.out.println("CHECK HERE !!!" + tbList.size());
 		return tbList;
 	}
-	
-	//p3 method
+
+	// p3 method
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TicketSaleEarnBean> getWithinDate(String date, Integer movieID){
+	public List<TicketSaleEarnBean> getWithinDate(String date, Integer movieID) {
 		Session session = factory.openSession();
 		String hql = "FROM TicketSaleEarnBean WHERE movieID = :movieID";
 		List<TicketSaleEarnBean> tsebList = new ArrayList<>();
 		tsebList = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
-		
-		for(TicketSaleEarnBean tseb : tsebList){
+		List<TicketSaleEarnBean> tbList = new ArrayList<>();
+		List<TicketSaleEarnBean> tbListNew = new ArrayList<>();
+
+		for (TicketSaleEarnBean tseb : tsebList) {
 			Integer ShowID = tseb.getShowTimeHistoryBean().getShowTimeId();
 			String showTime = session.get(ShowTimeHistoryBean.class, ShowID).getPlayStartTime();
-			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-			LocalDateTime temp = LocalDateTime.parse(showTime, formatter);
-			LocalTime t1 = temp.toLocalTime();
-			String r = t1.plusMinutes(142).toString();
-			Integer movieHours = tseb.getMovieBean().getRunningTime(); //分
-			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+			LocalDate playDate = LocalDateTime.parse(showTime, formatter).toLocalDate();
+			LocalDate Sd = LocalDate.parse(date);
+			long SdOdDays = ChronoUnit.DAYS.between(Sd, playDate);
+
+			if (SdOdDays == 0) {
+				LocalDateTime temp = LocalDateTime.parse(showTime, formatter);
+				LocalTime t1 = temp.toLocalTime();
+				Integer movieHours = tseb.getMovieBean().getRunningTime(); // 分
+				Integer hr = t1.plusMinutes(movieHours).getHour();
+
+				String playTime = null;
+				Integer noPlayTimes = 0;
+				String title = null;
+				Integer ticketCost = 0;
+				Integer ticketSaleTotal = 0;
+				Integer ticketEarn = 0;
+				Integer foodCost = 0;
+				Integer foodSaleTotal = 0;
+				Integer foodEarn = 0;
+				Integer earnSubtotal = 0;
+				MovieBean mb = null;
+
+				if (hr >= 9 && hr <= 12) {
+					// 上午場
+					playTime = "早場";
+					noPlayTimes++; // 計算上午場次數
+					title = tseb.getMovieBean().getTitle();
+					mb = tseb.getMovieBean();
+					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
+					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
+					foodCost = foodCost + tseb.getFoodCost();
+
+				} else if (hr > 12 && hr <= 18) {
+					// 中午場
+					playTime = "午場";
+					noPlayTimes++; // 計算上午場次數
+					title = tseb.getMovieBean().getTitle();
+					mb = tseb.getMovieBean();
+					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
+					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
+					foodCost = foodCost + tseb.getFoodCost();
+				} else {
+					// 晚上場
+					playTime = "晚場";
+					noPlayTimes++; // 計算上午場次數
+					title = tseb.getMovieBean().getTitle();
+					mb = tseb.getMovieBean();
+					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
+					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
+					foodCost = foodCost + tseb.getFoodCost();
+				}
+
+				ticketEarn = (int) (tseb.getMovieBean().getProfitRatio() * ticketSaleTotal);
+				ticketCost = ticketSaleTotal - ticketEarn;
+				foodEarn = foodSaleTotal - foodCost;
+				earnSubtotal = ticketEarn + foodEarn;
+
+				TicketSaleEarnBean tb = new TicketSaleEarnBean(playTime, title, noPlayTimes, ticketCost, ticketEarn,
+						ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
+				tbList.add(tb);
+			} else {
+			}
 		}
-		
+
+		List<String> playTimeList = new ArrayList<>();
+		String morn = "早場";
+		String noon = "午場";
+		String night = "晚場";
+		playTimeList.add(morn);
+		playTimeList.add(noon);
+		playTimeList.add(night);
+
+		for (String pt : playTimeList) {
+			String playTime = null;
+			Integer noPlayTimes = 0;
+			String title = null;
+			Integer ticketCost = 0;
+			Integer ticketSaleTotal = 0;
+			Integer ticketEarn = 0;
+			Integer foodCost = 0;
+			Integer foodSaleTotal = 0;
+			Integer foodEarn = 0;
+			Integer earnSubtotal = 0;
+			MovieBean mb = null;
+
+			for (TicketSaleEarnBean tseb : tbList) {
+				if (tseb.getPlayMovieDate().equals(pt)) {
+					noPlayTimes++;
+					playTime = pt;
+					title = tseb.getMovieBean().getTitle();
+					mb = tseb.getMovieBean();
+					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
+					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
+					foodCost = foodCost + tseb.getFoodCost();
+				} else {
+				}
+				ticketEarn = (int) (tseb.getMovieBean().getProfitRatio() * ticketSaleTotal);
+				ticketCost = ticketSaleTotal - ticketEarn;
+				foodEarn = foodSaleTotal - foodCost;
+				earnSubtotal = ticketEarn + foodEarn;
+			}
+			TicketSaleEarnBean tb = new TicketSaleEarnBean(playTime, title, noPlayTimes, ticketCost, ticketEarn,
+					ticketSaleTotal, foodCost, foodEarn, foodSaleTotal, earnSubtotal, mb);
+			if (tb.getFoodCost() != 0) {
+				tbListNew.add(tb);
+			} else {
+			}
+		}
 		session.close();
-		return null;
+		return tbListNew;
 	}
-	
+
 }

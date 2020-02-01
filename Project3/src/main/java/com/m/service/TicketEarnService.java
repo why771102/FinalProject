@@ -14,4 +14,5 @@ public interface TicketEarnService {
 	public List<TicketSaleEarnBean> getTicketEarnInfo3(String sDate, String eDate);
 	public List<TicketSaleEarnBean> getTicketEarnInfo4(String sDate, String eDate);
 	public List<TicketSaleEarnBean> getTicketEarnInfoByDate(Integer movieID, String sDate, String eDate);
+	public List<TicketSaleEarnBean> getWithinDate(String date, Integer movieID);
 }
