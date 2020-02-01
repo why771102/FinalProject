@@ -54,7 +54,9 @@
 		<mapping class="com.l.model.MOrderBean"></mapping>
 		<mapping class="com.l.model.MOrderDetailBean"></mapping>
 		<mapping class="com.a.model.ShippingStatusBean"></mapping>
-
+		<mapping class="com.t.model.ExpectationBean"></mapping>
+		<mapping class="com.t.model.CommentBean"></mapping>
+		<mapping class="com.t.model.PreferenceBean"></mapping>
 
 	</session-factory>
 </hibernate-configuration>
