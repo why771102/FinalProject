@@ -24,6 +24,9 @@
 		margin-left:auto; 
 		margin-right:auto;
 	}
+	span{
+		color:red;
+	}
 </style>
 
 <title>會員註冊</title>
@@ -56,20 +59,11 @@
                         <li><a href="conatct.html">contact</a>
                         </li>
                         <li><a href="products.html">周邊商品</a>
-<!--                         </li> -->
-<!--                         <li><a href="login-page.html">登入</a> -->
-<!--                         </li> -->
                         <li><a href="shopCart.html" style='padding:5px;'><img src="../img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
                         <li class="free-trial-btn"><a href="<c:url value='/member/login' />">登入</a>
                             
                         </li>
-<!--                         <li> -->
-<!--                             <select> -->
-<!--                                 <option>中文</option> -->
-<!--                                 <option>ENG</option> -->
-<!--                             </select> -->
-<!--                         </li> -->
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -105,11 +99,11 @@
 									<td><form:input id="password" path="password" type='password' /><br>
 										<form:errors path="password" cssClass="error" /></td>
 								</tr>
-<!-- 								<tr> -->
-<!-- 									<td>確認密碼:</td> -->
-<%-- 									<td><form:input id="checkPassword" path="checkPassword" type='password' /><br> --%>
-<%-- 										<form:errors path="checkPassword" cssClass="error" /><span>${errorMsgMap.checkPasswordError}</span></td> --%>
-<!-- 								</tr> -->
+								<tr>
+									<td>確認密碼:</td>
+									<td><form:input id="checkPassword" path="checkPassword" type='password' /><br>
+										<form:errors path="checkPassword" cssClass="error" /><span>${errorMsgMap.checkPasswordError}</span></td>
+								</tr>
 								<tr>
 									<td>性別:</td>
 									<td><form:radiobutton path="gender" value="男性" />男性 

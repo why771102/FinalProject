@@ -27,9 +27,9 @@ import com.p.model.MemberBean;
 				@WebInitParam(name = "mustLogin2", value = "/hallOrder/apply"), 
 				@WebInitParam(name = "mustLogin3", value = "/Member/hallOrderQuery"),
 				@WebInitParam(name = "mustLogin4", value = "/getShoppingCart"),
-				@WebInitParam(name = "mustLogin5", value = "/preference/addlike"),
-				@WebInitParam(name = "mustLogin6", value = "/preference/addbad"),
-				@WebInitParam(name = "mustLogin7", value = "/preference/addblock")
+//				@WebInitParam(name = "mustLogin5", value = "/preference/addlike"),
+//				@WebInitParam(name = "mustLogin6", value = "/preference/addbad"),
+//				@WebInitParam(name = "mustLogin7", value = "/preference/addblock")
 		})
 public class LoginFilter implements Filter {
 	List<String> url = new ArrayList<String>();
@@ -55,7 +55,7 @@ public class LoginFilter implements Filter {
 			contextPath = req.getContextPath();
 			requestURI = req.getRequestURI();
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
-			System.out.println("看有沒有跑進來");
+//			System.out.println("看有沒有跑進來");
 			if (mustLogin()) {
 				if (checkLogin(req)) {
 					// 需要登入，但已經登入

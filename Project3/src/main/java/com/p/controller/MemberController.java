@@ -64,9 +64,13 @@ public class MemberController {
 		if(ue == true) {
 			errorMsgMap.put("uIDtExistError", "身分證字號已存在!");
 		}
-//		if(mb.getCheckPassword() != mb.getPassword()) {
-//			errorMsgMap.put("checkPasswordError", "密碼與確認密碼內容不一致!");
-//		}
+		String p1 = mb.getPassword();
+		String p2 = mb.getCheckPassword();
+		System.out.println("p1" + p1);
+		System.out.println("p2" + p2);
+		if(!p1.equals(p2)) {
+			errorMsgMap.put("checkPasswordError", "密碼與確認密碼內容不一致!");
+		}
 		if(!errorMsgMap.isEmpty()) {
 			model.addAttribute("errorMsgMap",errorMsgMap);
 			return "register";
