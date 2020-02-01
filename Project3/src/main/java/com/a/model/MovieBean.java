@@ -51,6 +51,7 @@ public class MovieBean implements Serializable {
 	String trailer;
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String plotSummary;
+	@JsonIgnore
 	Blob photo;
 	@Transient
 	Integer status;

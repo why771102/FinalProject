@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -27,35 +25,43 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.ServletContextAware;
 
-import com.a.model.MovieBean;
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
 import com.a.service.SCOrderDetailsService;
 import com.a.service.SCOrdersService;
 import com.a.service.ShoppingCartService;
-import com.p.model.MemberBean;
+import com.l.model.ProductsBean;
+import com.l.service.ProductsService;
 
 @Controller
-public class ShoppingCartController {
+public class ShoppingCartController implements ServletContextAware{
+	
+	//購物車第一個分類ID
+	Integer categoryID = 6;
+	//購物車最後一個分類ID
+	Integer endCatID = 13;
 
 	ShoppingCartService scservice;
 	SCOrderDetailsService scodservice;
 	SCOrdersService scoservice;
-
+	ProductsService pservice;
 	ServletContext context;
-
-//	@Autowired
-	public void setContext(ServletContext context) {
-		this.context = context;
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.context = servletContext;
+		
 	}
 
 	@Autowired
 	public void setService(ShoppingCartService scservice, SCOrderDetailsService scodservice,
-			SCOrdersService scoservice) {
+			SCOrdersService scoservice, ProductsService pservice) {
 		this.scservice = scservice;
 		this.scodservice = scodservice;
 		this.scoservice = scoservice;
+		this.pservice = pservice;
 	}
 
 	@SuppressWarnings("unused")
@@ -109,48 +115,57 @@ public class ShoppingCartController {
 		return "a/ShoppingCart";
 	}
 	
+	//要顯示不同分類+分類裡其中一個產品的圖
 	@GetMapping("/showAllProducts")
-	public String showAllProducts() {
+	public String showAllProducts(Model model) {
+		List<ProductsBean> map = new ArrayList<>();
+		for(Integer cID = categoryID; cID <= endCatID; cID++) {
+			List<ProductsBean> list = pservice.getCategoryID(cID);
+			System.out.println(list.get(0).getProductID());
+			map.add(list.get(0));
+		}
+		model.addAttribute("product", map);
 		return "a/allProducts";
 	}
 	
-//	@GetMapping("/getPicture/{productID}")
-//	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer movieID) {
-//	    String filePath = "/resources/images/NoImage.jpg";
-//	    System.out.println(movieID);
-//	    byte[] media = null;
-//	    HttpHeaders headers = new HttpHeaders();
-//	    String filename = "";
-//	    int len = 0;
-//	    
-//	    System.out.println(bean);
-//	    if (bean != null) {
-//	        Blob blob = bean.getPhoto();
-//	        filename = bean.getFileName();
-//	        if (blob != null) {
-//	            try {
-//	                len = (int) blob.length();
-//	                media = blob.getBytes(1, len); //  blob.getBytes(1, len): 是 1 開頭。Jdbc相關的類別都是1 開頭。
-//	            } catch (SQLException e) {
-//	                throw new RuntimeException("RunMovieController的getPicture()發生SQLException: " + e.getMessage());
-//	            }
-//	        } else {
-//	            media = toByteArray(filePath);    
-//	            filename = filePath;            
-//	        }
-//	    } else {
-//	    	media = toByteArray(filePath);    
-//	        filename = filePath;            
-//	    }
-//	       headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-//	       String mimeType = context.getMimeType(filename);
-//	    MediaType mediaType = MediaType.valueOf(mimeType);
-//	    System.out.println("mediaType =" + mediaType);
-//	    headers.setContentType(mediaType);
-//	    ResponseEntity<byte[]> responseEntity = 
-//	                new ResponseEntity<>(media, headers, HttpStatus.OK);
-//	    return responseEntity;
-//	}
+	@GetMapping("/product/{productID}")
+	public ResponseEntity<byte[]> productImage(HttpServletResponse resp, @PathVariable Integer productID) {
+	    String filePath = "/resources/images/NoImage.jpg";
+	    System.out.println(productID);
+	    byte[] media = null;
+	    HttpHeaders headers = new HttpHeaders();
+	    String filename = "";
+	    int len = 0;
+	    ProductsBean bean = pservice.getProduct(productID);
+	    System.out.println(bean);
+	    if (bean != null) {
+	        Blob blob = bean.getProductImage();
+	        filename = bean.getFileName();
+	        if (blob != null) {
+	            try {
+	                len = (int) blob.length();
+	                media = blob.getBytes(1, len); //  blob.getBytes(1, len): 是 1 開頭。Jdbc相關的類別都是1 開頭。
+	            } catch (SQLException e) {
+	                throw new RuntimeException("RunMovieController的getPicture()發生SQLException: " + e.getMessage());
+	            }
+	        } else {
+	            media = toByteArray(filePath);    
+	            filename = filePath;            
+	        }
+	    } else {
+	    	media = toByteArray(filePath);    
+	        filename = filePath;            
+	    }
+	       headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+	       System.out.println(filename);
+	       String mimeType = context.getMimeType(filename);
+	    MediaType mediaType = MediaType.valueOf(mimeType);
+	    System.out.println("mediaType =" + mediaType);
+	    headers.setContentType(mediaType);
+	    ResponseEntity<byte[]> responseEntity = 
+	                new ResponseEntity<>(media, headers, HttpStatus.OK);
+	    return responseEntity;
+	}
 	
 	private byte[] toByteArray(String filepath) {
 	    byte[] b = null;
@@ -168,4 +183,6 @@ public class ShoppingCartController {
 	    }
 	    return b;
 	}
+
+	
 }

@@ -24,6 +24,8 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com._root.config.restful.ExcelViewResolver;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 //import com._root.config.restful.ExcelViewResolver;
 
@@ -110,6 +112,11 @@ public class WebAppConfig implements WebMvcConfigurer {				//本類別提供組�
 	public ServletContext getServletContext() {
 		
 		return context;
+	}
+	
+	@Bean
+	public ObjectMapper objectMapper() {
+	     return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 	}
 	
 }

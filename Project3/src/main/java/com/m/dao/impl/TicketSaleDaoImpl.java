@@ -91,12 +91,13 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
 			MovieBean mb = null;
-			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
-			System.out.println("sthbList.size() =>" +  sthbList.size());
-			noPlayTimes = sthbList.size();
-			
+
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
+					List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
+					System.out.println("sthbList.size() =>" +  sthbList.size());
+					noPlayTimes = sthbList.size();
+					
 					title = tseb.getMovieBean().getTitle();
 //					hallSeats = hallSeats + tseb.getHallSeats();
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
@@ -106,7 +107,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 					for (ShowTimeHistoryBean sthb : sthbList) {
 						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
 					}
-
 				} else {
 				}
 				Subtotal = ticketSaleTotal + foodSaleTotal;
@@ -160,7 +160,8 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		String hql = "SELECT runID FROM RunningBean WHERE movieID = :movieID";
 		List<Integer> runIDs = new ArrayList<>();
 		runIDs = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
-
+		System.out.println("runID.size() => " + runIDs.size());
+		
 		List<ShowTimeHistoryBean> sbList = new ArrayList<>();
 //		List<TicketSaleEarnBean> tsebList = new ArrayList<>();
 
@@ -169,6 +170,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 
 			List<ShowTimeHistoryBean> sthbList = new ArrayList<>();
 			sthbList = session.createQuery(hql1).setParameter("runID", i).getResultList();
+			System.out.println("sthbList ----> " + sthbList.size());
 
 			for (ShowTimeHistoryBean sthb : sthbList) {
 
@@ -179,15 +181,18 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 
 				long SdOdDays = ChronoUnit.DAYS.between(Sd, playDate);
 				long EdOdDays = ChronoUnit.DAYS.between(Ed, playDate);
-
+			
+				System.out.println("SdOdDays >>>> " + SdOdDays);
+				System.out.println("EdOdDays >>>> " + EdOdDays);
+				
 				if (SdOdDays >= 0 && EdOdDays <= 0) {
 					sbList.add(sthb);
 				} else {
 				}
 			}
 		}
-
 		session.close();
+		System.out.println("sbList ##### " + sbList.size());
 		return sbList;
 	}
 
