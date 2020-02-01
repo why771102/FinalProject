@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -393,7 +394,7 @@ public class RunMovieController implements ServletContextAware{
 	//把showtimemovie 修改
 	@GetMapping(value = "/showTime/update/{date}{time}")
 	public String addNewMovie(Model model, HttpServletRequest request, @PathVariable("date") String date ,@PathVariable("time") String time) {
-		String[] datetime = date.split("\\|");
+		String[] datetime = date.split("\\=");
           System.out.println("0"+datetime[0]);
           System.out.println("1"+datetime[1]);
           for(String a :datetime) {
@@ -505,7 +506,7 @@ public class RunMovieController implements ServletContextAware{
 	}
 	
 	@PostMapping(value = "/update/check")
-	public String updateNewShowTime(Model model,
+	public @ResponseBody String updateNewShowTime(Model model,
 			@RequestParam(value="updateShowTime") String sth) {
 //		@RequestParam("updateShowTime") String updateShowTime
 //		@RequestParam(value="showTimeHistory", required = false) String showTimeHistory
@@ -515,42 +516,87 @@ public class RunMovieController implements ServletContextAware{
 		Gson gson = new Gson();
 		Type listType = new TypeToken<ArrayList<ShowTimeHistoryBean>>(){}.getType();
 		List<ShowTimeHistoryBean> sthb_list = new Gson().fromJson(sth, listType);
-		
+		boolean result =false;
 		System.out.println(sthb_list.size());
 		for(ShowTimeHistoryBean sthb: sthb_list) {
 			System.out.println(sthb.getPlayStartTime());
-			boolean result=mService.updateShowTimeHistoryBean(sthb);
-			if(result == true) {
-				
-			}
+			System.out.println(sthb.getHallID());
+			System.out.println(sthb.getRunID());
+			System.out.println(sthb.getShowTimeId());
+			 result=mService.updateShowTimeHistoryBean(sthb);
+			System.out.println(result);
+			
 		}
-
+		if(result == true) {
 		
+			return "true";
+		}
 		
-		return "a/showTimeHistory";
+		return "a/oldShowTimeHistory";
 	}
 	
-	@GetMapping(value = "/showTimeHistory")
-	public String showTimeHistoryData(Model model,
-			HttpServletRequest request) {
+	@GetMapping(value = "/oldShowTimeHistory")
+	public String showOldShowTimeHistoryData() {
+		System.out.println("wwwwww");
 		//日期
 //		mService.getShowTimeHistoryByDate(endDay, startDay);
 		
 		
 		//廳
-		List<HallBean> hb_list = hService.getAllHalls(0);
-		model.addAttribute(hb_list);
-		return "a/oldShowTimeHitory";
+//		List<HallBean> hb_list = hService.getAllHalls(0);
+//		model.addAttribute(hb_list);
+		return "a/oldShowTimeHistory";
 	}
 	
 	
 	@PostMapping(value = "/showTimeHistory/show")
-	public String showTimeHistoryData(Model model,
-			HttpServletRequest request, @RequestParam("release") String release) {
+	public @ResponseBody String showTimeHistoryData(Model model,
+			HttpServletRequest request, @RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("hallID") String hallID) {
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(hallID);
+		List<ShowTimeHistoryBean> sthb_list= new ArrayList<>();
+		//電影院的
+		List<ShowtimeBean> showTime_list= new ArrayList<>();
+		if(hallID == "All") {
+			System.out.println("aaaaa");
+			 sthb_list=mService.getShowTimeHistoryByTime(end, start);
+		}else {
+		     sthb_list=mService.getShowTimeHistoryByDate(end, start,hallID);
+		}
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+		for(ShowTimeHistoryBean sthb:sthb_list) {
+			
+			  LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
+			  showTime_list.add(new ShowtimeBean(1, sthb.getRun().getMovie().getRunningTime(),sthb.getRun().getMovie().getExpectedProfit() ,
+						(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), sthb));
+		}
 		
 		
 		
-		return "a/oldShowTimeHitory";
+		//把指定日期(一天)的showTimeHistory 取出 並塞進showtimeBean
+		
+		
+				
+					
+			
+		//包場的
+//		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		
+//		List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
+//	List<HallOrderBean> hob_list = hoService.getHallOrder(day1);
+//	if(hob_list.size()>0) {
+//	   for(HallOrderBean hob : hob_list) {
+//		LocalDateTime dateTime = LocalDateTime.parse(hob.getStartTime(), fmt);
+//		showTime.add(new ShowtimeBean(0, (hob.getOrderHours()*60), hob,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), hob.getHb()));
+	
+		Gson gson =new Gson();
+		
+		String showTime = gson.toJson(showTime_list);
+  	   request.setAttribute("showTime", showTime);
+		
+
+		return showTime;
 	}
 	
 	
@@ -571,6 +617,16 @@ public class RunMovieController implements ServletContextAware{
 		return "index-a";
 		}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int checkHallOrder(LocalDateTime runDateTime, HallBean hb, int HallTime, List<ShowtimeBean> OrderHall_list) {
 		int HallOrderTime = 0;
 		List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());

@@ -47,7 +47,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='showTimeHistory'>查看排片的歷史紀錄</a><br> 
+    			<a href='oldShowTimeHistory'>查看排片的歷史紀錄</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
 		    	<a href='redirectDemo'>RedirectView: redirectDemo</a><br>

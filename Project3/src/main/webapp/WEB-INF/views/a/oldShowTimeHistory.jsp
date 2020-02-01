@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -23,46 +21,118 @@
 
 </head>
 <body>
-   
+   <h1>排片查詢</h1>
     <label>請選擇日期：</label>
+
     <label>起始日期：</label>
     <input type="date" id="startShowDate" name="startDate" min="2019-11-01" max="2020-04-30">
     <label>結束日期：</label>
     <input type="date" id="endShowDate" name="endDate" min="2019-11-01" max="2020-04-30">
     <select name='hallID' id='hall'  value=''>
     <option  selected='' disabled='' value=''>請選擇廳</option>
+    <option  selected=''  value='All'>全部</option>
+    <option  selected=''  value='A'>A廳</option>
+    <option  selected=''  value='B'>B廳</option>
     </select>
     
+    <input id='a' type='submit' onclick="formSubmit()" value='確定送出'/>
+   <br>
+<!--    <div id ='AllTable'> -->
 	<table id="table" class="display">
-		<thead>
-			<tr>
+		<thead id='table_thead'>
+			<tr id=>
 				<td>日期:</td>
-				<td>廳:</td>
-				<td>代號:</td>
-				<td>電影名稱:</td>
-				<td>片長:</td>
-				<td>播出時間:</td>
-				<td>權重:</td>
-
+                <td>廳:</td>
+                <td>showID</td>
+                <td>runID</td>
+                <td>代號:</td>
+                <td>電影名稱:</td>
+                <td>片長:</td>
+                <td>播出時間:</td>
+                <td>權重:</td>
 			</tr>
 		</thead>
 		
-			<tr>
-				<td>${stb.day}</td>
-				<td>${stb.hall.hallID}</td>
-				<td>${stb.stID}</td>
-				<td>${stb.rb.movie.title}</td>
-				<td>${stb.runningTime}</td>
-				<td>${stb.time}</td>
-				<td>${stb.price_time}</td>
-			</tr>
+		
+			
 	
 	</table>
+<!-- 	</div> -->
 	<script>
 	  $(document).ready(function() {
 		$("#table").dataTable();
 	  });
 	  
+	  function formSubmit(){
+		  var start = document.getElementById("startShowDate").value;
+		  var end = document.getElementById("endShowDate").value;
+		  var hallID =document.getElementById("hall").value;
+			console.log(start);
+			console.log(end);
+			console.log(hallID);
+			
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/showTimeHistory/show",
+				data : {start: start, end: end,hallID:hallID},
+				type : "POST",
+				success : function(data) {
+					alert("送出成功");
+					 var a =data;
+						console.log("stID"+a[0].stID);
+// 					  var divObj = document.getElementById("AllTable");
+// 					  divObj.innerHTML = "";
+// 	                    $("#AllTable").append(
+// 		                    		"<table id='table' class='display'>"+
+// 		                    		"<thead id='table_thead'>"+
+// 		                    			"<tr id='table_tr' >"+
+// 		                    				 "<td>日期:</td>"+
+// 		                                   " <td>廳:</td>"+
+// 		                                   " <td>showID</td>"+
+// 		                                    "<td>runID</td>"+
+// 		                                    "<td>代號:</td>"+
+// 		                                   " <td>電影名稱:</td>"+
+// 		                                   " <td>片長:</td>"+
+// 		                                   " <td>播出時間:</td>"+
+// 		                                   " <td>權重:</td>"+
+// 		                    			"</tr>"+
+// 		                    		"</thead>	");
+					 
+						for(i=0;i<a.length-1;i++){
+ 		                    $("#table_thead").append(
+
+		                    		
+		                        " <tr id=tr" + i + ">" +
+		                        "<td id='strDay" + i + "'>" + a[i].strDay + "</td>" +
+		                        "<td id='hallID" + i + "'>" + a[i].sthb.hall.hallID + "</td>" +
+		                        "<td  id='showTimeId" + i + "'>" + a[i].sthb.showTimeId + "</td>" +
+		                        "<td id='runID" + i + "'>" + a[i].sthb.run.runID + "</td>" +
+		                        "<td>" + a[i].stID + "</td>" +
+		                        "<td>" +
+		                        "<select name='' id='title' onchange='change(this.value," + i + ")' value='" + i + "'>" +
+		                       
+		                        "<option  selected='' disabled='' value='" + i + "'>" + a[i].sthb.run.movie.title + "</option>" +
+
+		                        "</select>" +
+
+		                        "</td>" +
+		                        "<td><p id='runningTime" + i + "'>" + a[i].runningTime + "</p></td>" +
+		                        "<td id='time" + i + "'>" + "<input id='appt-time' type='time' name='appt-time'" +
+		                        "value='" + a[i].strTime + "'min='" + a[i].strTime + "' max='24:00' onchange='changeTime(this.value," + i + ")'><span class='validity'></span>"
+
+
+		                        + "</td>" +
+		                        "<td id='price_time" + i + "'>" + a[i].price_time + "</td>" +
+
+		                        "</tr>");
+		                
+						}
+						$("#table").dataTable();
+
+				}
+			});
+		  
+	  }
 	  
 	</script>
 </body>

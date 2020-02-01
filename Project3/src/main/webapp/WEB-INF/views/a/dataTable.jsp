@@ -41,7 +41,7 @@
 				<td>${stb.runningTime}</td>
 				<td>${stb.time}</td>
 				<td>${stb.price_time}</td>
-				<td>${stb.showTimeId}<input id='a' type='submit' onclick="formSubmit()" value='修改'/></td>
+				<td><input id='a' type='submit' onclick="formSubmit()" value='修改'/></td>
 				<input type='hidden' name="date"   value='${stb.day}' id='date' />
 				<input type='hidden' name="time"   value='${stb.time}' id='time' />
 			</tr>
@@ -50,6 +50,7 @@
 <!-- 	<input id='b' type='submit' onclick="updateAllSubmit()" value='修改全部'/> -->
 <%-- 	<a href='${pageContext.request.contextPath}/a/updateShowTime'>修改</a> --%>
 	<a href='${pageContext.request.contextPath}/index-a'>確認</a>
+	
 	<script>
 		$(document).ready(function() {
 			$("#table").dataTable();
@@ -83,7 +84,7 @@
 			var time = document.getElementById("time").value;
 			console.log(date);
 			console.log(time);
-			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"|"+time);
+			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"="+time);
 
 // 			$.ajax({
 // 				url : "${pageContext.request.contextPath}/showTime/upadate",

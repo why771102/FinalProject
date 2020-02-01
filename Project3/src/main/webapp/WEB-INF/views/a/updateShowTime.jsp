@@ -85,8 +85,8 @@
         <input id='aaa' type='button' onclick="formSubmit()" value='確認修改' />
     </div>
 
-    <a href=''>確認修改修改</a>
-    <a href='index-a'>確認</a>
+   
+    <a href='${pageContext.request.contextPath}/index-a'>確認</a>
     <script>
         //準備movie 有多少個陣列
 
@@ -353,7 +353,7 @@
                 updateData.push(update);
             }
             //                       var updateShowTime=JSON.stringify(updateData);
-            console.log(JSON.stringify(updateData));
+//             console.log(JSON.stringify(updateData));
             //                       $("#table_tr").append("<input id='final' name='sth' type='hidden' value='"+updateShowTime+"'/> ");
             //                  document.getElementById("final").value = JSON.stringify(updateData);
             //                  console.log("final"+document.getElementById("final").value);
@@ -368,12 +368,12 @@
                 //cache:false,
                 //dataType: 'json',
                 error: function (data) {
+                	console.log(data);
                     console.log(JSON.stringify(updateData));
                 },
                 success: function (data) {
                     alert("修改成功");
-                    console.log(data);
-                    window.location.href = "${pageContext.request.contextPath}/index-a";
+//                     window.location.href = "${pageContext.request.contextPath}/index-a";
                 },
             });
 

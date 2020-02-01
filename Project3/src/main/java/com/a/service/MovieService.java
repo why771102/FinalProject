@@ -181,7 +181,9 @@ public interface MovieService {
 	int getTotalPages(int count);
 	int getShowTimeIdByTime(String playStartTime);
 	boolean updateShowTimeHistoryBean(ShowTimeHistoryBean sthb);
-	List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay, String startDay);
+
+	List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay, String startDay, String hallID);
+	List<ShowTimeHistoryBean> getShowTimeHistoryByTime(String endDay, String startDay);
 	
 	
 

@@ -224,9 +224,18 @@ public class movieServiceImpl implements MovieService {
 	}
 	@Transactional
 	@Override
-	public List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay,String startDay){
-		return SDao.getShowTimeHistoryByDate(endDay,startDay);
+	public List<ShowTimeHistoryBean> getShowTimeHistoryByTime(String endDay,String startDay){
+		return SDao.getShowTimeHistoryByTime(endDay,startDay);
 	}
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay,String startDay,String hallID){
+		return SDao.getShowTimeHistoryByDate(endDay,startDay, hallID);
+	}
+	
+	
+	
+	
 //	@Transactional
 //
 //	public void checkHallOrder(List<HallOrderBean> hob_list, int HallTime, ) {
