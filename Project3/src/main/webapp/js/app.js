@@ -1,3 +1,6 @@
+var str = location.pathname;
+var list = str.split("/");
+
 var stompClient = null;
 
 function setConnected(connected) {
@@ -81,13 +84,4 @@ $(function() {
 		sendMessage();
 	});
 });
-
-console.log('location.pathname: '+location.pathname);
-
-var str = location.pathname;
-var list = str.split("/");
-
-console.log(list[1]);
-console.log(list[2]);
-console.log(list[3]);
 
