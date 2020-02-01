@@ -20,9 +20,9 @@
 
 		<c:forEach var="anno" items="${allAnnos}">
 			<div>
-				<h1>${anno.title}</h1>
+				<h2>${anno.title}</h2>
 				<h4>${anno.startTime}</h4>
-				<h3>${anno.content}</h3>
+				<p>${anno.content}</p>
 			</div>
 			<hr>
 		</c:forEach>
