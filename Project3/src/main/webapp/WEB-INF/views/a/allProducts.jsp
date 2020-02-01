@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +86,8 @@
                         <a href="product1.html">
                     <div class="movie1">
                         <div  >
-                            <img src="img/product1.png">
+<!--                             <img src="img/product1.png"> -->
+                             <img src="<c:url value='/product/${product["6"].get(0).productID}' />">
                         </div>
                         <div class="m-name">
                             <h3>周邊衣服</h3>
@@ -444,7 +448,12 @@
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script defer src="js/bootstrap.min.js"></script>
+<script>
 
+console.log(${product["6"].get(0).productID});
+console.log("testing: ");
+
+</script>
 
 </body>
 </html>
