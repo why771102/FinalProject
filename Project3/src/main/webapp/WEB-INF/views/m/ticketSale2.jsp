@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketSale1</title>
+<title>ticketSale2</title>
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -26,49 +26,57 @@
 </head>
 
 <body style="background-color: grey">
-	<h2 style="text-align: center">票房銷售總覽</h2>
-	<form:form method='POST' modelAttribute="TicketSaleBean1" enctype="multipart/form-data" >
-	<div>
-		類型： ${genreSelection}
-<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
-<!-- 			<option>Java人生</option> -->
-<!-- 		</select> -->
-		<div id="reportrange"
-			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
-			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
-				class="fa fa-caret-down"></i>
+	<h2 style="text-align: center">${title}</h2>
+	<form:form method='POST' modelAttribute="TicketSaleBean1"
+		enctype="multipart/form-data">
+		<div>
+			類型： ${genreSelection}
+			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
+			<!-- 			<option>Java人生</option> -->
+			<!-- 		</select> -->
+			<div id="reportrange"
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
+					class="fa fa-caret-down"></i>
+			</div>
 		</div>
-	</div>
-	<br>
-	<table id="example" class="display" style="width: 100%; text-align: center;">
-		<thead>
-			<tr>
-				<th></th>
-				<th>電影名稱</th>
-				<th>場次數</th>
-				<th>總座位數</th>
-				<th>售出座位數</th>
-				<th>平均滿座率</th>
-				<th>平均單筆消費</th>
-				<th>銷售總金額</th>
-			</tr>
-		</thead>
-		<tbody  id="insertHere">
+		<br>
+		<table id="example" class="display"
+			style="width: 100%; text-align: center;">
+			<thead>
+				<tr>
+					<th></th>
+					<th>日期</th>
+					<th>場次數</th>
+					<th>總座位數</th>
+					<th>售出座位數</th>
+					<th>滿座率</th>
+					<th>平均單筆消費</th>
+					<th>票券銷售額</th>
+					<th>商品銷售額</th>
+					<th>營收時比</th>
+					<th>銷售總金額</th>
+				</tr>
+			</thead>
+			<tbody id="insertHere">
 
-		</tbody>
-		<tfoot>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</tfoot>
-	</table>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
 	</form:form>
 </body>
 <script>
@@ -99,34 +107,32 @@
 		function cb(start, end, label) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
-					+ end.format('YYYY-MM-DD'));
-			
+							+ end.format('YYYY-MM-DD'));
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/ticket/sale",
-				data : {
-					start : start.format('YYYY-MM-DD'),
-					end : end.format('YYYY-MM-DD')
-				},
-				type : "POST",
-				success : function(ticketSale) {
-					alert("新增成功!");
-					
-					var dataTable = $("#example").DataTable();
-					dataTable.clear().draw();
+						url : "${pageContext.request.contextPath}/ticket/sale/"+${movieID},
+						data : {
+							start : start.format('YYYY-MM-DD'),
+							end : end.format('YYYY-MM-DD')
+						},
+						type : "POST",
+						success : function(ticketSale) {
+							alert("新增成功!");
 
-					$.each(ticketSale, function(index, value) {
-						console.log(value);
-						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticket/sale/"+value.movieBean.movieID+"'>"+value.title+"</a>"
-							,value.noPlayTimes,value.hallSeats,value.hallSaleSeats,
-							value.avgSeats,value.pricePerSeat,value.subtotal]).draw();
+							var dataTable = $("#example").DataTable();
+							dataTable.clear().draw();
+							$.each(ticketSale,function(index, value) {
+							console.log(value);
+							
+							dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticketSale/"+value.movieBean.movieID+"/"+value.playMovieDate+"'>"+value.playMovieDate+"</a>",
+							value.noPlayTimes,value.hallSeats,value.hallSaleSeats,value.avgSeats,
+							value.pricePerSeat,value.ticketSaleTotal,value.foodSaleTotal,
+							value.earnPerHr,value.subtotal]).draw();
+						});
+						}
 					});
 				}
-			});
-		}
-		
 
-		
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
 				{
@@ -149,7 +155,7 @@
 				}, cb);
 		cb(start, end);
 	});
-	
+
 	//傳送cate selection值
 	function sendGen() {
 		console.log("Gen =>" + document.getElementById("genres").value);
@@ -165,27 +171,26 @@
 		// 				}
 		});
 	}
-	
-// 	function showInfo(ts) {
-// 		for(var i =0; i < ts.length; i++){
-// 		$('#insertHere')
-// 				.append(
-// 						'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/sale/date" id="hallID">'
-// 								+ ts[i].title
-// 								+ '</a></td><td>'
-// 								+ ts[i].noPlayTimes
-// 								+ '</td><td>'
-// 								+ ts[i].hallSeats
-// 								+ '</td><td>'
-// 								+ ts[i].hallSaleSeats
-// 								+ '</td><td>'
-// 								+ ts[i].avgSeats
-// 								+ '</td><td>'
-// 								+ ts[i].pricePerSeat
-// 								+ '</td><td>'
-// 								+ ts[i].subtotal + '</td></tr>');
-// 		}
-// 	};
-	
+
+	// 	function showInfo(ts) {
+	// 		for(var i =0; i < ts.length; i++){
+	// 		$('#insertHere')
+	// 				.append(
+	// 						'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/sale/date" id="hallID">'
+	// 								+ ts[i].title
+	// 								+ '</a></td><td>'
+	// 								+ ts[i].noPlayTimes
+	// 								+ '</td><td>'
+	// 								+ ts[i].hallSeats
+	// 								+ '</td><td>'
+	// 								+ ts[i].hallSaleSeats
+	// 								+ '</td><td>'
+	// 								+ ts[i].avgSeats
+	// 								+ '</td><td>'
+	// 								+ ts[i].pricePerSeat
+	// 								+ '</td><td>'
+	// 								+ ts[i].subtotal + '</td></tr>');
+	// 		}
+	// 	};
 </script>
 </html>

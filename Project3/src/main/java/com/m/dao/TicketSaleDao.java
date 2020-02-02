@@ -17,8 +17,9 @@ public interface TicketSaleDao {
 	public List<TicketSaleEarnBean> getTicketSaleInfo4(String sDate, String eDate);
 	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String sDate, String eDate);
 	public List<ShowTimeHistoryBean> getDetail(Integer movieID, String date);
-	
-	//回傳order, od, product表內的資訊
+	public List<TicketSaleEarnBean> getTicketSaleInfoByDate(Integer movieID, String sDate, String eDate);
+	public List<TicketSaleEarnBean> getWithinDate(String date, Integer movieID);
+
 //	public List<TicketSaleBean> getMOrderDetailBeanList();
 //	public List<MOrderBean> getMOrderBean();
 //	public List<TicketSaleBean> getTicketSaleBean(List<MOrderBean> modList);

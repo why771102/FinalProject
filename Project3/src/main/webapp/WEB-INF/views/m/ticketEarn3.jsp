@@ -94,7 +94,7 @@
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/ticket/"+${movieID}+"/"+${date},
+				url : "${pageContext.request.contextPath}/ticketSale/"+${movieID}+"/"+${date},
 				data : {
 				},
 				type : "POST",

@@ -85,6 +85,27 @@ public class TicketSaleEarnBean implements Serializable {
 	}
 	
 	@Transient
+	Double earnPerHr;
+	
+	//p2 Sale
+	public TicketSaleEarnBean(String playMovieDate, String title, Integer noPlayTimes, Integer hallSeats, 
+			Integer hallSaleSeats, Double avgSeats, Double pricePerSeat, Integer ticketSaleTotal,Integer foodSaleTotal,
+			Integer subtotal, Double earnPerHr, MovieBean movieBean) {
+		this.playMovieDate = playMovieDate;
+		this.title = title;
+		this.noPlayTimes = noPlayTimes;
+		this.hallSeats = hallSeats;
+		this.hallSaleSeats = hallSaleSeats;
+		this.avgSeats = avgSeats;
+		this.pricePerSeat = pricePerSeat;
+		this.ticketSaleTotal = ticketSaleTotal;
+		this.foodSaleTotal = foodSaleTotal;
+		this.subtotal = subtotal;
+		this.earnPerHr = earnPerHr;
+		this.movieBean = movieBean;
+	}
+	
+	@Transient
 	Integer ticketCost;
 	@Transient
 	Integer ticketEarn;
@@ -129,6 +150,14 @@ public class TicketSaleEarnBean implements Serializable {
 		this.movieBean = movieBean;
 	}
 	
+	public Double getEarnPerHr() {
+		return earnPerHr;
+	}
+
+	public void setEarnPerHr(Double earnPerHr) {
+		this.earnPerHr = earnPerHr;
+	}
+
 	public String getPlayMovieDate() {
 		return playMovieDate;
 	}
