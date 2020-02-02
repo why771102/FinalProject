@@ -825,25 +825,32 @@
         //get number in id e.g. #productQuantity26 ==> 26
         //which is also the index for pObj[]
         var index = pdQty.substring(productQty.length-1, pdQty.length);
-        //calculate new product total
-//         newPTotal = newQty(productQty, index);
+      //calculate new product total
+        newPTotal = newQty(productQty, index);
         
         var unitP = "#unitPrice"+index;
         var price = $(unitP).text().substring(7, $(unitP).text().length);
         var subT = "#subT"+index;
-        var newPtotal = $(pdQty).val()*price;
-        let Psubtotal = new Number(newPtotal).toLocaleString("en-AU");
+        var newsubtotal = $(pdQty).val()*price;
+        let Psubtotal = new Number(newsubtotal).toLocaleString("en-AU");
         console.log($(pdQty).val());
         console.log(Psubtotal);
         console.log($(subT).text());
         $(subT).text("商品小記：NT$ " + Psubtotal);
 	}
 	
-// 	function newQty(productQty, index){
+	function newQty(productQty, index){
 		//新修改的數量
-//         var newPTotal = 0;
-		
-// 	}
+        let newP = [];
+        var newPTotal = 0;
+        //跑迴圈計算更改新數量後的金額
+        //舊數量的金額計算後
+        for(let p = 0; p < sc.length; p++){
+        	
+        }
+	}
+
+$(cartTotal)
 	</script>
 </body>
 </html>
