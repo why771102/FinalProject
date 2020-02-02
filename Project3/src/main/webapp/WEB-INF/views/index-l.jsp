@@ -33,7 +33,11 @@
 			<td width="350"><p align="left" /><a href="queryMovie">查詢上映電影</a><BR>
 			</td>
 		</tr>
-
+		<tr height="52" bgcolor="lightblue" align="center">
+			
+			<td width="350"><p align="left" /><a href="fakeTicket">不是真的資料製造機</a><BR>
+			</td>
+		</tr>
 <!-- 		<tr height="52" bgcolor="lightblue" align="center"> -->
 <!-- 			<td width="350"><p align="left" /> <a href='member/register'>註冊會員(范)</a><BR> -->
 <!-- 			</td> -->
