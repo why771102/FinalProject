@@ -313,7 +313,7 @@ public class mOrdersController {
 			return "l/orderconfirmOK";
 		}
 
-		//輸入訂單號碼
+		//輸入訂單號碼頁面
 		@RequestMapping("/inputOrderID")
 		public String inputOrderID() {
 		
@@ -323,19 +323,25 @@ public class mOrdersController {
 		//查詢單筆資料
 		@RequestMapping("/queryTicket")
 		public String queryTicket(Integer orderID,Model model) {
-			model.addAttribute("OrderID");
+			
+//			model.addAttribute("getOrderByID",service.getOrderID(orderID));
 			return "l/queryTicket";
 		}
 		
 		//修改訂單時間
-		@RequestMapping("/updateTicket")
+		@RequestMapping(value ="/updateTicket/{OrderID}", method = RequestMethod.GET)
 		public String updateTicket(Model model){
 			
 			
 			return "l/updateTicket";
 		}
 		
-		
+		@RequestMapping(value ="/updateTicket/{OrderID}", method = RequestMethod.POST)
+		public String updateTicket2(Model model){
+			
+			
+			return "l/queryTicket";
+		}
 		
 		
 		
@@ -359,7 +365,8 @@ public class mOrdersController {
 					mdb.setProductID(1);
 					mdb.setSellUnitPrice(290);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(113);
+					// (int)(Math.random()*(總共幾個數字))+(最小值)
+					mdb.setQuantity((int)(Math.random()*21+126));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(13);
@@ -377,13 +384,13 @@ public class mOrdersController {
 					mdb.setProductID(11);
 					mdb.setSellUnitPrice(130);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(40);
+					mdb.setQuantity((int)(Math.random()*30+20));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(5);
 					mdb.setSellUnitPrice(60);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(35);
+					mdb.setQuantity((int)(Math.random()*30+15));
 					service.addMOrderDetail(mdb);
 				}
 				if(hall.equals("B")) {
@@ -391,7 +398,7 @@ public class mOrdersController {
 					mdb.setProductID(1);
 					mdb.setSellUnitPrice(290);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(91);
+					mdb.setQuantity((int)(Math.random()*36+72));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(15);
@@ -409,13 +416,13 @@ public class mOrdersController {
 					mdb.setProductID(12);
 					mdb.setSellUnitPrice(120);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(40);
+					mdb.setQuantity((int)(Math.random()*20+20));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(5);
 					mdb.setSellUnitPrice(60);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(35);
+					mdb.setQuantity((int)(Math.random()*20+15));
 					service.addMOrderDetail(mdb);
 				}
 				if(hall.equals("C")) {
@@ -423,31 +430,31 @@ public class mOrdersController {
 					mdb.setProductID(1);
 					mdb.setSellUnitPrice(290);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(117);
+					mdb.setQuantity((int)(Math.random()*21+126));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(13);
 					mdb.setSellUnitPrice(195);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(50);
+					mdb.setQuantity(45);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(14);
 					mdb.setSellUnitPrice(175);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(50);
+					mdb.setQuantity(45);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(11);
 					mdb.setSellUnitPrice(130);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(40);
+					mdb.setQuantity((int)(Math.random()*30+15));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(5);
 					mdb.setSellUnitPrice(60);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(35);
+					mdb.setQuantity((int)(Math.random()*25+20));
 					service.addMOrderDetail(mdb);
 				}
 				if(hall.equals("D")) {
@@ -455,31 +462,31 @@ public class mOrdersController {
 					mdb.setProductID(1);
 					mdb.setSellUnitPrice(290);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(117);
+					mdb.setQuantity((int)(Math.random()*24+192));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(13);
 					mdb.setSellUnitPrice(195);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(50);
+					mdb.setQuantity(20);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(14);
 					mdb.setSellUnitPrice(175);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(50);
+					mdb.setQuantity(20);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(8);
 					mdb.setSellUnitPrice(100);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(40);
+					mdb.setQuantity((int)(Math.random()*30+25));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(6);
 					mdb.setSellUnitPrice(54);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(54);
+					mdb.setQuantity((int)(Math.random()*30+20));
 					service.addMOrderDetail(mdb);
 				}
 				if(hall.equals("E")) {
@@ -487,19 +494,19 @@ public class mOrdersController {
 					mdb.setProductID(1);
 					mdb.setSellUnitPrice(290);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(99);
+					mdb.setQuantity((int)(Math.random()*40+58));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(7);
 					mdb.setSellUnitPrice(120);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(40);
+					mdb.setQuantity((int)(Math.random()*10+10));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(4);
 					mdb.setSellUnitPrice(70);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(35);
+					mdb.setQuantity((int)(Math.random()*15+10));
 					service.addMOrderDetail(mdb);
 				}
 				if(hall.equals("F")) {
@@ -507,31 +514,31 @@ public class mOrdersController {
 					mdb.setProductID(1);
 					mdb.setSellUnitPrice(290);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(133);
+					mdb.setQuantity((int)(Math.random()*26+204));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(13);
 					mdb.setSellUnitPrice(195);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(45);
+					mdb.setQuantity(20);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(14);
 					mdb.setSellUnitPrice(175);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(45);
+					mdb.setQuantity(20);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(9);
 					mdb.setSellUnitPrice(200);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(20);
+					mdb.setQuantity((int)(Math.random()*20+40));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(6);
 					mdb.setSellUnitPrice(54);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(54);
+					mdb.setQuantity((int)(Math.random()*25+35));
 					service.addMOrderDetail(mdb);
 				}
 				if(hall.equals("G")) {
@@ -539,31 +546,31 @@ public class mOrdersController {
 					mdb.setProductID(1);
 					mdb.setSellUnitPrice(290);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(88);
+					mdb.setQuantity((int)(Math.random()*20+120));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(15);
 					mdb.setSellUnitPrice(350);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					mdb.setQuantity(15);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(16);
 					mdb.setSellUnitPrice(330);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					mdb.setQuantity(15);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(10);
 					mdb.setSellUnitPrice(140);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(20);
+					mdb.setQuantity((int)(Math.random()*25+25));
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(5);
 					mdb.setSellUnitPrice(60);
 					mdb.setDiscount(0.9);
-					mdb.setQuantity(30);
+					mdb.setQuantity((int)(Math.random()*20+30));
 					service.addMOrderDetail(mdb);
 				}
 				

@@ -21,14 +21,14 @@
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="OrderID" class='form-horizontal'>
+		<form:form method='POST' modelAttribute="getOrderByID" class='form-horizontal'>
 			<fieldset >
 							
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='OrderID'>
+					<label class="control-label col-lg-2 col-lg-2" for='getOrderByID'>
 						OrderID </label>
 					<div class="col-lg-10">
-						 <form:input id="OrderID" path="OrderID" type='text'
+						 <form:input id="getOrderByID" path="getOrderByID" type='text'
 							class='form:input-large'  />
 					</div>
 				</div>
@@ -40,7 +40,6 @@
 				</div>
 			</fieldset>
 		</form:form>
-<%-- 		</c:forEach> --%>
 	</section>
 </body>
 </html>
