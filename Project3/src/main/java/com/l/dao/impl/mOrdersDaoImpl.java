@@ -101,15 +101,21 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			
 			session.save(modb);
 		}
-		//修改訂單之員工ID原本null
-		public List<EmpBean> updateEmpbyID(EmpBean eb){
-			return null;
-		}
-		//修改票狀態、領票時間
+		
+		//修改票狀態、領票時間、員工ID原本1
+		@Override
 		public MOrderBean updateTicket(MOrderBean mob) {
 			return null;
 		}
 
+		//查詢單筆OrderID
+		@Override
+		public MOrderBean getOrderID(Integer orderID) {
+			Session session = factory.getCurrentSession();
+			MOrderBean mb = session.get(MOrderBean.class,orderID);
+			return mb;
+			
+		}
 		
 		@Override
 		public ShowTimeHistoryBean getShowTimeHistory(int showTimeId) {
@@ -151,5 +157,7 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			pb = session.get(ProductsBean.class, ProductsID);
 			return pb;
 		}
+
+		
 		
 }

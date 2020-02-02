@@ -313,6 +313,32 @@ public class mOrdersController {
 			return "l/orderconfirmOK";
 		}
 
+		//輸入訂單號碼
+		@RequestMapping("/inputOrderID")
+		public String inputOrderID() {
+		
+			return "l/inputOrderID";
+		}
+		
+		//查詢單筆資料
+		@RequestMapping("/queryTicket")
+		public String queryTicket(Integer orderID,Model model) {
+			model.addAttribute("OrderID");
+			return "l/queryTicket";
+		}
+		
+		//修改訂單時間
+		@RequestMapping("/updateTicket")
+		public String updateTicket(Model model){
+			
+			
+			return "l/updateTicket";
+		}
+		
+		
+		
+		
+		
 		//假資料
 		@RequestMapping("/fakeTicket")
 		public String fakeTicket(){
