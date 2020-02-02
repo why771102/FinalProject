@@ -15,7 +15,6 @@ import com.a.model.MovieBean;
 import com.p.model.MemberBean;
 import com.t.dao.CommentDao;
 import com.t.model.CommentBean;
-import com.t.model.ExpectationBean;
 import com.t.model.PreferenceBean;
 
 @Repository
@@ -32,7 +31,7 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public boolean checkCommentExist(Integer memberID) {
 		boolean exist = false;
-		String hql = "From PreferenceBean Where memberID = :memberID";
+		String hql = "From CommentBean Where memberID = :memberID";
 		Session session = factory.getCurrentSession();
 		try{
 			CommentBean pb = (CommentBean) session.createQuery(hql)
