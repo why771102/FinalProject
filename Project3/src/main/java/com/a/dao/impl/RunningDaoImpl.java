@@ -48,7 +48,7 @@ public class RunningDaoImpl implements RunningDao {
 		Session session =factory.getCurrentSession();
 		
 		String startTime = (((LocalDate.now().plusDays(1)).toString())+" "+"00:00:00"); 
-		String endTime = (((LocalDate.now().plusDays(30)).toString())+" "+"23:59:59");
+		String endTime = (((LocalDate.now().plusMonths(1)).toString())+" "+"23:59:59");
 		System.out.println(startTime);
 		System.out.println(endTime);
 		rbList=session.createQuery(hql).setParameter("endate", endTime)

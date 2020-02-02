@@ -81,9 +81,9 @@
 
 	   
 	   <script>
-//		function ThisMovie()
+		function changePage()
 //		  {
-/* 
+
 		  
 		
 //		var release = document.getElementById("release").value;
@@ -102,7 +102,8 @@
 				window.location.href = "${pageContext.request.contextPath}/index-a";
 			}
 		});
-		  } */
+		  } 
+		*/
 		</script>
 </body>
 </html>

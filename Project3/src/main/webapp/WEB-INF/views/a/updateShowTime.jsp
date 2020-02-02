@@ -182,6 +182,21 @@
         /*改變時間*/
         function changeTime(value, row) {
             //             console.log(value);
+            
+            var time_obj1 = document.getElementById("time" + row);
+            var RTobj_1 = document.getElementById("runningTime" + row);
+            var startTime2 = PlusTime(a[row].strDay, time_obj1.childNodes[0].value, RTobj_1.innerHTML, "time");
+            let str = startTime2.split(":");
+            console.log("hour:" + str[0]);
+            console.log("minute:" + str[1]);
+            console.log("runtime:" + RTobj_1.innerHTML);
+            if(str[0]>2 && str[0]<9){
+            	time_obj1.childNodes[0].max = "00:00";
+            }else{
+            	time_obj1.childNodes[0].max = "24:00";
+            }
+            
+            
             alert(value);
             change_sameHall_otherMovie_time(value, row);
 
@@ -270,7 +285,7 @@
 
         }
 
-        //  change_sameHall_AllTimeMax(value,row);
+        //  改變同廳接下來其他電影的時間 change_sameHall_AllTimeMax(value,row);
         function change_sameHall_AllTimeMax(value, row) {
             for (let i = (row + 1); i < (a.length); i++) {
 
@@ -282,9 +297,8 @@
                 //	           	 console.log("hallID_2:"+a[i].sthb.hall.hallID);
                 if (a[row].sthb.hall.hallID == a[i].sthb.hall.hallID) {
                     time_obj1.childNodes[0].max = "00:00";
-
-
                 }
+                
             }
         }
 

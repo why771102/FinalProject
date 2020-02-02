@@ -48,6 +48,25 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		
 		return STHB_List;
 	}
+	 //拿某一天的全部的show //ok
+		@Override
+		public List<ShowTimeHistoryBean> getshowMovieByDayAndHallID(LocalDate day,String hallID) {
+			// TODO Auto-generated method stub
+			Session session =factory.getCurrentSession();
+			List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
+			String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate  and hallID = :hallID ";
+//			LocalDate date = playStartTime.toLocalDate();
+			String startTime = ((day.toString())+" "+"02:00:00"); 
+			String endTime = (day.plusDays(1).toString())+" "+"02:00:00"; 
+			STHB_List= session.createQuery(hql).setParameter("enddate", endTime)
+	                                       .setParameter("startdate", startTime)
+	                                       .setParameter("hallID", hallID)
+	                                       .getResultList();
+			
+			return STHB_List;
+		}
+	
+	
 	//拿指定runID的上映日到下檔日全部的show  ok
 	@Override
 	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(RunningBean rb,String exOffDay,String release) {
@@ -68,7 +87,7 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 	//拿的上映日到下檔日全部的show  ok
 	@Override
 	public List<ShowTimeHistoryBean> getShowTimeHistoryByTime(String endDay,String startDay) {
-		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate  ";
+		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate ";
 		Session session =factory.getCurrentSession();
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
 		STHB_List= session.createQuery(hql).setParameter("enddate", endDay+" "+"02:00:00")
@@ -82,7 +101,7 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		
 	}
 	
-	//拿的上映日到下檔日全部的show  ok
+	//拿的上映日到下檔日全部的show  (有指定聽）
 		@Override
 		public List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay,String startDay,String hallID) {
 			String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate and hallID=:hallID ";
@@ -136,12 +155,13 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		
 		STHB_List= session.createQuery(hql).setParameter("ID", rb.getRunID())
                                            .getResultList();
-		
-		
-		
+
 		return STHB_List;
 
 	}
+	
+	
+	
 	//抓指定日期的某一聽
 	@Override
 	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day,String hallID) {

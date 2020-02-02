@@ -50,6 +50,7 @@
                 <td>片長:</td>
                 <td>播出時間:</td>
                 <td>權重:</td>
+                <td>修改：</td>
 			</tr>
 		</thead>
 		
@@ -62,6 +63,19 @@
 	  $(document).ready(function() {
 		$("#table").dataTable();
 	  });
+	  
+	  function updateSubmit(row){
+		  var date = document.getElementById("strDay" + i).innerHTML;
+          var time = document.getElementById("time" + i).childNodes[0].value;
+          var hallID= "All";
+              hallID = document.getElementById("hallID" + i).innerHTML;
+			console.log(date);
+			console.log(time);
+			console.log(hallID);
+			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"="+time+"="+hallID);
+	  }
+	  
+	  
 	  
 	  function formSubmit(){
 		  var start = document.getElementById("startShowDate").value;
@@ -123,6 +137,8 @@
 
 		                        + "</td>" +
 		                        "<td id='price_time" + i + "'>" + a[i].price_time + "</td>" +
+		                        
+		                        "<td id='update" + i + "'>"+" <input id='update' type='botton' onclick='updateSubmit("+i+")' value='修改'/>"+ "</td>" +
 
 		                        "</tr>");
 		                

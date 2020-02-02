@@ -184,6 +184,16 @@ public interface MovieService {
 
 	List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay, String startDay, String hallID);
 	List<ShowTimeHistoryBean> getShowTimeHistoryByTime(String endDay, String startDay);
+	List<ShowTimeHistoryBean> getshowMovieByDayAndHallID(LocalDate day, String hallID);
+	int checkHallOrder(LocalDateTime runDateTime, HallBean hb, int HallTime, List<ShowtimeBean> OrderHall_list);
+	void setAllMoviePT(List<RunningBean> Allrb_list, List<ShowtimeBean> runMovie_list);
+	void setHallOrderAndotherMovieInFinalList(LocalDateTime runDateTime, int HallTime,
+			List<ShowtimeBean> OrderHall_list, List<ShowtimeBean> changeTimeList_list,
+			List<ShowtimeBean> FinalShowMovie_list, ShowtimeBean restTime, String HallName);
+	void creatOneDayShowTime(LocalDateTime runDateTime, double rate, ShowtimeBean restTime, int d,
+			List<ShowtimeBean> AllDayShowTime);
+	void saveshowTimeHitory(List<ShowtimeBean> FinalShowMovie_list, LocalDateTime runDateTime, HallBean hall,
+			int restTime, List<ShowtimeBean> AllDayShowTime);
 	
 	
 

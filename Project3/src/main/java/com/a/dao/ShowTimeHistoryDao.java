@@ -37,4 +37,6 @@ public interface ShowTimeHistoryDao {
 		List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay, String startDay, String hallID);
 
 		List<ShowTimeHistoryBean> getShowTimeHistoryByTime(String endDay, String startDay);
+
+		List<ShowTimeHistoryBean> getshowMovieByDayAndHallID(LocalDate day, String hallID);
 }
