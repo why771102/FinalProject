@@ -790,10 +790,19 @@
      function addToCart(){
     	 console.log("addtoCart");
     	 console.log($('#productType').val());
-    	 if($('#productType').val()!=null){
-    	 	localStorage.setItem($('#productType').val(), $('#productQuantity').val());
-    		console.log("成功");
-    	 }
+//     	 if($('#productType').val()!=null){
+//     	 	localStorage.setItem($('#productType').val(), $('#productQuantity').val());
+//     		console.log("成功");
+//     	 }
+    	 $.ajax({
+     		url: "${pageContext.request.contextPath}/addToShoppingCart", 
+     		data : {prodID: $('#productType').val(), qty: $('#productQuantity').val()},
+     		type : "POST",
+     		success : function() {
+     			//need to add my new gadget here afterwards彈跳的購物車
+ 				alert("加入購物車成功");
+     		}
+     	 });
      }
   
  </script>

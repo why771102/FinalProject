@@ -51,11 +51,11 @@
                         </li>
                         <li><a href="conatct.html">contact</a>
                         </li>
-                        <li><a href="products.html">周邊商品</a>
+                        <li><a href="showAllProducts">周邊商品</a>
                         </li>
                         <li><a href="login-page.html">登入</a>
                         </li>
-                        <li><a href="shopCart.html" style='padding:5px;'><img src="img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
+                        <li><a href="getShoppingCart" style='padding:5px;'><img src="img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
                         <li class="free-trial-btn"><a href="free-trail.html">free trial</a>
                             

@@ -24,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
 
@@ -74,12 +75,14 @@ public class ShoppingCartController implements ServletContextAware{
 		System.out.println(memberID);
 		Integer SCOrderID = scservice.getShoppingCart(memberID);
 		List<SCOrderDetailBean> list = scservice.getOrderDetails(SCOrderID);
+		Gson gson = new Gson();
+		String prod = gson.toJson(list);
 		if (SCOrderID != null) {
 			// showShoppingCart
 			
 			if (list.size() == 0) {
 				System.out.println("Shopping cart is empty");
-				model.addAttribute("shoppingCart", list);
+				model.addAttribute("shoppingCart", prod);
 			} else {
 				for(int products = 0; products < list.size(); products++) {
 					int shoppingCartQuantity = list.get(products).getQuantity();
@@ -92,6 +95,7 @@ public class ShoppingCartController implements ServletContextAware{
 				}
 				System.out.println("There are items in shopping cart");
 				model.addAttribute("shoppingCart", list);
+				model.addAttribute("shoppingCartJSON", prod);
 			}
 		} else {
 			SCOrdersBean scob = new SCOrdersBean();
@@ -99,6 +103,7 @@ public class ShoppingCartController implements ServletContextAware{
 			scoservice.insertOrder(scob);
 			System.out.println("Shopping cart is empty");
 			model.addAttribute("shoppingCart", list);
+			model.addAttribute("shoppingCartJSON", prod);
 		}
 		return "a/ShoppingCart";
 	}
@@ -193,24 +198,42 @@ public class ShoppingCartController implements ServletContextAware{
 	
 	//加選購商品進入購物車
 	//需先確定會員有購物車
-//	@PostMapping("/addToShoppingCart")
-//	public String addProductsToShoppingCart(HttpServletRequest request,
-//			@RequestParam("prodID") String prodID,
-//			@RequestParam("qty") String qty) {
-//		Integer memberID = scservice.getMemberID(request);
-//		System.out.println(memberID);
-//		Integer SCOrderID = scservice.getShoppingCart(memberID);
-//		if(SCOrderID == null) {
-//			SCOrdersBean scob = new SCOrdersBean();
-//			scob.setMemberID(memberID);
-//			scoservice.insertOrder(scob);
-//			SCOrderID = scservice.getShoppingCart(memberID);
-//		}
-//		SCOrderDetailBean scodb = new SCOrderDetailBean(Integer.parseInt(qty),
-//										SCOrderID, Integer.parseInt(prodID));
-//		scodservice.insertOrderDetails(scodb);
-//		return null;
-//	}
+	@RequestMapping("/addToShoppingCart")
+	public String addProductsToShoppingCart(HttpServletRequest request,
+			@RequestParam("prodID") String prodID,
+			@RequestParam("qty") String qty) {
+		Integer memberID = scservice.getMemberID(request);
+		System.out.println("!!!!!!!!!!! MemberID: " + memberID);
+		Integer SCOrderID = scservice.getShoppingCart(memberID);
+		if(SCOrderID == null) {
+			SCOrdersBean scob = new SCOrdersBean();
+			scob.setMemberID(memberID);
+			scoservice.insertOrder(scob);
+			SCOrderID = scservice.getShoppingCart(memberID);
+		}
+		
+		SCOrderDetailBean scodb = new SCOrderDetailBean(Integer.parseInt(qty),
+										SCOrderID, Integer.parseInt(prodID));
+		
+		//查詢購物車裡是否有加入過這項商品
+		SCOrderDetailBean sc = scservice.querySameProduct(SCOrderID, scodb);
+		Integer scQuantity = sc.getQuantity();
+		if(scQuantity == 0) {
+			scodservice.insertOrderDetails(scodb);
+		}else {
+			Integer newQuantity = scodb.getQuantity() + scQuantity;
+			if(newQuantity > sc.getProductsBean().getUnitStock()) {
+				scodb.setQuantity(sc.getProductsBean().getUnitStock());
+			}else {
+				scodb.setQuantity(newQuantity);
+			}
+			boolean result = scservice.updateQty(scodb);
+			System.out.println("Update result: " + result);
+			System.out.println("Updating shopping cart");
+		}
+		
+		return "a/ShoppingCart";
+	}
 	
 	
 }

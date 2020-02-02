@@ -15,14 +15,14 @@ import com.l.model.ProductsBean;
 
 @Repository
 public class SCOrderDetailsDaoImpl implements SCOrderDetailsDao {
-	
+
 	SessionFactory factory;
+
 	@Autowired
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
-	
-	
+
 	@Override
 	public void insertOrderDetails(SCOrderDetailBean scodb) {
 		Session session = factory.getCurrentSession();
@@ -32,7 +32,6 @@ public class SCOrderDetailsDaoImpl implements SCOrderDetailsDao {
 		scodb.setProductsBean(pb);
 		session.save(scodb);
 	}
-	
 
 	@Override
 	public SCOrdersBean getSCOrdersBeanByID(Integer SCOrderID) {
@@ -41,14 +40,13 @@ public class SCOrderDetailsDaoImpl implements SCOrderDetailsDao {
 		return scob;
 	}
 
-
 	@Override
 	public ProductsBean getProductsBeanByID(Integer productID) {
 		Session session = factory.getCurrentSession();
 		ProductsBean pb = session.get(ProductsBean.class, productID);
 		return pb;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SCOrderDetailBean> getOrderDetails(Integer SCOrderID) {
@@ -59,6 +57,21 @@ public class SCOrderDetailsDaoImpl implements SCOrderDetailsDao {
 		return list;
 	}
 
-	
+//	@Override
+//	public SCOrderDetailBean querySameProduct(Integer SCOrderID, SCOrderDetailBean scodb) {
+//		SCOrderDetailBean scodb2 = new SCOrderDetailBean();
+//		Session session = factory.getCurrentSession();
+//		scodb2.setQuantity(0);
+//		try {
+//			String hql = "FROM SCOrderDetailBean WHERE SCOrderID = :SCOrderID and productID= :productID";
+//			scodb2 = (SCOrderDetailBean) session.createQuery(hql).setParameter("SCOrderID", SCOrderID)
+//					.setParameter("productID", scodb.getProductID()).getSingleResult();
+//			return scodb2;
+//		} catch (Exception e) {
+//			System.out.println("並無放入過此商品進購物車");
+//            return scodb2;
+//		}
+//	}
+
 
 }

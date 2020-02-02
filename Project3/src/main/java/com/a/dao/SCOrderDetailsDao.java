@@ -15,4 +15,7 @@ public interface SCOrderDetailsDao {
 	public ProductsBean getProductsBeanByID(Integer productID);	
 	
 	public List<SCOrderDetailBean> getOrderDetails(Integer SCOrderID);
+	
+//	public SCOrderDetailBean querySameProduct(Integer SCOrderID, SCOrderDetailBean scodb);
+
 }
