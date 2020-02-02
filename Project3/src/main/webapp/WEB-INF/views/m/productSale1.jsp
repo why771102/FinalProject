@@ -64,7 +64,7 @@
 	</table>
 	<form id="submitExcel"
 		action="${pageContext.request.contextPath}/product/sale/productSale.xls"
-		method="GET">
+		method="POST">
 		<input type="submit" id="exportE" value="Export To Excel">
 	</form>
 </body>

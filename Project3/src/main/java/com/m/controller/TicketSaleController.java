@@ -13,13 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.m.model.HallSaleBean;
-import com.m.model.ProductSaleEarnBean;
-import com.m.model.TicketSaleBean;
 import com.m.model.TicketSaleEarnBean;
 import com.m.service.TicketSaleService;
 
@@ -59,14 +55,14 @@ public class TicketSaleController {
 	public @ResponseBody List<TicketSaleEarnBean> showTicketInfo(Model model, HttpServletRequest request
 			, @RequestParam(value = "genre", required=false) String genre
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
-		System.out.println("start to get sth..");
+//		System.out.println("start to get sth..");
 		System.out.println("genre =>" + genre);
 		System.out.println(sDate + "====" + eDate);
 		List<TicketSaleEarnBean> tsebList = new ArrayList<>();
 		
 		if (genre == null) {
 			tsebList = service.getTicketSaleInfo(sDate, eDate);
-			System.out.println("this is default!");
+//			System.out.println("this is default!");
 		} else {
 			System.out.println("start to get Info!!");
 			switch (genre) {
@@ -90,7 +86,7 @@ public class TicketSaleController {
 				break;
 			default:
 				tsebList = service.getTicketSaleInfo(sDate, eDate);
-				System.out.println("this is default..compare cate and related method");
+//				System.out.println("this is default..compare cate and related method");
 				break;
 		    }
 		}

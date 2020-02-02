@@ -60,16 +60,16 @@ public class TicketEarnController {
 	public @ResponseBody List<TicketSaleEarnBean> showTicketInfo(Model model, HttpServletRequest request
 			, @RequestParam(value = "genre", required=false) String genre
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
-		System.out.println("start to get sth..");
+//		System.out.println("start to get sth..");
 		System.out.println("genre =>" + genre);
 		System.out.println(sDate + "====" + eDate);
 		List<TicketSaleEarnBean> tsebList = new ArrayList<>();
 		
 		if (genre == null) {
 			tsebList = service.getTicketEarnInfo(sDate, eDate);
-			System.out.println("this is default!");
+//			System.out.println("this is default!");
 		} else {
-			System.out.println("start to get Info!!");
+//			System.out.println("start to get Info!!");
 			switch (genre) {
 			case "all":
 				tsebList = service.getTicketEarnInfo(sDate, eDate);
@@ -91,12 +91,12 @@ public class TicketEarnController {
 				break;
 			default:
 				tsebList = service.getTicketEarnInfo(sDate, eDate);
-				System.out.println("this is default..compare cate and related method");
+//				System.out.println("this is default..compare cate and related method");
 				break;
 		    }
 		}
 	
-		System.out.println("---end1---");
+//		System.out.println("---end1---");
 		System.out.println("tsebList=> " + tsebList.size());
 //		System.out.println("psebList=> " + psebList.size() + "==="+ psebList.get(0).getProductsBean().getProductName());
 		return tsebList; //檢查這邊!!!

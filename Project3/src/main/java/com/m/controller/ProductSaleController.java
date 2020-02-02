@@ -129,7 +129,7 @@ public class ProductSaleController {
 	}
 	
 	//excel:ps
-	@GetMapping(value = "product/sale/productSale", produces ="application/vnd.ms-excel")
+	@PostMapping(value = "product/sale/productSale", produces ="application/vnd.ms-excel")
 	public String queryAllpsebExcel(Model model, @RequestParam("exportExcel")String ps) {
 		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
 		List<ProductSaleEarnBean> psebList = new Gson().fromJson(ps, listType);
