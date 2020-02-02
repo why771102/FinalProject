@@ -70,13 +70,6 @@ public class ShoppingCartController implements ServletContextAware{
 	@SuppressWarnings("unused")
 	@GetMapping("/getShoppingCart")
 	public String getShoppingCart(Model model, HttpServletRequest request) {
-//		HttpSession session = request.getSession();
-//		Cookie[] cookies = request.getCookies();
-//		if (cookies.length < 4) {
-//			MemberBean mb = new MemberBean();
-//			model.addAttribute("memberBean", mb);
-//			return "redirect:/member/login";
-//		}
 		Integer memberID = scservice.getMemberID(request);
 		System.out.println(memberID);
 		Integer SCOrderID = scservice.getShoppingCart(memberID);
@@ -200,20 +193,24 @@ public class ShoppingCartController implements ServletContextAware{
 	
 	//加選購商品進入購物車
 	//需先確定會員有購物車
-	@GetMapping("/addToShoppingCart")
-	public String addProductsToShoppingCart(HttpServletRequest request) {
-		Integer memberID = scservice.getMemberID(request);
-		System.out.println(memberID);
-		Integer SCOrderID = scservice.getShoppingCart(memberID);
-		if(SCOrderID == null) {
-			SCOrdersBean scob = new SCOrdersBean();
-			scob.setMemberID(memberID);
-			scoservice.insertOrder(scob);
-
-		}
-		
-		return null;
-	}
+//	@PostMapping("/addToShoppingCart")
+//	public String addProductsToShoppingCart(HttpServletRequest request,
+//			@RequestParam("prodID") String prodID,
+//			@RequestParam("qty") String qty) {
+//		Integer memberID = scservice.getMemberID(request);
+//		System.out.println(memberID);
+//		Integer SCOrderID = scservice.getShoppingCart(memberID);
+//		if(SCOrderID == null) {
+//			SCOrdersBean scob = new SCOrdersBean();
+//			scob.setMemberID(memberID);
+//			scoservice.insertOrder(scob);
+//			SCOrderID = scservice.getShoppingCart(memberID);
+//		}
+//		SCOrderDetailBean scodb = new SCOrderDetailBean(Integer.parseInt(qty),
+//										SCOrderID, Integer.parseInt(prodID));
+//		scodservice.insertOrderDetails(scodb);
+//		return null;
+//	}
 	
 	
 }

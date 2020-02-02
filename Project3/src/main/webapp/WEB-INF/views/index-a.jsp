@@ -29,7 +29,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='queryByCategory'>分類查詢</a><BR>
+				<a href='movieIndex'>電影院主頁</a><BR>
 			</td>
 			<td width="350"><p align="left" />
 				<a href='Allrunning/add'>新增running by movieData</a><BR>

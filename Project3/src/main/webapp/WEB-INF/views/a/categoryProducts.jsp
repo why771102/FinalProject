@@ -302,7 +302,7 @@
                 font-size: 2.5vh;
                 text-align: center;
                 padding: 1%;
-                
+                cursor: pointer;
                 
             }
     		.submitButton:hover {
@@ -548,9 +548,9 @@
 
                     <div class="wrapList ">
                         <br>
-                        <a href="" style="width:100%;">
-                            <div class="submitButton" style="">加入購物車</div>
-                        </a>
+                        
+                            <div class="submitButton" id="addToCart" onclick="addToCart()">加入購物車</div>
+                    
 
                     </div>
                     <div class="wrapList gray_border ">
@@ -582,7 +582,14 @@
                     </div>
                     <!-- 分隔商品資訊框框 -->
                     <!-- 空白排版用 -->
-                    <div class="wrapList" style="diaplay:none;">
+<!--                     need to be in the middle -->
+                    <div class="wrapList" style="display:block;" id="prodDetail">
+                    <c:forEach items="${productList}" var="pList">
+						<img src="<c:url value='/products/${pList.productID}' />" alt="">
+						<c:if test = "${pList.productDescription != 'NULL'}">
+							<div id="productDescription">${pList.productDescription}</div>
+						</c:if>
+					</c:forEach>
                         <p></p><br><br>
                     </div>
                     <!-- 空白排版用 -->
@@ -746,11 +753,16 @@
         		 	highestprice = products[c].unitPrice;
         	 	}
         	 	console.log("highestprice: " + highestprice);
+//         	 	if(products[c].productDescription != "NULL"){
+//         	 		document.getElementById("prodDetail").innerHTML += ""
+//              		document.getElementById("productDescription").innerText += products[c].productDescription;
+//              	}
          	}//end of for
          	document.getElementById("price").innerText += lowestprice + " - NT$" + highestprice;
+         	
          }//end of if(products.length > 1)
          else{
-        	 document.getElementById("price").innerText = products[0].unitPrice;
+        	 document.getElementById("price").innerText += products[0].unitPrice;
          }//end of else
      });//end of $(window).load(function()
      
@@ -772,6 +784,18 @@
     		 console.log(products[index]);
     	 }
      });
+     
+     
+     //add products to shopping cart
+     function addToCart(){
+    	 console.log("addtoCart");
+    	 console.log($('#productType').val());
+    	 if($('#productType').val()!=null){
+    	 	localStorage.setItem($('#productType').val(), $('#productQuantity').val());
+    		console.log("成功");
+    	 }
+     }
+  
  </script>
 
 </body>
