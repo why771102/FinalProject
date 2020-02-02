@@ -30,9 +30,9 @@
 	<form:form method='POST' modelAttribute="TicketSaleBean1" enctype="multipart/form-data" >
 	<div>
 		類型： ${genreSelection}
-		&nbsp; &nbsp; &nbsp;電影名稱 <select>
-			<option>Java人生</option>
-		</select>
+<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
+<!-- 			<option>Java人生</option> -->
+<!-- 		</select> -->
 		<div id="reportrange"
 			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
 			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<br>
-	<table id="example" class="display" style="width: 100%;">
+	<table id="example" class="display" style="width: 100%; text-align: center;">
 		<thead>
 			<tr>
 				<th></th>
@@ -54,16 +54,7 @@
 			</tr>
 		</thead>
 		<tbody  id="insertHere">
-			<tr>
-				<td></td>
-				<td><a href="${pageContext.request.contextPath}/ticket/sale/date">電影名稱</a></td>
-				<td>場次數</td>
-				<td>總座位數</td>
-				<td>售出座位數</td>
-				<td>平均滿座率</td>
-				<td>平均單筆消費</td>
-				<td>銷售總金額</td>
-			</tr>
+
 		</tbody>
 		<tfoot>
 			<tr>
@@ -118,13 +109,20 @@
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				success : function(data) {
+				success : function(ticketSale) {
 					alert("新增成功!");
-					showInfo(data);
-					console.log(data);
+					
+					var dataTable = $("#example").DataTable();
+					dataTable.clear().draw();
+
+					$.each(ticketSale, function(index, value) {
+						console.log(value);
+						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticket/sale/"+value.movieBean.movieID+"'>"+value.title+"</a>"
+							,value.noPlayTimes,value.hallSeats,value.hallSaleSeats,
+							value.avgSeats,value.pricePerSeat,value.subtotal]).draw();
+					});
 				}
 			});
-			
 		}
 		
 
@@ -168,26 +166,26 @@
 		});
 	}
 	
-	function showInfo(ts) {
-		for(var i =0; i < ts.length; i++){
-		$('#insertHere')
-				.append(
-						'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/sale/date" id="hallID">'
-								+ ts[i].title
-								+ '</a></td><td>'
-								+ ts[i].noPlayTimes
-								+ '</td><td>'
-								+ ts[i].hallSeats
-								+ '</td><td>'
-								+ ts[i].hallSaleSeats
-								+ '</td><td>'
-								+ ts[i].avgSeats
-								+ '</td><td>'
-								+ ts[i].pricePerSeat
-								+ '</td><td>'
-								+ ts[i].subtotal + '</td></tr>');
-		}
-	};
+// 	function showInfo(ts) {
+// 		for(var i =0; i < ts.length; i++){
+// 		$('#insertHere')
+// 				.append(
+// 						'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/sale/date" id="hallID">'
+// 								+ ts[i].title
+// 								+ '</a></td><td>'
+// 								+ ts[i].noPlayTimes
+// 								+ '</td><td>'
+// 								+ ts[i].hallSeats
+// 								+ '</td><td>'
+// 								+ ts[i].hallSaleSeats
+// 								+ '</td><td>'
+// 								+ ts[i].avgSeats
+// 								+ '</td><td>'
+// 								+ ts[i].pricePerSeat
+// 								+ '</td><td>'
+// 								+ ts[i].subtotal + '</td></tr>');
+// 		}
+// 	};
 	
 </script>
 </html>

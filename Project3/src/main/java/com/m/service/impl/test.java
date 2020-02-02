@@ -150,7 +150,7 @@ public class test {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 		LocalDateTime t = LocalDateTime.parse(y, formatter);
 		LocalTime t1 = t.toLocalTime();
-		String r = t1.plusMinutes(142).toString();
+		Integer r = t1.plusMinutes(142).getHour();
 		System.out.println("T => " + r);
 	}
 }

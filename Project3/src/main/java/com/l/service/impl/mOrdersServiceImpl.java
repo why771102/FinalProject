@@ -22,6 +22,7 @@ import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
+import com.l.model.ProductsBean;
 import com.l.service.mOrdersService;
 import com.z.model.EmpBean;
 
@@ -77,21 +78,20 @@ public class mOrdersServiceImpl implements mOrdersService{
 		
 	}
 
-	
-	
-	
-	@Transactional
-	@Override
-	public List<EmpBean> updateEmpbyID(EmpBean eb) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Transactional
 	@Override
 	public MOrderBean updateTicket(MOrderBean mob) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Transactional
+	@Override
+	public void getOrderID(Integer orderID) {
+		
+		dao.getOrderID(orderID);
 	}
 
 	

@@ -60,16 +60,16 @@ public class TicketEarnController {
 	public @ResponseBody List<TicketSaleEarnBean> showTicketInfo(Model model, HttpServletRequest request
 			, @RequestParam(value = "genre", required=false) String genre
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
-		System.out.println("start to get sth..");
+//		System.out.println("start to get sth..");
 		System.out.println("genre =>" + genre);
 		System.out.println(sDate + "====" + eDate);
 		List<TicketSaleEarnBean> tsebList = new ArrayList<>();
 		
 		if (genre == null) {
 			tsebList = service.getTicketEarnInfo(sDate, eDate);
-			System.out.println("this is default!");
+//			System.out.println("this is default!");
 		} else {
-			System.out.println("start to get Info!!");
+//			System.out.println("start to get Info!!");
 			switch (genre) {
 			case "all":
 				tsebList = service.getTicketEarnInfo(sDate, eDate);
@@ -91,12 +91,12 @@ public class TicketEarnController {
 				break;
 			default:
 				tsebList = service.getTicketEarnInfo(sDate, eDate);
-				System.out.println("this is default..compare cate and related method");
+//				System.out.println("this is default..compare cate and related method");
 				break;
 		    }
 		}
 	
-		System.out.println("---end1---");
+//		System.out.println("---end1---");
 		System.out.println("tsebList=> " + tsebList.size());
 //		System.out.println("psebList=> " + psebList.size() + "==="+ psebList.get(0).getProductsBean().getProductName());
 		return tsebList; //檢查這邊!!!
@@ -114,7 +114,8 @@ public class TicketEarnController {
 	}
 	
 	@PostMapping("/ticket/earn/{movieID}")
-	public @ResponseBody List<TicketSaleEarnBean> getDate(Model model, @PathVariable Integer movieID,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
+	public @ResponseBody List<TicketSaleEarnBean> getDate(Model model, @PathVariable Integer movieID,
+			@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
 		List<TicketSaleEarnBean> tsebListByDate = service.getTicketEarnInfoByDate(movieID, sDate, eDate);
 		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
 		System.out.println(tsebListByDate.size());
@@ -123,25 +124,30 @@ public class TicketEarnController {
 	}
 	
 	//ticketEarn P3資料傳輸
-	@GetMapping("/ticket/earn/{date}")
-	public String getDetail(Model model, @PathVariable Integer movieID, 
+	@GetMapping("/ticket/{movieID}/{date}")
+	public String getDetail(Model model, @PathVariable Integer movieID,
 			@PathVariable String date) {
 		//抓title
 		String title = service.getMovieTitle(movieID);
 		model.addAttribute("movieID", movieID);
+		model.addAttribute("date", date);
 		model.addAttribute("title", title);
 		System.out.println("---to page 3---");
 		return "m/ticketEarn3";
 	}
 	
-//	//ticketEarn P3資料傳輸
-//	@PostMapping("/ticket/earn/{date}")
-//	public @ResponseBody List<TicketSaleEarnBean> getDetail1(Model model, 
-//			@PathVariable Integer movieID, @PathVariable String date) {
-////		List<TicketSaleEarnBean> tsebListByDate = service.getTicketEarnInfoByDate(movieID, sDate, eDate);
-////		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
-////		System.out.println(tsebListByDate.size());
-//		System.out.println("---傳送tsebListByDate---");
-//		return tsebListByDate;
-//	}
+	//ticketEarn P3資料傳輸
+	@PostMapping("/ticket//{movieID}/{date}")
+	public @ResponseBody List<TicketSaleEarnBean> getDetail1(Model model, 
+			@PathVariable Integer movieID, @PathVariable String date) {
+		List<TicketSaleEarnBean> tsebListByDate = service.getWithinDate(date, movieID);
+		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
+		
+		String title = service.getMovieTitle(movieID);
+		model.addAttribute("title", title);
+		
+		System.out.println(tsebListByDate.size());
+		System.out.println("---傳送tsebListByDate---");
+		return tsebListByDate;
+	}
 }

@@ -60,8 +60,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
 	@Transactional
 	@Override
-	public void updateQty(SCOrderDetailBean scodb) {
-		scdao.updateQty(scodb);
+	public boolean updateQty(SCOrderDetailBean scodb) {
+		return scdao.updateQty(scodb);
 
 	}
 	

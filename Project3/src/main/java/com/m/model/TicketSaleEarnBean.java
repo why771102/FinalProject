@@ -85,24 +85,45 @@ public class TicketSaleEarnBean implements Serializable {
 	}
 	
 	@Transient
+	Double earnPerHr;
+	
+	//p2 Sale
+	public TicketSaleEarnBean(String playMovieDate, String title, Integer noPlayTimes, Integer hallSeats, 
+			Integer hallSaleSeats, Double avgSeats, Double pricePerSeat, Integer ticketSaleTotal,Integer foodSaleTotal,
+			Integer subtotal, Double earnPerHr, MovieBean movieBean) {
+		this.playMovieDate = playMovieDate;
+		this.title = title;
+		this.noPlayTimes = noPlayTimes;
+		this.hallSeats = hallSeats;
+		this.hallSaleSeats = hallSaleSeats;
+		this.avgSeats = avgSeats;
+		this.pricePerSeat = pricePerSeat;
+		this.ticketSaleTotal = ticketSaleTotal;
+		this.foodSaleTotal = foodSaleTotal;
+		this.subtotal = subtotal;
+		this.earnPerHr = earnPerHr;
+		this.movieBean = movieBean;
+	}
+	
+	@Transient
 	Integer ticketCost;
 	@Transient
 	Integer ticketEarn;
-	@Transient
-	Integer foodCos;
+//	@Transient
+//	Integer foodCost;
 	@Transient
 	Integer foodEarn;
 	
 	//p1 Earn
 	public TicketSaleEarnBean(String title, Integer noPlayTimes, Integer ticketCost, 
-			Integer ticketEarn, Integer ticketSaleTotal, Integer foodCos, Integer foodEarn,
+			Integer ticketEarn, Integer ticketSaleTotal, Integer foodCost, Integer foodEarn,
 			Integer foodSaleTotal, Integer subtotal, MovieBean movieBean) {
 		this.title = title;
 		this.noPlayTimes = noPlayTimes;
 		this.ticketCost = ticketCost;
 		this.ticketSaleTotal = ticketSaleTotal;
 		this.ticketEarn = ticketEarn;
-		this.foodCos = foodCos;
+		this.foodCost = foodCost;
 		this.foodEarn = foodEarn;
 		this.foodSaleTotal = foodSaleTotal;
 		this.subtotal = subtotal;
@@ -122,13 +143,21 @@ public class TicketSaleEarnBean implements Serializable {
 		this.ticketCost = ticketCost;
 		this.ticketSaleTotal = ticketSaleTotal;
 		this.ticketEarn = ticketEarn;
-		this.foodCos = foodCos;
+		this.foodCost = foodCos;
 		this.foodEarn = foodEarn;
 		this.foodSaleTotal = foodSaleTotal;
 		this.subtotal = subtotal;
 		this.movieBean = movieBean;
 	}
 	
+	public Double getEarnPerHr() {
+		return earnPerHr;
+	}
+
+	public void setEarnPerHr(Double earnPerHr) {
+		this.earnPerHr = earnPerHr;
+	}
+
 	public String getPlayMovieDate() {
 		return playMovieDate;
 	}
@@ -151,14 +180,6 @@ public class TicketSaleEarnBean implements Serializable {
 
 	public void setTicketEarn(Integer ticketEarn) {
 		this.ticketEarn = ticketEarn;
-	}
-
-	public Integer getFoodCos() {
-		return foodCos;
-	}
-
-	public void setFoodCos(Integer foodCos) {
-		this.foodCos = foodCos;
 	}
 
 	public Integer getFoodEarn() {

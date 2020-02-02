@@ -34,8 +34,6 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;
 	}
-
-	// 第一次比完後, 之後用當天日期每天比就好!!
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -120,18 +118,17 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 						price = (int) Math.round(modb.getProductsBean().getUnitPrice() * modb.getDiscount());
 						qty = qty + modb.getQuantity();
 						cb = modb.getProductsBean().getCategoriesBean();
-						ProductSaleEarnBean pseb = new ProductSaleEarnBean();
-						pseb.setOrderDate(date.toString());
-						pseb.setPrice(price);
-						pseb.setQtyTotal(qty);
-						pseb.setProductsBean(productb);
-						pseb.setCategoriesBean(cb);
-//						psebList.add(pseb);
-						session.save(pseb);		
 					}
 				}
+				ProductSaleEarnBean pseb = new ProductSaleEarnBean();
+				pseb.setOrderDate(date.toString());
+				pseb.setPrice(price);
+				pseb.setQtyTotal(qty);
+				pseb.setProductsBean(productb);
+				pseb.setCategoriesBean(cb);
+//				psebList.add(pseb);
+				session.save(pseb);		
 			}
-			
 		}
 		System.out.println("dateAndOID------------" + dateAndOID.size());
 //		Set<LocalDate> keys = dateAndOID.keySet();

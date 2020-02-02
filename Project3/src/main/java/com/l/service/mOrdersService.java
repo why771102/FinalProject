@@ -8,6 +8,7 @@ import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
+import com.l.model.ProductsBean;
 import com.z.model.EmpBean;
 
 public interface mOrdersService {
@@ -29,12 +30,10 @@ public interface mOrdersService {
 	//新增訂單明細
 	public void addMOrderDetail(MOrderDetailBean modb);
 	
-	//修改訂單之員工ID原本null
-	public List<EmpBean> updateEmpbyID(EmpBean eb);
-	//修改票狀態、領票時間
+	//修改票狀態、領票時間、員工ID原本1
 	public MOrderBean updateTicket(MOrderBean mob);
 
-		
-
+	//查詢單筆訂單	
+	public void getOrderID(Integer orderID);
 		
 }

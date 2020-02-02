@@ -15,6 +15,4 @@ public interface SCOrderDetailsService {
 	public ProductsBean getProductsBeanByID(Integer productID);	
 	
 	public List<SCOrderDetailBean> getOrderDetails(Integer SCOrderID);
-
-
 }

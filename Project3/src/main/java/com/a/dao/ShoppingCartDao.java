@@ -23,7 +23,7 @@ public interface ShoppingCartDao {
 	public void deleteProduct(Integer SCOrderID, Integer productID);
 
 	// 按了購買後 如果有數量的更改
-	public void updateQty(SCOrderDetailBean scodb);
+	public boolean updateQty(SCOrderDetailBean scodb);
 
 	// 查詢庫存(假設庫存都沒了 delete購物車商品)
 	public Integer queryQty(Integer productId);
@@ -34,5 +34,10 @@ public interface ShoppingCartDao {
 	public void createShoppingCart(SCOrdersBean scob);
 
 	public SCOrderDetailBean querySameProduct(Integer SCOrderID, SCOrderDetailBean scodb);
+	
+	//加入商品頁的下拉式選單
+//	public String getAllProductsFromCate();
+	
+	
 
 }

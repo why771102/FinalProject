@@ -40,8 +40,7 @@
 		<thead>
 			<tr>
 				<th></th>
-				<th>當日場次</th>
-				<th>廳號</th>
+				<th>時段</th>
 				<th>場次數</th>
 				<th>票卷總成本</th>
 				<th>票券總利潤</th>
@@ -57,7 +56,6 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -96,7 +94,7 @@
 			
 			//傳送日期的值
 			$.ajax({
-				url : "${pageContext.request.contextPath}/ticket/earn/"+${date},
+				url : "${pageContext.request.contextPath}/ticketSale/"+${movieID}+"/"+${date},
 				data : {
 				},
 				type : "POST",
@@ -111,13 +109,11 @@
 						console.log(value);
 						dataTable.row.add(["",value.playMovieDate
 							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
-							value.ticketSaleTotal,value.foodCos,value.foodEarn,
+							value.ticketSaleTotal,value.foodCost,value.foodEarn,
 							value.foodSaleTotal,value.subtotal]).draw();
 					});
 			}	
 		});
-
-		console.log("pppp" + start.format('YYYY-MM-DD'));
 
 
 // 	//傳送cate selection值

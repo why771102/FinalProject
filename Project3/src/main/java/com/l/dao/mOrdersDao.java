@@ -31,12 +31,12 @@ public interface mOrdersDao {
 	public void addMOrder(MOrderBean mob);
 	//新增訂單明細
 	public void addMOrderDetail(MOrderDetailBean modb);
-	
-	//修改訂單之員工ID原本null
-	public List<EmpBean> updateEmpbyID(EmpBean eb);
-	//修改票狀態、領票時間
+		
+	//修改票狀態、領票時間、員工ID原本1
 	public MOrderBean updateTicket(MOrderBean mob);
 
+	//查詢單筆訂單	
+	public MOrderBean getOrderID(Integer orderID);
 	
 	//新增用
 	

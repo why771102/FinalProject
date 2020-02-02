@@ -106,8 +106,6 @@ public class RootAppConfig {
 		javaMailSender.setUsername(username);
 		javaMailSender.setPassword(password);
 		javaMailSender.setJavaMailProperties(getMailProperties());
-		System.out.println("This is JavaMailSender");
-		
 		return javaMailSender;
 	}
 

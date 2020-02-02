@@ -22,11 +22,11 @@ public class SCOrderDetailBean implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer orderno;
-	Integer unitPrice;
-	Integer discount;
+//	Integer unitPrice;
+//	Integer discount;
 	Integer quantity;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="SCOrderID")
+	@JoinColumn(name="sCOrderID")
 	private SCOrdersBean SCOrdersBean;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="productID")
@@ -40,20 +40,20 @@ public class SCOrderDetailBean implements Serializable {
 	
 	public SCOrderDetailBean() {}
 
-	public SCOrderDetailBean(Integer unitPrice, Integer discount, Integer quantity, Integer sCOrderID,
+	public SCOrderDetailBean(Integer quantity, Integer sCOrderID,
 			Integer productID) {
-		this.unitPrice = unitPrice;
-		this.discount = discount;
+//		this.unitPrice = unitPrice;
+//		this.discount = discount;
 		this.quantity = quantity;
 		this.SCOrderID = sCOrderID;
 		this.productID = productID;
 	}
 
-	public SCOrderDetailBean(Integer orderno, Integer unitPrice, Integer discount, Integer quantity,
+	public SCOrderDetailBean(Integer orderno, Integer quantity,
 			SCOrdersBean sCOrdersBean, ProductsBean productsBean) {
 		this.orderno = orderno;
-		this.unitPrice = unitPrice;
-		this.discount = discount;
+//		this.unitPrice = unitPrice;
+//		this.discount = discount;
 		this.quantity = quantity;
 		this.SCOrdersBean = sCOrdersBean;
 		this.productsBean = productsBean;
@@ -67,21 +67,21 @@ public class SCOrderDetailBean implements Serializable {
 		this.orderno = orderno;
 	}
 
-	public Integer getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(Integer unitPrice) {
-		this.unitPrice = unitPrice;
-	}
-
-	public Integer getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(Integer discount) {
-		discount = discount;
-	}
+//	public Integer getUnitPrice() {
+//		return unitPrice;
+//	}
+//
+//	public void setUnitPrice(Integer unitPrice) {
+//		this.unitPrice = unitPrice;
+//	}
+//
+//	public Integer getDiscount() {
+//		return discount;
+//	}
+//
+//	public void setDiscount(Integer discount) {
+//		discount = discount;
+//	}
 
 	public Integer getQuantity() {
 		return quantity;

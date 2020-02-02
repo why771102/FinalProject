@@ -19,7 +19,7 @@ public class ExcelViewResolver implements ViewResolver{
 		else if (viewName.startsWith("productSaleDetail"))  {
 			view = new ProductSale2ExcelView();
 		} 
-		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
+//		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
 		return view;
       }
 	

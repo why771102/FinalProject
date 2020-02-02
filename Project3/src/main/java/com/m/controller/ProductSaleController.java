@@ -119,7 +119,8 @@ public class ProductSaleController {
 	}
 	
 	@PostMapping("/product/sale/{productID}")
-	public @ResponseBody List<ProductSaleEarnBean> getDate(Model model, @PathVariable Integer productID,@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
+	public @ResponseBody List<ProductSaleEarnBean> getDate(Model model, @PathVariable Integer productID,
+			@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
 		List<ProductSaleEarnBean> psebListByDate = service.getInfoByDate(productID, sDate, eDate);
 		model.addAttribute("psebListByDate",psebListByDate); //jsp要接取資料
 		System.out.println(psebListByDate.size());
@@ -128,7 +129,7 @@ public class ProductSaleController {
 	}
 	
 	//excel:ps
-	@GetMapping(value = "product/sale/productSale", produces ="application/vnd.ms-excel")
+	@PostMapping(value = "product/sale/productSale", produces ="application/vnd.ms-excel")
 	public String queryAllpsebExcel(Model model, @RequestParam("exportExcel")String ps) {
 		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
 		List<ProductSaleEarnBean> psebList = new Gson().fromJson(ps, listType);

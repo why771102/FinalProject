@@ -313,30 +313,267 @@ public class mOrdersController {
 			return "l/orderconfirmOK";
 		}
 
+		//輸入訂單號碼頁面
+		@RequestMapping("/inputOrderID")
+		public String inputOrderID() {
+		
+			return "l/inputOrderID";
+		}
+		
+		//查詢單筆資料
+		@RequestMapping("/queryTicket")
+		public String queryTicket(Integer orderID,Model model) {
+			
+//			model.addAttribute("getOrderByID",service.getOrderID(orderID));
+			return "l/queryTicket";
+		}
+		
+		//修改訂單時間
+		@RequestMapping(value ="/updateTicket/{OrderID}", method = RequestMethod.GET)
+		public String updateTicket(Model model){
+			
+			
+			return "l/updateTicket";
+		}
+		
+		@RequestMapping(value ="/updateTicket/{OrderID}", method = RequestMethod.POST)
+		public String updateTicket2(Model model){
+			
+			
+			return "l/queryTicket";
+		}
+		
+		
+		
 		//假資料
 		@RequestMapping("/fakeTicket")
 		public String fakeTicket(){
 			MOrderBean mb=new MOrderBean();
 			MOrderDetailBean mdb=new MOrderDetailBean();
-			MOrderDetailBean mdb1=new MOrderDetailBean();
 			for(int i=1;i<=5078;i++) {
-			mb.setShowTimeID(i);
-			ShowTimeHistoryBean sthb=(ShowTimeHistoryBean) service.getStartTimeByID(i);
-			mb.setOrderTime(sthb.getPlayStartTime());
-			String hall = sthb.getHall().getHallID();
-			mb.setTicketStatus(0);
-			mb.setTicketTime("2999-01-01");
-			mb.setEmpId(1);
-			mb.setMemberID(1);
-			service.addMOrder(mb);
-			if (hall=="A") {
-				mdb.setOrdersID(mb.getOrdersID());
-				mdb.setProductID(1);
-				mdb.setSellUnitPrice(290);
-				mdb.setDiscount(1.0);
-				mdb.setQuantity(175);
-			}
-			
+				mb.setShowTimeID(i);
+				ShowTimeHistoryBean sthb=(ShowTimeHistoryBean) service.getStartTimeByID(i);
+				mb.setOrderTime(sthb.getPlayStartTime().substring(0,sthb.getPlayStartTime().length()-11));
+				String hall = sthb.getHall().getHallID();
+				mb.setTicketStatus(0);
+				mb.setTicketTime("2999-01-01");
+				mb.setEmpId(1);
+				mb.setMemberID(1);
+				service.addMOrder(mb);
+				if(hall.equals("A")) {
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(1);
+					mdb.setSellUnitPrice(290);
+					mdb.setDiscount(1.0);
+					// (int)(Math.random()*(總共幾個數字))+(最小值)
+					mdb.setQuantity((int)(Math.random()*21+126));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(13);
+					mdb.setSellUnitPrice(195);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(50);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(14);
+					mdb.setSellUnitPrice(175);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(50);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(11);
+					mdb.setSellUnitPrice(130);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*30+20));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(5);
+					mdb.setSellUnitPrice(60);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*30+15));
+					service.addMOrderDetail(mdb);
+				}
+				if(hall.equals("B")) {
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(1);
+					mdb.setSellUnitPrice(290);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity((int)(Math.random()*36+72));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(15);
+					mdb.setSellUnitPrice(350);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(20);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(16);
+					mdb.setSellUnitPrice(330);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(20);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(12);
+					mdb.setSellUnitPrice(120);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*20+20));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(5);
+					mdb.setSellUnitPrice(60);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*20+15));
+					service.addMOrderDetail(mdb);
+				}
+				if(hall.equals("C")) {
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(1);
+					mdb.setSellUnitPrice(290);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity((int)(Math.random()*21+126));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(13);
+					mdb.setSellUnitPrice(195);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(45);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(14);
+					mdb.setSellUnitPrice(175);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(45);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(11);
+					mdb.setSellUnitPrice(130);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*30+15));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(5);
+					mdb.setSellUnitPrice(60);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*25+20));
+					service.addMOrderDetail(mdb);
+				}
+				if(hall.equals("D")) {
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(1);
+					mdb.setSellUnitPrice(290);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity((int)(Math.random()*24+192));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(13);
+					mdb.setSellUnitPrice(195);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(20);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(14);
+					mdb.setSellUnitPrice(175);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(20);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(8);
+					mdb.setSellUnitPrice(100);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*30+25));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(6);
+					mdb.setSellUnitPrice(54);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*30+20));
+					service.addMOrderDetail(mdb);
+				}
+				if(hall.equals("E")) {
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(1);
+					mdb.setSellUnitPrice(290);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity((int)(Math.random()*40+58));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(7);
+					mdb.setSellUnitPrice(120);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*10+10));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(4);
+					mdb.setSellUnitPrice(70);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*15+10));
+					service.addMOrderDetail(mdb);
+				}
+				if(hall.equals("F")) {
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(1);
+					mdb.setSellUnitPrice(290);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity((int)(Math.random()*26+204));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(13);
+					mdb.setSellUnitPrice(195);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(20);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(14);
+					mdb.setSellUnitPrice(175);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(20);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(9);
+					mdb.setSellUnitPrice(200);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*20+40));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(6);
+					mdb.setSellUnitPrice(54);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*25+35));
+					service.addMOrderDetail(mdb);
+				}
+				if(hall.equals("G")) {
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(1);
+					mdb.setSellUnitPrice(290);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity((int)(Math.random()*20+120));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(15);
+					mdb.setSellUnitPrice(350);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(15);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(16);
+					mdb.setSellUnitPrice(330);
+					mdb.setDiscount(1.0);
+					mdb.setQuantity(15);
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(10);
+					mdb.setSellUnitPrice(140);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*25+25));
+					service.addMOrderDetail(mdb);
+					mdb.setOrdersID(mb.getOrdersID());
+					mdb.setProductID(5);
+					mdb.setSellUnitPrice(60);
+					mdb.setDiscount(0.9);
+					mdb.setQuantity((int)(Math.random()*20+30));
+					service.addMOrderDetail(mdb);
+				}
+				
 			}
 			return "l/fakeTicket";
 		}

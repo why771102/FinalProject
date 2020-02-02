@@ -76,14 +76,22 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 	}
 	
 	@Override
-	public void updateQty(SCOrderDetailBean scodb) {
-		String hql = "UPDATE SCOrderDetailBean set quantity=? where SCOrderID=? and productId=?";
+	public boolean updateQty(SCOrderDetailBean scodb) {
+		System.out.println("scodb.getQuantity()" + scodb.getQuantity());
+		System.out.println("scodb.getSCOrderID()" + scodb.getSCOrderID());
+		System.out.println("scodb.getProductID()" + scodb.getProductID());
+		String hql = "UPDATE SCOrderDetailBean SET quantity= :quantity where SCOrderID= :SCOrderID and productId = :productId";
 		Session session = factory.getCurrentSession();
+		try {
 		session.createQuery(hql)
 				.setParameter("quantity", scodb.getQuantity())
 				.setParameter("SCOrderID", scodb.getSCOrderID())
 				.setParameter("productId", scodb.getProductID())
 				.executeUpdate();
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 
 	@Override
@@ -123,12 +131,37 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 		SCOrderDetailBean scodb2 = new SCOrderDetailBean();
 		scodb2.setQuantity(0);
 		Session session = factory.getCurrentSession();
-        String hql = "FROM SCOrderDetailBean WHERE SCOrderID=? and productID=?";
-        scodb2 = (SCOrderDetailBean) session.createQuery(hql).setParameter("SCOrderID", SCOrderID)
-        								 .setParameter("productID", scodb.getProductID())
-        								 .getSingleResult();
-		return scodb2;
-            
+		try {
+			String hql = "FROM SCOrderDetailBean WHERE SCOrderID = :SCOrderID and productID= :productID";
+			scodb2 = (SCOrderDetailBean) session.createQuery(hql).setParameter("SCOrderID", SCOrderID)
+					.setParameter("productID", scodb.getProductID()).getSingleResult();
+			return scodb2;
+		} catch (Exception e) {
+			System.out.println("並無放入過此商品進購物車");
+            return scodb2;
+		}
     }
+//
+//	@Override
+//	public String getAllProductsFromCate() {
+//			String ans = "";
+//	        List<String> list = getAllHall();
+//	        ans += "<SELECT id='hallID' onchange='showSeats()'>";
+//	        ans += "<option value='' selected='' disabled=''>請選擇</option>";
+//	        for (String hallID : list) {
+//	            if (hallID.equals(selected)) {
+//	                ans += "<option value='" + hallID + "' selected>" + hallID + "</option>";
+//	            } else {
+//	                ans += "<option value='" + hallID + "'>" + hallID + "</option>";
+//	            }
+//	        }
+//	        ans += "</SELECT>";
+//	        return ans;
+//	}
+//	
+//	public List<String> getAllProducts(){
+//		String hql = "";
+//		return null;
+//	}
 
 }
