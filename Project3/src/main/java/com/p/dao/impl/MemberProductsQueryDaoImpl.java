@@ -53,7 +53,7 @@ public class MemberProductsQueryDaoImpl implements MemberProductsQueryDao {
 	//從票抓座位
 	@Override
 	public TicketBean getTicketBeanByOrdersID(Integer ordersID) {
-		String hql = "From TicketBean where ordersID = :ordersID";
+//		String hql = "From TicketBean where ordersID = :ordersID";
 		Session session = factory.getCurrentSession();
 		TicketBean tb = session.get(TicketBean.class, ordersID);
 		return tb;
