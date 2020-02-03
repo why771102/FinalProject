@@ -31,7 +31,8 @@ public class SCOrdersDaoImpl implements SCOrdersDao {
 		MemberBean mb = getMemberBeanById(scob.getMemberID());
 		ShippingStatusBean ssb = getShippingStatusBeanById(0);
 		PayStatusBean psb = getPayStatusBeanById(0);
-		String today = LocalDateTime.now().toString();
+		String today = (LocalDateTime.now().toLocalDate()).toString() + " " + (LocalDateTime.now().toLocalTime());
+		System.out.println(today);
 		System.out.println(mb.getAddress());
 		scob.setShippingAddress(mb.getAddress());
 		scob.setOrderDate(today);
@@ -39,7 +40,7 @@ public class SCOrdersDaoImpl implements SCOrdersDao {
 		scob.setMemberBean(mb);
 		scob.setShippingStatusBean(ssb);
 		scob.setPayStatusBean(psb);
-		session.save(scob);
+		session.saveOrUpdate(scob);
 	}
 
 	@Override
