@@ -1,5 +1,7 @@
 package com.p.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,6 +60,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void updateLastLoginTime(String lastLoginTime, Integer memberID) {
 		dao.updateLastLoginTime(lastLoginTime, memberID);
+	}
+
+	@Transactional
+	@Override
+	public List<MemberBean> getMemberList() {
+		return dao.getMemberList();
 	}
 
 }

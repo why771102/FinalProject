@@ -103,7 +103,6 @@ public class CommentController {
 		if(avgGrade == 0) {
 			model.addAttribute("AVGGrade", "尚無評價");
 		}else {
-			avgGrade = avgGrade/10;
 			model.addAttribute("AVGGrade", avgGrade);
 		}		
 		if(mID == null) {

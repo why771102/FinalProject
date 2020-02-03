@@ -53,19 +53,18 @@
                         </li>
                         <li><a href="showAllProducts">周邊商品</a>
                         </li>
-                        <li><a href="login-page.html">登入</a>
-                        </li>
+
                         <li><a href="getShoppingCart" style='padding:5px;'><img src="img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
-                        <li class="free-trial-btn"><a href="free-trail.html">free trial</a>
+                        <li class="free-trial-btn"><a href="<c:url value='/member/login' />">登入</a>
                             
                         </li>
-                        <li>
-                            <select>
-                                <option>中文</option>
-                                <option>ENG</option>
-                            </select>
-                        </li>
+<!--                         <li> -->
+<!--                             <select> -->
+<!--                                 <option>中文</option> -->
+<!--                                 <option>ENG</option> -->
+<!--                             </select> -->
+<!--                         </li> -->
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -158,8 +157,8 @@
                         <span>
                         	<img src="img/icon-1.png">
                         </span>
-                        <h4>BOOKING SYSTEM</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </p>
+                        <h4>訂票系統</h4>
+                        <p>線上快速訂票</p>
                     </div>
                 </div>
                 <div class="col-sm-4 col-xs-4">

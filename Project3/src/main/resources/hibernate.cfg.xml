@@ -57,6 +57,8 @@
 		<mapping class="com.t.model.ExpectationBean"></mapping>
 		<mapping class="com.t.model.CommentBean"></mapping>
 		<mapping class="com.t.model.PreferenceBean"></mapping>
+		<mapping class="com.a.model.SCOrderDetailBean"></mapping>
+		<mapping class="com.a.model.SCOrdersBean"></mapping>
 
 	</session-factory>
 </hibernate-configuration>

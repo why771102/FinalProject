@@ -53,6 +53,9 @@
                 <td>修改：</td>
 			</tr>
 		</thead>
+		<tbody id='table_tbody'>
+		
+		</tbody>
 		
 		
 			
@@ -65,16 +68,17 @@
 	  });
 	  
 	  function updateSubmit(row){
-		  var date = document.getElementById("strDay" + i).innerHTML;
-          var time = document.getElementById("time" + i).childNodes[0].value;
+		  alert("uapdate");
+		  var date = document.getElementById("strDay" + row).innerHTML;
+          var time = document.getElementById("time" + row).childNodes[0].value;
           var hallID= "All";
-              hallID = document.getElementById("hallID" + i).innerHTML;
+              hallID = (document.getElementById("hallID" + row)).innerHTML;
 			console.log(date);
 			console.log(time);
 			console.log(hallID);
 			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"="+time+"="+hallID);
 	  }
-	  
+	
 	  
 	  
 	  function formSubmit(){
@@ -93,7 +97,10 @@
 				success : function(data) {
 					alert("送出成功");
 					 var a =data;
-						console.log("stID"+a[0].stID);
+					 var b=${showTime};
+					 console.log(b);
+					 alert(b);
+// 						console.log("stID"+a[0].stID);
 // 					  var divObj = document.getElementById("AllTable");
 // 					  divObj.innerHTML = "";
 // 	                    $("#AllTable").append(
@@ -111,9 +118,12 @@
 // 		                                   " <td>權重:</td>"+
 // 		                    			"</tr>"+
 // 		                    		"</thead>	");
-					 
+					     var divObj = document.getElementById("table_tbody");
+					     divObj.innerHTML = "";
+					     var channelName=encodeURI(encodeURI(a[0].sthb.run.movie.title));
+					     alert(channelName);
 						for(i=0;i<a.length-1;i++){
- 		                    $("#table_thead").append(
+ 		                    $("#table_tbody").append(
 
 		                    		
 		                        " <tr id=tr" + i + ">" +
@@ -138,7 +148,7 @@
 		                        + "</td>" +
 		                        "<td id='price_time" + i + "'>" + a[i].price_time + "</td>" +
 		                        
-		                        "<td id='update" + i + "'>"+" <input id='update' type='botton' onclick='updateSubmit("+i+")' value='修改'/>"+ "</td>" +
+		                        "<td id='update" + i + "'>"+" <input id='update' type='submit' onclick='updateSubmit("+i+")' value='修改'/>"+ "</td>" +
 
 		                        "</tr>");
 		                

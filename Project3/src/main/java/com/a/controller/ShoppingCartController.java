@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,7 @@ import com.a.service.ShoppingCartService;
 import com.google.gson.Gson;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
+import com.p.model.PayStatusBean;
 
 @Controller
 public class ShoppingCartController implements ServletContextAware{
@@ -100,6 +102,9 @@ public class ShoppingCartController implements ServletContextAware{
 		} else {
 			SCOrdersBean scob = new SCOrdersBean();
 			scob.setMemberID(memberID);
+			LocalDateTime ldt = LocalDateTime.now();
+			String orderDate = ldt.toString();
+			scob.setOrdDate(orderDate);
 			scoservice.insertOrder(scob);
 			System.out.println("Shopping cart is empty");
 			model.addAttribute("shoppingCart", list);
@@ -233,6 +238,19 @@ public class ShoppingCartController implements ServletContextAware{
 		}
 		
 		return "a/ShoppingCart";
+	}
+	
+	@PostMapping("/confirmPurchase")
+	public String confirmPurchase(@RequestParam("total") String total, @RequestParam("orderID") String orderID) {
+		PayStatusBean payStatusBean = new PayStatusBean(1);
+		System.out.println("total: " + total);
+		System.out.println("orderID: " + orderID);
+		SCOrdersBean ob = new SCOrdersBean();
+		ob.setPayStatusBean(payStatusBean);
+		ob.setTotal(Integer.parseInt(total));
+		ob.setsCOrderID(Integer.parseInt(orderID));
+		scoservice.updateStatus(ob);
+		return "a/movieTheatreIndex";
 	}
 	
 	

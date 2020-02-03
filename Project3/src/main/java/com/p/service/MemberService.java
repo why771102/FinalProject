@@ -1,5 +1,7 @@
 package com.p.service;
 
+import java.util.List;
+
 import com.p.model.MemberBean;
 
 public interface MemberService {
@@ -23,4 +25,6 @@ public interface MemberService {
 	
 	//寫入最後登入時間
 	public void updateLastLoginTime(String lastLoginTime, Integer memberID);
+	
+	public List<MemberBean> getMemberList();
 }

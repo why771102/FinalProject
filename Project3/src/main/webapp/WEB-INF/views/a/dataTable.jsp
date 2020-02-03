@@ -44,12 +44,14 @@
 				<td><input id='a' type='submit' onclick="formSubmit()" value='修改'/></td>
 				<input type='hidden' name="date"   value='${stb.day}' id='date' />
 				<input type='hidden' name="time"   value='${stb.time}' id='time' />
+				<input type='hidden' name="hallID"   value='${stb.hall.hallID}' id='hallID' />
 			</tr>
 		</c:forEach>
 	</table>
 <!-- 	<input id='b' type='submit' onclick="updateAllSubmit()" value='修改全部'/> -->
 <%-- 	<a href='${pageContext.request.contextPath}/a/updateShowTime'>修改</a> --%>
 	<a href='${pageContext.request.contextPath}/index-a'>確認</a>
+<%-- 	<input type='button' name="updateAll"   value='${stb.day}' id='updateAll' /> --%>
 	
 	<script>
 		$(document).ready(function() {
@@ -79,12 +81,13 @@
 		
 		
 		function formSubmit(){
-			
+			var hallID='All';
 			var date = document.getElementById("date").value;
 			var time = document.getElementById("time").value;
+// 		    hallID = document.getElementById("hallID").value;
 			console.log(date);
 			console.log(time);
-			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"="+time);
+			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"="+time+"="+hallID);
 
 // 			$.ajax({
 // 				url : "${pageContext.request.contextPath}/showTime/upadate",

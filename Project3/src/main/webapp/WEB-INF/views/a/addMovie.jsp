@@ -14,6 +14,10 @@
 
 </head>
 <body>
+   <jsp:include page="header.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
 
 
 		<form:form method='POST' modelAttribute="Movie" enctype="multipart/form-data" >

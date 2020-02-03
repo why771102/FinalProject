@@ -180,6 +180,12 @@ public class movieServiceImpl implements MovieService {
 	}
 	@Transactional
 	@Override
+	public List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID,String exOffDay,String release){
+		return SDao.getShowTimeHistoryListByRunIDAndTime(runID, exOffDay, release);
+	}
+	
+	@Transactional
+	@Override
 	public  List<RunningBean>  checkContract(List<RunningBean> rb_list){
 		List<RunningBean> shouldRB_list =new ArrayList<>();
 		for (RunningBean rb : rb_list) {
@@ -214,6 +220,11 @@ public class movieServiceImpl implements MovieService {
 	@Override
 	public RunningStatusBean getRunningStatusBeanById(Integer runningStatusID) {
 		return  RDao.getRunningStatusBeanById( runningStatusID);
+	}
+	@Transactional
+	@Override
+	public RunningBean getRunningBeanById(String runningID) {
+		return  RDao.getRunningBeanById( runningID);
 	}
 	
 	@Transactional

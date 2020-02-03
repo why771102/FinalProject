@@ -30,5 +30,6 @@ public interface RunningDao {
 		boolean updateOnDate(RunningBean rb, int day);
 		boolean updateOffDate(RunningBean rb, LocalDateTime OffDate);
 		RunningStatusBean getRunningStatusBeanById(Integer runningStatusID);
+		RunningBean getRunningBeanById(String runningID);
 		
 }

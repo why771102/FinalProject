@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -51,7 +52,7 @@ public class ProductsBean implements Serializable {
 	
 	@Column(columnDefinition="NVARCHAR(MAX)")
 	String productDescription;
-	
+	@JsonIgnore
 	Blob productImage;
 	String fileName;
 	

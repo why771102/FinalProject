@@ -1,5 +1,7 @@
 package com.p.dao;
 
+import java.util.List;
+
 import com.p.model.MemberBean;
 
 public interface MemberDao {
@@ -24,4 +26,6 @@ public interface MemberDao {
 	
 	//寫入最後登入時間
 	public void updateLastLoginTime(String lastLoginTime, Integer memberID);
+	
+	public List<MemberBean> getMemberList();
 }

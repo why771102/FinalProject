@@ -38,7 +38,7 @@ public class SCOrdersBean implements Serializable{
 	@Column(nullable=false, columnDefinition = "nvarchar(max)")
 	String shippingAddress;
 	@Column(nullable=false, columnDefinition = "datetime")
-	String orderDate;
+	String ordDate;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="shippingStatusID")
@@ -60,12 +60,12 @@ public class SCOrdersBean implements Serializable{
 	
 	
 	public SCOrdersBean(Integer sCOrderID, MemberBean memberBean, PayStatusBean payStatusBean, String shippingAddress,
-			String orderDate, ShippingStatusBean shippingStatusBean, Integer total, String memo) {
+			String ordDate, ShippingStatusBean shippingStatusBean, Integer total, String memo) {
 		this.sCOrderID = sCOrderID;
 		this.memberBean = memberBean;
 		this.payStatusBean = payStatusBean;
 		this.shippingAddress = shippingAddress;
-		this.orderDate = orderDate;
+		this.ordDate = ordDate;
 		this.shippingStatusBean = shippingStatusBean;
 		this.total = total;
 		this.memo = memo;
@@ -76,7 +76,7 @@ public class SCOrdersBean implements Serializable{
 		this.sCOrderID = sCOrderID;
 		this.paymentStatus = paymentStatus;
 		this.shippingAddress = shippingAddress;
-		this.orderDate = orderDate;
+		this.ordDate = orderDate;
 		this.shippingStatus = shippingStatus;
 		this.total = total;
 		this.memo = memo;
@@ -125,13 +125,15 @@ public class SCOrdersBean implements Serializable{
 		this.shippingAddress = shippingAddress;
 	}
 
-	public String getOrderDate() {
-		return orderDate;
+	public String getOrdDate() {
+		return ordDate;
 	}
 
-	public void setOrderDate(String orderDate) {
-		this.orderDate = orderDate;
+
+	public void setOrdDate(String ordDate) {
+		this.ordDate = ordDate;
 	}
+
 
 	public ShippingStatusBean getShippingStatusBean() {
 		return shippingStatusBean;

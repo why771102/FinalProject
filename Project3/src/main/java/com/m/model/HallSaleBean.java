@@ -20,10 +20,18 @@ public class HallSaleBean implements Serializable {
 	Integer price;
 	Integer orderHours;
 	Integer hallSubtotal;
-	
+	Integer subtotal;
 	String sDate;
 	String eDate;
-	
+
+	public Integer getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(Integer subtotal) {
+		this.subtotal = subtotal;
+	}
+
 	public String getsDate() {
 		return sDate;
 	}

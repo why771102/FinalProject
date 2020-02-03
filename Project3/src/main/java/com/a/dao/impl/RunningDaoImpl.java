@@ -167,6 +167,16 @@ public class RunningDaoImpl implements RunningDao {
 		 RunningStatusBean rsb =session.get( RunningStatusBean.class,  runningStatusID);
 		return rsb;
 	}
+	@Override
+	public RunningBean getRunningBeanById(String runningID) {
+		Session session =factory.getCurrentSession();
+		 System.out.println("In run:");
+		String hql ="from RunningBean  where runID =:ID";
+		 RunningBean rb =session.get( RunningBean.class,  Integer.parseInt(runningID));
+//		 RunningBean rb = session.createQuery(hql).setParameter("ID", runningID).getResultList()
+				 System.out.println("run:"+rb.getMovie().getTitle());
+		return rb;
+	}
 	
 
 }
