@@ -1,5 +1,6 @@
 package com.m.service.impl;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -97,14 +98,14 @@ public class HallSaleServiceImpl implements HallSaleService {
 	public List<HallSaleBean> getHallSaleOutput(List<HallSaleBean> hsbList) {
 		List<HallSaleBean> hsbListToPage = new ArrayList<>();
 		String[] hallName = "ABCDEFGH".split("");
-
+		
+		Integer subtotal = 0;
 		for (int x = 0; x < hallName.length; x++) {
 			String savehallName = hallName[x];
 			Integer hallSubtotal = 0;
 			Integer orderHours = 0;
 			Integer hallPrice = 0;
 			HallSaleBean hsbTemp = new HallSaleBean();
-
 			System.out.println("aaaa: " + hsbList.size());
 			for (HallSaleBean hsb : hsbList) {
 				// if HallID相等就存
@@ -112,22 +113,22 @@ public class HallSaleServiceImpl implements HallSaleService {
 				System.out.println("hsb.getHallID()=>" + hsb.getHallID());
 
 				if (hallName[x].equals(hsb.getHallID())) {
-					System.out.println("123~~~");
 					System.out.println("hallSubtotal" + hallSubtotal);
 					System.out.println("orderHours" + orderHours);
 //					savehallName = hallName[x];
 					hallSubtotal = hallSubtotal + hsb.getHallSubtotal();
 					orderHours = orderHours + hsb.getOrderHours();
-
 					hallPrice = hsb.getPrice();
 					hsbTemp.setHallID(savehallName);
 					hsbTemp.setPrice(hallPrice);
 					hsbTemp.setOrderHours(orderHours);
 					hsbTemp.setHallSubtotal(hallSubtotal);
+					System.out.println("$$$$$$$$$$" + hallSubtotal);
+					subtotal = subtotal + hallSubtotal;
 //					hsbList.remove(hsb);
-					System.out.println("比對時,DB廳名&hsb廳名相同");
+//					System.out.println("比對時,DB廳名&hsb廳名相同");
 				} else {
-					System.out.println("比對時,DB廳名&hsb廳名不同");
+//					System.out.println("比對時,DB廳名&hsb廳名不同");
 				}
 //				HallSaleBean hsbTemp = new HallSaleBean(savehallName, hallPrice, orderHours, hallSubtotal);
 //				hsbListToPage.add(hsbTemp);
@@ -137,6 +138,12 @@ public class HallSaleServiceImpl implements HallSaleService {
 			} else {
 			}
 		}
+		
+		for(HallSaleBean hsb : hsbListToPage) {
+			hsb.setSubtotal(subtotal);
+			System.out.println("subtotal @@@@@@@@" + subtotal);
+		}
+		
 		System.out.println("取得完整資料待傳輸=>" + hsbListToPage.size());
 		return hsbListToPage;
 	}

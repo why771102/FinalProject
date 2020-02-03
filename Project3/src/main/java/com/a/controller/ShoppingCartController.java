@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,6 +101,9 @@ public class ShoppingCartController implements ServletContextAware{
 		} else {
 			SCOrdersBean scob = new SCOrdersBean();
 			scob.setMemberID(memberID);
+			LocalDateTime ldt = LocalDateTime.now();
+			String orderDate = ldt.toString();
+			scob.setOrdDate(orderDate);
 			scoservice.insertOrder(scob);
 			System.out.println("Shopping cart is empty");
 			model.addAttribute("shoppingCart", list);

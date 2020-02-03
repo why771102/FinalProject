@@ -153,7 +153,7 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 	public List<SCOrdersBean> savePheriperalDB() {
 		Session session = factory.openSession();
 
-		String hql = "SELECT DISTINCT orderDate FROM SCOrdersBean ORDER BY orderDate ASC";
+		String hql = "SELECT DISTINCT ordDate FROM SCOrdersBean ORDER BY ordDate ASC";
 
 		List<String> dates = new ArrayList<>();
 		List<LocalDate> dates1 = new ArrayList<>();
@@ -173,7 +173,7 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 		List<SCOrderDetailBean> scodList = new ArrayList<>();
 		scodList = session.createQuery(hql2).getResultList();
 
-		String hql3 = "FROM ProductsBean WHERE categoryID = 6";
+		String hql3 = "FROM ProductsBean WHERE categoryID BETWEEN 6 AND 13";
 		List<ProductsBean> pbList = new ArrayList<>();
 		pbList = session.createQuery(hql3).getResultList();
 	
@@ -186,7 +186,7 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 
 			for (SCOrdersBean scob : scobList) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
-				LocalDate SCOrderDate = LocalDateTime.parse(scob.getOrderDate(), formatter).toLocalDate();
+				LocalDate SCOrderDate = LocalDateTime.parse(scob.getOrdDate(), formatter).toLocalDate();
 				System.out.println("SCOrderDate=== " + SCOrderDate);
 				System.out.println("date=== " + date);
 				long Days = ChronoUnit.DAYS.between(SCOrderDate, date);
@@ -208,9 +208,7 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 							}
 						}
 					}
-					
 					System.out.println("pbList.size() =>" + pbList.size());
-
 					dateAndSCOID.put(date, SCOIDs);
 					System.out.println("dateAndOID------------" + dateAndSCOID.size());
 				} else {
@@ -223,23 +221,25 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 				ProductsBean productb = pb;
 				Integer qty = 0; // 加總存db
 				Integer price = 0;
+				CategoriesBean cb = null;
 //				productb = pb;
 				for (SCOrderDetailBean scodb : sdList) {
 					if (pb.getProductID() == scodb.getProductsBean().getProductID()) {
 						//要注意discount大家寫法是否相同 否則容易變0!!!
-						price = (int) Math.round(scodb.getProductsBean().getUnitPrice() * scodb.getDiscount());
+						price = (int) Math.round(scodb.getProductsBean().getUnitPrice());
 						qty = qty + scodb.getQuantity();
-						ProductSaleEarnBean pseb = new ProductSaleEarnBean();
-						pseb.setOrderDate(date.toString());
-						pseb.setPrice(price);
-						pseb.setQtyTotal(qty);
-						pseb.setProductsBean(productb);
-//						psebList.add(pseb);
-						session.save(pseb);		
+						cb = scodb.getProductsBean().getCategoriesBean();
 					}
 				}
+				ProductSaleEarnBean pseb = new ProductSaleEarnBean();
+				pseb.setOrderDate(date.toString());
+				pseb.setPrice(price);
+				pseb.setQtyTotal(qty);
+				pseb.setProductsBean(productb);
+				pseb.setCategoriesBean(cb);
+//				psebList.add(pseb);
+				session.save(pseb);	
 			}
-			
 		}
 		System.out.println("dateAndSCOID------------" + dateAndSCOID.size());
 //		Set<LocalDate> keys = dateAndOID.keySet();

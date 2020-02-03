@@ -18,9 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
@@ -38,6 +40,21 @@ public class mOrdersController {
 		this.service = service;
 	}
 
+	//快速查詢
+	@PostMapping(value="/quicklyQueryMovie")
+	@ResponseBody
+	public String quicklyQueryMovie(@RequestParam("hallID")String hallID,HttpServletRequest request,HttpServletResponse response) {
+		LocalDate today = (LocalDate.now());
+		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+		String dateTime = today.toString() + " " + time.toString();
+		List<RunningBean> rb = service.getAllOnMoive(today);
+		
+		
+		return "quicklyQueryMovie";
+	}
+	
+	
+	
 	//查詢所有running電影限定時間
 	@RequestMapping("/queryMovie") 
 	public String showAllMovie(Model model,HttpServletRequest request,HttpServletResponse response) {
@@ -372,13 +389,14 @@ public class mOrdersController {
 					mdb.setProductID(13);
 					mdb.setSellUnitPrice(195);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(50);
+					int A=(int)(Math.random()*25+25);
+					mdb.setQuantity(A);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(14);
 					mdb.setSellUnitPrice(175);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(50);
+					mdb.setQuantity(A);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(11);
@@ -404,13 +422,14 @@ public class mOrdersController {
 					mdb.setProductID(15);
 					mdb.setSellUnitPrice(350);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					int B=(int)(Math.random()*25+25);
+					mdb.setQuantity(B);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(16);
 					mdb.setSellUnitPrice(330);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					mdb.setQuantity(B);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(12);
@@ -436,13 +455,14 @@ public class mOrdersController {
 					mdb.setProductID(13);
 					mdb.setSellUnitPrice(195);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(45);
+					int C=(int)(Math.random()*20+25);
+					mdb.setQuantity(C);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(14);
 					mdb.setSellUnitPrice(175);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(45);
+					mdb.setQuantity(C);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(11);
@@ -468,13 +488,14 @@ public class mOrdersController {
 					mdb.setProductID(13);
 					mdb.setSellUnitPrice(195);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					int D=(int)(Math.random()*10+10);
+					mdb.setQuantity(D);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(14);
 					mdb.setSellUnitPrice(175);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					mdb.setQuantity(D);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(8);
@@ -520,13 +541,14 @@ public class mOrdersController {
 					mdb.setProductID(13);
 					mdb.setSellUnitPrice(195);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					int F=(int)(Math.random()*10+10);
+					mdb.setQuantity(F);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(14);
 					mdb.setSellUnitPrice(175);
 					mdb.setDiscount(1.0);
-					mdb.setQuantity(20);
+					mdb.setQuantity(F);
 					service.addMOrderDetail(mdb);
 					mdb.setOrdersID(mb.getOrdersID());
 					mdb.setProductID(9);

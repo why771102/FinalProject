@@ -1,5 +1,8 @@
 package com.p.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.NoResultException;
 
 import org.hibernate.NonUniqueResultException;
@@ -134,6 +137,16 @@ public class MemberDaoImpl implements MemberDao {
 		String hql = "Update MemberBean set lastLogInTime = :lastLogInTime where memberID = :memberID"; 
 		session.createQuery(hql).setParameter("lastLogInTime", lastLoginTime)
 								.setParameter("memberID", memberID).executeUpdate();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MemberBean> getMemberList() {
+		Session session = factory.getCurrentSession();
+		List<MemberBean> list = new ArrayList<>();
+		String hql = "FROM MemberBean";
+		list = session.createQuery(hql).getResultList();
+		return list;
 	}
 
 }

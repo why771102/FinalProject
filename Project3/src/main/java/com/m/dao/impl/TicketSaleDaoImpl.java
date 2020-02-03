@@ -94,21 +94,20 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
 			MovieBean mb = null;
+			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
+//			System.out.println("sthbList.size() =>" + sthbList.size());
+			noPlayTimes = sthbList.size();
+			for (ShowTimeHistoryBean sthb : sthbList) {
+				hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
+			}
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
-					List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
-//					System.out.println("sthbList.size() =>" + sthbList.size());
-					noPlayTimes = sthbList.size();
-
 					title = tseb.getMovieBean().getTitle();
 //					hallSeats = hallSeats + tseb.getHallSeats();
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					mb = tseb.getMovieBean();
-					for (ShowTimeHistoryBean sthb : sthbList) {
-						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
-					}
 				} else {
 					continue;
 				}

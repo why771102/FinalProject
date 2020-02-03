@@ -27,9 +27,16 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<!-- chart -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 </head>
 
 <body style="background-color: grey">
+	<!-- chart -->
+	<div id="container"
+		style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 	<h2 style="text-align: center">包廳銷售總覽</h2>
 	<div>
 		<div id="timePicker"
@@ -39,7 +46,8 @@
 		</div>
 	</div>
 	<br>
-	<table id="example" class="display" style="width: 100%; text-align: center;">
+	<table id="example" class="display"
+		style="width: 100%; text-align: center;">
 		<thead>
 			<tr>
 				<th></th>
@@ -50,17 +58,6 @@
 			</tr>
 		</thead>
 		<tbody id="insertHere">
-
-
-			<!-- 				<tr> -->
-			<!-- 					<td></td> -->
-			<!-- 					<td><a -->
-			<%-- 						href="${pageContext.request.contextPath}/hall/sale/date">Tiger --%>
-			<!-- 							Nixo</a></td> -->
-			<!-- 					<td>System Architect</td> -->
-			<!-- 					<td>Edinburgh</td> -->
-			<!-- 					<td>61</td> -->
-			<!-- 				</tr> -->
 		</tbody>
 		<!-- 			<tfoot> -->
 		<!-- 				<tr> -->
@@ -96,14 +93,7 @@
 				});
 			}).draw();
 
-			//動態新增表格
-			// 		console.log("test=> " + ${HallSaleBeanList});
-			// 		${HallSaleBeanList}.forEach(showInfo);
-
-		});
-
-		// timepicker => window load??
-		// 		$(window).load(function() {
+		// timepicker
 		$(function() {
 			var start = moment().subtract(7, 'days');
 			var end = moment();
@@ -111,35 +101,35 @@
 				$('#timePicker span').html(
 						start.format('YYYY-MM-DD') + ' ~ '
 								+ end.format('YYYY-MM-DD'));
+				window.start = start.format('YYYY-MM-DD');
+				window.end = end.format('YYYY-MM-DD');
 				//傳送日期的值
 				$.ajax({
 					url : "${pageContext.request.contextPath}/hall/sale",
 					data : {
-						start : start.format('YYYY-MM-DD'),
-						end : end.format('YYYY-MM-DD')
+						start: start.format('YYYY-MM-DD'),
+						end: end.format('YYYY-MM-DD')
 					},
 					type : "POST",
 					success : function(hall) {
 						alert("搜尋成功!");
-
 						var dataTable = $("#example").DataTable();
-						dataTable.clear().draw();
-
+						dataTable.clear().draw(); 
+						editInfo(hall); //chart function
 						$.each(hall, function(index, value) {
 							console.log(value);
-							dataTable.row.add(["",value.hallID + "廳",value.price,value.orderHours,value.hallSubtotal]).draw();
+							let price = new Number(value.price).toLocaleString("en-AU");
+							let subtotal = new Number(value.hallSubtotal).toLocaleString("en-AU");
+							dataTable.row.add(["",value.hallID + "廳",price,value.orderHours,subtotal]).draw();
 						});
-
-						// 						showInfo(data);
 						console.log(hall);
+//				 		console.log("hhhh" + start.format('YYYY-MM-DD'));
 					}
 				});
 			}
-			console.log("hhhh" + start.format('YYYY-MM-DD'));
 
 			// MMMM D, YYYY
-			$('#timePicker').daterangepicker(
-					{
+			$('#timePicker').daterangepicker({
 						startDate : start,
 						endDate : end,
 						ranges : {
@@ -161,38 +151,77 @@
 					}, cb);
 			cb(start, end);
 		});
+		});
+		
+// 		$(document).ready(function() {
+			//chart percentage and data
+			function editInfo(hall){
+				var editData = [];
+				for(let a = 0 ; a < (hall).length ; a++){
+					var hallID = hall[a].hallID;
+					var subtotal = Math.round((hall[a].hallSubtotal / hall[a].subtotal) * 100);
 
-		// 		function showInfo(hall) {
-		// 			for(var i =0; i < hall.length; i++){
-		// 			$('#insertHere')
-		// 					.append(
-		// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/hall/sale/date" id="hallID">'
-		// 									+ hall[i].hallID
-		// 									+ '廳'
-		// 									+ '</a></td><td>'
-		// 									+ hall[i].price
-		// 									+ '</td><td>'
-		// 									+ hall[i].orderHours
-		// 									+ '</td><td>'
-		// 									+ hall[i].hallSubtotal + '</td></tr>');
-		// 			}
-		// 		};
+				var data = {
+						name: hallID + "廳", 
+						y: subtotal
+				};
+				editData.push(data);
+				}
+				window.hallData = editData;
+			
+		//chart
+	    // Make monochrome colors
+		var pieColors = (function () {
+		    var colors = [],
+		        base = Highcharts.getOptions().colors[0],
+		        i;
+		    for (i = 0; i < 10; i += 1) {
+		        // Start out with a darkened base color (negative brighten), and end
+		        // up with a much brighter color
+		        colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+		    }
+		    return colors;
+		}());
 
-		// 	function (){
-		// 	$.ajax({
-		// 		url : "${pageContext.request.contextPath}/hall/sale",
-		// 		type : "POST",
-		// 		success : function(data) {
-		// 			var hallSaleBean = JSON.parse(data[1]);
-		// 			seatmain(seat, 1)
-		// 			window.noOfTickets = parseInt(data[2]);
-		// 			document.getElementById("numberOfTickets").innerText = window.noOfTickets;
-		// 			document.getElementById("hallID").innerText = data[3] + "廳";
-		// 			document.getElementById("movieTitle").innerText += data[4];
-		// 			document.getElementById("date").innerText += data[5];
-		// 		}
-		// 	});
-		// 	}
+		// Build the chart
+		Highcharts.chart('container', {
+		    chart: {
+		        plotBackgroundColor: null,
+		        plotBorderWidth: null,
+		        plotShadow: false,
+		        type: 'pie'
+		    },
+		    title: {
+		        text: "<h1>包廳銷售總覽</h1>"+'<br>'+ window.start + " 到 " + window.end +""
+		    },
+ 		    tooltip: {
+		        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		    },
+		    plotOptions: {
+		        pie: {
+		            allowPointSelect: true,
+		            cursor: 'pointer',
+		            colors: pieColors,
+		            dataLabels: {
+		                enabled: true,
+		                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+		                distance: -50,
+		                filter: {
+		                    property: 'percentage',
+		                    operator: '>',
+		                    value: 4
+		                }
+		            }
+		        }
+		    },
+		    series: [{
+// 		        name: 'Share',
+		        data:window.hallData
+		    }]
+		});
+			}
+
+		//end of chart
 	</script>
 </body>
 </html>

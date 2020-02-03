@@ -2,7 +2,6 @@ package com._root.config;
 
 import javax.servlet.Filter;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

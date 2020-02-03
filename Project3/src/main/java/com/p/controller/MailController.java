@@ -59,7 +59,7 @@ public class MailController {
 				+ "帳號：３９２０６１０５８８８６８６"+"\n"
 				+ "戶名:76影城"+"\n"
 				+ "轉帳後請email回覆「轉帳帳號末5碼」，以利確認，謝謝"+"\n"+"\n"
-				+ "祝闔家平安";
+				+ "祝　闔家平安";
 		emailService.sendMailSimple(from, to, subject, content);
 		return "redirect:/Employee/hallOrderQuery";
 	}
