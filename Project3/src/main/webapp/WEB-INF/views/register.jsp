@@ -91,13 +91,16 @@
 								<tr>
 									<td>帳號:</td>
 									<td><form:input id="account" path="account" type='text' />
-									<br><span class="notice">${errorMsgMap.accountExistError}</span></td>
-<%-- 										<form:errors path="account" cssClass="error" /></td> --%>
+									<br>(至少八個字元)
+									<br><span class="notice">${errorMsgMap.accountExistError}</span>
+									<form:errors path="account" cssClass="error" /></td>
+										
 								</tr>
 								<tr>
 									<td>密碼:</td>
-									<td><form:input id="password" path="password" type='password' /><br>
-										<form:errors path="password" cssClass="error" /></td>
+									<td><form:input id="password" path="password" type='password' />
+									<br>(至少八個字元)
+									<br><form:errors path="password" cssClass="error" /></td>
 								</tr>
 								<tr>
 									<td>確認密碼:</td>
@@ -113,7 +116,8 @@
 								</tr>
 								<tr>
 									<td>身分證字號:</td>
-									<td><form:input id="uID" path="uID" type='text' /><span>${errorMsgMap.uIDtExistError}</span><br>
+									<td><form:input id="uID" path="uID" type='text' />
+									<br><span>${errorMsgMap.uIDtExistError}</span>
 										<form:errors path="uID" cssClass="error" /></td>
 								</tr>
 								<tr>
@@ -243,27 +247,17 @@
     </div>
     <!-- footer -->
 	<script>
-// 		$("#sumit1").click(function(){
-// 			if($("#checkPassword").val() != $("#password").val() || $("#checkPassword").val() == ""){
-// 				alert("「確認密碼」不得空白，且需與密碼欄位內容一致!");
-// 			}
-// 		});
 		
 		$("#sumit1").click(
 				function() {
 					var d = new Date();
 					$("#registerTime").val(
-							d.getFullYear() + "-" + d.getMonth() + 1 + "-"
+							d.getFullYear() + "-" + (parseInt(d.getMonth()) + 1 ) + "-"
 									+ d.getDate() + " " + d.getHours() + ":"
 									+ d.getMinutes() + ":" + d.getSeconds()
 									+ ".000");
 				});
 
-
-		// $(document).ready(function(){
-		// 	var d = new Date();
-		// 	$("#registerTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
-		// });
 	</script>
 </body>
 </html>
