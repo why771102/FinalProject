@@ -398,8 +398,8 @@ public class EDMTableResetHibernate {
 					eb.setHallPurpose(token[2]);
 					eb.setHallPurposeDetail(token[3]);
 					eb.setHallSubtotal(Integer.parseInt(token[4]));
-					eb.setMobile(token[5]);
-					eb.setMail(token[6]);
+					eb.setMail(token[5]);
+					eb.setMobile(token[6]);
 					eb.setOrderDate(token[7]);
 					eb.setOrderHours(Integer.parseInt(token[8]));
 					eb.setStartTime(token[9]);

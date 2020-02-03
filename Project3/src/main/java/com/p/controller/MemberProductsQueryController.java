@@ -43,14 +43,25 @@ public class MemberProductsQueryController {
 		}
 		int nMID = Integer.parseInt(mID);
 		List<MOrderBean> molist = service.getMOrderBeanByMemberID(nMID);
-	    List<MOrderDetailBean> modetaillist = service.checkMOrder(nMID);
-	    List<TicketBean> tblist = service.checkTicket(nMID);
-	    
-	    model.addAttribute("molist", molist);
-		model.addAttribute("modetaillist",modetaillist);
-		model.addAttribute("tblist", tblist);
+		System.out.println("看看他的廬山真面目:" + molist);
+		System.out.println("看看他的廬山真面目2:" + molist.size());
+		if(molist.size() != 0) {
+			List<MOrderDetailBean> modetaillist = service.checkMOrder(nMID);
+		    List<TicketBean> tblist = service.checkTicket(nMID);
+		    
 		
+		    	model.addAttribute("molist", molist);
+				model.addAttribute("modetaillist",modetaillist);
+				model.addAttribute("tblist", tblist);
+				
+			    
+				return "memberOrderQuery";
+		}else {
+			return "memberOrderQuery2";
+		}
 	    
-		return "memberOrderQuery";
+	    
+	    
+	    
 	}
 }
