@@ -91,6 +91,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			Integer qty = 0;
 			Integer subtotal = 0;
 			Integer earnSubtotal = 0;
+			Integer category = 0;
 			CategoriesBean cb = null;
 			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
 			for (ProductSaleEarnBean pseb : psebList) {
@@ -103,9 +104,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
 					cb = pseb.getCategoriesBean();
-							
-					pseb.setCategoriesBean(cb);
-					System.out.println("__________" + cb + "________________");
+						
+					pseb1.setCategoriesBean(cb);
+					System.out.println("__________" + cb.getCategoryID() + "________________");
 					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);
