@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
@@ -42,7 +43,9 @@
 							<p>評分等級:${comment.grade}</p>
 							<p>已觀賞:${comment.watched}</p>
 							<p>短評內文:${comment.commentContent}</p>
-							<p>時間:${comment.commentTime}</p>
+							<c:set var="commentTime1" value="${comment.commentTime}"/>
+							<c:set var="commentTime2" value="${fn:substring(commentTime1, 0, 16)}" />
+							<p>${commentTime2}</p>
 							<p>
 								<a
 									href="<spring:url value='/preference/addlike/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
