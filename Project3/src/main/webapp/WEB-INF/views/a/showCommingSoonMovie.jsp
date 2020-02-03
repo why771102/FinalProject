@@ -48,6 +48,7 @@
 	</c:forEach>
 	
 	</div>
+	</div>
 	<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
 	<table border="1">
 		<tr>
@@ -73,7 +74,7 @@
 		</tr>
 	</table>
 	
-	</div>
+	
 
 
 
@@ -142,16 +143,16 @@
 	
 								"</div>"+
 								"<div class='m-name'>"+
-									"<h3>${run.movie.title}</h3>"+
-									"<h4>${run.movie.genreBean.genre}</h4>"+
-									"<a href='' class='movie-btn1'>Action</a> <a href=''class='movie-btn1'>"+
+									"<h3>"+a[i].movie.title+"</h3>"+
+									"<h4>"+a[i].movie.genreBean.genre+"</h4>"+
+									"<a href='' class='movie-btn1'>"+a[i].movie.movieRatingBean.rating+"</a> <a href=''class='movie-btn1'>"+
 									"	Thriller</a> <a href='' class='movie-btn1'>Drama</a>"+
 								"</div>"+
 							"</div>"+
-							"<form id='runForm${run.runID}'action='${pageContext.request.contextPath}/show/this/movie' method='post'>"+
-        			       "<input name='runBean' type='hidden' value='${run}'>"+
+							"<form id='runForm"+a[i].runID+"'action='${pageContext.request.contextPath}/show/this/movie' method='post'>"+
+        			       "<input name='runBean' type='hidden' value='"+a[i].runID+"'>"+
 							"</form>"+
-							"<a href='' class='book-now'>BOOK NOW</a>"+
+							"<a href='' class='book-now'>[電影訂票]</a>"+
 						"</div>"+
 
 						"<br>");
