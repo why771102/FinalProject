@@ -24,9 +24,14 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<!-- chart -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 </head>
 
 <body style="background-color: grey">
+<div id="container" style="min-width: 310px; height: 400px; max-width: 1000px; margin: 0 auto"></div>
 	<h2 style="text-align: center">產品銷售總覽</h2>
 	<div>
 		類型： ${cateSelection}
@@ -110,6 +115,7 @@
 						success : function(productsale) {
 							alert("新增成功!");
 							window.productsale = productsale;
+// 							editInfo(productsale);
 							console.log(typeof (window.productsale));
 							var dataTable = $("#example").DataTable();
 							dataTable.clear().draw();
@@ -174,71 +180,112 @@
 				// 			},
 				// 			type : "POST",
 				// 						success : function() {
-				var dataTable = $("#example").DataTable();
-				var cate = document.getElementById("categoryNames").value;
-				if (cate == '套餐的餐點') {
-					dataTable.search('雙人套票').search('個人套票').draw();
-				} else if (cate == '餐點') {
-					dataTable.search('大可樂').search('熱狗').search('小可樂').search(
-							'吉拿棒').draw();
-				} else if (cate == '周邊商品') {
-					dataTable.search('Fiona').draw();
-				}
+// 				var dataTable = $("#example").DataTable();
+// 				var cate = document.getElementById("categoryNames").value;
+// 				if (cate == '套餐的餐點') {
+// 					dataTable.search('雙人套票').search('個人套票').draw();
+// 				} else if (cate == '餐點') {
+// 					dataTable.search('大可樂').search('熱狗').search('小可樂').search(
+// 							'吉拿棒').draw();
+// 				} else if (cate == '周邊商品') {
+// 					dataTable.search('Fiona').draw();
+// 				}
 				// 					alert("新增成功!");
 				// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
 				// 						}
 				// 		});
 			});
 
-	// 	function sendpName() {
-	// 		$.ajax({
-	// 					url : "${pageContext.request.contextPath}/product/sale1",
-	// 					data : {
-	// 						productName : document.getElementById(x).innerText //要更動innerHTML!!
-	// 					},
-	// 					type : "Post",
-	// 					success : function() {
-	// 						alert("you click me!");
-	// 						window.location.href = "${pageContext.request.contextPath}/product/sale/date";
-	// 					}
-	// 				});
-	// 	}
-	// 	console.log("pName =>" + document.getElementById("pName").value);
+// 	function editInfo(productsale){
+// 		var editData = [];
+// 		for(let a = 0 ; a < (hall).length ; a++){
+// 			var hallID = hall[a].hallID;
+// 			var subtotal = Math.round((hall[a].hallSubtotal / hall[a].subtotal) * 100);
 
-	//動態新增表格
-	// 	function showInfo(pseb) {
-	// 		var pn;
-	// 		for(var i =0; i < pseb.length; i++){
+// 		var data = {
+// 				name: hallID + "廳", 
+// 				y: subtotal
+// 		};
+// 		editData.push(data);
+// 		}
+// 		window.hallData = editData;
+	
+    var chart = Highcharts.chart('container', {
 
-	// 		$('#insertHere')
-	// 				.append(
-	// 						//動態新增的時候id要加i
-	// 						'<tr><td></td><td><div id="pName'+ i +'" onclick="sendpName()">'
-	// 						+ pseb[i].productName +
-	// 						'</div></td><td>' + pseb[i].price +
-	// 						'</td><td>' + pseb[i].qtyTotal +
-	// 						'</td><td>' + pseb[i].subtotal + '</td></tr>');
-
-	// 		pn = "pName"+i;
-	// 		console.log(pn);
-	// 		console.log('~~hello~~~');
-	// 		console.log(document.getElementById(pn).innerText);
-	// 		}
-
-	// 		function sendpName() {
-	// 			$.ajax({
-	// 						url : "${pageContext.request.contextPath}/product/sale1",
-	// 						data : {
-	// 							productName : document.getElementById("pn").innerText //要更動innerHTML!!
-	// 						},
-	// 						type : "Post",
-	// 						success : function() {
-	// 							alert("you click me!");
-	// 							window.location.href = "${pageContext.request.contextPath}/product/sale/date";
-	// 						}
-	// 					});
-	// 		}
-
-	// 	}
+        chart: {
+            type: 'column'
+        },
+    
+        title: {
+            text: 'Highcharts responsive chart'
+        },
+    
+        subtitle: {
+            text: 'Resize the frame or click buttons to change appearance'
+        },
+    
+        legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+        },
+    
+        xAxis: {
+            categories: ['Apples', 'Oranges', 'Bananas'],
+            labels: {
+                x: -10
+            }
+        },
+    
+        yAxis: {
+            allowDecimals: false,
+            title: {
+                text: 'Amount'
+            }
+        },
+    
+        series: [{
+            name: 'Christmas Eve',
+            data: [1, 4, 3]
+        }, {
+            name: 'Christmas Day before dinner',
+            data: [6, 4, 2]
+        }, {
+            name: 'Christmas Day after dinner',
+            data: [8, 4, 3]
+        }],
+    
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    yAxis: {
+                        labels: {
+                            align: 'left',
+                            x: 0,
+                            y: -5
+                        },
+                        title: {
+                            text: null
+                        }
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }
+            }]
+        }
+    });
+	
 </script>
 </html>

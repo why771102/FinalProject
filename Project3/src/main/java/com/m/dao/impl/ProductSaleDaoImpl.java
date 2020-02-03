@@ -45,7 +45,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String getCategoryNames() {
-		String hql = "SELECT c.categoryName FROM CategoriesBean c " + "WHERE c.categoryID BETWEEN 4 AND 6";
+		String hql = "SELECT c.categoryName FROM CategoriesBean c " + "WHERE c.categoryID BETWEEN 4 AND 13";
 		Session session = factory.getCurrentSession();
 		List<String> categoryNames = new ArrayList<>();
 		categoryNames = session.createQuery(hql).getResultList();
@@ -76,7 +76,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		System.out.println("psebList.size()" + psebList.size());
 //		System.out.println("psebList: " + psebList.get(0).getProductsBean().getProductName());
 
-		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID " + "BETWEEN 4 AND 6";
+		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID " + "BETWEEN 4 AND 13";
 		List<Integer> PIDs = new ArrayList<>();
 		PIDs = session.createQuery(hql1).getResultList();
 		System.out.println("PIDs.size()" + PIDs.size());
@@ -306,16 +306,16 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return psList;
 	}
 
-	// 選擇6
+	// 選擇6~13
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate) {
 		Session session = factory.openSession();
-		String hql = "FROM ProductSaleEarnBean WHERE categoryID = 6 AND orderDate BETWEEN :sDate AND :eDate";
+		String hql = "FROM ProductSaleEarnBean WHERE categoryID BETWEEN 6 AND 13 AND orderDate BETWEEN :sDate AND :eDate";
 		List<ProductSaleEarnBean> psebList = new ArrayList<>();
 		psebList = session.createQuery(hql).setParameter("sDate", sDate).setParameter("eDate", eDate).getResultList();
 
-		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID = 6";
+		String hql1 = "SELECT productID FROM ProductsBean WHERE categoryID BETWEEN 6 AND 13";
 		List<Integer> PIDs = new ArrayList<>();
 		PIDs = session.createQuery(hql1).getResultList();
 		System.out.println("PIDs.size()" + PIDs.size());
@@ -434,7 +434,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		LocalDate Ed = LocalDate.parse(orderDateB);
 		for (SCOrdersBean scob : SCOrdersList) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
-			LocalDate orderDate = LocalDateTime.parse(scob.getOrderDate(), formatter).toLocalDate();
+			LocalDate orderDate = LocalDateTime.parse(scob.getOrdDate(), formatter).toLocalDate();
 			long SdOdDays = ChronoUnit.DAYS.between(Sd, orderDate);
 			long EdOdDays = ChronoUnit.DAYS.between(Ed, orderDate);
 			if (SdOdDays >= 0 && EdOdDays <= 0) {
