@@ -69,6 +69,9 @@ public class QuestionController {
 				memberId = Integer.parseInt(cookie.getValue());
 			}
 		}
+		if(memberId == null) {
+			return "login";
+		}
 		Integer questionId = service.newQuestion(memberId);
 		model.addAttribute("questionId", questionId);
 		return "redirect:/question/" + questionId;	
@@ -89,7 +92,7 @@ public class QuestionController {
 			}
 		}
 		if(!service.checkMember(memberId, questionId)) {
-			return null;    //表示驗證沒過，不是同一個用戶
+			return "z/questionList";    //表示驗證沒過，不是同一個用戶
 		}
 		//查詢歷史訊息
 		List<QuestionContentBean> list = ConService.historyContent(questionId);
@@ -126,11 +129,4 @@ public class QuestionController {
 
 	}
 	
-	
-	
-	
-	
-	
-	
-
 }
