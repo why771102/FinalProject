@@ -103,7 +103,7 @@ public class ShoppingCartController implements ServletContextAware{
 			scob.setMemberID(memberID);
 			LocalDateTime ldt = LocalDateTime.now();
 			String orderDate = ldt.toString();
-			scob.setOrderDate(orderDate);
+			scob.setOrdDate(orderDate);
 			scoservice.insertOrder(scob);
 			System.out.println("Shopping cart is empty");
 			model.addAttribute("shoppingCart", list);

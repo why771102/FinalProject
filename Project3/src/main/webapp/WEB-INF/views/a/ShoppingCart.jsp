@@ -789,15 +789,21 @@
                 $('body').removeClass('loading');
             }
         });
+        var oldcTotal = 0;
         //calculate total of each product
         for(let product = 0; product < sc.length; product++){
         	var sbT = "#subT"+sc[product].productsBean.productID;
-
+			var uptag = "#unitPrice"+sc[product].productsBean.productID;
         	//when products load calculate each products subtotal
         	var oldtotal = sc[product].quantity*sc[product].productsBean.unitPrice;
+        	oldcTotal += oldtotal;
         	let oldsubtotal = new Number(oldtotal).toLocaleString("en-AU");
         	$(sbT).text("商品小記：NT$ " + oldsubtotal);
+        	let productUnitPrice = new Number(sc[product].productsBean.unitPrice).toLocaleString("en-AU");
+        	$(uptag).text("價格: NT")
         }
+        let oldcartTotal = new Number(oldcTotal).toLocaleString("en-AU");
+        $('#cartTotal').text('NT$ ' + oldcartTotal);
     });
 
 	
@@ -846,8 +852,8 @@
         //跑迴圈計算更改新數量後的金額
         //舊數量的金額計算後
         for(let p = 0; p < sc.length; p++){
-        	let ID = productQty+sc[p].productsBean.productID;
-        	
+        	let ID = productQty.substring(0, productQty.length-1)+sc[p].productsBean.productID;
+        	console.log(ID);
         	var newQ = $(ID).val();
         	console.log("newQ" + newQ);
         	if( sc[p].productsBean.productID == index ){

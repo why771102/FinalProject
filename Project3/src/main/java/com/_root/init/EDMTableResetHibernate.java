@@ -771,7 +771,7 @@ public class EDMTableResetHibernate {
 			System.out.println("Preference資料新增成功");
 			
 //SCOrderDetailsBean
-			try (FileReader fr = new FileReader("data/SCOrderDetails.dat"); BufferedReader br = new BufferedReader(fr);) {
+			try (FileReader fr = new FileReader("data/SCOrders.dat"); BufferedReader br = new BufferedReader(fr);) {
 
 				while ((line = br.readLine()) != null) {
 					if (line.startsWith(UTF8_BOM)) {
