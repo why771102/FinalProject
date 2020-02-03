@@ -18,9 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
@@ -38,6 +40,21 @@ public class mOrdersController {
 		this.service = service;
 	}
 
+	//快速查詢
+	@PostMapping(value="/quicklyQueryMovie")
+	@ResponseBody
+	public String quicklyQueryMovie(@RequestParam("hallID")String hallID,HttpServletRequest request,HttpServletResponse response) {
+		LocalDate today = (LocalDate.now());
+		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+		String dateTime = today.toString() + " " + time.toString();
+		List<RunningBean> rb = service.getAllOnMoive(today);
+		
+		
+		return "quicklyQueryMovie";
+	}
+	
+	
+	
 	//查詢所有running電影限定時間
 	@RequestMapping("/queryMovie") 
 	public String showAllMovie(Model model,HttpServletRequest request,HttpServletResponse response) {
