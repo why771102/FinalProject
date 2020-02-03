@@ -31,10 +31,10 @@ public class SCOrdersDaoImpl implements SCOrdersDao {
 		MemberBean mb = getMemberBeanById(scob.getMemberID());
 		ShippingStatusBean ssb = getShippingStatusBeanById(0);
 		PayStatusBean psb = getPayStatusBeanById(0);
-		String today = LocalDateTime.now().toString();
+//		String today = LocalDateTime.now().toString();
 		System.out.println(mb.getAddress());
 		scob.setShippingAddress(mb.getAddress());
-		scob.setOrderDate(today);
+//		scob.setOrderDate(today);
 		scob.setTotal(0);
 		scob.setMemberBean(mb);
 		scob.setShippingStatusBean(ssb);
@@ -87,8 +87,23 @@ public class SCOrdersDaoImpl implements SCOrdersDao {
 
 	@Override
 	public boolean updateStatus(SCOrdersBean ob) {
+		System.out.println("ob.getTotal(): " + ob.getTotal());
+		System.out.println("ob.getPayStatusBean().getPayStatusNO(): "+ob.getPayStatusBean().getPayStatusNO());
+		System.out.println("ob.getsCOrderID():" + ob.getsCOrderID());
 		Session session = factory.getCurrentSession();
-		return false;
+		String hql = "UPDATE SCOrdersBean SET total= :total, payStatusNO = :payStatusNO where SCOrderID= :SCOrderID";
+		try {
+			session.createQuery(hql)
+					.setParameter("total", ob.getTotal())
+					.setParameter("payStatusNO", ob.getPayStatusBean().getPayStatusNO())
+					.setParameter("SCOrderID", ob.getsCOrderID())
+					.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			System.out.println("Error in updateStatus of SCOrdersDaoImpl: "+ e);
+			return false;
+		}
+
 	}
 
 }

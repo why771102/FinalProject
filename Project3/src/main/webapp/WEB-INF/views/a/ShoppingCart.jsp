@@ -846,8 +846,20 @@
         //跑迴圈計算更改新數量後的金額
         //舊數量的金額計算後
         for(let p = 0; p < sc.length; p++){
+        	let ID = productQty+sc[p].productsBean.productID;
         	
+        	var newQ = $(ID).val();
+        	console.log("newQ" + newQ);
+        	if( sc[p].productsBean.productID == index ){
+        		newP[p] = (sc[p].productsBean.unitPrice) * (newQ);
+        		var indexA = newP[p];
+        	}else{
+        		newP[p] = (sc[p].productsBean.unitPrice) * (newQ);
+        		let indexB = newP[p];
+        	}
+        	newPTotal = newPTotal + newP[p];
         }
+        $(cartTotal).text("NT$ " + newPTotal);
 	}
 
 $(cartTotal)

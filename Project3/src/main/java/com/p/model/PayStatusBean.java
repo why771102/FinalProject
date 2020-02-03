@@ -25,6 +25,10 @@ public class PayStatusBean implements Serializable {
 		
 	}
 
+	public PayStatusBean(Integer payStatusNO) {
+		this.payStatusNO = payStatusNO;
+	}
+	
 	public Integer getPayStatusNO() {
 		return payStatusNO;
 	}

@@ -20,6 +20,8 @@ import com.a.model.MovieRatingBean;
 import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
 import com.a.model.RunningStatusBean;
+import com.a.model.SCOrderDetailBean;
+import com.a.model.SCOrdersBean;
 import com.a.model.ShippingStatusBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
@@ -711,6 +713,57 @@ public class EDMTableResetHibernate {
 			}
 			session.flush();
 			System.out.println("Expectation資料新增成功");
+			
+//SCOrdersBean
+			try (FileReader fr = new FileReader("data/SCOrders.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					SCOrdersBean scob = new SCOrdersBean();
+
+					scob.setsCOrderID(Integer.parseInt(token[0]));
+					scob.setMemo(token[1]);
+					scob.setOrdDate(token[2]);
+					scob.setShippingAddress(token[3]);
+					scob.setTotal(Integer.parseInt(token[4]));
+					MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[5]));
+					scob.setMemberBean(mb);
+					PayStatusBean psb = session.get(PayStatusBean.class, Integer.parseInt(token[6]));
+					scob.setPayStatusBean(psb);
+					ShippingStatusBean ssb = session.get(ShippingStatusBean.class, Integer.parseInt(token[7]));
+					scob.setShippingStatusBean(ssb);
+					session.save(scob);
+				}
+			} catch (IOException e) {
+				System.err.println("新建SCOrders表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("SCOrders資料新增成功");
+			
+//SCOrderDetailsBean
+			try (FileReader fr = new FileReader("data/SCOrderDetails.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					SCOrderDetailBean scodb = new SCOrderDetailBean();
+
+					scodb.setOrderno(Integer.parseInt(token[0]));
+					scodb.setQuantity(Integer.parseInt(token[1]));
+					SCOrdersBean scob = session.get(SCOrdersBean.class, Integer.parseInt(token[2]));
+					scodb.setSCOrdersBean(scob);
+					ProductsBean pb = session.get(ProductsBean.class, Integer.parseInt(token[3]));
+					scodb.setProductsBean(pb);
+					session.save(scodb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建SCOrderDetails表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("SCOrderDetails資料新增成功");
 //======假資料表格往上新增=======================================================================			
 
 			tx.commit();

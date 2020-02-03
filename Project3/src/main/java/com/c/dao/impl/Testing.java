@@ -35,11 +35,16 @@ public class Testing {
 //		 System.out.println("Current Time Stamp: " + ts);
 //		 System.out.println(x);
 		
-		String [] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-		for(int i = 0 ; i < chars.length; i++) {
-			String c = chars[i].toString();
-			System.out.println(c);
+//		String [] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+//		for(int i = 0 ; i < chars.length; i++) {
+//			String c = chars[i].toString();
+//			System.out.println(c);
+//		}
+		for(int i = 0; i < 20; i++) {
+			Integer noOfOrdersEachDay = (int) (Math.random()*20)+50;
+			System.out.println("noOfOrdersPerDay: " + noOfOrdersEachDay);	
 		}
+		
 //		String A = "";
 //		A += "b";
 //		System.out.println(A);

@@ -59,7 +59,7 @@ import com.google.gson.reflect.TypeToken;
 import com.p.model.HallOrderBean;
 import com.p.service.HallOrderService;
 
-@Controller
+//@Controller
 public class RunMovieController2 implements ServletContextAware{
 	ServletContext context;
 	MovieService mService;
