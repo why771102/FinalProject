@@ -194,6 +194,8 @@ public interface MovieService {
 			List<ShowtimeBean> AllDayShowTime);
 	void saveshowTimeHitory(List<ShowtimeBean> FinalShowMovie_list, LocalDateTime runDateTime, HallBean hall,
 			int restTime, List<ShowtimeBean> AllDayShowTime);
+	RunningBean getRunningBeanById(String runningID);
+	List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID, String exOffDay, String release);
 	
 	
 

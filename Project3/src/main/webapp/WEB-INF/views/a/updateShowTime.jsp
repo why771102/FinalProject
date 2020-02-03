@@ -91,14 +91,14 @@
         //準備movie 有多少個陣列
 
         var hall = ${ hall };
-        console.log(hall);
-        console.log(hall.length);
+//         console.log(hall);
+//         console.log(hall.length);
 
 
 
         var movie = ${ runMovie };
-        console.log(movie);
-        console.log(movie.length);
+//         console.log(movie);
+//         console.log(movie.length);
         var movieTitle = "";
         for (let i = 0; i < movie.length; i++) {
 
@@ -111,9 +111,9 @@
 
 
         var a = ${ showTime };
-        console.log(a[0].stID);
-        console.log(a.length);
-        console.log(a);
+//         console.log(a[0].stID);
+//         console.log(a.length);
+//         console.log(a);
 
         //分出包場和電影  往上append to Data table
         for (let i = 0; i < a.length; i++) {
@@ -187,10 +187,12 @@
             var RTobj_1 = document.getElementById("runningTime" + row);
             var startTime2 = PlusTime(a[row].strDay, time_obj1.childNodes[0].value, RTobj_1.innerHTML, "time");
             let str = startTime2.split(":");
-            console.log("hour:" + str[0]);
-            console.log("minute:" + str[1]);
+            console.log("change hour:" + str[0]);
+            console.log("change minute:" + str[1]);
             console.log("runtime:" + RTobj_1.innerHTML);
+            
             if(str[0]>2 && str[0]<9){
+            	 console.log("加自己時間超過2:00" );
             	time_obj1.childNodes[0].max = "00:00";
             }else{
             	time_obj1.childNodes[0].max = "24:00";
@@ -207,11 +209,12 @@
         /*改變電影*/
         function change(value, row) {
             var row = row;
-            alert(value + " " + row + " ");
+//             alert(value + " " + row + " ");
 
 
             var runTime = "runningTime" + row.toString();
-            console.log(runTime);
+//             console.log(runTime);
+            var time_obj1 = document.getElementById("time" + row);
             var RTobj = document.getElementById("runningTime" + row);
             var PTobj = document.getElementById("price_time" + row);
             var Runobj = document.getElementById("runID" + row);
@@ -219,7 +222,22 @@
             RTobj.innerHTML = "";
             RTobj.innerHTML = movie[value].movie.runningTime;  //change runningTime
             PTobj.innerHTML = movie[value].movie.expectedProfit;
-            Runobj.innerHTML = movie[value].runID;
+            Runobj.innerHTML = movie[value].runID; //change runID
+            // 檢查自己時間是否在2:00以內
+            var startTime2 = PlusTime(a[row].strDay, time_obj1.childNodes[0].value, RTobj.innerHTML, "time");
+            let str = startTime2.split(":");
+            console.log("change hour:" + str[0]);
+            console.log("change minute:" + str[1]);
+            console.log("runtime:" + RTobj.innerHTML);
+            if(str[0]>2 && str[0]<9){
+           	 console.log("加自己時間超過2:00" );
+           	time_obj1.childNodes[0].max = "00:00";
+           }else{
+           	time_obj1.childNodes[0].max = "24:00";
+           }
+           
+            
+            //
             //重新設定同一排自己的時間(自己的時間不變 ,要變後面排的時間)
             var time_obj0 = document.getElementById("time" + row);
             //             time_obj0.removeChild(time_obj0.childNodes[0]);
@@ -314,12 +332,12 @@
         }
         //時間的加減
         function PlusTime(day, startTime, plusTime, diffType) {
-            alert("in plus");
+//             alert("in plus");
             var open_Time1 = new Date(day + " " + startTime);
-            console.log("ssss" + open_Time1);
+//             console.log("ssss" + open_Time1);
             open_Time1.setTime(open_Time1.setMinutes(open_Time1.getMinutes() + (plusTime) * 1 + 10));
-            console.log("ssss2" + open_Time1);
-            console.log("ssss" + open_Time1.getDate());
+//             console.log("ssss2" + open_Time1);
+//             console.log("ssss" + open_Time1.getDate());
             var type = "";
             switch (diffType) {
                 case "time":

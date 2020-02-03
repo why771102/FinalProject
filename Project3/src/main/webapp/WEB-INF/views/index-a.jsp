@@ -50,10 +50,23 @@
     			<a href='oldShowTimeHistory'>查看排片的歷史紀錄</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='commingSoon/All/movie'>準備要上映電影</a><br>
+		    	<a href='${pageContext.request.contextPath}/commingSoon/All/movie1' onclick='goTo()'/>準備要上映電影</a><br>
     		</td>
 		</tr>
 	</table>
+	
+	
+<script type="text/javascript">
+function goTo(){
+	
+	var page = 1;
+//	    hallID = document.getElementById("hallID").value;
+	console.log(date);
+	console.log(time);
+	location.replace("${pageContext.request.contextPath}/commingSoon/All/movie"+page);
 
+
+}
+</script>
 </body>
 </html>
