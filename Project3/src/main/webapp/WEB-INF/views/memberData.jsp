@@ -148,7 +148,7 @@
                           
                             <li><a href="">線上周邊</a>
                             </li>
-                            <li><a href="">包場服務</a>
+                            <li><a href="<c:url value='/hallOrder/apply' />">包場服務</a>
                             </li>
                             <li><a href="">餐飲服務</a>
                             </li>
