@@ -43,7 +43,12 @@ public class movieServiceImpl implements MovieService {
 	HallService hService;
 	HallOrderService hoService;
 	
-	
+	@Autowired
+	public void setService( HallService hService, HallOrderService hoService) {
+		
+		this.hService = hService;
+		this.hoService = hoService;
+	}
 	
 	
 	@Autowired
@@ -240,7 +245,7 @@ public class movieServiceImpl implements MovieService {
 	public List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay,String startDay,String hallID){
 		return SDao.getShowTimeHistoryByDate(endDay,startDay, hallID);
 	}
-	
+	@Transactional
 	@Override
 	public int checkHallOrder(LocalDateTime runDateTime, HallBean hb, int HallTime, List<ShowtimeBean> OrderHall_list) {
 		int HallOrderTime = 0;
@@ -271,7 +276,7 @@ public class movieServiceImpl implements MovieService {
 	}
 	
 	
-	
+	@Transactional
 	@Override
 	public void setAllMoviePT(List<RunningBean> Allrb_list, List<ShowtimeBean> runMovie_list) {
 		System.out.println("--------------------------------- 所有可排片size:" + Allrb_list.size());
@@ -322,6 +327,7 @@ public class movieServiceImpl implements MovieService {
 		}
 
 	}
+	@Transactional
 	@Override
 	public void setHallOrderAndotherMovieInFinalList(LocalDateTime runDateTime, int HallTime,
 			List<ShowtimeBean> OrderHall_list, List<ShowtimeBean> changeTimeList_list,
@@ -376,7 +382,7 @@ public class movieServiceImpl implements MovieService {
 		}
 
 	}
-
+	@Transactional
 	@Override
 	public void saveshowTimeHitory(List<ShowtimeBean> FinalShowMovie_list, LocalDateTime runDateTime, HallBean hall,
 			int restTime, List<ShowtimeBean> AllDayShowTime) {
@@ -427,7 +433,7 @@ public class movieServiceImpl implements MovieService {
 		System.out.println("FinalShowMovie_list" + FinalShowMovie_list.size());
 	}
 	
-	
+	@Transactional
 	@Override
 	public void creatOneDayShowTime(LocalDateTime runDateTime, double rate, ShowtimeBean restTime, int d,
 			List<ShowtimeBean> AllDayShowTime) {

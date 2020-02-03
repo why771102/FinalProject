@@ -50,7 +50,7 @@
     			<a href='oldShowTimeHistory'>查看排片的歷史紀錄</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='redirectDemo'>RedirectView: redirectDemo</a><br>
+		    	<a href='commingSoon/All/movie'>準備要上映電影</a><br>
     		</td>
 		</tr>
 	</table>
