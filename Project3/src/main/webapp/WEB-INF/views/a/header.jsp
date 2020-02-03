@@ -32,7 +32,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/logo-1.png" class="logo-hdr" width="180">
+                    <a class="navbar-brand" href="index.html"><img src="img/logo-1.png" class="logo-hdr" width="180" height='38.44'/>
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse my-nav-collapse">
