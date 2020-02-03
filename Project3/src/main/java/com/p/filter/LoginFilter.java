@@ -29,8 +29,9 @@ import com.p.model.MemberBean;
 				@WebInitParam(name = "mustLogin4", value = "/getShoppingCart"),
 				@WebInitParam(name = "mustLogin5", value = "/preference/addlike"),
 				@WebInitParam(name = "mustLogin6", value = "/preference/addbad"),
-				@WebInitParam(name = "mustLogin7", value = "/preference/addblock")
+				@WebInitParam(name = "mustLogin7", value = "/preference/addblock"),
 //				@WebInitParam(name = "mustLogin8", value = "/addToShoppingCart")
+				@WebInitParam(name = "mustLogin9", value = "/questionList")
 		})
 public class LoginFilter implements Filter {
 	List<String> url = new ArrayList<String>();
