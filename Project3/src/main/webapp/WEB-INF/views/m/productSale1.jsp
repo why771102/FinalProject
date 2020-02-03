@@ -51,7 +51,7 @@
 				<th>單價</th>
 				<th>數量</th>
 				<th>總金額</th>
-				<th>test</th>
+<!-- 				<th>test</th> -->
 			</tr>
 		</thead>
 		<tbody id="insertHere">
@@ -129,13 +129,13 @@
 																				+ "</a>",
 																		value.price,
 																		value.qtyTotal,
-																		value.subtotal,
-																		"<input type='hidden' value='"+value.categoriesBean+"'>" ]).draw();
+																		value.subtotal]).draw();
 											});
+							//"<input type='hidden'>"+value.categoriesBean.categoryID+"'</input>'"
 							// 					showInfo(data);
 							// 					console.log(productsale);
 							document.getElementById("submitExcel").innerHTML += "<input type='hidden' name='exportExcel' value='"
-									+ JSON.stringify(window.productsale) + "'>"
+									+ JSON.stringify(window.productsale) + "'>" //datatable content
 						}
 					});
 		}
@@ -169,8 +169,8 @@
 	});
 
 	//傳送cate selection值
-	$("#categoryNames").click(
-			function() {
+	$("#categoryNames").change(function(){
+// 			function() {
 				console.log("cate=>"
 						+ document.getElementById("categoryNames").value);
 				// 		$.ajax({
@@ -180,16 +180,22 @@
 				// 			},
 				// 			type : "POST",
 				// 						success : function() {
-// 				var dataTable = $("#example").DataTable();
-// 				var cate = document.getElementById("categoryNames").value;
-// 				if (cate == '套餐的餐點') {
-// 					dataTable.search('雙人套票').search('個人套票').draw();
-// 				} else if (cate == '餐點') {
-// 					dataTable.search('大可樂').search('熱狗').search('小可樂').search(
-// 							'吉拿棒').draw();
-// 				} else if (cate == '周邊商品') {
-// 					dataTable.search('Fiona').draw();
-// 				}
+				var dataTable = $("#example").DataTable();
+				var cate = document.getElementById("categoryNames").value;
+				if (cate == '套餐的餐點') {
+// 					dataTable.search('雙人套票').draw();
+// 					dataTable.search('個人套票').draw();
+					$('#example').DataTable(paging: false,{"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw(); 
+// 					console.log("check here~~~"+ typeof({"iDisplayLength": 100, 
+// 						"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw());
+// 					window.productsale = {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw();
+				} else if (cate == '餐點') {
+
+				} else if (cate == '公仔') {
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("公仔|冰雪奇緣", true, false).draw(); 
+				}
 				// 					alert("新增成功!");
 				// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
 				// 						}
