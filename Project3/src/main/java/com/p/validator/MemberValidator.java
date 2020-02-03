@@ -44,6 +44,10 @@ public class MemberValidator implements Validator {
 		if (member.getAccount().length()<8) {
 			errors.rejectValue("account","", "帳號欄不能小於八個字元");
 		}
+		if (member.getPassword().length()<8) {
+			errors.rejectValue("password","", "密碼不能小於八個字元");
+		}
+		
 
 	}
 

@@ -76,7 +76,7 @@ public class MemberController {
 			return "register";
 		}
 		service.register(mb);
-		return "register";
+		return "redirect:/";
 		
 		
 		 //用來放錯誤訊息

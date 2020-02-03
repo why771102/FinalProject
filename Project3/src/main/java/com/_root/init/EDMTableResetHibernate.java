@@ -38,7 +38,9 @@ import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
 import com.p.model.MemberBean;
 import com.p.model.PayStatusBean;
+import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
+import com.t.model.PreferenceBean;
 import com.z.model.AnnoBean;
 import com.z.model.AnnoStatusBean;
 import com.z.model.EmpBean;
@@ -398,8 +400,8 @@ public class EDMTableResetHibernate {
 					eb.setHallPurpose(token[2]);
 					eb.setHallPurposeDetail(token[3]);
 					eb.setHallSubtotal(Integer.parseInt(token[4]));
-					eb.setMobile(token[5]);
-					eb.setMail(token[6]);
+					eb.setMail(token[5]);
+					eb.setMobile(token[6]);
 					eb.setOrderDate(token[7]);
 					eb.setOrderHours(Integer.parseInt(token[8]));
 					eb.setStartTime(token[9]);
@@ -714,13 +716,69 @@ public class EDMTableResetHibernate {
 			session.flush();
 			System.out.println("Expectation資料新增成功");
 			
-//SCOrdersBean
-			try (FileReader fr = new FileReader("data/SCOrders.dat"); BufferedReader br = new BufferedReader(fr);) {
+//CommentBean
+			try (FileReader fr = new FileReader("data/Comment.dat"); BufferedReader br = new BufferedReader(fr);) {
 				while ((line = br.readLine()) != null) {
 					if (line.startsWith(UTF8_BOM)) {
 						line = line.substring(1);
 					}
 					String[] token = line.split("\\|");
+					CommentBean cb = new CommentBean();
+
+					cb.setWatched(Integer.parseInt(token[0]));
+					cb.setGrade(Integer.parseInt(token[1]));
+					cb.setCommentContent(token[2]);
+					cb.setCommentTime(token[3]);
+					cb.setReportComment(Integer.parseInt(token[4]));
+					cb.setCommentDelete(Integer.parseInt(token[5]));
+					MovieBean mvb = session.get(MovieBean.class, Integer.parseInt(token[6]));
+					cb.setMovieBean(mvb);
+					MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[7]));
+					cb.setMemberBean(mb);
+
+					session.save(cb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建Comment表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("Comment資料新增成功");
+			
+//PreferenceBean
+			try (FileReader fr = new FileReader("data/Preference.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					PreferenceBean pb = new PreferenceBean();
+
+					CommentBean cb = session.get(CommentBean.class, Integer.parseInt(token[0]));
+					pb.setCommentBean(cb);
+					MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[1]));
+					pb.setMemberBean(mb);
+					pb.setGood(Integer.parseInt(token[2]));
+					pb.setBad(Integer.parseInt(token[3]));
+					pb.setBlock(Integer.parseInt(token[4]));
+
+
+					session.save(pb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建Preference表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("Preference資料新增成功");
+			
+//SCOrderDetailsBean
+			try (FileReader fr = new FileReader("data/SCOrderDetails.dat"); BufferedReader br = new BufferedReader(fr);) {
+
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+
 					SCOrdersBean scob = new SCOrdersBean();
 
 					scob.setsCOrderID(Integer.parseInt(token[0]));
@@ -739,31 +797,33 @@ public class EDMTableResetHibernate {
 			} catch (IOException e) {
 				System.err.println("新建SCOrders表格時發生IO例外: " + e.getMessage());
 			}
-			session.flush();
-			System.out.println("SCOrders資料新增成功");
-			
+				session.flush();
+				System.out.println("SCOrders資料新增成功");
+				
 //SCOrderDetailsBean
-			try (FileReader fr = new FileReader("data/SCOrderDetails.dat"); BufferedReader br = new BufferedReader(fr);) {
-				while ((line = br.readLine()) != null) {
-					if (line.startsWith(UTF8_BOM)) {
-						line = line.substring(1);
-					}
-					String[] token = line.split("\\|");
+				try (FileReader fr = new FileReader("data/SCOrderDetails.dat"); BufferedReader br = new BufferedReader(fr);) {
+
+					while ((line = br.readLine()) != null) {
+						if (line.startsWith(UTF8_BOM)) {
+							line = line.substring(1);
+						}
+						String[] token = line.split("\\|");
+
 					SCOrderDetailBean scodb = new SCOrderDetailBean();
 
-					scodb.setOrderno(Integer.parseInt(token[0]));
-					scodb.setQuantity(Integer.parseInt(token[1]));
-					SCOrdersBean scob = session.get(SCOrdersBean.class, Integer.parseInt(token[2]));
-					scodb.setSCOrdersBean(scob);
-					ProductsBean pb = session.get(ProductsBean.class, Integer.parseInt(token[3]));
-					scodb.setProductsBean(pb);
-					session.save(scodb);
+						scodb.setOrderno(Integer.parseInt(token[0]));
+						scodb.setQuantity(Integer.parseInt(token[1]));
+						SCOrdersBean scob = session.get(SCOrdersBean.class, Integer.parseInt(token[2]));
+						scodb.setSCOrdersBean(scob);
+						ProductsBean pb = session.get(ProductsBean.class, Integer.parseInt(token[3]));
+						scodb.setProductsBean(pb);
+						session.save(scodb);
+					}
+				} catch (IOException e) {
+					System.err.println("新建SCOrderDetails表格時發生IO例外: " + e.getMessage());
 				}
-			} catch (IOException e) {
-				System.err.println("新建SCOrderDetails表格時發生IO例外: " + e.getMessage());
-			}
-			session.flush();
-			System.out.println("SCOrderDetails資料新增成功");
+				session.flush();
+				System.out.println("SCOrderDetails資料新增成功");
 //======假資料表格往上新增=======================================================================			
 
 			tx.commit();

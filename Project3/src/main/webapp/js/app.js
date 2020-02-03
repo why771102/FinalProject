@@ -14,18 +14,17 @@ function setConnected(connected) {
 	$("#greetings").html("");
 }
 
-function connect() {
+//function connect() {
 	var socket = new SockJS("../myHandler");
 	stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame) {
 		setConnected(true);
 		console.log('Connected: ' + frame);
 		stompClient.subscribe('/topic/message/' + list[3], function(greeting) {
-
 			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content);
 		});
 	});
-}
+//}
 
 function disconnect() {
 	if (stompClient !== null) {
@@ -52,7 +51,7 @@ function sendMessage() {
 }
 
 function showMessage(name, message) {
-	$("#greetings").append("<tr><td>" + name + "：</td><td>" + message + "</td></tr>");
+	$("#greetings").append("<div class='group-rom'><div class='first-part'>" + name + "</div><div class='second-part'>" + message + "</div><div class='third-part'>12:32</div></div>");
 
 }
 

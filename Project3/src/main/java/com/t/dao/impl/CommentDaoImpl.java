@@ -1,5 +1,6 @@
 package com.t.dao.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,16 +153,19 @@ public class CommentDaoImpl implements CommentDao {
 		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
 		Double totalGrade = 0.0;
 		Double avgGrade = 0.0;
+		Double theGrade = 0.0;
 		if(list.size() == 0) {
 			avgGrade = 0.0;
 		}else {		
 			for (int i = 0; i < list.size(); i++) {
 				Integer grade = list.get(i).getGrade();
-				totalGrade = totalGrade + grade*10;
+				totalGrade = totalGrade + grade;
 			}
 			avgGrade = totalGrade/list.size();
 		}
-		return avgGrade;
+		BigDecimal b = new BigDecimal(avgGrade);
+		theGrade = b.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
+		return theGrade;
 	}
 
 	// 用電影ID 查出各個comment

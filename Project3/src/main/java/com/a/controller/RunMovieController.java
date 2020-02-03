@@ -398,7 +398,7 @@ public class RunMovieController implements ServletContextAware{
 		String[] datetime = date.split("\\=");
           System.out.println("0"+datetime[0]);
           System.out.println("1"+datetime[1]);
-          System.out.println("2"+datetime[2]);
+//          System.out.println("2"+datetime[2]);
           for(String a :datetime) {
         	  System.out.println("datetime:"+a);
           }
@@ -416,12 +416,12 @@ public class RunMovieController implements ServletContextAware{
 		}else {}
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList();
 		
-		if(datetime[2] != "All") {
-			STHB_List =mService.getshowMovieByDayAndHallID(day1, datetime[2]);
-		}else {
+//		if(datetime[2] != "All") {
+//			STHB_List =mService.getshowMovieByDayAndHallID(day1, datetime[2]);
+//		}else {
 			//把指定日期(一天)的showTimeHistory 取出 並塞進showtimeBean
 			STHB_List =mService.getshowMovie(day1);
-		}
+//		}
 		
 		List<ShowtimeBean> oneDayShowTime = new ArrayList();
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
@@ -627,7 +627,7 @@ public class RunMovieController implements ServletContextAware{
 		return "index-a";
 		}
 
-	@PostMapping(value = "/commingSoon/All/movie")
+	@GetMapping(value = "/commingSoon/All/movie")
 	public String addCommingSoonAllMovie(Model model,
 			HttpServletRequest request, @RequestParam("page") String page) {
 		System.out.println("getPage:"+page);
