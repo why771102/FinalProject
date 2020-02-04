@@ -214,7 +214,7 @@
 				</div>
 <a href="orderconfirm">繼續</a>
 <div>購物清單
-	<p id="totalprice"></p>
+	<p id="totalprice">0</p>
 </div>
 <script>
 var expDays=7;
@@ -229,45 +229,46 @@ function setCountPrice(name,value){
 	var price;
 	if (name==="discount"){
 		price=value*350
-		return price}
+		document.getElementById("totalprice").innerHTML=price;
+		}
 	if (name==="discount2"){
 		price=value*660
-		return price}
+		document.getElementById("totalprice").innerHTML=price;}
 	if (name==="bankticket"){
 		price=value*250
-		return price}
+		}
 	if (name==="normal"){
 		price=value*270
-		return price}
+		}
 	if (name==="hotdog"){
 		price=value*120
 		return price}
 	if (name==="churro"){
 		price=value*100
-		return price}
+		}
 	if (name==="friedChicken"){
 		price=value*200
-		return price}
+		}
 	if (name==="bigCoke"){
 		price=value*70
 		return price}
 	if (name==="normalCoke"){
 		price=value*60
-		return price}
+		}
 	if (name==="smallCoke"){
 		price=value*54
-		return price}
+		}
 	if (name==="bigPopcorn"){
 		price=value*140
-		return price}
+		}
 	if (name==="normalPopcorn"){
 		price=value*130
-		return price}
+		}
 	if (name==="smallPopcorn"){
 		price=value*120
-		return price}
+		}
 }
-document.getElementById("totalprice").innerHTML=setCountPrice(name,value);
+
 </script>
 </body>
 </html>

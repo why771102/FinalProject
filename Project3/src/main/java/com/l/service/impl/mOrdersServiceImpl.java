@@ -89,9 +89,9 @@ public class mOrdersServiceImpl implements mOrdersService{
 	
 	@Transactional
 	@Override
-	public void getOrderID(Integer orderID) {
+	public MOrderBean getOrderID(Integer orderID) {
 		
-		dao.getOrderID(orderID);
+		return dao.getOrderID(orderID);
 	}
 
 	
