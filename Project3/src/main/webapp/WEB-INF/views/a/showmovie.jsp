@@ -113,16 +113,19 @@
                         <table>
                             <tr>
                                 <td>導演：</td>
-                                <td>閻羽茜</td>
+                                <td>${sthb_list1.get(1).run.movie.director}</td>
                             </tr>
                             <tr>
                                 <td>演員：</td>
-                                <td>瑪格羅比 、 瑪麗伊莉莎白文斯蒂德 、 伊旺麥奎格 、 克里斯梅西納</td>
+                                <td>${sthb_list1.get(1).run.movie.cast}</td>
                             </tr>
                             <tr>
                                 <td>類型：</td>
-                                <td>劇情</td>
+                                <td>${sthb_list1.get(1).run.movie.genreBean.genre}</td>
                             </tr>
+                            <td>分級：</td>
+                                <td>${sthb_list1.get(1).run.movie.movieRatingBean.rating}</td>
+                            
                             <tr>
                                 <td>片長：</td>
                                 <td>${sthb_list1.get(0).run.movie.runningTime}</td>
@@ -130,9 +133,11 @@
                         </table>
                         <h3 style='border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px'>播放場次</h3>
                         <table>
-                            <tr>
-                            <c:forEach var="showTime" items="${sthb_list1}" >
-                                     <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>${showTime.playStartTime}</a></td>
+                            <tr id ='showTime'>
+                            <c:forEach var="one" items="${oneMovie1}" >
+<%--                                       <c:if test=${oneMovie1.strDay }> --%>
+                                     <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>${one.strTime}</a></td>
+<%--                                       </c:if> --%>
                             </c:forEach>
                                 
                                 
@@ -161,13 +166,7 @@
                   
                 <div class='col-sm-12 col-xs-12'> 
                 <div style=''>
-                        小勞勃道尼即將扮演文學史上最令人難忘的角色，並且以豐富的想像力，重新敘述一個男人能夠和動物說話的經典故事： 《杜立德》。
-
-                        性情古怪、特立獨行的著名醫師與獸醫約翰杜立德（小勞勃道尼 飾）活在維多利亞時期的英國，他於七年前痛失愛妻之後就一個人住在杜立德莊園的高牆之內，過著與世隔絕的生活，只有一群珍奇異獸陪在他身邊。但是當年輕的維多利亞女王（《鏗鏘玫瑰》潔絲芭克莉 飾）得了重病，心不甘情不願的杜立德就被迫乘船，踏上一場史詩般的冒險旅程，前往一座神祕小島尋找解藥，當他遇到可怕的宿敵並且發掘令人驚豔的神奇生物，他就重拾了以往的機智與勇氣。
-                        
-                        杜立德的同伴是一個自命為他的實習生的年輕小夥子（《敦克爾克大行動》哈利柯萊特 飾），以及一群吵吵鬧鬧的動物朋友，包括一隻焦慮的大猩猩（金獎影帝雷米馬利克 配音）、一隻衝動腦殘的鴨子（奧斯卡金像獎得主奧塔薇亞史班森 配音）、一對老是在拌嘴歡喜冤家：一隻尖酸刻薄的鴕鳥（《愛情昏迷中》庫梅爾南賈尼 配音）和一隻積極樂觀的北極熊（《大黃蜂》約翰西南 配音），以及一隻任性固執的鸚鵡（奧斯卡金像獎得主艾瑪湯普遜 配音），她也是杜立德最信任的顧問和知己。
-                        
-                        這部電影豪華的演員陣容還包括安東尼奧班德拉斯、麥可辛（《黛妃與女皇》）以及奧斯卡金像獎得主吉姆布洛班特，並且還有更多的配音演員，包括金獎影后瑪莉詠柯蒂亞、湯姆霍蘭德、賽琳娜戈梅茲以及雷夫范恩斯。
+                       ${sthb_list1.get(1).run.movie.plotSummary}
                 </div>
                     
                 </div>

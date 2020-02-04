@@ -10,12 +10,46 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<title>ShowAllMovie</title>
-
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	 
+<title>ShowCommingSoonMovie</title>
+  <!-- google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/flexslider.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css" type="text/css" />
 </head>
 <body>
-	<div id='movie'>
+ <header>
+        <!-- header -->
+ <jsp:include page="header.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
+</header>
+  <!-- header -->
+   <!-- banner -->
+    <section class="ticket-outer banner-featured">
+        <div class="container">
+            <div class="ticket-sell">
+                <h3 class="font"> Latest Movies</h3>
+            </div>
+        </div>
+    </section>
+    <!-- banner -->
+    <!-- movies -->
+	<div id='movie'> <!-- 最外 -->
+	
+	<section class="grey-bar">
+        <div class="container">
+            <div class="row movies-list">
+	
 		<c:forEach var="run" items="${rb_page_list}">
 			<div class="col-md-3 col-sm-4 col-xs-6"
 				onclick='formsubmit(${run.runID})'>
@@ -42,17 +76,17 @@
 				<a href="" class="book-now">BOOK NOW</a>
 			</div>
       </c:forEach>
+      </div>
+      </div>
+      </section>
 			<br>
     
-	</div>
-	<div id="paging">
-		
-
-	</div>
+	</div><!-- id =movie最外 -->
+    <!-- movies -->
 
 	<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
 
-	
+	 <!-- movies page -->
 
 	<div id='createPage'>
 	<table border="1">
@@ -84,9 +118,59 @@
 	
 	</div>
 
+ <!-- movies page -->
+ 
+  <!--section-->
+    <section class="gray-bnr feature-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="ipad-bg">
+                        <img src="img/ipad-bg.png">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="ex-feature">
+                        <h6>Cineshow</h6>
+                        <h1>features</h1>
+                        <ul>
+                            <li>Sed ut perspiciatis </li>
+                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
+                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
+                            <li>Lorem ipsum dolor sit amet consectetur</li>
+                            <li>Sed ut perspiciatis unde omnis iste natus</li>
+                            <li>Sed ut perspiciatis unde omnis iste natus</li>
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Sed ut perspiciatis unde omnis </li>
+                            <li>Lorem ipsum dolor sit amet consectetur</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+    <!--section-->
+  <!--section-->
+  <section class="dark-blue">
+        <div class="container">
+            <div class="ready">
+                <h4>Book Your Tickets Now !</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                <a href="free-trail.html" class="slider-btn">lETS GET sTARTED</a>
+            </div>
+        </div>
+    </section>
+  
+  
+   <!--section-->
+     <!--footer-->
+     <jsp:include page="footer.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
 
-
-
+  <!--footer-->
 
 	<script>
        var b=${rb_list};

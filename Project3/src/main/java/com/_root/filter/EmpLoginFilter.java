@@ -23,8 +23,8 @@ import com.z.model.EmpBean;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-				@WebInitParam(name = "mustLogin11", value = ""), //""內要填controller的路徑
-				@WebInitParam(name = "mustLogin12", value = ""), 
+				@WebInitParam(name = "mustLogin11", value = "/emp/updatePwd"), //""內要填controller的路徑
+				@WebInitParam(name = "mustLogin12", value = "/backstageindex"), 
 				@WebInitParam(name = "mustLogin13", value = "")	
 		})
 public class EmpLoginFilter implements Filter {
@@ -66,7 +66,7 @@ public class EmpLoginFilter implements Filter {
 						// 原本要執行的程式。
 						session.setAttribute("requestURI", requestURI);
 					}
-					resp.sendRedirect(contextPath + "/member/login");
+					resp.sendRedirect(contextPath + "/emp/login");
 					return;
 				}
 			} else { // 不需要登入，直接去執行他要執行的程式

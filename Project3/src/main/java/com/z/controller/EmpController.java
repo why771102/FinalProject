@@ -112,7 +112,7 @@ public class EmpController {
             cookie.setPath("/");
             response.addCookie(cookie);
 		}
-		return "redirect:/";
+		return "redirect:/emp/login";
 	}
 	
 	

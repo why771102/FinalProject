@@ -45,11 +45,35 @@
         </c:forEach>
         </div>
          </section>
+<!--           <section class="container"> -->
+<!--        		 <div class="row"> -->
+<!--  			<b>choose a name</b> -->
+<!--  			<select id ="show"></select> -->
+ 			
+<!--        		 </div> -->
+<!--          </section> -->
+
+      
 <script>
-$("#sumit1").click(function(){
-	var d = new Date();
-	$("#NowTime").val(d.getFullYear() + "-" + d.getMonth()+1 + "-" + d.getDate() + " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+".000");
-});
+$(document).ready(function()
+{
+	var title = document.getElementById("MovieID.movie.title").value;
+	$.ajax({  
+    url: "${pageContext.request.contextPath}/quicklyQueryMovie",
+    data : {title: title},
+    type : "POST",
+    success:function(data){  
+         showNames(data);
+         }
+	});
+	
+	function showNames(data){
+		var txt="";
+		for(i in names)
+			txt+="<option value='"+names[i]+"'>" +names[i]+"</option>";
+			 $("#show").append(txt);
+	};
+}
 </script>
 </body>
 </html>

@@ -274,96 +274,128 @@ public class RunMovieController implements ServletContextAware{
     //顯示上映電影
 	@GetMapping(value = "/AllMovie/show") // URL 跟<a href='movie/show'> 相關
 	public String showAllMovie(Model model,HttpServletRequest request,HttpServletResponse response) {
-		LocalDate today = (LocalDate.now());
-		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
-		String dateTime = today.toString() + " " + time.toString();
-		List<RunningBean> rb_list = mService.getAllOnMoive(today);
-		List<MovieBean> mb_list = new ArrayList<>();
-		rb_list.size();
-		int pageNo =-1;
-	   String pageNoStr = request.getParameter("pageNo");
-        int totalPage =mService.getTotalPages(rb_list.size());
-        
-//        Map<Integer,MovieBean>movie= mService.getPageBooks(pageNo, rb_list);
-		
-        if (pageNoStr == null) {  
-			pageNo = 1;
-//			// 讀取瀏覽器送來的所有 Cookies
-//			Cookie[] cookies = request.getCookies();
-//			if (cookies != null) {
-//				// 逐筆檢視Cookie內的資料
-//				for (Cookie c : cookies) {
-//					if (c.getName().equals(memberId + "pageNo")) {
-//						try {
-//							pageNo = Integer.parseInt(c.getValue().trim());
-//						} catch (NumberFormatException e) {
-//							;
-//						}
-//						break;
-//					}
-//				}
-//			}
-		} else {
-			try {
-				pageNo = Integer.parseInt(pageNoStr.trim());
-			} catch (NumberFormatException e) {
-				pageNo = 1;
-			}
-		}
-        
-        for(int i=pageNo;i<pageNo*8-1;i++) {
-        	mb_list.add(rb_list.get(i).getMovie());
-        }
-     // 讀取一頁的書籍資料之前，告訴service，現在要讀哪一頁
-     		// service.setPageNo(pageNo);
-     		model.addAttribute("mb_list",mb_list);
-     		// service.getPageBooks()方法開始讀取一頁的書籍資料
-//     		 Map<Integer,MovieBean>movie2 = mService.getPageBooks(pageNo, rb_list);
-     		 
-//     		Map<Integer, BookBean> bookMap = service.getPageBooks(pageNo);
-     	    request.setAttribute("pageNo", String.valueOf(pageNo));
-     		request.setAttribute("totalPages", totalPage);
-     		// 將讀到的一頁資料放入request物件內，成為它的屬性物件
-//     		request.setAttribute("movie", movie2);
-
-     		// 使用Cookie來儲存目前讀取的網頁編號，Cookie的名稱為memberId + "pageNo"
-     		// -----------------------
-     		Cookie pnCookie = new Cookie( "pageNo", String.valueOf(pageNo));
-     	    // 設定Cookie的存活期為30天
-     		pnCookie.setMaxAge(30 * 24 * 60 * 60);
-     	    // 設定Cookie的路徑為 Context Path		
-     		pnCookie.setPath(request.getContextPath());
-     		// 將Cookie加入回應物件內
-     		response.addCookie(pnCookie);
-     		// -----------------------
-     		// 交由listBooks.jsp來顯示某頁的書籍資料，同時準備『第一頁』、
-     		// 『前一頁』、『下一頁』、『最末頁』等資料
-//     		RequestDispatcher rd = request.getRequestDispatcher("a/showAllMovie.jsp");
-//     		rd.forward(request, response);
-//     		return;
-
-		// 傳空的Bean去前端//如果controller有資料要
-//			model.addAttribute("Movie", rb_list);
+		//取正在上映的電影
+		int pageNo=1;
+				System.out.println(pageNo);
+				int totalPages= 1;
+				LocalDate today=LocalDate.now();
+//				List<RunningBean>rb_list=mService.getComingSoonMovie();
+				//取正在上映的電影
+				List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+				if(rb_list.size()>8 && rb_list.size()%8>0) {
+					totalPages = (rb_list.size()/8)+1;
+				}else if(rb_list.size()>8 && rb_list.size()%8==0){
+					totalPages = (rb_list.size()/8);
+				}else {}
+				
+				
+				int movieNum =(pageNo-1)*8;
+				List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
+				System.out.println("rb_list:"+rb_list.size());
+				int onePageNum =0;
+				if(rb_list.size()-movieNum>0) {
+					System.out.println("第二頁");
+					onePageNum=8+movieNum;
+				}else if(pageNo == 1) {
+					System.out.println("回第一頁");
+					movieNum =0;
+					onePageNum=rb_list.size()-1;
+					totalPages=1;
+				}
+				else {
+					onePageNum=rb_list.size()%8;
+				}
+				for(int i=movieNum;i<onePageNum;i++) {
+					System.out.println("i:"+i);
+					System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
+					rb_page_list.add(rb_list.get(i));
+				}
+		        System.out.println(rb_page_list.size());
+		        request.setAttribute("pageNo", pageNo);
+		        request.setAttribute("totalPages", totalPages);
+		        Gson gson =new Gson();
+		        model.addAttribute("rb_page_list",rb_page_list);
+		        request.setAttribute("rb_list", gson.toJson(rb_page_list));
+				
+//		       System.out.println("hi  go to showCommingSoon");
+		       
+				
 
 		return "a/showAllMovie";// URL 跟 eclip 擺放位置相關
 
 	}
+	//顯示上映電影Ajax 分頁
+	@PostMapping(value = "/onMovie/change/page" ,produces="application/json;charset=UTF-8;")
+	public @ResponseBody String changePageOnMovie(Model model,
+			HttpServletRequest request,  @RequestParam("page") String page) {
+		System.out.println("getPage2:"+page);
+		int pageNo = 1;
+		if(page !=null) {
+			pageNo = Integer.parseInt(page);
+		}
+		//取未來上映的電影 day  ~ 一個月
+		System.out.println(pageNo);
+		int totalPages= 1;
+		LocalDate today=LocalDate.now();
+//		List<RunningBean>rb_list=mService.getComingSoonMovie();
+		List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+		
+		if(rb_list.size()>8) {
+			totalPages = (rb_list.size()/8)+1;
+		}else {}
+		
+		
+		int movieNum =(pageNo-1)*8;
+		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
+		System.out.println("rb_list:"+rb_list.size());
+		int onePageNum =0;
+		if(rb_list.size()-movieNum>0) {
+			System.out.println("第二頁");
+			onePageNum=8+movieNum;
+		}else if(pageNo == 1) {
+			System.out.println("回第一頁");
+			movieNum =0;
+			onePageNum=rb_list.size()-1;
+			totalPages=1;
+		}
+		else {
+			onePageNum=rb_list.size()%8;
+		}
+		System.out.println("rb_list:"+rb_list.size());
+		for(int i=movieNum;i<onePageNum;i++) {
+			System.out.println(onePageNum);
+			System.out.println(movieNum);
+			System.out.println("i:"+i);
+			System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
+			
+			rb_page_list.add(rb_list.get(i));
+		}
 	
-	@RequestMapping(value="/AllMovie/MoviesPageNo=2")
-	public String queryOnMovie(Model model) {
-		LocalDate today = (LocalDate.now());
-		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
-		String dateTime = today.toString() + " " + time.toString();
-		List<RunningBean> rb_list = mService.getAllOnMoive(today);
-		List<MovieBean> mb_list = new ArrayList<>();
-		for(int i=1;i<2*8-1;i++) {
-			if(i<rb_list.size()) {
-        	mb_list.add(rb_list.get(i).getMovie());
-        }
-			}
-		System.out.println("123");
-		return "a/showAllMovie";
+        System.out.println(rb_page_list.size());
+      
+        Gson gson =new Gson();
+//        model.addAttribute("rb_page_list",rb_page_list);
+        request.setAttribute("rb_list", gson.toJson(rb_page_list));
+		
+       System.out.println("hi  go to On Movie");
+		return  gson.toJson(rb_page_list);
 	}
+	
+//	@RequestMapping(value="/AllMovie/MoviesPageNo=2")
+//	public String queryOnMovie(Model model) {
+//		LocalDate today = (LocalDate.now());
+//		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+//		String dateTime = today.toString() + " " + time.toString();
+//		List<RunningBean> rb_list = mService.getAllOnMoive(today);
+//		List<MovieBean> mb_list = new ArrayList<>();
+//		for(int i=1;i<2*8-1;i++) {
+//			if(i<rb_list.size()) {
+//        	mb_list.add(rb_list.get(i).getMovie());
+//        }
+//			}
+//		System.out.println("123");
+//		return "a/showAllMovie";
+//	}
 
 	@GetMapping(value = "/Method/test") // URL 跟<a href='movie/show'> 相關
 	public String testMethod(Model model) {
@@ -795,10 +827,21 @@ public class RunMovieController implements ServletContextAware{
 		LocalDate endDay = today.plusWeeks(1);
 		List<ShowTimeHistoryBean> sthb_list= new ArrayList<>();
 //		 sthb_list= mService.getRunBeanLastSTHB(run, endDay.toString(), today.toString());
-		sthb_list= mService.getShowTimeHistoryListByRunIDAndTime("74", endDay.toString(), today.toString());
+
+		List<ShowtimeBean> oneMovie = new ArrayList();
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+		for(ShowTimeHistoryBean sthb :sthb_list) {
+			System.out.println(sthb.getPlayStartTime());
+		
+			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
+			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
+		}
+		
 		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
 		model.addAttribute("sthb_list1",sthb_list);
+		model.addAttribute("oneMovie1",oneMovie);
 		request.setAttribute("sthb_list",gson.toJson(sthb_list) );
+		request.setAttribute("oneMovie",gson.toJson(oneMovie) );
 		
 //		String  runID =rb.getRunID().toString();
 		

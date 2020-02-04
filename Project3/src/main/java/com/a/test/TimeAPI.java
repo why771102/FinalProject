@@ -231,12 +231,32 @@ public class TimeAPI {
 		LocalDateTime endTime =LocalDateTime.parse("2020/01/23 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 		int day=(int) Duration.between(startTime,endTime).toDays();
 		System.out.println("day:"+day);
+		
+		
+		//localDate 可不可以寫if
+		LocalDate ifDay1= LocalDate.now();
+		LocalDate ifDay2= LocalDate.now();
+		System.out.println(ifDay1);
+		System.out.println(ifDay2);
+		if(ifDay1 == ifDay2) {
+			System.out.println("if ok");
+		}else {
+			System.out.println("No"); //No
+		}
+		
+		if(ifDay1.equals(ifDay2)) {
+			System.out.println("if ok");//yes
+		}else {
+			System.out.println("No"); 
+		}
+		
 	}
 	int a=1;
 	int b=2;
 	int c=3;
 	List<Integer> list2 = new ArrayList<>(); 
-
+	
+	
 	
 
 
