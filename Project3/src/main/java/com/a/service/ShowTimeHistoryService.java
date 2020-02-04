@@ -1,6 +1,7 @@
 package com.a.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.a.model.MovieBean;
@@ -40,5 +41,9 @@ public interface ShowTimeHistoryService {
 
 			List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID, String exOffDay, String release);
 			
-			public List<MovieBean> getDistinctMovieID(String endDay, String startDay);
+			
+			//Methods written to be used in movie controller
+			public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay);
+			
+			public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime);
 }

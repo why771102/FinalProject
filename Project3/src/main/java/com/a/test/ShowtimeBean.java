@@ -68,6 +68,13 @@ public class ShowtimeBean implements Serializable {
 		this.stID = stID;
 		this.sthb=sthb;
 	}
+	public ShowtimeBean(Integer stID,  ShowTimeHistoryBean sthb,  String strDay, String strTime) {
+		super();
+		this.strDay =strDay;
+		this.strTime= strTime;
+		this.stID = stID;
+		this.sthb=sthb;
+	}
 	public ShowtimeBean(Integer stID, int runningTime, double price_time, RunningBean rb,HallBean hall) {
 		super();
 		this.stID = stID;

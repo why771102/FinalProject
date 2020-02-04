@@ -247,12 +247,17 @@ return false;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<MovieBean> getDistinctMovieID(String endDay, String startDay){
+	@Override
+	public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay){
 		Session session = factory.getCurrentSession();
-		String hql = "SELECT DISTINCT movieID FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate";
-		List<MovieBean> list = new ArrayList<>();
+		LocalDate et = startDay.toLocalDate();
+		System.out.println("startDay:" + startDay);
+		String enddate = (et.plusDays(7).toString())+" "+"00:00:00"; 
+		System.out.println("enddate:" + enddate);
+		String hql = "SELECT DISTINCT run FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate";
+		List<ShowTimeHistoryBean> list = new ArrayList<>();
 		try {
-		list = session.createQuery(hql).setParameter("enddate", endDay)
+		list = session.createQuery(hql).setParameter("enddate", enddate)
 								.setParameter("startdate", startDay)
 								.getResultList();
 		}catch(Exception e) {
@@ -261,6 +266,24 @@ return false;
 		return list;
 	}
 
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime){
+		List<ShowTimeHistoryBean> list = new ArrayList<>();
+		Session session = factory.getCurrentSession();
+		String start = starttime.toString();
+		LocalDate et = starttime.toLocalDate();
+		String enddate = (et.plusDays(7).toString())+" "+"00:00:00";  
+		try {
+		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate";
+		list = session.createQuery(hql).setParameter("enddate", enddate)
+				.setParameter("startdate", start)
+				.getResultList();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		
+	}
 
 }

@@ -3,6 +3,7 @@ package com.c.dao.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -40,10 +41,10 @@ public class Testing {
 //			String c = chars[i].toString();
 //			System.out.println(c);
 //		}
-		for(int i = 0; i < 20; i++) {
-			Integer noOfOrdersEachDay = (int) (Math.random()*20)+50;
-			System.out.println("noOfOrdersPerDay: " + noOfOrdersEachDay);	
-		}
+//		for(int i = 0; i < 20; i++) {
+//			Integer noOfOrdersEachDay = (int) (Math.random()*20)+50;
+//			System.out.println("noOfOrdersPerDay: " + noOfOrdersEachDay);	
+//		}
 		
 //		String A = "";
 //		A += "b";
@@ -51,7 +52,12 @@ public class Testing {
 //		String[] str = new String[5];
 //		String abc = "abc";
 //		
-		
+		System.out.println(LocalDateTime.now().toString());
+		LocalDateTime starttime = LocalDateTime.now();
+		System.out.println(starttime);
+		LocalDate endTime = starttime.toLocalDate();
+		String et = (endTime.plusDays(7).toString())+" "+"00:00:00"; 
+		System.out.println(et);
 	}
 
 }

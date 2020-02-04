@@ -1,6 +1,7 @@
 package com.a.service.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -111,14 +112,22 @@ public class ShowTimeHistoryServiceImpl implements ShowTimeHistoryService {
 	@Override
 	public List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID, String exOffDay,
 			String release) {
-		// TODO Auto-generated method stub
+
 		return dao.getShowTimeHistoryListByRunIDAndTime(runID, exOffDay, release);
 	}
-
+	
+	@Transactional
 	@Override
-	public List<MovieBean> getDistinctMovieID(String endDay, String startDay) {
+	public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay) {
 		
-		return null;
+		return dao.getDistinctMovieID(startDay);
+	}
+	
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime) {
+		
+		return dao.getAWeekShowTimeHistoryBean(starttime);
 	}
 
 
