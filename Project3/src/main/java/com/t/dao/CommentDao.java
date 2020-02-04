@@ -13,7 +13,7 @@ public interface CommentDao {
 	//從前端抓電影ID
 	
 	//抓出該會員是否在該留言執行過偏好設定
-	public boolean checkCommentExist(Integer memberID);
+	public boolean checkCommentExist(Integer memberID,Integer movieID);
 	
 	//查詢並列出電影ID們
 	public List<String> getMovies();
@@ -27,8 +27,8 @@ public interface CommentDao {
 	//抓出該電影的平均星數
 	public Double getAvgGrade(Integer movieID);
 	
-	//抓出該會員在該電影所留的短評 && deleteComment = 0
-	List<CommentBean> getComment(Integer memberID);
+	//抓出該會員在該電影所留的短評ID && deleteComment = 0
+	public Integer getCommentID(Integer memberID,Integer movieID);
 	
 	//抓到commentID後把資料都列出來
 	List<CommentBean> memberComment();
@@ -54,6 +54,9 @@ public interface CommentDao {
 
 	//將檢舉的短評reportComment 0改1
 	void reportComment(Integer commentID);
+	
+	//將審核後沒問題的短評reportComment 1改0
+	void cancalReportComment(Integer commentID);
 
 	//將檢舉的短評ID傳送至後台
 	List<CommentBean> findAllReportComment();

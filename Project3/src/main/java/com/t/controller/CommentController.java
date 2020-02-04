@@ -48,8 +48,8 @@ public class CommentController {
 //	}
 	
 	//印出該會員的留言
-	@RequestMapping("/usercomment")
-	public String getUserComment(HttpServletRequest request,Model model) {
+	@RequestMapping("/usercomment/{movieID}")
+	public String getUserComment(HttpServletRequest request,@PathVariable("movieID")Integer movieID,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -59,9 +59,10 @@ public class CommentController {
 			}
 		}
 		int memberID = Integer.parseInt(mID);
-		List<CommentBean> list = service.getComment(memberID);
-		model.addAttribute("CommentBean", list);
-		return "t/updatecomment";
+		int commentID = service.getCommentID(memberID,movieID);
+		CommentBean cb = service.getTheCommentBean(commentID);
+		model.addAttribute("CommentBean", cb);
+		return "t/onecomment";
 	}
 	
 	//列出所有Comment
@@ -128,11 +129,14 @@ public class CommentController {
 		}
 		int memberID = Integer.parseInt(mID);
 		//檢查是否有在該電影留過言
-		boolean ce = service.checkCommentExist(memberID);
+		boolean ce = service.checkCommentExist(memberID,movieID);
 		//如果有 印出該留言並提供修改或刪除選項
 		if(ce == true){
-			List<CommentBean> list = service.getComment(memberID);
-			model.addAttribute("CommentBean", list);
+			System.out.println("memberID = " + memberID);
+			System.out.println("movieID = " + movieID);
+			int commentID = service.getCommentID(memberID,movieID);
+			CommentBean cb = service.getTheCommentBean(commentID);
+			model.addAttribute("CommentBean", cb);
 			return "t/onecomment";
 		}
 		//如果無 顯示撰寫區
@@ -197,7 +201,7 @@ public class CommentController {
 	
 	//查詢單筆
 	@RequestMapping("/onecomment")
-	public String getOneCommentBean(@RequestParam("id")Integer commentID,Model model) {
+	public String getOneCommentBean(Integer commentID,Model model) {
 		model.addAttribute("Comment",service.getTheCommentBean(commentID));
 		return "t/onecomment";
 	}
@@ -213,8 +217,8 @@ public class CommentController {
 	//用對應的commentID找出該comment的資料
 	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET)
 	public String getupdateComment(@PathVariable("commentID")Integer commentID,Model model) {
-		CommentBean pb = service.getTheCommentBean(commentID);
-		model.addAttribute("CommentBean", pb);
+		CommentBean cb = service.getTheCommentBean(commentID);
+		model.addAttribute("CommentBean", cb);
 		return "t/updatecomment";
 	}
 	

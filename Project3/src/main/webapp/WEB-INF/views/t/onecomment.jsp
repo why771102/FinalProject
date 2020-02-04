@@ -19,23 +19,23 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<h3>電影ID:${Comment.movieBean.movieID}</h3>
-				<p>會員ID: ${Comment.memberBean.memberID}</p>
+				<h3>電影ID:${CommentBean.movieBean.title}</h3>
+				<p>會員ID: ${CommentBean.memberBean.account}</p>
 				<p>
 					<strong>評分等級: </strong> <span class='label label-warning'>
-						${Comment.grade} </span>
+						${CommentBean.grade} </span>
 				</p>				
-				<p>已觀賞: ${Comment.watched}</p>
-				<p>短評內文: ${Comment.commentContent}</p>
-				<p>時間: ${Comment.commentTime}</p>
+				<p>已觀賞: ${CommentBean.watched}</p>
+				<p>短評內文: ${CommentBean.commentContent}</p>
+				<p>時間: ${CommentBean.commentTime}</p>
 				<p>
 					<a href="<spring:url value='/findAllComment' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回
 					</a> 
-					<a href="<spring:url value='/update/comment/${Comment.commentID}' />" class="btn btn-default">
+					<a href="<spring:url value='/update/comment/${CommentBean.commentID}' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>修改
 					</a> 
-					<a href="<spring:url value='/comments/delete/${Comment.commentID}' />" class="btn btn-default">
+					<a href="<spring:url value='/comments/delete/${CommentBean.commentID}' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>刪除
 					</a> 
 					
