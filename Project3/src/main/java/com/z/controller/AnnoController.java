@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.google.gson.Gson;
 import com.z.model.AnnoBean;
 import com.z.model.AnnoStatusBean;
 import com.z.service.AnnoService;
@@ -49,6 +51,16 @@ public class AnnoController {
 		model.addAttribute("allAnnos", allAnnos);
 		return "z/bgAnnos";
 	}
+	
+	@RequestMapping(value = "/bgAnnosAjax")
+	public @ResponseBody String getAllAnnosAjax(Model model) {
+		List<AnnoBean> allAnnos = service.showAnno();
+		model.addAttribute("allAnnos", allAnnos);
+		Gson gson = new Gson();
+		String list = gson.toJson(allAnnos);
+		return list;
+	}
+	
 	
 	//以下三個為新增公告方法
 	@RequestMapping(value = "/anno/add", method = RequestMethod.GET)

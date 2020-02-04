@@ -145,22 +145,6 @@
 		cb(start, end);
 	});
 
-
-// 	//傳送cate selection值
-// 	function showCate() {
-// 		$.ajax({
-// 			url : "${pageContext.request.contextPath}/product/sale/date",
-// 			data : {
-// 				cate : document.getElementById("categoryNames").value
-// 			},
-// 			type : "Get",
-// // 			success : function() {
-// // 				alert("新增成功!");
-// 				//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-// // 			}
-// 		});
-// 	}
-
 	//動態新增表格
 // 	$('#insertHere')
 // 			.append(

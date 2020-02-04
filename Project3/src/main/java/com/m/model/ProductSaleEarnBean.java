@@ -55,9 +55,12 @@ public class ProductSaleEarnBean implements Serializable {
 	Integer earn;
 	@Transient
 	Integer earnSubtotal;
+	@Transient
+	Integer pcUse;
 	
 	public ProductSaleEarnBean(String productName, Integer price, Integer qtyTotal, Integer cost, 
-			Integer earn, Integer subtotal, Integer earnSubtotal, CategoriesBean categoriesBean) {
+			Integer earn, Integer subtotal, Integer earnSubtotal, CategoriesBean categoriesBean
+			,Integer pcUse) {
 		this.productName = productName;
 		this.qtyTotal = qtyTotal;
 		this.price = price;
@@ -66,6 +69,15 @@ public class ProductSaleEarnBean implements Serializable {
 		this.earn = earn;
 		this.earnSubtotal = earnSubtotal;
 		this.categoriesBean = categoriesBean;
+		this.pcUse = pcUse;
+	}
+
+	public Integer getPcUse() {
+		return pcUse;
+	}
+
+	public void setPcUse(Integer pcUse) {
+		this.pcUse = pcUse;
 	}
 
 	public Integer getCost() {

@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- title -->
@@ -22,7 +25,7 @@
 
 <body>
     <header>
-        <!-- header -->
+<!-- header -->
         <nav class="navbar navbar-default navbar-static-top my-navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -32,12 +35,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/logo-1.png" class="logo-hdr" width="180" height='38.44'/>
+                    <a class="navbar-brand" href="<c:url value='/' />"><img src="../img/logo-1.png" class="logo-hdr" width="180">
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse my-nav-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="index.html">home</a>
+                        <li class="active"><a href="<c:url value='/' />">home</a>
                         </li>
                         <li><a href="latest.html">即將上映</a>
                         </li>
@@ -47,21 +50,13 @@
                         </li>
                         <li><a href="conatct.html">contact</a>
                         </li>
-                        <li><a href="showAllProducts">周邊商品</a>
+                        <li><a href="products.html">周邊商品</a>
                         </li>
-                        <li><a href="login-page.html">登入</a>
+                        <li><a href="shopCart.html" style='padding:5px;'><img src="../img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
-                        <li><a href="getShoppingCart" style='padding:5px;'><img src="img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
-                        </li>
-                        <li class="free-trial-btn"><a href="free-trail.html">free trial</a>
-                            
-                        </li>
-                        <li>
-                            <select>
-                                <option>中文</option>
-                                <option>ENG</option>
-                            </select>
-                        </li>
+                        <li class="btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
+                        <li class="btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
+                        <li class="btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -71,6 +66,28 @@
     <!-- header-->
 
    
+    <script>
+    cookieArray = document.cookie.split("; ");
+	console.log(cookieArray);
 
+	for (i = 0; i < cookieArray.length; i++) {
+			memberIDArrays = cookieArray[i].split("=");
+			console.log(memberIDArrays);
+			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
+// 				$("#name").text("訪客");
+				$("#logout").hide();
+			}else{
+// 				for (i = 0; i < cookieArray.length; i++) {
+// 				nameArrays = cookieArray[i].split("=");
+// 				console.log(nameArrays);
+// 				if (nameArrays[0] == "name") {
+// 				$("#name").text(nameArrays[1]);
+// 				}
+// 			}
+				$("#register").hide();
+				$("#login").hide();
+		}
+	}
+    </script>
 </body>
 </html>

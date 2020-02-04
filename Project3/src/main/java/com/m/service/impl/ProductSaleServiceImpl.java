@@ -59,8 +59,49 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	
 	@Transactional
 	@Override
-	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate){
+	public List<ProductSaleEarnBean> getPeripheralInfo(String sDate, String eDate) {
 		return dao.getPeripheralInfo(sDate, eDate);
+	}
+	
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo6(String sDate, String eDate) {
+		return dao.getPeripheralInfo6(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo7(String sDate, String eDate) {
+		return dao.getPeripheralInfo7(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo8(String sDate, String eDate) {
+		return dao.getPeripheralInfo8(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo9(String sDate, String eDate) {
+		return dao.getPeripheralInfo9(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo10(String sDate, String eDate) {
+		return dao.getPeripheralInfo10(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo11(String sDate, String eDate) {
+		return dao.getPeripheralInfo11(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo12(String sDate, String eDate) {
+		return dao.getPeripheralInfo12(sDate, eDate);
+	}
+	@Transactional
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo13(String sDate, String eDate) {
+		return dao.getPeripheralInfo13(sDate, eDate);
 	}
 	
 	@Transactional
@@ -74,7 +115,7 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 	public String getPname(Integer productID) {
 		return dao.getPname(productID);
 	}
-
+	
 	//================================================================================
 	
 	@Transactional
@@ -146,6 +187,8 @@ public class ProductSaleServiceImpl implements ProductSaleService {
 		}
 		return totalDates;
 	}
+
+
 
 //	@Transactional
 //	@Override

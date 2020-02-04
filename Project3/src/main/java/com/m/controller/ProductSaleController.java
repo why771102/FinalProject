@@ -62,7 +62,7 @@ public class ProductSaleController {
 	public String addCateSelection(Model model) {
 		String cateSelection = service.getCategoryNames();
 		model.addAttribute("cateSelection", cateSelection);
-		System.out.println(service.getFoodDates());
+//		System.out.println(service.getFoodDates());
 		return "m/productSale1";
 	}
 	
@@ -94,8 +94,29 @@ public class ProductSaleController {
 			case "餐點":
 				psebList = service.getFoodInfo5(sDate, eDate);
 				break;
-			case "周邊商品":
-				psebList = service.getPeripheralInfo(sDate, eDate);
+			case "公仔":
+				psebList = service.getPeripheralInfo6(sDate, eDate);
+				break;
+			case "衣服":
+				psebList = service.getPeripheralInfo7(sDate, eDate);
+				break;
+			case "爆米花桶":
+				psebList = service.getPeripheralInfo8(sDate, eDate);
+				break;
+			case "杯子餐具":
+				psebList = service.getPeripheralInfo9(sDate, eDate);
+				break;
+			case "娃娃":
+				psebList = service.getPeripheralInfo10(sDate, eDate);
+				break;
+			case "電影海報":
+				psebList = service.getPeripheralInfo11(sDate, eDate);
+				break;
+			case "電子產品":
+				psebList = service.getPeripheralInfo12(sDate, eDate);
+				break;
+			case "其他":
+				psebList = service.getPeripheralInfo13(sDate, eDate);
 				break;
 			default:
 				psebList = service.getAllProductInfo(sDate, eDate);
