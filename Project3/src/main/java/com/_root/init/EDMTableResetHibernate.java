@@ -45,6 +45,7 @@ import com.z.model.AnnoBean;
 import com.z.model.AnnoStatusBean;
 import com.z.model.EmpBean;
 import com.z.model.EmpStatusBean;
+import com.z.model.QuestionStatusBean;
 import com.z.model.RoleBean;
 
 public class EDMTableResetHibernate {
@@ -139,6 +140,26 @@ public class EDMTableResetHibernate {
 			}
 			session.flush();
 			System.out.println("AnnoStatus 資料新增成功");
+			
+			
+//questionStatus
+			try (FileReader fr = new FileReader("data/quesStatus.dat"); BufferedReader br = new BufferedReader(fr);) {
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(UTF8_BOM)) {
+						line = line.substring(1);
+					}
+					String[] token = line.split("\\|");
+					String name = token[0];
+					QuestionStatusBean asb = new QuestionStatusBean(name);
+					session.save(asb);
+				}
+			} catch (IOException e) {
+				System.err.println("新建QuesStatus表格時發生IO例外: " + e.getMessage());
+			}
+			session.flush();
+			System.out.println("QuestionStatus 資料新增成功");
+			
+			
 
 			// 以下為公告灌資料
 			try (FileReader fr = new FileReader("data/anno.dat"); BufferedReader br = new BufferedReader(fr);) {

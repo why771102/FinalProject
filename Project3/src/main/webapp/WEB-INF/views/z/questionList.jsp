@@ -26,7 +26,7 @@
 			<c:forEach var="ques" items="${allQuestion}">
 		<tr>
 			<td>${ques.questionId}</td>
-			<td>${ques.status}</td>
+			<td>${ques.questionStatusBean.statusName}</td>
 			<td><a href="question/${ques.questionId}">查看</a></td>
 		</tr>
 			</c:forEach>

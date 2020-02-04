@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.p.model.MemberBean;
 import com.z.dao.QuestionDao;
 import com.z.model.QuestionBean;
+import com.z.model.QuestionStatusBean;
 
 @Repository
 public class QuestionDaoImpl implements QuestionDao {
@@ -40,7 +41,7 @@ public class QuestionDaoImpl implements QuestionDao {
 		MemberBean member = session.get(MemberBean.class, memberId);
 		QuestionBean newQues = new QuestionBean();
 		newQues.setUserBean(member);
-		newQues.setStatus(1);
+		newQues.setQuestionStatusBean(session.get(QuestionStatusBean.class, 1));
 		session.save(newQues);
 		
 		String hql = "from QuestionBean where memberId = :memberId";

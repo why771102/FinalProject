@@ -82,11 +82,7 @@
 	</div>
 
 	<script>
-		var history = $
-		{
-			content
-		};
-		console.log(history);
+
 	</script>
 
 

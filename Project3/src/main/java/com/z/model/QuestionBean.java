@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.p.model.MemberBean;
 
@@ -32,7 +33,31 @@ public class QuestionBean implements Serializable{
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memberId")
 	MemberBean memberBean;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "status")
+	QuestionStatusBean questionStatusBean;
+	
+	@Transient
 	Integer status;
+	
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
+	}
+
+	public QuestionStatusBean getQuestionStatusBean() {
+		return questionStatusBean;
+	}
+
+	public void setQuestionStatusBean(QuestionStatusBean questionStatusBean) {
+		this.questionStatusBean = questionStatusBean;
+	}
+
+	
 	
 	public QuestionBean() {
 

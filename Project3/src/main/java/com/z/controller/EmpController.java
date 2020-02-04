@@ -97,7 +97,7 @@ public class EmpController {
 			model.addAttribute("errorMsgMap", errorMsgMap);
 			return "z/EmpLogin";
 		}
-		return "z/loginSuccess"; //到時候要導到LoginSucess頁面
+		return "/backstageindex"; //到時候要導到LoginSucess頁面
 	}
 	
 	//以下為登出方法

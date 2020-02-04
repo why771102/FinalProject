@@ -31,6 +31,7 @@
 		<mapping class="com.z.model.AnnoBean"></mapping>
 		<mapping class="com.z.model.AnnoStatusBean"></mapping>
 		<mapping class="com.z.model.EmpStatusBean"></mapping>
+		<mapping class="com.z.model.QuestionStatusBean"></mapping>
 		<mapping class="com.z.model.RoleBean"></mapping>
 		<mapping class="com.l.model.CategoriesBean"></mapping>
 		<mapping class="com.a.model.GenreBean"></mapping>
