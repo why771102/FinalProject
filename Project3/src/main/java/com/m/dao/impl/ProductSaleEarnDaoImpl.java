@@ -75,32 +75,32 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
 				LocalDate mOrderDate = LocalDateTime.parse(mob.getShowTimeHistoryBean().getPlayStartTime(), formatter)
 						.toLocalDate();
-				System.out.println("mOrderDate=== " + mOrderDate);
-				System.out.println("date=== " + date);
+//				System.out.println("mOrderDate=== " + mOrderDate);
+//				System.out.println("date=== " + date);
 				long Days = ChronoUnit.DAYS.between(mOrderDate, date);
 				List<Integer> OIDs = new ArrayList<>();
 
 				if (Days == 0) {
 					moList.add(mob);
-					System.out.println("moList~~~" + moList.size());
+//					System.out.println("moList~~~" + moList.size());
 
 					OIDs.add(mob.getOrdersID());
-					System.out.println("OID====" + OIDs);
+//					System.out.println("OID====" + OIDs);
 
 					for (Integer i : OIDs) {
 						System.out.println("---i---" + i);
 						for (MOrderDetailBean modb : modList) {
 							if (modb.getmOrderBean().getOrdersID() == i) {
 								mdList.add(modb);
-								System.out.println("mdList.size(): " + mdList.size());
+//								System.out.println("mdList.size(): " + mdList.size());
 							}
 						}
 					}
 					
-					System.out.println("pbList.size() =>" + pbList.size());
+//					System.out.println("pbList.size() =>" + pbList.size());
 
 					dateAndOID.put(date, OIDs);
-					System.out.println("dateAndOID------------" + dateAndOID.size());
+//					System.out.println("dateAndOID------------" + dateAndOID.size());
 				} else {
 //					System.out.println("不符合 假資料中該日與mob(showid>playtime)比較");
 				}
@@ -187,30 +187,30 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 			for (SCOrdersBean scob : scobList) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
 				LocalDate SCOrderDate = LocalDateTime.parse(scob.getOrdDate(), formatter).toLocalDate();
-				System.out.println("SCOrderDate=== " + SCOrderDate);
-				System.out.println("date=== " + date);
+//				System.out.println("SCOrderDate=== " + SCOrderDate);
+//				System.out.println("date=== " + date);
 				long Days = ChronoUnit.DAYS.between(SCOrderDate, date);
 				List<Integer> SCOIDs = new ArrayList<>();
 
 				if (Days == 0) {
 					scoList.add(scob);
-					System.out.println("moList~~~" + scoList.size());
+//					System.out.println("moList~~~" + scoList.size());
 
 					SCOIDs.add(scob.getsCOrderID());
-					System.out.println("SCOID====" + SCOIDs);
+//					System.out.println("SCOID====" + SCOIDs);
 
 					for (Integer i : SCOIDs) {
 						System.out.println("---i---" + i);
 						for (SCOrderDetailBean scod : scodList) {
 							if (scod.getSCOrdersBean().getsCOrderID() == i) {
 								sdList.add(scod);
-								System.out.println("sdList.size(): " + sdList.size());
+//								System.out.println("sdList.size(): " + sdList.size());
 							}
 						}
 					}
 					System.out.println("pbList.size() =>" + pbList.size());
 					dateAndSCOID.put(date, SCOIDs);
-					System.out.println("dateAndOID------------" + dateAndSCOID.size());
+//					System.out.println("dateAndOID------------" + dateAndSCOID.size());
 				} else {
 //					System.out.println("不符合 假資料中該日與mob(showid>playtime)比較");
 				}
@@ -241,7 +241,7 @@ public class ProductSaleEarnDaoImpl implements ProductSaleEarnDao {
 				session.save(pseb);	
 			}
 		}
-		System.out.println("dateAndSCOID------------" + dateAndSCOID.size());
+//		System.out.println("dateAndSCOID------------" + dateAndSCOID.size());
 //		Set<LocalDate> keys = dateAndOID.keySet();
 //		System.out.println("All keys are: " + keys);
 //		Set<Entry<LocalDate, List<Integer>>> value = dateAndOID.entrySet();
