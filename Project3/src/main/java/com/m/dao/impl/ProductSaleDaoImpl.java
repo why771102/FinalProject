@@ -92,6 +92,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			Integer subtotal = 0;
 			Integer earnSubtotal = 0;
 			CategoriesBean cb = null;
+			Integer pcUse = 0;
 			ProductSaleEarnBean pseb1 = new ProductSaleEarnBean();
 			for (ProductSaleEarnBean pseb : psebList) {
 				if (i == pseb.getProductsBean().getProductID()) {
@@ -103,7 +104,8 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					earn = unitPrice - cost;
 					earnSubtotal = qty * earn;
 					cb = pseb.getCategoriesBean();
-						
+					pcUse = pcUse + subtotal;
+					
 					pseb1.setCategoriesBean(cb);
 					System.out.println("__________" + cb.getCategoryID() + "________________");
 					pseb1.setProductsBean(pseb.getProductsBean());
@@ -114,7 +116,6 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					pseb1.setCost(cost);
 					pseb1.setEarn(earn);
 					pseb1.setEarnSubtotal(earnSubtotal);
-					
 				} else {
 //					System.out.println("出現不應該會有的PID比對!");
 				}
@@ -123,6 +124,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 			if (pseb1.getPrice() != null) {
 				psList.add(pseb1);
 			} else {
+			}
+			for(ProductSaleEarnBean ps : psList) {
+				ps.setPcUse(pcUse);
 			}
 		}
 		session.close();

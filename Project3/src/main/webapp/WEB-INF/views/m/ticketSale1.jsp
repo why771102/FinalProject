@@ -202,9 +202,7 @@
 			$('#example').DataTable({"iDisplayLength": 100, 
 				"search": {regex: true}}).column(1).search("小提包", true, false).draw(); 
 		}
-			
-		});
-	}
+		}
 	
 </script>
 </html>

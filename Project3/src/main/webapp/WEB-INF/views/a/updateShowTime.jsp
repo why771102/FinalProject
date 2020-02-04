@@ -367,12 +367,12 @@
                 var strDay = document.getElementById("strDay" + i).innerHTML;
                 var time = document.getElementById("time" + i).childNodes[0].value;
                 var playStartTime = strDay + " " + time;
-                console.log("確認show: " + showTimeId);
-                console.log("確認run: " + runID);
-                console.log("確認hall: " + hallID);
-                console.log("確認day: " + strDay);
-                console.log("確認時間: " + time);
-                console.log("確認時間: " + playStartTime);
+//                 console.log("確認show: " + showTimeId);
+//                 console.log("確認run: " + runID);
+//                 console.log("確認hall: " + hallID);
+//                 console.log("確認day: " + strDay);
+//                 console.log("確認時間: " + time);
+//                 console.log("確認時間: " + playStartTime);
                 //                 console.log("確認時間: "+strDay);
 
                 var update = {

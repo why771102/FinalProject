@@ -6,23 +6,9 @@
 <html>
 <head>
 
-<meta charset="UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-<title>showMovie</title>
-<div>${sthb_list1.get(1).run.movie.movieID}</div>
-<div>${sthb_list1.get(1).showTimeId}</div>
-<div>${sthb_list1.get(1).playStartTime}</div>
-<div>${sthb_list1.get(1).run.runID}</div>
-
-</head>
-<body>
-
-<!DOCTYPE html>
-<html lang='en'>
-
-<head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <!-- title -->
@@ -40,46 +26,56 @@
 <body>
     <header>
         <!-- header -->
-        <nav class='navbar navbar-default navbar-static-top'>
-            <div class='container'>
-                <div class='navbar-header'>
-                    <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
-                        <span class='sr-only'>Toggle navigation</span>
-                        <span class='icon-bar'></span>
-                        <span class='icon-bar'></span>
-                        <span class='icon-bar'></span>
-                    </button>
-                    <a class='navbar-brand' href='index.html'><img src='img/logo-1.png' class='logo-hdr' width='180'>
-                    </a>
-                </div>
-                <div id='navbar' class='navbar-collapse collapse'>
-                    <ul class='nav navbar-nav navbar-right'>
-                        <li><a href='index.html'>home</a>
-                        </li>
-                        <li class='active'><a href='features.html'>latest movies</a>
-                        </li>
-                        <li><a href='pricing.html'>pricing</a>
-                        </li>
-                        <li><a href='up-coming.html'>Up coming</a>
-                        </li>
-                        <li><a href='conatct.html'>contact</a>
-                        </li>
-                        <li><a href='login-page.html'>login </a>
-                        </li>
-                        <li class='free-trial-btn'><a href='free-trail.html'>free trial</a>
-                        </li>
-                        <li>
-                            <select>
-                                <option>ENG</option>
-                                <option>FR</option>
-                            </select>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-            </div>
-        </nav>
+<!--         <nav class='navbar navbar-default navbar-static-top'> -->
+<!--             <div class='container'> -->
+<!--                 <div class='navbar-header'> -->
+<!--                     <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'> -->
+<!--                         <span class='sr-only'>Toggle navigation</span> -->
+<!--                         <span class='icon-bar'></span> -->
+<!--                         <span class='icon-bar'></span> -->
+<!--                         <span class='icon-bar'></span> -->
+<!--                     </button> -->
+<!--                     <a class='navbar-brand' href='index.html'><img src='img/logo-1.png' class='logo-hdr' width='180'> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<!--                 <div id='navbar' class='navbar-collapse collapse'> -->
+<!--                     <ul class='nav navbar-nav navbar-right'> -->
+<!--                         <li><a href='index.html'>home</a> -->
+<!--                         </li> -->
+<!--                         <li class='active'><a href='features.html'>latest movies</a> -->
+<!--                         </li> -->
+<!--                         <li><a href='pricing.html'>pricing</a> -->
+<!--                         </li> -->
+<!--                         <li><a href='up-coming.html'>Up coming</a> -->
+<!--                         </li> -->
+<!--                         <li><a href='conatct.html'>contact</a> -->
+<!--                         </li> -->
+<!--                         <li><a href='login-page.html'>login </a> -->
+<!--                         </li> -->
+<!--                         <li class='free-trial-btn'><a href='free-trail.html'>free trial</a> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <select> -->
+<!--                                 <option>ENG</option> -->
+<!--                                 <option>FR</option> -->
+<!--                             </select> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 /.nav-collapse -->
+<!--             </div> -->
+<!--         </nav> -->
+
+ <jsp:include page="header.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
+
     </header>
+    <div>${sthb_list1.get(1).run.movie.movieID}</div>
+<div>${sthb_list1.get(1).showTimeId}</div>
+<div>${sthb_list1.get(1).playStartTime}</div>
+<div>${sthb_list1.get(1).run.runID}</div>
     <!-- header -->
 
     <!-- banner -->
@@ -113,7 +109,7 @@
                 <div class='col-sm-6'>
                     <!-- <div class='ex-feature'> -->
                        
-                        <h2 >杜立德</h2>
+                        <h2 >${sthb_list1.get(1).run.movie.title}</h2>
                         <table>
                             <tr>
                                 <td>導演：</td>
@@ -129,20 +125,18 @@
                             </tr>
                             <tr>
                                 <td>片長：</td>
-                                <td>120分鐘</td>
+                                <td>${sthb_list1.get(0).run.movie.runningTime}</td>
                             </tr>
                         </table>
                         <h3 style='border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px'>播放場次</h3>
                         <table>
                             <tr>
-                                <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>09:20</a></td>
+                            <c:forEach var="showTime" items="${sthb_list1}" >
+                                     <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>${showTime.playStartTime}</a></td>
+                            </c:forEach>
                                 
-                                <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>09:20</a></td>
                                 
-                                <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>09:20</a></td>
-                                <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>09:20</a></td>
-                                
-                                <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>10:20</a></td>
+                               
                             </tr>
                         </table>
                         

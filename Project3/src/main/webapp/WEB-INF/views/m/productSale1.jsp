@@ -25,9 +25,12 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <!-- chart -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <base href="https://www.highcharts.com/demo/styled-mode-column/grid-light" />
+  <link rel="stylesheet" href="/samples/highcharts/demo/styled-mode-column/demo.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/joomla/media/templates/highsoft_2015/css/bootstrap.min.css" type="text/css" /> -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="//code.highcharts.com/themes/grid-light.js"></script> 
 </head>
 
 <body style="background-color: grey">
@@ -97,12 +100,14 @@
 				cell.innerHTML = i + 1;
 			});
 		}).draw();
+		jQuery.noConflict();
 	});
 
 	// timepicker
 	$(function() {
 		var start = moment().subtract(7, 'days');
 		var end = moment();
+		jQuery.noConflict();
 		function cb(start, end, label) {
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
@@ -120,7 +125,7 @@
 						success : function(productsale) {
 							alert("新增成功!");
 							window.productsale = productsale;
-// 							editInfo(productsale);
+							editInfo(productsale);
 							console.log(typeof (window.productsale));
 							var dataTable = $("#example").DataTable();
 							dataTable.clear().draw();
@@ -140,7 +145,6 @@
 							// 					console.log(productsale);
 							document.getElementById("submitExcel").innerHTML += "<input type='hidden' name='exportExcel' value='"
 									+ JSON.stringify(window.productsale) + "'>" //datatable content
-						
 
 									//傳送cate selection值
 									$("#categoryNames").change(function(){
@@ -254,83 +258,66 @@
 // 		editData.push(data);
 // 		}
 // 		window.hallData = editData;
-	
-    var chart = Highcharts.chart('container', {
 
-        chart: {
-            type: 'column'
-        },
-    
+			//chart percentage and data
+			function editInfo(productsale){
+				var editData = [];
+				for(let a = 0 ; a < (productsale).length ; a++){
+					var productName = productsale[a].productName;
+					var subtotal = Math.round((productsale[a].subtotal / productsale[a].pcUse) * 100);
+
+				var data = {
+						name: productName, 
+						y: subtotal
+				};
+				editData.push(data);
+				}
+				window.hallData = editData;
+			
+		//chart
+
+Highcharts.chart('container', {
+
+    chart: {
+        type: 'column',
+        styledMode: true
+    },
+
+    title: {
+        text: 'Styling axes and columns'
+    },
+
+    yAxis: [{
+        className: 'highcharts-color-0',
         title: {
-            text: 'Highcharts responsive chart'
-        },
-    
-        subtitle: {
-            text: 'Resize the frame or click buttons to change appearance'
-        },
-    
-        legend: {
-            align: 'right',
-            verticalAlign: 'middle',
-            layout: 'vertical'
-        },
-    
-        xAxis: {
-            categories: ['Apples', 'Oranges', 'Bananas'],
-            labels: {
-                x: -10
-            }
-        },
-    
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 'Amount'
-            }
-        },
-    
-        series: [{
-            name: 'Christmas Eve',
-            data: [1, 4, 3]
-        }, {
-            name: 'Christmas Day before dinner',
-            data: [6, 4, 2]
-        }, {
-            name: 'Christmas Day after dinner',
-            data: [8, 4, 3]
-        }],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        align: 'center',
-                        verticalAlign: 'bottom',
-                        layout: 'horizontal'
-                    },
-                    yAxis: {
-                        labels: {
-                            align: 'left',
-                            x: 0,
-                            y: -5
-                        },
-                        title: {
-                            text: null
-                        }
-                    },
-                    subtitle: {
-                        text: null
-                    },
-                    credits: {
-                        enabled: false
-                    }
-                }
-            }]
+            text: 'Primary axis'
         }
-    });
-	
+    }, {
+        className: 'highcharts-color-1',
+        opposite: true,
+        title: {
+            text: 'Secondary axis'
+        }
+    }],
+
+    plotOptions: {
+        column: {
+            borderRadius: 5
+        }
+    },
+
+    series: [{
+        data: [1, 3, 2, 4]
+    }, {
+        data: [324, 124, 547, 221],
+        yAxis: 1
+    }]
+
+});	
+
+		//end of chart		
+			}
+
+
 </script>
 </html>
