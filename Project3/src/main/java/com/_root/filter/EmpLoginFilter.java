@@ -24,7 +24,7 @@ import com.z.model.EmpBean;
 		urlPatterns = { "/*" }, 
 		initParams = { 
 				@WebInitParam(name = "mustLogin11", value = "/emp/updatePwd"), //""內要填controller的路徑
-				@WebInitParam(name = "mustLogin12", value = ""), 
+				@WebInitParam(name = "mustLogin12", value = "/backstageindex"), 
 				@WebInitParam(name = "mustLogin13", value = "")	
 		})
 public class EmpLoginFilter implements Filter {
