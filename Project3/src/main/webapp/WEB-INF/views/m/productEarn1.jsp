@@ -128,12 +128,9 @@
 					console.log(productearn);
 				}
 			});
-			
 		}
 		console.log("ssss" + start.format('YYYY-MM-DD'));
 		console.log("eeee" + end.format('YYYY-MM-DD'));
-
-
 
 		// MMMM D, YYYY
 		$('#reportrange').daterangepicker(
@@ -162,20 +159,57 @@
 	});
 
 	//傳送cate selection值
-	function sendCate() {
-		console.log("cate=>" + document.getElementById("categoryNames").value);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/product/earn",
-			data : {
-				cate : document.getElementById("categoryNames").value
-			},
-			type : "POST",
-		// 				success : function() {
-		// 					alert("新增成功!");
-		// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-		// 				}
-		});
-	}
+	$("#categoryNames").change(function(){
+// 			function() {
+				console.log("cate=>"
+						+ document.getElementById("categoryNames").value);
+				// 		$.ajax({
+				// 			url : "${pageContext.request.contextPath}/product/sale",
+				// 			data : {
+				// 				cate : document.getElementById("categoryNames").value
+				// 			},
+				// 			type : "POST",
+				// 						success : function() {
+				var dataTable = $("#example").DataTable();
+				var cate = document.getElementById("categoryNames").value;
+				if(cate == '餐點總覽'){ 
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花|雙人套票|個人套票", true, false).draw();
+				}else if(cate == '套餐的餐點') {
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw(); 
+// 					console.log("check here~~~"+ typeof({"iDisplayLength": 100, 
+// 						"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw());
+// 					window.productsale = {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw();
+				} else if (cate == '餐點') {
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花", true, false).draw();
+				} else if (cate == '公仔') {
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("冰雪奇緣GSC黏土人艾莎|鋼鐵人公仔MK3磁浮版(金屬色版)|死侍系列大頭公仔", true, false).draw(); 
+				} else if (cate == '衣服') {
+				$('#example').DataTable({"iDisplayLength": 100, 
+					"search": {regex: true}}).column(1).search("星際大戰T恤", true, false).draw(); 
+				} else if (cate == '爆米花桶') {
+				$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("爆米花桶", true, false).draw(); 
+				} else if (cate == '杯子餐具') {
+				$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("搖搖杯|餐具|水杯|杯墊", true, false).draw(); 
+				} else if (cate == '娃娃') {
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("絨毛玩偶", true, false).draw(); 
+				}else if (cate == '電影海報') {
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("海報", true, false).draw(); 
+				} else if (cate == '電子產品') {
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("隨身碟|傳輸線", true, false).draw(); 
+				} else if(cate == '其他'){
+					$('#example').DataTable({"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("小提包", true, false).draw(); 
+				}
+			});
 
 // 	function sendpName() {
 // 		$
@@ -191,26 +225,6 @@
 // 						window.location.href = "${pageContext.request.contextPath}/product/sale/date";
 // 					}
 // 				});
-// 	}
-	
-	//動態新增表格
-// 	function showInfo(pseb) {
-// 		var pn;
-// 		for (var i = 0; i < pseb.length; i++) {
-// 			$('#insertHere').append(
-// 					//動態新增的時候id要加i
-// 					'<tr><td></td><td><div id="pName' + i
-// 							+ '" onclick="sendpName()">' + pseb[i].productName
-// 							+ '</div></td><td>' + pseb[i].price + '</td><td>'
-// 							+ pseb[i].qtyTotal + '</td><td>' + pseb[i].cost
-// 							+ '</td><td>' + pseb[i].earn + '</td><td>'
-// 							+ pseb[i].subtotal + '</td><td>'
-// 							+ pseb[i].earnSubtotal + '</td></tr>');
-// 			pn = "pName" + i;
-// 			console.log(pn);
-// 			console.log('~~hello~~~');
-// 			console.log(document.getElementById(pn).innerText);
-// 		}
 // 	}
 </script>
 </html>
