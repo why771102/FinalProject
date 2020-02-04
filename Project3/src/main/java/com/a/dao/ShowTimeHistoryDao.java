@@ -1,6 +1,7 @@
 package com.a.dao;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.a.model.MovieBean;
@@ -39,5 +40,9 @@ public interface ShowTimeHistoryDao {
 
 		List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID, String exOffDay, String release);
 		
-		List<MovieBean> getDistinctMovieID(String endDay, String startDay);
+		
+		//Methods written to be used in movie controller
+		List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay);
+		
+		List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime);
 }

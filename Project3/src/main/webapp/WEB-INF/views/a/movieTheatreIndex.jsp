@@ -312,12 +312,20 @@
 
                     <div class="col-sm-6 pull-right">
                         <div class="tc-girl" id="booktickets">
-                        <c:forEach >
-                            <select id="movie"></select>
-                        </c:forEach>
-                            <select id="playdate"></select>
-                            <select id="movieStartTime"></select>
+                        <select id="movie">
+                        	<option value="default" selected="" disabled="">請選擇</option>
+                        	<c:forEach var="movies" items="${movielist}">
+                            	<option value="${movies.movie.movieID}">${movies.movie.title}</option>
+                        	</c:forEach>
+                        </select>
+                            <select id="playdate">
+                            	<option value="default" selected="" disabled="">請選擇</option>
+                            </select>
+                            <select id="movieStartTime">
+                            	<option value="default" selected="" disabled="">請選擇</option>
+                            </select>
                         </div>
+                        <button class="" id="purchaseTicket">前往訂票</button>
                     </div>
 
                 </div>
@@ -504,6 +512,8 @@
     <!-- scripts-->
     <script defer src="js/jquery.flexslider.js"></script>
     <script type="text/javascript">
+     var allshowtimelist = ${allshowtimelistJSON};
+     console.log(allshowtimelist);
      
         $(window).load(function() {
             $('.flexslider').flexslider({
@@ -513,6 +523,112 @@
                 }
             });
         });
+        
+        function addDays(date, days) {
+      	  const copy = new Date(Number(date))
+      	  copy.setDate(date.getDate() + days)
+      	  return copy
+      	}
+        
+        //append date into the date drop-down menu
+        $('#movie').change(function(){
+        	var movie = $('#movie').val();
+        	$('#playdate').html("<option value='default' selected='' disabled=''>請選擇</option>");
+        	$('#movieStartTime').html("<option value='default' selected='' disabled=''>請選擇</option>");
+        	//get today's date
+        	var today = new Date();
+        	var days = [];
+        	var count = 0;
+        	//need to change this if number of days are not 7
+        	for(let d = 0; d < 7; d++){
+        		console.log("THIS IS TODAY: "+today);
+				//get the format required to add into drop-down menu 
+        		var month = today.getMonth();
+        		if(today.getMonth()+1<10){
+        			month = "0" + (today.getMonth()+1);
+        		}
+        		var day = today.getDate();
+        		if(today.getDate()<10){
+        			day = "0" + today.getDate();
+        		}
+        		var date = today.getFullYear()+'-'+month+'-'+day;
+        		for(let x = 0; x < allshowtimelist.length; x++){
+       
+            		if(allshowtimelist[x].run.movie.movieID == movie && (allshowtimelist[x].playStartTime.substring(0, 10)) == date){
+ 
+            			if(days.length >= 1){
+//             				console.log("This is if");
+//             				console.log("days[count] " + days[count] );
+//             				console.log("date: " + date);
+            				if(days[count] == date){
+//             					console.log("if(days[count] == date)");
+            					continue;
+            				}else{
+            					days.push(date);
+            					count++;
+            				}
+            			}else{
+//             				console.log("This is else");
+            				days.push(date);
+            			}
+            		}
+            	}
+        		console.log(date);
+        		
+        		today = addDays(today, 1);
+        	}
+        	for(let a = 0; a < days.length; a++){
+        		console.log(days[a]);
+        		document.getElementById("playdate").innerHTML += "<option value='" + days[a] +"'>" + days[a] + "</option>";
+        	}
+        	
+        	console.log($('#movie').val());
+        });
+        
+        console.log(allshowtimelist[0].playStartTime.substring(0, 10));
+        $('#playdate').change(function(){
+        	$('#movieStartTime').html("<option value='default' selected='' disabled=''>請選擇</option>");
+        	var chosenDate = $('#playdate').val();
+//         	console.log("chosenDate: " + chosenDate);
+//         	console.log(typeof(chosenDate));
+        	var chosenMovie = $('#movie').val();
+//         	console.log("chosenMovie: " + chosenMovie);
+        	for(let x = 0; x < allshowtimelist.length; x++){
+//         		console.log(allshowtimelist[x].run.movie.movieID == chosenMovie);
+//         		console.log((allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate);
+        		if(allshowtimelist[x].run.movie.movieID == chosenMovie && (allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate){
+        			document.getElementById('movieStartTime').innerHTML += "<option value='" + x +"'>" + allshowtimelist[x].playStartTime.substring(11, 16) + "</option>";
+        		}
+        	}
+
+        })
+        
+        console.log(allshowtimelist[$('movieStartTime').val()]);
+        $('#purchaseTicket').click(function(){
+//         	console.log($('#movieStartTime').val());
+        	console.log(allshowtimelist[$('#movieStartTime').val()]);
+        	$.ajax({
+				url : "${pageContext.request.contextPath}/purchaseTickets",
+				data : {
+					showTimeBean: allshowtimelist[$('#movieStartTime').val()]
+				},
+				type : "POST",
+				success : function() {
+					alert("訂票成功!");
+// 					window.location.href = "${pageContext.request.contextPath}/movieIndex";
+				}
+			});
+        });
+        
+//         function checkShowTime(date, movie){
+//         	for(let x = 0; x < allshowtimelist.length; x++){
+//         		console.log(allshowtimelist[x].run.movie.movieID == chosenMovie);
+//         		console.log((allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate);
+//         		if(allshowtimelist[x].run.movie.movieID == chosenMovie && (allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate){
+//         			document.getElementById('movieStartTime').innerHTML += "<option value='" + allshowtimelist[x].showTimeId +"'>" + allshowtimelist[x].playStartTime.substring(11, 16) + "</option>";
+//         		}
+//         	}
+//         }
     </script>
 
 
