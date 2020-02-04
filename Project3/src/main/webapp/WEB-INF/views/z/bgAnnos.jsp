@@ -30,12 +30,12 @@
 			style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
-					<th>公告編號</th>
+					<th style="width: 70px">公告編號</th>
 					<th>公告標題</th>
-					<th>公告狀態</th>
 					<th>開始時間</th>
 					<th>結束時間</th>
-					<th>權重</th>
+					<th style="width: 70px">權重</th>
+					<th style="width: 70px">公告狀態</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -89,11 +89,12 @@
 					type : "POST",
 					success : function(data) {
 						dataTable.clear().draw();
+						console.log(data);
 						$.each(data, function(index, value) {
-							dataTable.row.add([value.annoId, value.title, value.statusName, value.startTime,  value.endTime, value.priority,function(data, type,row) {
-								var html = "<a href='anno/update/" + value.annoId + "'  class='delete btn btn-default btn-xs'  >修改公告</a>"
-								html += "<a href='anno/launch/" + value.annoId + "' class='up btn btn-default btn-xs'>上架</a>"
-								html += "<a href='anno/takeoff/" + value.annoId + "'   οnclick='deleteThisRowPapser("+ value.annoId + ")'  class='down btn btn-default btn-xs'>下架</a>"
+							dataTable.row.add([value.annoId, value.title, value.startTime.substring(0,16),  value.endTime.substring(0,16), value.priority, value.annoStatusBean.statusName, function(data, type,row) {
+								var html = "<a href='anno/update/" + value.annoId + "'>修改公告</a>"
+								html += " <a href='anno/launch/" + value.annoId + "'>上架</a>"
+								html += " <a href='anno/takeoff/" + value.annoId + "'>下架</a>"
 								return html}
 								]).draw();
 						})

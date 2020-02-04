@@ -312,7 +312,7 @@
 
                     <div class="col-sm-6 pull-right">
                         <div class="tc-girl" id="booktickets">
-                        <c:forEach >
+                        <c:forEach>
                             <select id="movie"></select>
                         </c:forEach>
                             <select id="playdate"></select>

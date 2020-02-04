@@ -27,7 +27,7 @@
 						path="content" type='textarea'></form:textarea>
 					<script>
 						CKEDITOR.replace('content', {
-							width : 600
+							width : 800
 						});
 					</script></td>
 			</tr>

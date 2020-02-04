@@ -23,6 +23,16 @@
 		margin-left:auto; 
 		margin-right:auto;
 	}
+	
+	#test{
+		height:300px;
+	}
+	
+	footer{
+		bottom:0;
+	}
+	
+	
 </style>
 </head>
 <body>
