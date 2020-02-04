@@ -33,8 +33,8 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Transactional
 	@Override
-	public List<CommentBean> getComment(Integer memberID) {
-		return dao.getComment(memberID);
+	public Integer getCommentID(Integer memberID,Integer movieID) {
+		return dao.getCommentID(memberID, movieID);
 	}
 	
 	@Transactional
@@ -132,8 +132,8 @@ public class CommentServiceImpl implements CommentService{
 
 	@Transactional
 	@Override
-	public boolean checkCommentExist(Integer memberID) {
-		return dao.checkCommentExist(memberID);
+	public boolean checkCommentExist(Integer memberID,Integer movieID) {
+		return dao.checkCommentExist(memberID, movieID);
 	}
 
 }

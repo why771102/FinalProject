@@ -8,36 +8,54 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Product</title>
+<title>queryTicket</title>
+
 </head>
 <body> 
 	<section>
+        <div>
+            <div class="container" style="text-align: center" >
+                <h1>請輸入OrderID</h1>
+            </div>
+        </div>
+    </section>
+    <hr style="height:1px;border:none;color:#333;background-color:#333;">
+	<section>
 		<div>
-			<div class="container" style="text-align: center">
-				<h2>產品資料</h2>
-			</div>
-		</div>
-	</section>
-	<section class="container">
-		<div class="row">
-			<div class="col-md-5">
-				<h3>訂單ID:${getOrderByID.OrderID}</h3>
-				<p>產品ID: ${getOrderByID.ticketStatus}</p>
-				<p>訂單成立時間: ${getOrderByID.OrderTime}</p>
-				<p>場次ID: ${getOrderByID.showTimeHistoryBean.showTimeID}</p>
-				<p>會員編號: ${getOrderByID.memberBean.memberID}</p>
-				<p>領票時間: ${getOrderByID.ticketTime}</p>
-				<p>員工ID: ${getOrderByID.empBean.empID}</p>
-				
-				<p>
-					<a href="<spring:url value='/' />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span>返回
-					</a> 
-					<a href="<spring:url value='/updateTicket/${getOrderByID.OrderID}' />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span>修改
-					</a> 
+			<div class="caption">
+				<table>
+					<tr>
+						<td>訂單ID：</td>
+						<td>${getOrderByID.ordersID}</td>
+					</tr>
+					<tr>
+						<td>票狀態：</td>
+						<td>${getOrderByID.ticketStatus}</td>
+					</tr>
+					<tr>
+						<td>訂單成立時間：</td>
+						<td>${getOrderByID.orderTime}</td>
+					</tr>
+					<tr>
+						<td>場次ID：</td>
+						<td>${getOrderByID.showTimeHistoryBean.showTimeId}</td>
+					</tr>
+					<tr>
+						<td>會員編號：</td>
+						<td>${getOrderByID.memberBean.memberID}</td>
+					</tr>
+					<tr>
+						<td>領票時間</td>
+						<td>${getOrderByID.ticketTime}</td>
+					</tr>
+					<tr>
+						<td>員工ID：</td>
+						<td>${getOrderByID.empBean.empId}</td>
+					</tr>
+
 					
-				</p>
+				</table>
+<%-- 				<a href="emp/update/${emp.empId}">修改資料</a> --%>
 			</div>
 		</div>
 	</section>

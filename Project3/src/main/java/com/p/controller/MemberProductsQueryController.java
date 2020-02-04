@@ -41,6 +41,9 @@ public class MemberProductsQueryController {
 				mID = cookie.getValue();
 			}
 		}
+		if(mID == null) {
+			return "memberOrderQuery2";
+		}
 		int nMID = Integer.parseInt(mID);
 		List<MOrderBean> molist = service.getMOrderBeanByMemberID(nMID);
 		System.out.println("看看他的廬山真面目:" + molist);

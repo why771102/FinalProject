@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +28,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.google.gson.Gson;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.l.service.mOrdersService;
+import com.z.model.EmpBean;
 
 
 @Controller
@@ -40,18 +44,7 @@ public class mOrdersController {
 		this.service = service;
 	}
 
-	//快速查詢
-	@PostMapping(value="/quicklyQueryMovie")
-	@ResponseBody
-	public String quicklyQueryMovie(@RequestParam("hallID")String hallID,HttpServletRequest request,HttpServletResponse response) {
-		LocalDate today = (LocalDate.now());
-		LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
-		String dateTime = today.toString() + " " + time.toString();
-		List<RunningBean> rb = service.getAllOnMoive(today);
-		
-		
-		return "quicklyQueryMovie";
-	}
+	
 	
 	
 	
@@ -332,16 +325,17 @@ public class mOrdersController {
 
 		//輸入訂單號碼頁面
 		@RequestMapping("/inputOrderID")
-		public String inputOrderID() {
-		
-			return "l/inputOrderID";
+		public String inputOrderID(Model model) {
+		return "l/inputOrderID";
 		}
 		
 		//查詢單筆資料
-		@RequestMapping("/queryTicket")
-		public String queryTicket(Integer orderID,Model model) {
-			
-//			model.addAttribute("getOrderByID",service.getOrderID(orderID));
+		@RequestMapping("/searchTicket")
+		public String queryTicket(@RequestParam("orderID") Integer orderID,Model model) {
+			MOrderBean mb = service.getOrderID(orderID);
+			System.out.println("123");
+			model.addAttribute("getOrderByID",mb);
+			System.out.println("456");
 			return "l/queryTicket";
 		}
 		
@@ -359,6 +353,11 @@ public class mOrdersController {
 			
 			return "l/queryTicket";
 		}
+		
+		
+		
+		
+		
 		
 		
 		

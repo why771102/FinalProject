@@ -8,60 +8,43 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
     href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>StartTimes</title>
+<title>quickyQuery</title>
 </head>
 <body>
     <section>
         <div>
             <div class="container" style="text-align: center" >
-                <h1>電影時間</h1>
+                <h1>快速查詢</h1>
             </div>
         </div>
     </section>
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
         <div class="row">
-          <c:forEach var='MovieID' items='${playStartTime}'>
-            <div class="col-sm-6 col-md-3" style="width: 200px; height: 200px">
-                <div class="thumbnail" style="width: 200px; height: 200px">
-                    <div class="caption">
-                       <p>
-                       		 <b >showtimeId:${MovieID.showTimeId}</b>
-              		  </p>
-              		  <p>
-                       		 <b >時間:${MovieID.playStartTime}</b>
-              		  </p>
-                       <p>
-                       		 <b >RUNID:${MovieID.run.runID}</b>
-              		  </p>
-                       <a href="<spring:url value='/queryStartTime?showTimeId=${MovieID.showTimeId}' />"
-    							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
- 					</a>
-						
-                   </div>
-                </div>
-            </div>
-        </c:forEach>
+ 		<form><p><b>choose a name</b></p>
+ 		<span id ="show"></span>
+ 		</form>
         </div>
          </section>
 <script>
 function quicklyQuery(){
-	var showTimeId = document.getElementById("MovieID.showTimeId").value;
+	var title = document.getElementById("MovieBean.title").value;
 	$.ajax({  
     url: "${pageContext.request.contextPath}/quicklyQueryMovie",
-    data : {showTimeId: showTimeId},
-    type : "POST",
-    dataType:"json",  
+    data : {title: title},
+    type : "GET",
     success:function(data){  
-         if(data.result=='SUCCESS'){  
-            alert("修改成功");  
-         }else{  
-             alert("修改失败，失败原因[" + data + "]");  
-         }  
+         showNames(data);
          }
-	}
-	}
+	});
+	
+	function showNames(data){
+		var txt="";
+		for(i in names)
+			txt+="<option value='"+name[i]+"'>" +names[i]+"</option>";
+			$('#show').html(txt);
+	};
+}
 </script>
 </body>
 </html>

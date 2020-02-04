@@ -45,14 +45,15 @@
 	<section>
 		<div>
 			<div style="text-align: center">
-				<h1>歷史訂單查詢結果</h1>
+				<h1>您的包廳申請清單</h1>
 			</div>
 		</div>
 	</section>
 <!-- 	<hr -->
 <!-- 		style="height: 1px; border: none; color: #333; background-color: #333;"> -->
 	<div style="text-align: center; height:300px;">
-		<h3>您無任何訂票紀錄!</h3>
+		<h3>無任何包廳申請紀錄!</h3>
+		<h4><a href="<c:url value='/hallOrder/apply' />">現在申請包廳服務</a></h4>
 	</div>
 	<!-- footer -->
     <footer>

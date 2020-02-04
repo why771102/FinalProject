@@ -30,13 +30,14 @@ public class CommentDaoImpl implements CommentDao {
 	
 	//抓出該會員是否在該電影留過言
 	@Override
-	public boolean checkCommentExist(Integer memberID) {
+	public boolean checkCommentExist(Integer memberID,Integer movieID) {
 		boolean exist = false;
-		String hql = "From CommentBean Where memberID = :memberID";
+		String hql = "From CommentBean Where memberID = :memberID and movieID = :movieID and commentDelete = 0";
 		Session session = factory.getCurrentSession();
 		try{
 			CommentBean pb = (CommentBean) session.createQuery(hql)
 												.setParameter("memberID",memberID)
+												.setParameter("movieID", movieID)
 												.getSingleResult();
 			if(pb != null) {
 				exist = true;
@@ -49,14 +50,15 @@ public class CommentDaoImpl implements CommentDao {
 		return exist;
 	}
 
-	// 抓出該會員在該電影所留的短評 && deleteComment = 0
+	// 抓出該會員在該電影所留的短評ID && deleteComment = 0
 	@Override
-	public List<CommentBean> getComment(Integer memberID) {
-		String hql = "from CommentBean where memberID = :memberID and commentDelete = 0";
+	public Integer getCommentID(Integer memberID,Integer movieID) {
+		String hql = "from CommentBean where memberID = :memberID and movieID = :movieID and commentDelete = 0";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
-		list = session.createQuery(hql).setParameter("memberID", memberID).getResultList();
-		return list;
+		list = session.createQuery(hql).setParameter("memberID", memberID).setParameter("movieID", movieID).getResultList();
+		int id = list.get(0).getCommentID();
+		return id;
 	}
 
 	// 用指定commentID抓留言
@@ -85,9 +87,18 @@ public class CommentDaoImpl implements CommentDao {
 		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();
 	}
 
+	//將檢舉的短評reportComment 0改1
 	@Override
 	public void reportComment(Integer commentID) {
 		String hql = "update CommentBean set reportComment = 1 where commentID = :commentID";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();
+	}
+	
+	//將審核後沒問題的短評reportComment 1改0
+	@Override
+	public void cancalReportComment(Integer commentID) {
+		String hql = "update CommentBean set reportComment = 0 where commentID = :commentID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("commentID", commentID).executeUpdate();
 	}

@@ -34,6 +34,6 @@ public interface mOrdersService {
 	public MOrderBean updateTicket(MOrderBean mob);
 
 	//查詢單筆訂單	
-	public void getOrderID(Integer orderID);
+	public MOrderBean getOrderID(Integer orderID);
 		
 }
