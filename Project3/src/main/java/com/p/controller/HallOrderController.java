@@ -81,8 +81,13 @@ public class HallOrderController {
 		int nMID = Integer.parseInt(mID);
 		
 		List<HallOrderBean> allMHO = service.hallOrderMQuery(nMID);
-		model.addAttribute("allMHO", allMHO);
-		return "hallOrderMQuery";
+		if(allMHO.size() == 0) {
+			return "hallOrderMQuery2";
+		}else {
+			model.addAttribute("allMHO", allMHO);
+			return "hallOrderMQuery";
+		}
+		
 	}
 	
 	//後台功能:以下為員工查詢所有包廳申請
