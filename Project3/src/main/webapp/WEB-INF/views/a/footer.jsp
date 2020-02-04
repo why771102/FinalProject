@@ -1,91 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=BIG5"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+    
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-	
-<!-- stylesheets -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/flexslider.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/responsive.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title -->
+    <title>Cineshow</title>
+    <!-- google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/flexslider.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css" type="text/css" />
 
-<style type="text/css">
-	table{
-		margin-left:auto; 
-		margin-right:auto;
-	}
-</style>
-
-<title>會員資料</title>
 </head>
 <body>
-    <header>
-       <jsp:include page="a/header.jsp">
-       <jsp:param name="a" value="1" />
-</jsp:include>
-    </header>
-	<section class="login-block">
-		<div class="container">
-			<div class="login-inner">
-				<h2>會員資料</h2>
-				<div class="login-form">
-					<table>
-						<form:form method='POST' modelAttribute="mData"
-							enctype="multipart/form-data">
-
-							<tr>
-								<td>會員姓名：</td>
-								<td><form:input id="name" path="name" type='text' /></td>
-							</tr>
-							<tr>
-								<td>信箱：</td>
-								<td><form:input id="email" path="email" type='text' /></td>
-							</tr>
-							<tr>
-								<td>生日：</td>
-								<td>${mData.birth}</td>
-							</tr>
-							<tr>
-								<td>性別：</td>
-								<td>${mData.gender}</td>
-							</tr>
-							<tr>
-								<td>身分證字號：</td>
-								<td>${mData.uID}</td>
-							</tr>
-
-							<tr>
-								<td>連絡電話：</td>
-								<td><form:input id="mobile" path="mobile" type='text' /></td>
-							</tr>
-
-							<tr>
-								<td>住址：</td>
-								<td><form:input id="address" path="address" type='text' /></td>
-							</tr>
-							<tr>
-								<td><form:input id="memberID" path="memberID" type='hidden' /></td>
-							</tr>
-							<tr>
-								<td colspan="2"><input type="submit" value="修改資料" class="inlog-btn" /></td>
-							</tr>
-						</form:form>
-							<tr>
-								<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/' />'" class="inlog-btn"/></td>
-							</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</section>
-	
 	<!-- footer -->
     <footer class="footer">
         <div class="container">
@@ -116,7 +55,7 @@
                           
                             <li><a href="">線上周邊</a>
                             </li>
-                            <li><a href="<c:url value='/hallOrder/apply' />">包場服務</a>
+                            <li><a href="<c:url value='/hallOrder/apply' />">包廳服務</a>
                             </li>
                             <li><a href="">餐飲服務</a>
                             </li>
@@ -178,6 +117,5 @@
         <p>Created By: <a href= >Teamwork</a></p>
     </div>
     <!-- footer -->
-
 </body>
 </html>
