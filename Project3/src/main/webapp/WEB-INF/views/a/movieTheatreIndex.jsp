@@ -296,7 +296,7 @@
                 <div class="row clearfix">
                     <div class="col-sm-6 pull-left">
                         <div class="tc-con">
-                            <h5>Take control of your </h5>
+                            <h5>快速訂票</h5>
                             <h3>Ticket Selling</h3>
                             <ul class="list-unstyled">
                                 <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</li>
@@ -310,8 +310,12 @@
                     </div>
 
                     <div class="col-sm-6 pull-right">
-                        <div class="tc-girl">
-                            <img src="img/tc-girl1.png">
+                        <div class="tc-girl" id="booktickets">
+                        <c:forEach >
+                            <select id="movie"></select>
+                        </c:forEach>
+                            <select id="playdate"></select>
+                            <select id="movieStartTime"></select>
                         </div>
                     </div>
 

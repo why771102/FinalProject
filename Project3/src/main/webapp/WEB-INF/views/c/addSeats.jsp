@@ -87,11 +87,15 @@ a {
 
 .booking-details {
 	float: left;
-	text-align: left;
-	margin-left: 35px;
+	margin-left: 155px;
 	font-size: 12px;
 	position: relative;
-	height: 401px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	flex-flow: row nowrap;
+	font-size: 12px;
 }
 
 .booking-details h2 {
@@ -134,6 +138,7 @@ div.seatCharts-seat.handicap-seats {
 
 div.seatCharts-seat.aisle {
 	background-color: white;
+	border: lightgrey solid 1px;
 }
 
 div.seatCharts-seat.focused {
@@ -155,9 +160,9 @@ div.seatCharts-container {
 }
 
 div.seatCharts-legend {
-	padding-left: 0px;
+	padding-left: 340px;
 	position: absolute;
-	bottom: 16px;
+	bottom: 100px;
 }
 
 ul.seatCharts-legendList {
@@ -171,8 +176,9 @@ span.seatCharts-legendDescription {
 
 .checkout-button {
 	display: block;
-	margin: 10px 0;
+	margin: 20px 32px;
 	font-size: 14px;
+	justify-content: center;
 }
 
 #selected-seats {
@@ -218,7 +224,7 @@ div#legend>div.seatCharts-seat.seatCharts-cell.selected {
 	margin: auto;
 	padding: 0;
 	border: 1px solid #888;
-	width: 80%;
+	width: 50%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
 	-webkit-animation-name: animatetop;
@@ -250,7 +256,6 @@ to {
 }
 
 }
-
 .wrapRowStart {
 	/*Flex屬性區*/
 	display: flex;
@@ -264,6 +269,13 @@ to {
 	height: 100%;
 	/* border and padding in box */
 	box-sizing: border-box;
+}
+
+.h1, h1 {
+	font-size: 36px;
+	text-align: center;
+	margin-left: 102px;
+	margin-top: -52px;
 }
 
 /* The Close Button */
@@ -282,12 +294,12 @@ to {
 
 .modal-header {
 	padding: 2px 16px;
-	background-color: #1113a8;
+	background-color: #22242a;
 	color: white;
 }
 
 .modal-body {
-	padding: 2px 16px;
+	padding: 12px 0px;
 }
 
 .modal-footer {
@@ -574,29 +586,40 @@ to {
 							<div class="modal-content">
 								<div class="modal-header">
 									<span class="close">&times;</span>
-									<h2>Create Movie Theatre Seatings</h2>
+									<h2>新增場地</h2>
 								</div>
 								<div class="modal-body">
 									<!-- 			hall name: <input type="text" id="hallName"><br> -->
-									columns: <input type="text" id="col"><br> rows: <input
-										type="text" id="rows"><br>
-									<button class="seatNumber" id="seatNoConfirm"
-										onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)">確認</button>
+									<div style="display: inline;">
+										<div>
+											column: <input type="text" id="col"><br>
+										</div>
+										<div>
+											row: <input type="text" id="rows"
+											 style="margin-left: 21px;margin-top: 7px;"><br>
+										</div>
+										<button class="seatNumber" id="seatNoConfirm"
+											onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)"
+											style="margin-top: 8px;">確認</button>
+									</div>
 								</div>
 							</div>
 
 						</div>
 						<!-- Modal content end-->
+						<div id="legend"></div>
 						<div class="wrapper">
 							<div class="container">
-								<h1>Create Movie Theatre Seatings</h1>
-								<div>${param.hallID}廳</div>
-								<div class = "wrapRowStart">
-								<div id="legend"></div>
-								<div id="seat-map">
-									
-									<div class='front-indicator'>Screen</div>
-								</div>
+								<h1>廳院新增</h1>
+								<div
+									style="margin-left: 50px; font-size: 17px; margin-bottom: -12px;">
+									${param.hallID}廳</div>
+								<div class="wrapRowStart">
+
+									<div id="seat-map">
+
+										<div class='front-indicator'>Screen</div>
+									</div>
 								</div>
 								<div class="booking-details" style="justify-content: center;">
 									<button class="checkout-button" id="checkout"
@@ -607,9 +630,6 @@ to {
 								</div>
 
 							</div>
-
-							
-							<a href='${pageContext.request.contextPath}/index-c'>index</a>
 						</div>
 
 						</p>
@@ -644,15 +664,15 @@ to {
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="lib/jquery/jquery.min.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-	<script src="lib/jquery.ui.touch-punch.min.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/jquery-ui-1.9.2.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/jquery.ui.touch-punch.min.js"></script>
 	<script class="include" type="text/javascript"
-		src="lib/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="lib/jquery.scrollTo.min.js"></script>
-	<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+		src="${pageContext.request.contextPath}/lib/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js" type="text/javascript"></script>
 	<!--common script for all pages-->
-	<script src="lib/common-scripts.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script>
 	<!--script for this page-->
 	<script>
 		//Modal
@@ -1007,7 +1027,7 @@ to {
 						type : "POST",
 						success : function() {
 							alert("新增成功!");
-							window.location.href = "${pageContext.request.contextPath}/index-c";
+							window.location.href = "${pageContext.request.contextPath}/backstageindex";
 						}
 					});
 			//USE WHEN YOU WANT TO ADD DIFFERENT TYPE OF SEATS

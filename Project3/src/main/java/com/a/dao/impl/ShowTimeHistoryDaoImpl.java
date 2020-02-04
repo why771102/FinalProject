@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.a.dao.ShowTimeHistoryDao;
+import com.a.model.MovieBean;
 import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
@@ -244,10 +245,20 @@ return false;
 		ShowTimeHistoryBean sthb =session.get(ShowTimeHistoryBean.class,  showTimeID);
 		return sthb;
 	}
-	@Override
-	public List<ShowTimeHistoryBean> getRunBeanLastSTHB(String exOffDay, String release) {
-		// TODO Auto-generated method stub
-		return null;
+
+	@SuppressWarnings("unchecked")
+	public List<MovieBean> getDistinctMovieID(String endDay, String startDay){
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT DISTINCT movieID FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate";
+		List<MovieBean> list = new ArrayList<>();
+		try {
+		list = session.createQuery(hql).setParameter("enddate", endDay)
+								.setParameter("startdate", startDay)
+								.getResultList();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	

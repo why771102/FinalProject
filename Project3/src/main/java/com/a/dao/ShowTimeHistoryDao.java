@@ -1,10 +1,9 @@
 package com.a.dao;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
+import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 
@@ -24,15 +23,13 @@ public interface ShowTimeHistoryDao {
 
 		List<ShowTimeHistoryBean>  getRunBeanLastSTHB(String startdate);
 
-		List<ShowTimeHistoryBean> getRunBeanLastSTHB(String exOffDay, String release);
+//		List<ShowTimeHistoryBean> getRunBeanLastSTHB(String exOffDay, String release);
 
 		int getShowTimeIdByTime(String playStartTime);
 
 		List<ShowTimeHistoryBean> getshowMovie(LocalDate day, String hallID);
 
 		boolean updateShowTimeHistoryBean(ShowTimeHistoryBean sthb);
-
-	
 
 		List<ShowTimeHistoryBean> getShowTimeHistoryByDate(String endDay, String startDay, String hallID);
 
@@ -41,4 +38,6 @@ public interface ShowTimeHistoryDao {
 		List<ShowTimeHistoryBean> getshowMovieByDayAndHallID(LocalDate day, String hallID);
 
 		List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID, String exOffDay, String release);
+		
+		List<MovieBean> getDistinctMovieID(String endDay, String startDay);
 }
