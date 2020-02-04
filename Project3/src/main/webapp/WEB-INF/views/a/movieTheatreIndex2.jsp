@@ -27,7 +27,8 @@
 <body>
     <header>
        <jsp:include page="header.jsp">
-    
+       <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
 </jsp:include>
     </header>
     <!-- header-->

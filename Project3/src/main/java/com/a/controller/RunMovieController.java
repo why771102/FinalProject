@@ -526,6 +526,7 @@ public class RunMovieController implements ServletContextAware{
 		Gson gson = new Gson();
 		Type listType = new TypeToken<ArrayList<ShowTimeHistoryBean>>(){}.getType();
 		List<ShowTimeHistoryBean> sthb_list = new Gson().fromJson(sth, listType);
+		
 		boolean result =false;
 		System.out.println(sthb_list.size());
 		for(ShowTimeHistoryBean sthb: sthb_list) {
@@ -550,18 +551,18 @@ public class RunMovieController implements ServletContextAware{
 		System.out.println("wwwwww");
 		//日期
 		LocalDateTime today= LocalDateTime.now();
-		List<ShowTimeHistoryBean> sthb_list= mService.getShowTimeHistoryByTime(today.toLocalDate().toString(), today.toLocalDate().toString());
-		List<ShowtimeBean> showTime_list= new ArrayList<>();
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
-		for(ShowTimeHistoryBean sthb:sthb_list) {
-			  LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
-			  showTime_list.add(new ShowtimeBean(1, sthb.getRun().getMovie().getRunningTime(),sthb.getRun().getMovie().getExpectedProfit() ,
-						(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), sthb));
-		}
-		Gson gson =new Gson();
-		
-		   String showTime = gson.toJson(showTime_list);
-        request.setAttribute("showTime", showTime);
+//		List<ShowTimeHistoryBean> sthb_list= mService.getShowTimeHistoryByTime(today.toLocalDate().toString(), today.toLocalDate().toString());
+//		List<ShowtimeBean> showTime_list= new ArrayList<>();
+//		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+//		for(ShowTimeHistoryBean sthb:sthb_list) {
+//			  LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
+//			  showTime_list.add(new ShowtimeBean(1, sthb.getRun().getMovie().getRunningTime(),sthb.getRun().getMovie().getExpectedProfit() ,
+//						(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), sthb));
+//		}
+//		Gson gson =new Gson();
+//		
+//		   String showTime = gson.toJson(showTime_list);
+//        request.setAttribute("showTime", showTime);
 		
 		//廳
 //		List<HallBean> hb_list = hService.getAllHalls(0);
@@ -570,7 +571,7 @@ public class RunMovieController implements ServletContextAware{
 	}
 	
 	
-	@PostMapping(value = "/showTimeHistory/show")
+	@PostMapping(value = "/showTimeHistory/show" ,produces="application/json;charset=UTF-8;")
 	public @ResponseBody String showTimeHistoryData(Model model,
 			HttpServletRequest request,HttpServletResponse respons, @RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("hallID") String hallID) {
 		System.out.println(start);
@@ -579,6 +580,13 @@ public class RunMovieController implements ServletContextAware{
 		List<ShowTimeHistoryBean> sthb_list= new ArrayList<>();
 		//電影院的
 		List<ShowtimeBean> showTime_list= new ArrayList<>();
+		if(end.equalsIgnoreCase(start)) {
+			DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			  LocalDate endDate = LocalDate.parse(end, fmt2);
+			  end=(endDate.plusDays(1)).toString();
+			
+		}else {}
+		
 		if(hallID.equalsIgnoreCase("All") ) {
 			System.out.println("查詢所有的廳");
 			 sthb_list=mService.getShowTimeHistoryByTime(end, start);
@@ -630,7 +638,7 @@ public class RunMovieController implements ServletContextAware{
 	
 	
 	
-	@PostMapping(value = "/save/showtime")
+	@PostMapping(value = "/save/showtime" )
 	public String addNewMove(Model model,
 			HttpServletRequest request, @RequestParam("release") String release) {
 		String url = request.getContextPath();
@@ -646,7 +654,7 @@ public class RunMovieController implements ServletContextAware{
 		return "index-a";
 		}
 
-	@GetMapping(value = "/commingSoon/All/movie{page}")
+	@GetMapping(value = "/commingSoon/All/movie{page}" )
 	public String addCommingSoonAllMovie(Model model,
 			HttpServletRequest request,  @PathParam("page")String page) {
 		
@@ -661,24 +669,25 @@ public class RunMovieController implements ServletContextAware{
 		LocalDate today=LocalDate.now();
 //		List<RunningBean>rb_list=mService.getComingSoonMovie();
 		List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+		if(rb_list.size()>8 && rb_list.size()%8>0) {
+			totalPages = (rb_list.size()/8)+1;
+		}else if(rb_list.size()>8 && rb_list.size()%8==0){
+			totalPages = (rb_list.size()/8);
+		}else {}
 		
-		totalPages = (rb_list.size()/8)+1;
 		
-		int movieNum =(pageNo*8 - (pageNo-1)*8);
+		int movieNum =(pageNo-1)*8;
 		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
 		System.out.println("rb_list:"+rb_list.size());
 		int onePageNum =0;
-		if(rb_list.size()-movieNum>0 && pageNo!=1) {
-			
+		if(rb_list.size()-movieNum>0) {
+			System.out.println("第二頁");
 			onePageNum=8+movieNum;
-		}else if(pageNo==1) {
+		}else if(pageNo == 1) {
+			System.out.println("回第一頁");
 			movieNum =0;
-			if(rb_list.size()<8) {
-				onePageNum=rb_list.size()-1;
-				totalPages=1;
-			}else {	onePageNum=8;}
-		
-		
+			onePageNum=rb_list.size()-1;
+			totalPages=1;
 		}
 		else {
 			onePageNum=rb_list.size()%8;
@@ -703,7 +712,7 @@ public class RunMovieController implements ServletContextAware{
 	
 	
 	
-	@PostMapping(value = "/commingSoon/change/page")
+	@PostMapping(value = "/commingSoon/change/page" ,produces="application/json;charset=UTF-8;")
 	public @ResponseBody String changePageCommingSoonMovie(Model model,
 			HttpServletRequest request,  @RequestParam("page") String page) {
 		System.out.println("getPage2:"+page);
@@ -718,16 +727,20 @@ public class RunMovieController implements ServletContextAware{
 //		List<RunningBean>rb_list=mService.getComingSoonMovie();
 		List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
 		
-		totalPages = (rb_list.size()/8)+1;
+		if(rb_list.size()>8) {
+			totalPages = (rb_list.size()/8)+1;
+		}else {}
 		
-		int movieNum =(pageNo*8 - (pageNo-1)*8);
+		
+		int movieNum =(pageNo-1)*8;
 		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
 		System.out.println("rb_list:"+rb_list.size());
 		int onePageNum =0;
 		if(rb_list.size()-movieNum>0) {
-			
+			System.out.println("第二頁");
 			onePageNum=8+movieNum;
-		}else if(pageNo==1) {
+		}else if(pageNo == 1) {
+			System.out.println("回第一頁");
 			movieNum =0;
 			onePageNum=rb_list.size()-1;
 			totalPages=1;
@@ -737,16 +750,18 @@ public class RunMovieController implements ServletContextAware{
 		}
 		System.out.println("rb_list:"+rb_list.size());
 		for(int i=movieNum;i<onePageNum;i++) {
+			System.out.println(onePageNum);
+			System.out.println(movieNum);
 			System.out.println("i:"+i);
 			System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
 			
 			rb_page_list.add(rb_list.get(i));
 		}
+	
         System.out.println(rb_page_list.size());
-        request.setAttribute("pageNo", pageNo);
-        request.setAttribute("totalPages", totalPages);
+      
         Gson gson =new Gson();
-        model.addAttribute("rb_page_list",rb_page_list);
+//        model.addAttribute("rb_page_list",rb_page_list);
         request.setAttribute("rb_list", gson.toJson(rb_page_list));
 		
        System.out.println("hi  go to showCommingSoon");

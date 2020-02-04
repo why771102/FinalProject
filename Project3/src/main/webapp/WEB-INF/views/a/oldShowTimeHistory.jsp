@@ -97,9 +97,9 @@
 				success : function(data) {
 					alert("送出成功");
 					 var a =data;
-					 var b=${showTime};
-					 console.log(b);
-					 alert(b);
+// 					 var b=${showTime};
+// 					 console.log(b);
+// 					 alert(b);
 // 						console.log("stID"+a[0].stID);
 // 					  var divObj = document.getElementById("AllTable");
 // 					  divObj.innerHTML = "";
