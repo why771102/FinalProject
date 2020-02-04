@@ -54,7 +54,7 @@ public class SCOrderDetailController {
 		}
 		//get dates
 		LocalDate startdate = LocalDate.parse("2019-11-09");
-		LocalDate endDate = LocalDate.parse("2020-02-03");
+		LocalDate endDate = LocalDate.parse("2020-02-21");
 		long days = ChronoUnit.DAYS.between(startdate, endDate);
 		System.out.println("days: " + days);
 		int count = 1;
