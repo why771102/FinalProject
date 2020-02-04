@@ -153,39 +153,58 @@
 	//傳送cate selection值
 	function sendGen() {
 		console.log("Gen =>" + document.getElementById("genres").value);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/ticket/sale",
-			data : {
-				genre : document.getElementById("genres").value
-			},
-			type : "POST",
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/ticket/sale",
+// 			data : {
+// 				genre : document.getElementById("genres").value
+// 			},
+// 			type : "POST",
 		// 				success : function() {
 		// 					alert("新增成功!");
 		// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
 		// 				}
+		var dataTable = $("#example").DataTable();
+		var cate = document.getElementById("categoryNames").value;
+		if(cate == '餐點總覽'){ 
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花|雙人套票|個人套票", true, false).draw();
+		}else if(cate == '套餐的餐點') {
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw(); 
+//				console.log("check here~~~"+ typeof({"iDisplayLength": 100, 
+//					"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw());
+//				window.productsale = {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw();
+		} else if (cate == '餐點') {
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花", true, false).draw();
+		} else if (cate == '公仔') {
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("冰雪奇緣GSC黏土人艾莎|鋼鐵人公仔MK3磁浮版(金屬色版)|死侍系列大頭公仔", true, false).draw(); 
+		} else if (cate == '衣服') {
+		$('#example').DataTable({"iDisplayLength": 100, 
+			"search": {regex: true}}).column(1).search("星際大戰T恤", true, false).draw(); 
+		} else if (cate == '爆米花桶') {
+		$('#example').DataTable({"iDisplayLength": 100, 
+		"search": {regex: true}}).column(1).search("爆米花桶", true, false).draw(); 
+		} else if (cate == '杯子餐具') {
+		$('#example').DataTable({"iDisplayLength": 100, 
+		"search": {regex: true}}).column(1).search("搖搖杯|餐具|水杯|杯墊", true, false).draw(); 
+		} else if (cate == '娃娃') {
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("絨毛玩偶", true, false).draw(); 
+		}else if (cate == '電影海報') {
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("海報", true, false).draw(); 
+		} else if (cate == '電子產品') {
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("隨身碟|傳輸線", true, false).draw(); 
+		} else if(cate == '其他'){
+			$('#example').DataTable({"iDisplayLength": 100, 
+				"search": {regex: true}}).column(1).search("小提包", true, false).draw(); 
+		}
+			
 		});
 	}
-	
-// 	function showInfo(ts) {
-// 		for(var i =0; i < ts.length; i++){
-// 		$('#insertHere')
-// 				.append(
-// 						'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/sale/date" id="hallID">'
-// 								+ ts[i].title
-// 								+ '</a></td><td>'
-// 								+ ts[i].noPlayTimes
-// 								+ '</td><td>'
-// 								+ ts[i].hallSeats
-// 								+ '</td><td>'
-// 								+ ts[i].hallSaleSeats
-// 								+ '</td><td>'
-// 								+ ts[i].avgSeats
-// 								+ '</td><td>'
-// 								+ ts[i].pricePerSeat
-// 								+ '</td><td>'
-// 								+ ts[i].subtotal + '</td></tr>');
-// 		}
-// 	};
 	
 </script>
 </html>
