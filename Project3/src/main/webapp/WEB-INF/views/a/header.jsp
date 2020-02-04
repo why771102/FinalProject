@@ -51,11 +51,12 @@
                         <li><a href="conatct.html">contact</a>
                         </li>
                         <li><a href="products.html">周邊商品</a>
+                        </li>
                         <li><a href="shopCart.html" style='padding:5px;'><img src="../img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
-                        <li class="free-trial-btn" id="login"><a href="<c:url value='/member/login' />">登入</a>
-                        <li class="free-trial-btn" id="logout"><a href="<c:url value='/member/logout' />">登出</a>    
-                        </li>
+                        <li class="btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
+                        <li class="btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
+                        <li class="btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -72,18 +73,18 @@
 	for (i = 0; i < cookieArray.length; i++) {
 			memberIDArrays = cookieArray[i].split("=");
 			console.log(memberIDArrays);
-			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == " ") {
+			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
 // 				$("#name").text("訪客");
 				$("#logout").hide();
 			}else{
-				for (i = 0; i < cookieArray.length; i++) {
-				nameArrays = cookieArray[i].split("=");
-				console.log(nameArrays);
+// 				for (i = 0; i < cookieArray.length; i++) {
+// 				nameArrays = cookieArray[i].split("=");
+// 				console.log(nameArrays);
 // 				if (nameArrays[0] == "name") {
 // 				$("#name").text(nameArrays[1]);
 // 				}
-			}
-// 				$("#register").hide();
+// 			}
+				$("#register").hide();
 				$("#login").hide();
 		}
 	}

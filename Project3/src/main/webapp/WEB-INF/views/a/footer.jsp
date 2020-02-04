@@ -94,7 +94,7 @@
             <div class="footer-line">
                 <div class="im-inner">
                     <span></span>
-                    <a href="index.html"><img src="img/logo.png" class="ftr-logo" width="200">
+                    <a href="index.html"><img src="../img/logo.png" class="ftr-logo" width="200">
                     </a><span></span>
                 </div>
                 <h4> Copyrights 2020.01.26 | <a href="#">10.3.7</a></h4>
