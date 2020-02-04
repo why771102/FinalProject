@@ -62,6 +62,46 @@ public class ProductEarnServiceImpl implements ProductEarnService {
 		return dao.getPname(productID);
 	}
 
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo6(String sDate, String eDate) {
+		return dao.getPeripheralInfo6(sDate, eDate);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo7(String sDate, String eDate) {
+		return dao.getPeripheralInfo7(sDate, eDate);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo8(String sDate, String eDate) {
+		return dao.getPeripheralInfo8(sDate, eDate);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo9(String sDate, String eDate) {
+		return dao.getPeripheralInfo9(sDate, eDate);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo10(String sDate, String eDate) {
+		return dao.getPeripheralInfo10(sDate, eDate);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo11(String sDate, String eDate) {
+		return dao.getPeripheralInfo11(sDate, eDate);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo12(String sDate, String eDate) {
+		return dao.getPeripheralInfo12(sDate, eDate);
+	}
+
+	@Override
+	public List<ProductSaleEarnBean> getPeripheralInfo13(String sDate, String eDate) {
+		return dao.getPeripheralInfo13(sDate, eDate);
+	}
+
 //	@Override
 //	public List<LocalDate> getFoodDates() {
 //		return dao.getFoodDates();
