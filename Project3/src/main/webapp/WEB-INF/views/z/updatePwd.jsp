@@ -99,23 +99,12 @@
 											</div>
 										</form:form>
 									</div>
-									<!-- /col-lg-8 -->
 								</div>
-								<!-- /row -->
 							</div>
-
-
-							<!--///////////////////////////////////////////////////////-->
-
 						</div>
-						<!-- /panel-body -->
 					</div>
-					<!-- /col-lg-12 -->
 				</div>
-				<!-- /row -->
-				<!-- /container -->
 			</section>
-			<!-- /wrapper -->
 		</section>
 		<!-- /MAIN CONTENT -->
 		<!--main content end-->
@@ -144,32 +133,6 @@
 	<!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
-	<script>
-		$('.contact-map')
-				.click(
-						function() {
-
-							//google map in tab click initialize
-							function initialize() {
-								var myLatlng = new google.maps.LatLng(40.6700,
-										-73.9400);
-								var mapOptions = {
-									zoom : 11,
-									scrollwheel : false,
-									center : myLatlng,
-									mapTypeId : google.maps.MapTypeId.ROADMAP
-								}
-								var map = new google.maps.Map(document
-										.getElementById('map'), mapOptions);
-								var marker = new google.maps.Marker({
-									position : myLatlng,
-									map : map,
-									title : 'Dashio Admin Theme!'
-								});
-							}
-							google.maps.event.addDomListener(window, 'click',
-									initialize);
-						});
-	</script>
+	
 </body>
 </html>

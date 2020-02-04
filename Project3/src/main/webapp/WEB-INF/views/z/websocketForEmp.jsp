@@ -61,14 +61,6 @@
 				<aside class="mid-side">
 					<div class="chat-room-head">
 						<h3>客服訊息</h3>
-						<!-- 							<form class="form-inline pull-right position"> -->
-						<!-- 								<div class="form-group"> -->
-						<!-- 									<label for="connect">客服連線狀態</label> -->
-						<!-- 									<button id="connect" class="btn btn-default" type="submit">連線</button> -->
-						<!-- 									<button id="disconnect" class="btn btn-default" type="submit" -->
-						<!-- 										disabled="disabled">切斷連線</button> -->
-						<!-- 								</div> -->
-						<!-- 							</form> -->
 						<form class="form-inline pull-right position">
 							<div class="form-group">
 								<label for="name">顯示名稱</label> <input type="text" id="name"

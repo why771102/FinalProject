@@ -23,23 +23,6 @@
 			<div class="col-md-6">
 				<form class="form-inline">
 					<div class="form-group">
-						<label for="connect">WebSocket connection:</label>
-						<button id="connect" class="btn btn-default" type="submit">Connect</button>
-						<button id="disconnect" class="btn btn-default" type="submit"
-							disabled="disabled">Disconnect</button>
-					</div>
-				</form>
-			</div>
-			<div class="col-md-6">
-				<!--             <form class="form-inline"> -->
-				<!--                 <div class="form-group"> -->
-				<!--                     <label for="name">What is your name?</label> -->
-				<!--                     <input type="text" id="name" class="form-control" placeholder="Your name here..."> -->
-				<!--                 </div> -->
-				<!--                 <button id="sendName" class="btn btn-default" type="submit">Send</button> -->
-				<!--             </form> -->
-				<form class="form-inline">
-					<div class="form-group">
 						<label for="name">訊息</label> <input type="text" id="message"
 							class="form-control" placeholder="Your message here...">
 					</div>

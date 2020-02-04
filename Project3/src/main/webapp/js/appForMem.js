@@ -24,7 +24,7 @@ function setConnected(connected) {
 	$("#greetings").html("");
 }
 
-function connect() {
+//function connect() {
 	var socket = new SockJS("../myHandler");
 	stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame) {
@@ -37,7 +37,7 @@ function connect() {
 			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content);
 		});
 	});
-}
+//}
 
 function disconnect() {
 	if (stompClient !== null) {
