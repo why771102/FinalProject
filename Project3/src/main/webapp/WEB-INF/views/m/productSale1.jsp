@@ -10,32 +10,101 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>productSale1</title>
 <!-- table bootstrap -->
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript"
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <!-- timepicker -->
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <!-- chart -->
-  <base href="https://www.highcharts.com/demo/styled-mode-column/grid-light" />
-  <link rel="stylesheet" href="/samples/highcharts/demo/styled-mode-column/demo.css" type="text/css" />
-  <!-- <link rel="stylesheet" href="/joomla/media/templates/highsoft_2015/css/bootstrap.min.css" type="text/css" /> -->
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="//code.highcharts.com/themes/grid-light.js"></script> 
+<!--   <base href="https://www.highcharts.com/demo/styled-mode-column/grid-light" /> -->
+<!--   <link rel="stylesheet" href="/samples/highcharts/demo/styled-mode-column/demo.css" type="text/css" /> -->
+<!--   <!-- <link rel="stylesheet" href="/joomla/media/templates/highsoft_2015/css/bootstrap.min.css" type="text/css" /> -->
+<!--   <script src="https://code.highcharts.com/highcharts.js"></script> -->
+<!--   <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+<!--   <script src="//code.highcharts.com/themes/grid-light.js"></script>  -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<style>
+@import 'https://code.highcharts.com/css/highcharts.css';
+
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 310px; 
+	max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+/* Link the series colors to axis colors */
+.highcharts-color-0 {
+	fill: #7cb5ec;
+	stroke: #7cb5ec;
+}
+.highcharts-axis.highcharts-color-0 .highcharts-axis-line {
+	stroke: #7cb5ec;
+}
+.highcharts-axis.highcharts-color-0 text {
+	fill: #7cb5ec;
+}
+.highcharts-color-1 {
+	fill: #90ed7d;
+	stroke: #90ed7d;
+}
+.highcharts-axis.highcharts-color-1 .highcharts-axis-line {
+	stroke: #90ed7d;
+}
+.highcharts-axis.highcharts-color-1 text {
+	fill: #90ed7d;
+}
+
+.highcharts-yaxis .highcharts-axis-line {
+	stroke-width: 2px;
+}
+</style>
 </head>
 
 <body style="background-color: grey">
 	<div id="container"
-		style="min-width: 310px; height: 400px; max-width: 1000px; margin: 0 auto"></div>
+		style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>
+<!-- <figure class="highcharts-figure"> -->
+<!--     <div id="container"></div> -->
+<!-- </figure> -->
 	<h2 style="text-align: center">產品銷售總覽</h2>
 	<div>
 		類型： ${cateSelection}
@@ -78,6 +147,7 @@
 	</form>
 </body>
 <script>
+(function($){
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
 			"columnDefs" : [ {
@@ -100,7 +170,7 @@
 				cell.innerHTML = i + 1;
 			});
 		}).draw();
-		jQuery.noConflict();
+
 	});
 
 	// timepicker
@@ -112,7 +182,8 @@
 			$('#reportrange span').html(
 					start.format('YYYY-MM-DD') + ' ~ '
 							+ end.format('YYYY-MM-DD'));
-
+			window.start = start.format('YYYY-MM-DD');
+			window.end = end.format('YYYY-MM-DD');
 			//傳送日期的值
 			$.ajax({
 						url : "${pageContext.request.contextPath}/product/sale",
@@ -132,14 +203,17 @@
 
 							$.each(productsale,function(index, value) {
 												console.log(value);
+												let price = new Number(value.price).toLocaleString("en-AU");
+												let qtyTotal = new Number(value.qtyTotal).toLocaleString("en-AU");
+												let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
 												dataTable.row.add([
 																		"",
 																		"<a href='${pageContext.request.contextPath}/product/sale/"+value.productsBean.productID+"'>"
 																				+ value.productName
 																				+ "</a>",
-																		value.price,
-																		value.qtyTotal,
-																		value.subtotal]).draw(); });
+																		price,
+																		qtyTotal,
+																		subtotal]).draw(); });
 // 							"<input type='hidden'>"+value.categoriesBean.categoryID+"'</input>'"
 							// 					showInfo(data);
 							// 					console.log(productsale);
@@ -262,17 +336,36 @@
 			//chart percentage and data
 			function editInfo(productsale){
 				var editData = [];
+				var ed = [];
+				var pn = [];
+// 				for(let b = 0 ; b < (productsale).length ; b++){
+
+// 					ed.push(data);
+// 				}
+// 				window.qtyData = ed;
+				
+// 				[{data: [1, 3, 2, 4]}, {data: [324, 124, 547, 221] , yAxis: 1}]
+// 				[{ name: 'Chrome', y: 61.41 }]
+// {data: [324, 124, 547, 221],yAxis: 1}
 				for(let a = 0 ; a < (productsale).length ; a++){
 					var productName = productsale[a].productName;
-					var subtotal = Math.round((productsale[a].subtotal / productsale[a].pcUse) * 100);
-
-				var data = {
-						name: productName, 
-						y: subtotal
-				};
-				editData.push(data);
+					var subtotal = productsale[a].subtotal;
+					var qtyTotal = productsale[a].qtyTotal;
+					
+					pn.push(productName);
+					
+					var data = {
+							data: qtyTotal, 
+					};
+					ed.push(qtyTotal);
+					editData.push(subtotal);
+					
+				var dt = {data: editData, yAxis: subtotal}
+					window.dt = dt;
 				}
-				window.hallData = editData;
+				window.productName = pn;
+				window.qtyData = ed;
+				window.subtotalData = editData;
 			
 		//chart
 
@@ -284,40 +377,34 @@ Highcharts.chart('container', {
     },
 
     title: {
-        text: 'Styling axes and columns'
+        text: "各產品銷售數量與總額"+'<br>'+ window.start + " 到 " + window.end +""
     },
 
     yAxis: [{
         className: 'highcharts-color-0',
         title: {
-            text: 'Primary axis'
+            text: '數量'
         }
     }, {
         className: 'highcharts-color-1',
         opposite: true,
         title: {
-            text: 'Secondary axis'
+            text: '銷售總額'
         }
     }],
 
     plotOptions: {
         column: {
-            borderRadius: 5
+            borderRadius: 2
         }
     },
-
-    series: [{
-        data: [1, 3, 2, 4]
-    }, {
-        data: [324, 124, 547, 221],
-        yAxis: 1
-    }]
-
+    xAxis: {
+        categories: window.productName,crosshair: true},
+    series: [{name: '數量', data: window.qtyData}, {name: '銷售總額', data: window.subtotalData,yAxis: 1}]
 });	
-
 		//end of chart		
 			}
-
+})(jQuery);
 
 </script>
 </html>
