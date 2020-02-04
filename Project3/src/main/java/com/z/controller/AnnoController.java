@@ -52,7 +52,7 @@ public class AnnoController {
 		return "z/bgAnnos";
 	}
 	
-	@RequestMapping(value = "/bgAnnosAjax")
+	@RequestMapping(value = "/bgAnnosAjax" ,produces="application/json;charset=UTF-8;")
 	public @ResponseBody String getAllAnnosAjax(Model model) {
 		List<AnnoBean> allAnnos = service.showAnno();
 		model.addAttribute("allAnnos", allAnnos);

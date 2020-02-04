@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -21,7 +22,7 @@
 		<c:forEach var="anno" items="${allAnnos}">
 			<div>
 				<h2>${anno.title}</h2>
-				<h4>${anno.startTime}</h4>
+				<h4>${fn:substring(anno.startTime, 0 ,10)}</h4>
 				<p>${anno.content}</p>
 			</div>
 			<hr>
