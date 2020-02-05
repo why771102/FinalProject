@@ -104,8 +104,19 @@ public class mOrdersDaoImpl implements mOrdersDao{
 		
 		//修改票狀態、領票時間、員工ID原本1
 		@Override
-		public MOrderBean updateTicket(MOrderBean mob) {
-			return null;
+		public void updateTicket(MOrderBean mob) {
+			String hql="UPDATE MOrderBean SET orderTime=:neworderTime, ticketStatus=:newticketStatus,showTimeID=:newshowTimeID, memberID=:newmemberID,ticketTime=:newticketTime,empID=:newempID WHERE ordersID=:id";
+			Session session=factory.getCurrentSession();
+				int n=session.createQuery(hql)	
+						.setParameter("neworderTime",mob.getOrderTime())
+						.setParameter("newticketStatus", mob.getTicketStatus())
+						.setParameter("newshowTimeID", mob.getShowTimeHistoryBean().getShowTimeId())
+						.setParameter("newticketStatus",mob.getTicketStatus())
+						.setParameter("newmemberID",mob.getMemberID())
+						.setParameter("newticketTime",mob.getTicketTime())			
+						.setParameter("newempID",mob.getEmpId())
+						.setParameter("id", mob.getOrdersID())
+						.executeUpdate();
 		}
 
 		//查詢單筆OrderID
