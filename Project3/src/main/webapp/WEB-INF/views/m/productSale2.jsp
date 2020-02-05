@@ -23,9 +23,14 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<!-- chart -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 </head>
 
 <body style="background-color: grey">
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	<h2 style="text-align: center">${productName}</h2>
 		<div>
 			<div id="reportrange"
@@ -65,7 +70,6 @@
 	</form>
 </body>
 <script>
-
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
 			"columnDefs" : [ {
@@ -107,12 +111,15 @@
 // 					alert("新增成功!");
 					console.log(productsaleDetail);
 					window.productsaleDetail = productsaleDetail;
+					editInfo(productsaleDetail);
 					var dataTable = $("#example").DataTable();
 					dataTable.clear().draw();
 
 					$.each(productsaleDetail, function(index, value) {
 						console.log(value);
-						dataTable.row.add(["",value.orderDate,value.price,value.qtyTotal,value.subtotal]).draw();
+						let qtyTotal = new Number(value.qtyTotal).toLocaleString("en-AU");
+						let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
+						dataTable.row.add(["",value.orderDate,value.price,qtyTotal,subtotal]).draw();
 					});
 					document.getElementById("submitExcel").innerHTML += "<input type='hidden' name='exportExcel1' value='"
 						+ JSON.stringify(window.productsaleDetail) + "'>"
@@ -145,13 +152,61 @@
 		cb(start, end);
 	});
 
-	//動態新增表格
-// 	$('#insertHere')
-// 			.append(
-// 					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">'
-// 					+日期+'</a></td><td>'
-// 					+單價+'</td><td>'
-// 					+數量+'</td><td>'
-// 					+總金額+'</td></tr>');
+	//chart percentage and data
+	function editInfo(productsaleDetail){
+		var editData = [];
+		var dateA = []
+		
+		for(let a = 0 ; a < (productsaleDetail).length ; a++){
+// 			var productName = productsale[a].productName;
+			var qtyTotal = productsaleDetail[a].qtyTotal;
+			window.proName = productsaleDetail[a].productsBean.productName;
+			var date = productsaleDetail[a].orderDate;
+			window.d = date;
+			dateA.push(date);
+// 			var data = {
+// 					data: qtyTotal, 
+// 			};
+
+			editData.push(qtyTotal);
+		}
+		window.dateA = dateA;
+// 		console.log("#####" + window.dateA)
+		window.qtyTotal = editData;
+	
+//chart
+
+Highcharts.chart('container', {
+
+  title: {
+    text: window.proName
+  },
+
+  xAxis: {
+//     tickInterval: 1,
+//     type: 'logarithmic',
+	name: window.dateA,
+    categories: window.dateA
+  },
+
+  yAxis: {
+      title: {text: '數量'}
+//     type: 'logarithmic',
+//     minorTickInterval: 0.1
+  },
+
+  tooltip: {
+    headerFormat: '<b>{series.name}</b><br/>',
+    pointFormat: window.d +', 數量:  {point.y}'
+  },
+
+  series: [{
+	name: window.proName,
+    data: window.qtyTotal,
+//     pointStart: 0
+  }]
+});
+//end of chart		
+	}
 </script>
 </html>
