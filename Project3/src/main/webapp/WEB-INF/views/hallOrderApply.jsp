@@ -58,7 +58,7 @@
 											<form:option value="16:00">16:00</form:option>
 											<form:option value="17:00">17:00</form:option>
 											<form:option value="18:00">18:00</form:option>
-											<form:option value="19:00">19:00</form:option>
+											<form:option value="19:00" id="start1">19:00</form:option>
 											<form:option value="20:00">20:00</form:option>
 											<form:option value="21:00">21:00</form:option>
 											<form:option value="22:00">22:00</form:option>
@@ -81,7 +81,7 @@
 											<form:option value="18:00">18:00</form:option>
 											<form:option value="19:00">19:00</form:option>
 											<form:option value="20:00">20:00</form:option>
-											<form:option value="21:00">21:00</form:option>
+											<form:option value="21:00" id="end1">21:00</form:option>
 											<form:option value="22:00">22:00</form:option>
 											<form:option value="23:00">23:00</form:option>
 										</form:select></td>
@@ -106,14 +106,14 @@
 											<form:option value="-1">請選擇</form:option>
 											<form:option value="求婚">求婚</form:option>
 											<form:option value="企業包場">企業包場</form:option>
-											<form:option value="片商活動">片商活動</form:option>
+											<form:option value="片商活動" id="purpose">片商活動</form:option>
 											<form:option value="其他">其他</form:option>
 										</form:select></td>
 								</tr>
 								<tr>
 									<td>原因詳述:</td>
 									<td><form:textarea cols="30" rows="5"
-											name="hallPurposeDetail" path="hallPurposeDetail"
+											id="hallPurposeDetail" path="hallPurposeDetail"
 											type='textarea'></form:textarea></td>
 								</tr>
 								<tr>
@@ -247,6 +247,28 @@
 				}
 			}
 
+		});
+		
+		$("#sumit2").click(function(){
+			$("#date").val("2020-03-09");
+			$("#purpose").prop("selected", true);
+			$("#hallPurposeDetail").val("我們是XXX公司，想租借貴戲院影廳來舉辦新國片演員見面會");
+			$("#contactPerson").val("溫努比");
+			$("#mobile").val("0918362789");
+			$("#mail").val("p29296848@gmail.com");
+			
+			
+// 			$("#start1").prop("selected", true);
+// 			$("#end1").prop("selected", true);
+// 			$("#purpose").prop("selected", true);
+			
+			
+// 			$("#female").prop("checked", true);
+// 			$("#uID").val("B123456789");
+// 			$("#birth").val("1990-02-02");
+// 			$("#mobile").val("0918362789");
+// 			$("#email").val("allyli1234@gmail.com");
+// 			$("#address").val("台北市大安區復興南路一段390號15樓");
 		});
 	</script>
 </body>
