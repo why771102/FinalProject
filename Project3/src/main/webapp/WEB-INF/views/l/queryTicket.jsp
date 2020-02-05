@@ -55,7 +55,8 @@
 
 					
 				</table>
-<%-- 				<a href="emp/update/${emp.empId}">修改資料</a> --%>
+ 					<a href="<spring:url value='/updateTicket/${getOrderByID.ordersID}' />">
+ 					修改</a>
 			</div>
 		</div>
 	</section>

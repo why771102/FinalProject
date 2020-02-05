@@ -196,6 +196,7 @@ public interface MovieService {
 			int restTime, List<ShowtimeBean> AllDayShowTime);
 	RunningBean getRunningBeanById(String runningID);
 	List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID, String exOffDay, String release);
+	boolean updatePT_value(MovieBean movie, double PT);
 	
 	
 

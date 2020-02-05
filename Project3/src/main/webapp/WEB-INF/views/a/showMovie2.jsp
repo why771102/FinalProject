@@ -135,13 +135,13 @@
                         </table>
                         <div id='showTimeHere'>
                         <h3 style='border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px'>播放場次</h3>
-                        <table>
-                            <tr id ='showTime'>
-                            <c:forEach var="one" items="${oneMovie1}" >
+                        <table id='showTime_table'>
+<!--                             <tr id ='showTime_tr'> -->
+<%--                             <c:forEach var="one" items="${oneMovie1}" > --%>
 <%--                                       <c:if test=${oneMovie1.strDay }> --%>
-                                     <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>${one.strTime}</a></td>
+<%--                                      <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>${one.strTime}</a></td> --%>
 <%--                                       </c:if> --%>
-                            </c:forEach>
+<%--                             </c:forEach> --%>
                                 
                                 
                                
@@ -263,7 +263,7 @@
         </div>
     </section>
 
-    ｂ
+    
     <!-- footer -->
     <jsp:include page="footer.jsp">
      <jsp:param name="a" value="1" />
@@ -286,8 +286,66 @@
 		
 		<script>
 		var a =${sthb_list};
-		
+		var b=${oneMovie};
 		console.log(a);
+		console.log(b);
+		var  StratTime= b[0].strDay;
+		var  EndTime = b[(b.length)-1].strDay;
+		console.log(StratTime);
+		console.log(EndTime);
+		var today = new Date(StratTime+" "+"00:00");
+		var todayMonth =today.getMonth()*1+1;
+		var todayDate = today.getDate()*1;
+		var during = new Date(EndTime+" "+"00:00");
+		var endMonth = during.getMonth()*1+1;
+		var endDate = during.getDate()*1;
+		console.log(endMonth);
+		console.log(endDate);
+		console.log(todayMonth);
+		console.log(EndTime);
+		var diff = during-today;//差多少毫秒數
+		var diffDay = diff/(1000*60*24*60) //差幾日
+		console.log("diff"+diff);
+		console.log("diff"+diffDay);
+		
+	
+		
+		// 處理showTime 時間
+		
+			for(let day =0 ;day<=diffDay;day++){
+				 $("#showTime_table").append("<tr><td>"+"2020"+"-"+(todayMonth)+"-"+(todayDate+day)+"</td></tr>"+"<tr id ='showTime_tr"+day+"'></tr>");
+				for(let i =0;i<(b.length-1);i++){
+					var during2 = new Date(b[i].strDay+" "+"00:00");
+					var during3 = new Date(b[i+1].strDay+" "+"00:00");
+                     console.log("todayMonth"+todayMonth);
+                     console.log((during2.getMonth()*1)+1);
+					if(todayMonth == (during2.getMonth()*1)+1){
+						if(during2.getDate()*1 ==todayDate+day ){
+							console.log("相同月份")
+							 document.getElementById("showTime_tr"+day).innerHTML+= "<td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>"+b[i].strTime+"</a></td>" ;
+//  							  $("#showTime_tr0").append(
+									
+//  			                       "<td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>"+b[i].strTime+"</a></td>" 
+	
+//  							  );
+						}else{}
+							
+						
+						
+				
+					}else{
+						console.log("月份不同");
+					}
+					
+				} 
+				
+				
+				
+				
+
+		}
+		
+		
 		function c(){
 		console.log(document.getElementById("movieBean").value);
 		}

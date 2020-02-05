@@ -441,29 +441,12 @@ public class RunMovieController implements ServletContextAware{
 
 	@GetMapping(value = "/Method/test") // URL 跟<a href='movie/show'> 相關
 	public String testMethod(Model model) {
-//		LocalDate today = (LocalDate.now()).plusDays(2);
-//		List<HallBean> hb_list = hService.getAllHalls(0);
-//		List<HallOrderBean> hob_list = hoService.getHallOrder(today);
-//		for(HallOrderBean hob:hob_list) {
+		System.out.println("TestMethod");
+		MovieBean mb = new MovieBean();
+		mb.setMovieID(39);
+		boolean result = mService.updatePT_value(mb, 2);
 //		
-//			System.out.println(hob.getEndTime());
-//			System.out.println(hob.getHb().getHallID());
-//			System.out.println(hob.getStartTime());
-//			System.out.println(hob.getOrderHours());
-//			System.out.println(hb_list.get(1).getHallID());
-//			if (hob.getHb().getHallID().equalsIgnoreCase(hb_list.get(1).getHallID())) {
-////				HallTime = HallTime - (hob.getOrderHours()) - (restTime.getRunningTime());
-//				ShowtimeBean hall = new ShowtimeBean(0, hob.getOrderHours() * 60, hob);
-//				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
-//				LocalDateTime date2 = LocalDateTime.parse(hob.getStartTime(), fmt);
-//				hall.setStartTime(date2);
-//				OrderHall_list.add(hall);
-		// 創一個統稱包廳的Bean Running
-
-//			} else {
-//			}
-//		}
-
+		System.out.println("result"+result);
 		return "index-a";// URL 跟 eclip 擺放位置相關
 
 	}
@@ -543,12 +526,12 @@ public class RunMovieController implements ServletContextAware{
 		List<ShowtimeBean> AllDayShowTime = new ArrayList();
 		List<ShowtimeBean> AllShowTime = new ArrayList();
 
-		int day = 7;
+		int day = 1;
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
 		for (int d = 1; d <= day; d++) {
 			LocalDateTime runDateTime = LocalDate.now().plusDays(d).atTime(9, 0);
 			ShowtimeBean restTime = new ShowtimeBean(2, 10);
-			double rate = 0.8;
+			double rate = 0.90;
 			mService.creatOneDayShowTime(runDateTime, rate, restTime, d, AllDayShowTime);
 		}
         System.out.println("size:"+AllDayShowTime.size());

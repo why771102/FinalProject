@@ -30,49 +30,13 @@
 </head>
 
 <body>
-    <header>
-        <!-- header -->
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">aaaaaa</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/logo.png" class="logo-hdr" width="180">
-                    </a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">home</a>
-                        </li>
-                        <li class="active"><a href="features.html">latest movies</a>
-                        </li>
-                        <li><a href="pricing.html">pricing</a>
-                        </li>
-                        <li><a href="up-coming.html">Up coming</a>
-                        </li>
-                        <li><a href="conatct.html">contact</a>
-                        </li>
-                        <li><a href="login-page.html">login </a>
-                        </li>
-                        <li class="free-trial-btn"><a href="free-trail.html">free trial</a>
-                        </li>
-                        <li>
-                            <select>
-                                <option>ENG</option>
-                                <option>FR</option>
-                            </select>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-            </div>
-        </nav>
-    </header>
     <!-- header -->
+	<header>
+       <jsp:include page="header.jsp">
+       <jsp:param name="a" value="1" />
+</jsp:include>
+    </header>
+	<!-- header -->
 
     <!-- banner -->
     <section class="ticket-outer banner-featured">
@@ -154,100 +118,16 @@
     </section>
 
     
-    <!-- footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row responsiv-div2">
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner">
-                        <h4>About</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                            <li><a href="">Sit Amet</a>
-                            </li>
-                            <li><a href="">Ipsum Dolor</a>
-                            </li>
+   <!-- footer -->
+    <footer>
 
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner">
-                        <h4>Other</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Sit Amet</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                            <li><a href="">Ipsum Dolor</a>
-                            </li>
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner contect-f">
-                        <h4>Contact</h4>
-                        <ul class="list-unstyled">
-                            <address>123 Lorem Ipsum <br> 12345 India</address>
-                            <br>
-                            <li>01 23 456 789</li>
-                            <li class="f-link"><a href="">contact@cineshow.fr</a>
-                            </li>
-                            <br>
-                            <li>01 23 456 789</li>
-                            <li class="f-link"><a href="">sales@cineshow.fr</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner">
-                        <h4>Email Alerts</h4>
-                        <div class="form">
-                            <form>
-                                <input type="text" name="nm" class="inp-fild" placeholder="Name">
-                                <input type="text" id="mail" name="mail" class="inp-fild" placeholder="Email Address">
-                            </form>
-                            <button class="footer-btn">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-line">
-                <div class="im-inner">
-                    <span></span>
-                    <a href="index.html"><img src="img/logo.png" class="ftr-logo" width="200">
-                    </a><span></span>
-                </div>
-                <h4> Copyrights 2016 | <a href="#">Terms of use</a></h4>
-                <div class="right-icon">
-                    <ul class="list-inline">
-                        <li class="fb"><a href="#"><i class="fb fa fa-facebook"></i></a>
-                        </li>
-                        <li class="twitter"><a href="#"><i class="twitter fa fa-twitter"></i></a>
-                        </li>
-                        <li class="google"><a href="#"><i class="google fa fa-google-plus"></i></a>
-                        </li>
-                        <li class="youtube"><a href="#"><i class="youtube fa fa-youtube-play"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+       <jsp:include page="footer.jsp">
+       	<jsp:param name="a" value="1" />
+       </jsp:include>
+
     </footer>
+       
+    <!-- footer -->
      <div class="premium-tagline">
         <p>Created By: <a href="https://www.premium-themes.co/" target="_blank">Premium Themes</a></p>
     </div>

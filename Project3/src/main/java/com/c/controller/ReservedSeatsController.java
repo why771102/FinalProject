@@ -9,15 +9,13 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
+import com.c.model.NumberOfSeatsBean;
 import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatOrderBean;
 import com.c.service.HallService;
@@ -53,7 +51,9 @@ public class ReservedSeatsController {
 	}
 
 	@GetMapping("/reservedSeats/showSeats")
-	public String insertReservedSeats(@ModelAttribute("showtime") ShowTimeHistoryBean sthb, Model model) {
+	public String getReservedSeats() {
+		//傳入showTimeID
+		
 		// insert seats into reserved seats table;
 //		rservice.insertSeats();
 
@@ -64,15 +64,14 @@ public class ReservedSeatsController {
 //		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatsBean().getHallBean().getHallID());
 //		nosservice.insertNumberofSeats(nosb);
 		
-		model.addAttribute("showtime", sthb);
 		return "c/showReservedSeats";
 	}
 
 //	應該傳到前端 電影名稱、廳、訂票數、日期
 	@PostMapping("/reservedSeats/showSeats")
 	public @ResponseBody Map<Integer, String> showReservedSeats() {
-		// 由前端傳入
-		Integer showTimeID = 4568;
+		// 由前端傳入showTimeID
+		Integer showTimeID = 4059;
 		List<ReservedSeatsBean> listsb = rservice.getAllSeats(showTimeID);
 		String date = listsb.get(0).getShowtimeHistoryBean().getPlayStartTime();
 		String movie = listsb.get(0).getShowtimeHistoryBean().getRun().getMovie().getTitle();

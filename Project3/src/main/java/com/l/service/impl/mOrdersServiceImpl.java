@@ -82,9 +82,9 @@ public class mOrdersServiceImpl implements mOrdersService{
 
 	@Transactional
 	@Override
-	public MOrderBean updateTicket(MOrderBean mob) {
-		// TODO Auto-generated method stub
-		return null;
+	public void  updateTicket(MOrderBean mob) {
+		
+		 dao.updateTicket(mob);
 	}
 	
 	@Transactional

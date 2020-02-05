@@ -22,6 +22,15 @@
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script defer src="js/bootstrap.min.js"></script>
+     <style>
+    body{
+    	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+    }
+    
+    html {
+  		scroll-behavior: smooth;
+	}
+    </style>
 </head>
 
 <body>
@@ -37,12 +46,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/logo-1.png" class="logo-hdr" width="180">
+                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>"><img src="img/logo-1.png" class="logo-hdr" width="180">
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse my-nav-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="index.html">home</a>
+                        <li class="active"><a href="<c:url value='/movieIndex'/>">home</a>
                         </li>
                         <li><a href="latest.html">即將上映</a>
                         </li>
@@ -57,15 +66,10 @@
 
                         <li><a href="getShoppingCart" style='padding:5px;'><img src="img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
-                        <li class="free-trial-btn"><a href="<c:url value='/member/login' />">登入</a>
-                            
-                        </li>
-<!--                         <li> -->
-<!--                             <select> -->
-<!--                                 <option>中文</option> -->
-<!--                                 <option>ENG</option> -->
-<!--                             </select> -->
-<!--                         </li> -->
+                        <li class="free-trial-btn btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
+                        <li class="free-trial-btn btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
+                        <li class="free-trial-btn btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
+
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -86,9 +90,9 @@
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left">
                                         <div class="slide-con">
-                                            <h5>Fast Online</h5>
-                                            <h4>SEAT BOOKINGS<br> </h4>
-                                            <a href="free-trail.html" class="slider-btn">BOOK NOW</a>
+                                            <h5>不想排隊?</h5>
+                                            <h4>快線上訂位!<br> </h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -108,9 +112,9 @@
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left">
                                         <div class="slide-con">
-                                            <h5>Fast Online </h5>
-                                            <h4>SEAT BOOKINGS</h4>
-                                            <a href="free-trail.html" class="slider-btn">BOOK NOW</a>
+                                            <h5>不想排隊? </h5>
+                                            <h4>快線上訂位!</h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -129,9 +133,9 @@
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left">
                                         <div class="slide-con">
-                                            <h5>Fast Online </h5>
-                                            <h4>SEAT BOOKINGS</h4>
-                                            <a href="free-trail.html" class="slider-btn">BOOK NOW</a>
+                                            <h5>不想排隊? </h5>
+                                            <h4>快線上訂位!</h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -167,8 +171,8 @@
                         <span>
                         	<img src="img/icon-2.png">
                         </span>
-                        <h4>MOVIES IMPORTER</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </p>
+                        <h4>頂尖設備</h4>
+                        <p>影廳播放之畫面色彩、對比度、聲音響度及音場頻率皆達最高規格 </p>
                     </div>
                 </div>
                 <div class="col-sm-4 col-xs-4">
@@ -176,8 +180,8 @@
                         <span>
                         	<img src="img/icon-3.png">
                         </span>
-                        <h4>CINEMA LOCATIONS</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </p>
+                        <h4>影廳租借</h4>
+                        <p>全系列影廳 開放租借中 各種活動都適合</p>
                     </div>
                 </div>
 
@@ -291,20 +295,20 @@
 
 
 
-    <section class="ticket-outer">
+    <section class="ticket-outer" id="booknow">
         <div class="container">
             <div class="ticket-sell">
                 <div class="row clearfix">
                     <div class="col-sm-6 pull-left">
                         <div class="tc-con">
                             <h5>快速訂票</h5>
-                            <h3>Ticket Selling</h3>
+                            <h3>購票須知</h3>
                             <ul class="list-unstyled">
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                                <li>非影城網路會員也可以使用</li>
+                                <li>每個帳號每筆交易最多可購買 6 張電影票劵。</li>
+                                <li>訂單成立視同票券售出，逾時未取票者並不會自動取消座位或退款，沒有在開演前取票或票券隔場作廢，一概不得退票或換票，票款與手續費皆不退回。</li>
+                                <li>本系統銷售票劵與影城現場同步，一旦結帳成功，現場座位就已經同步售出。</li>
+                                <li>請選擇正確的票種，以免影響自身權益。</li>
                             </ul>
                             <a href="free-trail.html" class="slider-btn slider-g-btn">lETS GET sTARTED</a>
                         </div>
@@ -416,103 +420,15 @@
     </section>
 
     <!-- footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row responsiv-div2">
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner">
-                        <h4>About</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                            <li><a href="">Sit Amet</a>
-                            </li>
-                            <li><a href="">Ipsum Dolor</a>
-                            </li>
+    <footer>
 
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner">
-                        <h4>Other</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Sit Amet</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                            <li><a href="">Ipsum Dolor</a>
-                            </li>
-                            <li><a href="">Lorem Ipsum</a>
-                            </li>
-                            <li><a href="">Dolor Sit</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner contect-f">
-                        <h4>Contact</h4>
-                        <ul class="list-unstyled">
-                            <address>123 Lorem Ipsum <br> 12345 India</address>
-                            <br>
-                            <li>01 23 456 789</li>
-                            <li class="f-link"><a href="">contact@cineshow.fr</a>
-                            </li>
-                            <br>
-                            <li>01 23 456 789</li>
-                            <li class="f-link"><a href="">sales@cineshow.fr</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <div class="f-inner">
-                        <h4>Email Alerts</h4>
-                        <div class="form">
-                            <form>
-                                <input type="text" name="nm" class="inp-fild" placeholder="Name">
-                                <input type="text" id="mail" name="mail" class="inp-fild" placeholder="Email Address">
-                            </form>
-                            <button class="footer-btn">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-line">
-                <div class="im-inner">
-                    <span></span>
-                    <a href="index.html"><img src="img/logo.png" class="ftr-logo" width="200">
-                    </a><span></span>
-                </div>
-                <h4> Copyrights 2016 | <a href="#">Terms of use</a></h4>
-                <div class="right-icon">
-                    <ul class="list-inline">
-                        <li class="fb"><a href="#"><i class="fb fa fa-facebook"></i></a>
-                        </li>
-                        <li class="twitter"><a href="#"><i class="twitter fa fa-twitter"></i></a>
-                        </li>
-                        <li class="google"><a href="#"><i class="google fa fa-google-plus"></i></a>
-                        </li>
-                        <li class="youtube"><a href="#"><i class="youtube fa fa-youtube-play"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+       <jsp:include page="footer.jsp">
+       	<jsp:param name="a" value="1" />
+       </jsp:include>
+
     </footer>
-     <div class="premium-tagline">
-        <p>Created By: <a href="https://www.premium-themes.co/" target="_blank">Premium Themes</a></p>
-    </div>
-    <!--footer-->
+       
+    <!-- footer -->
 
     <!-- scripts-->
     <script defer src="js/jquery.flexslider.js"></script>
@@ -627,15 +543,27 @@
 // 			});
         });
         
-//         function checkShowTime(date, movie){
-//         	for(let x = 0; x < allshowtimelist.length; x++){
-//         		console.log(allshowtimelist[x].run.movie.movieID == chosenMovie);
-//         		console.log((allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate);
-//         		if(allshowtimelist[x].run.movie.movieID == chosenMovie && (allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate){
-//         			document.getElementById('movieStartTime').innerHTML += "<option value='" + allshowtimelist[x].showTimeId +"'>" + allshowtimelist[x].playStartTime.substring(11, 16) + "</option>";
-//         		}
-//         	}
-//         }
+        cookieArray = document.cookie.split("; ");
+    	console.log(cookieArray);
+
+    	for (i = 0; i < cookieArray.length; i++) {
+    			memberIDArrays = cookieArray[i].split("=");
+    			console.log(memberIDArrays);
+    			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
+//     				$("#name").text("訪客");
+    				$("#logout").hide();
+    			}else{
+//     				for (i = 0; i < cookieArray.length; i++) {
+//     				nameArrays = cookieArray[i].split("=");
+//     				console.log(nameArrays);
+//     				if (nameArrays[0] == "name") {
+//     				$("#name").text(nameArrays[1]);
+//     				}
+//     			}
+    				$("#register").hide();
+    				$("#login").hide();
+    		}
+    	}
     </script>
 
 

@@ -47,6 +47,9 @@ public interface MovieDao {
 
 
 	Map<Integer, MovieBean> getPageBooks(int pageNo, List<RunningBean> run);
+
+
+	boolean updatePT_value(MovieBean movie, double PT);
 	
 	// 拿電影ID 取出movieBean 塞進 runningBean(select 出來就有不用取)
 
