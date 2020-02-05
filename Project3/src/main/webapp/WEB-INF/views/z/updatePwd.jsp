@@ -45,8 +45,8 @@
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
 		<jsp:include page="bg-sidebar.jsp">
-			<jsp:param name="a" value="1" />
-			<jsp:param name="b" value="1" />
+			<jsp:param name="c" value="1" />
+			<jsp:param name="d" value="1" />
 		</jsp:include>
 
 
@@ -110,29 +110,29 @@
 		<!--main content end-->
 		<!--footer start-->
 		<jsp:include page="bg-footer.jsp">
-			<jsp:param name="a" value="1" />
-			<jsp:param name="b" value="1" />
+			<jsp:param name="e" value="1" />
+			<jsp:param name="f" value="1" />
 		</jsp:include>
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script
-		src="${pageContext.request.contextPath}/lib/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="lib/jquery.dcjqaccordion.2.7.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js"
-		type="text/javascript"></script>
-	<!--common script for all pages-->
-	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script>
-	<!--script for this page-->
-	<!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
-	<script type="text/javascript"
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery/jquery.min.js"></script> --%>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script> --%>
+<!-- 	<script class="include" type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery.dcjqaccordion.2.7.js"></script> --%>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script> --%>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js" --%>
+<!-- 		type="text/javascript"></script> -->
+<!-- 	<!--common script for all pages--> -->
+<%-- 	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script> --%>
+<!-- 	<!--script for this page--> -->
+<!-- 	<!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION --> -->
+<!-- 	<script type="text/javascript" -->
+<!-- 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script> -->
 	
 </body>
 </html>
