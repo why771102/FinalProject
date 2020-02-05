@@ -402,6 +402,11 @@ public class RunMovieController implements ServletContextAware{
 		 sthb_list= mService.getShowTimeHistoryListByRunIDAndTime(runID,  endDay.toString(),today.toString());
 		List<ShowtimeBean> oneMovie = new ArrayList();
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+		
+		//sort by time
+		mService.sortShowTimeByTime(sthb_list);
+		
+		//put in oneMovie
 		for(ShowTimeHistoryBean sthb :sthb_list) {
 			System.out.println(sthb.getPlayStartTime());
 		
@@ -849,6 +854,11 @@ public class RunMovieController implements ServletContextAware{
 		 sthb_list= mService.getShowTimeHistoryListByRunIDAndTime(runID,  endDay.toString(),today.toString());
 		List<ShowtimeBean> oneMovie = new ArrayList();
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+		
+		//sort by time
+		mService.sortShowTimeByTime(sthb_list);
+		
+		//put in oneMovie
 		for(ShowTimeHistoryBean sthb :sthb_list) {
 			System.out.println(sthb.getPlayStartTime());
 		

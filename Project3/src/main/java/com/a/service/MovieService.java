@@ -197,6 +197,7 @@ public interface MovieService {
 	RunningBean getRunningBeanById(String runningID);
 	List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID, String exOffDay, String release);
 	boolean updatePT_value(MovieBean movie, double PT);
+	void sortShowTimeByTime(List<ShowTimeHistoryBean> sthb_list);
 	
 	
 
