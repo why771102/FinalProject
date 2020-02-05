@@ -19,6 +19,15 @@
 		<tr>
 			<td>購買商品:</td>
 			<td><input type="text" name="product" value="Next iPhone" /></td>
+		</tr>				
+		<tr>
+			<td>總額:</td>
+			<td><input type="text" name="total" value="100" /></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="購買" />
+			</td>
 		</tr>
 		<tr>
 			<td><input type="hidden" name="subtotal" value="100" /></td>
@@ -28,15 +37,6 @@
 		</tr>		
 		<tr>
 			<td><input type="hidden" name="tax" value="0" /></td>
-		</tr>		
-		<tr>
-			<td>總額:</td>
-			<td><input type="text" name="total" value="100" /></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<input type="submit" value="Checkout" />
-			</td>
 		</tr>
 	</table>
 	</form>

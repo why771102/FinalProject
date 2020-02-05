@@ -18,22 +18,22 @@
 <div align="center">
 	<h1>Payment Done. Thank you for purchasing our products</h1>
 	<br/>
-	<h2>Receipt Details:</h2>
+	<h2>付款明細:</h2>
 	<table>
 		<tr>
-			<td><b>Merchant:</b></td>
+			<td><b>商家:</b></td>
 			<td>76影城</td>
 		</tr>
 		<tr>
-			<td><b>Payer:</b></td>
-			<td>${payer.firstName} ${payer.lastName}</td>		
+			<td><b>購買人:</b></td>
+			<td>${payer.lastName} ${payer.firstName}</td>		
 		</tr>
 		<tr>
-			<td><b>Description:</b></td>
+			<td><b>商品:</b></td>
 			<td>${transaction.description}</td>
 		</tr>
 		<tr>
-			<td><b>Total:</b></td>
+			<td><b>總額:</b></td>
 			<td>${transaction.amount.total} NTD</td>
 		</tr>
 <!-- 		<tr> -->
