@@ -27,6 +27,9 @@
 	span{
 		color:red;
 	}
+ 	tr{ 
+ 		height:30;
+ 	} 
 </style>
 
 <title>會員註冊</title>
@@ -77,7 +80,7 @@
 								<tr>
 									<td>性別:</td>
 									<td><form:radiobutton path="gender" value="男性" />男性 
-										<form:radiobutton path="gender" value="女性" />女性 
+										<form:radiobutton path="gender" value="女性" id="female" />女性 
 										<form:radiobutton path="gender" value="其他" />其他
 									</td>
 								</tr>
@@ -116,6 +119,9 @@
 								</tr>
 							</fieldset>
 						</form:form>
+								<tr>
+									<td colspan="2"><input type='button' value="一鍵輸入" id="sumit2" class="inlog-btn" /></td>
+								</tr>
 					</table>
 				</div>
 			</div>
@@ -142,6 +148,19 @@
 									+ d.getMinutes() + ":" + d.getSeconds()
 									+ ".000");
 				});
+		
+		$("#sumit2").click(function(){
+			$("#name").val("李艾莉");
+			$("#account").val("allyli1234");
+			$("#password").val("allyli1234");
+			$("#checkPassword").val("allyli1234");
+			$("#female").prop("checked", true);
+			$("#uID").val("B123456789");
+			$("#birth").val("1990-02-02");
+			$("#mobile").val("0918362789");
+			$("#email").val("allyli1234@gmail.com");
+			$("#address").val("台北市大安區復興南路一段390號15樓");
+		});
 
 	</script>
 </body>
