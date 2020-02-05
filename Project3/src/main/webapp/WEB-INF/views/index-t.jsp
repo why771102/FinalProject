@@ -22,7 +22,7 @@
 				<a href='getMovieID'>查詢個別電影的留言</a><BR>
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='https://ecpay-payment.herokuapp.com/ecpay/get?total=500&item=76影城消費總額&name=王小明&address=無&email=無&note=無'>測試綠界</a><BR>
+				<a href='paypal'>測試paypal</a><BR>
 			</td>
 		</tr>
 		
