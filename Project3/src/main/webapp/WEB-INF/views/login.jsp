@@ -24,6 +24,9 @@
   margin-left:auto; 
   margin-right:auto;
  }
+ tr{ 
+ 		height:30;
+ 	} 
 </style>
 
 <title>會員登入</title>
@@ -73,6 +76,10 @@
         <tr>
          <td colspan="2"><input type='button' value="現在註冊" onclick="javascript:location.href='<c:url value='/member/register' />'" class="inlog-btn"/></td>
         </tr>
+        
+        <tr>
+         <td colspan="2"><input type='button' id="sumit2" value="一鍵輸入" class="inlog-btn"/></td>
+        </tr>
      </table>
     </div>
    </div>
@@ -101,6 +108,11 @@
          + ".000");
      console.log($("註冊時間:" + "#lastLogInTime").val());
     });
+  
+	$("#sumit2").click(function(){
+		$("#account").val("testEeit110");
+		$("#password").val("a12341234");
+	});
  </script>
 </body>
 </html>

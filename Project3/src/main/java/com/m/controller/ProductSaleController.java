@@ -82,10 +82,10 @@ public class ProductSaleController {
 		} else {
 			System.out.println("start to get Info!!");
 			switch (cate) {
-			case "all":
+			case "全部商品":
 				psebList = service.getAllProductInfo(sDate, eDate);
 				break;
-			case "allFood":
+			case "餐點總覽":
 				psebList = service.getAllFoodInfo(sDate, eDate);
 				break;
 			case "套餐的餐點":

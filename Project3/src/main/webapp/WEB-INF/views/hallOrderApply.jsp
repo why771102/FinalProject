@@ -22,11 +22,11 @@
 
 </head>
 <body>
-    <header>
-       <jsp:include page="a/header.jsp">
-       <jsp:param name="a" value="1" />
-</jsp:include>
-    </header>
+	<header>
+		<jsp:include page="a/header.jsp">
+			<jsp:param name="a" value="1" />
+		</jsp:include>
+	</header>
 	<section class="login-block">
 		<div class="container">
 			<div class="login-inner">
@@ -143,29 +143,36 @@
 											value="0" type='hidden' /></td>
 								</tr>
 								<tr>
-									<td colspan="2"><input type='submit' value="送出申請" class="inlog-btn" /></td>
-<%-- 									<td><a href="<c:url value='/'/>" class="inlog-btn" >回首頁</a></td> --%>
+									<td colspan="2"><input type='submit' value="送出申請"
+										class="inlog-btn" /></td>
+									<%-- 									<td><a href="<c:url value='/'/>" class="inlog-btn" >回首頁</a></td> --%>
 								</tr>
 							</fieldset>
 						</form:form>
-								<tr>
-									<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/'/>'" class="inlog-btn"/></td>
-								</tr>
+						<tr>
+							<td colspan="2"><input type='button' value="回首頁"
+								onclick="javascript:location.href='<c:url value='/'/>'"
+								class="inlog-btn" /></td>
+						</tr>
+						<tr>
+							<td colspan="2"><input type='button' id="sumit2"
+								value="一鍵輸入" class="inlog-btn" /></td>
+						</tr>
 					</table>
 				</div>
 			</div>
 		</div>
 	</section>
-		<!-- footer -->
-    <footer>
+	<!-- footer -->
+	<footer>
 
-       <jsp:include page="a/footer.jsp">
-       	<jsp:param name="a" value="1" />
-       </jsp:include>
+		<jsp:include page="a/footer.jsp">
+			<jsp:param name="a" value="1" />
+		</jsp:include>
 
-    </footer>
-       
-    <!-- footer -->
+	</footer>
+
+	<!-- footer -->
 	<script>
 		var s;
 		var e;

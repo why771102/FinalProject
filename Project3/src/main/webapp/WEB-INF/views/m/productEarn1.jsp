@@ -121,8 +121,14 @@
 
 					$.each(productearn, function(index, value) {
 						console.log(value);
+						let price = new Number(value.price).toLocaleString("en-AU");
+						let qtyTotal = new Number(value.qtyTotal).toLocaleString("en-AU");
+						let cost = new Number(value.cost).toLocaleString("en-AU");
+						let earn = new Number(value.earn).toLocaleString("en-AU");
+						let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
+						let earnSubtotal = new Number(value.earnSubtotal).toLocaleString("en-AU");
 						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/product/earn/"+value.productsBean.productID+"'>"+value.productName+"</a>",
-							value.price, value.qtyTotal, value.cost, value.earn, value.subtotal, value.earnSubtotal]).draw();
+							price, qtyTotal, cost, earn, subtotal, earnSubtotal]).draw();
 					});
 // 					showInfo(data);
 					console.log(productearn);
