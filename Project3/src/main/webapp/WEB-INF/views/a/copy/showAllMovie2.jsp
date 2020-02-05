@@ -14,6 +14,7 @@
 
 </head>
 <body>
+ <h1>22222222</h1>
 <c:forEach var="movie" items="${mb_list}">
  <div class="col-md-3 col-sm-4 col-xs-6">
                     <div class="movie1">

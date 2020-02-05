@@ -72,10 +72,10 @@
 </jsp:include>
 
     </header>
-    <div>${sthb_list1.get(1).run.movie.movieID}</div>
+   <!--  <div>${sthb_list1.get(1).run.movie.movieID}</div>
 <div>${sthb_list1.get(1).showTimeId}</div>
 <div>${sthb_list1.get(1).playStartTime}</div>
-<div>${sthb_list1.get(1).run.runID}</div>
+<div>${sthb_list1.get(1).run.runID}</div>-->
     <!-- header -->
 
     <!-- banner -->
@@ -84,8 +84,10 @@
     <section class='gray-bnr feature-sec ' style='background-color:black;'>
     <div class='container' >
     
-        <div class='buy-txt'>   <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
-      
+        <div class='buy-txt'> 
+        ${sthb_list1.get(1).run.movie.trailer}  
+      <!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
+      -->
     </div>
     </section>
     <section class='gray-bnr feature-sec ' style='padding:50px 0px;'>
@@ -131,20 +133,9 @@
                                 <td>${sthb_list1.get(0).run.movie.runningTime}</td>
                             </tr>
                         </table>
-                        <h3 style='border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px'>播放場次</h3>
-                        <table>
-                            <tr id ='showTime'>
-                            <c:forEach var="one" items="${oneMovie1}" >
-<%--                                       <c:if test=${oneMovie1.strDay }> --%>
-                                     <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>${one.strTime}</a></td>
-<%--                                       </c:if> --%>
-                            </c:forEach>
-                                
-                                
-                               
-                            </tr>
-                        </table>
-                        
+                        <div id='showTimeHere'>
+                     
+                        </div>
 
                     <!-- </div> -->
                     </div>
@@ -152,13 +143,92 @@
             </div>
         </div>
     </section>
+     <!-- banner -->
+    <section class=" banner-featured" style='background-color:gray;'>
+        <div class="container">
+            <div class="ticket-sell">
+                <h3 class="font"> 關於電影</h3>
+            </div>
+        </div>
+    </section>
+    <!-- banner -->
 
     <section class='contact-sec'>
             <div class='container'>
     
                 <div class='buy-txt'>
-                    <h2>[ 劇情介紹 ]</h2>
-                    <p> </p>
+                    <h2 style='text-align: left ; color: cornflowerblue;'>[ 劇情介紹 /ABOUT THE STORY ]</h2>
+                    <p> </p><br>
+    
+                </div>
+    
+                <div class='buy-txt'>
+                  
+                <div class='col-sm-12 col-xs-12'> 
+                <div style='text-align: left; padding:5px; font-size: large; '>
+                       ${sthb_list1.get(1).run.movie.plotSummary}
+                </div>
+                    
+                </div>
+
+                </div>
+            </div>
+            
+        </section>
+         <!-- banner -->
+         
+          <!-- banner -->
+
+    <section class='contact-sec'>
+          <div class='container'>
+    
+                <div class='buy-txt'>
+                    <h2 style='text-align: left; color: cornflowerblue;'>[ 入場須知/ RULES AND REGULATION ]</h2>
+                    <p> </p><br>
+    
+                </div>
+    
+                <div class='buy-txt'>
+                <div class="col-sm-12 col-xs-12">
+                    <div class="ex-feature" style='text-align: left;'>
+                       
+                        <ul style='text-align: left;'>
+                            <li>敬請遵守飲食公告。 </li>
+                            <li>本影城全面禁菸。</li>
+                            <li>請勿嚼食檳榔、口香糖。</li>
+                            <li>請勿攜帶寵物入場。</li>
+                            <li>敬請遵守電影分級制度。</li>
+                            <li>如須退票，請於電影開演二十分鐘之前至售票處辦理(連結至退/換票須知)。</li>
+                            <li>進入影廳前，敬請將行動電話、鬧鐘手錶關機或調成靜音。</li>
+                            <li>影片播映時，請勿使用任何錄影(音)器材。</li>
+                            <li>本影城之場次時間表僅為參考，如有異動，請以當日售票處公佈之場次為準。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                </div>
+            
+        </section>
+         <!-- banner -->
+         
+         
+         
+         
+<!--     <section class="ticket-outer banner-featured"> -->
+      <section class=" banner-featured" style='background-color:gray;'>
+        <div class="container">
+            <div class="ticket-sell">
+                <h3 class="font"> 留言板</h3>
+            </div>
+        </div>
+    </section>
+    <!-- banner -->
+     <section class='contact-sec '>
+            <div class='container'>
+    
+                <div class='buy-txt'>
+                    <h2>[ 留言板 ]</h2>
+                    <p> </p><br>
     
                 </div>
     
@@ -174,7 +244,6 @@
                 </div>
             </div>
         </section>
-    
 
     <section class='dark-blue'>
         <div class='container'>
@@ -188,96 +257,11 @@
 
     ｂ
     <!-- footer -->
-    <footer class='footer'>
-        <div class='container'>
-            <div class='row responsiv-div2'>
-                <div class='col-sm-3 col-xs-6'>
-                    <div class='f-inner'>
-                        <h4>關於我們</h4>
-                        <ul class='list-unstyled'>
-                            <li><a href=''>公司簡介</a>
-                            </li>
-                            <li><a href=''>企業理念</a>
-                            </li>
-                            <li><a href=''>影廳介紹</a>
-                            </li>
-                            <li><a href=''>電影院設備</a>
-                            </li>
-                            <li><a href=''>相關設施</a>
-                            </li>
-                          
-
-                        </ul>
-                    </div>
-                </div>
-                <div class='col-sm-3 col-xs-6'>
-                    <div class='f-inner'>
-                        <h4>其他項目</h4>
-                        <ul class='list-unstyled'>
-                          
-                            <li><a href=''>線上周邊</a>
-                            </li>
-                            <li><a href=''>包場服務</a>
-                            </li>
-                            <li><a href=''>餐飲服務</a>
-                            </li>
-                            <li><a href=''>其他</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class='col-sm-3 col-xs-6'>
-                    <div class='f-inner contect-f'>
-                        <h4>聯絡我們</h4>
-                        <ul class='list-unstyled'>
-                            <address>線上客服 <br> 12345 India</address>
-                            <br>
-                            <li>01 23 456 789</li>
-                            <li class='f-link'><a href=''>contact@cineshow.fr</a>
-                            </li>
-                            <br>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class='col-sm-3 col-xs-6'>
-                    <div class='f-inner'>
-                        <h4>告訴我們您的建議</h4>
-                        <div class='form'>
-                            <form>
-                                <input type='text' name='nm' class='inp-fild' placeholder='Name'>
-                                <input type='text' id='mail' name='mail' class='inp-fild' placeholder='Email Address'>
-                            </form>
-                            <button class='footer-btn'>Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class='footer-line'>
-                <div class='im-inner'>
-                    <span></span>
-                    <a href='index.html'><img src='img/logo.png' class='ftr-logo' width='200'>
-                    </a><span></span>
-                </div>
-                <h4> Copyrights 2020.01.26 | <a href='#'>10.3.7</a></h4>
-                <div class='right-icon'>
-                    <ul class='list-inline'>
-                        <li class='fb'><a href='#'><i class='fb fa fa-facebook'></i></a>
-                        </li>
-                        <li class='twitter'><a href='#'><i class='twitter fa fa-twitter'></i></a>
-                        </li>
-                        <li class='google'><a href='#'><i class='google fa fa-google-plus'></i></a>
-                        </li>
-                        <li class='youtube'><a href='#'><i class='youtube fa fa-youtube-play'></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-     <div class='premium-tagline'>
-        <p>Created By: <a href= >Teamwork</a></p>
-    </div>
+    <jsp:include page="footer.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
+    
     <!-- footer -->
 
     <!-- scripts -->

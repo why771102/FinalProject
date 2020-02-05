@@ -68,7 +68,7 @@
 					</div>
 				</div>
 				<form id='runForm${run.runID}'
-					action="${pageContext.request.contextPath}/show/this/movie/commingSoon"
+					action="${pageContext.request.contextPath}/show/this/movie"
 					method="post">
 
 					<input name='runID' type='hidden' value='${run.runID}'>
