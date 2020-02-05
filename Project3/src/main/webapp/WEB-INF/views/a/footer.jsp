@@ -80,7 +80,8 @@
                 </div>
                 <div class="col-sm-3 col-xs-6">
                     <div class="f-inner">
-                        <h4>告訴我們您的建議</h4>
+                        <h4>想要收到即時訊息!</h4>
+                        <h4>填寫您的資料</h4>
                         <div class="form">
                             <form>
                                 <input type="text" name="nm" class="inp-fild" placeholder="Name">
@@ -94,7 +95,7 @@
             <div class="footer-line">
                 <div class="im-inner">
                     <span></span>
-                    <a href="index.html"><img src="../img/logo.png" class="ftr-logo" width="200">
+                    <a href="index.html"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="ftr-logo" width="200">
                     </a><span></span>
                 </div>
                 <h4> Copyrights 2020.01.26 | <a href="#">10.3.7</a></h4>

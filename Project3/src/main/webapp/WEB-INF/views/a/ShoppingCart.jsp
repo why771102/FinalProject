@@ -367,7 +367,7 @@ div.free-trial-btn button:hover {
 		<!-- content  -->
 		<div class="wrap" style="width: 75%;">
 			<!-- all -->
-			<div class="wrap fullwidth ">
+			<div class="wrap fullwidth " id="allSC">
 
 				<!-- product   -->
 				<div class="wrapStart fullwidth"
@@ -777,6 +777,12 @@ div.free-trial-btn button:hover {
 						}
 					});
 					var oldcTotal = 0;
+					
+					
+					if(sc.length == 0){
+						$('#allSC').html("");
+						$('#allSC').html("<p class='STital' style='text-align:center;'> 您的購物車內沒有商品!! 歡迎選購😄</p><br><div><a href='${pageContext.request.contextPath}/movieIndex'><p class='STital'>👉回首頁逛逛</p></a></div><br>");
+					}
 					//calculate total of each product
 					for (let product = 0; product < sc.length; product++) {
 						var shippingfee;

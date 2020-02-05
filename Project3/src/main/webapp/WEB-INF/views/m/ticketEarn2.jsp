@@ -100,23 +100,29 @@
 				url : "${pageContext.request.contextPath}/ticket/earn/"+${movieID},
 				data : {
 					start : start.format('YYYY-MM-DD'),
-					end : end.format('YYYY-MM-DD')
+					end : end.format('YYYY-MM-DD'),
 				},
 				type : "POST",
 				success : function(ticketEarn) {
 // 					alert("新增成功!");
 					console.log(ticketEarn);
-					
+
 					var dataTable = $("#example").DataTable();
 					dataTable.clear().draw();
 
 					$.each(ticketEarn, function(index, value) {
 						console.log(ticketEarn);
+						let ticketCost = new Number(value.ticketCost).toLocaleString("en-AU");
+						let ticketEarn1 = new Number(value.ticketEarn).toLocaleString("en-AU");
+						let ticketSaleTotal = new Number(value.ticketSaleTotal).toLocaleString("en-AU");
+						let foodCost = new Number(value.foodCost).toLocaleString("en-AU");
+						let foodEarn = new Number(value.foodEarn).toLocaleString("en-AU");
+						let foodSaleTotal = new Number(value.foodSaleTotal).toLocaleString("en-AU");
+						let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
 						dataTable.row.add(["",
 							"<a href='${pageContext.request.contextPath}/ticket/"+value.movieBean.movieID+"/"+value.playMovieDate+"'>"+value.playMovieDate+"</a>"
-							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
-							value.ticketSaleTotal,value.foodCost,value.foodEarn,
-							value.foodSaleTotal,value.subtotal]).draw();
+							,value.noPlayTimes,ticketCost,ticketEarn1,ticketSaleTotal,foodCost,foodEarn,
+							foodSaleTotal,subtotal]).draw();
 					});
 			}	
 		});
@@ -146,30 +152,5 @@
 				}, cb);
 		cb(start, end);
 	});
-
-
-// 	//傳送cate selection值
-// 	function showCate() {
-// 		$.ajax({
-// 			url : "${pageContext.request.contextPath}/product/sale/date",
-// 			data : {
-// 				cate : document.getElementById("categoryNames").value
-// 			},
-// 			type : "Get",
-// // 			success : function() {
-// // 				alert("新增成功!");
-// 				//	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-// // 			}
-// 		});
-// 	}
-
-	//動態新增表格
-// 	$('#insertHere')
-// 			.append(
-// 					'<tr><td></td><td><a href="${pageContext.request.contextPath}/product/sale/date">'
-// 					+日期+'</a></td><td>'
-// 					+單價+'</td><td>'
-// 					+數量+'</td><td>'
-// 					+總金額+'</td></tr>');
 </script>
 </html>

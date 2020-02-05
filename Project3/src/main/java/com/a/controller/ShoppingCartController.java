@@ -84,7 +84,8 @@ public class ShoppingCartController implements ServletContextAware{
 			
 			if (list.size() == 0) {
 				System.out.println("Shopping cart is empty");
-				model.addAttribute("shoppingCart", prod);
+				model.addAttribute("shoppingCart", list);
+				model.addAttribute("shoppingCartJSON", prod);
 			} else {
 				for(int products = 0; products < list.size(); products++) {
 					int shoppingCartQuantity = list.get(products).getQuantity();

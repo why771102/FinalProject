@@ -22,6 +22,7 @@
 	table{
 		margin-left:auto; 
 		margin-right:auto;
+		border:3px #cccccc solid;
 	}
 	
 	#test{
@@ -32,6 +33,9 @@
 		bottom:0;
 	}
 	
+	td{
+		width:100px;
+	}
 	
 </style>
 </head>
@@ -92,15 +96,15 @@
 	<div id="test">
 		<table >
 		<tr style="text-align: center">
-			<td><b>包廳申請編號</b></td>
+			<td><b>申請編號</b></td>
 			<td><b>申請廳院</b></td>
 			<td><b>申請日期</b></td>
 			<td><b>起始時間</b></td>
 			<td><b>結束時間</b></td>
 			<td><b>申請總時數</b></td>
 			<td><b>申請總金額</b></td>
-			<td><b>包廳申請狀態</b></td>
-			<td><b>包廳付款狀態</b></td>
+			<td><b>申請狀態</b></td>
+			<td><b>付款狀態</b></td>
 		</tr>
 			<c:forEach var="hoA" items="${allMHO}">
 		<tr style="text-align: center">

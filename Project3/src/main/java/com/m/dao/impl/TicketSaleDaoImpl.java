@@ -50,8 +50,7 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 		List<String> genres = new ArrayList<>();
 		genres = session.createQuery(hql).getResultList();
 		String ans = "";
-		ans += "<SELECT id='genres' onclick='sendGen()'>" + "<option value='' selected='' disabled=''>請選擇</option>"
-				+ "<option value='all'>全部電影</option>";
+		ans += "<SELECT id='genres'>"+ "<option value='全部電影'  selected=''>全部電影</option>";
 		for (String gen : genres) {
 			ans += "<option value='" + gen + "'>" + gen + "</option>";
 		}
@@ -173,21 +172,20 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
 			MovieBean mb = null;
+			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
+//			System.out.println("sthbList.size() =>" + sthbList.size());
+			noPlayTimes = sthbList.size();
+			for (ShowTimeHistoryBean sthb : sthbList) {
+				hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
+			}
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
-					List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
-					System.out.println("sthbList.size() =>" + sthbList.size());
-					noPlayTimes = sthbList.size();
-
 					title = tseb.getMovieBean().getTitle();
 //					hallSeats = hallSeats + tseb.getHallSeats();
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					mb = tseb.getMovieBean();
-					for (ShowTimeHistoryBean sthb : sthbList) {
-						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
-					}
 				} else {
 					continue;
 				}
@@ -215,7 +213,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			}
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes, hallSeats, hallSaleSeats, avgSeats,
 					pricePerSeat, Subtotal, mb);
-
 			if (tb.getHallSaleSeats() != 0) {
 				tbList.add(tb);
 			} else {
@@ -254,21 +251,20 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
 			MovieBean mb = null;
+			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
+//			System.out.println("sthbList.size() =>" + sthbList.size());
+			noPlayTimes = sthbList.size();
+			for (ShowTimeHistoryBean sthb : sthbList) {
+				hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
+			}
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
-					List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
-					System.out.println("sthbList.size() =>" + sthbList.size());
-					noPlayTimes = sthbList.size();
-
 					title = tseb.getMovieBean().getTitle();
 //					hallSeats = hallSeats + tseb.getHallSeats();
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					mb = tseb.getMovieBean();
-					for (ShowTimeHistoryBean sthb : sthbList) {
-						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
-					}
 				} else {
 					continue;
 				}
@@ -296,7 +292,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			}
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes, hallSeats, hallSaleSeats, avgSeats,
 					pricePerSeat, Subtotal, mb);
-
 			if (tb.getHallSaleSeats() != 0) {
 				tbList.add(tb);
 			} else {
@@ -335,21 +330,20 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
 			MovieBean mb = null;
+			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
+//			System.out.println("sthbList.size() =>" + sthbList.size());
+			noPlayTimes = sthbList.size();
+			for (ShowTimeHistoryBean sthb : sthbList) {
+				hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
+			}
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
-					List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
-//					System.out.println("sthbList.size() =>" + sthbList.size());
-					noPlayTimes = sthbList.size();
-
 					title = tseb.getMovieBean().getTitle();
 //					hallSeats = hallSeats + tseb.getHallSeats();
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					mb = tseb.getMovieBean();
-					for (ShowTimeHistoryBean sthb : sthbList) {
-						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
-					}
 				} else {
 					continue;
 				}
@@ -377,7 +371,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			}
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes, hallSeats, hallSaleSeats, avgSeats,
 					pricePerSeat, Subtotal, mb);
-
 			if (tb.getHallSaleSeats() != 0) {
 				tbList.add(tb);
 			} else {
@@ -416,21 +409,20 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
 			MovieBean mb = null;
+			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
+//			System.out.println("sthbList.size() =>" + sthbList.size());
+			noPlayTimes = sthbList.size();
+			for (ShowTimeHistoryBean sthb : sthbList) {
+				hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
+			}
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
-					List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
-//					System.out.println("sthbList.size() =>" + sthbList.size());
-					noPlayTimes = sthbList.size();
-
 					title = tseb.getMovieBean().getTitle();
 //					hallSeats = hallSeats + tseb.getHallSeats();
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					mb = tseb.getMovieBean();
-					for (ShowTimeHistoryBean sthb : sthbList) {
-						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
-					}
 				} else {
 					continue;
 				}
@@ -458,7 +450,6 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			}
 			TicketSaleEarnBean tb = new TicketSaleEarnBean(title, noPlayTimes, hallSeats, hallSaleSeats, avgSeats,
 					pricePerSeat, Subtotal, mb);
-
 			if (tb.getHallSaleSeats() != 0) {
 				tbList.add(tb);
 			} else {
@@ -497,21 +488,20 @@ public class TicketSaleDaoImpl implements TicketSaleDao {
 			Integer foodSaleTotal = 0;
 			Integer ticketSaleTotal = 0;
 			MovieBean mb = null;
+			List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
+//			System.out.println("sthbList.size() =>" + sthbList.size());
+			noPlayTimes = sthbList.size();
+			for (ShowTimeHistoryBean sthb : sthbList) {
+				hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
+			}
 			for (TicketSaleEarnBean tseb : tsebList) {
 				if (m == tseb.getMovieBean().getMovieID()) {
-					List<ShowTimeHistoryBean> sthbList = dao.getDetail(m, sDate, eDate);
-//					System.out.println("sthbList.size() =>" + sthbList.size());
-					noPlayTimes = sthbList.size();
-
 					title = tseb.getMovieBean().getTitle();
 //					hallSeats = hallSeats + tseb.getHallSeats();
 					hallSaleSeats = hallSaleSeats + tseb.getHallSaleSeats();
 					ticketSaleTotal = ticketSaleTotal + tseb.getTicketSaleTotal();
 					foodSaleTotal = foodSaleTotal + tseb.getFoodSaleTotal();
 					mb = tseb.getMovieBean();
-					for (ShowTimeHistoryBean sthb : sthbList) {
-						hallSeats = hallSeats + sthb.getHall().getNoOfSeats();
-					}
 				} else {
 					continue;
 				}

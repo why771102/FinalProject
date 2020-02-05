@@ -24,12 +24,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <!-- chart -->
-<!--   <base href="https://www.highcharts.com/demo/styled-mode-column/grid-light" /> -->
-<!--   <link rel="stylesheet" href="/samples/highcharts/demo/styled-mode-column/demo.css" type="text/css" /> -->
-<!--   <!-- <link rel="stylesheet" href="/joomla/media/templates/highsoft_2015/css/bootstrap.min.css" type="text/css" /> -->
-<!--   <script src="https://code.highcharts.com/highcharts.js"></script> -->
-<!--   <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
-<!--   <script src="//code.highcharts.com/themes/grid-light.js"></script>  -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -124,7 +118,6 @@
 				<th>單價</th>
 				<th>數量</th>
 				<th>總金額</th>
-				<!-- 				<th>test</th> -->
 			</tr>
 		</thead>
 		<tbody id="insertHere">
@@ -215,9 +208,15 @@
 																		price,
 																		qtyTotal,
 																		subtotal]).draw(); });
-// 							"<input type='hidden'>"+value.categoriesBean.categoryID+"'</input>'"
-							// 					showInfo(data);
-							// 					console.log(productsale);
+							dataTable.on('order.dt search.dt', function() {
+								dataTable.column(0, {
+									search : 'applied',
+									order : 'applied'
+								}).nodes().each(function(cell, i) {
+									cell.innerHTML = i + 1;
+								});
+							}).draw();
+
 							document.getElementById("submitExcel").innerHTML += "<input type='hidden' name='exportExcel' value='"
 									+ JSON.stringify(window.productsale) + "'>" //datatable content
 
@@ -277,11 +276,22 @@
 																			editInfo(productsale);
 																			$.each(productsale,function(index, value) {
 																								console.log(value);
+																								let price = new Number(value.price).toLocaleString("en-AU");
+																								let qtyTotal = new Number(value.qtyTotal).toLocaleString("en-AU");
+																								let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
 																								dataTable.row.add(["",
 																								"<a href='${pageContext.request.contextPath}/product/sale/"+value.productsBean.productID+"'>"
 																								+ value.productName+ "</a>",
-																								value.price,value.qtyTotal,value.subtotal]).draw();
+																								price,qtyTotal,subtotal]).draw();
 																							});
+																			dataTable.on('order.dt search.dt', function() {
+																				dataTable.column(0, {
+																					search : 'applied',
+																					order : 'applied'
+																				}).nodes().each(function(cell, i) {
+																					cell.innerHTML = i + 1;
+																				});
+																			}).draw();
 																		}
 											});
 					});

@@ -1,5 +1,8 @@
 package com.p.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,11 +21,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.p.model.HallOrderBean;
 import com.p.model.MemberBean;
 import com.p.service.MemberService;
 import com.p.validator.MemberValidator;
+import com.z.model.EmpBean;
 
 @Controller
 public class MemberController {
@@ -47,7 +52,7 @@ public class MemberController {
 		return "register";
 	}
 	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
-	public String processMemberRegister(@ModelAttribute("memberBean")MemberBean mb,Model model,BindingResult result,HttpServletRequest request) {
+	public String processMemberRegister(@ModelAttribute("memberBean")MemberBean mb,Model model,BindingResult result,HttpServletRequest request) throws Exception {
 		HashMap<String, String> errorMsgMap = new HashMap<String, String>();
 		MemberValidator validator = new MemberValidator();
 		// 呼叫Validate進行資料檢查
@@ -71,41 +76,19 @@ public class MemberController {
 		if(!p1.equals(p2)) {
 			errorMsgMap.put("checkPasswordError", "密碼與確認密碼內容不一致!");
 		}
+		Date myDate = new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String date1 = mb.getBirth();
+		Date a=sdf.parse(date1);
+		if(myDate.before(a)) {
+			errorMsgMap.put("birthExistError", "您不可來自未來!");
+		}
 		if(!errorMsgMap.isEmpty()) {
 			model.addAttribute("errorMsgMap",errorMsgMap);
 			return "register";
 		}
 		service.register(mb);
 		return "redirect:/";
-		
-		
-		 //用來放錯誤訊息
-//		if(mb.getName() == null || mb.getName().trim().length() == 0) {
-//			errorMsgMap.put("nameEmptyError", "姓名欄位不得空白!");
-//		}
-//		if(mb.getAccount() == null || mb.getAccount().trim().length() == 0) {
-//			errorMsgMap.put("accountEmptyError", "帳號欄位不得空白!");
-//		}
-//		if(mb.getPassword() == null || mb.getPassword().trim().length() == 0) {
-//			errorMsgMap.put("passwordEmptyError", "密碼欄位不得空白!");
-//		}
-//		if(mb.getuID() == null || mb.getuID().trim().length() == 0) {
-//			errorMsgMap.put("uIDEmptyError", "身分證字號欄位不得空白!");
-//		}
-//		if(mb.getBirth() == null || mb.getBirth().trim().length() == 0) {
-//			errorMsgMap.put("birthEmptyError", "出生年月日欄位不得空白!");
-//		}
-//		if(mb.getMobile() == null || mb.getMobile().trim().length() == 0) {
-//			errorMsgMap.put("mobileEmptyError", "連絡電話欄位不得空白!");
-//		}
-//		if(mb.getEmail() == null || mb.getEmail().trim().length() == 0) {
-//			errorMsgMap.put("emailEmptyError", "email欄位不得空白!");
-//		}
-//		if(mb.getAddress() == null || mb.getAddress().trim().length() == 0) {
-//			errorMsgMap.put("addressEmptyError", "住址欄位不得空白!");
-//		}
-		//接下來要寫有錯的話要接到哪個頁面
-		
 		
 	}
 	
@@ -131,6 +114,20 @@ public class MemberController {
 	public String updateMember(@ModelAttribute("mData")MemberBean mb) {
 		service.updateMember(mb);
 		return "redirect:/member/query";
+	}
+	
+	//以下為員工查詢會員資料的方法
+	@RequestMapping(value = "/employee/memberQuery")
+	public String searchEmp(Model model) {
+		return "searchMb";
+	}
+	
+	@RequestMapping(value = "/memberDataForEmployee1")
+	public String getEmp(@RequestParam("uID") String uID, Model model) {
+		MemberBean mb = service.getEmployeeMember(uID);
+		model.addAttribute("mb", mb);
+		return "memberDataForEmployee";
+		//要做無身分證字號的頁面
 	}
 	
 	//以下為導入登入頁面的controller

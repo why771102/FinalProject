@@ -321,7 +321,7 @@ public class RunMovieController implements ServletContextAware{
 		       
 				
 
-		return "a/showAllMovie";// URL 跟 eclip 擺放位置相關
+		return "a/showAllOnMovie";// URL 跟 eclip 擺放位置相關
 
 	}
 	//顯示上映電影Ajax 分頁
@@ -380,6 +380,48 @@ public class RunMovieController implements ServletContextAware{
        System.out.println("hi  go to On Movie");
 		return  gson.toJson(rb_page_list);
 	}
+	
+	//顯示單個已經上映電影
+	@PostMapping(value = "/show/this/movie")
+	public String showThisMovie(Model model,
+			HttpServletRequest request ,@RequestParam String runID) {
+		System.out.println("inShowThisMovie");
+		
+		System.out.println(runID);
+		Gson gson = new Gson();
+//		Type BeanType = new TypeToken<RunningBean>(){}.getType();
+//		RunningBean rb = new Gson().fromJson(run, BeanType);
+		//get showTime by runningBean
+		RunningBean run = mService.getRunningBeanById(runID);
+		System.out.println("電影名稱:"+run.getMovie().getTitle());
+		
+		LocalDate today = LocalDate.now();
+		LocalDate endDay = today.plusWeeks(1);
+		List<ShowTimeHistoryBean> sthb_list= new ArrayList<>();
+//		 sthb_list= mService.getRunBeanLastSTHB(run, endDay.toString(), today.toString());
+		 sthb_list= mService.getShowTimeHistoryListByRunIDAndTime(runID,  endDay.toString(),today.toString());
+		List<ShowtimeBean> oneMovie = new ArrayList();
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+		for(ShowTimeHistoryBean sthb :sthb_list) {
+			System.out.println(sthb.getPlayStartTime());
+		
+			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
+			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
+		}
+		
+		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
+		model.addAttribute("sthb_list1",sthb_list);
+		model.addAttribute("oneMovie1",oneMovie);
+		request.setAttribute("sthb_list",gson.toJson(sthb_list) );
+		request.setAttribute("oneMovie",gson.toJson(oneMovie) );
+		
+//		String  runID =rb.getRunID().toString();
+		
+		
+		return "a/showMovie2";
+	}
+
+	
 	
 //	@RequestMapping(value="/AllMovie/MoviesPageNo=2")
 //	public String queryOnMovie(Model model) {
@@ -738,7 +780,7 @@ public class RunMovieController implements ServletContextAware{
 		
 //       System.out.println("hi  go to showCommingSoon");
        
-		return "a/showCommingSoonMovie";
+		return "a/showAllCommingSoonMovie";
 	}
 	
 	
@@ -800,20 +842,14 @@ public class RunMovieController implements ServletContextAware{
 		return  gson.toJson(rb_page_list);
 	}
 	
+
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	@PostMapping(value = "/show/this/movie")
-	public   String showThisMovie(Model model,
+	//顯示單個未上映電影
+	@PostMapping(value = "/show/this/movie/commingSoon")
+	public String showThisMovieCommingSoon(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
-		System.out.println("inShowThisMovie");
+		System.out.println("inShowThisMovieCommingSoon");
 		
 		System.out.println(runID);
 		Gson gson = new Gson();
@@ -846,9 +882,8 @@ public class RunMovieController implements ServletContextAware{
 //		String  runID =rb.getRunID().toString();
 		
 		
-		return "a/showmovie";
+		return "a/showMovie3";
 	}
-
 	
 	
 	

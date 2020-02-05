@@ -27,4 +27,6 @@ public interface MemberService {
 	public void updateLastLoginTime(String lastLoginTime, Integer memberID);
 	
 	public List<MemberBean> getMemberList();
+	
+	public MemberBean getEmployeeMember(String uID);
 }

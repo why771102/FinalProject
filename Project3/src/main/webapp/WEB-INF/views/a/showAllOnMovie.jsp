@@ -15,15 +15,15 @@
 	crossorigin="anonymous"></script>
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	 
-<title>ShowAllMovie</title>
+<title>ShowCommingSoonMovie</title>
   <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/flexslider.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css" />
 </head>
 <body>
  <header>
@@ -44,9 +44,10 @@
     </section>
     <!-- banner -->
     <!-- movies -->
-	<div id='movie'> <!-- 最外 -->
+
 	
 	<section class="grey-bar">
+	<div id='movie'> <!-- 最外 -->
         <div class="container">
             <div class="row movies-list">
 	
@@ -76,50 +77,59 @@
 				<a href="" class="book-now">BOOK NOW</a>
 			</div>
       </c:forEach>
-      </div>
-      </div>
-      </section>
-			<br>
     
-	</div><!-- id =movie最外 -->
-    <!-- movies -->
-
-	<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
+      	  </div>
+      </div>
+      	  	</div><!-- id =movie最外 -->
+      	<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
 
 	 <!-- movies page -->
 
 	<div id='createPage'>
-	<table border="1">
+	<table  align='center'>
+	<div align='center'>
 		<tr>
-			<td width='76' id='pfirst_tr'><c:if test="${pageNo > 1}">
+			<td width='' id='pfirst_tr'><c:if test="${pageNo > 1}">
 					<div id="pfirst" values='1' onclick='changePage(this.id)'>第一頁</div>
 				</c:if></td>
-			<td width='76' id='pprev_tr'><c:if test="${pageNo > 1}">
+			<td width='' id='pprev_tr'><c:if test="${pageNo > 1}">
 					<div id="pprev" values="${pageNo-1} " onclick='changePage(this.id)'>
 						<a>上一頁</a>
 					</div>
 				</c:if></td>
-			<td width='76'><c:if test="${pageNo != totalPages}">
+			<td width='76' align='center'><c:if test="${pageNo != totalPages}">
 					<div id="pnext" values='${pageNo+1} ' name='${pageNo+1}'
 						onclick='changePage(this.id)'>
 						<a>下一頁</a>
 					</div>
 				</c:if></td>
-			<td width='76'><c:if test="${pageNo != totalPages}">
+			<td width='76' align='center'><c:if test="${pageNo != totalPages}">
 					<div id="plast" values='${totalPages}'
 						onclick='changePage(this.id)'>
 						<a>最末頁</a>
 					</div>
 				</c:if></td>
-			<td width='176' align='center' id='pageCount'>第${pageNo}頁 /
-				共${totalPages}頁</td>
+			
 		</tr>
+
 	</table>
-	
+	<p id='pageCount'align='center' >第${pageNo}頁 /共${totalPages}頁</p>
+	</div>
 	</div>
 
  <!-- movies page -->
  
+      	
+      	
+      	
+      
+      </section>
+			<br>
+    
+
+    <!-- movies -->
+
+	
   <!--section-->
     <section class="gray-bnr feature-sec">
         <div class="container">
@@ -273,10 +283,10 @@
 
 // 						}
 // 					});
-			changPageNum (id);
+		//	changPageNum (id);
 			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/onMovie/change/page",
+				url : "${pageContext.request.contextPath}/commingSoon/change/page",
 				data : {"page":page},
 				type : "POST",
 				error: function(){alert("失敗");   },
@@ -295,11 +305,13 @@
 				      divObj.innerHTML="";
 				      PageObj.innerHTML="";
 // 				      $("#movie").append("<div>aaa</div>");
-
+                     $("#movie").append(" <div class='container'>"+
+				    	           "<div class='row movies-list' id='moviePlusHere'>"+"</div></div>"+"<br>");
 				      //append Json
 				      for(let i=0 ;i<a.length;i++){
 				    	  
-				    	  $("#movie").append("<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' >"+
+				    	  $("#moviePlusHere").append(
+				    			  "<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' >"+
 				    		  "<div class='movie1'>"+
 								"<div>"+
 	                               //圖片
@@ -315,16 +327,15 @@
         			       "<input name='runID' type='hidden' value='"+a[i].runID+"'>"+
 							"</form>"+
 							"<a href='' class='book-now'>[電影訂票]</a>"+
-						"</div>"+
-
-						"<br>");
+						"</div>");
+				    	  
 				      }
 				      
 				      
 				     
 				      // append create page
 				      $("#createPage").append(
-				    		  "<table border='1'>"+
+				    		  "<table  align='center'>"+
 				    		   " <tr>"+
 				    		        "<td width='76' id='pfirst_tr'>"+
 				    		                "<div id='pfirst'  values='1' onclick='changePage(this.id)'>"+
@@ -345,10 +356,11 @@
 				    		                     "<a>最末頁</a>"+
 				    		                "</div>"+
 				    		           "</td>"+
-				    		        "<td width='176' align='center' id='pageCount'>第"+total+"頁 / 共"+total+"頁</td>"+
+				    		       
 				    		   " </tr>"+
-				    		"</table>"  
-				      
+				    		   
+				    		"</table>"  +
+				    		   "<p align='center' id='pageCount'>第"+total+"頁 / 共"+total+"頁</p>"
 				      
 				      );
 				      //調整出現

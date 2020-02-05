@@ -15,20 +15,21 @@
 	crossorigin="anonymous"></script>
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	 
-<title>ShowCommingSoonMovie</title>
+<title>ShowAllMovie</title>
   <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../css/flexslider.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css" />
 </head>
 <body>
  <header>
+ <h1>1111111111</h1>
         <!-- header -->
- <jsp:include page="header.jsp">
+ <jsp:include page="${pageContext.request.contextPath}/a/header.jsp">
      <jsp:param name="a" value="1" />
     <jsp:param name="b" value="1" />
 </jsp:include>
@@ -165,7 +166,7 @@
   
    <!--section-->
      <!--footer-->
-     <jsp:include page="footer.jsp">
+     <jsp:include page="${pageContext.request.contextPath}/a/footer.jsp">
      <jsp:param name="a" value="1" />
     <jsp:param name="b" value="1" />
 </jsp:include>
@@ -276,7 +277,7 @@
 			changPageNum (id);
 			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/commingSoon/change/page",
+				url : "${pageContext.request.contextPath}/onMovie/change/page",
 				data : {"page":page},
 				type : "POST",
 				error: function(){alert("失敗");   },
