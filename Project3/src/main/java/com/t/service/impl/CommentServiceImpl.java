@@ -93,12 +93,63 @@ public class CommentServiceImpl implements CommentService{
 		return dao.getMovies();
 	}
 	
-	//用電影ID 查出各個comment
+	//用電影ID查comment(未登入) 照時間排序 早到晚
 	@Transactional
 	@Override
-	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock) {
-		return dao.getCommentByMovie(movieID, memberIDBlock);
+	public List<CommentBean> getCommentByMovieNoLoginByTime(Integer movieID){
+		return dao.getCommentByMovieNoLoginByTime(movieID);
 	}
+			
+	//用電影ID查comment(未登入) 照時間排序 晚到早
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieNoLoginByTimeDesc(Integer movieID){
+		return dao.getCommentByMovieNoLoginByTimeDesc(movieID);
+	}
+					
+	//用電影ID查comment(未登入) 照評分排序 低到高
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieNoLoginByGrade(Integer movieID){
+		return dao.getCommentByMovieNoLoginByGrade(movieID);
+	}
+				
+	//用電影ID查comment(未登入) 照評分排序 高到低
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieNoLoginByGradeDesc(Integer movieID){
+		return dao.getCommentByMovieNoLoginByGradeDesc(movieID);
+	}
+				
+	//用電影ID查comment(登入) 照時間排序 早到晚
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieOrderByTime(Integer movieID,Integer memberIDBlock){
+		return dao.getCommentByMovieOrderByTime(movieID, memberIDBlock);
+	}
+			
+	//用電影ID查comment(登入) 照時間排序 晚到早
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieOrderByTimeDesc(Integer movieID,Integer memberIDBlock){
+		return dao.getCommentByMovieOrderByTimeDesc(movieID, memberIDBlock);
+	}
+			
+	//用電影ID查comment(登入) 照評分排序 低到高
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieOrderByGrade(Integer movieID,Integer memberIDBlock){
+		return dao.getCommentByMovieOrderByGrade(movieID, memberIDBlock);
+	}
+	
+	
+	//用電影ID查comment(登入) 照時間排序 高到低
+	@Transactional
+	@Override
+	public List<CommentBean> getCommentByMovieOrderByGradeDesc(Integer movieID,Integer memberIDBlock){
+		return dao.getCommentByMovieOrderByGradeDesc(movieID, memberIDBlock);
+	}
+		
 
 	@Transactional
 	@Override
@@ -122,12 +173,6 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public List<CommentBean> findAllReportComment() {
 		return dao.findAllReportComment();
-	}
-
-	@Transactional
-	@Override
-	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID) {
-		return dao.getCommentByMovieNoLogin(movieID);
 	}
 
 	@Transactional

@@ -179,10 +179,10 @@ public class CommentDaoImpl implements CommentDao {
 		return theGrade;
 	}
 
-	// 用電影ID 查出各個comment
+	//用電影ID查comment(登入) 照時間排序 早到晚
 	@Override
-	public List<CommentBean> getCommentByMovie(Integer movieID, Integer memberIDBlock) {
-		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0";
+	public List<CommentBean> getCommentByMovieOrderByTime(Integer movieID, Integer memberIDBlock) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by commentTime";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
@@ -219,10 +219,211 @@ public class CommentDaoImpl implements CommentDao {
 		return list;
 	}
 	
-	// 用電影ID 查出各個comment(未登入)
+	//用電影ID查comment(登入) 照時間排序 晚到早
 	@Override
-	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID) {
-		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0";
+	public List<CommentBean> getCommentByMovieOrderByTimeDesc(Integer movieID, Integer memberIDBlock) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by commentTime desc";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		int len = list.size() - 1;
+		for (int m = len; m >= 0; m--) {
+			String hql2 = "from PreferenceBean where memberID = :memberID and commentID = :id";
+			Integer cid = list.get(m).getCommentID();
+			List<PreferenceBean> list2 = session.createQuery(hql2).setParameter("memberID", memberIDBlock)
+					.setParameter("id", cid).getResultList();
+			int len1 = list2.size() - 1;
+			for (int k = len1; k >= 0; k--) {
+				if (list2.get(k).getBlock() == 1) {
+					list.remove(m);
+				}
+			}
+		}
+		for (int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			for (int j = 0; j < list1.size(); j++) {
+				if (list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if (list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
+		return list;
+	}
+	
+	//用電影ID查comment(登入) 照評分排序 低到高
+	@Override
+	public List<CommentBean> getCommentByMovieOrderByGrade(Integer movieID, Integer memberIDBlock) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by grade";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		int len = list.size() - 1;
+		for (int m = len; m >= 0; m--) {
+			String hql2 = "from PreferenceBean where memberID = :memberID and commentID = :id";
+			Integer cid = list.get(m).getCommentID();
+			List<PreferenceBean> list2 = session.createQuery(hql2).setParameter("memberID", memberIDBlock)
+					.setParameter("id", cid).getResultList();
+			int len1 = list2.size() - 1;
+			for (int k = len1; k >= 0; k--) {
+				if (list2.get(k).getBlock() == 1) {
+					list.remove(m);
+				}
+			}
+		}
+		for (int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			for (int j = 0; j < list1.size(); j++) {
+				if (list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if (list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
+		return list;
+	}
+	
+	//用電影ID查comment(登入) 照評分排序 高到低
+	@Override
+	public List<CommentBean> getCommentByMovieOrderByGradeDesc(Integer movieID, Integer memberIDBlock) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by grade desc";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		int len = list.size() - 1;
+		for (int m = len; m >= 0; m--) {
+			String hql2 = "from PreferenceBean where memberID = :memberID and commentID = :id";
+			Integer cid = list.get(m).getCommentID();
+			List<PreferenceBean> list2 = session.createQuery(hql2).setParameter("memberID", memberIDBlock)
+					.setParameter("id", cid).getResultList();
+			int len1 = list2.size() - 1;
+			for (int k = len1; k >= 0; k--) {
+				if (list2.get(k).getBlock() == 1) {
+					list.remove(m);
+				}
+			}
+		}
+		for (int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			for (int j = 0; j < list1.size(); j++) {
+				if (list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if (list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
+		return list;
+	}
+	
+	//用電影ID查comment(未登入) 照時間排序 早到晚
+	@Override
+	public List<CommentBean> getCommentByMovieNoLoginByTime(Integer movieID) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by commentTime";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		for (int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			for (int j = 0; j < list1.size(); j++) {
+				if (list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if (list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
+		return list;
+	}
+	
+	//用電影ID查comment(未登入) 照時間排序 晚到早
+	@Override
+	public List<CommentBean> getCommentByMovieNoLoginByTimeDesc(Integer movieID) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by commentTime desc";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		for (int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			for (int j = 0; j < list1.size(); j++) {
+				if (list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if (list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
+		return list;
+	}
+	
+	//用電影ID查comment(未登入) 照評分排序 早到晚
+	@Override
+	public List<CommentBean> getCommentByMovieNoLoginByGrade(Integer movieID) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by grade";
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();
+		for (int i = 0; i < list.size(); i++) {
+			Integer cid = list.get(i).getCommentID();
+			String hql1 = "from PreferenceBean where commentID = :id";
+			List<PreferenceBean> list1 = session.createQuery(hql1).setParameter("id", cid).getResultList();
+			Integer likeNum = 0;
+			Integer badNum = 0;
+			for (int j = 0; j < list1.size(); j++) {
+				if (list1.get(j).getGood() == 1) {
+					likeNum++;
+				}
+				if (list1.get(j).getBad() == 1) {
+					badNum++;
+				}
+			}
+			list.get(i).setBadNum(badNum);
+			list.get(i).setLikeNum(likeNum);
+		}
+		return list;
+	}
+	
+	//用電影ID查comment(未登入) 照評分排序 晚到早
+	@Override
+	public List<CommentBean> getCommentByMovieNoLoginByGradeDesc(Integer movieID) {
+		String hql = "from CommentBean where movieID = :movieID and commentDelete = 0 order by grade desc";
 		Session session = factory.getCurrentSession();
 		List<CommentBean> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("movieID", movieID).getResultList();

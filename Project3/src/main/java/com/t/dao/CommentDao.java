@@ -18,11 +18,29 @@ public interface CommentDao {
 	//查詢並列出電影ID們
 	public List<String> getMovies();
 	
-	// 用電影ID 查出各個comment(未登入)
-	public List<CommentBean> getCommentByMovieNoLogin(Integer movieID);
+	//用電影ID查comment(未登入) 照時間排序 早到晚
+	public List<CommentBean> getCommentByMovieNoLoginByTime(Integer movieID);
 	
-	//用列出的電影ID查comment(登入)
-	public List<CommentBean> getCommentByMovie(Integer movieID,Integer memberIDBlock);
+	//用電影ID查comment(未登入) 照時間排序 晚到早
+	public List<CommentBean> getCommentByMovieNoLoginByTimeDesc(Integer movieID);
+			
+	//用電影ID查comment(未登入) 照評分排序 低到高
+	public List<CommentBean> getCommentByMovieNoLoginByGrade(Integer movieID);
+		
+	//用電影ID查comment(未登入) 照評分排序 高到低
+	public List<CommentBean> getCommentByMovieNoLoginByGradeDesc(Integer movieID);
+		
+	//用電影ID查comment(登入) 照時間排序 早到晚
+	public List<CommentBean> getCommentByMovieOrderByTime(Integer movieID,Integer memberIDBlock);
+	
+	//用電影ID查comment(登入) 照時間排序 晚到早
+	public List<CommentBean> getCommentByMovieOrderByTimeDesc(Integer movieID,Integer memberIDBlock);
+		
+	//用電影ID查comment(登入) 照評分排序 低到高
+	public List<CommentBean> getCommentByMovieOrderByGrade(Integer movieID,Integer memberIDBlock);
+		
+	//用電影ID查comment(登入) 照評分排序 高到低
+	public List<CommentBean> getCommentByMovieOrderByGradeDesc(Integer movieID,Integer memberIDBlock);
 	
 	//抓出該電影的平均星數
 	public Double getAvgGrade(Integer movieID);
