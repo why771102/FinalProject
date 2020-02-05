@@ -212,7 +212,7 @@
 						</select>
 					</div>
 				</div>
-<a href="orderconfirm">繼續</a>
+<a href="reservedSeats/showSeats">繼續</a>
 <div>購物清單
 	<p id="totalprice">0</p>
 </div>

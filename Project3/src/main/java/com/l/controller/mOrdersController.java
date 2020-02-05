@@ -115,19 +115,21 @@ public class mOrdersController {
 		}
 		//連接購普通票畫面
 		@RequestMapping("/bookNormal")
-		public String bookNormal(){
+		public String bookNormal(@ModelAttribute("showtime") ShowTimeHistoryBean sthb, Model model){
+			model.addAttribute("showtime", sthb);
 			return "l/bookNormal";
 		}
 		
 		//連接確定畫面並用cookie顯示購買資訊
 		@RequestMapping("/orderconfirm")
-		public String orderconfirm(Model model,HttpServletRequest request,HttpServletResponse response){
+		public String orderconfirm(Model model,HttpServletRequest request,HttpServletResponse response,
+				@ModelAttribute("showtime") ShowTimeHistoryBean sthb){
 		HttpSession session = request.getSession();
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("showtimeId")) {
 				 String value=cookie.getValue();
-				 ShowTimeHistoryBean sthb=(ShowTimeHistoryBean) service.getStartTimeByID(Integer.parseInt(value));
+//				 ShowTimeHistoryBean sthb=(ShowTimeHistoryBean) service.getStartTimeByID(Integer.parseInt(value));
 				 model.addAttribute("queryStartTime",sthb);
 			}
 		}
