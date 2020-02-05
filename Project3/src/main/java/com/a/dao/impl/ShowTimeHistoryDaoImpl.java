@@ -90,7 +90,7 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 	//拿指定runID的上映日到下檔日全部的show  ok
 		@Override
 		public List<ShowTimeHistoryBean> getShowTimeHistoryListByRunIDAndTime(String runID,String exOffDay,String release) {
-			String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate and RunID = :ID ";
+			String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate and RunID = :ID ORDER BY playStartTime ASC ";
 			Session session =factory.getCurrentSession();
 			List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
 			STHB_List= session.createQuery(hql).setParameter("enddate", exOffDay+" "+"02:00:00")

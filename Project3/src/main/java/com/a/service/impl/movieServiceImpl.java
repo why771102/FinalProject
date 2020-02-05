@@ -28,6 +28,7 @@ import com.a.service.MovieService;
 import com.a.test.Hallcomparator;
 import com.a.test.PTcomparator;
 import com.a.test.ShowtimeBean;
+import com.a.test.TimeComparator;
 import com.c.model.HallBean;
 import com.c.service.HallService;
 import com.p.model.HallOrderBean;
@@ -205,6 +206,18 @@ public class movieServiceImpl implements MovieService {
 		
 		
 	}
+	@Transactional
+	@Override
+	public  void sortShowTimeByTime(List<ShowTimeHistoryBean>sthb_list) {
+
+		// Sort runMovie List order by PT
+		Comparator Timecomp = new TimeComparator();
+		Collections.sort(sthb_list, Timecomp);
+		
+		
+	}
+	
+	
 	@Transactional
 	@Override
 	public MovieRatingBean getMovieRatingBeanById(Integer movieRatingID)  {
@@ -496,6 +509,8 @@ public class movieServiceImpl implements MovieService {
 			restTime.setRunningTime(10);
 			System.out.println("第幾廳: " + (Hall_i + 1) + hb_list.get(Hall_i).getHallID());
 			runDateTime = LocalDate.now().plusDays(d).atTime(9, 0);
+			/*2020.0205 製作時間修改*/
+			runDateTime = runDateTime.minusMinutes(Hall_i);
 
 			List<ShowtimeBean> OrderHall_list = new ArrayList<>(); // 存包場
 			List<ShowtimeBean> Contract_list = new ArrayList<>(); // 存合約
@@ -613,7 +628,7 @@ public class movieServiceImpl implements MovieService {
 			int thisTime = 900;
 
 			for (ShowtimeBean stb : MovieInsetHall_list) {
-				// 表示電影
+				// 表示電影  
 				runtimeTotal = runtimeTotal + stb.getRunningTime() + restTime.getRunningTime();
 
 				if (runtimeTotal > thisTime) { // 900
@@ -680,7 +695,7 @@ public class movieServiceImpl implements MovieService {
 
 			// 把東西存進去排片
 			
-			saveshowTimeHitory(FinalShowMovie_list, runDateTime.plusMinutes((int)(Math.random()*11)), hb_list.get(Hall_i), restTime.getRunningTime(),
+			saveshowTimeHitory(FinalShowMovie_list, runDateTime, hb_list.get(Hall_i), restTime.getRunningTime(),
 					AllDayShowTime);
 		
 
