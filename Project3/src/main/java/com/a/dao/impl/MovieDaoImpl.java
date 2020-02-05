@@ -45,6 +45,24 @@ public class MovieDaoImpl implements MovieDao {
 
 	}
 	
+	//改變PT職
+	@Override
+	public boolean updatePT_value(MovieBean movie, double PT) {
+		String hql ="update MovieBean set expectedProfit =:changePT where movieID =:ID";
+		Session session =factory.getCurrentSession();
+		String []s=String.valueOf(PT).split("."); 
+
+		int n = session.createQuery(hql).setParameter("changePT", (int)PT)
+				                        .setParameter("ID", movie.getMovieID())
+				                        .executeUpdate();
+		System.out.println("--------------------------------------n :" +n);
+		
+		if(n==0) {
+			return false;
+			}else {
+					return true;
+				}
+	}
 	
 	
 	@SuppressWarnings("unchecked")
