@@ -46,19 +46,19 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='emp/login'>員工登入</a><br> 
+    			<a href='emplogin'>員工登入</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='emp/logout'>員工登出</a><br>
+		    	<a href='emplogout'>員工登出</a><br>
     		</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='emp/updatePwd'>員工修改密碼</a><br> 
+    			<a href='empupdatePwd'>員工修改密碼</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='emp/logout'>員工登出</a><br>
+		    	<a href='emplogout'>員工登出</a><br>
     		</td>
 		</tr>
 		

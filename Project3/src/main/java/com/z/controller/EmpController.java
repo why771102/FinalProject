@@ -45,7 +45,7 @@ public class EmpController {
 	}
 	
 	//以下為導入登入頁面的controller
-	@RequestMapping(value="/emp/login", method = RequestMethod.GET)
+	@RequestMapping(value="/emplogin", method = RequestMethod.GET)
 	public String login(Model model){
 		EmpBean eb = new EmpBean();
 		model.addAttribute("empBean",eb);
@@ -53,7 +53,7 @@ public class EmpController {
 	}
 	
 	//以下為判斷登入的方法
-	@RequestMapping(value="/emp/login", method = RequestMethod.POST)
+	@RequestMapping(value="/emplogin", method = RequestMethod.POST)
 	public String logincheck(HttpServletRequest request,HttpServletResponse response,@ModelAttribute("empBean")EmpBean eb,Model model) {
 		HttpSession session = request.getSession();
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
@@ -97,11 +97,11 @@ public class EmpController {
 			model.addAttribute("errorMsgMap", errorMsgMap);
 			return "z/EmpLogin";
 		}
-		return "/backstageindex"; //到時候要導到LoginSucess頁面
+		return "redirect:/backstageindex"; //到時候要導到LoginSucess頁面
 	}
 	
 	//以下為登出方法
-	@GetMapping("/emp/logout")
+	@GetMapping("/emplogout")
 	public String EmpLogout(HttpServletRequest request,HttpServletResponse response,Model model) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("EmpLogin");
@@ -112,11 +112,11 @@ public class EmpController {
             cookie.setPath("/");
             response.addCookie(cookie);
 		}
-		return "redirect:/emp/login";
+		return "redirect:/emplogin";
 	}
 	
 	
-	@RequestMapping(value = "/emp/updatePwd", method = RequestMethod.GET)
+	@RequestMapping(value = "/empupdatePwd", method = RequestMethod.GET)
 	public String updateEmpPwd(Model model, HttpServletRequest request) {
 		
 		Cookie[] cookies = request.getCookies();
@@ -135,7 +135,7 @@ public class EmpController {
 	}
 	
 	
-	@RequestMapping(value = "/emp/updatePwd", method = RequestMethod.POST)
+	@RequestMapping(value = "/empupdatePwd", method = RequestMethod.POST)
 	public String processUdateEmpPwd(Model model, HttpServletRequest request, @ModelAttribute("empBean") EmpBean eb) {
 		
 		eb.setPassword(eb.getPwd());
