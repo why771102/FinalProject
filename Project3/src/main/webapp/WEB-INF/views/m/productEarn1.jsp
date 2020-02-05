@@ -28,8 +28,6 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">產品營利總覽</h2>
-	<form:form method='POST' modelAttribute="ProductSaleBean1"
-		enctype="multipart/form-data">
 		<div>
 			類型： ${cateSelection}
 			<div id="reportrange"
@@ -68,25 +66,32 @@
 					<th></th>
 					<th></th>
 					<th></th>
+					<th></th>					
 					<th></th>
+										<th></th>
+										<th></th>
 				</tr>
 			</tfoot>
 		</table>
-	</form:form>
+	<form id="submitExcel"
+		action="${pageContext.request.contextPath}/product/earn/productEarn.xls"
+		method="POST">
+		<input type="submit" id="exportE" value="Export To Excel">
+	</form>
 </body>
 <script>
 	$(document).ready(function() {
-		var t = $('#example').DataTable({
+		var dataTable = $('#example').DataTable({
 			"columnDefs" : [ {
 				"searchable" : false,
 				"orderable" : false,
 				"targets" : 0
 			} ],
-			"order" : [ [ 1, 'asc' ] ]
+			"order" : [ [ 1, 'asc' ] ],
 		});
 
-		t.on('order.dt search.dt', function() {
-			t.column(0, {
+		dataTable.on('order.dt search.dt', function() {
+			dataTable.column(0, {
 				search : 'applied',
 				order : 'applied'
 			}).nodes().each(function(cell, i) {
@@ -112,11 +117,10 @@
 					end : end.format('YYYY-MM-DD')
 				},
 				type : "POST",
-				type : "POST",
 				success : function(productearn) {
 					alert("新增成功!");
 					
-					var dataTable = $("#example").DataTable();
+					var dataTable = $("#example").DataTable({destroy: true});
 					dataTable.clear().draw();
 
 					$.each(productearn, function(index, value) {
@@ -128,10 +132,92 @@
 						let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
 						let earnSubtotal = new Number(value.earnSubtotal).toLocaleString("en-AU");
 						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/product/earn/"+value.productsBean.productID+"'>"+value.productName+"</a>",
-							price, qtyTotal, cost, earn, subtotal, earnSubtotal]).draw();
-					});
-// 					showInfo(data);
-					console.log(productearn);
+							price, qtyTotal, cost, earn, subtotal, earnSubtotal]).draw();});
+					
+					dataTable.on('order.dt search.dt', function() {
+						dataTable.column(0, {
+							search : 'applied',
+							order : 'applied'
+						}).nodes().each(function(cell, i) {
+							cell.innerHTML = i + 1;
+						});
+					}).draw();
+					//傳送cate selection值
+					$("#categoryNames").change(function(){
+						var dataTable = $("#example").DataTable({destroy: true});
+						var cate = document.getElementById("categoryNames").value;
+						
+						if(cate == '餐點總覽'){ 
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花|雙人套票|個人套票", true, false).draw();
+						}else if(cate == '套餐的餐點') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw(); 
+						} else if (cate == '餐點') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花", true, false).draw();
+						} else if (cate == '公仔') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("冰雪奇緣GSC黏土人艾莎|鋼鐵人公仔MK3磁浮版(金屬色版)|死侍系列大頭公仔", true, false).draw(); 
+						} else if (cate == '衣服') {
+						$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+							"search": {regex: true}}).column(1).search("星際大戰T恤", true, false).draw(); 
+						} else if (cate == '爆米花桶') {
+						$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("爆米花桶", true, false).draw(); 
+						} else if (cate == '杯子餐具') {
+						$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+						"search": {regex: true}}).column(1).search("搖搖杯|餐具|水杯|杯墊", true, false).draw(); 
+						} else if (cate == '娃娃') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("絨毛玩偶", true, false).draw(); 
+						}else if (cate == '電影海報') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("海報", true, false).draw(); 
+						} else if (cate == '電子產品') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("隨身碟|傳輸線", true, false).draw(); 
+						} else if(cate == '其他'){
+							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
+								"search": {regex: true}}).column(1).search("小提包", true, false).draw(); 
+						}
+						console.log("cate=>" + document.getElementById("categoryNames").value);
+										
+									$.ajax({
+											url : "${pageContext.request.contextPath}/product/earn",
+											data : {
+												start : start.format('YYYY-MM-DD'),
+												end : end.format('YYYY-MM-DD'),
+												cate : document.getElementById("categoryNames").value
+											},
+											type : "POST",
+														success : function(productearn) {
+															var dataTable = $("#example").DataTable({destroy: true,});
+															dataTable.clear().draw();
+															$.each(productearn,function(index, value) {
+																				console.log(value);
+																				let price = new Number(value.price).toLocaleString("en-AU");
+																				let qtyTotal = new Number(value.qtyTotal).toLocaleString("en-AU");
+																				let cost = new Number(value.cost).toLocaleString("en-AU");
+																				let earn = new Number(value.earn).toLocaleString("en-AU");
+																				let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
+																				let earnSubtotal = new Number(value.earnSubtotal).toLocaleString("en-AU");
+																				dataTable.row.add(["",
+																				"<a href='${pageContext.request.contextPath}/product/earn/"+value.productsBean.productID+"'>"
+																				+ value.productName+ "</a>",
+																				price, qtyTotal, cost, earn, subtotal, earnSubtotal]).draw();
+																			});
+															dataTable.on('order.dt search.dt', function() {
+																dataTable.column(0, {
+																	search : 'applied',
+																	order : 'applied'
+																}).nodes().each(function(cell, i) {
+																	cell.innerHTML = i + 1;
+																});
+															}).draw();
+														}
+							});
+	});
 				}
 			});
 		}
@@ -163,74 +249,5 @@
 		console.log("end" + end.format('YYYY-MM-DD'));
 		console.log("reportrange=>" + $('#reportrange span').text());
 	});
-
-	//傳送cate selection值
-	$("#categoryNames").change(function(){
-// 			function() {
-				console.log("cate=>"
-						+ document.getElementById("categoryNames").value);
-				// 		$.ajax({
-				// 			url : "${pageContext.request.contextPath}/product/sale",
-				// 			data : {
-				// 				cate : document.getElementById("categoryNames").value
-				// 			},
-				// 			type : "POST",
-				// 						success : function() {
-				var dataTable = $("#example").DataTable();
-				var cate = document.getElementById("categoryNames").value;
-				if(cate == '餐點總覽'){ 
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花|雙人套票|個人套票", true, false).draw();
-				}else if(cate == '套餐的餐點') {
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw(); 
-// 					console.log("check here~~~"+ typeof({"iDisplayLength": 100, 
-// 						"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw());
-// 					window.productsale = {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw();
-				} else if (cate == '餐點') {
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("大可樂|中可樂|小可樂|熱狗|吉拿棒|炸雞+薯條|大爆米花|中爆米花|小爆米花", true, false).draw();
-				} else if (cate == '公仔') {
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("冰雪奇緣GSC黏土人艾莎|鋼鐵人公仔MK3磁浮版(金屬色版)|死侍系列大頭公仔", true, false).draw(); 
-				} else if (cate == '衣服') {
-				$('#example').DataTable({"iDisplayLength": 100, 
-					"search": {regex: true}}).column(1).search("星際大戰T恤", true, false).draw(); 
-				} else if (cate == '爆米花桶') {
-				$('#example').DataTable({"iDisplayLength": 100, 
-				"search": {regex: true}}).column(1).search("爆米花桶", true, false).draw(); 
-				} else if (cate == '杯子餐具') {
-				$('#example').DataTable({"iDisplayLength": 100, 
-				"search": {regex: true}}).column(1).search("搖搖杯|餐具|水杯|杯墊", true, false).draw(); 
-				} else if (cate == '娃娃') {
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("絨毛玩偶", true, false).draw(); 
-				}else if (cate == '電影海報') {
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("海報", true, false).draw(); 
-				} else if (cate == '電子產品') {
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("隨身碟|傳輸線", true, false).draw(); 
-				} else if(cate == '其他'){
-					$('#example').DataTable({"iDisplayLength": 100, 
-						"search": {regex: true}}).column(1).search("小提包", true, false).draw(); 
-				}
-			});
-
-// 	function sendpName() {
-// 		$
-// 				.ajax({
-// 					url : "${pageContext.request.contextPath}/product/sale1",
-// 					data : {
-// 						productName : document.getElementById("pName" + i).innerText
-// 					//要更動innerHTML!!
-// 					},
-// 					type : "Post",
-// 					success : function() {
-// 						alert("you click me!");
-// 						window.location.href = "${pageContext.request.contextPath}/product/sale/date";
-// 					}
-// 				});
-// 	}
 </script>
 </html>

@@ -43,8 +43,6 @@ public class TicketEarnController {
 	//to ts page1
 	@GetMapping(value= "/ticket/earn")
 	public String toTicketSale(Model model) {
-//		TicketSaleBean tsb = new TicketSaleBean();
-//		model.addAttribute("TicketSaleBean1", tsb);
 		return "m/ticketEarn1";
 	}
 	
@@ -71,7 +69,7 @@ public class TicketEarnController {
 		} else {
 //			System.out.println("start to get Info!!");
 			switch (genre) {
-			case "all":
+			case "全部電影":
 				tsebList = service.getTicketEarnInfo(sDate, eDate);
 				break;
 			case "其他": //0(其他)1(劇情)2(喜劇)3(愛情)4(恐怖懸疑)
@@ -97,7 +95,7 @@ public class TicketEarnController {
 		}
 	
 //		System.out.println("---end1---");
-		System.out.println("tsebList=> " + tsebList.size());
+//		System.out.println("tsebList=> " + tsebList.size());
 //		System.out.println("psebList=> " + psebList.size() + "==="+ psebList.get(0).getProductsBean().getProductName());
 		return tsebList; //檢查這邊!!!
 	}
@@ -109,7 +107,7 @@ public class TicketEarnController {
 		String title = service.getMovieTitle(movieID);
 		model.addAttribute("movieID", movieID);
 		model.addAttribute("title", title);
-		System.out.println("---to page 2---");
+//		System.out.println("---to page 2---");
 		return "m/ticketEarn2";
 	}
 	
@@ -119,7 +117,7 @@ public class TicketEarnController {
 		List<TicketSaleEarnBean> tsebListByDate = service.getTicketEarnInfoByDate(movieID, sDate, eDate);
 		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
 		System.out.println(tsebListByDate.size());
-		System.out.println("---傳送tsebListByDate---");
+//		System.out.println("---傳送tsebListByDate---");
 		return tsebListByDate;
 	}
 	
@@ -132,7 +130,7 @@ public class TicketEarnController {
 		model.addAttribute("movieID", movieID);
 		model.addAttribute("date", date);
 		model.addAttribute("title", title);
-		System.out.println("---to page 3---");
+//		System.out.println("---to page 3---");
 		return "m/ticketEarn3";
 	}
 	
@@ -147,7 +145,7 @@ public class TicketEarnController {
 		model.addAttribute("title", title);
 		
 		System.out.println(tsebListByDate.size());
-		System.out.println("---傳送tsebListByDate---");
+//		System.out.println("---傳送tsebListByDate---");
 		return tsebListByDate;
 	}
 }

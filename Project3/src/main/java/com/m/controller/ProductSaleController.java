@@ -78,9 +78,9 @@ public class ProductSaleController {
 		
 		if (cate == null) {
 			psebList = service.getAllProductInfo(sDate, eDate);
-			System.out.println("this is default!");
+//			System.out.println("this is default!");
 		} else {
-			System.out.println("start to get Info!!");
+//			System.out.println("start to get Info!!");
 			switch (cate) {
 			case "全部商品":
 				psebList = service.getAllProductInfo(sDate, eDate);
@@ -120,7 +120,7 @@ public class ProductSaleController {
 				break;
 			default:
 				psebList = service.getAllProductInfo(sDate, eDate);
-				System.out.println("this is default..compare cate and related method");
+//				System.out.println("this is default..compare cate and related method");
 				break;
 		    }
 		}
