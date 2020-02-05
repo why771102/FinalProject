@@ -303,42 +303,12 @@ div.free-trial-btn button:hover {
 </head>
 
 <body>
+<!-- header -->
 	<header>
-		<!-- header -->
-		<nav class="navbar navbar-default navbar-static-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.html"><img
-						src="img/logo-1.png" class="logo-hdr" width="180"> </a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.html">home</a></li>
-						<li class="active"><a href="features.html">latest movies</a>
-						</li>
-						<li><a href="pricing.html">pricing</a></li>
-						<li><a href="up-coming.html">Up coming</a></li>
-						<li><a href="conatct.html">contact</a></li>
-						<li><a href="login-page.html">login </a></li>
-						<li class="free-trial-btn"><a href="free-trail.html">free
-								trial</a></li>
-						<li><select>
-								<option>ENG</option>
-								<option>FR</option>
-						</select></li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</nav>
-	</header>
+       <jsp:include page="header.jsp">
+       <jsp:param name="a" value="1" />
+</jsp:include>
+    </header>
 	<!-- header -->
 
 	<!-- banner -->

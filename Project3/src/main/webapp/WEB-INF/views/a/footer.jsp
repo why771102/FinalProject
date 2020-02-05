@@ -95,7 +95,7 @@
             <div class="footer-line">
                 <div class="im-inner">
                     <span></span>
-                    <a href="index.html"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="ftr-logo" width="200">
+                    <a href="<c:url value='/movieIndex'/>"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="ftr-logo" width="200">
                     </a><span></span>
                 </div>
                 <h4> Copyrights 2020.01.26 | <a href="#">10.3.7</a></h4>

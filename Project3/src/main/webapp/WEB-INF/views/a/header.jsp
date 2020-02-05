@@ -54,9 +54,9 @@
                         </li>
                         <li><a href="shopCart.html" style='padding:5px;'><img src="${pageContext.request.contextPath}/img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
-                        <li class="btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
+                        <li class="free-trial-btn btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
                         <li class="btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
-                        <li class="btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
+                        <li class="free-trial-btn btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
