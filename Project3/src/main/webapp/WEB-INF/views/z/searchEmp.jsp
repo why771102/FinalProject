@@ -30,7 +30,7 @@
 
 </head>
 <body>
-<section id="container">
+	<section id="container">
 		<!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -49,15 +49,14 @@
 			<jsp:param name="d" value="1" />
 		</jsp:include>
 
-		<form method='POST' action="emp" >
+		<form method='POST' action="emp">
 
-					請輸入員工ID:	<input name="empId"  type='text' /><br>
-					
-						<input type='submit'/>
-						<p style="color:red">${message}${empId}</p>
+			請輸入員工ID: <input name="empId" type='text' /><br> <input
+				type='submit' />
+			<p style="color: red">${message}${empId}</p>
 
 		</form>
-<!--footer start-->
+		<!--footer start-->
 		<jsp:include page="bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />

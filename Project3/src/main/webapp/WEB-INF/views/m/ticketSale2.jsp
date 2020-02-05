@@ -30,10 +30,6 @@
 	<form:form method='POST' modelAttribute="TicketSaleBean1"
 		enctype="multipart/form-data">
 		<div>
-			類型： ${genreSelection}
-			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
-			<!-- 			<option>Java人生</option> -->
-			<!-- 		</select> -->
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
@@ -123,11 +119,16 @@
 							dataTable.clear().draw();
 							$.each(ticketSale,function(index, value) {
 							console.log(value);
-							
+							let hallSeats = new Number(value.hallSeats).toLocaleString("en-AU");
+							let hallSaleSeats = new Number(value.hallSaleSeats).toLocaleString("en-AU");
+							let pricePerSeat = new Number(value.pricePerSeat).toLocaleString("en-AU");
+							let ticketSaleTotal = new Number(value.ticketSaleTotal).toLocaleString("en-AU");
+							let foodSaleTotal = new Number(value.foodSaleTotal).toLocaleString("en-AU");
+							let earnPerHr = new Number(value.earnPerHr).toLocaleString("en-AU");
+							let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
 							dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticketSale/"+value.movieBean.movieID+"/"+value.playMovieDate+"'>"+value.playMovieDate+"</a>",
-							value.noPlayTimes,value.hallSeats,value.hallSaleSeats,value.avgSeats,
-							value.pricePerSeat,value.ticketSaleTotal,value.foodSaleTotal,
-							value.earnPerHr,value.subtotal]).draw();
+							value.noPlayTimes,hallSeats,hallSaleSeats,value.avgSeats,
+							pricePerSeat,ticketSaleTotal,foodSaleTotal,earnPerHr,subtotal]).draw();
 						});
 						}
 					});
@@ -156,41 +157,5 @@
 		cb(start, end);
 	});
 
-	//傳送cate selection值
-	function sendGen() {
-		console.log("Gen =>" + document.getElementById("genres").value);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/ticket/sale",
-			data : {
-				genre : document.getElementById("genres").value
-			},
-			type : "POST",
-		// 				success : function() {
-		// 					alert("新增成功!");
-		// 	 				window.location.href = "${pageContext.request.contextPath}/index-c";
-		// 				}
-		});
-	}
-
-	// 	function showInfo(ts) {
-	// 		for(var i =0; i < ts.length; i++){
-	// 		$('#insertHere')
-	// 				.append(
-	// 						'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/sale/date" id="hallID">'
-	// 								+ ts[i].title
-	// 								+ '</a></td><td>'
-	// 								+ ts[i].noPlayTimes
-	// 								+ '</td><td>'
-	// 								+ ts[i].hallSeats
-	// 								+ '</td><td>'
-	// 								+ ts[i].hallSaleSeats
-	// 								+ '</td><td>'
-	// 								+ ts[i].avgSeats
-	// 								+ '</td><td>'
-	// 								+ ts[i].pricePerSeat
-	// 								+ '</td><td>'
-	// 								+ ts[i].subtotal + '</td></tr>');
-	// 		}
-	// 	};
 </script>
 </html>

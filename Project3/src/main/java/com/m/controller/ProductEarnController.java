@@ -65,14 +65,14 @@ public class ProductEarnController {
 		
 		if (cate == null) {
 			psebList = service.getAllProductInfo(sDate, eDate);
-			System.out.println("this is default!");
+//			System.out.println("this is default!");
 		} else {
-			System.out.println("start to get Info!!");
+//			System.out.println("start to get Info!!");
 			switch (cate) {
-			case "all":
+			case "全部商品":
 				psebList = service.getAllProductInfo(sDate, eDate);
 				break;
-			case "allFood":
+			case "餐點總覽":
 				psebList = service.getAllFoodInfo(sDate, eDate);
 				break;
 			case "套餐的餐點":
@@ -81,16 +81,36 @@ public class ProductEarnController {
 			case "餐點":
 				psebList = service.getFoodInfo5(sDate, eDate);
 				break;
-			case "周邊商品":
-				psebList = service.getPeripheralInfo(sDate, eDate);
+			case "公仔":
+				psebList = service.getPeripheralInfo6(sDate, eDate);
+				break;
+			case "衣服":
+				psebList = service.getPeripheralInfo7(sDate, eDate);
+				break;
+			case "爆米花桶":
+				psebList = service.getPeripheralInfo8(sDate, eDate);
+				break;
+			case "杯子餐具":
+				psebList = service.getPeripheralInfo9(sDate, eDate);
+				break;
+			case "娃娃":
+				psebList = service.getPeripheralInfo10(sDate, eDate);
+				break;
+			case "電影海報":
+				psebList = service.getPeripheralInfo11(sDate, eDate);
+				break;
+			case "電子產品":
+				psebList = service.getPeripheralInfo12(sDate, eDate);
+				break;
+			case "其他":
+				psebList = service.getPeripheralInfo13(sDate, eDate);
 				break;
 			default:
 				psebList = service.getAllProductInfo(sDate, eDate);
-				System.out.println("this is default..compare cate and related method");
+//				System.out.println("this is default..compare cate and related method");
 				break;
 		    }
 		}
-	
 		System.out.println("---end1---");
 		System.out.println("psebList=> " + psebList.size());
 //		System.out.println("psebList=> " + psebList.size() + "==="+ psebList.get(0).getProductsBean().getProductName());

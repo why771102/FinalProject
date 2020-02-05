@@ -54,6 +54,7 @@
 					<th>商品總利潤</th>
 					<th>商品銷售總額</th>
 					<th>營收小計</th>
+					<th>hid</th>
 				</tr>
 			</thead>
 			<tbody id="insertHere">
@@ -109,22 +110,97 @@
 				url : "${pageContext.request.contextPath}/ticket/earn",
 				data : {
 					start : start.format('YYYY-MM-DD'),
-					end : end.format('YYYY-MM-DD')
+					end : end.format('YYYY-MM-DD'),
+					genre : document.getElementById("genres").value
 				},
 				type : "POST",
 				success : function(ticketEarn) {
-					alert("新增成功!");
+// 					alert("新增成功!");
 					
 					var dataTable = $("#example").DataTable();
 					dataTable.clear().draw();
 
 					$.each(ticketEarn, function(index, value) {
 						console.log(value);
+						let ticketCost = new Number(value.ticketCost).toLocaleString("en-AU");
+						let ticketEarn = new Number(value.ticketEarn).toLocaleString("en-AU");
+						let ticketSaleTotal = new Number(value.ticketSaleTotal).toLocaleString("en-AU");
+						let foodCost = new Number(value.foodCost).toLocaleString("en-AU");
+						let foodEarn = new Number(value.foodEarn).toLocaleString("en-AU");
+						let foodSaleTotal = new Number(value.foodSaleTotal).toLocaleString("en-AU");
+						let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
 						dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticket/earn/"+value.movieBean.movieID+"'>"+value.title+"</a>"
-							,value.noPlayTimes,value.ticketCost,value.ticketEarn,
-							value.ticketSaleTotal,value.foodCost,value.foodEarn,
-							value.foodSaleTotal,value.subtotal]).draw();
-					});
+							,value.noPlayTimes,ticketCost,ticketEarn,ticketSaleTotal,foodCost,foodEarn,
+							foodSaleTotal,subtotal,value.movieBean.genreBean.genreID]).draw();});
+					dataTable.on('order.dt search.dt', function() {
+						dataTable.column(0, {
+							search : 'applied',
+							order : 'applied'
+						}).nodes().each(function(cell, i) {
+							cell.innerHTML = i + 1;
+						});
+					}).draw();
+// 					dataTable.column(8).visible(false);
+
+					//傳送genre selection值
+					$("#genres").change(function(){
+						var dataTable = $("#example").DataTable({destroy: true});
+						var gen = document.getElementById("genres").value;
+						if(gen == '全部電影'){ 
+							$('#example').DataTable({destroy: true,"iDisplayLength": 200, 
+								"search": {regex: true}}).column(8).data().search('0|1|2|3|4', true, false).draw();
+						}else if(gen == '其他') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 200, 
+								"search": {regex: true}}).column(8).data().search(0, true, false).draw(); 
+						} else if (gen == '劇情') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 200, 
+								"search": {regex: true}}).column(8).data().search(1, true, false).draw();
+						} else if (gen == '喜劇') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 200, 
+								"search": {regex: true}}).column(8).data().search(2, true, false).draw(); 
+						}else if (gen == '愛情') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 200, 
+								"search": {regex: true}}).column(8).data().search(3, true, false).draw(); 
+						} else if (gen == '恐怖懸疑') {
+							$('#example').DataTable({destroy: true,"iDisplayLength": 200, 
+								"search": {regex: true}}).column(8).data().search(4, true, false).draw(); 
+						}
+						console.log("gen=>" + document.getElementById("genres").value);
+										$.ajax({
+											url : "${pageContext.request.contextPath}/ticket/earn",
+											data : {
+												start : start.format('YYYY-MM-DD'),
+												end : end.format('YYYY-MM-DD'),
+												genre : document.getElementById("genres").value
+											},
+											type : "POST",
+														success : function(ticketEarn) {
+															var dataTable = $("#example").DataTable({destroy: true});
+															dataTable.clear().draw();
+															$.each(ticketEarn, function(index, value) {
+																console.log(value);
+																let ticketCost = new Number(value.ticketCost).toLocaleString("en-AU");
+																let ticketEarn = new Number(value.ticketEarn).toLocaleString("en-AU");
+																let ticketSaleTotal = new Number(value.ticketSaleTotal).toLocaleString("en-AU");
+																let foodCost = new Number(value.foodCost).toLocaleString("en-AU");
+																let foodEarn = new Number(value.foodEarn).toLocaleString("en-AU");
+																let foodSaleTotal = new Number(value.foodSaleTotal).toLocaleString("en-AU");
+																let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
+																dataTable.row.add(["","<a href='${pageContext.request.contextPath}/ticket/earn/"+value.movieBean.movieID+"'>"+value.title+"</a>"
+																	,value.noPlayTimes,ticketCost,ticketEarn,ticketSaleTotal,foodCost,foodEarn,
+																	foodSaleTotal,subtotal,value.movieBean.genreBean.genreID]).draw();});
+															dataTable.on('order.dt search.dt', function() {
+																dataTable.column(0, {
+																	search : 'applied',
+																	order : 'applied'
+																}).nodes().each(function(cell, i) {
+																	cell.innerHTML = i + 1;
+																});
+															}).draw();
+// 															dataTable.column(8).visible(false);
+														}
+							});
+	});
 				}
 			});
 		}

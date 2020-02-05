@@ -48,12 +48,14 @@ public class PaypalController {
 		return "/";
 	}
 	
+	//金額和產品名稱寫這裡
+	//subtotal 和 total要長一樣
 	@RequestMapping(value = "/authorize_payment", method = RequestMethod.POST)
 	public void toPaypal(PaypalBean pb,HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		String product = request.getParameter("product");
 		String subtotal = request.getParameter("subtotal");
-		String shipping = request.getParameter("shipping");
-		String tax = request.getParameter("tax");
+		String shipping = "0";
+		String tax = "0";
 		String total = request.getParameter("total");
 		
 		OrderDetail orderDetail = new OrderDetail(product, subtotal, shipping, tax, total);

@@ -27,40 +27,46 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">${productName}</h2>
-		<div>
-			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
-				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
-					class="fa fa-caret-down"></i>
-			</div>
+	<div>
+		<div id="reportrange"
+			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
+				class="fa fa-caret-down"></i>
 		</div>
-		<br>
-		<table id="example" class="display" style="width: 100%; text-align: center;">
-			<thead>
-				<tr>
-					<th></th>
-					<th>產品名稱</th>
-					<th>單價</th>
-					<th>數量</th>
-					<th>成本</th>
-					<th>利潤</th>
-					<th>銷售總額</th>
-					<th>利潤總額</th>
-				</tr>
-			</thead>
-			<tbody id="insertHere">
+	</div>
+	<br>
+	<table id="example" class="display"
+		style="width: 100%; text-align: center;">
+		<thead>
+			<tr>
+				<th></th>
+				<th>產品名稱</th>
+				<th>單價</th>
+				<th>數量</th>
+				<th>成本</th>
+				<th>利潤</th>
+				<th>銷售總額</th>
+				<th>利潤總額</th>
+			</tr>
+		</thead>
+		<tbody id="insertHere">
 
-			</tbody>
-			<tfoot>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</tfoot>
-		</table>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+	<form id="submitExcel"
+		action="${pageContext.request.contextPath}/product/earn/productEarn.xls"
+		method="POST">
+		<input type="submit" id="exportE" value="Export To Excel">
+	</form>
 </body>
 <script>
 
@@ -104,14 +110,28 @@
 				success: function(productsale) {
 // 					alert("新增成功!");
 					console.log(productsale);
-					
 					var dataTable = $("#example").DataTable();
 					dataTable.clear().draw();
 
 					$.each(productsale, function(index, value) {
 						console.log(value);
-						dataTable.row.add(["",value.orderDate,value.price,value.qtyTotal,
-							value.cost,value.earn,value.subtotal,value.earnSubtotal]).draw();
+						let price = new Number(value.price).toLocaleString("en-AU");
+						let qtyTotal = new Number(value.qtyTotal).toLocaleString("en-AU");
+						let cost = new Number(value.cost).toLocaleString("en-AU");
+						let earn = new Number(value.earn).toLocaleString("en-AU");
+						let subtotal = new Number(value.subtotal).toLocaleString("en-AU");
+						let earnSubtotal = new Number(value.earnSubtotal).toLocaleString("en-AU");
+						dataTable.row.add(["",value.orderDate,price,qtyTotal,
+							cost,earn,subtotal,earnSubtotal]).draw();
+						
+						dataTable.on('order.dt search.dt', function() {
+							dataTable.column(0, {
+								search : 'applied',
+								order : 'applied'
+							}).nodes().each(function(cell, i) {
+								cell.innerHTML = i + 1;
+							});
+						}).draw();
 					});
 			}	
 		});

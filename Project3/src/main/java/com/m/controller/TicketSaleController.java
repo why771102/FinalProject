@@ -66,7 +66,7 @@ public class TicketSaleController {
 		} else {
 			System.out.println("start to get Info!!");
 			switch (genre) {
-			case "all":
+			case "全部電影":
 				tsebList = service.getTicketSaleInfo(sDate, eDate);
 				break;
 			case "其他": //0(其他)1(劇情)2(喜劇)3(愛情)4(恐怖懸疑)
@@ -104,7 +104,7 @@ public class TicketSaleController {
 		String title = service.getMovieTitle(movieID);
 		model.addAttribute("movieID", movieID);
 		model.addAttribute("title", title);
-		System.out.println("---to page 2---");
+//		System.out.println("---to page 2---");
 		return "m/ticketSale2";
 	}
 	
@@ -113,8 +113,8 @@ public class TicketSaleController {
 			@RequestParam("start") String sDate, @RequestParam("end") String eDate) {
 		List<TicketSaleEarnBean> tsebListByDate = service.getTicketSaleInfoByDate(movieID, sDate, eDate);
 		model.addAttribute("tsebListByDate",tsebListByDate); //jsp要接取資料
-		System.out.println(tsebListByDate.size());
-		System.out.println("---傳送tsebListByDate---");
+//		System.out.println(tsebListByDate.size());
+//		System.out.println("---傳送tsebListByDate---");
 		return tsebListByDate;
 	}
 	
@@ -127,7 +127,7 @@ public class TicketSaleController {
 		model.addAttribute("movieID", movieID);
 		model.addAttribute("date", date);
 		model.addAttribute("title", title);
-		System.out.println("---to page 3---");
+//		System.out.println("---to page 3---");
 		return "m/ticketSale3";
 	}
 	
@@ -141,8 +141,8 @@ public class TicketSaleController {
 		String title = service.getMovieTitle(movieID);
 		model.addAttribute("title", title);
 		
-		System.out.println(tsebListByDate.size());
-		System.out.println("$$$傳送tsebListByDate$$$");
+//		System.out.println(tsebListByDate.size());
+//		System.out.println("$$$傳送tsebListByDate$$$");
 		return tsebListByDate;
 	}
 }

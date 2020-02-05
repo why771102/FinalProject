@@ -291,42 +291,12 @@ div.submitButton {
 </head>
 
 <body>
+	<!-- header -->
 	<header>
-		<!-- header -->
-		<nav class="navbar navbar-default navbar-static-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.html"><img
-						src="img/logo-1.png" class="logo-hdr" width="180"> </a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.html">home</a></li>
-						<li class="active"><a href="features.html">latest movies</a>
-						</li>
-						<li><a href="pricing.html">pricing</a></li>
-						<li><a href="up-coming.html">Up coming</a></li>
-						<li><a href="conatct.html">contact</a></li>
-						<li><a href="login-page.html">login </a></li>
-						<li class="free-trial-btn"><a href="free-trail.html">free
-								trial</a></li>
-						<li><select>
-								<option>ENG</option>
-								<option>FR</option>
-						</select></li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</nav>
-	</header>
+       <jsp:include page="header.jsp">
+       <jsp:param name="a" value="1" />
+</jsp:include>
+    </header>
 	<!-- header -->
 
 	<!-- banner -->
@@ -615,94 +585,16 @@ div.submitButton {
 	</section>
 
 
-	<!-- footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row responsiv-div2">
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner">
-						<h4>關於我們</h4>
-						<ul class="list-unstyled">
-							<li><a href="">公司簡介</a></li>
-							<li><a href="">企業理念</a></li>
-							<li><a href="">影廳介紹</a></li>
-							<li><a href="">電影院設備</a></li>
-							<li><a href="">相關設施</a></li>
+	 <!-- footer -->
+    <footer>
 
+       <jsp:include page="footer.jsp">
+       	<jsp:param name="a" value="1" />
+       </jsp:include>
 
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner">
-						<h4>其他項目</h4>
-						<ul class="list-unstyled">
-
-							<li><a href="">線上周邊</a></li>
-							<li><a href="">包場服務</a></li>
-							<li><a href="">餐飲服務</a></li>
-							<li><a href="">其他</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner contect-f">
-						<h4>聯絡我們</h4>
-						<ul class="list-unstyled">
-							<address>
-								線上客服 <br> 12345 India
-							</address>
-							<br>
-							<li>01 23 456 789</li>
-							<li class="f-link"><a href="">contact@cineshow.fr</a></li>
-							<br>
-
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner">
-						<h4>告訴我們您的建議</h4>
-						<div class="form">
-							<form>
-								<input type="text" name="nm" class="inp-fild" placeholder="Name">
-								<input type="text" id="mail" name="mail" class="inp-fild"
-									placeholder="Email Address">
-							</form>
-							<button class="footer-btn">Send</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-line">
-				<div class="im-inner">
-					<span></span> <a href="index.html"><img src="img/logo.png"
-						class="ftr-logo" width="200"> </a><span></span>
-				</div>
-				<h4>
-					Copyrights 2020.01.26 | <a href="#">10.3.7</a>
-				</h4>
-				<div class="right-icon">
-					<ul class="list-inline">
-						<li class="fb"><a href="#"><i class="fb fa fa-facebook"></i></a>
-						</li>
-						<li class="twitter"><a href="#"><i
-								class="twitter fa fa-twitter"></i></a></li>
-						<li class="google"><a href="#"><i
-								class="google fa fa-google-plus"></i></a></li>
-						<li class="youtube"><a href="#"><i
-								class="youtube fa fa-youtube-play"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<div class="premium-tagline">
-		<p>
-			Created By: <a href=>Teamwork</a>
-		</p>
-	</div>
-	<!-- footer -->
+    </footer>
+       
+    <!-- footer -->
 
 	<!-- scripts -->
 	<script
