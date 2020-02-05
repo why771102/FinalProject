@@ -6,6 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 <link href="${pageContext.request.contextPath}/img/favicon.png"
 	rel="icon">
 <link href="${pageContext.request.contextPath}/img/apple-touch-icon.png"
@@ -47,49 +52,73 @@
 
 
 		<!--sidebar end-->
-	<section>
-		<div>
-			<div style="text-align: center">
-				<h1>員工清單</h1>
-			</div>
-		</div>
-	</section>
-	<hr
-		style="height: 1px; border: none; color: #333; background-color: #333;">
-	<div>
-		<table>
-		<tr>
-			<td>員工編號</td>
-			<td>員工姓名</td>
-			<td>職位名稱</td>
-			<td>員工信箱</td>
-			<td>在職狀態</td>
-			<td>就職日期</td>
-			<td>離職日期</td>
-		</tr>
-			<c:forEach var="emp" items="${allEmps}">
-		<tr>
-			<td>${emp.empId}</td>
-			<td>${emp.empName}</td>
-			<td>${emp.roleBean.roleName}</td>
-			<td>${emp.email}</td>
-			<td>${emp.empStatusBean.statusName}</td>
-			<td>${fn:substring(emp.startDate,0,10)}</td>
-			<td>${fn:substring(emp.endDate,0,10)}</td>
-		</tr>
-			</c:forEach>
-		</table>
-	</div>
+		<section id="main-content">
+			<section class="wrapper">
+				<section>
+					<div>
+						<div style="text-align: center">
+							<h1>員工清單</h1>
+						</div>
+					</div>
+				</section>
+				<hr style="height: 1px; border: none; color: #333; background-color: #333;">
+				<div class="content-panel">
+					<table id="example" class="display table table-striped table-advance table-hover" style="width: 100%; text-align: center;">
+						<thead>
+							<tr>
+								<td>員工編號</td>
+								<td>員工姓名</td>
+								<td>職位名稱</td>
+								<td>員工信箱</td>
+								<td>在職狀態</td>
+								<td>就職日期</td>
+								<td>離職日期</td>
+								<td>操作</td>
+							</tr>
+						</thead>
+						<tbody id="insertHere">
+
+						</tbody>
+						<tfoot>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
 	<!--footer start-->
-		<jsp:include page="bg-footer.jsp">
-			<jsp:param name="e" value="1" />
-			<jsp:param name="f" value="1" />
-		</jsp:include>
+			<jsp:include page="bg-footer.jsp">
+				<jsp:param name="e" value="1" />
+				<jsp:param name="f" value="1" />
+			</jsp:include>
 		<!--footer end-->
+		</section>
 	</section>
+</section>
+	<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
 	$(document).ready(function() {
-		var dataTable = $('#example').DataTable();
+		var dataTable = $('#example').DataTable(
+				{language: {		
+					"sLengthMenu": "顯示 _MENU_ 項結果",
+					"sSearch": "搜索:",
+					"sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+					"oPaginate": {
+				           "sFirst": "首頁",
+				           "sPrevious": "上頁",
+				           "sNext": "下頁",
+				           "sLast": "最後頁"
+				       }
+				}}
+		);
 		$(function() {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/empsAjax",
@@ -99,11 +128,9 @@
 					console.log(data);
 					$.each(data,function(index,value) {
 						dataTable.row.add([
-			value.empId, value.empName, value.roleBean.roleName, value.email, value.empStatusBean.statusName, value.startDate.substring(0,16),value.endDate.substring(0,16),value.priority,value.annoStatusBean.statusName,
+			value.empId, value.empName, value.roleBean.roleName, value.email, value.empStatusBean.statusName, value.startDate.substring(0,10),(value.empStatusBean.status == 3 ? value.endDate.substring(0,10) : ""),
 			function(data,type,row) {
-				var html = "<a href='anno/update/" + value.annoId + "'>修改公告</a>";
-				html += " <a href='anno/launch/" + value.annoId + "'>上架</a>";
-				html += " <a href='anno/takeoff/" + value.annoId + "'>下架</a>";
+				var html = "<a href='emp/update/" + value.empId + "'>修改</a>";
 				return html;
 				} 
 				]).draw();
@@ -111,6 +138,7 @@
 		}
 	})
 })
+
 });
 	
 	
