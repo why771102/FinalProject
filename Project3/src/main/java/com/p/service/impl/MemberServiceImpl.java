@@ -68,4 +68,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getMemberList();
 	}
 
+	@Transactional
+	@Override
+	public MemberBean getEmployeeMember(String uID) {
+		return dao.getEmployeeMember(uID);
+	}
+
 }

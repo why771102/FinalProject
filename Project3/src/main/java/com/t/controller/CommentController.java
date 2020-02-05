@@ -107,11 +107,11 @@ public class CommentController {
 			model.addAttribute("AVGGrade", avgGrade);
 		}		
 		if(mID == null) {
-			List<CommentBean> comments=service.getCommentByMovieNoLogin(movieID);
+			List<CommentBean> comments=service.getCommentByMovieNoLoginByTime(movieID);
 			model.addAttribute("Comments", comments);
 		}else {
 			int memberIDBlock = Integer.parseInt(mID);
-			List<CommentBean> comments=service.getCommentByMovie(movieID, memberIDBlock);
+			List<CommentBean> comments=service.getCommentByMovieOrderByTime(movieID, memberIDBlock);
 			model.addAttribute("Comments", comments);
 		}		
 		return "t/comments";
