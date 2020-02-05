@@ -75,12 +75,12 @@ public class AnnoController {
 		
 		System.out.println("新建立的時間 ab.getStartTime() :  " + ab.getStartTime());
 		LocalDateTime tranST = LocalDateTime.parse(ab.getStartTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		String nst =tranST.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		String nst =tranST.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:SS"));
 		
 		ab.setStartTime(nst);
 		
 		LocalDateTime tranET = LocalDateTime.parse(ab.getEndTime().replace("T", " "), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		String net =tranET.format(DateTimeFormatter.ofPattern("yyyy-MM-DD HH:MM:SS"));
+		String net =tranET.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:SS"));
 		
 		ab.setEndTime(net);
 		

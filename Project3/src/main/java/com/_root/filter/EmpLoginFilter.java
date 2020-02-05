@@ -66,7 +66,7 @@ public class EmpLoginFilter implements Filter {
 						// 原本要執行的程式。
 						session.setAttribute("requestURI", requestURI);
 					}
-					resp.sendRedirect(contextPath + "/emplogin");
+					resp.sendRedirect(contextPath + "/emp/login");
 					return;
 				}
 			} else { // 不需要登入，直接去執行他要執行的程式

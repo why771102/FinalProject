@@ -26,7 +26,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="empupdatePwd"><img src="${pageContext.request.contextPath}/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="<c:url value='/emp/updatePwd'/>"><img src="${pageContext.request.contextPath}/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
             <a href="index.html">
@@ -62,32 +62,24 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a class="active" href="javascript:;">
+            <a href="javascript:;">
               <i class="fa fa-book"></i>
-              <span>Extra Pages</span>
+              <span>員工管理</span>
               </a>
             <ul class="sub">
-              <li><a href="blank.html">Blank Page</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="lock_screen.html">Lock Screen</a></li>
-              <li class="active"><a href="profile.html">Profile</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="pricing_table.html">Pricing Table</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="500.html">500 Error</a></li>
+              <li><a href="<c:url value='/emp/add'/>">新增員工</a></li>
+              <li><a href="<c:url value='/emps'/>">員工列表</a></li>
+              <li><a href="<c:url value='/searchEmp'/>">單一員工查詢</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-tasks"></i>
-              <span>Forms</span>
+              <span>公告</span>
               </a>
             <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
+              <li><a href="<c:url value='/anno/add'/>">新增公告</a></li>
+              <li><a href="<c:url value='/bgAnnos'/>">公告列表</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -121,14 +113,10 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="<c:url value='/questionListForEmp'/>">
               <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
+              <span>客服列表</span>
               </a>
-            <ul class="sub">
-              <li><a href="lobby.html">Lobby</a></li>
-              <li><a href="chat_room.html"> Chat Room</a></li>
-            </ul>
           </li>
           <li>
             <a href="google_maps.html">
@@ -136,6 +124,12 @@
               <span>Google Maps </span>
               </a>
           </li>
+          <li class="sub-menu">
+            <a href="<c:url value='/emp/updatePwd'/>">
+              <i class="fa fa-cogs"></i>
+              <span>修改密碼</span>
+              </a>
+              </li>
         </ul>
         <!-- sidebar menu end-->
       </div>

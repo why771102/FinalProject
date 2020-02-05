@@ -49,13 +49,48 @@
 			<jsp:param name="d" value="1" />
 		</jsp:include>
 
-		<form method='POST' action="emp">
+<section id="main-content">
+			<section class="wrapper site-min-height">
+				<div class="row mt">
+					<!-- /row -->
+				</div>
+				<!-- /col-lg-12 -->
+				<div class="col-lg-12 mt">
+					<div class="row content-panel">
+						<!-- /panel-heading -->
+						<div class="panel-body">
+							<!--///////////////////////////////////////////////////////-->
+							<div id="edit" class="tab-pane">
+								<div class="row">
+									<div class="col-lg-8 col-lg-offset-2 detailed">
+										<h4 class="mb">員工查詢</h4>
 
-			請輸入員工ID: <input name="empId" type='text' /><br> <input
-				type='submit' />
-			<p style="color: red">${message}${empId}</p>
 
-		</form>
+
+		<form:form method='POST' action="emp">
+<div class="form-group">
+			<label class="col-lg-2 control-label">請輸入員工ID: </label>
+			<div class="col-lg-6">
+			<input name="empId" type='text' class="form-control"/> 
+			</div>
+			</div>
+			
+			<input type='submit' />
+			<span style="color: red"> ${message}${empId}</span>
+
+		</form:form>
+		
+		</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+		
+		
+		
 		<!--footer start-->
 		<jsp:include page="bg-footer.jsp">
 			<jsp:param name="e" value="1" />
