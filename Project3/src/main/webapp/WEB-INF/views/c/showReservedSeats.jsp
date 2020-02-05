@@ -166,8 +166,8 @@ span.seatCharts-legendDescription {
 <%-- 		<div> ${hallID} 廳</div> --%>
 		<div id="numberOfTickets"></div>
 		<div id="hallID"></div>
-		<div id="movieTitle">電影:  </div>
-		<div id="date">日期: </div>
+		<div id="movieTitle">電影:  ${showtime.run.movie.title}</div>
+		<div id="date">日期: ${showtime.playStartTime}</div>
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
