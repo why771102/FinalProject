@@ -827,7 +827,7 @@ public class RunMovieController implements ServletContextAware{
 		LocalDate endDay = today.plusWeeks(1);
 		List<ShowTimeHistoryBean> sthb_list= new ArrayList<>();
 //		 sthb_list= mService.getRunBeanLastSTHB(run, endDay.toString(), today.toString());
-
+		 sthb_list= mService.getShowTimeHistoryListByRunIDAndTime(runID,  endDay.toString(),today.toString());
 		List<ShowtimeBean> oneMovie = new ArrayList();
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
 		for(ShowTimeHistoryBean sthb :sthb_list) {
@@ -846,16 +846,9 @@ public class RunMovieController implements ServletContextAware{
 //		String  runID =rb.getRunID().toString();
 		
 		
-		return "a/showMovie";
+		return "a/showmovie";
 	}
-//	
-//	@GetMapping(value = "/show/this/movie{runID}")
-//	public String showThisMovieByrunID(Model model,
-//			HttpServletRequest request,@PathVariable("runID") String runID ) {
-//	//use runID get run and than get showID
-//		
-//		return "a/showmovie";
-//	}
+
 	
 	
 	

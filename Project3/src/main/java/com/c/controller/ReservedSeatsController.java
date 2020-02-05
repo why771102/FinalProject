@@ -9,17 +9,17 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
-import com.c.model.NumberOfSeatsBean;
 import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatOrderBean;
-import com.c.model.SeatsBean;
 import com.c.service.HallService;
 import com.c.service.NumberOfSeatsService;
 import com.c.service.ReservedSeatsService;
@@ -53,7 +53,7 @@ public class ReservedSeatsController {
 	}
 
 	@GetMapping("/reservedSeats/showSeats")
-	public String insertReservedSeats() {
+	public String insertReservedSeats(@ModelAttribute("showtime") ShowTimeHistoryBean sthb, Model model) {
 		// insert seats into reserved seats table;
 //		rservice.insertSeats();
 
@@ -63,6 +63,8 @@ public class ReservedSeatsController {
 //		System.out.println(list.get(0).getDate());
 //		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatsBean().getHallBean().getHallID());
 //		nosservice.insertNumberofSeats(nosb);
+		
+		model.addAttribute("showtime", sthb);
 		return "c/showReservedSeats";
 	}
 

@@ -325,7 +325,12 @@
                             	<option value="default" selected="" disabled="">請選擇</option>
                             </select>
                         </div>
-                        <button class="" id="purchaseTicket">前往訂票</button>
+                        <form id="purchaseTicket"
+                        	action="${pageContext.request.contextPath}/purchaseTickets"
+							method="POST">
+							<input type="submit" id="pt" value="前往訂票">
+                       
+                        </form>
                     </div>
 
                 </div>
@@ -597,27 +602,29 @@
 //         		console.log(allshowtimelist[x].run.movie.movieID == chosenMovie);
 //         		console.log((allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate);
         		if(allshowtimelist[x].run.movie.movieID == chosenMovie && (allshowtimelist[x].playStartTime.substring(0, 10)) == chosenDate){
-        			document.getElementById('movieStartTime').innerHTML += "<option value='" + x +"'>" + allshowtimelist[x].playStartTime.substring(11, 16) + "</option>";
+        			document.getElementById('movieStartTime').innerHTML += "<option value='" + allshowtimelist[x].showTimeId +"'>" + allshowtimelist[x].playStartTime.substring(11, 16) + "</option>";
         		}
         	}
 
         })
         
         console.log(allshowtimelist[$('movieStartTime').val()]);
-        $('#purchaseTicket').click(function(){
-//         	console.log($('#movieStartTime').val());
-        	console.log(allshowtimelist[$('#movieStartTime').val()]);
-        	$.ajax({
-				url : "${pageContext.request.contextPath}/purchaseTickets",
-				data : {
-					showTimeBean: allshowtimelist[$('#movieStartTime').val()]
-				},
-				type : "POST",
-				success : function() {
-					alert("訂票成功!");
-// 					window.location.href = "${pageContext.request.contextPath}/movieIndex";
-				}
-			});
+        $('#movieStartTime').change(function(){
+        	console.log($('#movieStartTime').val());
+        	document.getElementById('purchaseTicket').innerHTML += "<input type='hidden' name='showTimeBean' value='"
+				+ $('#movieStartTime').val() + "'>" 
+//         	console.log(allshowtimelist[$('#movieStartTime').val()]);
+//         	$.ajax({
+// 				url : "${pageContext.request.contextPath}/purchaseTickets",
+// 				data : {
+// 					showTimeBean: allshowtimelist[$('#movieStartTime').val()]
+// 				},
+// 				type : "POST",
+// 				success : function() {
+// 					alert("訂票成功!");
+// 					window.location.href = "${pageContext.request.contextPath}/purchaseTickets";
+// 				}
+// 			});
         });
         
 //         function checkShowTime(date, movie){

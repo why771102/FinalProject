@@ -65,10 +65,11 @@
 		
 	   </form:form>
 		 <jsp:include page="footer.jsp">
-     <jsp:param name="a" value="1" />
-    <jsp:param name="b" value="1" />
+     <jsp:param name="c" value="1" />
+    <jsp:param name="d" value="1" />
 </jsp:include>
 
+		
 		
 		<script>
 		

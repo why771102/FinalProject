@@ -52,8 +52,8 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 
 		String ans = "";
 		ans += "<SELECT id='categoryNames'>"
-				+ "<option value='all' selected=''>全部商品</option>"
-				+ "<option value='allFood'>餐點總覽</option>";
+				+ "<option value='全部商品' selected=''>全部商品</option>"
+				+ "<option value='餐點總覽'>餐點總覽</option>";
 		for (String cate : categoryNames) {
 			ans += "<option value='" + cate + "'>" + cate + "</option>";
 		}
