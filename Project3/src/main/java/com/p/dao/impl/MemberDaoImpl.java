@@ -149,4 +149,13 @@ public class MemberDaoImpl implements MemberDao {
 		return list;
 	}
 
+	@Override
+	public MemberBean getEmployeeMember(String uID) {
+		MemberBean mb = new MemberBean();
+		Session session = factory.getCurrentSession();
+		String hql = "From MemberBean Where uID = :uID";
+		mb = (MemberBean) session.createQuery(hql).setParameter("uID", uID).getSingleResult();
+		return mb;
+	}
+
 }

@@ -92,7 +92,8 @@
 								</tr>
 								<tr>
 									<td>出生年月日:</td>
-									<td><form:input id="birth" path="birth" type='date' /><br>
+									<td><form:input id="birth" path="birth" type='date' />
+									<br><span>${errorMsgMap.birthExistError}</span>
 										<form:errors path="birth" cssClass="error" /></td>
 								</tr>
 								<tr>
