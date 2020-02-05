@@ -53,6 +53,14 @@
 		    	<a href='${pageContext.request.contextPath}/commingSoon/All/movie1' onclick='goTo()'/>準備要上映電影</a><br>
     		</td>
 		</tr>
+		<tr height="52" bgcolor="lightblue" align="center">
+    		<td width="350"><p align="left" /> 
+    			<a href='Method/test'>測試方法</a><br> 
+    		</td>
+		    <td width="350"><p align="left" />
+		    	<a href='${pageContext.request.contextPath}/commingSoon/All/movie1' onclick='goTo()'/>0</a><br>
+    		</td>
+		</tr>
 	</table>
 	
 	

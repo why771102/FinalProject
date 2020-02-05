@@ -335,31 +335,24 @@ public class mOrdersController {
 		@RequestMapping("/searchTicket")
 		public String queryTicket(@RequestParam("orderID") Integer orderID,Model model) {
 			MOrderBean mb = service.getOrderID(orderID);
-			System.out.println("123");
 			model.addAttribute("getOrderByID",mb);
-			System.out.println("456");
 			return "l/queryTicket";
 		}
 		
 		//修改訂單時間
-		@RequestMapping(value ="/updateTicket/{OrderID}", method = RequestMethod.GET)
-		public String updateTicket(Model model){
-			
-			
+		@RequestMapping(value ="/updateTicket/{orderID}", method = RequestMethod.GET)
+		public String updateTicket(Model model, @PathVariable("orderID") Integer orderID){
+			MOrderBean mb = service.getOrderID(orderID);
+			model.addAttribute("MOrderBean", mb);
 			return "l/updateTicket";
 		}
 		
-		@RequestMapping(value ="/updateTicket/{OrderID}", method = RequestMethod.POST)
-		public String updateTicket2(Model model){
-			
-			
+		@RequestMapping(value ="/updateTicket/{orderID}", method = RequestMethod.POST)
+		public String updateTicket2(@ModelAttribute("MOrderBean") MOrderBean mb,Model model){
+			service.updateTicket(mb);
+			model.addAttribute("getOrderByID",service.getOrderID(mb.getOrdersID()));
 			return "l/queryTicket";
 		}
-		
-		
-		
-		
-		
 		
 		
 		

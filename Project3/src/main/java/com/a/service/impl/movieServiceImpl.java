@@ -258,6 +258,12 @@ public class movieServiceImpl implements MovieService {
 	}
 	@Transactional
 	@Override
+	public boolean updatePT_value(MovieBean movie, double PT) {
+		return  MDao.updatePT_value( movie,  PT);
+	}
+	
+	@Transactional
+	@Override
 	public int checkHallOrder(LocalDateTime runDateTime, HallBean hb, int HallTime, List<ShowtimeBean> OrderHall_list) {
 		int HallOrderTime = 0;
 		List<HallOrderBean> hob_list = hoService.getHallOrder(runDateTime.toLocalDate());
@@ -399,7 +405,8 @@ public class movieServiceImpl implements MovieService {
 			int restTime, List<ShowtimeBean> AllDayShowTime) {
 //		if(Halltime>0 ) {
 //			int r=((Halltime)/(FinalShowMovie_list.size()));
-
+//		(int)(Math.random()*11)
+		
 //		}else {}
 		for (ShowtimeBean stb : FinalShowMovie_list) {
 			stb.setStartTime(runDateTime);
@@ -556,6 +563,8 @@ public class movieServiceImpl implements MovieService {
 						MovieInsetHall_list.add(runMovie_list.get(l));
 
 						runMovie_list.get(l).setPrice_time(runMovie_list.get(l).getPrice_time() * rate);
+						   //這邊寫改變getPrice_time
+						updatePT_value(runMovie_list.get(l).getRb().getMovie(), runMovie_list.get(l).getPrice_time());
 //											showMovie_list.add(restTime);
 						System.out.println("2: " + HallTime);
 						sortPT(runMovie_list);
@@ -670,7 +679,8 @@ public class movieServiceImpl implements MovieService {
 			// save showTimeHitory(List<ShowtimeBean> FinalShowMovie_list)
 
 			// 把東西存進去排片
-			saveshowTimeHitory(FinalShowMovie_list, runDateTime, hb_list.get(Hall_i), restTime.getRunningTime(),
+			
+			saveshowTimeHitory(FinalShowMovie_list, runDateTime.plusMinutes((int)(Math.random()*11)), hb_list.get(Hall_i), restTime.getRunningTime(),
 					AllDayShowTime);
 		
 
