@@ -18,9 +18,8 @@ import com.c.model.SeatsBean;
 @Table(name="ticket")
 public class TicketBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-//	Integer ordersID;
 	@Id
+//	Integer ordersID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ordersID")
 	private MOrderBean mOrderBean;
@@ -33,7 +32,7 @@ public class TicketBean implements Serializable {
 	@JoinColumn(name="seatID", columnDefinition = "NCHAR(4)")
 	private SeatsBean seatsBean;
 	@Transient
-	String seatID;
+	Integer seatID;
 	
 	public TicketBean() {}
 	
@@ -60,10 +59,10 @@ public class TicketBean implements Serializable {
 	public void setSeatsBean(SeatsBean seatsBean) {
 		this.seatsBean = seatsBean;
 	}
-	public String getSeatID() {
+	public Integer getSeatID() {
 		return seatID;
 	}
-	public void setSeatID(String seatID) {
+	public void setSeatID(Integer seatID) {
 		this.seatID = seatID;
 	}
 	
