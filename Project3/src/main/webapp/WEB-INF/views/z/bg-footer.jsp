@@ -38,15 +38,5 @@
         </div>
       </div>
     </footer>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${pageContext.request.contextPath}/lib/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script>
-  <script src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--common script for all pages-->
-  <script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
 </body>
 </html>

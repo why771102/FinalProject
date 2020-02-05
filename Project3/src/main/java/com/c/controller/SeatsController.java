@@ -53,11 +53,18 @@ public class SeatsController {
 			@RequestParam ("normalSeats") String normalSeats,
 			@RequestParam ("handicapSeats") String handicapSeats,
 			@RequestParam ("hallID") String hallID,
+			@RequestParam ("price") String price,
 			@RequestParam ("rowNum") String rowNum,
 			@RequestParam ("colNum") String colNum,
 			@RequestParam ("noOfSeats") String noOfSeats,
 			Model model) {
 		System.out.println(hallID);
+		
+		HallBean hb = new HallBean();
+		hb.setHallID(hallID);
+		hb.setPrice(Integer.parseInt(price));
+		hb.setHallStatus(0);
+ 		hservice.insertHall(hb);
 		sservice.saveSeats(normalSeats, hallID, 0);
 		sservice.saveSeats(handicapSeats, hallID, 1);
 		hservice.updateHallRC(hallID, Integer.parseInt(colNum), Integer.parseInt(rowNum), Integer.parseInt(noOfSeats));

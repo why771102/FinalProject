@@ -1,5 +1,7 @@
 package com.c.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -39,12 +41,29 @@ public class HallController {
 		this.sservice = sservice;
 	}
 	
+	
 	//新增廳方法
 	@GetMapping(value = "/hall/add")
 	public String addNewHall(Model model) {
-		HallBean hb = new HallBean();
-		model.addAttribute("hallBean", hb);
-		return "c/addHall";
+		String [] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+		
+		List<String> hallID = new ArrayList<>();
+		for(int alphabets = 0; alphabets < chars.length; alphabets++) {
+			hallID.add(chars[alphabets]);
+		}
+		List<String> hallIDs = hservice.getAllHall();
+		for(int h=0; h<hallIDs.size(); h++) {
+			System.out.println(hallIDs.get(h));
+			for(int c = 0; c < hallID.size(); c++) {
+				if(hallIDs.get(h).equalsIgnoreCase(hallID.get(c))) {
+					System.out.println("true!!");
+					hallID.remove(c);
+					break;
+				}
+			}
+		}
+		model.addAttribute("availableHallID", hallID);
+		return "c/addSeats";
 	}
 	
 	@PostMapping(value = "/hall/add")

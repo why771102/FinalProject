@@ -48,7 +48,7 @@
 	src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
 <style>
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
 	background-color: #fafafa;
 }
 
@@ -476,7 +476,7 @@ span.seatCharts-legendDescription {
 									<div class='front-indicator'>Screen</div>
 								</div>
 								<div class="booking-details">
-									<button class="checkout-button" id="checkout"
+									<button class="checkout-button btn btn-round btn-primary" id="checkout"
 										onclick="changeStatus()">確認&raquo;</button>
 									<div id="closebutton"></div>
 									<div>
@@ -721,7 +721,7 @@ span.seatCharts-legendDescription {
 							success : function() {
 								alert("修改" + hallID + "廳" + unavailable
 										+ "座位成功!");
-								window.location.href = "${pageContext.request.contextPath}/backstageindex";
+								location.reload();
 							}
 						});
 				//USE WHEN YOU WANT TO ADD DIFFERENT TYPE OF SEATS
@@ -759,7 +759,7 @@ span.seatCharts-legendDescription {
 							type : "POST",
 							success : function() {
 								alert("更改成功");
-								window.location.href = "${pageContext.request.contextPath}/index-c";
+								location.reload();
 							}
 						});
 			} else {
