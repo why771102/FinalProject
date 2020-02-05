@@ -212,9 +212,9 @@
 						</select>
 					</div>
 				</div>
-<a href="orderconfirm">繼續</a>
+<a href="reservedSeats/showSeats">繼續</a>
 <div>購物清單
-	<p id="discountPrice">0</p>
+	<p id="discountPrice" style="">0</p>
 	<p id="discount2Price">0</p>
 	<p id="bankticketPrice">0</p>
 	<p id="normalPrice">0</p>
@@ -242,55 +242,55 @@ function setCountPrice(name,value){
 	var price;
 	if (name==="discount"){
 		price=value*350
-		document.getElementById("discountPrice").innerHTML="優惠個人套票X"+value+"="price;
-		}
+		document.getElementById("discountPrice").innerHTML="優惠個人套票X"+parseInt(value)+"="+parseInt(price);
+			}
 	if (name==="discount2"){
 		price=value*660
-		document.getElementById("discount2Price").innerHTML="優惠雙人套票X"+value+"="price;
+		document.getElementById("discount2Price").innerHTML="優惠雙人套票X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="bankticket"){
 		price=value*250
-		document.getElementById("bankticketPrice").innerHTML="銀行優惠票X"+value+"="price;
+		document.getElementById("bankticketPrice").innerHTML="銀行優惠票X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="normal"){
 		price=value*270
-		document.getElementById("normalPrice").innerHTML="一般票X"+value+"="price;
+		document.getElementById("normalPrice").innerHTML="一般票X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="hotdog"){
 		price=value*120
-		document.getElementById("hotdogPrice").innerHTML="熱食類熱狗X"+value+"="price;
+		document.getElementById("hotdogPrice").innerHTML="熱食類熱狗X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="churro"){
 		price=value*100
-		document.getElementById("churroPrice").innerHTML="熱食類吉拿棒X"+value+"="price;
+		document.getElementById("churroPrice").innerHTML="熱食類吉拿棒X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="friedChicken"){
 		price=value*200
-		document.getElementById("friedChickenPrice").innerHTML="熱食類炸雞+薯條X"+value+"="price;
+		document.getElementById("friedChickenPrice").innerHTML="熱食類炸雞+薯條X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="bigCoke"){
 		price=value*70
-		document.getElementById("bigCokePrice").innerHTML="飲料類大可樂X"+value+"="price;
+		document.getElementById("bigCokePrice").innerHTML="飲料類大可樂X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="normalCoke"){
 		price=value*60
-		document.getElementById("normalCokePrice").innerHTML="飲料類中可樂X"+value+"="price;
+		document.getElementById("normalCokePrice").innerHTML="飲料類中可樂X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="smallCoke"){
 		price=value*54
-		document.getElementById("smallCokePrice").innerHTML="飲料類小可樂X"+value+"="price;
+		document.getElementById("smallCokePrice").innerHTML="飲料類小可樂X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="bigPopcorn"){
 		price=value*140
-		document.getElementById("bigPopcornPrice").innerHTML="爆米花類大爆米花X"+value+"="price;
+		document.getElementById("bigPopcornPrice").innerHTML="爆米花類大爆米花X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="normalPopcorn"){
 		price=value*130
-		document.getElementById("normalPopcornPrice").innerHTML="爆米花類中爆米花X"+value+"="price;
+		document.getElementById("normalPopcornPrice").innerHTML="爆米花類中爆米花X"+parseInt(value)+"="+parseInt(price);
 		}
 	if (name==="smallPopcorn"){
 		price=value*120
-		document.getElementById("smallPopcornPrice").innerHTML="爆米花類小爆米花X"+value+"="price;
+		document.getElementById("smallPopcornPrice").innerHTML="爆米花類小爆米花X"+parseInt(value)+"="+parseInt(price);
 		}
 }
 
