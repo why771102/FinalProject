@@ -23,9 +23,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script defer src="js/bootstrap.min.js"></script>
      <style>
-    .body{
+    body{
     	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
     }
+    
+    html {
+  		scroll-behavior: smooth;
+	}
     </style>
 </head>
 
@@ -65,14 +69,7 @@
                         <li class="free-trial-btn btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
                         <li class="free-trial-btn btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
                         <li class="free-trial-btn btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
-                            
-                        </li>
-<!--                         <li> -->
-<!--                             <select> -->
-<!--                                 <option>中文</option> -->
-<!--                                 <option>ENG</option> -->
-<!--                             </select> -->
-<!--                         </li> -->
+
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -93,9 +90,9 @@
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left">
                                         <div class="slide-con">
-                                            <h5>Fast Online</h5>
-                                            <h4>SEAT BOOKINGS<br> </h4>
-                                            <a href="free-trail.html" class="slider-btn">BOOK NOW</a>
+                                            <h5>不想排隊?</h5>
+                                            <h4>快線上訂位!<br> </h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -115,9 +112,9 @@
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left">
                                         <div class="slide-con">
-                                            <h5>Fast Online </h5>
-                                            <h4>SEAT BOOKINGS</h4>
-                                            <a href="free-trail.html" class="slider-btn">BOOK NOW</a>
+                                            <h5>不想排隊? </h5>
+                                            <h4>快線上訂位!</h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -136,9 +133,9 @@
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left">
                                         <div class="slide-con">
-                                            <h5>Fast Online </h5>
-                                            <h4>SEAT BOOKINGS</h4>
-                                            <a href="free-trail.html" class="slider-btn">BOOK NOW</a>
+                                            <h5>不想排隊? </h5>
+                                            <h4>快線上訂位!</h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -174,8 +171,8 @@
                         <span>
                         	<img src="img/icon-2.png">
                         </span>
-                        <h4>MOVIES IMPORTER</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </p>
+                        <h4>頂尖設備</h4>
+                        <p>影廳播放之畫面色彩、對比度、聲音響度及音場頻率皆達最高規格 </p>
                     </div>
                 </div>
                 <div class="col-sm-4 col-xs-4">
@@ -183,8 +180,8 @@
                         <span>
                         	<img src="img/icon-3.png">
                         </span>
-                        <h4>CINEMA LOCATIONS</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </p>
+                        <h4>影廳租借</h4>
+                        <p>全系列影廳 開放租借中 各種活動都適合</p>
                     </div>
                 </div>
 
@@ -298,20 +295,20 @@
 
 
 
-    <section class="ticket-outer">
+    <section class="ticket-outer" id="booknow">
         <div class="container">
             <div class="ticket-sell">
                 <div class="row clearfix">
                     <div class="col-sm-6 pull-left">
                         <div class="tc-con">
                             <h5>快速訂票</h5>
-                            <h3>Ticket Selling</h3>
+                            <h3>購票須知</h3>
                             <ul class="list-unstyled">
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                                <li>非影城網路會員也可以使用</li>
+                                <li>每個帳號每筆交易最多可購買 6 張電影票劵。</li>
+                                <li>訂單成立視同票券售出，逾時未取票者並不會自動取消座位或退款，沒有在開演前取票或票券隔場作廢，一概不得退票或換票，票款與手續費皆不退回。</li>
+                                <li>本系統銷售票劵與影城現場同步，一旦結帳成功，現場座位就已經同步售出。</li>
+                                <li>請選擇正確的票種，以免影響自身權益。</li>
                             </ul>
                             <a href="free-trail.html" class="slider-btn slider-g-btn">lETS GET sTARTED</a>
                         </div>

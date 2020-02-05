@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%><!doctype html>
+	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -183,7 +187,6 @@ span.seatCharts-legendDescription {
 		</div>
 
 	</div>
-	<button class="checkout-button" id="callSeatingChart" onclick="changeStatus()">bring out seating chart</button>
 	<button class="checkout-button" id="checkout" onclick="confirmReservation()">確認&raquo;</button>
 	
 	<div id="legend"></div>
@@ -205,7 +208,7 @@ span.seatCharts-legendDescription {
 	
 	
 	//showing the seating chart through calling controller using ajax
-	function changeStatus(){
+	$(window).load(function () {
 		$('.seatCharts-row').remove();
 		$('.seatCharts-legendItem').remove();
 		$('#seat-map,#seat-map *').unbind().removeData();
@@ -226,7 +229,7 @@ span.seatCharts-legendDescription {
 				window.showTimeID = parseInt(data[6]);
 			}
 		});
-	}
+	});
 
 	//main seating chart jquery
 	function seatmain(map1, flag) {
