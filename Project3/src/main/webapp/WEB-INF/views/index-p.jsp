@@ -13,7 +13,7 @@
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='member/register'>註冊會員(范)</a><BR></td>
-			<td width="350"><p align="left" /> <a href='emps'>查詢所有員工</a><BR>
+			<td width="350"><p align="left" /> <a href='employee/memberTicketQuery'>會員訂票查詢(員工)</a><BR>
 			</td>
 		</tr>
 

@@ -32,6 +32,7 @@ public class MemberProductsQueryDaoImpl implements MemberProductsQueryDao {
 		this.factory = factory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MOrderBean> getMOrderBeanByMemberID(Integer memberID) {
 		String hql = "From MOrderBean Where memberID = :memberID";
@@ -53,9 +54,11 @@ public class MemberProductsQueryDaoImpl implements MemberProductsQueryDao {
 	//從票抓座位
 	@Override
 	public TicketBean getTicketBeanByOrdersID(Integer ordersID) {
-//		String hql = "From TicketBean where ordersID = :ordersID";
+		String hql = "From TicketBean where ordersID = :ordersID";
 		Session session = factory.getCurrentSession();
-		TicketBean tb = session.get(TicketBean.class, ordersID);
+		System.out.println("看看ordersID:" + ordersID);
+		TicketBean tb = (TicketBean) session.createQuery(hql).setParameter("ordersID", ordersID).getSingleResult();
+//		TicketBean tb = session.get(TicketBean.class, ordersID);
 		return tb;
 	}
 
