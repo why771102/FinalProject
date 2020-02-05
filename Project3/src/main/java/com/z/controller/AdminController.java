@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.z.exception.EmpNotFoundException;
 import com.z.model.EmpBean;
 import com.z.model.EmpStatusBean;
@@ -63,6 +65,16 @@ public class AdminController {
 		model.addAttribute("allEmps", allEmps);
 		return "z/emps";
 	}
+	
+	@RequestMapping(value = "/empsAjax" ,produces="application/json;charset=UTF-8;")
+	public @ResponseBody String getAllEmpsAjax(Model model) {
+		List<EmpBean> allEmps = service.findAllEmps();
+		model.addAttribute("allEmps", allEmps);
+		Gson gson = new Gson();
+		String str = gson.toJson(allEmps);
+		return str;
+	}
+	
 	
 	
 	@RequestMapping(value = "/emp")

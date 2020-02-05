@@ -45,7 +45,7 @@ public class EmpController {
 	}
 	
 	//以下為導入登入頁面的controller
-	@RequestMapping(value="/emplogin", method = RequestMethod.GET)
+	@RequestMapping(value="/emp/login", method = RequestMethod.GET)
 	public String login(Model model){
 		EmpBean eb = new EmpBean();
 		model.addAttribute("empBean",eb);
@@ -53,7 +53,7 @@ public class EmpController {
 	}
 	
 	//以下為判斷登入的方法
-	@RequestMapping(value="/emplogin", method = RequestMethod.POST)
+	@RequestMapping(value="/emp/login", method = RequestMethod.POST)
 	public String logincheck(HttpServletRequest request,HttpServletResponse response,@ModelAttribute("empBean")EmpBean eb,Model model) {
 		HttpSession session = request.getSession();
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
@@ -101,7 +101,7 @@ public class EmpController {
 	}
 	
 	//以下為登出方法
-	@GetMapping("/emplogout")
+	@GetMapping("/emp/logout")
 	public String EmpLogout(HttpServletRequest request,HttpServletResponse response,Model model) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("EmpLogin");
@@ -112,11 +112,11 @@ public class EmpController {
             cookie.setPath("/");
             response.addCookie(cookie);
 		}
-		return "redirect:/emplogin";
+		return "redirect:/emp/login";
 	}
 	
 	
-	@RequestMapping(value = "/empupdatePwd", method = RequestMethod.GET)
+	@RequestMapping(value = "/emp/updatePwd", method = RequestMethod.GET)
 	public String updateEmpPwd(Model model, HttpServletRequest request) {
 		
 		Cookie[] cookies = request.getCookies();
@@ -135,7 +135,7 @@ public class EmpController {
 	}
 	
 	
-	@RequestMapping(value = "/empupdatePwd", method = RequestMethod.POST)
+	@RequestMapping(value = "/emp/updatePwd", method = RequestMethod.POST)
 	public String processUdateEmpPwd(Model model, HttpServletRequest request, @ModelAttribute("empBean") EmpBean eb) {
 		
 		eb.setPassword(eb.getPwd());

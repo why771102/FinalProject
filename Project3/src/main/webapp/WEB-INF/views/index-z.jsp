@@ -19,19 +19,19 @@
 
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='emp/add'>新增會員</a><BR>
+				
 			</td>
 			<td width="350"><p align="left" /> 
-				<a href='searchEmp'>查詢單一員工</a><BR>
+				
 			</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 
-				<a href='bgAnnos'>公告清單查詢(後台排序)</a><BR>
+				
 			</td>
 			<td width="350"><p align="left" />
-				<a href='anno/add'>新增公告</a><BR>
+				
 			</td>
 		</tr>
 		
@@ -46,19 +46,19 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='emplogin'>員工登入</a><br> 
+    			 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='emplogout'>員工登出</a><br>
+		    	
     		</td>
 		</tr>
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='empupdatePwd'>員工修改密碼</a><br> 
+    			 
     		</td>
 		    <td width="350"><p align="left" />
-		    	<a href='emplogout'>員工登出</a><br>
+		    	
     		</td>
 		</tr>
 		

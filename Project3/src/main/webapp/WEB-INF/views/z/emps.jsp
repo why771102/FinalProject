@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -62,7 +63,6 @@
 			<td>員工姓名</td>
 			<td>職位名稱</td>
 			<td>員工信箱</td>
-			<td>員工密碼</td>
 			<td>在職狀態</td>
 			<td>就職日期</td>
 			<td>離職日期</td>
@@ -73,10 +73,9 @@
 			<td>${emp.empName}</td>
 			<td>${emp.roleBean.roleName}</td>
 			<td>${emp.email}</td>
-			<td>${emp.password}</td>
 			<td>${emp.empStatusBean.statusName}</td>
-			<td>${emp.startDate}</td>
-			<td>${emp.endDate}</td>
+			<td>${fn:substring(emp.startDate,0,10)}</td>
+			<td>${fn:substring(emp.endDate,0,10)}</td>
 		</tr>
 			</c:forEach>
 		</table>
@@ -88,5 +87,34 @@
 		</jsp:include>
 		<!--footer end-->
 	</section>
+	<script>
+	$(document).ready(function() {
+		var dataTable = $('#example').DataTable();
+		$(function() {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/empsAjax",
+				type : "POST",
+				success : function(data) {
+					dataTable.clear().draw();
+					console.log(data);
+					$.each(data,function(index,value) {
+						dataTable.row.add([
+			value.empId, value.empName, value.roleBean.roleName, value.email, value.empStatusBean.statusName, value.startDate.substring(0,16),value.endDate.substring(0,16),value.priority,value.annoStatusBean.statusName,
+			function(data,type,row) {
+				var html = "<a href='anno/update/" + value.annoId + "'>修改公告</a>";
+				html += " <a href='anno/launch/" + value.annoId + "'>上架</a>";
+				html += " <a href='anno/takeoff/" + value.annoId + "'>下架</a>";
+				return html;
+				} 
+				]).draw();
+			})
+		}
+	})
+})
+});
+	
+	
+	
+	</script>
 </body>
 </html>
