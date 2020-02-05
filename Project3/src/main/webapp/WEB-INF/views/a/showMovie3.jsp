@@ -16,11 +16,11 @@
     <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
-    <link rel='stylesheet' href='css/bootstrap.min.css'>
-    <link rel='stylesheet' href='css/font-awesome.min.css'>
-    <link rel='stylesheet' href='css/flexslider.css'>
-    <link rel='stylesheet' href='css/style.css'>
-    <link rel='stylesheet' href='css/responsive.css' type='text/css' />
+    <link rel='stylesheet' href='${pageContext.request.contextPath}/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='${pageContext.request.contextPath}/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='${pageContext.request.contextPath}/css/flexslider.css'>
+    <link rel='stylesheet' href='${pageContext.request.contextPath}/css/style.css'>
+    <link rel='stylesheet' href='${pageContext.request.contextPath}/css/responsive.css' type='text/css' />
 </head>
 
 <body>
@@ -215,35 +215,9 @@
          
          
 <!--     <section class="ticket-outer banner-featured"> -->
-      <section class=" banner-featured" style='background-color:gray;'>
-        <div class="container">
-            <div class="ticket-sell">
-                <h3 class="font"> 留言板</h3>
-            </div>
-        </div>
-    </section>
+     
     <!-- banner -->
-     <section class='contact-sec '>
-            <div class='container'>
-    
-                <div class='buy-txt'>
-                    <h2>[ 留言板 ]</h2>
-                    <p> </p><br>
-    
-                </div>
-    
-                <div class='buy-txt'>
-                  
-                <div class='col-sm-12 col-xs-12'> 
-                <div style=''>
-                       ${sthb_list1.get(1).run.movie.plotSummary}
-                </div>
-                    
-                </div>
-
-                </div>
-            </div>
-        </section>
+   
 
     <section class='dark-blue'>
         <div class='container'>

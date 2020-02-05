@@ -323,7 +323,7 @@
 									"	Thriller</a> <a href='' class='movie-btn1'>Drama</a>"+
 								"</div>"+
 							"</div>"+
-							"<form id='runForm"+a[i].runID+"'action='${pageContext.request.contextPath}/show/this/movie' method='post'>"+
+							"<form id='runForm"+a[i].runID+"'action='${pageContext.request.contextPath}/show/this/movie/commingSoon' method='post'>"+
         			       "<input name='runID' type='hidden' value='"+a[i].runID+"'>"+
 							"</form>"+
 							"<a href='' class='book-now'>[電影訂票]</a>"+
@@ -397,5 +397,4 @@
 	</script>
 </body>
 </html>
-
 

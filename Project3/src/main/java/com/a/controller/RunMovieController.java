@@ -780,7 +780,7 @@ public class RunMovieController implements ServletContextAware{
 		
 //       System.out.println("hi  go to showCommingSoon");
        
-		return "a/showCommingSoonMovie";
+		return "a/showAllCommingSoonMovie";
 	}
 	
 	
@@ -849,7 +849,7 @@ public class RunMovieController implements ServletContextAware{
 	@PostMapping(value = "/show/this/movie/commingSoon")
 	public String showThisMovieCommingSoon(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
-		System.out.println("inShowThisMovie");
+		System.out.println("inShowThisMovieCommingSoon");
 		
 		System.out.println(runID);
 		Gson gson = new Gson();
