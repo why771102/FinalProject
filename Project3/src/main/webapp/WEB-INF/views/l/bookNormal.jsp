@@ -214,7 +214,7 @@
 				</div>
 <a href="orderconfirm">繼續</a>
 <div>購物清單
-	<p id="discountPrice">0</p>
+	<p id="discountPrice" style="">0</p>
 	<p id="discount2Price">0</p>
 	<p id="bankticketPrice">0</p>
 	<p id="normalPrice">0</p>
@@ -243,7 +243,7 @@ function setCountPrice(name,value){
 	if (name==="discount"){
 		price=value*350
 		document.getElementById("discountPrice").innerHTML="優惠個人套票X"+parseInt(value)+"="+parseInt(price);
-		}
+			}
 	if (name==="discount2"){
 		price=value*660
 		document.getElementById("discount2Price").innerHTML="優惠雙人套票X"+parseInt(value)+"="+parseInt(price);
