@@ -506,7 +506,7 @@
         	console.log($('#movie').val());
         });
         
-        console.log(allshowtimelist[0].playStartTime.substring(0, 10));
+//         console.log(allshowtimelist[0].playStartTime.substring(0, 10));
         $('#playdate').change(function(){
         	$('#movieStartTime').html("<option value='default' selected='' disabled=''>請選擇</option>");
         	var chosenDate = $('#playdate').val();
