@@ -52,7 +52,7 @@ public class HallDaoImpl implements HallDao{
 		Session session = factory.getCurrentSession();
 		list = session.createQuery(hql)
 				.setParameter("hbs", status)
-				.list();
+				.getResultList();
 		return list;
 	}
 	

@@ -185,22 +185,22 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 	
 	
 	//抓指定日期的某一聽
-	@Override
-	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day,String hallID) {
-		// TODO Auto-generated method stub
-		Session session =factory.getCurrentSession();
-		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
-		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate  and hallID=:ID ";
-//		LocalDate date = playStartTime.toLocalDate();
-		String startTime = ((day.toString())+" "+"02:00:00"); 
-		String endTime = (day.plusDays(1).toString())+" "+"02:00:00"; 
-		STHB_List= session.createQuery(hql).setParameter("enddate", endTime)
-                                       .setParameter("startdate", startTime)
-                                       .setParameter("ID", hallID)
-                                       .getResultList();
-		
-		return STHB_List;
-	}
+//	@Override
+//	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day,String hallID) {
+//		// TODO Auto-generated method stub
+//		Session session =factory.getCurrentSession();
+//		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
+//		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate  and hallID=:ID ";
+////		LocalDate date = playStartTime.toLocalDate();
+//		String startTime = ((day.toString())+" "+"02:00:00"); 
+//		String endTime = (day.plusDays(1).toString())+" "+"02:00:00"; 
+//		STHB_List= session.createQuery(hql).setParameter("enddate", endTime)
+//                                       .setParameter("startdate", startTime)
+//                                       .setParameter("ID", hallID)
+//                                       .getResultList();
+//		
+//		return STHB_List;
+//	}
 	
 	//修改showtimeHistoryBean
 	@Override

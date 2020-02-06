@@ -124,7 +124,7 @@ public class movieServiceImpl implements MovieService {
 	@Transactional
 	@Override
 	public List<ShowTimeHistoryBean> getshowMovieByDayAndHallID(LocalDate day,String hallID){
-		 return SDao.getshowMovie(day,hallID); 
+		 return SDao.getshowMovieByDayAndHallID(day, hallID);
 	 }
 
 	

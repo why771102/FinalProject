@@ -73,12 +73,12 @@ public class ShowTimeHistoryServiceImpl implements ShowTimeHistoryService {
 		return dao.getShowTimeIdByTime(playStartTime);
 	}
 
-	@Transactional
-	@Override
-	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day, String hallID) {
-		// TODO Auto-generated method stub
-		return dao.getshowMovie(day, hallID);
-	}
+//	@Transactional
+//	@Override
+//	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day, String hallID) {
+//		// TODO Auto-generated method stub
+//		return dao.getshowMovie(day, hallID);
+//	}
 
 	@Transactional
 	@Override

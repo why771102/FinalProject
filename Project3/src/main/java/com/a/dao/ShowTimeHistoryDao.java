@@ -28,7 +28,7 @@ public interface ShowTimeHistoryDao {
 
 		int getShowTimeIdByTime(String playStartTime);
 
-		List<ShowTimeHistoryBean> getshowMovie(LocalDate day, String hallID);
+	
 
 		boolean updateShowTimeHistoryBean(ShowTimeHistoryBean sthb);
 
