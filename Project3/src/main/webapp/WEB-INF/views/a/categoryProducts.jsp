@@ -396,7 +396,7 @@ div.submitButton {
 				<div class="wrap" id="pictureBG" style="display: none;">
 					<div class="w3-content wrap" style="width: 100%; height: 100vh;">
 
-						<img class="mySlides Bimg" src="a.jpg" style="display: none">
+						<img class="mySlides Bimg" src="<c:url value='/products/${productList[0].productID}' />" style="display: none">
 						<img class="mySlides Bimg" src="b.jpg"> <img
 							class="mySlides Bimg" src="c.png" style="display: none"> <img
 							class="mySlides Bimg" src="c.png" style="display: none">
@@ -427,7 +427,7 @@ div.submitButton {
 
 							<div class="w3-col s4 "
 								style="height: 100%; width: 80%; margin: 0px;">
-								<img class="demo w3-opacity w3-hover-opacity-off" src="c.png"
+								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[0].productID}' />"
 									style="width: 100%; height: 100%; cursor: pointer"
 									onclick="currentDiv(4)">
 							</div>
