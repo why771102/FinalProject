@@ -333,10 +333,8 @@
                             	<option value="default" selected="" disabled="">請選擇</option>
                             </select>
                         </div>
-                        <form id="purchaseTicket"
-                        	action="${pageContext.request.contextPath}/purchaseTickets"
-							method="POST">
-							<div class="slider-btn slider-g-btn" id="pt">前往訂票</div>
+                        <form id="purchaseTicket">
+							<div class="slider-btn slider-g-btn" id="pt" onclick="buyticket()">前往訂票</div>
                        
                         </form>
                     </div>
@@ -569,8 +567,13 @@
     		}
     	}
     	
-    	document.getElementById("pt").submit();
-    		
+    	
+    	function buyticket(){
+    		document.forms[0].action="<c:url value='/purchaseTickets'/>";
+            document.forms[0].method = "POST";
+    		document.forms[0].submit();
+    	}
+    	
     </script>
 
 
