@@ -59,12 +59,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.p.model.HallOrderBean;
 import com.p.service.HallOrderService;
+import com.t.model.CommentBean;
+import com.t.service.CommentService;
+import com.t.service.ExpectationService;
 
 @Controller
 public class RunMovieController implements ServletContextAware{
 	ServletContext context;
 	MovieService mService;
 	HallService hService;
+	ExpectationService eService;
+	CommentService cService;
 	HallOrderService hoService;
 
 	@Override
@@ -73,10 +78,12 @@ public class RunMovieController implements ServletContextAware{
 	}
 
 	@Autowired
-	public void setService(MovieService mService, HallService hService, HallOrderService hoService) {
+	public void setService(MovieService mService, HallService hService, HallOrderService hoService,ExpectationService eService,CommentService cService) {
 		this.mService = mService;
 		this.hService = hService;
 		this.hoService = hoService;
+		this.eService = eService;
+		this.cService = cService;
 	}
 
 	// 新增電影方法
@@ -385,6 +392,37 @@ public class RunMovieController implements ServletContextAware{
 	@PostMapping(value = "/show/this/movie")
 	public String showThisMovie(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
+		RunningBean run = mService.getRunningBeanById(runID);
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		int movieID = run.getMovie().getMovieID();
+		Double avgGrade = cService.getAvgGrade(movieID);
+		if(avgGrade == 0) {
+			model.addAttribute("AVGGrade", "尚無評價");
+		}else {
+			model.addAttribute("AVGGrade", avgGrade);
+		}
+		if(mID == null) {
+			List<CommentBean> comments=cService.getCommentByMovieNoLoginByTime(movieID);
+			model.addAttribute("Comments", comments);
+		}else {
+			int memberIDBlock = Integer.parseInt(mID);
+			List<CommentBean> comments=cService.getCommentByMovieOrderByTime(movieID, memberIDBlock);
+			model.addAttribute("Comments", comments);
+		}
+		
+		Integer avgExpectation = eService.getAvgExpectation(movieID);
+		if(avgExpectation == null) {
+			model.addAttribute("AVGExpectation", "尚無資料");
+		}else {
+			model.addAttribute("AVGExpectation", avgExpectation);
+		}
 		System.out.println("inShowThisMovie");
 		
 		System.out.println(runID);
@@ -392,7 +430,6 @@ public class RunMovieController implements ServletContextAware{
 //		Type BeanType = new TypeToken<RunningBean>(){}.getType();
 //		RunningBean rb = new Gson().fromJson(run, BeanType);
 		//get showTime by runningBean
-		RunningBean run = mService.getRunningBeanById(runID);
 		System.out.println("電影名稱:"+run.getMovie().getTitle());
 		
 		LocalDate today = LocalDate.now();

@@ -36,7 +36,7 @@
 	}
 </style>
 
-<title>會員登入</title>
+<title>76影城</title>
 
 </head>
 <body>

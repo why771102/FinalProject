@@ -24,6 +24,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
+	<title>76影城</title>
 </head>
 <body>
 <section id="container">
@@ -125,7 +126,6 @@
 											<div class="form-group">
 												<div class="col-lg-offset-2 col-lg-10">
 													<button class="btn btn-theme04" type="button" onclick="location.href='emp/update/${emp.empId}'">修改資料</button>
-													<a href="emp/update/${emp.empId}">修改資料</a>
 												</div>
 											</div>
 

@@ -124,9 +124,24 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberDataForEmployee1")
 	public String getEmp(@RequestParam("uID") String uID, Model model) {
+		
 		MemberBean mb = service.getEmployeeMember(uID);
 		model.addAttribute("mb", mb);
 		return "memberDataForEmployee";
+		
+//		HashMap<String, String> errorMsgMap2 = new HashMap<String, String>();
+//		boolean ue = service.UIDExists(uID);
+//		if(ue == true) {
+//			MemberBean mb = service.getEmployeeMember(uID);
+//			model.addAttribute("mb", mb);
+//			return "memberDataForEmployee";
+//		}else {
+//			errorMsgMap2.put("uIDError", "會員不存在!");
+//			if(!errorMsgMap2.isEmpty()) {
+//				model.addAttribute("errorMsgMap2",errorMsgMap2);
+//				return "searchMb";
+//			}
+//		}
 		//要做無身分證字號的頁面
 	}
 	

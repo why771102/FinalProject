@@ -20,23 +20,11 @@
 <body>
 	<div id="main-content" class="container">
 		<div class="row">
-			<div class="col-md-6">
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="name">訊息</label> <input type="text" id="message"
-							class="form-control" placeholder="Your message here...">
-					</div>
-					<button id="sendMessage" class="btn btn-default" type="submit">Send</button>
-				</form>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-12">
 				<table id="conversation" class="table table-striped">
 					<thead>
 						<tr>
-							<th>Greetings</th>
-							<th>使用者: <span id="user"></span></th>
+							<th>訊息：</th>
 						</tr>
 					</thead>
 
@@ -62,6 +50,19 @@
 				</table>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="name"></label> 
+						<input type="text" id="message" class="form-control" placeholder="在此輸入訊息...">
+							<button id="sendMessage" class="btn btn-default" type="submit">送出</button>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+		
 	</div>
 
 	<script>
