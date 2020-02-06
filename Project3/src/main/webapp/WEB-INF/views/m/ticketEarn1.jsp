@@ -6,34 +6,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Dashboard">
+<meta name="keyword"
+	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketEarn1</title>
+<title>票卷利潤總覽</title>
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- Favicons -->
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!--external css-->
+<link
+	href="${pageContext.request.contextPath}/lib/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="${pageContext.request.contextPath}/css/bg-style.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style-responsive.css"
+	rel="stylesheet">
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <!-- timepicker -->
-<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
-<body style="background-color: grey">
+<body>
+	<section id="container">
+		<!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+		<!--header start-->
+		<jsp:include page="../z/bg-header.jsp">
+			<jsp:param name="a" value="1" />
+			<jsp:param name="b" value="1" />
+		</jsp:include>
+		<!--header end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+		<!--sidebar start-->
+		<jsp:include page="../z/bg-sidebar.jsp">
+			<jsp:param name="c" value="1" />
+			<jsp:param name="d" value="1" />
+		</jsp:include>
+		<!--sidebar end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row mt">
+					<div class="col-lg-12">
+						<!-- <p>Place your content here.</p> -->
 	<h2 style="text-align: center">票房營收總覽</h2>
-		<div>
+		<div style="text-align: -webkit-right;">
 			類型： ${genreSelection}
 			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
 			<!-- 			<option>Java人生</option> -->
 			<!-- 		</select> -->
+			<br>
 			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 					class="fa fa-caret-down"></i>
 			</div>
@@ -43,22 +89,24 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>電影名稱</th>
-					<th>場次數</th>
-					<th>票卷總成本</th>
-					<th>票券總利潤</th>
-					<th>票券銷售總額</th>
-					<th>商品總成本</th>
-					<th>商品總利潤</th>
-					<th>商品銷售總額</th>
-					<th>營收小計</th>
-					<th>hid</th>
+					<th style="text-align: center;">電影名稱</th>
+					<th style="text-align: center;">場次數</th>
+					<th style="text-align: center;">票卷總成本</th>
+					<th style="text-align: center;">票券總利潤</th>
+					<th style="text-align: center;">票券銷售總額</th>
+					<th style="text-align: center;">商品總成本</th>
+					<th style="text-align: center;">商品總利潤</th>
+					<th style="text-align: center;">商品銷售總額</th>
+					<th style="text-align: center;">營收小計</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody id="insertHere">
 			</tbody>
 			<tfoot>
 				<tr>
+					<th></th>
+					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>
@@ -76,7 +124,25 @@
 		method="POST">
 		<input type="submit" id="exportE" value="Export To Excel">
 	</form>
-</body>
+						</div>
+				</div>
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<jsp:include page="../z/bg-footer.jsp">
+			<jsp:param name="e" value="1" />
+			<jsp:param name="f" value="1" />
+		</jsp:include>
+		<!--footer end-->
+	</section>
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
@@ -96,6 +162,7 @@
 				cell.innerHTML = i + 1;
 			});
 		}).draw();
+		t.column(10).visible(false);
 	});
 
 	// timepicker
@@ -142,7 +209,7 @@
 							cell.innerHTML = i + 1;
 						});
 					}).draw();
-// 					dataTable.column(8).visible(false);
+					dataTable.column(10).visible(false);
 
 					//傳送genre selection值
 					$("#genres").change(function(){
@@ -199,7 +266,7 @@
 																	cell.innerHTML = i + 1;
 																});
 															}).draw();
-// 															dataTable.column(8).visible(false);
+															dataTable.column(10).visible(false);
 														}
 							});
 	});
@@ -245,30 +312,6 @@
 						}
 		});
 	}
-
-// 	function showInfo(ts) {
-// 		for (var i = 0; i < ts.length; i++) {
-// 			$('#insertHere')
-// 					.append(
-// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/earn/date" id="hallID">'
-// 									+ ts[i].title
-// 									+ '</a></td><td>'
-// 									+ ts[i].noPlayTimes
-// 									+ '</td><td>'
-// 									+ ts[i].ticketCost
-// 									+ '</td><td>'
-// 									+ ts[i].ticketEarn
-// 									+ '</td><td>'
-// 									+ ts[i].ticketSaleTotal
-// 									+ '</td><td>'
-// 									+ ts[i].foodCos
-// 									+ '</td><td>'
-// 									+ ts[i].foodEarn
-// 									+ '</td><td>'
-// 									+ ts[i].foodSaleTotal
-// 									+ '</td><td>'
-// 									+ ts[i].subtotal + '</td></tr>');
-// 		}
-// 	};
 </script>
+</body>
 </html>

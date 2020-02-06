@@ -19,7 +19,11 @@
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/css/bg-style.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
-
+<style>
+	body{
+		font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+	}
+</style>
 </head>
 <body>
     <aside>
@@ -106,6 +110,30 @@
               <li><a href="advanced_table.html">Advanced Table</a></li>
             </ul>
           </li>
+          
+           <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-address-card"></i>
+              <span>查詢會員</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<c:url value='/employee/memberQuery'/>">會員資料</a></li>
+              <li><a href="<c:url value='/employee/memberTicketQuery'/>">會員訂票紀錄</a></li>
+            </ul>
+          </li>
+          
+           <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-adjust"></i>
+              <span>影廳管理</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<c:url value='/hall/add'/>">新增影廳</a></li>
+              <li><a href="<c:url value='/seats/showSeats'/>">調整影廳</a></li>
+              <li><a href="<c:url value='/Employee/hallOrderQuery'/>">包廳管理</a></li>
+            </ul>
+          </li>
+          
           <li>
             <a href="inbox.html">
               <i class="fa fa-envelope"></i>

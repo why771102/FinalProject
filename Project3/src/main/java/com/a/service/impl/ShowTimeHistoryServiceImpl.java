@@ -118,9 +118,9 @@ public class ShowTimeHistoryServiceImpl implements ShowTimeHistoryService {
 	
 	@Transactional
 	@Override
-	public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay) {
+	public List<RunningBean> getDistinctRunID(LocalDateTime startDay) {
 		
-		return dao.getDistinctMovieID(startDay);
+		return dao.getDistinctRunID(startDay);
 	}
 	
 	@Transactional
@@ -128,6 +128,13 @@ public class ShowTimeHistoryServiceImpl implements ShowTimeHistoryService {
 	public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime) {
 		
 		return dao.getAWeekShowTimeHistoryBean(starttime);
+	}
+
+	@Transactional
+	@Override
+	public RunningBean getDistinctMovies(Integer runID) {
+		// TODO Auto-generated method stub
+		return dao.getDistinctMovies(runID);
 	}
 
 

@@ -23,39 +23,17 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
-	
-<style>
-/* 	header{ */
-/* 		top:0; */
-/* 	} */
-/* 	footer{ */
-/* 		bottom:0; */
-/* 	} */
-	
-	table{
-		margin-left:auto; 
-		margin-right:auto;
-		border:3px #cccccc solid;
-	}
-	
-	tr{
-		height:30px;
-	}
-	
-</style>
 </head>
 <body>
-<section id="container">
+	<section id="container">
 		<!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
 		<!--header start-->
-		<header>
 		<jsp:include page="z/bg-header.jsp">
 			<jsp:param name="a" value="1" />
 			<jsp:param name="b" value="1" />
 		</jsp:include>
-		</header>
 		<!--header end-->
 		<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
@@ -65,77 +43,127 @@
 			<jsp:param name="c" value="1" />
 			<jsp:param name="d" value="1" />
 		</jsp:include>
-
-
 		<!--sidebar end-->
-		
-<!-- 	<section> -->
-<!-- 		<div> -->
-<!-- 			<div style="text-align: center"> -->
-<!-- 				<h1>會員資料</h1> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-	
-	
-<!-- <hr -->
-<!-- 		style="height: 1px; border: none; color: #333; background-color: #333;"> -->
-	<section>
-		<div>
-			<div style="text-align: center">
-				<h1>會員資料</h1>
-			<div class="caption">
-					<table>
-							<tr>
-								<td>會員姓名：</td>
-								<td>${mb.name}</td>
-							</tr>
-							<tr>
-								<td>帳號：</td>
-								<td>${mb.account}</td>
-							</tr>
-							<tr>
-								<td>信箱：</td>
-								<td>${mb.email}</td>
-							</tr>
-							<tr>
-								<td>生日：</td>
-								<td>${mb.birth}</td>
-							</tr>
-							<tr>
-								<td>性別：</td>
-								<td>${mb.gender}</td>
-							</tr>
-							<tr>
-								<td>身分證字號：</td>
-								<td>${mb.uID}</td>
-							</tr>
 
-							<tr>
-								<td>連絡電話：</td>
-								<td>${mb.mobile}</td>
-							</tr>
 
-							<tr>
-								<td>住址：</td>
-								<td>${mb.address}</td>
-							</tr>
-<!-- 							<tr> -->
-<%-- 								<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/' />'" class="inlog-btn"/></td> --%>
-<!-- 							</tr> -->
-					</table>
+		<section id="main-content">
+			<section class="wrapper site-min-height">
+				<div class="row mt">
+					<!-- /row -->
 				</div>
-			</div>
-		</div>
-	</section>
-</section>
+				<!-- /col-lg-12 -->
+				<div class="col-lg-12 mt">
+					<div class="row content-panel">
+						<!-- /panel-heading -->
+						<div class="panel-body">
+							<!--///////////////////////////////////////////////////////-->
+							<div id="edit" class="tab-pane">
+								<div class="row">
+									<div class="col-lg-8 col-lg-offset-2 detailed">
+										<h4 class="mb">會員資料</h4>
+									<div class="form-horizontal" >
+										<div class="form-group">
+											<label class="col-lg-2 control-label">會員姓名：</label>
+											<div class="col-lg-6">
+											${mb.name}
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-2 control-label">帳號：</label>
+											<div class="col-lg-6">
+											${mb.account}
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-2 control-label">信箱：</label>
+											<div class="col-lg-6">
+											${mb.email}
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-2 control-label">生日：</label>
+											<div class="col-lg-6">${mb.birth}</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-2 control-label">性別：</label>
+											<div class="col-lg-6">${mb.gender}</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-2 control-label">身分證字號：</label>
+											<div class="col-lg-6">${mb.uID}</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-2 control-label">連絡電話：</label>
+											<div class="col-lg-6">${mb.mobile}</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-2 control-label">地址：</label>
+											<div class="col-lg-6">${mb.address}</div>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+
+
+
+
+		<!-- 					<table> -->
+		<!-- 							<tr> -->
+		<!-- 								<td>會員姓名：</td> -->
+		<%-- 								<td>${mb.name}</td> --%>
+		<!-- 							</tr> -->
+		<!-- 							<tr> -->
+		<!-- 								<td>帳號：</td> -->
+		<%-- 								<td>${mb.account}</td> --%>
+		<!-- 							</tr> -->
+		<!-- 							<tr> -->
+		<!-- 								<td>信箱：</td> -->
+		<%-- 								<td>${mb.email}</td> --%>
+		<!-- 							</tr> -->
+		<!-- 							<tr> -->
+		<!-- 								<td>生日：</td> -->
+		<%-- 								<td>${mb.birth}</td> --%>
+		<!-- 							</tr> -->
+		<!-- 							<tr> -->
+		<!-- 								<td>性別：</td> -->
+		<%-- 								<td>${mb.gender}</td> --%>
+		<!-- 							</tr> -->
+		<!-- 							<tr> -->
+		<!-- 								<td>身分證字號：</td> -->
+		<%-- 								<td>${mb.uID}</td> --%>
+		<!-- 							</tr> -->
+
+		<!-- 							<tr> -->
+		<!-- 								<td>連絡電話：</td> -->
+		<%-- 								<td>${mb.mobile}</td> --%>
+		<!-- 							</tr> -->
+
+		<!-- 							<tr> -->
+		<!-- 								<td>住址：</td> -->
+		<%-- 								<td>${mb.address}</td> --%>
+		<!-- 							</tr> -->
+		<!-- 							<tr> -->
+		<%-- 								<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/' />'" class="inlog-btn"/></td> --%>
+		<!-- 							</tr> -->
+		<!-- 					</table> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 		</div> -->
+		<!-- 	</section> -->
+		<!-- </section> -->
+		<!--footer start-->
 	<!--footer start-->
-	<footer>
 		<jsp:include page="z/bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
-	</footer>
 		<!--footer end-->
+	</section>
 </body>
 </html>

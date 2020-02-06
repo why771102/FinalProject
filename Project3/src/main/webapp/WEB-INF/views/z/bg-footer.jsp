@@ -20,6 +20,11 @@
   <link href="${pageContext.request.contextPath}/css/bg-style.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 
+<style>
+	body{
+		font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+	}
+</style>
 </head>
 <body>
     <footer class="site-footer">

@@ -273,24 +273,24 @@
 
 					<!-- 					</div> -->
 					<c:forEach var='comment' items='${Comments}'>
-						<div class="comments" style="width: 100%; height: 380px">
-							<div class="thumbnail" style="width: 100%; height: 350px">
-								<div class="caption_comment" style="text-align: left;padding : 25px;line-height: 2.5;font-size:20px">
-									<div>
+						<div class="comments" style="width: 100%; height: 300px">
+							<div class="thumbnail" style="width: 100%; height: 280px">
+								<div class="caption_comment" style="text-align: left">
+									<p>
 										評分等級:${comment.grade} <a
 											href="<spring:url value='/preference/addlike/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
 											class="btn btn-primary">${comment.likeNum}讚 </a> <a
 											href="<spring:url value='/preference/addbad/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
 											class="btn btn-primary">${comment.badNum}噓 </a>
-									</div>
-									<div>會員ID:${comment.memberBean.account}</div>
-									<div>已觀賞:${comment.watched}</div>
-									<div>短評內文:${comment.commentContent}</div>
+									</p>
+									<p>會員ID:${comment.memberBean.account}</p>
+									<p>已觀賞:${comment.watched}</p>
+									<p>短評內文:${comment.commentContent}</p>
 									<c:set var="commentTime1" value="${comment.commentTime}" />
 									<c:set var="commentTime2"
 										value="${fn:substring(commentTime1, 0, 16)}" />
-									<div>${commentTime2}</div>
-									<div>
+									<p>${commentTime2}</p>
+									<p>
 										<a
 											href="<spring:url value='/preference/addblock/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
 											class="btn btn-primary"> <span
@@ -300,7 +300,7 @@
 											class="btn btn-primary"> <span
 											class="glyphicon-info-sigh glyphicon"></span>檢舉
 										</a>
-									</div>
+									</p>
 
 								</div>
 							</div>
