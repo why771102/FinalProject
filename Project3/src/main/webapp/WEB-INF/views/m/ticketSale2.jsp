@@ -6,30 +6,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Dashboard">
+<meta name="keyword"
+	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketSale2</title>
+<title>票卷銷售細節</title>
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- Favicons -->
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!--external css-->
+<link
+	href="${pageContext.request.contextPath}/lib/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="${pageContext.request.contextPath}/css/bg-style.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style-responsive.css"
+	rel="stylesheet">
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<!-- <script type="text/javascript" -->
+<!-- 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> -->
 <!-- timepicker -->
-<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<!-- <script type="text/javascript" -->
+<!-- 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<style>
+@import 'https://code.highcharts.com/css/highcharts.css';
+
+.highcharts-figure, .highcharts-data-table table {
+	min-width: 310px;
+	max-width: 800px;
+	margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+
+.highcharts-data-table caption {
+	padding: 1em 0;
+	font-size: 1.2em;
+	color: #555;
+}
+
+.highcharts-data-table th {
+	font-weight: 600;
+	padding: 0.5em;
+}
+
+.highcharts-data-table td, .highcharts-data-table th,
+	.highcharts-data-table caption {
+	padding: 0.5em;
+}
+
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even)
+	{
+	background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+	background: #f1f7ff;
+}
+
+/* Link the series colors to axis colors */
+.highcharts-color-0 {
+	fill: #7cb5ec;
+	stroke: #7cb5ec;
+}
+
+.highcharts-axis.highcharts-color-0 .highcharts-axis-line {
+	stroke: #7cb5ec;
+}
+
+.highcharts-axis.highcharts-color-0 text {
+	fill: #7cb5ec;
+}
+
+.highcharts-color-1 {
+	fill: #90ed7d;
+	stroke: #90ed7d;
+}
+
+.highcharts-axis.highcharts-color-1 .highcharts-axis-line {
+	stroke: #90ed7d;
+}
+
+.highcharts-axis.highcharts-color-1 text {
+	fill: #90ed7d;
+}
+
+.highcharts-yaxis .highcharts-axis-line {
+	stroke-width: 2px;
+}
+</style>
 </head>
 
-<body style="background-color: grey">
+<body>
+	<section id="container">
+		<!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+		<!--header start-->
+		<jsp:include page="../z/bg-header.jsp">
+			<jsp:param name="a" value="1" />
+			<jsp:param name="b" value="1" />
+		</jsp:include>
+		<!--header end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+		<!--sidebar start-->
+		<jsp:include page="../z/bg-sidebar.jsp">
+			<jsp:param name="c" value="1" />
+			<jsp:param name="d" value="1" />
+		</jsp:include>
+		<!--sidebar end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row mt">
+					<div class="col-lg-12">
+						<!-- <p>Place your content here.</p> -->
 	<h2 style="text-align: center">${title}</h2>
-		<div>
+	<br>
+						<div id="container1"
+							style="min-width: 310px; height: 500px; max-width: 1000px; margin: 0 auto"></div>
+			<br>
+		<div style="text-align: -webkit-right;">
 			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 					class="fa fa-caret-down"></i>
 			</div>
@@ -40,16 +169,16 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>日期</th>
-					<th>場次數</th>
-					<th>總座位數</th>
-					<th>售出座位數</th>
-					<th>滿座率</th>
-					<th>平均單筆消費</th>
-					<th>票券銷售額</th>
-					<th>商品銷售額</th>
-					<th>營收時比</th>
-					<th>銷售總金額</th>
+					<th style="text-align: center;">日期</th>
+					<th style="text-align: center;">場次數</th>
+					<th style="text-align: center;">總座位數</th>
+					<th style="text-align: center;">售出座位數</th>
+					<th style="text-align: center;">滿座率</th>
+					<th style="text-align: center;">平均消費/單</th>
+					<th style="text-align: center;">票銷售額</th>
+					<th style="text-align: center;">商品銷售額</th>
+					<th style="text-align: center;">營收時比</th>
+					<th style="text-align: center;">銷售總額</th>
 				</tr>
 			</thead>
 			<tbody id="insertHere">
@@ -76,8 +205,31 @@
 		method="POST">
 		<input type="submit" id="exportE" value="Export To Excel">
 	</form>
-</body>
+						</div>
+				</div>
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<jsp:include page="../z/bg-footer.jsp">
+			<jsp:param name="e" value="1" />
+			<jsp:param name="f" value="1" />
+		</jsp:include>
+		<!--footer end-->
+	</section>
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<!-- chart -->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
+(function($) {
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
 			"columnDefs" : [ {
@@ -116,7 +268,7 @@
 						type : "POST",
 						success : function(ticketSale) {
 							alert("新增成功!");
-
+							editInfo(ticketSale);
 							var dataTable = $("#example").DataTable();
 							dataTable.clear().draw();
 							$.each(ticketSale,function(index, value) {
@@ -158,6 +310,82 @@
 				}, cb);
 		cb(start, end);
 	});
+	
+	//chart percentage and data
+	function editInfo(ticketSale) {
+		var editData = [];
+		var ed = [];
+		var pn = [];
 
+		for (let a = 0; a < (ticketSale).length; a++) {
+			window.tName = ticketSale[a].movieBean.productName;
+			var date = ticketSale[a].playMovieDate;
+			var hallSaleSeats = ticketSale[a].hallSaleSeats;
+			var avgSeats = ticketSale[a].avgSeats;
+
+			pn.push(date);
+
+			// 			var data = {
+			// 					data: hallSaleSeats, 
+			// 			};
+			ed.push(hallSaleSeats);
+			editData.push(avgSeats);
+
+			var dt = {
+				data : editData,
+				yAxis : avgSeats
+			}
+			window.dt = dt;
+		}
+		window.title = pn;
+		window.hallSaleSeats = ed;
+		window.subtotalData = editData;
+
+		//chart
+		Highcharts.chart('container1', {
+
+			chart : {
+				type : 'column',
+				styledMode : true
+			},
+
+			title : {
+				text : window.tName
+			},
+
+			yAxis : [ {
+				className : 'highcharts-color-0',
+				title : {
+					text : '銷售數'
+				}
+			}, {
+				className : 'highcharts-color-1',
+				opposite : true,
+				title : {
+					text : '滿座率'
+				}
+			} ],
+
+			plotOptions : {
+				column : {
+					borderRadius : 2
+				}
+			},
+			xAxis : {
+				categories : window.title,
+				crosshair : true
+			},
+			series : [ {
+				name : '銷售數',
+				data : window.hallSaleSeats
+			}, {
+				name : '滿座率',
+				data : window.subtotalData,
+				yAxis : 1
+			} ]
+		});
+	}
+})(jQuery);
 </script>
+</body>
 </html>

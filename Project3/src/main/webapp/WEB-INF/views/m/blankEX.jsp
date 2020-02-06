@@ -83,12 +83,13 @@
 		<!-- /MAIN CONTENT -->
 		<!--main content end-->
 		<!--footer start-->
-		<jsp:include page="<c:url value='bg-footer.jsp'/>">
+		<jsp:include page="../z/bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
 		<!--footer end-->
-	</section>
+	</section>	
+<!-- put script  here-->
 </body>
 
 </html>

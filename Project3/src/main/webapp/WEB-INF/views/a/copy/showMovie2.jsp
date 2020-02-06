@@ -335,7 +335,7 @@
     <header>
     
 
- <jsp:include page="header.jsp">
+<%--  <jsp:include page="header.jsp"> --%>
      <jsp:param name="a" value="1" />
     <jsp:param name="b" value="1" />
 </jsp:include>
@@ -556,7 +556,7 @@
 
     
     <!-- footer -->
-    <jsp:include page="footer.jsp">
+<%--     <jsp:include page="footer.jsp"> --%>
      <jsp:param name="a" value="1" />
     <jsp:param name="b" value="1" />
 </jsp:include>

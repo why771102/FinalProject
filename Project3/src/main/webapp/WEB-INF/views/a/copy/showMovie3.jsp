@@ -21,6 +21,7 @@
     <link rel='stylesheet' href='${pageContext.request.contextPath}/css/flexslider.css'>
     <link rel='stylesheet' href='${pageContext.request.contextPath}/css/style.css'>
     <link rel='stylesheet' href='${pageContext.request.contextPath}/css/responsive.css' type='text/css' />
+    
     <style>
         /* CSS reset */
         body,
@@ -327,21 +328,22 @@
     
     </style>
     
-    
-    
 </head>
 
 <body>
     <header>
-    
+      
 
- <jsp:include page="header.jsp">
+<%--  <jsp:include page="header.jsp"> --%>
      <jsp:param name="a" value="1" />
     <jsp:param name="b" value="1" />
 </jsp:include>
 
     </header>
-  
+   <!--  <div>${sthb_list1.get(1).run.movie.movieID}</div>
+<div>${sthb_list1.get(1).showTimeId}</div>
+<div>${sthb_list1.get(1).playStartTime}</div>
+<div>${sthb_list1.get(1).run.runID}</div>-->
     <!-- header -->
 
     <!-- banner -->
@@ -351,14 +353,12 @@
     <div class='container' >
     
         <div class='buy-txt'> 
-        ${sthb_list1.get(1).run.movie.trailer}  
+        ${run.movie.trailer}  
       <!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
       -->
     </div>
     </section>
-    
-    
-    <section class=' feature-sec ' style='padding:50px 0px; background-color:white;' >
+    <section class='gray-bnr feature-sec ' style='padding:50px 0px;'>
            
         <div class='container'>
             <div class='row '>
@@ -368,8 +368,8 @@
                                 <div class=''>
                                    
                                     <div style='padding:10px'>
-                                    	<img src='<c:url value='/getPicture/${sthb_list1.get(1).run.movie.movieID}' />'width="100%" height="100%">
-<!--                                         <img  style='width: 100%;height: 100%; 'src='img/feature2.jpg'> -->
+                                    <img src='<c:url value='/getPicture/${run.movie.movieID}' />'width="100%" height="100%">
+                                        <img  style='width: 100%;height: 100%; 'src='img/feature2.jpg'>
                                     </div>
                                    
                                 </div>
@@ -380,31 +380,30 @@
                 <div class='col-sm-6'>
                     <!-- <div class='ex-feature'> -->
                        
-                       <div class='wrapStart fullwidth' style='padding:20px; height:auto;'>
-                            <h2 style='font-weight:bold;'>${sthb_list1.get(1).run.movie.title}</h2>
-                            <br>
-                            <div class='wrapRowStart fullwidth' style='padding:5px;  height:auto;font-size:16px;'>
-                                <div>導演：</div>
-                                <div>${sthb_list1.get(1).run.movie.director}</div>
-                            </div>
+                        <h2 >${run.movie.title}</h2>
+                        <table>
+                            <tr>
+                                <td>導演：</td>
+                                <td>${run.movie.director}</td>
+                            </tr>
+                            <tr>
+                                <td>演員：</td>
+                                <td>${run.movie.cast}</td>
+                            </tr>
+                            <tr>
+                                <td>類型：</td>
+                                <td>${run.movie.genreBean.genre}</td>
+                            </tr>
+                            <td>分級：</td>
+                                <td>${run.movie.movieRatingBean.rating}</td>
                             
-                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
-                                <div style='width: auto' >演員：</div>
-                                <div>${sthb_list1.get(1).run.movie.cast}</div>
-                            </div>
-                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
-                                <div>類型：</div>
-                                <div>${sthb_list1.get(1).run.movie.genreBean.genre}</div>
-                            </div>
-                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
-                                <div>分級：</div>
-                                <div>${sthb_list1.get(1).run.movie.movieRatingBean.rating}</div>
-                            </div>
-                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
-                                <div>片長：</div>
-                                <div>${sthb_list1.get(0).run.movie.runningTime}</div>
-                            </div>
-
+                            <tr>
+                                <td>片長：</td>
+                                <td>${run.movie.runningTime}</td>
+                            </tr>
+                        </table>
+                        <div id='showTimeHere'>
+                     		
                         </div>
 
                     <!-- </div> -->
@@ -412,40 +411,7 @@
                 </div>
             </div>
         </div>
-                       
     </section>
-    
-    
-     <!-- banner -->
-
- <section class='contact-sec gray-bnr' style='    padding: 10px 0px;'>
-        <div class='container'>
-
-            <div class='buy-txt' onclick='showhide("showDisplay");'>
-                <h2 style='text-align: left ; color: cornflowerblue; font-weight:bold; padding-top: 40px;' id='ShowTitle'>[ 電影場次 /MOVIE TIME ]</h2>
-                <p> </p><br>
-
-            </div>
-
-            <div class='buy-txt '  id='showDisplay' style="display:none;">
-              
-            <div class='col-sm-12 col-xs-12'> 
-                   <div class='wrapStart fullwidth' id='showTime_table'>
-                   
-                        
-                </div>
-                    
-                
-            </div>
-
-            </div>
-        </div>
-        
-    </section>
-     <!-- banner -->
-    
-    
-    
      <!-- banner -->
     <section class=" banner-featured" style='background-color:gray;'>
         <div class="container">
@@ -469,7 +435,7 @@
                   
                 <div class='col-sm-12 col-xs-12'> 
                 <div style='text-align: left; padding:5px; font-size: large; '>
-                       ${sthb_list1.get(1).run.movie.plotSummary}
+                       ${run.movie.plotSummary}
                 </div>
                     
                 </div>
@@ -513,36 +479,14 @@
             
         </section>
          <!-- banner -->
+         
+         
+         
+         
 <!--     <section class="ticket-outer banner-featured"> -->
-      <section class=" banner-featured" style='background-color:gray;'>
-        <div class="container">
-            <div class="ticket-sell">
-                <h3 class="font"> 留言板</h3>
-            </div>
-        </div>
-    </section>
+     
     <!-- banner -->
-     <section class='contact-sec '>
-            <div class='container'>
-    
-                <div class='buy-txt'>
-                    <h2>[ 留言板 ]</h2>
-                    <p> </p><br>
-    
-                </div>
-    
-                <div class='buy-txt'>
-                  
-                <div class='col-sm-12 col-xs-12'> 
-                <div style=''>
-                       ${sthb_list1.get(1).run.movie.plotSummary}
-                </div>
-                    
-                </div>
-
-                </div>
-            </div>
-        </section>
+   
 
     <section class='dark-blue'>
         <div class='container'>
@@ -554,9 +498,9 @@
         </div>
     </section>
 
-    
+    ｂ
     <!-- footer -->
-    <jsp:include page="footer.jsp">
+<%--     <jsp:include page="footer.jsp"> --%>
      <jsp:param name="a" value="1" />
     <jsp:param name="b" value="1" />
 </jsp:include>
@@ -576,119 +520,8 @@
 	
 		
 		<script>
-		var a =${sthb_list};
-		var b=${oneMovie};
-		console.log(a);
-		console.log(b);
-		var  StratTime= b[0].strDay;
-		var  EndTime = b[(b.length)-1].strDay;
-		console.log(StratTime);
-		console.log(EndTime);
-		var today = new Date(StratTime+" "+"00:00");
-		var todayMonth =today.getMonth()*1+1;
-		var todayDate = today.getDate()*1;
-		var during = new Date(EndTime+" "+"00:00");
-		var endMonth = during.getMonth()*1+1;
-		var endDate = during.getDate()*1;
-		console.log(endMonth);
-		console.log(endDate);
-		console.log(todayMonth);
-		console.log(EndTime);
-		var diff = during-today;//差多少毫秒數
-		var diffDay = diff/(1000*60*24*60) //差幾日
-		console.log("diff"+diff);
-		console.log("diff"+diffDay);
-		
-	
-		
-		
-		
-		
-		// 處理showTime 時間
-		
-		
-		
-		
-		
-			for(let day =0 ;day<=diffDay;day++){
-				 $("#showTime_table").append("<div class='wrapRowStart fullwidth' style=' padding: 10px 20px; font-size: 20px; font-weight: bold;' >"+"2020"+"年"+(todayMonth)+"月"+(todayDate+day)+"日</div>"+
-						                      " <div class='wrapRowStart fullwidth' style=' padding-bottom: 30px;' id ='showTime_tr"+day+"'></div>"
-				                            );
-				for(let i =0;i<=(b.length-1);i++){
-// 					console.log("b"+b.length);
-// 					console.log("i"+i);
-					var during2 = new Date(b[i].strDay+" "+"00:00");
-// 					var during3 = new Date(b[i+1].strDay+" "+"00:00");
-//                      console.log("todayMonth"+todayMonth);
-//                      console.log((during2.getMonth()*1)+1);
-					if(todayMonth == (during2.getMonth()*1)+1){
-// 						console.log("during2"+ during2.getDate()*1);
-// 						console.log("today+day"+todayDate+day);
-						if(during2.getDate()*1 ==todayDate+day ){
-							
-							console.log("相同月份");
-						
-							 document.getElementById("showTime_tr"+day).innerHTML+= "<a href='free-trail.html' class='slider-btn' style='margin: 5px 20px' onclick='formsubmit()'>"+b[i].strTime+"</a>";
-							 document.getElementById("showTime_tr"+day).innerHTML+= "<form id='showForm"+b[i].sthb.showTimeId+"'action='${pageContext.request.contextPath}/show/this/movie'method='post'>";
-							 document.getElementById("showTime_tr"+day).innerHTML+="<input name='showTimeId' type='hidden' value="+b[i].sthb.showTimeId+">"+"</form>" ;
 
-						}else{}
-							
-						
-						
-				
-					}else{
-						alert("月份不同");
-					}
-					
-				} 
-				
-				
-				
-				
 
-		}
-		
-		
-		function c(){
-		console.log(document.getElementById("movieBean").value);
-		}
 		</script>
-		
-		<script>
- function showhide(id) {
-     alert("id"+id);
-
-    var divid = document.getElementById(id);
-    var divs = document.getElementsByClassName('hide');
-    var showElement = true;
-    alert("aaa"+divid.style.display);
-    if (divid.style.display === 'none') {
-//         alert("bbbb");
-        divid.style.display = 'block';
-        showElement = false;
-    }else{
-//         alert("cccc");
-        divid.style.display = 'none';
-    }
-    // for (var i = 0; i < divs.length; i++) {
-    //     divs[i].style.display = 'none';
-    // }
-    // if (showElement) {
-    //     divid.style.display = 'block';
-    // }
-    // return false;
-}
-
- 
- /*	跳轉選指定電影page */
- function formsubmit(){
-
-//	  console.log(run.movie.movieID );
-	  document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
-
- }
-</script>
-		
 </body>
 </html>
