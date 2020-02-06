@@ -117,7 +117,7 @@
                     $("#table_tr").append(
                         " <tr id=tr" + i + ">" +
                         "<td>" + a[i].strDay + "</td>" +
-                        "<td>" + a[i].sthb.hall.hallID + "</td>" +
+                        "<td>" + a[i].sthb.hob.hb.hallID + "</td>" +
                         "<td>0</td>" +
                         "<td>0</td>" +
                         "<td>" + a[i].stID + "</td>" +

@@ -52,7 +52,7 @@ public class ReservedSeatsController {
 
 	@GetMapping("/insertReservedSeats")
 	public String insertReservedSeats() {
-	
+	    System.out.println("insertReservedSeats");
 		// insert seats into reserved seats table;
 		rservice.insertSeats();
 
