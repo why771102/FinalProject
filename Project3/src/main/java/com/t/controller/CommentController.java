@@ -200,11 +200,11 @@ public class CommentController {
 		return "redirect:/findAllReportComment";		
 	}
 	
-	@RequestMapping("/comments/report/{movieID}")
-	public String reportComment(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+	@RequestMapping("/comments/report")
+	public String reportComment(@RequestParam String runID,@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
 		cb.setCommentID(commentID);
 		service.reportComment(commentID);
-		return "redirect:/comments/{movieID}";
+		return "redirect:/show/this/movie";
 	}
 	
 	//查詢單筆
