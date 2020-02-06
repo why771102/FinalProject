@@ -54,7 +54,7 @@ public class TicketEarnController {
 		return "m/ticketEarn1";
 	}
 	
-	@PostMapping(value = "ticket/earn")
+	@PostMapping(value = "/ticket/earn")
 	public @ResponseBody List<TicketSaleEarnBean> showTicketInfo(Model model, HttpServletRequest request
 			, @RequestParam(value = "genre", required=false) String genre
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
