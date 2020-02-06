@@ -26,6 +26,9 @@ public interface ExpectationService {
 	//抓出個別電影的平均期待度(百分比)
 	public Integer getAvgExpectation(Integer movieID);
 	
+	//抓出該會員是否在該電影留過期待度
+	public boolean checkExpectationExist(Integer memberID,Integer movieID);
+	
 	//輸入新的期待度
 	void addExpect(ExpectationBean eb);
 	MemberBean getMemberById(int memberID);

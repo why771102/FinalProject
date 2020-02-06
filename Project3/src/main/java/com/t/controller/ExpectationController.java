@@ -1,5 +1,6 @@
 package com.t.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -11,10 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.a.model.RunningBean;
+import com.a.service.MovieService;
 import com.t.model.ExpectationBean;
 import com.t.service.ExpectationService;
 import com.t.validator.ExpectationValidator;
@@ -22,6 +26,7 @@ import com.t.validator.ExpectationValidator;
 @Controller
 public class ExpectationController {
 	ExpectationService service;
+	MovieService mService;
 	ServletContext context;
 	
 //	@Autowired
@@ -30,8 +35,9 @@ public class ExpectationController {
 	}
 
 	@Autowired
-	public void setService(ExpectationService service) {
+	public void setService(ExpectationService service,MovieService mService) {
 		this.service = service;
+		this.mService = mService;
 	}
 	
 	//查詢並列出電影ID們
@@ -86,6 +92,7 @@ public class ExpectationController {
 	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.POST)
 	public String processAddNewExpection(@PathVariable("movieID")Integer movieID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
 //		eb.setMovieID(movieID);
+		
 		ExpectationValidator validator = new ExpectationValidator();
 		// 呼叫Validate進行資料檢查
 		validator.validate(eb, result);
@@ -110,6 +117,39 @@ public class ExpectationController {
 		return "redirect:/getMovieIDforexpect";
 	}
 
+	@PostMapping("/addnewexpect")
+	public String processAddNewExpect(@RequestParam String runID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
+		HashMap<String, String> errorMsgMap = new HashMap<String, String>();
+		RunningBean run = mService.getRunningBeanById(runID);
+		ExpectationValidator validator = new ExpectationValidator();
+		// 呼叫Validate進行資料檢查
+		validator.validate(eb, result);
+		if (result.hasErrors()) {
+			return "t/show/this/movie/commingSoon";
+		}
+		Cookie[] cookies = request.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("memberID")) {
+				mID = cookie.getValue();
+			}
+		}
+		if(mID == null) {
+			return "redirect:/member/login";
+		}else {
+			int nMID = Integer.parseInt(mID);
+			eb.setMemberID(nMID);
+			int movieID = run.getMovie().getMovieID();
+			boolean ee = service.checkExpectationExist(nMID, movieID);
+			if(ee == true) {
+				errorMsgMap.put("accountExistError", "無法多次填寫!");
+			}else {
+				service.addExpect(eb);
+			}			
+		}
+		return "redirect:/show/this/movie/commingSoon";
+	}
 	
 //	@ModelAttribute("memberList")
 //	public Map<Integer, String> getMemberList() {

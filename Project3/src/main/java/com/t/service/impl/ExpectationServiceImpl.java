@@ -83,4 +83,10 @@ public class ExpectationServiceImpl implements ExpectationService{
 		return dao.getAvgExpectation(movieID);
 	}
 
+	@Transactional
+	@Override
+	public boolean checkExpectationExist(Integer memberID, Integer movieID) {
+		return dao.checkExpectationExist(memberID, movieID);
+	}
+
 }
