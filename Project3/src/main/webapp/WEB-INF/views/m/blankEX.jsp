@@ -5,7 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +13,9 @@
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <title>Dashio - Bootstrap Admin Template</title>
-
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
 <!-- Bootstrap core CSS -->
 <link
 	href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css"
@@ -32,7 +29,6 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
-
 <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -67,11 +63,9 @@
 		<!--main content start-->
 		<section id="main-content">
 			<section class="wrapper site-min-height">
-				<h3>
-					<i class="fa fa-angle-right"></i> Blank Page
-				</h3>
 				<div class="row mt">
 					<div class="col-lg-12">
+				<!-- put html here -->
 				<!-- <p>Place your content here.</p> -->
 
 
@@ -89,7 +83,7 @@
 		</jsp:include>
 		<!--footer end-->
 	</section>	
-<!-- put script  here-->
+<!-- put all your script  here-->
 </body>
 
 </html>
