@@ -43,7 +43,9 @@ public interface ShowTimeHistoryService {
 			
 			
 			//Methods written to be used in movie controller
-			public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay);
+			public List<RunningBean> getDistinctRunID(LocalDateTime startDay);
+			
+			public RunningBean getDistinctMovies(Integer runID);
 			
 			public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime);
 }

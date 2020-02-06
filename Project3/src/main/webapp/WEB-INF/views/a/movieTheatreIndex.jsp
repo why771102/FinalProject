@@ -59,7 +59,7 @@
                         </li>
                         <li><a href="latest.html">即將上映</a>
                         </li>
-                        <li><a href="latest.html">熱映中</a>
+                        <li><a href="${pageContext.request.contextPath}/AllMovie/show">熱映中</a>
                         </li>
                         <li><a href="up-coming.html">購票</a>
                         </li>
@@ -323,7 +323,7 @@
                         <select id="movie">
                         	<option value="default" selected="" disabled="">請選擇</option>
                         	<c:forEach var="movies" items="${movielist}">
-                            	<option value="${movies.movie.movieID}">${movies.movie.title}</option>
+                            	<option value="${movies.movieID}">${movies.title}</option>
                         	</c:forEach>
                         </select>
                             <select id="playdate">
@@ -435,6 +435,7 @@
     <!-- scripts-->
     <script defer src="js/jquery.flexslider.js"></script>
     <script type="text/javascript">
+
      var allshowtimelist = ${allshowtimelistJSON};
      console.log(allshowtimelist);
      

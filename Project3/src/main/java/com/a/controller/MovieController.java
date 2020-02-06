@@ -1,6 +1,5 @@
 package com.a.controller;
 
-import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
 
+import com.a.model.MovieBean;
+import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.a.service.MovieService;
 import com.a.service.RunningService;
 import com.a.service.ShowTimeHistoryService;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.l.service.mOrdersService;
-import com.m.model.ProductSaleEarnBean;
 
 @Controller
 public class MovieController implements ServletContextAware{
@@ -54,12 +52,27 @@ public class MovieController implements ServletContextAware{
 	@GetMapping("/movieIndex")
 	public String showAllProducts(Model model) {
 		LocalDateTime startdate = LocalDateTime.now();
-		List<ShowTimeHistoryBean> listofMovies = sthService.getDistinctMovieID(startdate);
+		List<RunningBean> listofrunningID = sthService.getDistinctRunID(startdate);
+		
+		List<Integer> movies = new ArrayList<>();
+		for(RunningBean rID: listofrunningID) {
+			System.out.println(rID.getMovie().getTitle());
+			RunningBean rb = sthService.getDistinctMovies(rID.getRunID());
+			if(!movies.contains(rb.getMovie().getMovieID())) {
+				movies.add(rb.getMovie().getMovieID());
+			}
+		}
+		List<MovieBean> listmb = new ArrayList<>();
+		for(Integer movie:movies) {
+			System.out.println(movie);
+			MovieBean mb = mService.getMovieBeanById(movie);
+			listmb.add(mb);
+		}
 		List<ShowTimeHistoryBean> allshowtimeHistory = sthService.getAWeekShowTimeHistoryBean(startdate);
 		ShowTimeHistoryBean sthb = new ShowTimeHistoryBean();
 		Gson gson = new Gson();
 		String showtimelistJSON = gson.toJson(allshowtimeHistory);
-		model.addAttribute("movielist", listofMovies);
+		model.addAttribute("movielist", listmb);
 		model.addAttribute("allshowtimelistJSON", showtimelistJSON);
 		model.addAttribute("showtime", sthb);
 		return "a/movieTheatreIndex";

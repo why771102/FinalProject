@@ -1,6 +1,5 @@
 package com.a.dao.impl;
 
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Repository;
 
 import com.a.dao.ShowTimeHistoryDao;
 import com.a.model.MovieBean;
-import com.a.model.MovieStatusBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 
@@ -208,16 +206,21 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		Session session =factory.getCurrentSession();
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
 		String hql="update ShowTimeHistoryBean set hallID =:hb ,runID=:rb,playStartTime=:time where   showTimeId=:showID";
-		int n = session.createQuery(hql)
-				.setParameter("rb", Integer.parseInt(sthb.getRunID()))
-				.setParameter("time",sthb.getPlayStartTime())
-                .setParameter("hb", sthb.getHallID())
-                .setParameter("showID",(sthb.getShowTimeId()))
-                .executeUpdate();
-		System.out.println(" n"+n);
-if(n==0) {
-return false;
-}
+		try {
+			int n = session.createQuery(hql)
+					.setParameter("rb", Integer.parseInt(sthb.getRunID()))
+					.setParameter("time",sthb.getPlayStartTime())
+	                .setParameter("hb", sthb.getHallID())
+	                .setParameter("showID",(sthb.getShowTimeId()))
+	                .executeUpdate();
+			System.out.println(" n"+n);
+			
+		} catch (Exception e) {
+			System.out.println("失敗");
+		}
+		
+		
+
 		return true;
 	}
 	//如果只換排序// 沒包場的情況
@@ -248,7 +251,7 @@ return false;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay){
+	public List<RunningBean> getDistinctRunID(LocalDateTime startDay){
 		Session session = factory.getCurrentSession();
 		LocalDate et = startDay.toLocalDate();
 		String now = startDay.toLocalDate().toString() + " " + startDay.toLocalTime().toString().substring(0, 8);
@@ -256,7 +259,7 @@ return false;
 		String enddate = (et.plusDays(7).toString())+" "+"00:00:00"; 
 		System.out.println("enddate:" + enddate);
 		String hql = "SELECT DISTINCT run FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate";
-		List<ShowTimeHistoryBean> list = new ArrayList<>();
+		List<RunningBean> list = new ArrayList<>();
 		try {
 		list = session.createQuery(hql).setParameter("enddate", enddate)
 								.setParameter("startdate", now)
@@ -266,6 +269,8 @@ return false;
 		}
 		return list;
 	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -288,6 +293,13 @@ return false;
 		}
 		return list;
 		
+	}
+	@Override
+	public RunningBean getDistinctMovies(Integer runID) {
+		System.out.println("getDistinctMovies" + runID);
+		Session session = factory.getCurrentSession();
+		RunningBean rb = session.get(RunningBean.class, runID);
+		return rb;
 	}
 
 }
