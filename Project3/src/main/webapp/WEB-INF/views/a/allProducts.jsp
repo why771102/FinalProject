@@ -76,46 +76,18 @@
                         </div>
                 </div>
                 </c:forEach>
-
-    <section class="gray-bnr feature-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="ipad-bg">
-                        <img src="img/ipad-bg.png">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="ex-feature">
-                        <h6>Cineshow</h6>
-                        <h1>features</h1>
-                        <ul>
-                            <li>Sed ut perspiciatis </li>
-                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
-                            <li>Lorem ipsum dolor sit amet consectetur</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus</li>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Sed ut perspiciatis unde omnis </li>
-                            <li>Lorem ipsum dolor sit amet consectetur</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
+    </div>
+    </div>
+</section>
     <section class="dark-blue">
-        <div class="container">
-            <div class="ready">
-                <h4>Book Your Tickets Now !</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <a href="free-trail.html" class="slider-btn">lETS GET sTARTED</a>
-            </div>
-        </div>
-    </section>
+		<div class="container">
+			<div class="ready">
+				<h4>現在就立刻購買！</h4>
+				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
+				<a href="<c:url value='/movieIndex#booknow'/>" class="slider-btn">前往購票</a>
+			</div>
+		</div>
+	</section>
 
     
    <!-- footer -->
@@ -127,11 +99,7 @@
 
     </footer>
        
-    <!-- footer -->
-     <div class="premium-tagline">
-        <p>Created By: <a href="https://www.premium-themes.co/" target="_blank">Premium Themes</a></p>
-    </div>
-    <!-- footer -->
+
 
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

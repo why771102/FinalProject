@@ -16,12 +16,16 @@
     <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
-    <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/flexslider.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/responsive.css'/>" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css" />
     <style>
+    body{
+    	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+    }
+    
     .navbar-default .navbar-nav > li.free-trial-btn {
     	margin-left: 13px;
 	}
@@ -40,7 +44,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="logo-hdr" width="180">
+                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>"><img src="<c:url value='/img/logo-1.png'/>" class="logo-hdr" width="180">
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse my-nav-collapse">

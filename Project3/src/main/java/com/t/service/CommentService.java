@@ -71,6 +71,9 @@ public interface CommentService {
 	// 將刪除的短評commentDelete 0改1
 	void deleteComment(Integer commentID);
 	
+	//將審核後沒問題的短評reportComment 1改0
+	void cancalReportComment(Integer commentID);
+	
 	//將檢舉的短評reportComment 0改1
 	void reportComment(Integer commentID);
 

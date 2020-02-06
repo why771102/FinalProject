@@ -72,7 +72,7 @@
 							</a>
 							</p>
 							<a
-								href="<spring:url value='/comments/report?id=${comment.commentID}' />"
+								href="<spring:url value='/comments/report/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
 								class="btn btn-primary"> <span
 								class="glyphicon-info-sigh glyphicon"></span>檢舉
 							</a>

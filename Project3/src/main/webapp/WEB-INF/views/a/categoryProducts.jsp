@@ -301,82 +301,80 @@ div.submitButton {
 
 	<!-- banner -->
 	<!-- slider -->
-	<section class="slider-sec">
-		<section class="slider">
-			<div class="flexslider">
-				<ul class="slides">
-					<li>
-						<div class="slide-inner slide-1">
-							<div class="overlay-slider"></div>
-							<div class="container">
-								<div class="row resp-row">
-									<div class="col-sm-5 col-xs-6 pull-left">
-										<div class="slide-con">
-											<h5>Fast Online</h5>
-											<h4>
-												SEAT BOOKINGS<br>
-											</h4>
-											<a href="free-trail.html" class="slider-btn">BOOK NOW</a>
-										</div>
-									</div>
-									<div class="col-sm-7 col-xs-6 pull-right">
-										<div class="sd-left-img">
-											<img src="" alt="" class="img-responsive">
-										</div>
-									</div>
+    <section class="slider-sec">
+        <section class="slider">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <div class="slide-inner slide-1">
+                            <div class="overlay-slider"></div>
+                            <div class="container">
+                                <div class="row resp-row">
+                                    <div class="col-sm-5 col-xs-6 pull-left">
+                                        <div class="slide-con">
+                                            <h5>不想排隊?</h5>
+                                            <h4>快線上訂位!<br> </h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6 pull-right">
+                                        <div class="sd-left-img">
+                                            <img src="" alt="" class="img-responsive">
+                                        </div>
+                                    </div>
 
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="slide-inner slide-2">
-							<div class="overlay-slider"></div>
-							<div class="container">
-								<div class="row resp-row">
-									<div class="col-sm-5 col-xs-6 pull-left">
-										<div class="slide-con">
-											<h5>Fast Online</h5>
-											<h4>SEAT BOOKINGS</h4>
-											<a href="free-trail.html" class="slider-btn">BOOK NOW</a>
-										</div>
-									</div>
-									<div class="col-sm-7 col-xs-6 pull-right">
-										<div class="sd-left-img">
-											<img src="" alt="" class="img-responsive">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="slide-inner slide-3">
-							<div class="overlay-slider"></div>
-							<div class="container">
-								<div class="row resp-row">
-									<div class="col-sm-5 col-xs-6 pull-left">
-										<div class="slide-con">
-											<h5>Fast Online</h5>
-											<h4>SEAT BOOKINGS</h4>
-											<a href="free-trail.html" class="slider-btn">BOOK NOW</a>
-										</div>
-									</div>
-									<div class="col-sm-7 col-xs-6 pull-right">
-										<div class="sd-left-img">
-											<img src="" alt="" class="img-responsive">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slide-inner slide-2">
+                            <div class="overlay-slider"></div>
+                            <div class="container">
+                                <div class="row resp-row">
+                                    <div class="col-sm-5 col-xs-6 pull-left">
+                                        <div class="slide-con">
+                                            <h5>不想排隊? </h5>
+                                            <h4>快線上訂位!</h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6 pull-right">
+                                        <div class="sd-left-img">
+                                            <img src="" alt="" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slide-inner slide-3">
+                            <div class="overlay-slider"></div>
+                            <div class="container">
+                                <div class="row resp-row">
+                                    <div class="col-sm-5 col-xs-6 pull-left">
+                                        <div class="slide-con">
+                                            <h5>不想排隊? </h5>
+                                            <h4>快線上訂位!</h4>
+                                            <a href="#booknow" class="slider-btn">立即訂位</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6 pull-right">
+                                        <div class="sd-left-img">
+                                            <img src="" alt="" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-				</ul>
-			</div>
-		</section>
-	</section>
-	<!-- slider-->
+                </ul>
+            </div>
+        </section>
+    </section>
+    <!-- slider-->
 
 	<!-- banner -->
 
@@ -579,7 +577,7 @@ div.submitButton {
 			<div class="ready">
 				<h4>現在就立刻購買！</h4>
 				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
-				<a href="free-trail.html" class="slider-btn">前往購票</a>
+				<a href="<c:url value='/movieIndex#booknow'/>" class="slider-btn">前往購票</a>
 			</div>
 		</div>
 	</section>

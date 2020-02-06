@@ -181,4 +181,10 @@ public class CommentServiceImpl implements CommentService{
 		return dao.checkCommentExist(memberID, movieID);
 	}
 
+	@Transactional
+	@Override
+	public void cancalReportComment(Integer commentID) {
+		dao.cancalReportComment(commentID);
+	}
+
 }

@@ -22,7 +22,11 @@
     <link rel="stylesheet" href="../../css/flexslider.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/responsive.css" type="text/css" />
-
+	<style>
+	body{
+    	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+    	}
+	</style>
 </head>
 <body>
 	<!-- footer -->

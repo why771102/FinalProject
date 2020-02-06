@@ -110,11 +110,10 @@ public class mOrdersDaoImpl implements mOrdersDao{
 				int n=session.createQuery(hql)	
 						.setParameter("neworderTime",mob.getOrderTime())
 						.setParameter("newticketStatus", mob.getTicketStatus())
-						.setParameter("newshowTimeID", mob.getShowTimeHistoryBean().getShowTimeId())
-						.setParameter("newticketStatus",mob.getTicketStatus())
-						.setParameter("newmemberID",mob.getMemberID())
+						.setParameter("newshowTimeID", mob.getShowTimeHistoryBean())
+						.setParameter("newmemberID",mob.getMemberBean())
 						.setParameter("newticketTime",mob.getTicketTime())			
-						.setParameter("newempID",mob.getEmpId())
+						.setParameter("newempID",mob.getEmpBean())
 						.setParameter("id", mob.getOrdersID())
 						.executeUpdate();
 		}
