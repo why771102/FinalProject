@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
+import com.z.model.EmpBean;
 
 
 @Controller
@@ -30,6 +33,25 @@ public class ProductsController {
 		model.addAttribute("Products", list);
 		return "l/products";
 	}
+	
+	//測試查詢多筆Ajax
+	@RequestMapping(value = "/productsAjax" ,produces="application/json;charset=UTF-8;")
+	public @ResponseBody String getProductsAjax(Model model) {
+		List<ProductsBean> list=service.getProducts();
+		model.addAttribute("Products", list);
+		Gson gson = new Gson();
+		String str = gson.toJson(list);
+		return str;
+	}
+	
+	//測試查詢單筆
+	@RequestMapping("/product")
+	public String getProduct(@RequestParam("id")Integer productID,Model model) {
+		model.addAttribute("Product",service.getProduct(productID));
+		return "l/product";
+	}
+	
+	
 	//測試查詢類別們
 		@RequestMapping("/queryCategoriesID")
 		public String queryCategoriesID(Model model) {
@@ -45,12 +67,7 @@ public class ProductsController {
 					return "l/products";
 				}
 	
-			//測試查詢單筆
-			@RequestMapping("/product")
-			public String getProduct(@RequestParam("id")Integer productID,Model model) {
-				model.addAttribute("Product",service.getProduct(productID));
-				return "l/product";
-			}
+			
 			
 	//測試更新方法*3  1.在查詢單筆內 2.丟到update頁面 3.丟回查單筆
 		@RequestMapping("/update/products")
