@@ -59,7 +59,7 @@
                         </li>
                         <li><a href="latest.html">即將上映</a>
                         </li>
-                        <li><a href="latest.html">熱映中</a>
+                        <li><a href="${pageContext.request.contextPath}/AllMovie/show">熱映中</a>
                         </li>
                         <li><a href="up-coming.html">購票</a>
                         </li>

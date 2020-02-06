@@ -51,17 +51,17 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="<c:url value='/movieIndex'/>">home</a>
                         </li>
-                        <li><a href="latest.html">即將上映</a>
+                        <li><a href="${pageContext.request.contextPath}/commingSoon/All/movie1">即將上映</a>
                         </li>
-                        <li><a href="latest.html">熱映中</a>
+                        <li><a href="${pageContext.request.contextPath}/AllMovie/show">熱映中</a>
                         </li>
                         <li><a href="up-coming.html">購票</a>
                         </li>
                         <li><a href="conatct.html">contact</a>
                         </li>
-                        <li><a href="showAllProducts">周邊商品</a>
+                        <li><a href="${pageContext.request.contextPath}/showAllProducts">周邊商品</a>
                         </li>
-                        <li><a href="getShoppingCart" style='padding:5px;'><img src="${pageContext.request.contextPath}/img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
+                        <li><a href="${pageContext.request.contextPath}/getShoppingCart" style='padding:5px;'><img src="${pageContext.request.contextPath}/img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
                         <li class="free-trial-btn btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
                         <li class="btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
