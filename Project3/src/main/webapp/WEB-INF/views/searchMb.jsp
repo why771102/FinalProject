@@ -76,7 +76,7 @@
 						</div>
 						
 						<input type='submit'/>
-						<p style="color:red">${message}${empId}</p>
+						<span style="color:red">${errorMsgMap2.uIDError}</span>
 
 		</form:form>
 		</div>

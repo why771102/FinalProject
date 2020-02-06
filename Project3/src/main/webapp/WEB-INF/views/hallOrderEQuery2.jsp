@@ -39,7 +39,7 @@
 	}
 	
  	footer{ 
- 		width:2225;
+ 		width:2225px;
  	} 
 </style>
 

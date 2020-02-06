@@ -23,6 +23,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
+	
 </head>
 <body>
 	<section id="container">

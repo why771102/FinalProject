@@ -58,14 +58,31 @@ public class MemberProductsQueryServiceImpl implements MemberProductsQueryServic
 	@Override
 	public List<TicketBean> checkTicket(Integer memberID) {
 		List<MOrderBean> list = dao.getMOrderBeanByMemberID(memberID);
-		List<TicketBean> tb_list = new ArrayList<>();
+        List<TicketBean> tb_list = null;
+		//		List<TicketBean> tb_list = new ArrayList<>();
 		for(MOrderBean mob:list) {
 			Integer ordersID = mob.getOrdersID();
 			System.out.println("看這邊" + ordersID);
-			TicketBean tb = dao.getTicketBeanByOrdersID(ordersID);
-			tb_list.add(tb);
+			tb_list = dao.getTicketBeanByOrdersID2(ordersID);
+//			tb_list.add(tb);
 		}
 		return tb_list;
+		
+//		List<MOrderBean> list = dao.getMOrderBeanByMemberID(memberID);
+//		List<TicketBean> tb_list = new ArrayList<>();
+//		for(MOrderBean mob:list) {
+//			Integer ordersID = mob.getOrdersID();
+//			System.out.println("看這邊" + ordersID);
+//			TicketBean tb = dao.getTicketBeanByOrdersID(ordersID);
+//			tb_list.add(tb);
+//		}
+//		return tb_list;
+	}
+
+	@Transactional
+	@Override
+	public List<TicketBean> getTicketBeanByOrdersID2(Integer ordersID) {
+		return dao.getTicketBeanByOrdersID2(ordersID);
 	}
 
 }

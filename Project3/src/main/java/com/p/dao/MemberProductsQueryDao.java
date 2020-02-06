@@ -32,6 +32,9 @@ public interface MemberProductsQueryDao{
 	//用ordersID來查訂票座位
 	public TicketBean getTicketBeanByOrdersID(Integer ordersID);
 	
+	//用ordersID來查訂票座位2222
+	public List<TicketBean> getTicketBeanByOrdersID2(Integer ordersID);
+	
 	
 //	//取得MemberBean
 //	public MemberBean getMemberBeanByMemberID(Integer memberID);
