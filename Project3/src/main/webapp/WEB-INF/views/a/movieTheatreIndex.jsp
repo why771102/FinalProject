@@ -72,6 +72,7 @@
                         </li>
                         <li class="free-trial-btn btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
                         <li class="free-trial-btn btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
+                        <li class="btn222" id="memberCenter"><a href="<c:url value='/memberCenter' />">會員中心</a></li>
                         <li class="free-trial-btn btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
 
                     </ul>
@@ -552,6 +553,7 @@
     			console.log(memberIDArrays);
     			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
 //     				$("#name").text("訪客");
+					$("#memberCenter").hide();
     				$("#logout").hide();
     			}else{
 //     				for (i = 0; i < cookieArray.length; i++) {
