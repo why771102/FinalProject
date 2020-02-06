@@ -745,32 +745,62 @@ public class RunMovieController implements ServletContextAware{
 		//取未來上映的電影 day  ~ 一個月
 		System.out.println(pageNo);
 		int totalPages= 1;
+		
 		LocalDate today=LocalDate.now();
 		List<RunningBean>rb_list=mService.getComingSoonMovie();
 		//List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
-		if(rb_list.size()>8 && rb_list.size()%8>0) {
-			totalPages = (rb_list.size()/8)+1;
-		}else if(rb_list.size()>8 && rb_list.size()%8==0){
-			totalPages = (rb_list.size()/8);
-		}else {}
 		
-		
+		//movie要從第幾個開始
 		int movieNum =(pageNo-1)*8;
-		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
-		System.out.println("rb_list:"+rb_list.size());
+		  //從第幾個(顯示到幾個(onePageNum)
 		int onePageNum =0;
-		if(rb_list.size()-movieNum>0) {
-			System.out.println("第二頁");
-			onePageNum=8+movieNum;
-		}else if(pageNo == 1) {
-			System.out.println("回第一頁");
-			movieNum =0;
-			onePageNum=rb_list.size()-1;
-			totalPages=1;
-		}
-		else {
-			onePageNum=rb_list.size()%8;
-		}
+        System.out.println("rb_size:"+rb_list.size());
+        if(rb_list.size()%8 ==0) {
+        	if(rb_list.size() == 0) {
+        		System.out.println("no Page");
+        		onePageNum =pageNo*0;
+        	}else {
+        		totalPages =rb_list.size()/8;
+        		 onePageNum =totalPages*8;
+        	}
+        }else {
+        	if(rb_list.size()>8) {
+        		totalPages =rb_list.size()/8+1;
+        		onePageNum =pageNo*8 +rb_list.size()%8;
+        		
+        	}else {
+        		//少於8個
+        		totalPages=1;
+        		onePageNum =rb_list.size();
+        	}
+        }
+        
+//        
+//		if(rb_list.size()>8 && rb_list.size()%8>0) {
+//			totalPages = (rb_list.size()/8)+1;
+//		}else if(rb_list.size()>8 && rb_list.size()%8==0){
+//			totalPages = (rb_list.size()/8);
+//		}else {}
+		
+	
+		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
+		
+        //一頁要有幾個
+	
+//		if(rb_list.size()-movieNum>0) {
+//			System.out.println("第二頁");
+//			onePageNum = 8+movieNum;
+//		}else if(pageNo == 1) {
+//			System.out.println("回第一頁");
+//			movieNum =0;
+//			onePageNum=rb_list.size()-1;
+//			totalPages=1;
+//		}
+//		else {
+//			onePageNum=rb_list.size()%8;
+//		}
+//		
+		
 		System.out.println(onePageNum);
 		for(int i=movieNum;i<onePageNum;i++) {
 			System.out.println("i:"+i);
@@ -778,8 +808,8 @@ public class RunMovieController implements ServletContextAware{
 			rb_page_list.add(rb_list.get(i));
 		}
         System.out.println(rb_page_list.size());
-        request.setAttribute("pageNo", pageNo);
-        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("pageNo", pageNo);//ok
+        request.setAttribute("totalPages", totalPages); //ok
         Gson gson =new Gson();
         model.addAttribute("rb_page_list",rb_page_list);
         request.setAttribute("rb_list", gson.toJson(rb_page_list));
