@@ -21,50 +21,318 @@
     <link rel='stylesheet' href='${pageContext.request.contextPath}/css/flexslider.css'>
     <link rel='stylesheet' href='${pageContext.request.contextPath}/css/style.css'>
     <link rel='stylesheet' href='${pageContext.request.contextPath}/css/responsive.css' type='text/css' />
+    
+    <style>
+        /* CSS reset */
+        body,
+        div,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        pre,
+        form,
+        fieldset,
+        input,
+        textarea,
+        p,
+        blockquote,
+        th,
+        td {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        /* 這邊做初始化設定 全部字體為正黑體  並且字體大小以百分比控制  */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+            font-size: 100%;
+        }
+
+
+        /* warp 如何對齊 系列 */
+
+        /* 排版垂直column置中 */
+        .wrap {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            box-sizing: border-box;
+        }
+
+        /* 排版垂直column向左 */
+        .wrapStart {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            /* 撐開長寬 */
+            /* width: 100%; */
+            height: 100%;
+            /* border and padding in box */
+            box-sizing: border-box;
+        }
+
+        /* 排版一列row 向左 */
+        .wrapRowStart {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            /* 撐開長寬 */
+            width: 100%;
+            height: 100%;
+            /* border and padding in box */
+            box-sizing: border-box;
+        }
+
+
+        /* 排版同列row 置中 */
+        .wrapRow {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* in article have padding */
+        .wrapList {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            /* 撐開長寬 */
+            width: 100%;
+            /* height: 100%; */
+            /* border and padding in box */
+            box-sizing: border-box;
+            padding: 1% ;
+        }
+
+        /* warp 如何對齊 系列 */
+
+        /* 按鈕 選單系列  */
+
+        select {
+            /* background-color: #fc6d6d; */
+            color: black;
+            padding: 0.5% 4%;
+            width: 100%;
+            height: 4vh;
+            border: solid rgb(34, 34, 34) 1px;
+            font-size: 100%;
+            /* box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); */
+            -webkit-appearance: button;
+            appearance: button;
+            outline: none;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        label {
+            width: 100%;
+        }
+
+
+        /* 按鈕 選單系列 */
+
+        #bg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /*  跟header 網頭 有關系列 */
+        #head {
+            width: 100%;
+            height: 90px;
+            padding: 10px 0px;
+        }
+
+        /*  跟header 網頭 有關系列 */
+
+        #cartShopList {
+            width: 90%;
+            height: 100%;
+        }
+
+        #chooseAll {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            height: 10%;
+
+        }
+
+
+        /* 中間內文 */
+        #content {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        /* 中間內文 的左邊 還有 右邊 */
+        #product_left {
+            width: 50%;
+            height: 100%;
+        }
+
+        #product_right {
+            width: 50%;
+            height: 100%;
+            padding: 0% 3% 2%;
+
+        }
+
+        /* 跟img 有關系列 */
+        #pictureBG {
+            /* background-color: #d8d8d8; */
+            width: 100%;
+            height: 75%;
+        }
+
+
+
+        .Simg {
+            width: 20%;
+            height: 50%;
+            background-color: #949393;
+            padding: 1% 1%;
+        }
+
+        /* 跟img 有關系列 */
+
+
+        /* foot 網頁最底層有關  */
+        #footBG {
+            background-color: #d8d8d8;
+            width: 100%;
+            height: 400px;
+        }
+
+        /* foot  */
+
+        /* 文字相關大小*/
+        p.BTital {
+            color: black;
+            text-align: left;
+            font-size: 4.5vh;
+            font-weight: bold;
+
+        }
+
+        p.tital {
+            color: black;
+            text-align: left;
+            font-size: 4vh;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        p.STital {
+            color: black;
+            text-align: left;
+            font-size: 3vh;
+            width: 100%;
+        }
+
+        p.text {
+            color: black;
+            text-align: left;
+            font-size: 2vh;
+            width: 100%;
+        }
+
+        /* 文字相關大小*/
+
+        /* map 相關設定 */
+        .map {
+            width: 100%;
+            height: 60vh;
+            background-color: cadetblue;
+        }
+
+        /* map 相關設定 */
+
+
+        /*＝＝＝＝＝＝＝新增加的＝＝＝＝＝＝＝＝＝ */
+
+        .Bimg {
+            width: 100%;
+            height: 80%;
+            background-color: #949393;
+        }
+
+        div.submitButton {
+            /* 送出按鈕 */
+            margin: 0px 0px 0px;
+            border: none;
+            border-radius: 5px;
+            background-color: #C21010;
+            width: 100%;
+            height: 100%;
+            color: white;
+            font-size: 2.5vh;
+            text-align: center;
+            padding: 1%;
+        }
+
+
+        .gray_border {
+            border-block-end: rgb(179, 179, 179) solid 1px;
+        }
+
+        .star_border {
+            border-block-start: rgb(179, 179, 179) solid 1px;
+        }
+
+        .fullwidth {
+            width: 100%;
+        }
+
+        .halfwidth {
+            width: 50%;
+        }
+        .hide{
+            display: none;
+        }
+    
+    
+    </style>
+    
 </head>
 
 <body>
     <header>
-        <!-- header -->
-<!--         <nav class='navbar navbar-default navbar-static-top'> -->
-<!--             <div class='container'> -->
-<!--                 <div class='navbar-header'> -->
-<!--                     <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'> -->
-<!--                         <span class='sr-only'>Toggle navigation</span> -->
-<!--                         <span class='icon-bar'></span> -->
-<!--                         <span class='icon-bar'></span> -->
-<!--                         <span class='icon-bar'></span> -->
-<!--                     </button> -->
-<!--                     <a class='navbar-brand' href='index.html'><img src='img/logo-1.png' class='logo-hdr' width='180'> -->
-<!--                     </a> -->
-<!--                 </div> -->
-<!--                 <div id='navbar' class='navbar-collapse collapse'> -->
-<!--                     <ul class='nav navbar-nav navbar-right'> -->
-<!--                         <li><a href='index.html'>home</a> -->
-<!--                         </li> -->
-<!--                         <li class='active'><a href='features.html'>latest movies</a> -->
-<!--                         </li> -->
-<!--                         <li><a href='pricing.html'>pricing</a> -->
-<!--                         </li> -->
-<!--                         <li><a href='up-coming.html'>Up coming</a> -->
-<!--                         </li> -->
-<!--                         <li><a href='conatct.html'>contact</a> -->
-<!--                         </li> -->
-<!--                         <li><a href='login-page.html'>login </a> -->
-<!--                         </li> -->
-<!--                         <li class='free-trial-btn'><a href='free-trail.html'>free trial</a> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <select> -->
-<!--                                 <option>ENG</option> -->
-<!--                                 <option>FR</option> -->
-<!--                             </select> -->
-<!--                         </li> -->
-<!--                     </ul> -->
-<!--                 </div> -->
-<!--                 /.nav-collapse -->
-<!--             </div> -->
-<!--         </nav> -->
+      
 
  <jsp:include page="header.jsp">
      <jsp:param name="a" value="1" />
@@ -85,7 +353,7 @@
     <div class='container' >
     
         <div class='buy-txt'> 
-        ${sthb_list1.get(0).run.movie.trailer}  
+        ${run.movie.trailer}  
       <!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
       -->
     </div>
@@ -100,6 +368,7 @@
                                 <div class=''>
                                    
                                     <div style='padding:10px'>
+                                    <img src='<c:url value='/getPicture/${run.movie.movieID}' />'width="100%" height="100%">
                                         <img  style='width: 100%;height: 100%; 'src='img/feature2.jpg'>
                                     </div>
                                    
