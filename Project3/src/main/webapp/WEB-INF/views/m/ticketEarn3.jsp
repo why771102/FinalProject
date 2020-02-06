@@ -42,7 +42,35 @@
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
-<body style="background-color: grey">
+<body>
+	<section id="container">
+		<!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+		<!--header start-->
+		<jsp:include page="../z/bg-header.jsp">
+			<jsp:param name="a" value="1" />
+			<jsp:param name="b" value="1" />
+		</jsp:include>
+		<!--header end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+		<!--sidebar start-->
+		<jsp:include page="../z/bg-sidebar.jsp">
+			<jsp:param name="c" value="1" />
+			<jsp:param name="d" value="1" />
+		</jsp:include>
+		<!--sidebar end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row mt">
+					<div class="col-lg-12">
+						<!-- <p>Place your content here.</p> -->
 	<h2 style="text-align: center">${title}</h2>
 <!-- 	<div> -->
 <!-- 		<div id="reportrange" -->
@@ -57,15 +85,15 @@
 		<thead>
 			<tr>
 				<th></th>
-				<th>時段</th>
-				<th>場次數</th>
-				<th>票卷總成本</th>
-				<th>票券總利潤</th>
-				<th>票券銷售總額</th>
-				<th>商品總成本</th>
-				<th>商品總利潤</th>
-				<th>商品銷售總額</th>
-				<th>營收小計</th>
+				<th style="text-align: center;">時段</th>
+				<th style="text-align: center;">場次數</th>
+				<th style="text-align: center;">票卷總成本</th>
+				<th style="text-align: center;">票券總利潤</th>
+				<th style="text-align: center;">票券銷售總額</th>
+				<th style="text-align: center;">商品總成本</th>
+				<th style="text-align: center;">商品總利潤</th>
+				<th style="text-align: center;">商品銷售總額</th>
+				<th style="text-align: center;">營收小計</th>
 			</tr>
 		</thead>
 		<tbody id="insertHere">
@@ -91,6 +119,24 @@
 		method="POST">
 		<input type="submit" id="exportE" value="Export To Excel">
 	</form>
+							</div>
+				</div>
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<jsp:include page="../z/bg-footer.jsp">
+			<jsp:param name="e" value="1" />
+			<jsp:param name="f" value="1" />
+		</jsp:include>
+		<!--footer end-->
+	</section>
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
 
 	$(document).ready(function() {
@@ -142,4 +188,5 @@
 			}	
 		});
 </script>
+</body>
 </html>

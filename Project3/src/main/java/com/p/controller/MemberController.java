@@ -88,7 +88,7 @@ public class MemberController {
 			return "register";
 		}
 		service.register(mb);
-		return "redirect:/";
+		return "redirect:/movieIndex";
 		
 	}
 	
@@ -208,7 +208,7 @@ public class MemberController {
             cookie.setPath("/");
             response.addCookie(cookie);
 		}
-		return "redirect:/";                     
+		return "redirect:/movieIndex";                     
 	}
 	
 	

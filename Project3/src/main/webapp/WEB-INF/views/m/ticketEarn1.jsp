@@ -77,8 +77,9 @@
 			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
 			<!-- 			<option>Java人生</option> -->
 			<!-- 		</select> -->
+			<br>
 			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 					class="fa fa-caret-down"></i>
 			</div>
@@ -113,6 +114,8 @@
 					<th></th>
 					<th></th>
 					<th></th>
+					<th></th>
+					<th></th>
 				</tr>
 			</tfoot>
 		</table>
@@ -121,7 +124,25 @@
 		method="POST">
 		<input type="submit" id="exportE" value="Export To Excel">
 	</form>
-</body>
+						</div>
+				</div>
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<jsp:include page="../z/bg-footer.jsp">
+			<jsp:param name="e" value="1" />
+			<jsp:param name="f" value="1" />
+		</jsp:include>
+		<!--footer end-->
+	</section>
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 		var t = $('#example').DataTable({
@@ -141,6 +162,7 @@
 				cell.innerHTML = i + 1;
 			});
 		}).draw();
+		t.column(10).visible(false);
 	});
 
 	// timepicker
@@ -187,7 +209,7 @@
 							cell.innerHTML = i + 1;
 						});
 					}).draw();
-// 					dataTable.column(8).visible(false);
+					dataTable.column(10).visible(false);
 
 					//傳送genre selection值
 					$("#genres").change(function(){
@@ -244,7 +266,7 @@
 																	cell.innerHTML = i + 1;
 																});
 															}).draw();
-// 															dataTable.column(8).visible(false);
+															dataTable.column(10).visible(false);
 														}
 							});
 	});
@@ -290,30 +312,6 @@
 						}
 		});
 	}
-
-// 	function showInfo(ts) {
-// 		for (var i = 0; i < ts.length; i++) {
-// 			$('#insertHere')
-// 					.append(
-// 							'<tr><td></td><td><a href="${pageContext.request.contextPath}/ticket/earn/date" id="hallID">'
-// 									+ ts[i].title
-// 									+ '</a></td><td>'
-// 									+ ts[i].noPlayTimes
-// 									+ '</td><td>'
-// 									+ ts[i].ticketCost
-// 									+ '</td><td>'
-// 									+ ts[i].ticketEarn
-// 									+ '</td><td>'
-// 									+ ts[i].ticketSaleTotal
-// 									+ '</td><td>'
-// 									+ ts[i].foodCos
-// 									+ '</td><td>'
-// 									+ ts[i].foodEarn
-// 									+ '</td><td>'
-// 									+ ts[i].foodSaleTotal
-// 									+ '</td><td>'
-// 									+ ts[i].subtotal + '</td></tr>');
-// 		}
-// 	};
 </script>
+</body>
 </html>

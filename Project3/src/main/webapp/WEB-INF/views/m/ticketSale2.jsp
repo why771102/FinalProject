@@ -267,7 +267,7 @@
 						},
 						type : "POST",
 						success : function(ticketSale) {
-							alert("新增成功!");
+// 							alert("新增成功!");
 							editInfo(ticketSale);
 							var dataTable = $("#example").DataTable();
 							dataTable.clear().draw();

@@ -103,16 +103,16 @@
 }
 
 .highcharts-color-1 {
-	fill: #90ed7d;
-	stroke: #90ed7d;
+	fill: #E9967A;
+	stroke: #E9967A;
 }
 
 .highcharts-axis.highcharts-color-1 .highcharts-axis-line {
-	stroke: #90ed7d;
+	stroke: #E9967A;
 }
 
 .highcharts-axis.highcharts-color-1 text {
-	fill: #90ed7d;
+	fill: #E9967A;
 }
 
 .highcharts-yaxis .highcharts-axis-line {
@@ -275,7 +275,7 @@
 								},
 								type : "POST",
 								success : function(ticketSale) {
-									alert("新增成功!");
+// 									alert("新增成功!");
 
 									var dataTable = $("#example").DataTable({
 										destroy : true
