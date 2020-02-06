@@ -63,7 +63,7 @@
 						<h3>客服訊息</h3>
 						<form class="form-inline pull-right position">
 							<div class="form-group">
-								<label for="name">顯示名稱</label> <input type="text" id="name"
+								<label for="name">顯示名稱</label> <input type="text" id="name1"
 									class="form-control" placeholder="輸入顯示名稱...">
 							</div>
 							<button id="sendName" class="btn btn-default" type="submit">確認</button>
@@ -80,7 +80,7 @@
 							</c:when>
 							<c:otherwise>
 								<div class="group-rom">
-									<div class="first-part">${list.name }</div>
+									<div class="first-part">${list.name }：</div>
 									<div class="second-part">${list.content }</div>
 									<div class="third-part"></div>
 								</div>

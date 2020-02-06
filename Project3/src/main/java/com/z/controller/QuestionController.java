@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.z.model.QuestionBean;
 import com.z.model.QuestionContentBean;
 import com.z.service.QuestionContentService;
@@ -111,6 +113,17 @@ public class QuestionController {
 		List<QuestionBean> allQuestion = service.allQuestionForEmp();
 		model.addAttribute("allQuestion", allQuestion);
 		return "z/questionListForEmp";
+	}
+	
+	
+	@RequestMapping(value = "/questionListForEmp")
+	public @ResponseBody String getAllQuestionForEmpAjax(Model model, HttpServletRequest request) {
+		
+		List<QuestionBean> allQuestion = service.allQuestionForEmp();
+		model.addAttribute("allQuestion", allQuestion);
+		Gson gson = new Gson();
+		String list = gson.toJson(allQuestion);
+		return list;
 	}
 	
 	
