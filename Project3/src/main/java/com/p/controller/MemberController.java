@@ -187,7 +187,7 @@ public class MemberController {
 			model.addAttribute("errorMsgMap", errorMsgMap);
 			return "login";
 		}
-		return "loginSuccess"; //到時候要導到LoginSucess頁面
+		return "a/movieTheatreIndex"; //到時候要導到LoginSucess頁面
 	}
 	
 	//以下為登出方法

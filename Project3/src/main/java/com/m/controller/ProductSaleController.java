@@ -50,7 +50,7 @@ public class ProductSaleController {
 	//================================== product/sale ===========================================
 	
 	// to ps1
-	@GetMapping(value = "product/sale")
+	@GetMapping(value = "/product/sale")
 	public String toProductSale(Model model) {
 //		List<ProductSaleEarnBean> psebList = service.getAllPSEB();
 //		model.addAttribute("psebList", psebList);
@@ -67,7 +67,7 @@ public class ProductSaleController {
 	}
 	
 	//productSale P1資料傳輸
-	@PostMapping(value = "product/sale")
+	@PostMapping(value = "/product/sale")
 	public @ResponseBody List<ProductSaleEarnBean> showProductInfo(Model model, HttpServletRequest request
 			, @RequestParam(value = "cate", required=false) String cate
 			, @RequestParam("start") String sDate, @RequestParam("end") String eDate) {
@@ -150,7 +150,7 @@ public class ProductSaleController {
 	}
 	
 	//excel:ps
-	@PostMapping(value = "product/sale/productSale", produces ="application/vnd.ms-excel")
+	@PostMapping(value = "/product/sale/productSale", produces ="application/vnd.ms-excel")
 	public String queryAllpsebExcel(Model model, @RequestParam("exportExcel")String ps) {
 		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
 		List<ProductSaleEarnBean> psebList = new Gson().fromJson(ps, listType);
@@ -160,7 +160,7 @@ public class ProductSaleController {
 	}
 	
 	//excel:psd
-	@PostMapping(value = "productSaleDetail", produces ="application/vnd.ms-excel")
+	@PostMapping(value = "/productSaleDetail", produces ="application/vnd.ms-excel")
 	public String queryAllpseb1Excel(Model model, @RequestParam("exportExcel1")String psd) {
 		System.out.println("123321");
 //		Gson gson = new Gson();

@@ -36,6 +36,19 @@
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
+              <i class=" fa fa-bar-chart-o"></i>
+              <span>營收報表</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<c:url value='/ticket/sale'/>">票卷銷售</a></li>
+              <li><a href="<c:url value='/ticket/earn'/>">票卷利潤</a></li>
+              <li><a href="<c:url value='/product/sale'/>">產品銷售</a></li>
+              <li><a href="<c:url value='/product/earn'/>">產品利潤</a></li>
+              <li><a href="<c:url value='/hall/sale'/>">廳院出借</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
               <i class="fa fa-desktop"></i>
               <span>UI Elements</span>
               </a>
@@ -99,18 +112,6 @@
               <span>Mail </span>
               <span class="label label-theme pull-right mail-info">2</span>
               </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-              </a>
-            <ul class="sub">
-              <li><a href="morris.html">Morris</a></li>
-              <li><a href="chartjs.html">Chartjs</a></li>
-              <li><a href="flot_chart.html">Flot Charts</a></li>
-              <li><a href="xchart.html">xChart</a></li>
-            </ul>
           </li>
           <li class="sub-menu">
             <a href="<c:url value='/questionListForEmp'/>">

@@ -16,11 +16,16 @@
     <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../css/flexslider.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/flexslider.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/responsive.css'/>" type="text/css" />
+    <style>
+    .navbar-default .navbar-nav > li.free-trial-btn {
+    	margin-left: 13px;
+	}
+    </style>
 </head>
 
 <body>
@@ -35,12 +40,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<c:url value='/' />"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="logo-hdr" width="180">
+                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>"><img src="<c:url value='/img/logo-1.png'/>" class="logo-hdr" width="180">
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse my-nav-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="<c:url value='/' />">home</a>
+                        <li class="active"><a href="<c:url value='/movieIndex'/>">home</a>
                         </li>
                         <li><a href="latest.html">即將上映</a>
                         </li>
@@ -50,9 +55,9 @@
                         </li>
                         <li><a href="conatct.html">contact</a>
                         </li>
-                        <li><a href="products.html">周邊商品</a>
+                        <li><a href="showAllProducts">周邊商品</a>
                         </li>
-                        <li><a href="shopCart.html" style='padding:5px;'><img src="${pageContext.request.contextPath}/img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
+                        <li><a href="getShoppingCart" style='padding:5px;'><img src="${pageContext.request.contextPath}/img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
                         <li class="free-trial-btn btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
                         <li class="btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
