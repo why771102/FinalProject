@@ -85,7 +85,7 @@
 
         var hall = ${ hall };
 //         console.log(hall);
-//         console.log(hall.length);
+//        console.log(hall.length);
 
 
 
@@ -104,7 +104,7 @@
 
         var a = ${showTime};
 //         console.log(a[0].stID);
-//         console.log(a.length);
+         console.log("a.length:"+a.length);//202?
          console.log("a:"+a);
 
         //分出包場和電影  往上append to Data table
@@ -113,24 +113,30 @@
             //包場
             if (a[i]["stID"] == "0") {
                 console.log("包場" + a[i].stID);
-                $(document).ready(function () {
-                    $("#table_tr").append(
-                        " <tr id=tr" + i + ">" +
-                        "<td>" + a[i].strDay + "</td>" +
-                        "<td>" + a[i].sthb.hob.hb.hallID + "</td>" +
-                        "<td>0</td>" +
-                        "<td>0</td>" +
-                        "<td>" + a[i].stID + "</td>" +
-                        "<td>" + a[i].hob.hallPurpose +
-                        "</td>" +
-                        "<td><p id='runningTime" + i + "'>" + a[i].runningTime + "</p></td>" +
-                        "<td id='time" + i + "'>" + a[i].strTime
+                console.log("包場" + a[i].strDay);
+                console.log("包場" + a[i].hall);
+                console.log("包場" + a[i].runningTime);
+                console.log("包場" + a[i].stID);
+                console.log("包場" + a[i].stID);
+                console.log("包場" + a[i].stID);
+                 $(document).ready(function () {
+                     $("#table_tr").append(
+                         " <tr id=tr" + i + ">" + 
+                         "<td id='strDay" + i + "'>" + a[i].strDay + "</td>" +
+                         "<td id='hallID" + i + "'>" + a[i].hall.hallID + "</td>" +
+                         "<td id='showTimeId" + i + "'>0</td>" +
+                         "<td  id='runID" + i + "'>0</td>" +
+                         "<td>" + a[i].stID + "</td>" +
+                         "<td>" + a[i].hob.hallPurpose +
+                         "</td>" +
+                         "<td><p id='runningTime" + i + "'>" + a[i].runningTime + "</p></td>" +
+                         "<td id='time" + i + "'>" + a[i].strTime
 
-                        + "</td>" +
-                        "<td>max</td>" +
+                         + "</td>" +
+                         "<td>max</td>" +
 
-                        "</tr>");
-                });
+                         "</tr>");
+                 });
 
 
 
@@ -351,8 +357,9 @@
 
         function formSubmit() {
             var updateData = [];
-
+           
             for (let i = 0; i < a.length; i++) {
+            	console.log(i);
                 var showTimeId = document.getElementById("showTimeId" + i).innerHTML;
                 var runID = document.getElementById("runID" + i).innerHTML;
                 var hallID = document.getElementById("hallID" + i).innerHTML;
@@ -392,8 +399,8 @@
                 //cache:false,
                 //dataType: 'json',
                 error: function (data) {
-                	console.log(data);
-                    console.log(JSON.stringify(updateData));
+//                 	console.log(data);
+//                     console.log(JSON.stringify(updateData));
                 },
                 success: function (data) {
                     alert("修改成功");
@@ -404,7 +411,7 @@
         }
 
         $(document).ready(function () {
-            $("#table").dataTable();
+            $("#table").dataTable({paging:false});
         });
 
 

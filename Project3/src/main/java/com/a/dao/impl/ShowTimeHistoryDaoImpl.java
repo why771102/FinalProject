@@ -208,16 +208,21 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		Session session =factory.getCurrentSession();
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
 		String hql="update ShowTimeHistoryBean set hallID =:hb ,runID=:rb,playStartTime=:time where   showTimeId=:showID";
-		int n = session.createQuery(hql)
-				.setParameter("rb", Integer.parseInt(sthb.getRunID()))
-				.setParameter("time",sthb.getPlayStartTime())
-                .setParameter("hb", sthb.getHallID())
-                .setParameter("showID",(sthb.getShowTimeId()))
-                .executeUpdate();
-		System.out.println(" n"+n);
-if(n==0) {
-return false;
-}
+		try {
+			int n = session.createQuery(hql)
+					.setParameter("rb", Integer.parseInt(sthb.getRunID()))
+					.setParameter("time",sthb.getPlayStartTime())
+	                .setParameter("hb", sthb.getHallID())
+	                .setParameter("showID",(sthb.getShowTimeId()))
+	                .executeUpdate();
+			System.out.println(" n"+n);
+			
+		} catch (Exception e) {
+			System.out.println("失敗");
+		}
+		
+		
+
 		return true;
 	}
 	//如果只換排序// 沒包場的情況
