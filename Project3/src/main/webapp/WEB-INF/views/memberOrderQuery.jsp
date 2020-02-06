@@ -54,8 +54,8 @@
 			</div>
 		</div>
 	</section>
-	<hr
-		style="height: 1px; border: none; color: #333; background-color: #333;">
+<!-- 	<hr -->
+<!-- 		style="height: 1px; border: none; color: #333; background-color: #333;"> -->
 	<div id="test">
 		<table>
 		<tr style="text-align: center">
