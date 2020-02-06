@@ -27,8 +27,6 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">${title}</h2>
-	<form:form method='POST' modelAttribute="TicketSaleBean1"
-		enctype="multipart/form-data">
 		<div>
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
@@ -73,7 +71,11 @@
 				</tr>
 			</tfoot>
 		</table>
-	</form:form>
+<form id="submitExcel"
+		action="${pageContext.request.contextPath}/ticketSaleDetail.xls"
+		method="POST">
+		<input type="submit" id="exportE" value="Export To Excel">
+	</form>
 </body>
 <script>
 	$(document).ready(function() {

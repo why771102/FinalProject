@@ -23,6 +23,26 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
+	
+<style>
+/* 	header{ */
+/* 		top:0; */
+/* 	} */
+/* 	footer{ */
+/* 		bottom:0; */
+/* 	} */
+	
+	table{
+		margin-left:auto; 
+		margin-right:auto;
+		border:3px #cccccc solid;
+	}
+	
+	tr{
+		height:30px;
+	}
+	
+</style>
 </head>
 <body>
 <section id="container">
@@ -30,10 +50,12 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
 		<!--header start-->
+		<header>
 		<jsp:include page="z/bg-header.jsp">
 			<jsp:param name="a" value="1" />
 			<jsp:param name="b" value="1" />
 		</jsp:include>
+		</header>
 		<!--header end-->
 		<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
@@ -47,19 +69,21 @@
 
 		<!--sidebar end-->
 		
-			<section>
+<!-- 	<section> -->
+<!-- 		<div> -->
+<!-- 			<div style="text-align: center"> -->
+<!-- 				<h1>會員資料</h1> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</section> -->
+	
+	
+<!-- <hr -->
+<!-- 		style="height: 1px; border: none; color: #333; background-color: #333;"> -->
+	<section>
 		<div>
 			<div style="text-align: center">
 				<h1>會員資料</h1>
-			</div>
-		</div>
-	</section>
-	
-	
-<hr
-		style="height: 1px; border: none; color: #333; background-color: #333;">
-	<section>
-		<div>
 			<div class="caption">
 					<table>
 							<tr>
@@ -101,14 +125,17 @@
 <!-- 							</tr> -->
 					</table>
 				</div>
+			</div>
 		</div>
 	</section>
+</section>
 	<!--footer start-->
+	<footer>
 		<jsp:include page="z/bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
+	</footer>
 		<!--footer end-->
-	</section>
 </body>
 </html>

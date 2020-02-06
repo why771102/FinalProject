@@ -144,7 +144,11 @@
 			</tr>
 		</tfoot>
 	</table>
-
+	<form id="submitExcel"
+		action="${pageContext.request.contextPath}/ticket/sale/ticketSale.xls"
+		method="POST">
+		<input type="submit" id="exportE" value="Export To Excel">
+	</form>
 </body>
 <script>
 (function($){
@@ -223,9 +227,6 @@
 						}else if(gen == '其他') {
 							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
 								"search": {regex: true}}).column(8).data().search("0", true, false).draw(); 
-//								console.log("check here~~~"+ typeof({"iDisplayLength": 100, 
-//									"search": {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw());
-//								window.productsale = {regex: true}}).column(1).search("雙人套票|個人套票", true, false).draw();
 						} else if (gen == '劇情') {
 							$('#example').DataTable({destroy: true,"iDisplayLength": 100, 
 								"search": {regex: true}}).column(8).data().search("1", true, false).draw();

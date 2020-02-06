@@ -3,6 +3,9 @@ package com.t.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.a.model.MovieBean;
 import com.p.model.MemberBean;
 import com.t.dao.ExpectionDao;
+import com.t.model.CommentBean;
 import com.t.model.ExpectationBean;
 
 @Repository
@@ -30,6 +34,28 @@ public class ExpectionDaoImpl implements ExpectionDao{
 		eb.setMovieBean(mvb);
 		eb.setMemberBean(mb);
 		session.save(eb);
+	}
+	
+	//抓出該會員是否在該電影留過期待度
+	@Override
+	public boolean checkExpectationExist(Integer memberID,Integer movieID) {
+		boolean exist = false;
+		String hql = "From ExpectationBean Where memberID = :memberID and movieID = :movieID";
+		Session session = factory.getCurrentSession();
+		try{
+			ExpectationBean pb = (ExpectationBean) session.createQuery(hql)
+												.setParameter("memberID",memberID)
+												.setParameter("movieID", movieID)
+												.getSingleResult();
+			if(pb != null) {
+				exist = true;
+			}
+		}catch(NoResultException ex) {
+			exist = false;
+		}catch(NonUniqueResultException ex) {
+			exist = false;
+		}
+		return exist;
 	}
 	
 	@Override

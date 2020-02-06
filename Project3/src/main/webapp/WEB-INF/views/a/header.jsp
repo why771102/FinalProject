@@ -16,12 +16,16 @@
     <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
-    <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/flexslider.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/responsive.css'/>" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css" />
     <style>
+    body{
+    	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+    }
+    
     .navbar-default .navbar-nav > li.free-trial-btn {
     	margin-left: 13px;
 	}

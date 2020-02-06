@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
 import com.c.model.NumberOfSeatsBean;
 import com.c.model.ReservedSeatsBean;
@@ -50,22 +51,32 @@ public class ReservedSeatsController {
 		this.soservice = soservice;
 	}
 
-	@GetMapping("/reservedSeats/showSeats")
-	public String getReservedSeats() {
-		//傳入showTimeID
-		
+	@GetMapping("/insertReservedSeats")
+	public String insertReservedSeats() {
+	    System.out.println("insertReservedSeats");
 		// insert seats into reserved seats table;
-//		rservice.insertSeats();
+		List<ShowTimeHistoryBean> liststhb = rservice.insertSeats();
 
 		// insert seat number into number of seats table;
-
-//		List<ReservedSeatsBean> list = rservice.getAllSeats(2);
+//		for(int sthb = 0; sthb < liststhb.size(); sthb++) {
+//			List<ReservedSeatsBean> listrsb = rservice.getAllSeats(2);
+//		}
+//		
 //		System.out.println(list.get(0).getDate());
 //		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatsBean().getHallBean().getHallID());
 //		nosservice.insertNumberofSeats(nosb);
 		
+		return "bgExample/index";
+	}
+	
+	@GetMapping("/reservedSeats/showSeats")
+	public String getReservedSeats() {
+		//傳入showTimeID
+		
 		return "c/showReservedSeats";
 	}
+	
+	
 
 //	應該傳到前端 電影名稱、廳、訂票數、日期
 	@PostMapping("/reservedSeats/showSeats")

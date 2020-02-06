@@ -192,11 +192,19 @@ public class CommentController {
 		return "redirect:/findAllReportComment";		
 	}
 	
-	@RequestMapping("/comments/report")
-	public String reportComment(@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+	//從後台取消檢舉
+	@RequestMapping("/comments/cancalreport")
+	public String cancalReportComment(@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+		cb.setCommentID(commentID);
+		service.cancalReportComment(commentID);
+		return "redirect:/findAllReportComment";		
+	}
+	
+	@RequestMapping("/comments/report/{movieID}")
+	public String reportComment(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
 		cb.setCommentID(commentID);
 		service.reportComment(commentID);
-		return "redirect:/findAllComment";
+		return "redirect:/comments/{movieID}";
 	}
 	
 	//查詢單筆

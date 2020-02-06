@@ -50,7 +50,7 @@
 	</table>
 <!-- 	<input id='b' type='submit' onclick="updateAllSubmit()" value='修改全部'/> -->
 <%-- 	<a href='${pageContext.request.contextPath}/a/updateShowTime'>修改</a> --%>
-	<a href='${pageContext.request.contextPath}/index-a'>確認</a>
+	<a href='${pageContext.request.contextPath}/insertReservedSeats'>確認</a>
 <%-- 	<input type='button' name="updateAll"   value='${stb.day}' id='updateAll' /> --%>
 	
 	<script>

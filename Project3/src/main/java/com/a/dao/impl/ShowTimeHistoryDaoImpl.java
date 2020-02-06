@@ -185,22 +185,22 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 	
 	
 	//抓指定日期的某一聽
-	@Override
-	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day,String hallID) {
-		// TODO Auto-generated method stub
-		Session session =factory.getCurrentSession();
-		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
-		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate  and hallID=:ID ";
-//		LocalDate date = playStartTime.toLocalDate();
-		String startTime = ((day.toString())+" "+"02:00:00"); 
-		String endTime = (day.plusDays(1).toString())+" "+"02:00:00"; 
-		STHB_List= session.createQuery(hql).setParameter("enddate", endTime)
-                                       .setParameter("startdate", startTime)
-                                       .setParameter("ID", hallID)
-                                       .getResultList();
-		
-		return STHB_List;
-	}
+//	@Override
+//	public List<ShowTimeHistoryBean> getshowMovie(LocalDate day,String hallID) {
+//		// TODO Auto-generated method stub
+//		Session session =factory.getCurrentSession();
+//		List<ShowTimeHistoryBean> STHB_List =new ArrayList<>();
+//		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate  and hallID=:ID ";
+////		LocalDate date = playStartTime.toLocalDate();
+//		String startTime = ((day.toString())+" "+"02:00:00"); 
+//		String endTime = (day.plusDays(1).toString())+" "+"02:00:00"; 
+//		STHB_List= session.createQuery(hql).setParameter("enddate", endTime)
+//                                       .setParameter("startdate", startTime)
+//                                       .setParameter("ID", hallID)
+//                                       .getResultList();
+//		
+//		return STHB_List;
+//	}
 	
 	//修改showtimeHistoryBean
 	@Override
@@ -251,8 +251,8 @@ return false;
 	public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay){
 		Session session = factory.getCurrentSession();
 		LocalDate et = startDay.toLocalDate();
-		String now = startDay.toLocalDate().toString() + " " + startDay.toLocalTime().toString();
-		System.out.println("startDay:" + startDay);
+		String now = startDay.toLocalDate().toString() + " " + startDay.toLocalTime().toString().substring(0, 8);
+		System.out.println("now:" + now);
 		String enddate = (et.plusDays(7).toString())+" "+"00:00:00"; 
 		System.out.println("enddate:" + enddate);
 		String hql = "SELECT DISTINCT run FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate";
@@ -272,13 +272,16 @@ return false;
 	public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime){
 		List<ShowTimeHistoryBean> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
-		String start = starttime.toString();
+
 		LocalDate et = starttime.toLocalDate();
+		String now = starttime.toLocalDate().toString() + " " + starttime.toLocalTime().toString().substring(0, 8);
+		System.out.println("now:" + now);
+		
 		String enddate = (et.plusDays(7).toString())+" "+"00:00:00";  
 		try {
 		String hql="from ShowTimeHistoryBean where  playStartTime <= :enddate  and playStartTime >= :startdate";
 		list = session.createQuery(hql).setParameter("enddate", enddate)
-				.setParameter("startdate", start)
+				.setParameter("startdate", now)
 				.getResultList();
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -79,7 +79,7 @@
     </div>
 
    
-    <a href='${pageContext.request.contextPath}/insertReservedSeats'>確認</a>
+    <a href='${pageContext.request.contextPath}/index-a'>確認</a>
     <script>
         //準備movie 有多少個陣列
 
@@ -102,10 +102,11 @@
 
 
 
-        var a = ${showTime};
+
+        var a = ${ showTime };
 //         console.log(a[0].stID);
 //         console.log(a.length);
-         console.log("a:"+a);
+//         console.log(a);
 
         //分出包場和電影  往上append to Data table
         for (let i = 0; i < a.length; i++) {
@@ -117,7 +118,7 @@
                     $("#table_tr").append(
                         " <tr id=tr" + i + ">" +
                         "<td>" + a[i].strDay + "</td>" +
-                        "<td>" + a[i].sthb.hob.hb.hallID + "</td>" +
+                        "<td>" + a[i].sthb.hall.hallID + "</td>" +
                         "<td>0</td>" +
                         "<td>0</td>" +
                         "<td>" + a[i].stID + "</td>" +
