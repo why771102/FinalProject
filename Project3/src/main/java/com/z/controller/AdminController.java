@@ -54,9 +54,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/emp/add", method = RequestMethod.POST)
-	public String processAddNewEmp(@ModelAttribute("empBean") EmpBean eb) {
+	public String addNewEmp(@ModelAttribute("empBean") EmpBean eb) {
  		service.saveEmp(eb);
-		return "z/addEmp";
+		return "redirect:/emps";
 	}
 	
 	@RequestMapping(value = "/emps")

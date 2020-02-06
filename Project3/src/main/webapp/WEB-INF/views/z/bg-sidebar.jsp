@@ -27,7 +27,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="<c:url value='/emp/updatePwd'/>"><img src="${pageContext.request.contextPath}/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          <h5 class="centered" id="name"></h5>
           <li class="mt">
             <a href="index.html">
               <i class="fa fa-dashboard"></i>
@@ -157,6 +157,26 @@
         $(this).hide();
       });
     })
+    
+    
+    cookieArray = document.cookie.split("; ");
+	console.log(cookieArray);
+
+	for (i = 0; i < cookieArray.length; i++) {
+			memberIDArrays = cookieArray[i].split("=");
+			console.log(memberIDArrays);
+			
+				for (i = 0; i < cookieArray.length; i++) {
+				nameArrays = cookieArray[i].split("=");
+				console.log(nameArrays);
+				if (nameArrays[0] == "EmpName") {
+				$("#name").text(nameArrays[1]);
+				
+			}
+
+		}
+	}
+    
       </script>
 </body>
 </html>

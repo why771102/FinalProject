@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -43,9 +44,110 @@
 			<jsp:param name="c" value="1" />
 			<jsp:param name="d" value="1" />
 		</jsp:include>
-
-
 		<!--sidebar end-->
+		
+		
+		<section id="main-content">
+			<section class="wrapper site-min-height">
+				<div class="row mt">
+					<!-- /row -->
+				</div>
+				<!-- /col-lg-12 -->
+				<div class="col-lg-12 mt">
+					<div class="row content-panel">
+						<!-- /panel-heading -->
+						<div class="panel-body">
+							<!--///////////////////////////////////////////////////////-->
+							<div id="edit" class="tab-pane">
+								<div class="row">
+									<div class="col-lg-8 col-lg-offset-2 detailed">
+										<h4 class="mb">修改公告</h4>
+										<form:form role="form" class="form-horizontal" method='POST'
+											modelAttribute="annoBean" enctype="multipart/form-data">
+
+											<div class="form-group">
+												<label class="col-lg-2 control-label">員工編號：</label>
+												<div class="col-lg-6">
+													${emp.empId}
+												</div>
+											</div>
+
+
+											<div class="form-group">
+												<label class="col-lg-2 control-label">員工姓名：</label>
+												<div class="col-lg-6">
+													${emp.empName}
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-lg-2 control-label">員工信箱：</label>
+												<div class="col-lg-6">
+													${emp.email}
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-lg-2 control-label">員工密碼：</label>
+												<div class="col-lg-6">
+													${emp.password}
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-lg-2 control-label">職務名稱：</label>
+												<div class="col-lg-10">
+													${emp.roleBean.roleName}
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-lg-2 control-label">在職狀態：</label>
+												<div class="col-lg-10">
+													${emp.empStatusBean.statusName}
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-lg-2 control-label">就職日期：</label>
+												<div class="col-lg-10">
+													${emp.startDate}
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="col-lg-2 control-label">離職日期：</label>
+												<div class="col-lg-10">
+													${emp.endDate}
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-lg-offset-2 col-lg-10">
+													<button class="btn btn-theme04" type="button" onclick="location.href='emp/update/${emp.empId}'">修改資料</button>
+													<a href="emp/update/${emp.empId}">修改資料</a>
+												</div>
+											</div>
+
+										</form:form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	<section>
 		<div>
 			<div style="text-align: center">
