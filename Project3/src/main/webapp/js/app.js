@@ -36,7 +36,7 @@ function disconnect() {
 
 function sendName() {
 	stompClient.send("/sendName", {}, JSON.stringify({
-		'name' : $("#name").val()
+		'name' : $("#name1").val()
 	}));
 }
 
@@ -44,14 +44,16 @@ function sendMessage() {
 	if ($("#message").val().trim().length > 0) {
 		stompClient.send("/sendMessage/" + list[3], {}, JSON.stringify({
 			'message' : $("#message").val(),
-			'name' : $("#name").val(),
+			'name' : $("#name1").val(),
 			'questionId' : list[3]
 		}));
+		$("#message").val("");
+		console.log("清空後");
 	}
 }
 
 function showMessage(name, message) {
-	$("#greetings").append("<div class='group-rom'><div class='first-part'>" + name + "</div><div class='second-part'>" + message + "</div><div class='third-part'>12:32</div></div>");
+	$("#greetings").append("<div class='group-rom'><div class='first-part'>" + name + "：</div><div class='second-part'>" + message + "</div><div class='third-part'>12:32</div></div>");
 
 }
 
