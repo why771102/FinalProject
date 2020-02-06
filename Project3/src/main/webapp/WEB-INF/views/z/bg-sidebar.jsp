@@ -134,6 +134,18 @@
             </ul>
           </li>
           
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-adjust"></i>
+              <span>電影管理/排片</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<c:url value='/movie/add'/>">新增電影</a></li>
+              <li><a href="<c:url value='/movie/autoRun'/>">排片</a></li>
+              <li><a href="<c:url value='/oldShowTimeHistory'/>">查詢排片紀錄</a></li>
+            </ul>
+          </li>
+          
           <li>
             <a href="inbox.html">
               <i class="fa fa-envelope"></i>
