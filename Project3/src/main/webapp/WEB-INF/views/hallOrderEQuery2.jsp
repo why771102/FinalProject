@@ -32,7 +32,16 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
-
+<style>
+	#test{
+		z-index:999;
+		position: relative;
+	}
+	
+ 	footer{ 
+ 		width:2225;
+ 	} 
+</style>
 
 </head>
 <body>
@@ -50,11 +59,12 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
+		<div id="test">
 		<jsp:include page="z/bg-sidebar.jsp">
 			<jsp:param name="c" value="1" />
 			<jsp:param name="d" value="1" />
 		</jsp:include>
-
+		</div>
 
 		<!--sidebar end-->
 	<section id="main-content">
@@ -64,7 +74,7 @@
 			</h3>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="content-panel" style="width:2000px">
+					<div class="content-panel" style="width:2000px;" >
 						<table class="table">
 							<thead>
 								<tr>
@@ -157,10 +167,12 @@
 		</section>
 	</section>
 			<!--footer start-->
+		<footer>
 		<jsp:include page="z/bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
+		</footer>
 		<!--footer end-->
 
 	<script>

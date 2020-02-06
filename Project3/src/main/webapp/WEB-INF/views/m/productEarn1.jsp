@@ -7,31 +7,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Dashboard">
+<meta name="keyword"
+	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>productEarn1</title>
+<title>產品利潤總覽</title>
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- Favicons -->
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!--external css-->
+<link
+	href="${pageContext.request.contextPath}/lib/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="${pageContext.request.contextPath}/css/bg-style.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style-responsive.css"
+	rel="stylesheet">
+
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <!-- timepicker -->
-<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
-<body style="background-color: grey">
+<body>
+	<section id="container">
+		<!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+		<!--header start-->
+		<jsp:include page="../z/bg-header.jsp">
+			<jsp:param name="a" value="1" />
+			<jsp:param name="b" value="1" />
+		</jsp:include>
+		<!--header end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+		<!--sidebar start-->
+		<jsp:include page="../z/bg-sidebar.jsp">
+			<jsp:param name="c" value="1" />
+			<jsp:param name="d" value="1" />
+		</jsp:include>
+		<!--sidebar end-->
+		<!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row mt">
+					<div class="col-lg-12">
+						<!-- <p>Place your content here.</p> -->
 	<h2 style="text-align: center">產品營利總覽</h2>
-		<div>
+		<div  style="text-align: -webkit-right;">
 			類型： ${cateSelection}
+			<br>
 			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 					class="fa fa-caret-down"></i>
 			</div>
@@ -41,21 +88,14 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>產品名稱</th>
-					<th>單價</th>
-					<th>數量</th>
-					<th>成本</th>
-					<th>利潤</th>
-					<th>銷售總額</th>
-					<th>利潤總額</th>
+					<th  style="text-align: center;">產品名稱</th>
+					<th  style="text-align: center;">單價</th>
+					<th  style="text-align: center;">數量</th>
+					<th  style="text-align: center;">成本</th>
+					<th  style="text-align: center;">利潤</th>
+					<th  style="text-align: center;">銷售總額</th>
+					<th  style="text-align: center;">利潤總額</th>
 				</tr>
-				<!-- 				<tr> -->
-				<!-- 					<td></td> -->
-				<!-- 					<td><div id="pName" onclick="sendpName()">產品名稱</div></td> -->
-				<!-- 					<td>單價</td> -->
-				<!-- 					<td>數量</td> -->
-				<!-- 					<td>總金額</td> -->
-				<!-- 				</tr> -->
 			</thead>
 			<tbody id="insertHere">
 
@@ -68,8 +108,8 @@
 					<th></th>
 					<th></th>					
 					<th></th>
-										<th></th>
-										<th></th>
+					<th></th>
+					<th></th>
 				</tr>
 			</tfoot>
 		</table>
@@ -78,7 +118,24 @@
 		method="POST">
 		<input type="submit" id="exportE" value="Export To Excel">
 	</form>
-</body>
+					</div>
+				</div>
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<jsp:include page="../z/bg-footer.jsp">
+			<jsp:param name="e" value="1" />
+			<jsp:param name="f" value="1" />
+		</jsp:include>
+		<!--footer end-->
+	</section>
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
 	$(document).ready(function() {
 		var dataTable = $('#example').DataTable({
@@ -118,7 +175,7 @@
 				},
 				type : "POST",
 				success : function(productearn) {
-					alert("新增成功!");
+// 					alert("新增成功!");
 					
 					var dataTable = $("#example").DataTable({destroy: true});
 					dataTable.clear().draw();
@@ -250,4 +307,5 @@
 		console.log("reportrange=>" + $('#reportrange span').text());
 	});
 </script>
+</body>
 </html>
