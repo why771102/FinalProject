@@ -24,6 +24,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css" />
+    
+    <style>
+    div#pfirst:hover, div#pprev:hover, div#pnext:hover{
+		cursor:pointer;
+		
+	}
+    </style>
+    
 </head>
 <body>
  <header>
@@ -57,9 +65,11 @@
 				<div class="movie1">
 					<div>
 						<!--                         修改處from line 22 to 26 -->
-						<%-- 					<img src="<c:url value='/getPicture/${run.movie.movieID}' />" --%>
-						width="70%" height="50%">
+					<img src="<c:url value='/getPicture/${run.movie.movieID}' />"
+						width="70%" height="60%">
+						
 					</div>
+					
 					<div class="m-name">
 						<h3>${run.movie.title}</h3>
 						<h4>${run.movie.genreBean.genre}</h4>
@@ -76,11 +86,15 @@
 				</form>
 				<a href="" class="book-now">BOOK NOW</a>
 			</div>
+			
       </c:forEach>
-    
+    <br>
       	  </div>
+      	 
       </div>
-      	  	</div><!-- id =movie最外 -->
+       
+      	  	</div>
+      	  	<!-- id =movie最外 -->
       	<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
 
 	 <!-- movies page -->
@@ -88,6 +102,7 @@
 	<div id='createPage'>
 	<table  align='center'>
 	<div align='center'>
+	<br>
 		<tr>
 			<td width='' id='pfirst_tr'><c:if test="${pageNo > 1}">
 					<div id="pfirst" values='1' onclick='changePage(this.id)'>第一頁</div>
@@ -113,6 +128,7 @@
 		</tr>
 
 	</table>
+	<br>
 	<p id='pageCount'align='center' >第${pageNo}頁 /共${totalPages}頁</p>
 	</div>
 	</div>
@@ -315,6 +331,8 @@
 				    		  "<div class='movie1'>"+
 								"<div>"+
 	                               //圖片
+	                               "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
+	           						"width='70%' height='60%>" +
 								"</div>"+
 								"<div class='m-name'>"+
 									"<h3>"+a[i].movie.title+"</h3>"+
