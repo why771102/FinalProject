@@ -771,6 +771,7 @@ public class RunMovieController implements ServletContextAware{
 		else {
 			onePageNum=rb_list.size()%8;
 		}
+		System.out.println(onePageNum);
 		for(int i=movieNum;i<onePageNum;i++) {
 			System.out.println("i:"+i);
 			System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
