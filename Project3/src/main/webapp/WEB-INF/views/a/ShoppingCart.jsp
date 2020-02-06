@@ -318,7 +318,7 @@ div.free-trial-btn button:hover {
 			<div class="ready">
 				<h4>現在就立刻購買！</h4>
 				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
-				<a href="free-trail.html" class="slider-btn">前往購票</a>
+				<a href="<c:url value='/movieIndex#booknow'/>" class="slider-btn">前往購票</a>
 			</div>
 		</div>
 	</section>
@@ -560,172 +560,94 @@ div.free-trial-btn button:hover {
 	<!-- article -->
 
 	<!-- slider -->
-	<section class="slider-sec">
-		<section class="slider">
-			<div class="flexslider">
-				<ul class="slides">
-					<li>
-						<div class="slide-inner slide-1">
-							<div class="overlay-slider"></div>
-							<div class="container">
-								<div class="row resp-row">
-									<div class="col-sm-5 col-xs-6 pull-left">
-										<div class="slide-con">
-											<h5>Fast Online</h5>
-											<h4>
-												SEAT BOOKINGS<br>
-											</h4>
-											<a href="free-trail.html" class="slider-btn">BOOK NOW</a>
-										</div>
-									</div>
-									<div class="col-sm-7 col-xs-6 pull-right">
-										<div class="sd-left-img">
-											<img src="" alt="" class="img-responsive">
-										</div>
-									</div>
+<!-- 	<section class="slider-sec"> -->
+<!-- 		<section class="slider"> -->
+<!-- 			<div class="flexslider"> -->
+<!-- 				<ul class="slides"> -->
+<!-- 					<li> -->
+<!-- 						<div class="slide-inner slide-1"> -->
+<!-- 							<div class="overlay-slider"></div> -->
+<!-- 							<div class="container"> -->
+<!-- 								<div class="row resp-row"> -->
+<!-- 									<div class="col-sm-5 col-xs-6 pull-left"> -->
+<!-- 										<div class="slide-con"> -->
+<!-- 											<h5>Fast Online</h5> -->
+<!-- 											<h4> -->
+<!-- 												SEAT BOOKINGS<br> -->
+<!-- 											</h4> -->
+<!-- 											<a href="free-trail.html" class="slider-btn">BOOK NOW</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="col-sm-7 col-xs-6 pull-right"> -->
+<!-- 										<div class="sd-left-img"> -->
+<!-- 											<img src="" alt="" class="img-responsive"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="slide-inner slide-2">
-							<div class="overlay-slider"></div>
-							<div class="container">
-								<div class="row resp-row">
-									<div class="col-sm-5 col-xs-6 pull-left">
-										<div class="slide-con">
-											<h5>Fast Online</h5>
-											<h4>SEAT BOOKINGS</h4>
-											<a href="free-trail.html" class="slider-btn">BOOK NOW</a>
-										</div>
-									</div>
-									<div class="col-sm-7 col-xs-6 pull-right">
-										<div class="sd-left-img">
-											<img src="" alt="" class="img-responsive">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="slide-inner slide-3">
-							<div class="overlay-slider"></div>
-							<div class="container">
-								<div class="row resp-row">
-									<div class="col-sm-5 col-xs-6 pull-left">
-										<div class="slide-con">
-											<h5>Fast Online</h5>
-											<h4>SEAT BOOKINGS</h4>
-											<a href="free-trail.html" class="slider-btn">BOOK NOW</a>
-										</div>
-									</div>
-									<div class="col-sm-7 col-xs-6 pull-right">
-										<div class="sd-left-img">
-											<img src="" alt="" class="img-responsive">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="slide-inner slide-2"> -->
+<!-- 							<div class="overlay-slider"></div> -->
+<!-- 							<div class="container"> -->
+<!-- 								<div class="row resp-row"> -->
+<!-- 									<div class="col-sm-5 col-xs-6 pull-left"> -->
+<!-- 										<div class="slide-con"> -->
+<!-- 											<h5>Fast Online</h5> -->
+<!-- 											<h4>SEAT BOOKINGS</h4> -->
+<!-- 											<a href="free-trail.html" class="slider-btn">BOOK NOW</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="col-sm-7 col-xs-6 pull-right"> -->
+<!-- 										<div class="sd-left-img"> -->
+<!-- 											<img src="" alt="" class="img-responsive"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="slide-inner slide-3"> -->
+<!-- 							<div class="overlay-slider"></div> -->
+<!-- 							<div class="container"> -->
+<!-- 								<div class="row resp-row"> -->
+<!-- 									<div class="col-sm-5 col-xs-6 pull-left"> -->
+<!-- 										<div class="slide-con"> -->
+<!-- 											<h5>Fast Online</h5> -->
+<!-- 											<h4>SEAT BOOKINGS</h4> -->
+<!-- 											<a href="free-trail.html" class="slider-btn">BOOK NOW</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="col-sm-7 col-xs-6 pull-right"> -->
+<!-- 										<div class="sd-left-img"> -->
+<!-- 											<img src="" alt="" class="img-responsive"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
 
-				</ul>
-			</div>
-		</section>
-	</section>
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</section> -->
+<!-- 	</section> -->
 	<!-- slider-->
 
 
-	<!-- footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row responsiv-div2">
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner">
-						<h4>關於我們</h4>
-						<ul class="list-unstyled">
-							<li><a href="">公司簡介</a></li>
-							<li><a href="">企業理念</a></li>
-							<li><a href="">影廳介紹</a></li>
-							<li><a href="">電影院設備</a></li>
-							<li><a href="">相關設施</a></li>
+	 <!-- footer -->
+    <footer>
 
+       <jsp:include page="footer.jsp">
+       	<jsp:param name="a" value="1" />
+       </jsp:include>
 
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner">
-						<h4>其他項目</h4>
-						<ul class="list-unstyled">
-
-							<li><a href="">線上周邊</a></li>
-							<li><a href="">包場服務</a></li>
-							<li><a href="">餐飲服務</a></li>
-							<li><a href="">其他</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner contect-f">
-						<h4>聯絡我們</h4>
-						<ul class="list-unstyled">
-							<address>
-								線上客服 <br> 12345 India
-							</address>
-							<br>
-							<li>01 23 456 789</li>
-							<li class="f-link"><a href="">contact@cineshow.fr</a></li>
-							<br>
-
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="f-inner">
-						<h4>告訴我們您的建議</h4>
-						<div class="form">
-							<form>
-								<input type="text" name="nm" class="inp-fild" placeholder="Name">
-								<input type="text" id="mail" name="mail" class="inp-fild"
-									placeholder="Email Address">
-							</form>
-							<button class="footer-btn">Send</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-line">
-				<div class="im-inner">
-					<span></span> <a href="index.html"><img src="img/logo.png"
-						class="ftr-logo" width="200"> </a><span></span>
-				</div>
-				<h4>
-					Copyrights 2020.01.26 | <a href="#">10.3.7</a>
-				</h4>
-				<div class="right-icon">
-					<ul class="list-inline">
-						<li class="fb"><a href="#"><i class="fb fa fa-facebook"></i></a>
-						</li>
-						<li class="twitter"><a href="#"><i
-								class="twitter fa fa-twitter"></i></a></li>
-						<li class="google"><a href="#"><i
-								class="google fa fa-google-plus"></i></a></li>
-						<li class="youtube"><a href="#"><i
-								class="youtube fa fa-youtube-play"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<div class="premium-tagline">
-		<p>
-			Created By: <a href=>Teamwork</a>
-		</p>
-	</div>
-	<!-- footer -->
+    </footer>
+       
+    <!-- footer -->
 
 	<!-- scripts -->
 	<script
