@@ -22,6 +22,7 @@
 	table{
 		margin-left:auto; 
 		margin-right:auto;
+		border:3px #cccccc solid;
 	}
 	
 	#test{
@@ -30,6 +31,10 @@
 	
 	footer{
 		bottom:0;
+	}
+	
+	td{
+		width:100px;
 	}
 	
 	
@@ -53,7 +58,7 @@
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<div id="test">
 		<table>
-		<tr>
+		<tr style="text-align: center">
 			<td>訂單編號</td>
 			<td>會員編號</td>
 			<td>電影名稱</td>
@@ -63,7 +68,7 @@
 			<td>座位代碼</td>
 		</tr>
 			
-		<tr>
+		<tr style="text-align: center">
 			<c:forEach var="mo" items="${molist}">
 				<td>${mo.ordersID}</td>
 				<td>${mo.memberBean.memberID}</td>
