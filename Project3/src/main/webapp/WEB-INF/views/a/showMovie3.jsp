@@ -85,7 +85,7 @@
     <div class='container' >
     
         <div class='buy-txt'> 
-        ${sthb_list1.get(1).run.movie.trailer}  
+        ${sthb_list1.get(0).run.movie.trailer}  
       <!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
       -->
     </div>
@@ -111,26 +111,26 @@
                 <div class='col-sm-6'>
                     <!-- <div class='ex-feature'> -->
                        
-                        <h2 >${sthb_list1.get(1).run.movie.title}</h2>
+                        <h2 >${run.movie.title}</h2>
                         <table>
                             <tr>
                                 <td>導演：</td>
-                                <td>${sthb_list1.get(1).run.movie.director}</td>
+                                <td>${run.movie.director}</td>
                             </tr>
                             <tr>
                                 <td>演員：</td>
-                                <td>${sthb_list1.get(1).run.movie.cast}</td>
+                                <td>${run.movie.cast}</td>
                             </tr>
                             <tr>
                                 <td>類型：</td>
-                                <td>${sthb_list1.get(1).run.movie.genreBean.genre}</td>
+                                <td>${run.movie.genreBean.genre}</td>
                             </tr>
                             <td>分級：</td>
-                                <td>${sthb_list1.get(1).run.movie.movieRatingBean.rating}</td>
+                                <td>${run.movie.movieRatingBean.rating}</td>
                             
                             <tr>
                                 <td>片長：</td>
-                                <td>${sthb_list1.get(0).run.movie.runningTime}</td>
+                                <td>${run.movie.runningTime}</td>
                             </tr>
                         </table>
                         <div id='showTimeHere'>
@@ -166,7 +166,7 @@
                   
                 <div class='col-sm-12 col-xs-12'> 
                 <div style='text-align: left; padding:5px; font-size: large; '>
-                       ${sthb_list1.get(1).run.movie.plotSummary}
+                       ${run.movie.plotSummary}
                 </div>
                     
                 </div>
@@ -251,12 +251,8 @@
 	
 		
 		<script>
-		var a =${sthb_list};
-		
-		console.log(a);
-		function c(){
-		console.log(document.getElementById("movieBean").value);
-		}
+
+
 		</script>
 </body>
 </html>

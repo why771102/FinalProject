@@ -894,7 +894,7 @@ public class RunMovieController implements ServletContextAware{
 		//get showTime by runningBean
 		RunningBean run = mService.getRunningBeanById(runID);
 		System.out.println("電影名稱:"+run.getMovie().getTitle());
-		
+/*		
 		LocalDate today = LocalDate.now();
 		LocalDate endDay = today.plusWeeks(1);
 		List<ShowTimeHistoryBean> sthb_list= new ArrayList<>();
@@ -913,12 +913,12 @@ public class RunMovieController implements ServletContextAware{
 			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
 			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
 		}
-		
-		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
-		model.addAttribute("sthb_list1",sthb_list);
-		model.addAttribute("oneMovie1",oneMovie);
-		request.setAttribute("sthb_list",gson.toJson(sthb_list) );
-		request.setAttribute("oneMovie",gson.toJson(oneMovie) );
+		*/
+//		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
+		model.addAttribute("run",run);
+//		model.addAttribute("oneMovie1",oneMovie);
+		request.setAttribute("run",gson.toJson(run) );
+//		request.setAttribute("oneMovie",gson.toJson(oneMovie) );
 		
 //		String  runID =rb.getRunID().toString();
 		
