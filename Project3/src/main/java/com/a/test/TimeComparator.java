@@ -2,6 +2,7 @@ package com.a.test;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
@@ -16,12 +17,15 @@ public class TimeComparator implements Comparator {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
 		LocalDateTime dateTime = LocalDateTime.parse(sthb1.getPlayStartTime(), fmt);
 		LocalDateTime dateTime2 = LocalDateTime.parse(sthb2.getPlayStartTime(), fmt);
-		Timestamp aa=Timestamp.valueOf(dateTime);
-		Timestamp bb=Timestamp.valueOf(dateTime2);
-		//2038year unit時間會掛掉喔ＸＤＤＤ
-		int a = Integer.parseInt(aa.toString());
-		int b = Integer.parseInt(bb.toString());
+		Long a = dateTime.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+		Long b = dateTime2.toInstant(ZoneOffset.of("+8")).toEpochMilli();
 		
+//		Timestamp aa=.valueOf(dateTime);
+//		Timestamp bb=Timestamp.valueOf(dateTime2);
+		//2038year unit時間會掛掉喔ＸＤＤＤ
+//		int a = Integer.parseInt(aa.toString());
+//		int b = Integer.parseInt(bb.toString());
+//		
 		
 	
 //		double a=sthb1.getPlayStartTime();
@@ -34,13 +38,13 @@ public class TimeComparator implements Comparator {
 //		System.out.println("-------");
 		if (a < b) {
 		
-			return 1;
+			return -1;
 		} else if(a == b){
 		
 			return 0;
 		}else {
 		
-			return -1;
+			return 1;
 		}
 			
 	}
