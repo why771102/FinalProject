@@ -56,6 +56,9 @@
         <tr>
          <td colspan="2"><h3><a href="<c:url value='' />">訂單查詢</a></h3></td>
         </tr>
+        <tr>
+         <td colspan="2"><h3><a href="<c:url value='/Member/hallOrderQuery' />">包廳申請查詢</a></h3></td>
+        </tr>
      </table>
     </div>
    </div>
