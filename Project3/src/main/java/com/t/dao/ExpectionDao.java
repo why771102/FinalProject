@@ -26,6 +26,9 @@ public interface ExpectionDao {
 	//用列出的電影ID查Expectation
 	List<ExpectationBean> getExpectationByMovie(Integer movieID);
 	
+	//抓出該會員是否在該電影留過期待度
+	public boolean checkExpectationExist(Integer memberID,Integer movieID);
+	
 	//輸入新的期待度
 	void addExpect(ExpectationBean eb);
 	MemberBean getMemberById(int memberID);

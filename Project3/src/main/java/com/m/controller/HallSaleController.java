@@ -40,7 +40,7 @@ public class HallSaleController {
 //	//到hs1
 	@GetMapping(value = "/hall/sale")
 	public String toHallSale() {
-		return "m/hallSale1";
+		return "m/hallSale";
 	}
 	
 	//hallSale1資料傳輸
@@ -79,7 +79,7 @@ public class HallSaleController {
 				(service.getHallHrSubtotal(sDate,eDate)));
 		model.addAttribute("hsbList", hsbList);
 //		request.setAttribute("hsbList", hsbList);
-		return "m/hallSale1";
+		return "m/hallSale";
 	}
 	
 }

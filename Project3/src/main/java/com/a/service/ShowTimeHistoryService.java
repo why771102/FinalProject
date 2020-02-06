@@ -29,7 +29,7 @@ public interface ShowTimeHistoryService {
 
 			int getShowTimeIdByTime(String playStartTime);
 
-			List<ShowTimeHistoryBean> getshowMovie(LocalDate day, String hallID);
+//			List<ShowTimeHistoryBean> getshowMovie(LocalDate day, String hallID);
 
 			boolean updateShowTimeHistoryBean(ShowTimeHistoryBean sthb);
 

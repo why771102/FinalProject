@@ -31,6 +31,11 @@
     							class="btn btn-primary">
     							<span class="glyphicon-info-sigh glyphicon"></span>刪除留言
  							</a></p>
+ 						<p>
+                        <a href="<spring:url value='/comments/cancalreport?id=${comment.commentID}' />"
+    							class="btn btn-primary">
+    							<span class="glyphicon-info-sigh glyphicon"></span>取消
+ 							</a></p>
                    </div>
                 </div>
             </div>

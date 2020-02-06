@@ -156,9 +156,13 @@
 										<form:radiobutton id="expective" path="expective" value="0" />
 										不期待
 										<div class='col-lg-offset-2 col-lg-10'>
-											<input id="btnAdd" type='submit' class='btn btn-primary'
-												value="送出" />
-											<form:errors path="expective" cssClass="error" />
+											<form action="addnewexpect" class="btn btn-primary">
+												<span class="glyphicon-info-sigh glyphicon"></span>送出
+												<form:errors path="expective" cssClass="error" />
+												<input name='runID' type='hidden' value='${run.runID}'>
+											</form>
+											<!-- 											<input id="btnAdd" type='submit' class='btn btn-primary' -->
+											<!-- 												value="送出" /> -->
 										</div>
 									</div>
 								</div>

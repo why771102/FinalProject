@@ -459,6 +459,7 @@ public class RunMovieController implements ServletContextAware{
 	@GetMapping(value = "/showTime/update/{date}{time}{hallID}")
 	public String updateData(Model model, HttpServletRequest request, @PathVariable("date") String date ,@PathVariable("time") String time,@PathVariable("hallID") String hallID) {
 		String[] datetime = date.split("\\=");
+		  System.out.println("-----------------------------------------");
           System.out.println("0"+datetime[0]);
           System.out.println("1"+datetime[1]);
           System.out.println("2"+datetime[2]);
@@ -468,7 +469,7 @@ public class RunMovieController implements ServletContextAware{
 		System.out.println("date"+date);
 		System.out.println("time"+time);
 
-
+		System.out.println("check 2");
 		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		String str =datetime[0]+" "+datetime[1];
 		System.out.println("str:"+str);
@@ -478,24 +479,30 @@ public class RunMovieController implements ServletContextAware{
 		   day1 = (LocalDate.parse(str,df)).minusDays(1);
 		}else {}
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList();
-		
+		  System.out.println("-----------------------------------------");
 		if(datetime[2] != "All") {
-			STHB_List =mService.getshowMovieByDayAndHallID(day1, datetime[2]);
-		}else {
-			//把指定日期(一天)的showTimeHistory 取出 並塞進showtimeBean
+			System.out.println("not All");
 			STHB_List =mService.getshowMovie(day1);
+		}else {
+			System.out.println("All");
+			//把指定日期(一天)的showTimeHistory 取出 並塞進showtimeBean
+			STHB_List =mService.getshowMovieByDayAndHallID(day1, datetime[2]);
+			
 		}
 		
-		List<ShowtimeBean> oneDayShowTime = new ArrayList();
+		List<ShowtimeBean> oneDayShowTime = new ArrayList<>();
+		
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
 		for(ShowTimeHistoryBean sthb :STHB_List) {
-			System.out.println(sthb.getPlayStartTime());
+			System.out.println(sthb.getPlayStartTime()+"-------------------------------");
 		
 			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
 			oneDayShowTime.add(new ShowtimeBean(1, sthb.getRun().getMovie().getRunningTime(),sthb.getRun().getMovie().getExpectedProfit() ,
 					(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), sthb));
 		}
 		//確認包場
+		  System.out.println("-----------------------------------------");
+		System.out.println("check one");
 		List<HallOrderBean> hob_list = hoService.getHallOrder(day1);
 		if(hob_list.size()>0) {
 		   for(HallOrderBean hob : hob_list) {
@@ -508,19 +515,22 @@ public class RunMovieController implements ServletContextAware{
 		List<RunningBean> rb_List=mService.getAllOnMoive(day1);
 		
 		//有幾廳
+		System.out.println("check 1111111");
 		List<HallBean> hb_list = hService.getAllHalls(0);
 		int Hallcount = hb_list.size();// 有幾個聽
 		
-	
+		System.out.println("check 22222");
 		Gson gson = new Gson();
+	
 		String runMovie = gson.toJson(rb_List);
 		String hall = gson.toJson(hb_list);
 		String showTime = gson.toJson(oneDayShowTime);
+	    System.out.println(showTime);
 		request.setAttribute("showTime", showTime);
 		request.setAttribute("hall", hall);
 		request.setAttribute("runMovie", runMovie);
 
-		
+	
 		
 		return "a/updateShowTime";
 	}
@@ -531,7 +541,7 @@ public class RunMovieController implements ServletContextAware{
 		List<ShowtimeBean> AllDayShowTime = new ArrayList();
 		List<ShowtimeBean> AllShowTime = new ArrayList();
 
-		int day = 1;
+		int day = 7;
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
 		for (int d = 1; d <= day; d++) {
 			LocalDateTime runDateTime = LocalDate.now().plusDays(d).atTime(9, 0);
@@ -729,8 +739,8 @@ public class RunMovieController implements ServletContextAware{
 		System.out.println(pageNo);
 		int totalPages= 1;
 		LocalDate today=LocalDate.now();
-//		List<RunningBean>rb_list=mService.getComingSoonMovie();
-		List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+		List<RunningBean>rb_list=mService.getComingSoonMovie();
+		//List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
 		if(rb_list.size()>8 && rb_list.size()%8>0) {
 			totalPages = (rb_list.size()/8)+1;
 		}else if(rb_list.size()>8 && rb_list.size()%8==0){

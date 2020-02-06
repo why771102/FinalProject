@@ -27,8 +27,6 @@
 
 <body style="background-color: grey">
 	<h2 style="text-align: center">票房營收總覽</h2>
-	<form:form method='POST' modelAttribute="TicketSaleBean1"
-		enctype="multipart/form-data">
 		<div>
 			類型： ${genreSelection}
 			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
@@ -73,7 +71,11 @@
 				</tr>
 			</tfoot>
 		</table>
-	</form:form>
+	<form id="submitExcel"
+		action="${pageContext.request.contextPath}/ticket/sale/ticketSale.xls"
+		method="POST">
+		<input type="submit" id="exportE" value="Export To Excel">
+	</form>
 </body>
 <script>
 	$(document).ready(function() {

@@ -314,14 +314,20 @@
 		
 			for(let day =0 ;day<=diffDay;day++){
 				 $("#showTime_table").append("<tr><td>"+"2020"+"-"+(todayMonth)+"-"+(todayDate+day)+"</td></tr>"+"<tr id ='showTime_tr"+day+"'></tr>");
-				for(let i =0;i<(b.length-1);i++){
+				for(let i =0;i<=(b.length-1);i++){
+					console.log("b"+b.length);
+					console.log("i"+i);
 					var during2 = new Date(b[i].strDay+" "+"00:00");
-					var during3 = new Date(b[i+1].strDay+" "+"00:00");
+// 					var during3 = new Date(b[i+1].strDay+" "+"00:00");
                      console.log("todayMonth"+todayMonth);
                      console.log((during2.getMonth()*1)+1);
 					if(todayMonth == (during2.getMonth()*1)+1){
+						console.log("during2"+ during2.getDate()*1);
+						console.log("today+day"+todayDate+day);
 						if(during2.getDate()*1 ==todayDate+day ){
-							console.log("相同月份")
+							
+							console.log("相同月份");
+						
 							 document.getElementById("showTime_tr"+day).innerHTML+= "<td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>"+b[i].strTime+"</a></td>" ;
 //  							  $("#showTime_tr0").append(
 									
@@ -334,7 +340,7 @@
 						
 				
 					}else{
-						console.log("月份不同");
+						alert("月份不同");
 					}
 					
 				} 

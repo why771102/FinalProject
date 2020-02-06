@@ -33,8 +33,8 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 	public List<ShowTimeHistoryBean> insertSeats() {
 		Session session = factory.getCurrentSession();
 		List<ShowTimeHistoryBean> listSTHB = new ArrayList<>();
-		String currentDate = ((LocalDate.now().toString())+" "+"00:00:00"); 
-		String currentDatePlusAWeek = (((LocalDate.now().plusDays(7)).toString())+" "+"23:59:59");
+		String currentDate = ((LocalDate.now().plusDays(1).toString())+" "+"02:00:00"); 
+		String currentDatePlusAWeek = (((LocalDate.now().plusDays(9)).toString())+" "+"02:00:00");
 			// 先判斷日期是今天加一週 -->
 		String listSTHBhql = "FROM ShowTimeHistoryBean WHERE playStartTime >= :currentDate and playStartTime <= :currentDatePlusAWeek";
 		listSTHB = session.createQuery(listSTHBhql)
