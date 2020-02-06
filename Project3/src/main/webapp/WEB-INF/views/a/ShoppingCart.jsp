@@ -484,7 +484,7 @@ div.free-trial-btn button:hover {
 								<p>備註</p>
 								<div class="spacingGeneral fullwidth">
 									<textarea class="fullwidth" placeholder="給店家的訊息或注意事項"
-										maxlength="200" onkeyup="autogrow(this);"></textarea>
+										maxlength="200" onkeyup="autogrow(this);" id="memo"></textarea>
 								</div>
 							</div>
 
@@ -559,86 +559,7 @@ div.free-trial-btn button:hover {
 	</div>
 	<!-- article -->
 
-	<!-- slider -->
-<!-- 	<section class="slider-sec"> -->
-<!-- 		<section class="slider"> -->
-<!-- 			<div class="flexslider"> -->
-<!-- 				<ul class="slides"> -->
-<!-- 					<li> -->
-<!-- 						<div class="slide-inner slide-1"> -->
-<!-- 							<div class="overlay-slider"></div> -->
-<!-- 							<div class="container"> -->
-<!-- 								<div class="row resp-row"> -->
-<!-- 									<div class="col-sm-5 col-xs-6 pull-left"> -->
-<!-- 										<div class="slide-con"> -->
-<!-- 											<h5>Fast Online</h5> -->
-<!-- 											<h4> -->
-<!-- 												SEAT BOOKINGS<br> -->
-<!-- 											</h4> -->
-<!-- 											<a href="free-trail.html" class="slider-btn">BOOK NOW</a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-sm-7 col-xs-6 pull-right"> -->
-<!-- 										<div class="sd-left-img"> -->
-<!-- 											<img src="" alt="" class="img-responsive"> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<div class="slide-inner slide-2"> -->
-<!-- 							<div class="overlay-slider"></div> -->
-<!-- 							<div class="container"> -->
-<!-- 								<div class="row resp-row"> -->
-<!-- 									<div class="col-sm-5 col-xs-6 pull-left"> -->
-<!-- 										<div class="slide-con"> -->
-<!-- 											<h5>Fast Online</h5> -->
-<!-- 											<h4>SEAT BOOKINGS</h4> -->
-<!-- 											<a href="free-trail.html" class="slider-btn">BOOK NOW</a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-sm-7 col-xs-6 pull-right"> -->
-<!-- 										<div class="sd-left-img"> -->
-<!-- 											<img src="" alt="" class="img-responsive"> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<div class="slide-inner slide-3"> -->
-<!-- 							<div class="overlay-slider"></div> -->
-<!-- 							<div class="container"> -->
-<!-- 								<div class="row resp-row"> -->
-<!-- 									<div class="col-sm-5 col-xs-6 pull-left"> -->
-<!-- 										<div class="slide-con"> -->
-<!-- 											<h5>Fast Online</h5> -->
-<!-- 											<h4>SEAT BOOKINGS</h4> -->
-<!-- 											<a href="free-trail.html" class="slider-btn">BOOK NOW</a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-sm-7 col-xs-6 pull-right"> -->
-<!-- 										<div class="sd-left-img"> -->
-<!-- 											<img src="" alt="" class="img-responsive"> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-
-<!-- 				</ul> -->
-<!-- 			</div> -->
-<!-- 		</section> -->
-<!-- 	</section> -->
-	<!-- slider-->
-
-
-	 <!-- footer -->
+	<!-- footer -->
     <footer>
 
        <jsp:include page="footer.jsp">
@@ -659,7 +580,7 @@ div.free-trial-btn button:hover {
 	<script>
 		var sc = ${shoppingCartJSON};
 		console.log(sc);
-
+		
 		$(window).load(
 				function() {
 					$('.flexslider').flexslider({
@@ -791,6 +712,9 @@ div.free-trial-btn button:hover {
 		function confirmPurchase(){
 // 			var cptotal = $('#orderTotal').text().substring(5, $('#orderTotal').text().length);
 			console.log(window.ordTotal);
+// 			if($('#memo').val()!=""){
+// 				var memo = "Null";
+// 			}
 			$.ajax({
 				url : "${pageContext.request.contextPath}/confirmPurchase",
 				data : {

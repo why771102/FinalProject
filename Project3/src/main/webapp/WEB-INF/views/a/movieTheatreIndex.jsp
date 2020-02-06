@@ -14,11 +14,11 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
-    <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/flexslider.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/responsive.css" type="text/css'/>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css" />
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script defer src="js/bootstrap.min.js"></script>
@@ -314,7 +314,6 @@
                                 <li>本系統銷售票劵與影城現場同步，一旦結帳成功，現場座位就已經同步售出。</li>
                                 <li>請選擇正確的票種，以免影響自身權益。</li>
                             </ul>
-                            <a href="free-trail.html" class="slider-btn slider-g-btn">lETS GET sTARTED</a>
                         </div>
                     </div>
 
@@ -412,14 +411,14 @@
     
     
     <section class="dark-blue">
-        <div class="container">
-            <div class="ready">
-                <h4>Book Your Tickets Now!</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
-                <a href="free-trail.html" class="slider-btn slider-g-btn">lETS GET sTARTED</a>
-            </div>
-        </div>
-    </section>
+		<div class="container">
+			<div class="ready">
+				<h4>現在就立刻購買！</h4>
+				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
+				<a href="<c:url value='/movieIndex#booknow'/>" class="slider-btn">前往購票</a>
+			</div>
+		</div>
+	</section>
 
     <!-- footer -->
     <footer>

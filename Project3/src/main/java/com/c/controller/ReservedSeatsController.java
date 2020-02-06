@@ -50,22 +50,29 @@ public class ReservedSeatsController {
 		this.soservice = soservice;
 	}
 
+	@GetMapping("/insertReservedSeats")
+	public String insertReservedSeats() {
+	
+		// insert seats into reserved seats table;
+		rservice.insertSeats();
+
+		// insert seat number into number of seats table;
+		List<ReservedSeatsBean> list = rservice.getAllSeats(2);
+		System.out.println(list.get(0).getDate());
+		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatsBean().getHallBean().getHallID());
+		nosservice.insertNumberofSeats(nosb);
+		
+		return "bgExample/index";
+	}
+	
 	@GetMapping("/reservedSeats/showSeats")
 	public String getReservedSeats() {
 		//傳入showTimeID
 		
-		// insert seats into reserved seats table;
-//		rservice.insertSeats();
-
-		// insert seat number into number of seats table;
-
-//		List<ReservedSeatsBean> list = rservice.getAllSeats(2);
-//		System.out.println(list.get(0).getDate());
-//		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatsBean().getHallBean().getHallID());
-//		nosservice.insertNumberofSeats(nosb);
-		
 		return "c/showReservedSeats";
 	}
+	
+	
 
 //	應該傳到前端 電影名稱、廳、訂票數、日期
 	@PostMapping("/reservedSeats/showSeats")
