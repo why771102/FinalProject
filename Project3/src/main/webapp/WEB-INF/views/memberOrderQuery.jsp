@@ -73,7 +73,9 @@
 				<td>${mo.ordersID}</td>
 				<td>${mo.memberBean.memberID}</td>
 				<td>${mo.showTimeHistoryBean.run.movie.title}</td>
-				<td>${mo.showTimeHistoryBean.playStartTime}</td>
+				<c:set var="playTime1" value="${mo.showTimeHistoryBean.playStartTime}"/>
+				<c:set var="playTime2" value="${fn:substring(playTime1, 0, 16)}" />
+				<td>${playTime2}</td>
 			</c:forEach>
 			
 
