@@ -62,8 +62,24 @@
 											<div class="form-group">
 												<label class="col-lg-2 control-label">員工名稱:</label>
 												<div class="col-lg-6">
-													<form:input type="text" placeholder=" " id="password"
+													<form:input type="text" placeholder=" " id="empName"
 														class="form-control" path="empName"></form:input>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="col-lg-2 control-label">電子信箱:</label>
+												<div class="col-lg-6">
+													<form:input type="text" placeholder=" " id="email"
+														class="form-control" path="email"></form:input>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="col-lg-2 control-label">密碼:</label>
+												<div class="col-lg-6">
+													<form:input type="text" placeholder=" " id="password"
+														class="form-control" path="password"></form:input>
 												</div>
 											</div>
 
@@ -87,12 +103,12 @@
 											</div>
 
 
-											<div class="form-group">
-												<label class="col-lg-2 control-label">離職日期:</label>
-												<div class="col-lg-6">
-													<form:input type="date" class="form-control" path="endDate"></form:input>
-												</div>
-											</div>
+<!-- 											<div class="form-group"> -->
+<!-- 												<label class="col-lg-2 control-label">離職日期:</label> -->
+<!-- 												<div class="col-lg-6"> -->
+<%-- 													<form:input type="date" class="form-control" path="endDate"></form:input> --%>
+<!-- 												</div> -->
+<!-- 											</div> -->
 
 											<div class="form-group">
 												<label class="col-lg-2 control-label">職稱：</label>

@@ -68,7 +68,7 @@
 							<div id="edit" class="tab-pane">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2 detailed">
-										<h4 class="mb">新增公告</h4>
+										<h4 class="mb">修改公告</h4>
 										<form:form role="form" class="form-horizontal" method='POST'
 											modelAttribute="annoBean" enctype="multipart/form-data">
 
