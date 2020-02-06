@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +26,7 @@ import com.a.service.RunningService;
 import com.a.service.ShowTimeHistoryService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.l.service.mOrdersService;
 import com.m.model.ProductSaleEarnBean;
 
 @Controller
@@ -31,6 +36,7 @@ public class MovieController implements ServletContextAware{
 	ShowTimeHistoryService sthService;
 	RunningService rservice;
 	ServletContext context;
+	mOrdersService service;
 	
 	@Override
 	public void setServletContext(ServletContext servletContext) {
@@ -38,10 +44,11 @@ public class MovieController implements ServletContextAware{
 	}
 	
 	@Autowired
-	public void setService(MovieService mService, ShowTimeHistoryService sthService, RunningService rservice) {
+	public void setService(MovieService mService, ShowTimeHistoryService sthService, RunningService rservice,mOrdersService service) {
 		this.mService = mService;
 		this.sthService = sthService;
 		this.rservice = rservice;
+		this.service=service;
 	}
 	
 	@GetMapping("/movieIndex")
@@ -59,8 +66,16 @@ public class MovieController implements ServletContextAware{
 	}
 	
 	@PostMapping("/purchaseTickets")
-	public String getDatesAfterChoosingMovie(@RequestParam("showTimeBean") String showtimeBean, Model model) {
+	public String getDatesAfterChoosingMovie(@RequestParam("showTimeBean") Integer showtimeBean, Model model,HttpServletRequest request,HttpServletResponse response) {
 		System.out.println("showtimeBean: " + showtimeBean);
+		HttpSession session = request.getSession();
+		ShowTimeHistoryBean sthb=  (ShowTimeHistoryBean) service.getStartTimeByID(showtimeBean);
+		session.setAttribute("ShowTimeHistory", sthb);
+		Cookie cookie = new Cookie("showtimeId",sthb.getShowTimeId().toString());
+	    cookie.setMaxAge(7 * 24 * 60 * 60);
+	    cookie.setPath("/");
+	    response.addCookie(cookie);
+
 //		Staff staff = gson.fromJson(json, Staff.class);
 //		Type listType = new TypeToken<ShowTimeHistoryBean>(){}.getType();
 //		ShowTimeHistoryBean sthb = new Gson().fromJson(showtimeBean, listType);
