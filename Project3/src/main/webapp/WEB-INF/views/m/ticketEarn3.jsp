@@ -69,7 +69,11 @@
 			</tr>
 		</tfoot>
 	</table>
-
+	<form id="submitExcel"
+		action="${pageContext.request.contextPath}/ticketSale/Date.xls"
+		method="POST">
+		<input type="submit" id="exportE" value="Export To Excel">
+	</form>
 <script>
 
 	$(document).ready(function() {
