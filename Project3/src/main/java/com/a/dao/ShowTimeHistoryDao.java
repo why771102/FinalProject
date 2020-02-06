@@ -42,7 +42,9 @@ public interface ShowTimeHistoryDao {
 		
 		
 		//Methods written to be used in movie controller
-		List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay);
+		List<RunningBean> getDistinctRunID(LocalDateTime startDay);
+		
+		public RunningBean getDistinctMovies(Integer runID);
 		
 		List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime);
 }
