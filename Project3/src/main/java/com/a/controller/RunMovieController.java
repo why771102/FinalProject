@@ -443,7 +443,7 @@ public class RunMovieController implements ServletContextAware{
 //		System.out.println("123");
 //		return "a/showAllMovie";
 //	}
-
+    //ok
 	@GetMapping(value = "/Method/test") // URL 跟<a href='movie/show'> 相關
 	public String testMethod(Model model) {
 		System.out.println("TestMethod");
@@ -455,24 +455,25 @@ public class RunMovieController implements ServletContextAware{
 		return "index-a";// URL 跟 eclip 擺放位置相關
 
 	}
+	//ok
 	//把showtimemovie 修改
 	@GetMapping(value = "/showTime/update/{date}{time}{hallID}")
 	public String updateData(Model model, HttpServletRequest request, @PathVariable("date") String date ,@PathVariable("time") String time,@PathVariable("hallID") String hallID) {
 		String[] datetime = date.split("\\=");
-		  System.out.println("-----------------------------------------");
+		  System.out.println("---------showUpadate--------------------------------");
           System.out.println("0"+datetime[0]);
           System.out.println("1"+datetime[1]);
           System.out.println("2"+datetime[2]);
-          for(String a :datetime) {
-        	  System.out.println("datetime:"+a);
-          }
-		System.out.println("date"+date);
-		System.out.println("time"+time);
+          //for(String a :datetime) {
+        //	  System.out.println("datetime:"+a);
+         // }
+		//System.out.println("date"+date);
+		//System.out.println("time"+time);
 
 		System.out.println("check 2");
 		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		String str =datetime[0]+" "+datetime[1];
-		System.out.println("str:"+str);
+		//System.out.println("str:"+str);
 		LocalTime time1 = LocalTime.parse(str,df);
 		LocalDate day1 = LocalDate.parse(str,df);
 		if(time1.getHour()<=2) {
@@ -480,6 +481,7 @@ public class RunMovieController implements ServletContextAware{
 		}else {}
 		List<ShowTimeHistoryBean> STHB_List =new ArrayList();
 		  System.out.println("-----------------------------------------");
+		  //取電影
 		if(datetime[2] != "All") {
 			System.out.println("not All");
 			STHB_List =mService.getshowMovie(day1);
@@ -493,6 +495,7 @@ public class RunMovieController implements ServletContextAware{
 		List<ShowtimeBean> oneDayShowTime = new ArrayList<>();
 		
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+	
 		for(ShowTimeHistoryBean sthb :STHB_List) {
 			System.out.println(sthb.getPlayStartTime()+"-------------------------------");
 		
@@ -504,7 +507,10 @@ public class RunMovieController implements ServletContextAware{
 		  System.out.println("-----------------------------------------");
 		System.out.println("check one");
 		List<HallOrderBean> hob_list = hoService.getHallOrder(day1);
+		System.out.println("hob_list_size"+hob_list.size());
+		System.out.println("oneDayShowTime_size"+oneDayShowTime.size());
 		if(hob_list.size()>0) {
+		
 		   for(HallOrderBean hob : hob_list) {
 			LocalDateTime dateTime = LocalDateTime.parse(hob.getStartTime(), fmt);
 			oneDayShowTime.add(new ShowtimeBean(0, (hob.getOrderHours()*60), hob,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString(), hob.getHb()));
@@ -513,19 +519,19 @@ public class RunMovieController implements ServletContextAware{
 		}
 		//取現在可以上映的movie
 		List<RunningBean> rb_List=mService.getAllOnMoive(day1);
-		
+		System.out.println("oneDayShowTime_size2:"+oneDayShowTime.size());
 		//有幾廳
-		System.out.println("check 1111111");
+		
 		List<HallBean> hb_list = hService.getAllHalls(0);
 		int Hallcount = hb_list.size();// 有幾個聽
 		
-		System.out.println("check 22222");
+	
 		Gson gson = new Gson();
 	
 		String runMovie = gson.toJson(rb_List);
 		String hall = gson.toJson(hb_list);
 		String showTime = gson.toJson(oneDayShowTime);
-	    System.out.println(showTime);
+//	    System.out.println(showTime);
 		request.setAttribute("showTime", showTime);
 		request.setAttribute("hall", hall);
 		request.setAttribute("runMovie", runMovie);
@@ -535,7 +541,7 @@ public class RunMovieController implements ServletContextAware{
 		return "a/updateShowTime";
 	}
 
-
+//ok
 	@GetMapping(value = "/movie/autoRun") // URL 跟<a href='movie/show'> 相關
 	public String RunningMovie(Model model, HttpServletRequest request) {
 		List<ShowtimeBean> AllDayShowTime = new ArrayList();
@@ -602,13 +608,14 @@ public class RunMovieController implements ServletContextAware{
 		boolean result =false;
 		System.out.println(sthb_list.size());
 		for(ShowTimeHistoryBean sthb: sthb_list) {
+			if(sthb.getShowTimeId()!=0) {
 			System.out.println(sthb.getPlayStartTime());
 			System.out.println(sthb.getHallID());
 			System.out.println(sthb.getRunID());
 			System.out.println(sthb.getShowTimeId());
 			 result=mService.updateShowTimeHistoryBean(sthb);
 			System.out.println(result);
-			
+			}else {}
 		}
 		if(result == true) {
 		
@@ -738,40 +745,71 @@ public class RunMovieController implements ServletContextAware{
 		//取未來上映的電影 day  ~ 一個月
 		System.out.println(pageNo);
 		int totalPages= 1;
+		
 		LocalDate today=LocalDate.now();
 		List<RunningBean>rb_list=mService.getComingSoonMovie();
 		//List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
-		if(rb_list.size()>8 && rb_list.size()%8>0) {
-			totalPages = (rb_list.size()/8)+1;
-		}else if(rb_list.size()>8 && rb_list.size()%8==0){
-			totalPages = (rb_list.size()/8);
-		}else {}
 		
-		
+		//movie要從第幾個開始
 		int movieNum =(pageNo-1)*8;
-		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
-		System.out.println("rb_list:"+rb_list.size());
+		  //從第幾個(顯示到幾個(onePageNum)
 		int onePageNum =0;
-		if(rb_list.size()-movieNum>0) {
-			System.out.println("第二頁");
-			onePageNum=8+movieNum;
-		}else if(pageNo == 1) {
-			System.out.println("回第一頁");
-			movieNum =0;
-			onePageNum=rb_list.size()-1;
-			totalPages=1;
-		}
-		else {
-			onePageNum=rb_list.size()%8;
-		}
+        System.out.println("rb_size:"+rb_list.size());
+        if(rb_list.size()%8 ==0) {
+        	if(rb_list.size() == 0) {
+        		System.out.println("no Page");
+        		onePageNum =pageNo*0;
+        	}else {
+        		totalPages =rb_list.size()/8;
+        		 onePageNum =totalPages*8;
+        	}
+        }else {
+        	if(rb_list.size()>8) {
+        		totalPages =rb_list.size()/8+1;
+        		onePageNum =pageNo*8 +rb_list.size()%8;
+        		
+        	}else {
+        		//少於8個
+        		totalPages=1;
+        		onePageNum =rb_list.size();
+        	}
+        }
+        
+//        
+//		if(rb_list.size()>8 && rb_list.size()%8>0) {
+//			totalPages = (rb_list.size()/8)+1;
+//		}else if(rb_list.size()>8 && rb_list.size()%8==0){
+//			totalPages = (rb_list.size()/8);
+//		}else {}
+		
+	
+		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
+		
+        //一頁要有幾個
+	
+//		if(rb_list.size()-movieNum>0) {
+//			System.out.println("第二頁");
+//			onePageNum = 8+movieNum;
+//		}else if(pageNo == 1) {
+//			System.out.println("回第一頁");
+//			movieNum =0;
+//			onePageNum=rb_list.size()-1;
+//			totalPages=1;
+//		}
+//		else {
+//			onePageNum=rb_list.size()%8;
+//		}
+//		
+		
+		System.out.println(onePageNum);
 		for(int i=movieNum;i<onePageNum;i++) {
 			System.out.println("i:"+i);
 			System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
 			rb_page_list.add(rb_list.get(i));
 		}
         System.out.println(rb_page_list.size());
-        request.setAttribute("pageNo", pageNo);
-        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("pageNo", pageNo);//ok
+        request.setAttribute("totalPages", totalPages); //ok
         Gson gson =new Gson();
         model.addAttribute("rb_page_list",rb_page_list);
         request.setAttribute("rb_list", gson.toJson(rb_page_list));
@@ -856,7 +894,7 @@ public class RunMovieController implements ServletContextAware{
 		//get showTime by runningBean
 		RunningBean run = mService.getRunningBeanById(runID);
 		System.out.println("電影名稱:"+run.getMovie().getTitle());
-		
+/*		
 		LocalDate today = LocalDate.now();
 		LocalDate endDay = today.plusWeeks(1);
 		List<ShowTimeHistoryBean> sthb_list= new ArrayList<>();
@@ -875,12 +913,12 @@ public class RunMovieController implements ServletContextAware{
 			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
 			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
 		}
-		
-		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
-		model.addAttribute("sthb_list1",sthb_list);
-		model.addAttribute("oneMovie1",oneMovie);
-		request.setAttribute("sthb_list",gson.toJson(sthb_list) );
-		request.setAttribute("oneMovie",gson.toJson(oneMovie) );
+		*/
+//		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
+		model.addAttribute("run",run);
+//		model.addAttribute("oneMovie1",oneMovie);
+		request.setAttribute("run",gson.toJson(run) );
+//		request.setAttribute("oneMovie",gson.toJson(oneMovie) );
 		
 //		String  runID =rb.getRunID().toString();
 		

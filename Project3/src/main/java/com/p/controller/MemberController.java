@@ -130,6 +130,12 @@ public class MemberController {
 		//要做無身分證字號的頁面
 	}
 	
+	//以下為會員中心的controller
+	@RequestMapping(value = "/memberCenter")
+	public String memberCenter() {
+		return "memberCenter";
+	}
+	
 	//以下為導入登入頁面的controller
 	@RequestMapping(value="/member/login", method = RequestMethod.GET)
 	public String login(Model model){

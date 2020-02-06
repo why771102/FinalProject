@@ -393,14 +393,9 @@ div.submitButton {
 			<div class="wrapStart" id="product_left">
 
 				<!-- 圖片輪播  -->
-				<div class="wrap" id="pictureBG" style="display: none;">
-					<div class="w3-content wrap" style="width: 100%; height: 100vh;">
-
-						<img class="mySlides Bimg" src="<c:url value='/products/${productList[0].productID}' />" style="display: none">
-						<img class="mySlides Bimg" src="b.jpg"> <img
-							class="mySlides Bimg" src="c.png" style="display: none"> <img
-							class="mySlides Bimg" src="c.png" style="display: none">
-
+				<div class="wrap" id="pictureBG">
+					<img src="<c:url value='/products/${productList[0].productID}' />"
+						alt="">
 						<!-- small picture -->
 						<div class="wrapRow"
 							style="height: 15vh; width: 80%; padding: 2vh;">
@@ -435,14 +430,56 @@ div.submitButton {
 
 						</div>
 						<!-- small picture -->
+				</div>
+					<div class="w3-content wrap" style="width: 100%; height: 100vh;">
+
+						<img class="mySlides Bimg" src="<c:url value='/products/${productList[0].productID}' />" style="display: none">
+						<img class="mySlides Bimg" src="b.jpg"> <img
+							class="mySlides Bimg" src="c.png" style="display: none"> <img
+							class="mySlides Bimg" src="c.png" style="display: none">
+
+<!-- 						small picture -->
+<!-- 						<div class="wrapRow" -->
+<!-- 							style="height: 15vh; width: 80%; padding: 2vh;"> -->
+<!-- 							<div class="w3-col s4 " -->
+<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
+<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="a.jpg" -->
+<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
+<!-- 									onclick="currentDiv(1)"> -->
+<!-- 							</div> -->
+
+<!-- 							<div class="w3-col s4 " -->
+<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
+<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="b.jpg" -->
+<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
+<!-- 									onclick="currentDiv(2)"> -->
+<!-- 							</div> -->
+
+<!-- 							<div class="w3-col s4 " -->
+<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
+<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="c.png" -->
+<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
+<!-- 									onclick="currentDiv(3)"> -->
+<!-- 							</div> -->
+
+<!-- 							<div class="w3-col s4 " -->
+<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
+<%-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[0].productID}' />" --%>
+<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
+<!-- 									onclick="currentDiv(4)"> -->
+<!-- 							</div> -->
+
+
+<!-- 						</div> -->
+<!-- 						small picture -->
 					</div>
 				</div>
 				<!-- 圖片輪播  -->
 				<!-- 圖片  -->
-				<div class="wrap" id="pictureBG">
-					<img src="<c:url value='/products/${productList[0].productID}' />"
-						alt="">
-				</div>
+<!-- 				<div class="wrap" id="pictureBG"> -->
+<%-- 					<img src="<c:url value='/products/${productList[0].productID}' />" --%>
+<!-- 						alt=""> -->
+<!-- 				</div> -->
 
 
 				<!-- 圖片  -->

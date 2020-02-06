@@ -53,12 +53,12 @@
 	
 		<c:forEach var="run" items="${rb_page_list}">
 			<div class="col-md-3 col-sm-4 col-xs-6"
-				onclick='formsubmit(${run.runID})'>
+				onclick='formsubmit(${run.runID})' style='margin:40px 0px;'>
 				<div class="movie1">
 					<div>
 						<!--                         修改處from line 22 to 26 -->
-						<%-- 					<img src="<c:url value='/getPicture/${run.movie.movieID}' />" --%>
-						width="70%" height="50%">
+					<img src='<c:url value='/getPicture/${run.movie.movieID}' />'
+						width="70%" height="70%">
 					</div>
 					<div class="m-name">
 						<h3>${run.movie.title}</h3>
@@ -311,10 +311,11 @@
 				      for(let i=0 ;i<a.length;i++){
 				    	  
 				    	  $("#moviePlusHere").append(
-				    			  "<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' >"+
+				    			  "<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' style='margin:40px 0px;' >"+
 				    		  "<div class='movie1'>"+
 								"<div>"+
-	                               //圖片
+								"<img src='<c:url value='/getPicture/"+a[i].run.movie.movieID+"' />'"+
+								"width='70%' height='70%'>"+
 								"</div>"+
 								"<div class='m-name'>"+
 									"<h3>"+a[i].movie.title+"</h3>"+
