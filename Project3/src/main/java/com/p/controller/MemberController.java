@@ -187,7 +187,7 @@ public class MemberController {
 			model.addAttribute("errorMsgMap", errorMsgMap);
 			return "login";
 		}
-		return "a/movieTheatreIndex"; //到時候要導到LoginSucess頁面
+		return "redirect:/movieIndex"; //到時候要導到LoginSucess頁面
 	}
 	
 	//以下為登出方法
@@ -202,7 +202,7 @@ public class MemberController {
             cookie.setPath("/");
             response.addCookie(cookie);
 		}
-		return "redirect:/";
+		return "redirect:/";                     
 	}
 	
 	
