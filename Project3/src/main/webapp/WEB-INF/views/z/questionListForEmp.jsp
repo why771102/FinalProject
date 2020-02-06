@@ -2,9 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 <link href="${pageContext.request.contextPath}/img/favicon.png"
 	rel="icon">
 <link href="${pageContext.request.contextPath}/img/apple-touch-icon.png"
@@ -83,7 +91,7 @@
 								<th style="width: 90px">客服編號</th>
 								<th>會員</th>
 								<th>狀態</th>
-								<th></th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -95,9 +103,6 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -105,58 +110,8 @@
 
 			</section>
 		</section>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	<section>
-		<div>
-			<div style="text-align: center">
-				<h1>客服清單</h1>
-			</div>
-		</div>
-	</section>
-	<hr
-		style="height: 1px; border: none; color: #333; background-color: #333;">
-	<div>
-		<table>
-		<tr>
-			<td>客服編號</td>
-			<td>會員</td>
-			<td>狀態</td>
-			<td></td>
-		</tr>
-			<c:forEach var="ques" items="${allQuestion}">
-		<tr>
-			<td>${ques.questionId}</td>
-			<td>${ques.memberBean.name}</td>
-			<td>${ques.questionStatusBean.statusName}</td>
-			<td><a href="questionRep/${ques.questionId}">查看</a></td>
-		</tr>
-			</c:forEach>
-		</table>
-	</div>
-	<br>
+
+	
 	<a href="question">新增詢問</a>
 	<!--footer start-->
 		<jsp:include page="bg-footer.jsp">
@@ -192,7 +147,7 @@
 							dataTable.row.add([
 				value.questionId, value.memberBean.name, value.questionStatusBean.statusName,
 				function(data,type,row) {
-					var html = "<a href='questionRep/" + value.questionId + "'>修改公告</a>";
+					var html = "<a href='questionRep/" + value.questionId + "'>查看</a>";
 					return html;
 					} 
 					]).draw();

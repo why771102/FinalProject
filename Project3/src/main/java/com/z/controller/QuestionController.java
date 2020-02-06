@@ -116,7 +116,7 @@ public class QuestionController {
 	}
 	
 	
-	@RequestMapping(value = "/questionListForEmp")
+	@RequestMapping(value = "/questionListForEmpAjax" ,produces="application/json;charset=UTF-8;")
 	public @ResponseBody String getAllQuestionForEmpAjax(Model model, HttpServletRequest request) {
 		
 		List<QuestionBean> allQuestion = service.allQuestionForEmp();
