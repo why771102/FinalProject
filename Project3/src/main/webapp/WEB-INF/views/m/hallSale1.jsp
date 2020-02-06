@@ -40,7 +40,7 @@
 	<h2 style="text-align: center">包廳銷售總覽</h2>
 	<div>
 		<div id="timePicker"
-			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;">
+			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
 			<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 				class="fa fa-caret-down"></i>
 		</div>

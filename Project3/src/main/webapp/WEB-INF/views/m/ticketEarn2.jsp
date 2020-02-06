@@ -6,21 +6,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Dashboard">
+<meta name="keyword"
+	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>ticketEarn2</title>
+<title>票卷利潤細節</title>
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- Favicons -->
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!--external css-->
+<link
+	href="${pageContext.request.contextPath}/lib/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="${pageContext.request.contextPath}/css/bg-style.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style-responsive.css"
+	rel="stylesheet">
 <!-- table bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <!-- timepicker -->
-<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
