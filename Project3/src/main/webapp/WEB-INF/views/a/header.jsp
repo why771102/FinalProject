@@ -40,7 +40,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="logo-hdr" width="180">
+                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>"><img src="<c:url value='/img/logo-1.png'/>" class="logo-hdr" width="180">
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse my-nav-collapse">
