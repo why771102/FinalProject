@@ -127,11 +127,7 @@
 
     </footer>
        
-    <!-- footer -->
-     <div class="premium-tagline">
-        <p>Created By: <a href="https://www.premium-themes.co/" target="_blank">Premium Themes</a></p>
-    </div>
-    <!-- footer -->
+
 
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

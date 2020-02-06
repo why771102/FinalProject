@@ -12,7 +12,12 @@ import java.util.List;
 public class Testing {
 
 	public static void main(String[] args) {
-//		LocalDate currentDate = LocalDate.now();
+		LocalDateTime ldt= LocalDateTime.now();
+		String time = ldt.toLocalDate().toString() + " " + ldt.toLocalTime().toString();
+		;
+		
+//		String time = ldt.getHour() +":" + ldt.getMinute() + ":"+ ldt.getSecond();
+		System.out.println("time" + time);
 //		LocalDate currentDatePlusAWeek = currentDate.plusDays(7);
 //		String datestr = currentDatePlusAWeek.toString();
 //		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,14 +68,14 @@ public class Testing {
 //		String [] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 //		List<String> hallID = Arrays.asList(chars);
 	
-		List<String> hallID = getHallIDs();
-		for(int x = 0; x < hallID.size(); x++) {
-			System.out.println(hallID.get(x));
-		}
-	
-	}
-	private static List<String> getHallIDs() {
-        return Arrays.asList("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
+//		List<String> hallID = getHallIDs();
+//		for(int x = 0; x < hallID.size(); x++) {
+//			System.out.println(hallID.get(x));
+//		}
+//	
+//	}
+//	private static List<String> getHallIDs() {
+//        return Arrays.asList("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
 	}
 
 }

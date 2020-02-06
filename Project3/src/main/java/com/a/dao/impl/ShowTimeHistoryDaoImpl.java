@@ -251,6 +251,7 @@ return false;
 	public List<ShowTimeHistoryBean> getDistinctMovieID(LocalDateTime startDay){
 		Session session = factory.getCurrentSession();
 		LocalDate et = startDay.toLocalDate();
+		String now = startDay.toLocalDate().toString() + " " + startDay.toLocalTime().toString();
 		System.out.println("startDay:" + startDay);
 		String enddate = (et.plusDays(7).toString())+" "+"00:00:00"; 
 		System.out.println("enddate:" + enddate);
@@ -258,7 +259,7 @@ return false;
 		List<ShowTimeHistoryBean> list = new ArrayList<>();
 		try {
 		list = session.createQuery(hql).setParameter("enddate", enddate)
-								.setParameter("startdate", startDay)
+								.setParameter("startdate", now)
 								.getResultList();
 		}catch(Exception e) {
 			e.printStackTrace();

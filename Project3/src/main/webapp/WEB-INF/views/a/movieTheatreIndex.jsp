@@ -336,7 +336,7 @@
                         <form id="purchaseTicket"
                         	action="${pageContext.request.contextPath}/purchaseTickets"
 							method="POST">
-							<input type="submit" id="pt" value="前往訂票">
+							<div class="slider-btn slider-g-btn" id="pt">前往訂票</div>
                        
                         </form>
                     </div>
@@ -568,6 +568,9 @@
     				$("#login").hide();
     		}
     	}
+    	
+    	document.getElementById("pt").submit();
+    		
     </script>
 
 

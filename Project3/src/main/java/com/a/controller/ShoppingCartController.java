@@ -104,7 +104,7 @@ public class ShoppingCartController implements ServletContextAware{
 			SCOrdersBean scob = new SCOrdersBean();
 			scob.setMemberID(memberID);
 			LocalDateTime ldt = LocalDateTime.now();
-			String orderDate = ldt.toString();
+			String orderDate = ldt.toLocalDate().toString() + " " + ldt.toLocalTime().toString();
 			scob.setOrdDate(orderDate);
 			scoservice.insertOrder(scob);
 			System.out.println("Shopping cart is empty");
@@ -214,7 +214,10 @@ public class ShoppingCartController implements ServletContextAware{
 		if(SCOrderID == null) {
 			SCOrdersBean scob = new SCOrdersBean();
 			scob.setMemberID(memberID);
+			LocalDateTime ldt = LocalDateTime.now();
+			String orderDate = ldt.toLocalDate().toString() + " " + ldt.toLocalTime().toString();
 			scoservice.insertOrder(scob);
+			scob.setOrdDate(orderDate);
 			SCOrderID = scservice.getShoppingCart(memberID);
 		}
 		
