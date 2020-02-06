@@ -130,6 +130,12 @@ public class MemberController {
 		//要做無身分證字號的頁面
 	}
 	
+	//以下為會員中心的controller
+	@RequestMapping(value = "/memberCenter")
+	public String memberCenter() {
+		return "memberCenter";
+	}
+	
 	//以下為導入登入頁面的controller
 	@RequestMapping(value="/member/login", method = RequestMethod.GET)
 	public String login(Model model){
@@ -187,7 +193,7 @@ public class MemberController {
 			model.addAttribute("errorMsgMap", errorMsgMap);
 			return "login";
 		}
-		return "a/movieTheatreIndex"; //到時候要導到LoginSucess頁面
+		return "redirect:/movieIndex"; //到時候要導到LoginSucess頁面
 	}
 	
 	//以下為登出方法
@@ -202,7 +208,7 @@ public class MemberController {
             cookie.setPath("/");
             response.addCookie(cookie);
 		}
-		return "redirect:/";
+		return "redirect:/";                     
 	}
 	
 	

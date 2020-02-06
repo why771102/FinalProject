@@ -58,7 +58,7 @@
 				<a href='member/ticket'>我的票夾</a><BR>
 			</td>
 			<td width="350"><p align="left" />
-				<a href="member/logout">無</a><BR>
+				<a href="memberCenter">會員中心</a><BR>
 			</td>
 		</tr>
 		
