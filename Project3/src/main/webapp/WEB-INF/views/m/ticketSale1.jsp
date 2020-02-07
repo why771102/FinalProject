@@ -175,7 +175,7 @@
 						<br>
 					<font size="2" face="Courier New" >
 						<table id="example" class="display"
-							style="width: 100%; text-align: center background:#eaeaea !important; box-shadow: none !important;">
+							style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
 							<thead style="background: #4ECDC4; color: white;">
 								<tr>
 									<th style="border-bottom: none;"></th>
@@ -600,6 +600,7 @@
 				Highcharts.chart('container1', {
 
 					chart : {
+						backgroundColor: '#FFF8DC',
 						type : 'column',
 						styledMode : true
 					},

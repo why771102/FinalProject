@@ -198,18 +198,14 @@
 							</tbody>
 							<tfoot>
 								<tr>
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
 								</tr>
 							</tfoot>
 						</table></font>
 						<form id="submitExcel"
 							action="${pageContext.request.contextPath}/product/sale/productSale.xls"
 							method="POST">
-							<input type="submit" id="exportE" value="Export To Excel">
+<!-- 							<i class="fa fa-file-excel-o" aria-hidden="true"></i> -->
+							<input type="submit" id="exportE" value="Export To Excel" >
 						</form>
 					</div>
 				</div>
@@ -235,8 +231,7 @@
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 	<script>
-		(function($) {
-			
+		(function($) {		
 			$(document).ready(function() {
 				var t = $('#example').DataTable({
 					"columnDefs" : [ {
@@ -342,12 +337,11 @@
 																			cell.innerHTML = i + 1;
 																		});
 													}).draw();
-
+									//excel
 									document.getElementById("submitExcel").innerHTML += "<input type='hidden' name='exportExcel' value='"
-											+ JSON
-													.stringify(window.productsale)
-											+ "'>" //datatable content
-
+											+ JSON.stringify(window.productsale)+ "'>" 
+											
+											//datatable content
 											//傳送cate selection值
 									$("#categoryNames")
 											.change(

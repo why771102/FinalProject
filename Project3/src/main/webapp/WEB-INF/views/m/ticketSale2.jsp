@@ -337,6 +337,7 @@
 		Highcharts.chart('container1', {
 
 			chart : {
+				backgroundColor: '#FFF8DC',
 				type : 'column',
 				styledMode : true
 			},

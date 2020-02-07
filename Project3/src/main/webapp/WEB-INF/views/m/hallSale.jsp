@@ -14,7 +14,7 @@
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>76影城</title>
+<title>廳院出借總攬</title>
 <!-- jQuery -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -91,9 +91,9 @@
 						<h2 style="text-align: center">包廳銷售總覽</h2>
 						<br>
 						<!-- chart -->
-						<div id="container1"
-							style="height: 430px; max-width: 600px; margin: 0 auto"></div>
-						<br>
+<!-- 						<div id="container1" -->
+<!-- 							style="height: 430px; max-width: 600px; margin: 0 auto;"></div> -->
+<!-- 						<br> -->
 						<!-- timpicker -->
 						<div
 							style="text-align: -webkit-right;">
@@ -103,7 +103,6 @@
 									class="fa fa-caret-down"></i>
 							</div>
 						</div>
-						<br>
 						<div class="content-panel" style="background:#eaeaea !important; box-shadow: none !important;">
 						<font size="4" face="Courier New" >
 							<table id="example"
@@ -122,16 +121,10 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th></th>
-										<th></th>
-										<th></th>
-										<th></th>
-										<th></th>
 									</tr>
 								</tfoot>
 							</table></font>
 							</div>
-							<br>
 							<form id="submitExcel"
 								action="${pageContext.request.contextPath}/hale/sale/hallSale.xls"
 								method="POST">
@@ -156,9 +149,9 @@
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<!-- chart -->
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<!-- 	<script src="https://code.highcharts.com/highcharts.js"></script> -->
+<!-- 	<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+<!-- 	<script src="https://code.highcharts.com/modules/export-data.js"></script> -->
 
 	<script>
 		(function($) {
@@ -217,7 +210,7 @@
 																.DataTable();
 														dataTable.clear()
 																.draw();
-														editInfo(hall); //chart function
+// 														editInfo(hall); //chart function
 														$
 																.each(
 																		hall,
@@ -309,77 +302,78 @@
 
 			// 		$(document).ready(function() {
 			//chart percentage and data
-			function editInfo(hall) {
-				var editData = [];
-				for (let a = 0; a < (hall).length; a++) {
-					var hallID = hall[a].hallID;
-					var subtotal = Math
-							.round((hall[a].hallSubtotal / hall[a].subtotal) * 100);
+// 			function editInfo(hall) {
+// 				var editData = [];
+// 				for (let a = 0; a < (hall).length; a++) {
+// 					var hallID = hall[a].hallID;
+// 					var subtotal = Math
+// 							.round((hall[a].hallSubtotal / hall[a].subtotal) * 100);
 
-					var data = {
-						name : hallID + "廳",
-						y : subtotal
-					};
-					editData.push(data);
-				}
-				window.hallData = editData;
+// 					var data = {
+// 						name : hallID + "廳",
+// 						y : subtotal
+// 					};
+// 					editData.push(data);
+// 				}
+// 				window.hallData = editData;
+//
+// 				//chart
+// 				// Make monochrome colors
+// 				var pieColors = (function() {
+// 					var colors = [], base = Highcharts.getOptions().colors[0], i;
+// 					for (i = 0; i < 10; i += 1) {
+// 						// Start out with a darkened base color (negative brighten), and end
+// 						// up with a much brighter color
+// 						colors.push(Highcharts.Color(base)
+// 								.brighten((i - 3) / 7).get());
+// 					}
+// 					return colors;
+// 				}());
 
-				//chart
-				// Make monochrome colors
-				var pieColors = (function() {
-					var colors = [], base = Highcharts.getOptions().colors[0], i;
-					for (i = 0; i < 10; i += 1) {
-						// Start out with a darkened base color (negative brighten), and end
-						// up with a much brighter color
-						colors.push(Highcharts.Color(base)
-								.brighten((i - 3) / 7).get());
-					}
-					return colors;
-				}());
-
-				// Build the chart
-				Highcharts
-						.chart(
-								'container1',
-								{
-									chart : {
-										plotBackgroundColor : null,
-										plotBorderWidth : null,
-										plotShadow : false,
-										type : 'pie'
-									},
-									title : {
-										text :
-										// 																"<h1>包廳銷售總覽</h1>"
-										// 																	+ '<br>'+
-										window.start + " 到 " + window.end + ""
-									},
-									tooltip : {
-										pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
-									},
-									plotOptions : {
-										pie : {
-											allowPointSelect : true,
-											cursor : 'pointer',
-											colors : pieColors,
-											dataLabels : {
-												enabled : true,
-												format : '<b>{point.name}</b><br>{point.percentage:.1f} %',
-												distance : -50,
-												filter : {
-													property : 'percentage',
-													operator : '>',
-													value : 4
-												}
-											}
-										}
-									},
-									series : [ {
-										data : window.hallData
-									} ]
-								});
-			}
-			//end of chart
+// 				// Build the chart
+// 				Highcharts
+// 						.chart(
+// 								'container1',
+// 								{
+// 									chart : {
+// 										backgroundColor: '#DCDCDC',
+// 										plotBackgroundColor : null,
+// 										plotBorderWidth : null,
+// 										plotShadow : false,
+// 										type : 'pie'
+// 									},
+// 									title : {
+// 										text :
+// 										// 																"<h1>包廳銷售總覽</h1>"
+// 										// 																	+ '<br>'+
+// 										window.start + " 到 " + window.end + ""
+// 									},
+// 									tooltip : {
+// 										pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+// 									},
+// 									plotOptions : {
+// 										pie : {
+// 											allowPointSelect : true,
+// 											cursor : 'pointer',
+// 											colors : pieColors,
+// 											dataLabels : {
+// 												enabled : true,
+// 												format : '<b>{point.name}</b><br>{point.percentage:.1f} %',
+// 												distance : -50,
+// 												filter : {
+// 													property : 'percentage',
+// 													operator : '>',
+// 													value : 4
+// 												}
+// 											}
+// 										}
+// 									},
+// 									series : [ {
+// 										data : window.hallData
+// 									} ]
+// 								});
+// 			}
+// 			//end of chart
 		})(jQuery);
 	</script>
 
