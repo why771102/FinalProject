@@ -39,7 +39,7 @@
 	}
 	
  	footer{ 
- 		width:2225px;
+ 		width:2425px;
  	} 
 </style>
 
@@ -74,7 +74,7 @@
 			</h3>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="content-panel" style="width:2000px;" >
+					<div class="content-panel" style="width:2200px;" >
 						<table class="table">
 							<thead>
 								<tr>

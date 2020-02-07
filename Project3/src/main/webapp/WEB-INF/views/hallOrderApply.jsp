@@ -253,9 +253,9 @@
 			$("#date").val("2020-03-09");
 			$("#purpose").prop("selected", true);
 			$("#hallPurposeDetail").val("我們是XXX公司，想租借貴戲院影廳來舉辦新國片演員見面會");
-			$("#contactPerson").val("溫努比");
+			$("#contactPerson").val("范書緯");
 			$("#mobile").val("0918362789");
-			$("#mail").val("p29296848@gmail.com");
+			$("#mail").val("fanshuwei1995@gmail.com");
 			
 			
 // 			$("#start1").prop("selected", true);
