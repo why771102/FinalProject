@@ -29,11 +29,19 @@
     .navbar-default .navbar-nav > li.free-trial-btn {
     	margin-left: 13px;
 	}
+	
+	header{
+		position: fixed;
+    	width: 100%;
+    	display: block;
+    	top: 0;
+    	transition: top 0.3s;
+	}
     </style>
 </head>
 
 <body>
-    <header>
+    <header id="header">
 <!-- header -->
         <nav class="navbar navbar-default navbar-static-top my-navigation">
             <div class="container">
@@ -98,6 +106,17 @@
 				$("#register").hide();
 				$("#login").hide();
 		}
+	}
+	
+	var prevScrollpos = window.pageYOffset;
+	window.onscroll = function() {
+	var currentScrollPos = window.pageYOffset;
+	  if (prevScrollpos > currentScrollPos) {
+	    document.getElementById("header").style.top = "0";
+	  } else {
+	    document.getElementById("header").style.top = "-65px";
+	  }
+	  prevScrollpos = currentScrollPos;
 	}
     </script>
 </body>
