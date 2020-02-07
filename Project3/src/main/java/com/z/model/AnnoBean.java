@@ -33,6 +33,7 @@ public class AnnoBean implements Serializable{
 	@Column(columnDefinition = "smalldatetime")
 	String endTime;
 	String title;
+	@Column(columnDefinition = "NVARCHAR(MAX)")
 	String content;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

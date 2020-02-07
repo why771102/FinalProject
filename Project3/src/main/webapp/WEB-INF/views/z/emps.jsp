@@ -95,13 +95,14 @@
 						</tfoot>
 					</table>
 				</div>
-	<!--footer start-->
+	
+		</section>
+		<!--footer start-->
 			<jsp:include page="bg-footer.jsp">
 				<jsp:param name="e" value="1" />
 				<jsp:param name="f" value="1" />
 			</jsp:include>
 		<!--footer end-->
-		</section>
 	</section>
 </section>
 	<script type="text/javascript" charset="utf8"
