@@ -33,10 +33,10 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
+<!-- Custom styles for jueryDataTable -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 
 <!-- =======================================================
@@ -77,9 +77,7 @@
 		<!--main content start-->
 		<section id="main-content">
 			<section class="wrapper site-min-height">
-				<h3>
-					<i class="fa fa-angle-right"></i> Blank Page
-				</h3>
+				
 				<div class="row mt">
 					<div class="col-lg-12">
 						<!-- <p>Place your content here.</p> -->
@@ -142,6 +140,9 @@
 	</section>
 
 	<!-- put Javascript  here-->
+
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
 		$(document).ready(function() {
 			$("#table").dataTable();
@@ -178,15 +179,7 @@
 			console.log(time);
 			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"="+time+"="+hallID);
 
-// 			$.ajax({
-// 				url : "${pageContext.request.contextPath}/showTime/upadate",
-// 				data : {date: date,time:time},
-// 				type : "POST",
-// 				success : function() {
-// 					alert("修改成功");
-// // 					window.location.href = "${pageContext.request.contextPath}/showTime/upadate";
-// 				}
-// 			});
+
 		}
 		
 		

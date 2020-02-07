@@ -27,7 +27,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
-
+<title>76影城</title>
 
 </head>
 <body>
@@ -78,7 +78,7 @@
 											<div class="form-group">
 												<label class="col-lg-2 control-label">密碼:</label>
 												<div class="col-lg-6">
-													<form:input type="text" placeholder=" " id="password"
+													<form:input type="password" placeholder=" " id="password"
 														class="form-control" path="password"></form:input>
 												</div>
 											</div>

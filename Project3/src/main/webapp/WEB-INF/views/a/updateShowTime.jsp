@@ -13,8 +13,8 @@
 <meta name="author" content="Dashboard">
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <title>showTimeHitory</title>
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>showTimeHitory</title>
 
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
@@ -33,10 +33,10 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
+<!-- Custom styles for jueryDataTable -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" charset="utf8"
-        src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 
 <!-- =======================================================
@@ -46,32 +46,32 @@
     License: https://templatemag.com/license/
   ======================================================= -->
 <!--  =============================CSS put Here============================== -->
-    <style>
-        div {
-            margin-bottom: 10px;
-            position: relative;
-        }
+<style>
+div {
+	margin-bottom: 10px;
+	position: relative;
+}
 
-        input[type="number"] {
-            width: 100px;
-        }
+input[type="number"] {
+	width: 100px;
+}
 
-        input+span {
-            padding-right: 30px;
-        }
+input+span {
+	padding-right: 30px;
+}
 
-        input:invalid+span:after {
-            position: absolute;
-            content: '✖';
-            padding-left: 5px;
-        }
+input:invalid+span:after {
+	position: absolute;
+	content: '✖';
+	padding-left: 5px;
+}
 
-        input:valid+span:after {
-            position: absolute;
-            content: '✓';
-            padding-left: 5px;
-        }
-    </style>
+input:valid+span:after {
+	position: absolute;
+	content: '✓';
+	padding-left: 5px;
+}
+</style>
 <!--  =============================CSS put Here============================== -->
 </head>
 
@@ -165,6 +165,9 @@
 	</section>
 
 	<!-- put Javascript  here-->
+
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
 		//準備movie 有多少個陣列
 
@@ -325,8 +328,8 @@
 			} else {
 				time_obj1.childNodes[0].max = "24:00";
 			}
-
-			alert(value);
+       //改變相同廳改變時間的下排時間
+			/* alert(value); */
 			change_sameHall_otherMovie_time(value, row);
 
 		}

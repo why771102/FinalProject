@@ -62,5 +62,14 @@ public class MemberProductsQueryDaoImpl implements MemberProductsQueryDao {
 		return tb;
 	}
 
+	@Override
+	public List<TicketBean> getTicketBeanByOrdersID2(Integer ordersID) {
+		List<TicketBean> list = new ArrayList<>();
+		String hql = "From TicketBean where ordersID = :ordersID";
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("ordersID", ordersID).getResultList();
+		return list;
+	}
+
 
 }

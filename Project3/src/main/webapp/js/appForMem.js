@@ -60,6 +60,7 @@ function sendMessage() {
 			'name' : nameeee,
 			'questionId' : list[3]
 		}));
+		$("#message").val("");
 	}
 }
 
