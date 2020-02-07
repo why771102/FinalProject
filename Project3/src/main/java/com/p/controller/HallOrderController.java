@@ -58,7 +58,7 @@ public class HallOrderController {
 		int nMID = Integer.parseInt(mID);
 		hob.setMemberID(nMID);
 		service.hallOrderApply(hob);
-		return "hallOrderApply";
+		return "hallOrderApplySuccess";
 	}
 	
 	//此為動態新增Hall欄位的
