@@ -99,6 +99,7 @@
 
 .highcharts-axis.highcharts-color-0 text {
 	fill: #7cb5ec;
+	font-size: 18px;
 }
 
 .highcharts-color-1 {
@@ -112,10 +113,11 @@
 
 .highcharts-axis.highcharts-color-1 text {
 	fill: #90ed7d;
+	font-size: 18px;
 }
 
 .highcharts-yaxis .highcharts-axis-line {
-	stroke-width: 2px;
+	stroke-width: 0.5px;
 }
 </style>
 </head>
@@ -152,41 +154,32 @@
 	<br>
 	<div id="container1"
 	style="min-width: 310px; height: 400px; max-width: 700px; margin: 0 auto"></div>
+	<br>
+<font size="2" face="Courier New" >
 	<table id="example" class="display"
-		style="width: 100%; text-align: center;">
-		<thead>
+		style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+		<thead style="background: #4ECDC4; color: white;">
 			<tr>
-				<th></th>
-				<th style="text-align: center;">時段</th>
-				<th style="text-align: center;">場次數</th>
-				<th style="text-align: center;">總座位數</th>
-				<th style="text-align: center;">售出座位數</th>
-				<th style="text-align: center;">滿座率</th>
-				<th style="text-align: center;">平均消費/單</th>
-				<th style="text-align: center;">票券銷售額</th>
-				<th style="text-align: center;">商品銷售額</th>
-				<th style="text-align: center;">營收時比</th>
-				<th style="text-align: center;">銷售總額</th>
+				<th style="border-bottom: none;"></th>
+				<th style="text-align: center;border-bottom: none;">時段</th>
+				<th style="text-align: center;border-bottom: none;">場次數</th>
+				<th style="text-align: center;border-bottom: none;">總座位</th>
+				<th style="text-align: center;border-bottom: none;">售出座位</th>
+				<th style="text-align: center;border-bottom: none;">滿座率</th>
+				<th style="text-align: center;border-bottom: none;">平均消費/單</th>
+				<th style="text-align: center;border-bottom: none;">票券銷售額</th>
+				<th style="text-align: center;border-bottom: none;">商品銷售額</th>
+				<th style="text-align: center;border-bottom: none;">營收時比</th>
+				<th style="text-align: center;border-bottom: none;">銷售總額</th>
 			</tr>
 		</thead>
 		<tbody id="insertHere">
 		</tbody>
 		<tfoot>
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
 			</tr>
 		</tfoot>
-	</table>
+	</table></font>
 	<form id="submitExcel"
 		action="${pageContext.request.contextPath}/ticketSale/Date.xls"
 		method="POST">
@@ -310,7 +303,7 @@
 		        className: 'highcharts-color-0',
 		        title: {
 		            text: '銷售數'
-		        }
+		        },
 		    }, {
 		        className: 'highcharts-color-1',
 		        opposite: true,

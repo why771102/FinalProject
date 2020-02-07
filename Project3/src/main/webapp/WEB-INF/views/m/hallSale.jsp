@@ -98,19 +98,20 @@
 						<div
 							style="text-align: -webkit-right;">
 							<div id="timePicker"
-								style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 16%;">
+								style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 230px;">
 								<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 									class="fa fa-caret-down"></i>
 							</div>
 						</div>
 						<br>
-						<div class="content-panel">
+						<div class="content-panel" style="background:#eaeaea !important; box-shadow: none !important;">
+						<font size="4" face="Courier New" >
 							<table id="example"
 								class="display table table-striped table-advance table-hover"
 								style="width: 100%; text-align: center;">
-								<thead>
+								<thead style="background: #4ECDC4; color: white;">
 									<tr>
-										<th style="text-align: center;">123</th>
+										<th style="text-align: center;"></th>
 										<th style="text-align: center;">廳名</th>
 										<th style="text-align: center;">單價</th>
 										<th style="text-align: center;">時數</th>
@@ -128,7 +129,7 @@
 										<th></th>
 									</tr>
 								</tfoot>
-							</table>
+							</table></font>
 							</div>
 							<br>
 							<form id="submitExcel"
@@ -374,7 +375,6 @@
 										}
 									},
 									series : [ {
-										// 		        name: 'Share',
 										data : window.hallData
 									} ]
 								});

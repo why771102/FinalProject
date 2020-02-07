@@ -93,7 +93,8 @@
 											<div class="form-group">
 												<label class="col-lg-2 control-label">員工密碼：</label>
 												<div class="col-lg-6">
-													<form:input name="password" path="password" type='text'  class="form-control" />
+													<form:input name="password" path="password" type='text'  hidden="hidden"/>
+													<input type="button" value="重置密碼" class="btn btn-theme"/>
 												</div>
 											</div>
 

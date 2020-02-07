@@ -78,23 +78,24 @@
 			類型： ${cateSelection}
 			<br>
 			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 230px;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 					class="fa fa-caret-down"></i>
 			</div>
 		</div>
 		<br>
-		<table id="example" class="display" style="width: 100%; text-align: center;">
-			<thead>
+		<font size="2" face="Courier New" >
+		<table id="example" class="display" style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+			<thead  style="background: #4ECDC4; color: white;">
 				<tr>
-					<th></th>
-					<th  style="text-align: center;">產品名稱</th>
-					<th  style="text-align: center;">單價</th>
-					<th  style="text-align: center;">數量</th>
-					<th  style="text-align: center;">成本</th>
-					<th  style="text-align: center;">利潤</th>
-					<th  style="text-align: center;">銷售總額</th>
-					<th  style="text-align: center;">利潤總額</th>
+					<th style="border-bottom: none;"></th>
+					<th  style="text-align: center;border-bottom: none;">產品名稱</th>
+					<th  style="text-align: center;border-bottom: none;">單價</th>
+					<th  style="text-align: center;border-bottom: none;">數量</th>
+					<th  style="text-align: center;border-bottom: none;">成本</th>
+					<th  style="text-align: center;border-bottom: none;">利潤</th>
+					<th  style="text-align: center;border-bottom: none;">銷售總額</th>
+					<th  style="text-align: center;border-bottom: none;">利潤總額</th>
 				</tr>
 			</thead>
 			<tbody id="insertHere">
@@ -102,17 +103,9 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>					
-					<th></th>
-					<th></th>
-					<th></th>
 				</tr>
 			</tfoot>
-		</table>
+		</table></font>
 	<form id="submitExcel"
 		action="${pageContext.request.contextPath}/product/earn/productEarn.xls"
 		method="POST">

@@ -74,30 +74,28 @@
 	<h2 style="text-align: center">票房營收總覽</h2>
 		<div style="text-align: -webkit-right;">
 			類型： ${genreSelection}
-			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
-			<!-- 			<option>Java人生</option> -->
-			<!-- 		</select> -->
 			<br>
 			<div id="reportrange"
-				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
+				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 230px;">
 				<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 					class="fa fa-caret-down"></i>
 			</div>
 		</div>
 		<br>
-		<table id="example" class="display" style="width: 100%; text-align: center;">
-			<thead>
+	<font size="2" face="Courier New">
+		<table id="example" class="display" style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+			<thead style="background: #4ECDC4; color: white;">
 				<tr>
-					<th></th>
-					<th style="text-align: center;">電影名稱</th>
-					<th style="text-align: center;">場次數</th>
-					<th style="text-align: center;">票卷總成本</th>
-					<th style="text-align: center;">票券總利潤</th>
-					<th style="text-align: center;">票券銷售總額</th>
-					<th style="text-align: center;">商品總成本</th>
-					<th style="text-align: center;">商品總利潤</th>
-					<th style="text-align: center;">商品銷售總額</th>
-					<th style="text-align: center;">營收小計</th>
+					<th style="border-bottom: none;"></th>
+					<th style="text-align: center;border-bottom: none;">電影名稱</th>
+					<th style="text-align: center;border-bottom: none;">場次數</th>
+					<th style="text-align: center;border-bottom: none;">票卷總成本</th>
+					<th style="text-align: center;border-bottom: none;">票券總利潤</th>
+					<th style="text-align: center;border-bottom: none;">票券銷售總額</th>
+					<th style="text-align: center;border-bottom: none;">商品總成本</th>
+					<th style="text-align: center;border-bottom: none;">商品總利潤</th>
+					<th style="text-align: center;border-bottom: none;">商品銷售總額</th>
+					<th style="text-align: center;border-bottom: none;">營收小計</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -105,20 +103,9 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
 				</tr>
 			</tfoot>
-		</table>
+		</table></font>
 	<form id="submitExcel"
 		action="${pageContext.request.contextPath}/ticket/sale/ticketSale.xls"
 		method="POST">
