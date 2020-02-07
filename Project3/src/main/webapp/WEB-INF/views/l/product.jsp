@@ -66,66 +66,45 @@
 											modelAttribute="annoBean" enctype="multipart/form-data">
 
 											<div class="form-group">
-												<label class="col-lg-2 control-label">員工編號：</label>
+												<label class="col-lg-2 control-label">產品編號：</label>
 												<div class="col-lg-6">
-													${emp.empId}
+													${Products.productID}
 												</div>
 											</div>
 
 
 											<div class="form-group">
-												<label class="col-lg-2 control-label">員工姓名：</label>
+												<label class="col-lg-2 control-label">產品名稱:</label>
 												<div class="col-lg-6">
-													${emp.empName}
+													${Products.productName}
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-lg-2 control-label">員工信箱：</label>
+												<label class="col-lg-2 control-label">產品價格:</label>
 												<div class="col-lg-6">
-													${emp.email}
+													${Products.categoriesBean.categoryName}
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-lg-2 control-label">員工密碼：</label>
+												<label class="col-lg-2 control-label">在庫數量：</label>
 												<div class="col-lg-6">
-													${emp.password}
+													${Products.unitStock}
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-lg-2 control-label">職務名稱：</label>
+												<label class="col-lg-2 control-label">產品成本：</label>
 												<div class="col-lg-10">
-													${emp.roleBean.roleName}
+													${Products.cost}
 												</div>
 											</div>
 
-											<div class="form-group">
-												<label class="col-lg-2 control-label">在職狀態：</label>
-												<div class="col-lg-10">
-													${emp.empStatusBean.statusName}
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="col-lg-2 control-label">就職日期：</label>
-												<div class="col-lg-10">
-													${emp.startDate}
-												</div>
-											</div>
-											
-											<div class="form-group">
-												<label class="col-lg-2 control-label">離職日期：</label>
-												<div class="col-lg-10">
-													${emp.endDate}
-												</div>
-											</div>
 
 											<div class="form-group">
 												<div class="col-lg-offset-2 col-lg-10">
-													<button class="btn btn-theme04" type="button" onclick="location.href='emp/update/${emp.empId}'">修改資料</button>
-													<a href="emp/update/${emp.empId}">修改資料</a>
+													<button class="btn btn-theme04" type="button" onclick="location.href='update/products/${Products.productID}'">修改資料</button>
 												</div>
 											</div>
 

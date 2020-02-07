@@ -13,6 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -91,7 +92,15 @@ public class EmpLoginFilter implements Filter {
 		HttpSession session = req.getSession();
 
 		EmpBean loginToken = (EmpBean) session.getAttribute("EmpLogin");
-		if (loginToken == null) {
+		Cookie[] cookies = req.getCookies();
+		String mID = null;
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if(name.equals("EmpID")) {
+				mID = cookie.getValue();
+			}
+		}
+		if ((loginToken == null && mID == "") || cookies.length == 0) {
 			return false;
 		} else {
 			return true;

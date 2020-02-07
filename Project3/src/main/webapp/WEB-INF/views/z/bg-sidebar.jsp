@@ -32,12 +32,12 @@
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="<c:url value='/emp/updatePwd'/>"><img src="${pageContext.request.contextPath}/img/penguin.png" class="img-circle" width="80"></a></p>
           <h5 class="centered" id="name"></h5>
-          <li class="mt">
-            <a href="index.html">
-              <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
-              </a>
-          </li>
+<!--           <li class="mt"> -->
+<!--             <a href="index.html"> -->
+<!--               <i class="fa fa-dashboard"></i> -->
+<!--               <span>Dashboard</span> -->
+<!--               </a> -->
+<!--           </li> -->
           <li class="sub-menu">
             <a href="javascript:;">
               <i class=" fa fa-bar-chart-o"></i>
@@ -51,33 +51,33 @@
               <li><a href="<c:url value='/hall/sale'/>">廳院出借</a></li>
             </ul>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
-              </a>
-            <ul class="sub">
-              <li><a href="general.html">General</a></li>
-              <li><a href="buttons.html">Buttons</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
-              <span>Components</span>
-              </a>
-            <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
-            </ul>
-          </li>
+<!--           <li class="sub-menu"> -->
+<!--             <a href="javascript:;"> -->
+<!--               <i class="fa fa-desktop"></i> -->
+<!--               <span>UI Elements</span> -->
+<!--               </a> -->
+<!--             <ul class="sub"> -->
+<!--               <li><a href="general.html">General</a></li> -->
+<!--               <li><a href="buttons.html">Buttons</a></li> -->
+<!--               <li><a href="panels.html">Panels</a></li> -->
+<!--               <li><a href="font_awesome.html">Font Awesome</a></li> -->
+<!--             </ul> -->
+<!--           </li> -->
+<!--           <li class="sub-menu"> -->
+<!--             <a href="javascript:;"> -->
+<!--               <i class="fa fa-cogs"></i> -->
+<!--               <span>Components</span> -->
+<!--               </a> -->
+<!--             <ul class="sub"> -->
+<!--               <li><a href="grids.html">Grids</a></li> -->
+<!--               <li><a href="calendar.html">Calendar</a></li> -->
+<!--               <li><a href="gallery.html">Gallery</a></li> -->
+<!--               <li><a href="todo_list.html">Todo List</a></li> -->
+<!--               <li><a href="dropzone.html">Dropzone File Upload</a></li> -->
+<!--               <li><a href="inline_editor.html">Inline Editor</a></li> -->
+<!--               <li><a href="file_upload.html">Multiple File Upload</a></li> -->
+<!--             </ul> -->
+<!--           </li> -->
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-book"></i>
@@ -99,17 +99,17 @@
               <li><a href="<c:url value='/bgAnnos'/>">公告列表</a></li>
             </ul>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-th"></i>
-              <span>Data Tables</span>
-              </a>
-            <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li><a href="advanced_table.html">Advanced Table</a></li>
-            </ul>
-          </li>
+<!--           <li class="sub-menu"> -->
+<!--             <a href="javascript:;"> -->
+<!--               <i class="fa fa-th"></i> -->
+<!--               <span>Data Tables</span> -->
+<!--               </a> -->
+<!--             <ul class="sub"> -->
+<!--               <li><a href="basic_table.html">Basic Table</a></li> -->
+<!--               <li><a href="responsive_table.html">Responsive Table</a></li> -->
+<!--               <li><a href="advanced_table.html">Advanced Table</a></li> -->
+<!--             </ul> -->
+<!--           </li> -->
           
            <li class="sub-menu">
             <a href="javascript:;">
@@ -146,25 +146,25 @@
             </ul>
           </li>
           
-          <li>
-            <a href="inbox.html">
-              <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
-              </a>
-          </li>
+<!--           <li> -->
+<!--             <a href="inbox.html"> -->
+<!--               <i class="fa fa-envelope"></i> -->
+<!--               <span>Mail </span> -->
+<!--               <span class="label label-theme pull-right mail-info">2</span> -->
+<!--               </a> -->
+<!--           </li> -->
           <li class="sub-menu">
             <a href="<c:url value='/questionListForEmp'/>">
               <i class="fa fa-comments-o"></i>
               <span>客服列表</span>
               </a>
           </li>
-          <li>
-            <a href="google_maps.html">
-              <i class="fa fa-map-marker"></i>
-              <span>Google Maps </span>
-              </a>
-          </li>
+<!--           <li> -->
+<!--             <a href="google_maps.html"> -->
+<!--               <i class="fa fa-map-marker"></i> -->
+<!--               <span>Google Maps </span> -->
+<!--               </a> -->
+<!--           </li> -->
           <li class="sub-menu">
             <a href="<c:url value='/emp/updatePwd'/>">
               <i class="fa fa-cogs"></i>
