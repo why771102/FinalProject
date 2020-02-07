@@ -5,16 +5,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- <meta charset="UTF-8"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
 	
 <!-- stylesheets -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/flexslider.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/responsive.css">
+<!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/flexslider.css"> -->
+<!-- <link rel="stylesheet" href="../css/style.css"> -->
+<!-- <link rel="stylesheet" href="../css/responsive.css"> -->
 
 <style type="text/css">
 	table{
@@ -23,16 +23,16 @@
 	}
 </style>
 
-<title>會員資料</title>
+<!-- <title>會員資料</title> -->
 </head>
 <body>
-    <header>
-       <jsp:include page="a/header.jsp">
-       <jsp:param name="a" value="1" />
-</jsp:include>
-    </header>
-	<section class="login-block">
-		<div class="container">
+<!--     <header> -->
+<%--        <jsp:include page="a/header.jsp"> --%>
+<%--        <jsp:param name="a" value="1" /> --%>
+<%-- </jsp:include> --%>
+<!--     </header> -->
+<!-- 	<section class="login-block"> -->
+<!-- 		<div class="container"> -->
 			<div class="login-inner">
 				<h2>會員資料</h2>
 				<div class="login-form">
@@ -83,19 +83,35 @@
 					</table>
 				</div>
 			</div>
-		</div>
-	</section>
+<!-- 		</div> -->
+<!-- 	</section> -->
 	
 		<!-- footer -->
-    <footer>
+<!--     <footer> -->
 
-       <jsp:include page="a/footer.jsp">
-       	<jsp:param name="a" value="1" />
-       </jsp:include>
+<%--        <jsp:include page="a/footer.jsp"> --%>
+<%--        	<jsp:param name="a" value="1" /> --%>
+<%--        </jsp:include> --%>
 
-    </footer>
+<!--     </footer> -->
        
     <!-- footer -->
-
+<script>
+$('#memberDetail').click(function(){
+	 $.ajax({
+			url : "${pageContext.request.contextPath}/member/query",
+			data : {
+				mail:$('#email').val()
+			},
+			type : "GET",
+			success : function(page) {
+//				alert("新增成功!");
+//				window.location.href = "${pageContext.request.contextPath}/backstageindex";
+				$('#container').html(page);
+//				window.history.pushState("object or string", "Title", "${pageContext.request.contextPath}/member/query");
+			}
+		});
+})
+</script>
 </body>
 </html>

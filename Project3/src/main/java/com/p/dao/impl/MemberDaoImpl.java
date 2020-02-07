@@ -57,6 +57,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void updateMember(MemberBean mb) { 
+		System.out.println(mb.getName());
 		String hql = "UPDATE MemberBean SET name = :name, mobile = :mobile , email = :email, address = :address WHERE memberID = :memberID";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("name", mb.getName())
