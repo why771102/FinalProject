@@ -12,6 +12,7 @@ import com.a.model.ShowTimeHistoryBean;
 import com.l.dao.ProductsDao;
 import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
+import com.z.model.RoleBean;
 
 
 @Repository
@@ -94,6 +95,14 @@ public class ProductsDaoImpl implements ProductsDao{
 		Session session = factory.getCurrentSession();
 		cb = session.get(CategoriesBean.class, getCategoryID);
 		return cb;
+	}
+
+	@Override
+	public List<CategoriesBean> getCategoryList() {
+		String hql = "from CategoriesBean";
+		Session session = factory.getCurrentSession();
+		List<CategoriesBean> list = session.createQuery(hql).getResultList();
+		return list;
 	}
 	
 

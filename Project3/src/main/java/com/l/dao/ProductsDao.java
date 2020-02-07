@@ -27,4 +27,6 @@ public interface ProductsDao {
 	
 	CategoriesBean getCategories(int getCategoryID);
 
+	public List<CategoriesBean> getCategoryList();
+
 }

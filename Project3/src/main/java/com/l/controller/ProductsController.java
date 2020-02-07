@@ -1,6 +1,8 @@
 package com.l.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.l.model.CategoriesBean;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
 import com.z.model.EmpBean;
+import com.z.model.RoleBean;
 
 
 @Controller
@@ -46,11 +50,36 @@ public class ProductsController {
 	
 	//測試查詢單筆
 	@RequestMapping("/product")
-	public String getProduct(@RequestParam("id")Integer productID,Model model) {
+	public String getProduct(@RequestParam("productsID")Integer productID,Model model) {
 		model.addAttribute("Product",service.getProduct(productID));
 		return "l/product";
 	}
 	
+	//測試更新方法*3  1.在查詢單筆內 2.丟到update頁面 3.丟回查單筆
+	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.GET)
+	public String proccessupdateProducts(@PathVariable("productID")Integer productID,Model model) {
+		ProductsBean pb = service.getProduct(productID);
+		model.addAttribute("ProductsBean", pb);
+		return "l/updateproducts";
+	}
+	
+	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
+	public String proccessupdateProducts2(@PathVariable("productID")Integer productID,@ModelAttribute("ProductsBean") ProductsBean pb,Model model) {
+		pb.setProductID(productID);   //抓路徑ID塞進pb
+		service.updateProducts(pb);
+		model.addAttribute("Product",service.getProduct(productID));
+		return "redirect:/products";
+	}
+
+	@ModelAttribute("categoryList")
+	public Map<Integer, String> getCategoryList() {
+		Map<Integer, String> categoryMap = new HashMap<>();
+		List<CategoriesBean> list = service.getCategoryList();
+		for (CategoriesBean cb : list) {
+			categoryMap.put(cb.getCategoryID(), cb.getCategoryName());
+		}
+		return categoryMap;
+	}
 	
 	//測試查詢類別們
 		@RequestMapping("/queryCategoriesID")
@@ -69,30 +98,7 @@ public class ProductsController {
 	
 			
 			
-	//測試更新方法*3  1.在查詢單筆內 2.丟到update頁面 3.丟回查單筆
-		@RequestMapping("/update/products")
-		public String getupdateProducts(Model model) {
-			List<ProductsBean> list=service.getProducts();
-			model.addAttribute("Product", list);
-			return "l/product";
-		}
 	
-		@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.GET)
-		public String proccessupdateProducts(@PathVariable("productID")Integer productID,Model model) {
-			ProductsBean pb = service.getProduct(productID);
-			model.addAttribute("ProductsBean", pb);
-			return "l/updateproducts";
-		}
-		
-		@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
-		public String proccessupdateProducts2(@PathVariable("productID")Integer productID,@ModelAttribute("ProductsBean") ProductsBean pb,Model model) {
-			pb.setProductID(productID);   //抓路徑ID塞進pb
-			service.updateProducts(pb);
-			model.addAttribute("Product",service.getProduct(productID));
-			return "l/product";
-		}
-	
-		
 		
 	//測試新增方法*2       
 		@RequestMapping(value = "/products/add", method = RequestMethod.GET)

@@ -49,7 +49,6 @@
 
 		<!--sidebar end-->
 		
-		
 		<section id="main-content">
 			<section class="wrapper site-min-height">
 				<div class="row mt">
@@ -71,7 +70,7 @@
 											<div class="form-group">
 												<label class="col-lg-2 control-label">產品編號：</label>
 												<div class="col-lg-6">
-													${ProductsBean.productsID}
+													${productID}
 												</div>
 											</div>
 
@@ -88,8 +87,8 @@
 											<div class="form-group">
 												<label class="col-lg-2 control-label">產品分類：</label>
 												<div class="col-lg-10">
-													<form:select path="categoryName" id="categoryName">
-														<form:options items="${categoryNameList}" />
+													<form:select path="categoriesBean.categoryName" id="category">
+														<form:options items="${categoryList}" />
 													</form:select>
 												</div>
 											</div>
@@ -139,7 +138,7 @@
 		
 		
 		
-		
+			
 	<!--footer start-->
 		<jsp:include page="../z/bg-footer.jsp">
 			<jsp:param name="e" value="1" />
@@ -147,13 +146,17 @@
 		</jsp:include>
 		<!--footer end-->
 	</section>
+	
+
 	<script>
-		var roleId = "${empBean.roleBean.roleId}";
+
+	
+		var categoryName = "${ProductsBean.categoriesBean.categoryName}";
 		
-		var a = document.getElementById("role");
+		var a = document.getElementById("category");
 		for(i=0;i < a.length;i++) {
 			console.log(a[i]);
-			if(a[i].value == roleId) {
+			if(a[i].value == categoryName) {
 				a[i].selected = true;
 			}
 		}

@@ -23,5 +23,7 @@ public interface ProductsService {
 		
 		//新增產品
 		public void insertProduct(ProductsBean product);
+
+		public List<CategoriesBean> getCategoryList();
 		
 }
