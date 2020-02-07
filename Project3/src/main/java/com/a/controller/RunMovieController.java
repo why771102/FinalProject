@@ -163,7 +163,7 @@ public class RunMovieController implements ServletContextAware{
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(url + "/addmovie/success");
 		// 換URL
-		return "index-a";
+		return "bgExample/index";
 	}
 
 	@GetMapping(value = "/Allrunning/add")
@@ -586,7 +586,7 @@ public class RunMovieController implements ServletContextAware{
 		List<ShowtimeBean> AllDayShowTime = new ArrayList();
 		List<ShowtimeBean> AllShowTime = new ArrayList();
 
-		int day = 7;
+		int day = 3;
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
 		for (int d = 1; d <= day; d++) {
 			LocalDateTime runDateTime = LocalDate.now().plusDays(d).atTime(9, 0);
