@@ -62,7 +62,7 @@
 							<div id="edit" class="tab-pane">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2 detailed">
-										<h4 class="mb">修改公告</h4>
+										<h4 class="mb">員工資料</h4>
 										<form:form role="form" class="form-horizontal" method='POST'
 											modelAttribute="annoBean" enctype="multipart/form-data">
 
@@ -139,65 +139,8 @@
 			</section>
 		</section>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	<section>
-		<div>
-			<div style="text-align: center">
-				<h1>員工清單</h1>
-			</div>
-		</div>
-	</section>
-	<hr
-		style="height: 1px; border: none; color: #333; background-color: #333;">
-	<section>
-		<div>
-			<div class="caption">
-				<table>
-					<tr>
-						<td>員工編號：</td>
-						<td>${emp.empId}</td>
-					</tr>
-					<tr>
-						<td>員工姓名：</td>
-						<td>${emp.empName}</td>
-					</tr>
-					<tr>
-						<td>員工信箱：</td>
-						<td>${emp.email}</td>
-					</tr>
-					<tr>
-						<td>員工密碼：</td>
-						<td>${emp.password}</td>
-					</tr>
-					<tr>
-						<td>職務名稱：</td>
-						<td>${emp.roleBean.roleName}</td>
-					</tr>
-					<tr>
-						<td>在職狀態：</td>
-						<td>${emp.empStatusBean.statusName}</td>
-					</tr>
-					<tr>
-						<td>就職日期：</td>
-						<td>${emp.startDate}</td>
-					</tr>
 
-					<tr>
-						<td>離職日期：</td>
-						<td>${emp.endDate}</td>
-					</tr>
-				</table>
-				<a href="emp/update/${emp.empId}">修改資料</a>
-			</div>
-		</div>
+	
 	</section>
 	<!--footer start-->
 		<jsp:include page="bg-footer.jsp">
@@ -205,6 +148,5 @@
 			<jsp:param name="f" value="1" />
 		</jsp:include>
 		<!--footer end-->
-	</section>
 </body>
 </html>

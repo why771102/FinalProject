@@ -77,14 +77,15 @@ a {
 }
 
 .container {
+    text-align: -webkit-center;
 	margin: 0 auto;
 	width: 500px;
-	text-align: left;
+/* 	text-align: left; */
 }
 
 .booking-details {
-	float: left;
-	margin-left: 155px;
+/* 	float: left; */
+/* 	margin-left: 155px; */
 	font-size: 12px;
 	position: relative;
 	flex-flow: row nowrap;
@@ -152,6 +153,7 @@ div.seatCharts-seat.unavailable {
 div.seatCharts-container {
 	/* border-right: 1px dotted #adadad; */
 	/* width: 200px; */
+	margin-left: 222px;
 	padding: 20px;
 	/* float: left; */
 }
@@ -386,9 +388,9 @@ to {
 						<div class="wrapper">
 							<div class="container">
 								<h1>廳院新增</h1>
-								<div
-									style="margin-left: 50px; font-size: 17px; margin-bottom: -12px;">
-									${param.hallID}廳</div>
+								<div id="hall"
+									style="margin-left: -2px; font-size: 17px; margin-bottom: -12px;">
+									</div>
 								<div class="wrapRowStart">
 
 									<div id="seat-map">
@@ -399,9 +401,8 @@ to {
 								<div class="booking-details" style="justify-content: center;">
 									<button class="checkout-button btn btn-round btn-success" id="checkout"
 										onclick="changeStatus()">確認&raquo;</button>
-									<button class="checkout-button btn btn-round btn-success" id="re-select" id="refresh"
-										data-toggle="modal" data-target="#myModal">重新選擇座位
-										&raquo;</button>
+									<button class="checkout-button btn btn-round btn-danger" id="re-select" id="refresh"
+										data-toggle="modal" data-target="#myModal">重新設定&raquo;</button>
 								</div>
 
 							</div>
@@ -489,7 +490,7 @@ to {
 			// }
 			seatmain(map, flag1);
 			modal.style.display = "none";
-
+			document.getElementById('hall').innerText = document.getElementById('hallID').value + " 廳";
 		}
 
 		// 	var firstSeatLabel = 1;

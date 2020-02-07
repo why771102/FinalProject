@@ -64,7 +64,7 @@
 		<section>
 					<div>
 						<div style="text-align: center">
-							<h1>公告清單</h1>
+							<h1>客服清單</h1>
 						</div>
 					</div>
 				</section>
@@ -100,13 +100,14 @@
 
 	
 	<a href="question">新增詢問</a>
+	
+	</section>
 	<!--footer start-->
 		<jsp:include page="bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
 		<!--footer end-->
-	</section>
 	<script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>

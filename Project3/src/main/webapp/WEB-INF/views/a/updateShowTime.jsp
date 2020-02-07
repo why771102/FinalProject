@@ -171,17 +171,11 @@ input:valid+span:after {
 	<script>
 		//準備movie 有多少個陣列
 
-		var hall = $
-		{
-			hall
-		};
+		var hall = ${hall};
 		//         console.log(hall);
 		//        console.log(hall.length);
 
-		var movie = $
-		{
-			runMovie
-		};
+		var movie = ${runMovie};
 		//         console.log(movie);
 		//         console.log(movie.length);
 		var movieTitle = "";
