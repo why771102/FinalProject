@@ -23,9 +23,8 @@
 
 			<c:forEach var="anno" items="${allAnnos}">
 				<div>
-					<h2>${anno.title}</h2>
-					<h4>${fn:substring(anno.startTime, 0 ,10)}</h4>
-					<p>${anno.content}</p>
+					<h4><a href="">${anno.title} ${fn:substring(anno.startTime, 0 ,10)}</a></h4>
+					
 				</div>
 				<hr>
 			</c:forEach>

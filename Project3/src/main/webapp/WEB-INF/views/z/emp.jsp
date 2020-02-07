@@ -89,13 +89,6 @@
 											</div>
 
 											<div class="form-group">
-												<label class="col-lg-2 control-label">員工密碼：</label>
-												<div class="col-lg-6">
-													${emp.password}
-												</div>
-											</div>
-
-											<div class="form-group">
 												<label class="col-lg-2 control-label">職務名稱：</label>
 												<div class="col-lg-10">
 													${emp.roleBean.roleName}
