@@ -118,12 +118,13 @@ public class ExpectationController {
 //	}
 
 	@PostMapping("/addnewexpect/{runID}")
-	public String processAddNewExpect(@PathVariable("runID") String runID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
+	public String processAddNewExpect(@PathVariable("runID") String runID,int expective,BindingResult result,HttpServletRequest request) {
 		HashMap<String, String> errorMsgMap = new HashMap<String, String>();
 		RunningBean run = mService.getRunningBeanById(runID);
+		ExpectationBean eb = new ExpectationBean();
 		ExpectationValidator validator = new ExpectationValidator();
 		// 呼叫Validate進行資料檢查
-		validator.validate(eb, result);
+		validator.validate(expective, result);
 		if (result.hasErrors()) {
 			return "t/show/this/movie/commingSoon";
 		}
@@ -145,9 +146,12 @@ public class ExpectationController {
 			if(ee == true) {
 				errorMsgMap.put("accountExistError", "無法多次填寫!");
 			}else {
+				eb.setExpective(expective);
+				eb.setMovieID(movieID);
 				service.addExpect(eb);
 			}			
 		}
+		System.out.println("檢查點" + 000);
 		return "redirect:/show/this/movie/commingSoon";
 	}
 	
