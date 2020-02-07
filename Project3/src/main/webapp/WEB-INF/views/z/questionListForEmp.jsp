@@ -31,6 +31,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
+	<title>76影城</title>
 </head>
 <body>
 <section id="container">
@@ -60,21 +61,7 @@
 		
 		<section id="main-content">
 			<section class="wrapper">
-				<h3>
-					<i class="fa fa-angle-right"></i> Basic Table Examples
-				</h3>
-
-				<div class="row mt">
-					<div class="col-md-12">
-						<div class="content-panel">
-						</div>
-					</div>
-				</div>
-
-
-
-
-				<section>
+		<section>
 					<div>
 						<div style="text-align: center">
 							<h1>公告清單</h1>

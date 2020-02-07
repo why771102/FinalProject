@@ -29,7 +29,11 @@ public class QuestionDaoImpl implements QuestionDao {
 		String hql = "from QuestionBean where memberId = :memberId";
 		Session session = factory.getCurrentSession();
 		List<QuestionBean> list = null;
+		try {
 		list = session.createQuery(hql).setParameter("memberId", memberId).getResultList();
+		}catch(Exception e) {
+			
+		}
 		return list;
 	}
 

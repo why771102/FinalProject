@@ -50,9 +50,6 @@
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/seat-charts.css">
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
 <style>
 body {
 	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
@@ -428,6 +425,10 @@ to {
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
+<!-- 	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+<script
+	src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
+
 	<script>
 		//Modal
 		// Get the modal

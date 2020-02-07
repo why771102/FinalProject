@@ -26,7 +26,7 @@
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
 
-<title>Products</title>
+<title>76影城</title>
 
 </head>
 <body>

@@ -30,7 +30,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="<c:url value='/emp/updatePwd'/>"><img src="${pageContext.request.contextPath}/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="<c:url value='/emp/updatePwd'/>"><img src="${pageContext.request.contextPath}/img/penguin.png" class="img-circle" width="80"></a></p>
           <h5 class="centered" id="name"></h5>
           <li class="mt">
             <a href="index.html">
@@ -131,6 +131,18 @@
               <li><a href="<c:url value='/hall/add'/>">新增影廳</a></li>
               <li><a href="<c:url value='/seats/showSeats'/>">調整影廳</a></li>
               <li><a href="<c:url value='/Employee/hallOrderQuery'/>">包廳管理</a></li>
+            </ul>
+          </li>
+          
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-adjust"></i>
+              <span>電影管理/排片</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<c:url value='/movie/add'/>">新增電影</a></li>
+              <li><a href="<c:url value='/movie/autoRun'/>">排片</a></li>
+              <li><a href="<c:url value='/oldShowTimeHistory'/>">查詢排片紀錄</a></li>
             </ul>
           </li>
           

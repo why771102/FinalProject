@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>76影城</title>
 <link href="${pageContext.request.contextPath}/img/favicon.png"
 	rel="icon">
 <link href="${pageContext.request.contextPath}/img/apple-touch-icon.png"

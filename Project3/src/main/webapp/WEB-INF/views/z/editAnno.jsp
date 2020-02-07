@@ -26,7 +26,7 @@
 <link href="${pageContext.request.contextPath}/css/style-responsive.css"
 	rel="stylesheet">
 
-<title>Anno</title>
+<title>76影城</title>
 <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
 <body>
