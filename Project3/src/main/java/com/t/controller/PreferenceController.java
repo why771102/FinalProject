@@ -33,9 +33,9 @@ public class PreferenceController {
 	}
 	
 	//新增欄位 填入讚 噓 屏蔽
-	@RequestMapping("/preference/addlike")
-	public String processAddLike(@RequestParam String runID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
-		System.out.println("runID1 = " + runID);
+	@RequestMapping("/preference/addlike/{movieID}")
+	public String processAddLike(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+//		System.out.println("runID1 = " + runID);
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -65,12 +65,12 @@ public class PreferenceController {
 			pb.setBlock(0);
 			service.addLike(pb);
 		}
-		System.out.println("runID2 = " + runID);
+//		System.out.println("runID2 = " + runID);
 		return "redirect:/show/this/movie";	
 	}
 	
-	@RequestMapping("/preference/addbad")
-	public String processAddBad(@RequestParam String runID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addbad/{movieID}")
+	public String processAddBad(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -103,8 +103,8 @@ public class PreferenceController {
 		return "redirect:/show/this/movie";	
 	}
 	
-	@RequestMapping("/preference/addblock")
-	public String processAddBlock(@RequestParam String runID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addblock/{movieID}")
+	public String processAddBlock(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {

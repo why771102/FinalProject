@@ -393,6 +393,7 @@ public class RunMovieController implements ServletContextAware{
 	public String showThisMovie(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
 		RunningBean run = mService.getRunningBeanById(runID);
+		
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -423,6 +424,7 @@ public class RunMovieController implements ServletContextAware{
 		}else {
 			model.addAttribute("AVGExpectation", avgExpectation);
 		}
+		
 		System.out.println("inShowThisMovie");
 		
 		System.out.println(runID);
