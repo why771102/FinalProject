@@ -75,7 +75,8 @@
 						style="width: 100%; text-align: center;">
 						<thead>
 							<tr>
-								<th style="width: 90px">客服編號</th>
+								<th style="width: 100px">客服編號</th>
+								<th style="width: 100px">會員編號</th>
 								<th>會員</th>
 								<th>狀態</th>
 								<th>操作</th>
@@ -86,6 +87,7 @@
 						</tbody>
 						<tfoot>
 							<tr>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -133,7 +135,7 @@
 						console.log(data);
 						$.each(data,function(index,value) {
 							dataTable.row.add([
-				value.questionId, value.memberBean.name, value.questionStatusBean.statusName,
+				value.questionId, value.memberBean.memberID, value.memberBean.name, value.questionStatusBean.statusName,
 				function(data,type,row) {
 					var html = "<a href='questionRep/" + value.questionId + "'>查看</a>";
 					return html;

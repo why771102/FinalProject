@@ -453,7 +453,7 @@ public class RunMovieController implements ServletContextAware{
 			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
 		}
 		
-		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
+//		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
 		model.addAttribute("sthb_list1",sthb_list);
 		model.addAttribute("oneMovie1",oneMovie);
 		request.setAttribute("sthb_list",gson.toJson(sthb_list) );

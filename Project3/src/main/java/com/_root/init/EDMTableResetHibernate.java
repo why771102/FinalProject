@@ -45,6 +45,8 @@ import com.z.model.AnnoBean;
 import com.z.model.AnnoStatusBean;
 import com.z.model.EmpBean;
 import com.z.model.EmpStatusBean;
+import com.z.model.QuestionBean;
+import com.z.model.QuestionContentBean;
 import com.z.model.QuestionStatusBean;
 import com.z.model.RoleBean;
 
@@ -845,6 +847,57 @@ public class EDMTableResetHibernate {
 				}
 				session.flush();
 				System.out.println("SCOrderDetails資料新增成功");
+				
+//QuestionBean
+				try (FileReader fr = new FileReader("data/question.dat"); BufferedReader br = new BufferedReader(fr);) {
+
+					while ((line = br.readLine()) != null) {
+						if (line.startsWith(UTF8_BOM)) {
+							line = line.substring(1);
+						}
+						String[] token = line.split("\\|");
+
+						QuestionBean qb = new QuestionBean();
+
+						MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[1]));
+						qb.setMemberBean(mb);
+						QuestionStatusBean qsb = session.get(QuestionStatusBean.class, Integer.parseInt(token[2]));
+						qb.setQuestionStatusBean(qsb);
+						session.save(qb);
+					}
+				} catch (IOException e) {
+					System.err.println("新建Question表格時發生IO例外: " + e.getMessage());
+				}
+				session.flush();
+				System.out.println("Question資料新增成功");
+				
+				
+//QuestionContentBean
+				try (FileReader fr = new FileReader("data/questionContent.dat"); BufferedReader br = new BufferedReader(fr);) {
+
+					while ((line = br.readLine()) != null) {
+						if (line.startsWith(UTF8_BOM)) {
+							line = line.substring(1);
+						}
+						String[] token = line.split("\\|");
+
+						QuestionContentBean qcb = new QuestionContentBean();
+
+						qcb.setDatetime(token[0]);
+						QuestionBean qb = session.get(QuestionBean.class, Integer.parseInt(token[1]));
+						qcb.setQuestionBean(qb);
+						qcb.setContent(token[2]);
+						qcb.setName(token[3]);
+
+						session.save(qcb);
+					}
+				} catch (IOException e) {
+					System.err.println("新建questionContent表格時發生IO例外: " + e.getMessage());
+				}
+				session.flush();
+				System.out.println("questionContent資料新增成功");
+				
+				
 //======假資料表格往上新增=======================================================================			
 
 			tx.commit();
