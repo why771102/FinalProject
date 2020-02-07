@@ -30,7 +30,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="<c:url value='/emp/updatePwd'/>"><img src="${pageContext.request.contextPath}/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="<c:url value='/emp/updatePwd'/>"><img src="${pageContext.request.contextPath}/img/penguin.png" class="img-circle" width="80"></a></p>
           <h5 class="centered" id="name"></h5>
           <li class="mt">
             <a href="index.html">
