@@ -107,10 +107,12 @@ td{
 														<td>${modetail.productsBean.productName}</td>
 														<td>${modetail.quantity}</td>
 													</c:forEach>
-
+													
+													<td>
 													<c:forEach var="tb" items="${tblist}">
-														<td>${tb.seatsBean.seatID}</td>
+														${tb.seatsBean.seatID}
 													</c:forEach>
+													</td>
 												</tr>
 
 											</table>

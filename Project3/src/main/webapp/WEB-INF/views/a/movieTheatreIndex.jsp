@@ -11,9 +11,11 @@
     <!-- title -->
     <title>cineshow</title>
     <!-- google fonts -->
+    
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css">
@@ -318,26 +320,28 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 pull-right">
-                        <div class="tc-girl" id="booktickets">
-                        <select id="movie">
-                        	<option value="default" selected="" disabled="">請選擇</option>
-                        	<c:forEach var="movies" items="${movielist}">
-                            	<option value="${movies.movieID}">${movies.title}</option>
-                        	</c:forEach>
-                        </select>
-                            <select id="playdate">
-                            	<option value="default" selected="" disabled="">請選擇</option>
-                            </select>
-                            <select id="movieStartTime">
-                            	<option value="default" selected="" disabled="">請選擇</option>
-                            </select>
-                        </div>
-                        <form id="purchaseTicket">
-							<div class="slider-btn slider-g-btn" id="pt" onclick="buyticket()">前往訂票</div>
+                    	<div class="col-sm-6 pull-right">
+                        	<div class="tc-girl" id="booktickets" style="border: solid black 1px">
+                        		<select id="movie">
+                        			<option value="default" selected="" disabled="">請選擇</option>
+                        			<c:forEach var="movies" items="${movielist}">
+                            			<option value="${movies.movieID}">${movies.title}</option>
+                        			</c:forEach>
+                        		</select>
+                        		<br>
+                         	   <select id="playdate">
+                         	   		<option value="default" selected="" disabled="">請選擇</option>
+                               </select>
+                            	<br>
+                               <select id="movieStartTime">
+                            		<option value="default" selected="" disabled="">請選擇</option>
+                               </select>
+                        	</div>
+                        	<form id="purchaseTicket">
+								<div class="slider-btn slider-g-btn" id="pt" onclick="buyticket()">前往訂票</div>
                        
-                        </form>
-                    </div>
+                        	</form>
+                    	</div>
 
                 </div>
             </div>

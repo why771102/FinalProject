@@ -403,8 +403,33 @@
                             </tr>
                         </table>
                         <div id='showTimeHere'>
-                     		
-                        </div>
+						<h3
+							style="border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px">期待度</h3>
+						<div>
+							<form method='POST' action = "${pageContext.request.contextPath}/addnewexpect/${run.runID}"
+								class='form-horizontal'>
+								<fieldset>
+									<div class="form-group">
+										<label class="control-label col-lg-2 col-lg-2" for='expective'>
+											期待度 </label>
+										<p class="col-lg-10">
+											<input type="radio" name="expective" value="1"  />
+											期待
+											<input type="radio" name="expective"  value="0" />
+											不期待
+										</p>
+										<input type="hidden"  cssClass="error" />
+									</div>
+									<div class="form-group">
+										<div class='col-lg-offset-2 col-lg-10'>
+											<input id="btnAdd" type='submit' class='btn btn-primary'
+												value="送出" />
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
 
                     <!-- </div> -->
                     </div>

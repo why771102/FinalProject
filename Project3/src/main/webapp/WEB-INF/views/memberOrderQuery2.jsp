@@ -8,15 +8,15 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/flexslider.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/responsive.css">
+<!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/flexslider.css"> -->
+<!-- <link rel="stylesheet" href="../css/style.css"> -->
+<!-- <link rel="stylesheet" href="../css/responsive.css"> -->
 <meta charset="UTF-8">
 <style type="text/css">
 	table{
@@ -36,11 +36,11 @@
 </style>
 </head>
 <body>
-    <header>
-       <jsp:include page="a/header.jsp">
-       <jsp:param name="a" value="1" />
-</jsp:include>
-    </header>
+<!--     <header> -->
+<%--        <jsp:include page="a/header.jsp"> --%>
+<%--        <jsp:param name="a" value="1" /> --%>
+<%-- </jsp:include> --%>
+<!--     </header> -->
     <!-- header-->
 	<section>
 		<div>
@@ -55,13 +55,13 @@
 		<h3>您無任何訂票紀錄!</h3>
 	</div>
 	<!-- footer -->
-    <footer>
+<!--     <footer> -->
 
-       <jsp:include page="a/footer.jsp">
-       	<jsp:param name="a" value="1" />
-       </jsp:include>
+<%--        <jsp:include page="a/footer.jsp"> --%>
+<%--        	<jsp:param name="a" value="1" /> --%>
+<%--        </jsp:include> --%>
 
-    </footer>
+<!--     </footer> -->
        
     <!-- footer -->
 </body>

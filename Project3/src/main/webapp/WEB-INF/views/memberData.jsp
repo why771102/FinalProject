@@ -5,16 +5,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- <meta charset="UTF-8"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
 	
 <!-- stylesheets -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/flexslider.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/responsive.css">
+<!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/flexslider.css"> -->
+<!-- <link rel="stylesheet" href="../css/style.css"> -->
+<!-- <link rel="stylesheet" href="../css/responsive.css"> -->
 
 <style type="text/css">
 	table{
@@ -23,16 +23,16 @@
 	}
 </style>
 
-<title>會員資料</title>
+<!-- <title>會員資料</title> -->
 </head>
 <body>
-    <header>
-       <jsp:include page="a/header.jsp">
-       <jsp:param name="a" value="1" />
-</jsp:include>
-    </header>
-	<section class="login-block">
-		<div class="container">
+<!--     <header> -->
+<%--        <jsp:include page="a/header.jsp"> --%>
+<%--        <jsp:param name="a" value="1" /> --%>
+<%-- </jsp:include> --%>
+<!--     </header> -->
+<!-- 	<section class="login-block"> -->
+<!-- 		<div class="container"> -->
 			<div class="login-inner">
 				<h2>會員資料</h2>
 				<div class="login-form">
@@ -42,7 +42,7 @@
 
 							<tr>
 								<td>會員姓名：</td>
-								<td><form:input id="name" path="name" type='text' /></td>
+								<td><form:input id="name1" path="name" type='text' /></td>
 							</tr>
 							<tr>
 								<td>信箱：</td>
@@ -74,28 +74,57 @@
 								<td><form:input id="memberID" path="memberID" type='hidden' /></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" value="修改資料" class="inlog-btn" /></td>
+								<td colspan="2"><input type="submit" value="修改資料" class="inlog-btn" id="submitInfo"/></td>
 							</tr>
 						</form:form>
 							<tr>
-								<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/' />'" class="inlog-btn"/></td>
+								<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/movieIndex' />'" class="inlog-btn"/></td>
 							</tr>
 					</table>
 				</div>
 			</div>
-		</div>
-	</section>
+<!-- 		</div> -->
+<!-- 	</section> -->
 	
 		<!-- footer -->
-    <footer>
+<!--     <footer> -->
 
-       <jsp:include page="a/footer.jsp">
-       	<jsp:param name="a" value="1" />
-       </jsp:include>
+<%--        <jsp:include page="a/footer.jsp"> --%>
+<%--        	<jsp:param name="a" value="1" /> --%>
+<%--        </jsp:include> --%>
 
-    </footer>
+<!--     </footer> -->
        
     <!-- footer -->
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+ integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+ crossorigin="anonymous"></script>
+<script>
+console.log(document.getElementById("name1").value);
+$('#submitInfo').click(function(){
+	var mail = $('#email').val();
+	var mobile = $('#mobile').val();
+	var address = $('#address').val();
+	var name1 = $('#name1').val();
+	var memberID = $('#memberID').val();
+	 $.ajax({
+			url : "${pageContext.request.contextPath}/member/query",
+			data : {
+				mail:mail,
+				mobile: mobile,
+				address: address,
+				name: name1,
+				memberID: memberID
+			},
+			type : "POST",
+			success : function(page) {
+				alert("新增成功!");
+				window.location.href = "${pageContext.request.contextPath}/memberCenter";
 
+			}
+		});
+});
+</script>
 </body>
 </html>

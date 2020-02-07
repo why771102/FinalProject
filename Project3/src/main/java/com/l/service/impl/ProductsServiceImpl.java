@@ -62,6 +62,13 @@ public class ProductsServiceImpl implements ProductsService{
 		dao.insertProduct(product);
 		
 	}
+	
+	@Transactional
+	@Override
+	public List<CategoriesBean> getCategoryList() {
+		return dao.getCategoryList();
+		
+	}
 
 
 

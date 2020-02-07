@@ -111,9 +111,18 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/query")
-	public String updateMember(@ModelAttribute("mData")MemberBean mb) {
+	public String updateMember(@RequestParam("mail") String mail, @RequestParam("mobile") String mobile,
+			@RequestParam("name") String name, @RequestParam("address") String address,
+			@RequestParam("memberID") String memberID) {
+		MemberBean mb = new MemberBean();
+		mb.setEmail(mail);
+		mb.setName(name);
+		mb.setMobile(mobile);
+		mb.setAddress(address);
+		mb.setMemberID(Integer.parseInt(memberID));
+		System.out.println(mb.getName());
 		service.updateMember(mb);
-		return "redirect:/member/query";
+		return "redirect:/memberCenter";
 	}
 	
 	//以下為員工查詢會員資料的方法

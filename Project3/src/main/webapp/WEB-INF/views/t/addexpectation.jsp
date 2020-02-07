@@ -31,37 +31,17 @@ fieldset {
 	<hr style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="ExpectationBean" class='form-horizontal'>
-			<fieldset >
-				
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="movieID"> -->
-<!-- 						電影ID</label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select id="movieID" path="movieID" --%>
-<%-- 							class='form:input-large' > --%>
-<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
-<%-- 							<form:options items = "${movieList }"/> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="memberID"> -->
-<!-- 						會員ID</label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select id="memberID" path="memberID" --%>
-<%-- 							class='form:input-large' > --%>
-<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
-<%-- 							<form:options items = "${memberList }"/> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
+		<form:form method='POST' modelAttribute="ExpectationBean"
+			class='form-horizontal'>
+			<fieldset>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='expective'>
 						期待度 </label>
 					<div class="col-lg-10">
-						 <form:radiobutton id="expective" path="expective" value="1" />期待
-						<form:radiobutton id="expective" path="expective" value="0" />不期待
+						<form:radiobutton id="expective" path="expective" value="1" />
+						期待
+						<form:radiobutton id="expective" path="expective" value="0" />
+						不期待
 					</div>
 					<form:errors path="expective" cssClass="error" />
 				</div>

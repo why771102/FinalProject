@@ -769,8 +769,7 @@ to {
 			var noOfSeats = (rowNum * colNum) - aisle;
 			console.log(noOfSeats);
 			// 		var aisle={aisle:JSON.stringify(SseatArray)};
-			$
-					.ajax({
+				$.ajax({
 						url : "${pageContext.request.contextPath}/seats/addSeats",
 						data : {
 							normalSeats : normalSeats,
