@@ -146,6 +146,15 @@
             </ul>
           </li>
           
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-shopping-cart"></i>
+              <span>商品管理</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<c:url value='/products'/>">查詢產品</a></li>
+            </ul>
+          </li>
 <!--           <li> -->
 <!--             <a href="inbox.html"> -->
 <!--               <i class="fa fa-envelope"></i> -->

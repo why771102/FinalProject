@@ -65,10 +65,6 @@ public class ProductsController {
 	
 	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
 	public String proccessupdateProducts2(ProductsBean pb,Model model) {
-		System.out.println(pb.getProductID());
-		System.out.println(pb.getProductName());
-		System.out.println(pb.getCategoriesBean().getCategoryName());
-		System.out.println(pb.getUnitStock());
 		service.updateProducts(pb);
 		return "redirect:/products";
 	}

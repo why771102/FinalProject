@@ -87,7 +87,7 @@
 											<div class="form-group">
 												<label class="col-lg-2 control-label">產品分類：</label>
 												<div class="col-lg-10">
-													<form:select path="categoriesBean.categoryName" id="category">
+													<form:select path="categoryID" id="category">
 														<form:options items="${categoryList}" />
 													</form:select>
 												</div>
