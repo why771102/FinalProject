@@ -125,11 +125,11 @@
 						dataTable.row.add([
 			value.memberBean.account, value.commentContent,
 			function(data,type,row) {
-				var html = "<a href='comments/delete?id=${comment.commentID}'>刪除</a>";
+				var html = "<a href='comments/delete" + value.commentID + "'>刪除</a>";
 				return html;
 				},
 			function(data,type,row) {
-				var html = "<a href='comments/cancalreport?id=${comment.commentID}'>取消</a>";
+				var html = "<a href='comments/cancalreport" + value.commentID + "'>取消</a>";
 				return html;
 				}
 				]).draw();

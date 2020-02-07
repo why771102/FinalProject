@@ -179,25 +179,25 @@ public class CommentController {
 	}
 	
 	//用戶自行刪除
-	@RequestMapping("/comments/delete/{commentID}")
-	public String getDeleteComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
-		cb.setCommentID(commentID);
-		service.deleteComment(commentID);
-		return "redirect:/findAllComment";		
-	}
+//	@RequestMapping("/comments/delete/{commentID}")
+//	public String getDeleteComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+//		cb.setCommentID(commentID);
+//		service.deleteComment(commentID);
+//		return "redirect:/findAllComment";		
+//	}
 	
 	
 	//從後台刪除
-	@RequestMapping("/comments/delete")
-	public String deleteComment(@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+	@RequestMapping("/comments/delete/{commentID}")
+	public String deleteComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
 		cb.setCommentID(commentID);
 		service.deleteComment(commentID);
 		return "redirect:/findAllReportComment";		
 	}
 	
 	//從後台取消檢舉
-	@RequestMapping("/comments/cancalreport")
-	public String cancalReportComment(@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+	@RequestMapping("/comments/cancalreport/{commentID}")
+	public String cancalReportComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
 		cb.setCommentID(commentID);
 		service.cancalReportComment(commentID);
 		return "redirect:/findAllReportComment";		
