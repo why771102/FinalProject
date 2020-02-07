@@ -63,7 +63,7 @@
 						<h3>客服訊息</h3>
 						<form class="form-inline pull-right position">
 							<div class="form-group">
-								<label for="name">顯示名稱</label> <input type="text" id="name1"
+								<label for="name"></label> <input type="text" id="name1"
 									class="form-control" placeholder="輸入顯示名稱...">
 							</div>
 							<button id="sendName" class="btn btn-default" type="submit">確認</button>
@@ -90,7 +90,7 @@
 					</c:forEach>
 					<div id="greetings"></div>
 					<div class="group-rom last-group">
-						<div class="first-part odd"></div>
+						<div class="first-part"></div>
 						<div class="second-part"></div>
 						<div class="third-part"></div>
 					</div>

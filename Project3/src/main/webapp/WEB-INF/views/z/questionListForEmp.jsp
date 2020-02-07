@@ -64,7 +64,7 @@
 		<section>
 					<div>
 						<div style="text-align: center">
-							<h1>公告清單</h1>
+							<h1>客服清單</h1>
 						</div>
 					</div>
 				</section>
@@ -75,7 +75,8 @@
 						style="width: 100%; text-align: center;">
 						<thead>
 							<tr>
-								<th style="width: 90px">客服編號</th>
+								<th style="width: 100px">客服編號</th>
+								<th style="width: 100px">會員編號</th>
 								<th>會員</th>
 								<th>狀態</th>
 								<th>操作</th>
@@ -90,6 +91,7 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -100,13 +102,14 @@
 
 	
 	<a href="question">新增詢問</a>
+	
+	</section>
 	<!--footer start-->
 		<jsp:include page="bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
 		<!--footer end-->
-	</section>
 	<script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
@@ -132,7 +135,7 @@
 						console.log(data);
 						$.each(data,function(index,value) {
 							dataTable.row.add([
-				value.questionId, value.memberBean.name, value.questionStatusBean.statusName,
+				value.questionId, value.memberBean.memberID, value.memberBean.name, value.questionStatusBean.statusName,
 				function(data,type,row) {
 					var html = "<a href='questionRep/" + value.questionId + "'>查看</a>";
 					return html;

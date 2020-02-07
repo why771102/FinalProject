@@ -28,8 +28,13 @@
     <style>
     div#pfirst:hover, div#pprev:hover, div#pnext:hover{
 		cursor:pointer;
+		}
 		
-	}
+    img:hover{
+       opacity:0.6;
+    }
+  
+	
     </style>
     
 </head>

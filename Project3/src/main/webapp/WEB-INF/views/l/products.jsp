@@ -66,7 +66,7 @@
 					<table id="example" class="display table table-striped table-advance table-hover" style="width: 100%; text-align: center;">
 						<thead>
 							<tr>
-								<td>產品編碼</td>
+								<td>產品編號</td>
 								<td>產品名稱</td>
 								<td>產品分類</td>
 								<td>產品價格</td>

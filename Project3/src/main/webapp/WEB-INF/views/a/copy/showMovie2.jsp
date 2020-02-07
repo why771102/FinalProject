@@ -12,7 +12,7 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <!-- title -->
-    <title>Cineshow</title>
+    <title>One Movie Page</title>
     <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
@@ -345,7 +345,7 @@
     <!-- header -->
 
     <!-- banner -->
-
+ <!-- 電影介紹 -->
     <!-- banner -->
     <section class='gray-bnr feature-sec ' style='background-color:black;'>
     <div class='container' >
@@ -356,7 +356,7 @@
       -->
     </div>
     </section>
-    
+  <!-- banner -->
     
     <section class=' feature-sec ' style='padding:50px 0px; background-color:white;' >
            
@@ -415,7 +415,7 @@
                        
     </section>
     
-    
+      <!-- 播放時間 -->
      <!-- banner -->
 
  <section class='contact-sec gray-bnr' style='    padding: 10px 0px;'>

@@ -345,14 +345,14 @@
     </section>
     <div class="container">
         <div class="question">
-            <h3>Have any Questions in mind?</h3>
+            <h3>關於我們</h3>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="qa-in clearfix">
                         <div class="num-left pull-left">1.</div>
                         <div class="qa-right pull-right">
-                            <h4>What is Cineshow?</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate, augue nec malesuada iaculis, mauris tortor tincidunt mi, non molestie odio dui quis sem. Etiam nec dui sed metus iaculis sagittis. Donec ullamcorper, augue nec mollis </p>
+                            <h4>什麼是76影城?</h4>
+                            <p>76影城是由一群喜愛看電影的工程師所設計出的電影院網站，其功能與一般的電影院網頁系統完全相同，提供喜愛看電影的民眾一個全新的享受電影的管道。</p>
                         </div>
                     </div>
                 </div>
@@ -361,8 +361,8 @@
                     <div class="qa-in clearfix">
                         <div class="num-left pull-left">2.</div>
                         <div class="qa-right pull-right">
-                            <h4>Why use Cineshow?</h4>
-                            <p>Maecenas viverra placerat arcu, ut elementum mauris. Aenean sed ligula at mi euismod rutrum. Curabitur at malesuada mauris, in commodo felis. Etiam in nisi ac orci blandit placerat nec sed ipsum. Phasellus consequat dolor ex, quis eleifend sem ultrices a. Phasellus et diam lectus. </p>
+                            <h4>為什麼你要來76影城?</h4>
+                            <p>76影城為我國最新開幕的複合式影城，結合百貨、餐飲等服務，適合一家大小假日休閒活動。</p>
                         </div>
                     </div>
                 </div>
@@ -371,8 +371,8 @@
                     <div class="qa-in clearfix">
                         <div class="num-left pull-left">3.</div>
                         <div class="qa-right pull-right">
-                            <h4>Who uses Cineshow Cinema?</h4>
-                            <p>Cras sed risus ultricies metus ultricies venenatis quis ac libero. Nunc sed auctor mi. Fusce eu nisi suscipit, ornare odio sit amet, iaculis velit. Donec a commodo mauris, eu egestas metus. </p>
+                            <h4>電影分級清清楚楚</h4>
+                            <p>76影城嚴格遵守中華民國文化部頒行的《電影片與其廣告片審議分級處理及廣告宣傳品使用辦法》，所有電影分類為5級，若觀影者不符合該部電影的分級制度，本影城將拒絕入場，且無法退票。</p>
                         </div>
                     </div>
                 </div>
@@ -381,8 +381,8 @@
                     <div class="qa-in clearfix">
                         <div class="num-left pull-left">4.</div>
                         <div class="qa-right pull-right">
-                            <h4>How much is Cineshow?</h4>
-                            <p>Nunc arcu velit, cursus in dui ac, pharetra cursus libero. Duis eget malesuada orci, in lacinia nulla. Proin auctor mollis mi eu interdum. Phasellus vestibulum felis at auctor consequat.</p>
+                            <h4>任何人都能來76影城</h4>
+                            <p>76影城內設有完善的無障礙空間，行動不便的觀影民眾也能輕鬆享受一場視覺饗宴;此外，對於身高較矮小的小朋友，本影城也提供座位加高椅，讓小朋友看電影不再擔心眼前一片黑，能憶起快樂的跟影中人冒險。</p>
                         </div>
                     </div>
                 </div>
@@ -391,8 +391,8 @@
                     <div class="qa-in clearfix">
                         <div class="num-left pull-left">5.</div>
                         <div class="qa-right pull-right">
-                            <h4>What do i need to start?</h4>
-                            <p>Spendisse ipsum arcu, commodo et feugiat eu, pharetra in dui. Sed molestie imperdiet lectus, quis pulvinar erat pellentesque at. Integer consequat sem et mi elementum vehicula. In hac habitasse platea dictumst.</p>
+                            <h4>什麼是76影城會員?</h4>
+                            <p>76影城會員是本影城提供的一套會員制度，申辦會員的民眾，不但能享受較便宜的票價，本公司也將不定期舉辦相關會員活動，76影城敢保證，我們絕對不會虧待我們的會員。</p>
                         </div>
                     </div>
                 </div>
@@ -401,8 +401,8 @@
                     <div class="qa-in clearfix">
                         <div class="num-left pull-left">6.</div>
                         <div class="qa-right pull-right">
-                            <h4>What if I need support?</h4>
-                            <p>Aliquam faucibus nisi ut nisi hendrerit tincidunt. Cras in massa sodales, faucibus dui sed, molestie leo. Sed id est ultrices elit pharetra tempus quis vitae turpisras sed risus ultricies metus ultricies. </p>
+                            <h4>我想加入76影城</h4>
+                            <p>76影城是一個相當有愛的工作團隊，我們也會不定時招募新的工作夥伴，歡迎有興趣的民眾隨時鎖定我們的公告。</p>
                         </div>
                     </div>
                 </div>

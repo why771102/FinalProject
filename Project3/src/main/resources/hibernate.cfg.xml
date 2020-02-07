@@ -60,6 +60,8 @@
 		<mapping class="com.t.model.PreferenceBean"></mapping>
 		<mapping class="com.a.model.SCOrderDetailBean"></mapping>
 		<mapping class="com.a.model.SCOrdersBean"></mapping>
+		<mapping class="com.z.model.QuestionBean"></mapping>
+		<mapping class="com.z.model.QuestionContentBean"></mapping>
 
 	</session-factory>
 </hibernate-configuration>

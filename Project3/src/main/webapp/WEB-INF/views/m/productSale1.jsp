@@ -11,7 +11,7 @@
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>產品銷售總覽</title>
+<title>76影城</title>
 <!-- jQuery -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.js"></script>

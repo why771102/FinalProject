@@ -58,16 +58,7 @@
 		<!--sidebar end-->
 		<section id="main-content">
 			<section class="wrapper">
-				<h3>
-					<i class="fa fa-angle-right"></i> Basic Table Examples
-				</h3>
-
-				<div class="row mt">
-					<div class="col-md-12">
-						<div class="content-panel">
-						</div>
-					</div>
-				</div>
+				
 
 
 
@@ -117,12 +108,13 @@
 
 
 		<!--footer start-->
-		<jsp:include page="bg-footer.jsp">
+		
+		<!--footer end-->
+	</section>
+	<jsp:include page="bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
-		<!--footer end-->
-	</section>
 	<script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>

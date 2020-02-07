@@ -163,7 +163,7 @@ public class RunMovieController implements ServletContextAware{
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(url + "/addmovie/success");
 		// 換URL
-		return "index-a";
+		return "bgExample/index";
 	}
 
 	@GetMapping(value = "/Allrunning/add")
@@ -393,6 +393,7 @@ public class RunMovieController implements ServletContextAware{
 	public String showThisMovie(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
 		RunningBean run = mService.getRunningBeanById(runID);
+		
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -423,6 +424,7 @@ public class RunMovieController implements ServletContextAware{
 		}else {
 			model.addAttribute("AVGExpectation", avgExpectation);
 		}
+		
 		System.out.println("inShowThisMovie");
 		
 		System.out.println(runID);
@@ -451,7 +453,7 @@ public class RunMovieController implements ServletContextAware{
 			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
 		}
 		
-		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
+//		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
 		model.addAttribute("sthb_list1",sthb_list);
 		model.addAttribute("oneMovie1",oneMovie);
 		request.setAttribute("sthb_list",gson.toJson(sthb_list) );
@@ -584,7 +586,7 @@ public class RunMovieController implements ServletContextAware{
 		List<ShowtimeBean> AllDayShowTime = new ArrayList();
 		List<ShowtimeBean> AllShowTime = new ArrayList();
 
-		int day = 7;
+		int day = 3;
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
 		for (int d = 1; d <= day; d++) {
 			LocalDateTime runDateTime = LocalDate.now().plusDays(d).atTime(9, 0);
