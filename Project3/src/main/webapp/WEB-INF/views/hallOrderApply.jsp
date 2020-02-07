@@ -151,7 +151,7 @@
 						</form:form>
 						<tr>
 							<td colspan="2"><input type='button' value="回首頁"
-								onclick="javascript:location.href='<c:url value='/'/>'"
+								onclick="javascript:location.href='<c:url value='/movieIndex'/>'"
 								class="inlog-btn" /></td>
 						</tr>
 						<tr>
