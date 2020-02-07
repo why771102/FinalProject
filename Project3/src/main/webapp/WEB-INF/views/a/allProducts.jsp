@@ -20,11 +20,18 @@
     <link rel="stylesheet" href="css/responsive.css" type="text/css" />
     <style>
     
+    	img{
+    		border-radius: 25px;
+    	}
     	img:hover{
     		opacity: 0.6;
     	}
 		#cateName a:hover {
   			color: red;
+		}
+		
+		.movie1{
+			border-radius: 25px;
 		}
     </style>
 </head>

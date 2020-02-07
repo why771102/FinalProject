@@ -393,39 +393,44 @@ div.submitButton {
 			<div class="wrapRow " id="product_left">
 
 				<!-- 圖片輪播  -->
+				 <!-- 圖片輪播  style 跟javascript 有關 不能改 -->
 				<div class="wrap" id="pictureBG">
-					<img src="<c:url value='/products/${productList[0].productID}' />"
-						alt="">
+					<div class="w3-content wrap One_width vh_height100" id="bigpic" >
+					<img class="mySlides P_Bimg" src="<c:url value='/products/${productList[0].productID}' />"alt="">
+					<c:forEach begin='1' end='${productList.size()-1}' var='x'>
+					<img class="mySlides P_Bimg" src="<c:url value='/products/${productList[x].productID}' />" style="display:none">
+					</c:forEach>
 						<!-- small picture -->
 						<div class="wrapRow"
 							style="padding: 2vh;">
+							<c:forEach begin='0' end='${productList.size()-1}' var='x'>
 							<div class="w3-col s4 "
 								style="height: 100%; width: 80%; margin: 0px;">
-								<img class="demo w3-opacity w3-hover-opacity-off" src="a.jpg"
+								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[x].productID}' />"
 									style="width: 100%; height: 100%; cursor: pointer"
-									onclick="currentDiv(1)">
+									onclick="currentDiv(${x+1})">
 							</div>
+							</c:forEach>
+<!-- 							<div class="w3-col s4 " -->
+<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
+<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="b.jpg" -->
+<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
+<!-- 									onclick="currentDiv(2)"> -->
+<!-- 							</div> -->
 
-							<div class="w3-col s4 "
-								style="height: 100%; width: 80%; margin: 0px;">
-								<img class="demo w3-opacity w3-hover-opacity-off" src="b.jpg"
-									style="width: 100%; height: 100%; cursor: pointer"
-									onclick="currentDiv(2)">
-							</div>
+<!-- 							<div class="w3-col s4 " -->
+<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
+<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="c.png" -->
+<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
+<!-- 									onclick="currentDiv(3)"> -->
+<!-- 							</div> -->
 
-							<div class="w3-col s4 "
-								style="height: 100%; width: 80%; margin: 0px;">
-								<img class="demo w3-opacity w3-hover-opacity-off" src="c.png"
-									style="width: 100%; height: 100%; cursor: pointer"
-									onclick="currentDiv(3)">
-							</div>
-
-							<div class="w3-col s4 "
-								style="height: 100%; width: 80%; margin: 0px;">
-								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[0].productID}' />"
-									style="width: 100%; height: 100%; cursor: pointer"
-									onclick="currentDiv(4)">
-							</div>
+<!-- 							<div class="w3-col s4 " -->
+<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
+<%-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[0].productID}' />" --%>
+<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
+<!-- 									onclick="currentDiv(4)"> -->
+<!-- 							</div> -->
 
 
 						</div>
@@ -598,6 +603,29 @@ div.submitButton {
 	<script defer
 		src="${pageContext.request.contextPath}/js/jquery.flexslider.js"></script>
 	<script>
+	
+	/*輪播圖 */
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+	
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-opacity-off";
+    }
+    /*輪播圖 */
+    
 		var products = ${prod};
 		console.log(products);
 		console.log(products.length)
@@ -683,6 +711,9 @@ div.submitButton {
 					qty : $('#productQuantity').val()
 				},
 				type : "POST",
+				error : function(){
+					window.location.href = "${pageContext.request.contextPath}/member/login";
+				},
 				success : function() {
 					//need to add my new gadget here afterwards彈跳的購物車
 					alert("加入購物車成功");

@@ -9,15 +9,7 @@
  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
  crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<!-- <link rel="stylesheet" -->
-<!--  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
- 
-<!-- stylesheets -->
-<!--     <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
-<!--     <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
-<!--     <link rel="stylesheet" href="../css/flexslider.css"> -->
-<!--     <link rel="stylesheet" href="../css/style.css"> -->
-<!--     <link rel="stylesheet" href="../css/responsive.css"> -->
+
     
 <style type="text/css">
  table{
@@ -101,7 +93,7 @@ div.empty-list {
     </div>
     <div id="text"></div>
   </div>
- <section class="login-block">
+ <section class="login-block" style="padding: 45px 0 110px;">
   <div class="container" id="container">
 <!--    <div class="login-inner"> -->
 <!--     <h2>會員中心</h2> -->
