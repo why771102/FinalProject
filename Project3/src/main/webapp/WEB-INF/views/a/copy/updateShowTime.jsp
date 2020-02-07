@@ -46,10 +46,10 @@
 </head>
 
 <body>
-    <h1>修改頁面11111</h1>
+    <h1>修改頁面</h1>
  
     <table id="table" class="display">
-        <div>日期: 廳:</div>
+        
 
         <thead>
             <tr>

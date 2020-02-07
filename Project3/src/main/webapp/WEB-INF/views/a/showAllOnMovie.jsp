@@ -30,6 +30,14 @@
 		cursor:pointer;
 		
 	}
+	
+
+  img:hover{
+       opacity:0.6;
+    }
+
+
+
     </style>
     
 </head>
@@ -99,7 +107,7 @@
 
 	 <!-- movies page -->
 
-	<div id='createPage'>
+	<div id='createPage' style='margin:40px 0px 0px 0px ;'>
 	<table  align='center'>
 	<div align='center'>
 	<br>
@@ -378,7 +386,7 @@
 				    		   " </tr>"+
 				    		   
 				    		"</table>"  +
-				    		   "<p align='center' id='pageCount'>第"+total+"頁 / 共"+total+"頁</p>"
+				    		   "<p align='center' id='pageCount'>第"+page+"頁 / 共"+total+"頁</p>"
 				      
 				      );
 				      //調整出現

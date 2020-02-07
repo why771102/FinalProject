@@ -369,7 +369,7 @@
                                    
                                     <div style='padding:10px'>
                                     <img src='<c:url value='/getPicture/${run.movie.movieID}' />'width="100%" height="100%">
-                                        <img  style='width: 100%;height: 100%; 'src='img/feature2.jpg'>
+                                       
                                     </div>
                                    
                                 </div>
@@ -498,7 +498,6 @@
         </div>
     </section>
 
-    ｂ
     <!-- footer -->
 <%--     <jsp:include page="footer.jsp"> --%>
      <jsp:param name="a" value="1" />
