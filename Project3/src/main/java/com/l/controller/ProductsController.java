@@ -64,10 +64,12 @@ public class ProductsController {
 	}
 	
 	@RequestMapping(value = "/update/products/{productID}", method = RequestMethod.POST)
-	public String proccessupdateProducts2(@PathVariable("productID")Integer productID,@ModelAttribute("ProductsBean") ProductsBean pb,Model model) {
-		pb.setProductID(productID);   //抓路徑ID塞進pb
+	public String proccessupdateProducts2(ProductsBean pb,Model model) {
+		System.out.println(pb.getProductID());
+		System.out.println(pb.getProductName());
+		System.out.println(pb.getCategoriesBean().getCategoryName());
+		System.out.println(pb.getUnitStock());
 		service.updateProducts(pb);
-		model.addAttribute("Product",service.getProduct(productID));
 		return "redirect:/products";
 	}
 
