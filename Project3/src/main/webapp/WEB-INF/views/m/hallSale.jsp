@@ -98,7 +98,7 @@
 						<div
 							style="text-align: -webkit-right;">
 							<div id="timePicker"
-								style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 16%;">
+								style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 230px;">
 								<i class="fa fa-calendar"></i>&nbsp; <span></span> <i
 									class="fa fa-caret-down"></i>
 							</div>
