@@ -83,19 +83,19 @@
 		</div>
 		<br>
 	<font size="2" face="Courier New">
-		<table id="example" class="display" style="width: 100%; text-align: center;">
-			<thead>
+		<table id="example" class="display" style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+			<thead style="background: #4ECDC4; color: white;">
 				<tr>
-					<th></th>
-					<th style="text-align: center;">電影名稱</th>
-					<th style="text-align: center;">場次數</th>
-					<th style="text-align: center;">票卷總成本</th>
-					<th style="text-align: center;">票券總利潤</th>
-					<th style="text-align: center;">票券銷售總額</th>
-					<th style="text-align: center;">商品總成本</th>
-					<th style="text-align: center;">商品總利潤</th>
-					<th style="text-align: center;">商品銷售總額</th>
-					<th style="text-align: center;">營收小計</th>
+					<th style="border-bottom: none;"></th>
+					<th style="text-align: center;border-bottom: none;">電影名稱</th>
+					<th style="text-align: center;border-bottom: none;">場次數</th>
+					<th style="text-align: center;border-bottom: none;">票卷總成本</th>
+					<th style="text-align: center;border-bottom: none;">票券總利潤</th>
+					<th style="text-align: center;border-bottom: none;">票券銷售總額</th>
+					<th style="text-align: center;border-bottom: none;">商品總成本</th>
+					<th style="text-align: center;border-bottom: none;">商品總利潤</th>
+					<th style="text-align: center;border-bottom: none;">商品銷售總額</th>
+					<th style="text-align: center;border-bottom: none;">營收小計</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -103,17 +103,6 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
 				</tr>
 			</tfoot>
 		</table></font>

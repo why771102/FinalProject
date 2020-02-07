@@ -106,11 +106,6 @@
 							</tbody>
 							<tfoot>
 								<tr>
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
-<!-- 									<th></th> -->
 								</tr>
 							</tfoot>
 						</table></font>

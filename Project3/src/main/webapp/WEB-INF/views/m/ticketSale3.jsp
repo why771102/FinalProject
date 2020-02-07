@@ -158,7 +158,7 @@
 <font size="2" face="Courier New" >
 	<table id="example" class="display"
 		style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
-		<thead>
+		<thead style="background: #4ECDC4; color: white;">
 			<tr>
 				<th style="border-bottom: none;"></th>
 				<th style="text-align: center;border-bottom: none;">時段</th>
@@ -177,17 +177,6 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
 			</tr>
 		</tfoot>
 	</table></font>

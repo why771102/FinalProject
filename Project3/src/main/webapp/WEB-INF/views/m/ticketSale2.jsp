@@ -169,19 +169,19 @@
 	<font size="2" face="Courier New" >
 		<table id="example" class="display"
 			style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
-			<thead>
+			<thead style="background: #4ECDC4; color: white;">
 				<tr>
-					<th></th>
-					<th style="text-align: center;">日期</th>
-					<th style="text-align: center;">場次數</th>
-					<th style="text-align: center;">總座位</th>
-					<th style="text-align: center;">售出座位</th>
-					<th style="text-align: center;">滿座率</th>
-					<th style="text-align: center;">平均消費/單</th>
-					<th style="text-align: center;">票銷售額</th>
-					<th style="text-align: center;">商品銷售額</th>
-					<th style="text-align: center;">營收時比</th>
-					<th style="text-align: center;">銷售總額</th>
+					<th style="border-bottom: none;"></th>
+					<th style="text-align: center;border-bottom: none;">日期</th>
+					<th style="text-align: center;border-bottom: none;">場次數</th>
+					<th style="text-align: center;border-bottom: none;">總座位</th>
+					<th style="text-align: center;border-bottom: none;">售出座位</th>
+					<th style="text-align: center;border-bottom: none;">滿座率</th>
+					<th style="text-align: center;border-bottom: none;">平均消費/單</th>
+					<th style="text-align: center;border-bottom: none;">票銷售額</th>
+					<th style="text-align: center;border-bottom: none;">商品銷售額</th>
+					<th style="text-align: center;border-bottom: none;">營收時比</th>
+					<th style="text-align: center;border-bottom: none;">銷售總額</th>
 				</tr>
 			</thead>
 			<tbody id="insertHere">
@@ -189,17 +189,6 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
 				</tr>
 			</tfoot>
 		</table></font>

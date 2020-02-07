@@ -175,17 +175,17 @@
 						<br>
 					<font size="2" face="Courier New" >
 						<table id="example" class="display"
-							style="width: 100%; text-align: center;">
-							<thead>
+							style="width: 100%; text-align: center background:#eaeaea !important; box-shadow: none !important;">
+							<thead style="background: #4ECDC4; color: white;">
 								<tr>
-									<th></th>
-									<th style="text-align: center;">電影名稱</th>
-									<th style="text-align: center;">場次數</th>
-									<th style="text-align: center;">總座位</th>
-									<th style="text-align: center;">售出座位</th>
-									<th style="text-align: center;">平均滿座率</th>
-									<th style="text-align: center;">平均單筆消費</th>
-									<th style="text-align: center;">銷售總金額</th>
+									<th style="border-bottom: none;"></th>
+									<th style="text-align: center;border-bottom: none">電影名稱</th>
+									<th style="text-align: center;border-bottom: none">場次數</th>
+									<th style="text-align: center;border-bottom: none">總座位</th>
+									<th style="text-align: center;border-bottom: none">售出座位</th>
+									<th style="text-align: center;border-bottom: none">平均滿座率</th>
+									<th style="text-align: center;border-bottom: none">平均單筆消費</th>
+									<th style="text-align: center;border-bottom: none">銷售總金額</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -194,15 +194,6 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
 								</tr>
 							</tfoot>
 						</table></font>
