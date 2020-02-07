@@ -103,6 +103,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 				mIDstr = cookie.getValue();
 			}
 		}
+		if(mIDstr == null || mIDstr.equalsIgnoreCase("0")) {
+			
+		}
 		int mID = Integer.parseInt(mIDstr);
 		return mID;
 	}

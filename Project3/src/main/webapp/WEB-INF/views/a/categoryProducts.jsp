@@ -178,20 +178,20 @@ label {
 
 /* 中間內文 的左邊 還有 右邊 */
 #product_left {
-	width: 50%;
+	width: 30%;
 	height: 100%;
 }
 
 #product_right {
-	width: 50%;
+/* 	width: 50%; */
 	height: 100%;
-	padding: 0% 3% 2%;
+/* 	padding: 0% 3% 2%; */
 }
 
 /* 跟img 有關系列 */
 #pictureBG {
 	/* background-color: #d8d8d8; */
-	width: 100%;
+/* 	width: 100%; */
 	height: 75%;
 }
 
@@ -390,7 +390,7 @@ div.submitButton {
 		<div class="wrapRow" id="content">
 
 			<!-- left  -->
-			<div class="wrapStart" id="product_left">
+			<div class="wrapRow " id="product_left">
 
 				<!-- 圖片輪播  -->
 				<div class="wrap" id="pictureBG">
@@ -398,7 +398,7 @@ div.submitButton {
 						alt="">
 						<!-- small picture -->
 						<div class="wrapRow"
-							style="height: 15vh; width: 80%; padding: 2vh;">
+							style="padding: 2vh;">
 							<div class="w3-col s4 "
 								style="height: 100%; width: 80%; margin: 0px;">
 								<img class="demo w3-opacity w3-hover-opacity-off" src="a.jpg"
@@ -431,48 +431,7 @@ div.submitButton {
 						</div>
 						<!-- small picture -->
 				</div>
-					<div class="w3-content wrap" style="width: 100%; height: 100vh;">
-
-						<img class="mySlides Bimg" src="<c:url value='/products/${productList[0].productID}' />" style="display: none">
-						<img class="mySlides Bimg" src="b.jpg"> <img
-							class="mySlides Bimg" src="c.png" style="display: none"> <img
-							class="mySlides Bimg" src="c.png" style="display: none">
-
-<!-- 						small picture -->
-<!-- 						<div class="wrapRow" -->
-<!-- 							style="height: 15vh; width: 80%; padding: 2vh;"> -->
-<!-- 							<div class="w3-col s4 " -->
-<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
-<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="a.jpg" -->
-<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
-<!-- 									onclick="currentDiv(1)"> -->
-<!-- 							</div> -->
-
-<!-- 							<div class="w3-col s4 " -->
-<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
-<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="b.jpg" -->
-<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
-<!-- 									onclick="currentDiv(2)"> -->
-<!-- 							</div> -->
-
-<!-- 							<div class="w3-col s4 " -->
-<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
-<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="c.png" -->
-<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
-<!-- 									onclick="currentDiv(3)"> -->
-<!-- 							</div> -->
-
-<!-- 							<div class="w3-col s4 " -->
-<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
-<%-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[0].productID}' />" --%>
-<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
-<!-- 									onclick="currentDiv(4)"> -->
-<!-- 							</div> -->
-
-
-<!-- 						</div> -->
-<!-- 						small picture -->
-					</div>
+					
 				</div>
 				<!-- 圖片輪播  -->
 				<!-- 圖片  -->
@@ -484,10 +443,7 @@ div.submitButton {
 
 				<!-- 圖片  -->
 				<!-- 空白排版用 -->
-				<div class="wrapList">
-					<p></p>
-					<br> <br>
-				</div>
+				
 				<!-- 空白排版用 -->
 
 				<!-- 分隔商品資訊框框 -->
@@ -497,13 +453,8 @@ div.submitButton {
 				<!-- 空白排版用 -->
 
 				<!-- 空白排版用 -->
-
-
-
-			</div>
-
-			<!-- right  -->
-			<div class="wrapStart " id="product_right">
+				<!-- right  -->
+<div class="wrapStart " id="product_right">
 
 				<div class="wrapList">
 					<p class="tital ">
@@ -576,11 +527,17 @@ div.submitButton {
 
 				<!-- 分隔商品資訊框框 -->
 
-
+<div class="wrapStart " style='width:20%;'></div>
 
 
 
 			</div>
+
+
+			</div>
+
+			<!-- right  -->
+			
 
 
 
