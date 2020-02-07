@@ -186,10 +186,7 @@ input:valid+span:after {
 
 		}
 
-		var a = $
-		{
-			showTime
-		};
+		var a = ${showTime};
 		//         console.log(a[0].stID);
 		console.log("a.length:" + a.length);//202?
 		console.log("a:" + a);

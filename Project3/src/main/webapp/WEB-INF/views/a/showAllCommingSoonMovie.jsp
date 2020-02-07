@@ -38,7 +38,7 @@
     <section class="ticket-outer banner-featured">
         <div class="container">
             <div class="ticket-sell">
-                <h3 class="font"> Latest Movies</h3>
+                <h3 class="font"> Comming Soon Movies</h3>
             </div>
         </div>
     </section>
@@ -85,7 +85,7 @@
 
 	 <!-- movies page -->
 
-	<div id='createPage'>
+	<div id='createPage' style="margin:40px;">
 	<table  align='center'>
 	<div align='center'>
 		<tr>
@@ -113,7 +113,7 @@
 		</tr>
 
 	</table>
-	<p id='pageCount'align='center' >第${pageNo}頁 /共${totalPages}頁</p>
+	<p id='pageCount'align='center' style="margin:40px;">第${pageNo}頁 /共${totalPages}頁</p>
 	</div>
 	</div>
 
@@ -136,7 +136,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="ipad-bg">
-                        <img src="img/ipad-bg.png">
+                        <img src="${pageContext.request.contextPath}/img/ipad-bg.png">
                     </div>
                 </div>
                 <div class="col-sm-6">

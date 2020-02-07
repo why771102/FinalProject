@@ -24,6 +24,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flexslider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css" />
+    <style>
+    
+    img:hover{
+       opacity:0.6;
+    }
+       </style>
 </head>
 <body>
  <header>

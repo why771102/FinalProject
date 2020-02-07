@@ -152,7 +152,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="ipad-bg">
-                        <img src="img/ipad-bg.png">
+                        <img src="${pageContext.request.contextPath}/img/ipad-bg.png">
                     </div>
                 </div>
                 <div class="col-sm-6">

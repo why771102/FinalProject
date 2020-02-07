@@ -29,6 +29,314 @@
 <link rel='stylesheet'
 	href='${pageContext.request.contextPath}/css/responsive.css'
 	type='text/css' />
+ <style>
+        /* CSS reset */
+        body,
+        div,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        pre,
+        form,
+        fieldset,
+        input,
+        textarea,
+        p,
+        blockquote,
+        th,
+        td {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        /* 這邊做初始化設定 全部字體為正黑體  並且字體大小以百分比控制  */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+            font-size: 100%;
+        }
+
+
+        /* warp 如何對齊 系列 */
+
+        /* 排版垂直column置中 */
+        .wrap {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            box-sizing: border-box;
+        }
+
+        /* 排版垂直column向左 */
+        .wrapStart {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            /* 撐開長寬 */
+            /* width: 100%; */
+            height: 100%;
+            /* border and padding in box */
+            box-sizing: border-box;
+        }
+
+        /* 排版一列row 向左 */
+        .wrapRowStart {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            /* 撐開長寬 */
+            width: 100%;
+            height: 100%;
+            /* border and padding in box */
+            box-sizing: border-box;
+        }
+
+
+        /* 排版同列row 置中 */
+        .wrapRow {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* in article have padding */
+        .wrapList {
+            /*Flex屬性區*/
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            /* border: solid 1px black;
+                border-block-end-color: brown; */
+            /* 撐開長寬 */
+            width: 100%;
+            /* height: 100%; */
+            /* border and padding in box */
+            box-sizing: border-box;
+            padding: 1% ;
+        }
+
+        /* warp 如何對齊 系列 */
+
+        /* 按鈕 選單系列  */
+
+        select {
+            /* background-color: #fc6d6d; */
+            color: black;
+            padding: 0.5% 4%;
+            width: 100%;
+            height: 4vh;
+            border: solid rgb(34, 34, 34) 1px;
+            font-size: 100%;
+            /* box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); */
+            -webkit-appearance: button;
+            appearance: button;
+            outline: none;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        label {
+            width: 100%;
+        }
+
+
+        /* 按鈕 選單系列 */
+
+        #bg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /*  跟header 網頭 有關系列 */
+        #head {
+            width: 100%;
+            height: 90px;
+            padding: 10px 0px;
+        }
+
+        /*  跟header 網頭 有關系列 */
+
+        #cartShopList {
+            width: 90%;
+            height: 100%;
+        }
+
+        #chooseAll {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            height: 10%;
+
+        }
+
+
+        /* 中間內文 */
+        #content {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        /* 中間內文 的左邊 還有 右邊 */
+        #product_left {
+            width: 50%;
+            height: 100%;
+        }
+
+        #product_right {
+            width: 50%;
+            height: 100%;
+            padding: 0% 3% 2%;
+
+        }
+
+        /* 跟img 有關系列 */
+        #pictureBG {
+            /* background-color: #d8d8d8; */
+            width: 100%;
+            height: 75%;
+        }
+
+
+
+        .Simg {
+            width: 20%;
+            height: 50%;
+            background-color: #949393;
+            padding: 1% 1%;
+        }
+
+        /* 跟img 有關系列 */
+
+
+        /* foot 網頁最底層有關  */
+        #footBG {
+            background-color: #d8d8d8;
+            width: 100%;
+            height: 400px;
+        }
+
+        /* foot  */
+
+        /* 文字相關大小*/
+        p.BTital {
+            color: black;
+            text-align: left;
+            font-size: 4.5vh;
+            font-weight: bold;
+
+        }
+
+        p.tital {
+            color: black;
+            text-align: left;
+            font-size: 4vh;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        p.STital {
+            color: black;
+            text-align: left;
+            font-size: 3vh;
+            width: 100%;
+        }
+
+        p.text {
+            color: black;
+            text-align: left;
+            font-size: 2vh;
+            width: 100%;
+        }
+
+        /* 文字相關大小*/
+
+        /* map 相關設定 */
+        .map {
+            width: 100%;
+            height: 60vh;
+            background-color: cadetblue;
+        }
+
+        /* map 相關設定 */
+
+
+        /*＝＝＝＝＝＝＝新增加的＝＝＝＝＝＝＝＝＝ */
+
+        .Bimg {
+            width: 100%;
+            height: 80%;
+            background-color: #949393;
+        }
+
+        div.submitButton {
+            /* 送出按鈕 */
+            margin: 0px 0px 0px;
+            border: none;
+            border-radius: 5px;
+            background-color: #C21010;
+            width: 100%;
+            height: 100%;
+            color: white;
+            font-size: 2.5vh;
+            text-align: center;
+            padding: 1%;
+        }
+
+
+        .gray_border {
+            border-block-end: rgb(179, 179, 179) solid 1px;
+        }
+
+        .star_border {
+            border-block-start: rgb(179, 179, 179) solid 1px;
+        }
+
+        .fullwidth {
+            width: 100%;
+        }
+
+        .halfwidth {
+            width: 50%;
+        }
+        .hide{
+            display: none;
+        }
+    
+    
+    </style>
+    
+
+
 </head>
 
 <body>
@@ -89,81 +397,107 @@
 	<!-- banner -->
 
 	<!-- banner -->
-	<section class='gray-bnr feature-sec ' style='background-color: black;'>
-		<div class='container'>
-
-			<div class='buy-txt'>
-				${sthb_list1.get(1).run.movie.trailer}
-				<!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
+ <!-- 電影介紹 -->
+    <!-- banner -->
+    <section class='gray-bnr feature-sec ' style='background-color:black;'>
+    <div class='container' >
+    
+        <div class='buy-txt'> 
+        ${sthb_list1.get(1).run.movie.trailer}  
+      <!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
       -->
-			</div>
-	</section>
-	<section class='gray-bnr feature-sec ' style='padding: 50px 0px;'>
+    </div>
+    </section>
+  <!-- banner -->
+    
+    <section class=' feature-sec ' style='padding:50px 0px; background-color:white;' >
+           
+        <div class='container'>
+            <div class='row '>
+                   <div class='col-md-2'></div>
+                
+                        <div class='col-md-3 col-sm-4 col-xs-6'>
+                                <div class=''>
+                                   
+                                    <div style='padding:10px'>
+                                    	<img src='<c:url value='/getPicture/${sthb_list1.get(1).run.movie.movieID}' />'width="100%" height="80%">
+<!--                                         <img  style='width: 100%;height: 100%; 'src='img/feature2.jpg'> -->
+                                    </div>
+                                   
+                                </div>
+                               
+                        </div>
+                          
+                
+                <div class='col-sm-6'>
+                    <!-- <div class='ex-feature'> -->
+                       
+                       <div class='wrapStart fullwidth' style='padding:20px; height:auto;'>
+                            <h2 style='font-weight:bold;'>${sthb_list1.get(1).run.movie.title}</h2>
+                            <br>
+                            <div class='wrapRowStart fullwidth' style='padding:5px;  height:auto;font-size:16px;'>
+                                <div>導演：</div>
+                                <div>${sthb_list1.get(1).run.movie.director}</div>
+                            </div>
+                            
+                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
+                                <div style='width: auto' >演員：</div>
+                                <div>${sthb_list1.get(1).run.movie.cast}</div>
+                            </div>
+                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
+                                <div>類型：</div>
+                                <div>${sthb_list1.get(1).run.movie.genreBean.genre}</div>
+                            </div>
+                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
+                                <div>分級：</div>
+                                <div>${sthb_list1.get(1).run.movie.movieRatingBean.rating}</div>
+                            </div>
+                            <div class='wrapRowStart fullwidth'style='padding:5px; font-size:16px;'>
+                                <div>片長：</div>
+                                <div>${sthb_list1.get(0).run.movie.runningTime}</div>
+                            </div>
 
-		<div class='container'>
-			<div class='row '>
-				<div class='col-md-2'></div>
+                        </div>
 
-				<div class='col-md-3 col-sm-4 col-xs-6'>
-					<div class=''>
+                    <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+                       
+    </section>
+    
+    
+      <!-- 播放時間 -->
+     <!-- banner -->
 
-						<div style='padding: 10px'>
-							<img style='width: 100%; height: 100%;' src='img/feature2.jpg'>
-						</div>
+ <section class='contact-sec gray-bnr' style='    padding: 10px 0px;'>
+        <div class='container'>
 
-					</div>
+            <div class='buy-txt' onclick='showhide("showDisplay");'>
+                <h2 style='text-align: left ; color: cornflowerblue; font-weight:bold; padding-top: 40px;' id='ShowTitle'>[ 電影場次 /MOVIE TIME ]</h2>
+                <p> </p><br>
 
-				</div>
+            </div>
 
+            <div class='buy-txt '  id='showDisplay' style="display:none;">
+              
+            <div class='col-sm-12 col-xs-12'> 
+                   <div class='wrapStart fullwidth' id='showTime_table' style='height: auto;'>
+                   
+                        
+                </div>
+                    
+                
+            </div>
 
-				<div class='col-sm-6'>
-					<!-- <div class='ex-feature'> -->
-
-					<h2>${sthb_list1.get(1).run.movie.title}</h2>
-					<table>
-						<tr>
-							<td>導演：</td>
-							<td>${sthb_list1.get(1).run.movie.director}</td>
-						</tr>
-						<tr>
-							<td>演員：</td>
-							<td>${sthb_list1.get(1).run.movie.cast}</td>
-						</tr>
-						<tr>
-							<td>類型：</td>
-							<td>${sthb_list1.get(1).run.movie.genreBean.genre}</td>
-						</tr>
-						<td>分級：</td>
-						<td>${sthb_list1.get(1).run.movie.movieRatingBean.rating}</td>
-
-						<tr>
-							<td>片長：</td>
-							<td>${sthb_list1.get(0).run.movie.runningTime}</td>
-						</tr>
-					</table>
-					<div id='showTimeHere'>
-						<h3
-							style='border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px'>播放場次</h3>
-						<table id='showTime_table'>
-							<!--                             <tr id ='showTime_tr'> -->
-							<%--                             <c:forEach var="one" items="${oneMovie1}" > --%>
-							<%--                                       <c:if test=${oneMovie1.strDay }> --%>
-							<%--                                      <td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>${one.strTime}</a></td> --%>
-							<%--                                       </c:if> --%>
-							<%--                             </c:forEach> --%>
-
-
-
-							</tr>
-						</table>
-					</div>
-
-					<!-- </div> -->
-				</div>
-			</div>
-		</div>
-		</div>
-	</section>
+            </div>
+        </div>
+        
+    </section>
+     <!-- banner -->
+    
+    
 	<!-- banner -->
 	<section class=" banner-featured" style='background-color: gray;'>
 		<div class="container">
@@ -346,78 +680,118 @@
 
 
 <script>
-	var a = $
-	{
-		sthb_list
-	};
-	var b = $
-	{
-		oneMovie
-	};
-	console.log(a);
-	console.log(b);
-	var StratTime = b[0].strDay;
-	var EndTime = b[(b.length) - 1].strDay;
-	console.log(StratTime);
-	console.log(EndTime);
-	var today = new Date(StratTime + " " + "00:00");
-	var todayMonth = today.getMonth() * 1 + 1;
-	var todayDate = today.getDate() * 1;
-	var during = new Date(EndTime + " " + "00:00");
-	var endMonth = during.getMonth() * 1 + 1;
-	var endDate = during.getDate() * 1;
-	console.log(endMonth);
-	console.log(endDate);
-	console.log(todayMonth);
-	console.log(EndTime);
-	var diff = during - today;//差多少毫秒數
-	var diffDay = diff
-	/(1000*60*24*60) / / 差幾日
-	console.log("diff" + diff);
-	console.log("diff" + diffDay);
+		var a =${sthb_list};
+		var b=${oneMovie};
+		console.log(a);
+		console.log(b);
+		var  StratTime= b[0].strDay;
+		var  EndTime = b[(b.length)-1].strDay;
+		console.log(StratTime);
+		console.log(EndTime);
+		var today = new Date(StratTime+" "+"00:00");
+		var todayMonth =today.getMonth()*1+1;
+		var todayDate = today.getDate()*1;
+		var during = new Date(EndTime+" "+"00:00");
+		var endMonth = during.getMonth()*1+1;
+		var endDate = during.getDate()*1;
+		console.log(endMonth);
+		console.log(endDate);
+		console.log(todayMonth);
+		console.log(EndTime);
+		var diff = during-today;//差多少毫秒數
+		var diffDay = diff/(1000*60*24*60) //差幾日
+		console.log("diff"+diff);
+		console.log("diff"+diffDay);
+		
+	
+		
+		
+		
+		
+		// 處理showTime 時間
+		
+		
+		
+		
+		
+			for(let day =0 ;day<=diffDay;day++){
+				 $("#showTime_table").append("<div class='wrapRowStart fullwidth' style=' padding: 10px 20px; font-size: 20px; font-weight: bold;' >"+"2020"+"年"+(todayMonth)+"月"+(todayDate+day)+"日</div>"+
+						                      " <div class='wrapRowStart fullwidth' style=' padding-bottom: 30px;' id ='showTime_tr"+day+"'></div>"
+				                            );
+				for(let i =0;i<=(b.length-1);i++){
+// 					console.log("b"+b.length);
+// 					console.log("i"+i);
+					var during2 = new Date(b[i].strDay+" "+"00:00");
+// 					var during3 = new Date(b[i+1].strDay+" "+"00:00");
+//                      console.log("todayMonth"+todayMonth);
+//                      console.log((during2.getMonth()*1)+1);
+					if(todayMonth == (during2.getMonth()*1)+1){
+// 						console.log("during2"+ during2.getDate()*1);
+// 						console.log("today+day"+todayDate+day);
+						if(during2.getDate()*1 ==todayDate+day ){
+							
+							console.log("相同月份");
+						
+							 document.getElementById("showTime_tr"+day).innerHTML+= "<a href='free-trail.html' class='slider-btn' style='margin: 5px 20px' onclick='formsubmit()'>"+b[i].strTime+"</a>";
+							 document.getElementById("showTime_tr"+day).innerHTML+= "<form id='showForm"+b[i].sthb.showTimeId+"'action='${pageContext.request.contextPath}/show/this/movie'method='post'>";
+							 document.getElementById("showTime_tr"+day).innerHTML+="<input name='showTimeId' type='hidden' value="+b[i].sthb.showTimeId+">"+"</form>" ;
 
-	// 處理showTime 時間
-
-	for (let day = 0; day <= diffDay; day++) {
-		$("#showTime_table").append(
-				"<tr><td>" + "2020" + "-" + (todayMonth) + "-"
-						+ (todayDate + day) + "</td></tr>"
-						+ "<tr id ='showTime_tr"+day+"'></tr>");
-		for (let i = 0; i <= (b.length - 1); i++) {
-			console.log("b" + b.length);
-			console.log("i" + i);
-			var during2 = new Date(b[i].strDay + " " + "00:00");
-			// 					var during3 = new Date(b[i+1].strDay+" "+"00:00");
-			console.log("todayMonth" + todayMonth);
-			console.log((during2.getMonth() * 1) + 1);
-			if (todayMonth == (during2.getMonth() * 1) + 1) {
-				console.log("during2" + during2.getDate() * 1);
-				console.log("today+day" + todayDate + day);
-				if (during2.getDate() * 1 == todayDate + day) {
-
-					console.log("相同月份");
-
-					document.getElementById("showTime_tr" + day).innerHTML += "<td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>"
-							+ b[i].strTime + "</a></td>";
-					//  							  $("#showTime_tr0").append(
-
-					//  			                       "<td style='padding:10px;margin: 0px;'><a href='free-trail.html' class='slider-btn'>"+b[i].strTime+"</a></td>" 
-
-					//  							  );
-				} else {
-				}
-
-			} else {
-				alert("月份不同");
-			}
+						}else{}
+							
+						
+						
+				
+					}else{
+						alert("月份不同");
+					}
+					
+				} 
+				
+				
+				
+				
 
 		}
-
-	}
-
-	function c() {
+		
+		
+		function c(){
 		console.log(document.getElementById("movieBean").value);
-	}
+		}
+		</script>
+		
+		<script>
+ function showhide(id) {
+     alert("id"+id);
+
+    var divid = document.getElementById(id);
+    var divs = document.getElementsByClassName('hide');
+    var showElement = true;
+    alert("aaa"+divid.style.display);
+    if (divid.style.display === 'none') {
+//         alert("bbbb");
+        divid.style.display = 'block';
+        showElement = false;
+    }else{
+//         alert("cccc");
+        divid.style.display = 'none';
+    }
+    // for (var i = 0; i < divs.length; i++) {
+    //     divs[i].style.display = 'none';
+    // }
+    // if (showElement) {
+    //     divid.style.display = 'block';
+    // }
+    // return false;
+}
+
+ 
+ /*	跳轉選指定電影page */
+ function formsubmit(){
+
+//	  console.log(run.movie.movieID );
+	  document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
+
+ }
 </script>
 </body>
 </html>
