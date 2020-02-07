@@ -289,6 +289,7 @@ public class RunMovieController implements ServletContextAware{
 //				List<RunningBean>rb_list=mService.getComingSoonMovie();
 				//取正在上映的電影
 				List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+				System.out.println("movieNum:"+rb_list.size());
 				
 				//movie要從第幾個開始
 				int movieNum =(pageNo-1)*8;
