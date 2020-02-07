@@ -71,7 +71,7 @@
 				<div class="row mt">
 					<div class="col-lg-12">
 						<!-- <p>Place your content here.</p> -->
-	<h2 style="text-align: center">${title}</h2>
+	<h2 style="text-align: center;">${title}</h2>
 <!-- 	<div> -->
 <!-- 		<div id="reportrange" -->
 <!-- 			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;"> -->
@@ -80,20 +80,21 @@
 <!-- 		</div> -->
 <!-- 	</div> -->
 	<br>
+<font size="2" face="Courier New">
 	<table id="example" class="display"
-		style="width: 100%; text-align: center;">
-		<thead>
+		style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+		<thead style="background: #4ECDC4; color: white;">
 			<tr>
-				<th></th>
-				<th style="text-align: center;">時段</th>
-				<th style="text-align: center;">場次數</th>
-				<th style="text-align: center;">票卷總成本</th>
-				<th style="text-align: center;">票券總利潤</th>
-				<th style="text-align: center;">票券銷售總額</th>
-				<th style="text-align: center;">商品總成本</th>
-				<th style="text-align: center;">商品總利潤</th>
-				<th style="text-align: center;">商品銷售總額</th>
-				<th style="text-align: center;">營收小計</th>
+				<th style="border-bottom: none;"></th>
+				<th style="text-align: center;border-bottom: none;">時段</th>
+				<th style="text-align: center;border-bottom: none;">場次數</th>
+				<th style="text-align: center;border-bottom: none;">票卷總成本</th>
+				<th style="text-align: center;border-bottom: none;">票券總利潤</th>
+				<th style="text-align: center;border-bottom: none;">票券銷售總額</th>
+				<th style="text-align: center;border-bottom: none;">商品總成本</th>
+				<th style="text-align: center;border-bottom: none;">商品總利潤</th>
+				<th style="text-align: center;border-bottom: none;">商品銷售總額</th>
+				<th style="text-align: center;border-bottom: none;">營收小計</th>
 			</tr>
 		</thead>
 		<tbody id="insertHere">
@@ -101,19 +102,9 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
 			</tr>
 		</tfoot>
-	</table>
+	</table></font>
 	<form id="submitExcel"
 		action="${pageContext.request.contextPath}/ticketSale/Date.xls"
 		method="POST">
