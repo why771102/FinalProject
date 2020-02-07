@@ -30,6 +30,9 @@
     img:hover{
        opacity:0.6;
     }
+    .imgMovie:hover{
+       opacity:0.6;
+    }
        </style>
 </head>
 </head>
@@ -65,7 +68,7 @@
 				<div class="movie1">
 					<div>
 						<!--                         修改處from line 22 to 26 -->
-					<img src='<c:url value='/getPicture/${run.movie.movieID}' />'
+					<img id='imgMovie' src='<c:url value='/getPicture/${run.movie.movieID}' />'
 						width="70%" height="70%">
 					</div>
 					<div class="m-name">

@@ -289,30 +289,36 @@ public class RunMovieController implements ServletContextAware{
 //				List<RunningBean>rb_list=mService.getComingSoonMovie();
 				//取正在上映的電影
 				List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
-				if(rb_list.size()>8 && rb_list.size()%8>0) {
-					totalPages = (rb_list.size()/8)+1;
-				}else if(rb_list.size()>8 && rb_list.size()%8==0){
-					totalPages = (rb_list.size()/8);
-				}else {}
+				System.out.println("movieNum:"+rb_list.size());
 				
-				
+				//movie要從第幾個開始
 				int movieNum =(pageNo-1)*8;
-				List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
-				System.out.println("rb_list:"+rb_list.size());
+				  //從第幾個(顯示到幾個(onePageNum)
 				int onePageNum =0;
-				if(rb_list.size()-movieNum>0) {
-					System.out.println("第二頁");
-					onePageNum=8+movieNum;
-				}else if(pageNo == 1) {
-					System.out.println("回第一頁");
-					movieNum =0;
-					onePageNum=rb_list.size()-1;
-					totalPages=1;
-				}
-				else {
-					onePageNum=rb_list.size()%8;
-				}
-				for(int i=movieNum;i<onePageNum;i++) {
+		        System.out.println("rb_size:"+rb_list.size());
+		        if(rb_list.size()%8 ==0) {
+		        	if(rb_list.size() == 0) {
+		        		System.out.println("no Page");
+		        		onePageNum =pageNo*0;
+		        	}else {
+		        		totalPages =rb_list.size()/8;
+		        		 onePageNum =totalPages*8;
+		        	}
+		        }else {
+		        	if(rb_list.size()>8) {
+		        		totalPages =rb_list.size()/8+1;
+		        		onePageNum =pageNo*8 +rb_list.size()%8;
+		        		
+		        	}else {
+		        		//少於8個
+		        		totalPages=1;
+		        		onePageNum =(rb_list.size());
+		        	}
+		        }
+
+				List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
+			
+				for(int i=movieNum;i<onePageNum-1;i++) {
 					System.out.println("i:"+i);
 					System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
 					rb_page_list.add(rb_list.get(i));

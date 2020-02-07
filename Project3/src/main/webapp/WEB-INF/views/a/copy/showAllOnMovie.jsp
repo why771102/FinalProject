@@ -30,7 +30,7 @@
 		cursor:pointer;
 		}
 		
-    img:hover{
+    div>img:hover{
        opacity:0.6;
     }
   
@@ -104,8 +104,8 @@
 
 	 <!-- movies page -->
 
-	<div id='createPage'>
-	<table  align='center'>
+	<div id='createPage' style='margin:40px 0px 0px 0px ;'>
+	<table  align='center' style='margin:40px 0px 0px 0px ;'>
 	<div align='center'>
 	<br>
 		<tr>
