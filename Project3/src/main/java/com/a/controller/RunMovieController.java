@@ -60,6 +60,7 @@ import com.google.gson.reflect.TypeToken;
 import com.p.model.HallOrderBean;
 import com.p.service.HallOrderService;
 import com.t.model.CommentBean;
+import com.t.model.ExpectationBean;
 import com.t.service.CommentService;
 import com.t.service.ExpectationService;
 
@@ -930,14 +931,24 @@ public class RunMovieController implements ServletContextAware{
 	@PostMapping(value = "/show/this/movie/commingSoon")
 	public String showThisMovieCommingSoon(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
+		RunningBean run = mService.getRunningBeanById(runID);
 		System.out.println("inShowThisMovieCommingSoon");
+		
+		ExpectationBean eb = new ExpectationBean();
+		model.addAttribute("ExpectationBean",eb);
+
+		Integer expect = eService.getAvgExpectation(run.getMovie().getMovieID());
+		if(expect == null) {
+			model.addAttribute("AVGExpectation", "尚無資料");
+		}else {
+			model.addAttribute("AVGExpectation", expect);
+		}
 		
 		System.out.println(runID);
 		Gson gson = new Gson();
 //		Type BeanType = new TypeToken<RunningBean>(){}.getType();
 //		RunningBean rb = new Gson().fromJson(run, BeanType);
 		//get showTime by runningBean
-		RunningBean run = mService.getRunningBeanById(runID);
 		System.out.println("電影名稱:"+run.getMovie().getTitle());
 /*		
 		LocalDate today = LocalDate.now();

@@ -82,43 +82,43 @@ public class ExpectationController {
 		return "memberID";
 	}
 	
-	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.GET)
-	public String getAddNewExpection(@PathVariable("movieID")Integer movieID,Model model) {
-		ExpectationBean eb = new ExpectationBean();
-		model.addAttribute("ExpectationBean",eb);
-		return "t/addexpectation";
-	}
+//	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.GET)
+//	public String getAddNewExpection(@PathVariable("movieID")Integer movieID,Model model) {
+//		ExpectationBean eb = new ExpectationBean();
+//		model.addAttribute("ExpectationBean",eb);
+//		return "t/addexpectation";
+//	}
 	
-	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.POST)
-	public String processAddNewExpection(@PathVariable("movieID")Integer movieID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
-//		eb.setMovieID(movieID);
-		
-		ExpectationValidator validator = new ExpectationValidator();
-		// 呼叫Validate進行資料檢查
-		validator.validate(eb, result);
-		if (result.hasErrors()) {
-			return "t/addexpectation";
-		}
-		Cookie[] cookies = request.getCookies();
-		String mID = null;
-		for (Cookie cookie : cookies) {
-			String name = cookie.getName();
-			if(name.equals("memberID")) {
-				mID = cookie.getValue();
-			}
-		}
-		if(mID == null) {
-			return "redirect:/member/login";
-		}else {
-		int nMID = Integer.parseInt(mID);
-		eb.setMemberID(nMID);
-		service.addExpect(eb);
-		}
-		return "redirect:/getMovieIDforexpect";
-	}
+//	@RequestMapping(value = "/expectation/add/{movieID}", method = RequestMethod.POST)
+//	public String processAddNewExpection(@PathVariable("movieID")Integer movieID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
+////		eb.setMovieID(movieID);
+//		
+//		ExpectationValidator validator = new ExpectationValidator();
+//		// 呼叫Validate進行資料檢查
+//		validator.validate(eb, result);
+//		if (result.hasErrors()) {
+//			return "t/addexpectation";
+//		}
+//		Cookie[] cookies = request.getCookies();
+//		String mID = null;
+//		for (Cookie cookie : cookies) {
+//			String name = cookie.getName();
+//			if(name.equals("memberID")) {
+//				mID = cookie.getValue();
+//			}
+//		}
+//		if(mID == null) {
+//			return "redirect:/member/login";
+//		}else {
+//		int nMID = Integer.parseInt(mID);
+//		eb.setMemberID(nMID);
+//		service.addExpect(eb);
+//		}
+//		return "redirect:/getMovieIDforexpect";
+//	}
 
-	@PostMapping("/addnewexpect")
-	public String processAddNewExpect(@RequestParam String runID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
+	@PostMapping("/addnewexpect/{runID}")
+	public String processAddNewExpect(@PathVariable("runID") String runID,ExpectationBean eb,BindingResult result,HttpServletRequest request) {
 		HashMap<String, String> errorMsgMap = new HashMap<String, String>();
 		RunningBean run = mService.getRunningBeanById(runID);
 		ExpectationValidator validator = new ExpectationValidator();
