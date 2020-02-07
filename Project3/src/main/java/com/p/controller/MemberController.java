@@ -111,8 +111,16 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/query")
-	public String updateMember(@RequestParam("mail") String mail) {
+	public String updateMember(@RequestParam("mail") String mail, @RequestParam("mobile") String mobile,
+			@RequestParam("name") String name, @RequestParam("address") String address,
+			@RequestParam("memberID") String memberID) {
 		MemberBean mb = new MemberBean();
+		mb.setEmail(mail);
+		mb.setName(name);
+		mb.setMobile(mobile);
+		mb.setAddress(address);
+		mb.setMemberID(Integer.parseInt(memberID));
+		System.out.println(mb.getName());
 		service.updateMember(mb);
 		return "redirect:/memberCenter";
 	}
