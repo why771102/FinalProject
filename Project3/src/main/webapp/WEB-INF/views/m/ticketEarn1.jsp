@@ -74,9 +74,6 @@
 	<h2 style="text-align: center">票房營收總覽</h2>
 		<div style="text-align: -webkit-right;">
 			類型： ${genreSelection}
-			<!-- 		&nbsp; &nbsp; &nbsp;電影名稱 <select> -->
-			<!-- 			<option>Java人生</option> -->
-			<!-- 		</select> -->
 			<br>
 			<div id="reportrange"
 				style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 200px;">
@@ -85,6 +82,7 @@
 			</div>
 		</div>
 		<br>
+	<font size="2" face="Courier New">
 		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
@@ -118,7 +116,7 @@
 					<th></th>
 				</tr>
 			</tfoot>
-		</table>
+		</table></font>
 	<form id="submitExcel"
 		action="${pageContext.request.contextPath}/ticket/sale/ticketSale.xls"
 		method="POST">

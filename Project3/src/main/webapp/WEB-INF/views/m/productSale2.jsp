@@ -90,29 +90,30 @@
 							</div>
 						</div>
 						<br>
+						<font size="2" face="Courier New" >
 						<table id="example" class="display"
-							style="width: 100%; text-align: center;">
-							<thead>
+							style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+							<thead style="background: #4ECDC4; color: white;">
 								<tr>
-									<th></th>
-									<th style="text-align: center;">日期</th>
-									<th style="text-align: center;">單價</th>
-									<th style="text-align: center;">數量</th>
-									<th style="text-align: center;">小計</th>
+									<th style="border-bottom: none;"></th>
+									<th style="text-align: center;border-bottom: none">日期</th>
+									<th style="text-align: center;border-bottom: none">單價</th>
+									<th style="text-align: center;border-bottom: none">數量</th>
+									<th style="text-align: center;border-bottom: none">小計</th>
 								</tr>
 							</thead>
 							<tbody id="insertHere">
 							</tbody>
 							<tfoot>
 								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
 								</tr>
 							</tfoot>
-						</table>
+						</table></font>
 						<form id="submitExcel"
 							action="${pageContext.request.contextPath}/productSaleDetail.xls"
 							method="POST">

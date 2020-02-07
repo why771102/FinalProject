@@ -91,29 +91,31 @@
 
 /* Link the series colors to axis colors */
 .highcharts-color-0 {
-	fill: #7cb5ec;
-	stroke: #7cb5ec;
+	fill: #191970;
+	stroke: #191970;
 }
 
 .highcharts-axis.highcharts-color-0 .highcharts-axis-line {
-	stroke: #7cb5ec;
+	stroke: #191970;
 }
 
 .highcharts-axis.highcharts-color-0 text {
-	fill: #7cb5ec;
+	fill: #191970;
+	font-size: 18px;
 }
 
 .highcharts-color-1 {
-	fill: #90ed7d;
-	stroke: #90ed7d;
+	fill: #20B2AA;
+	stroke: #20B2AA;
 }
 
 .highcharts-axis.highcharts-color-1 .highcharts-axis-line {
-	stroke: #90ed7d;
+	stroke: #20B2AA;
 }
 
 .highcharts-axis.highcharts-color-1 text {
-	fill: #90ed7d;
+	fill: #20B2AA;
+	font-size: 18px;
 }
 
 .highcharts-yaxis .highcharts-axis-line {
@@ -164,15 +166,16 @@
 			</div>
 		</div>
 		<br>
+	<font size="2" face="Courier New" >
 		<table id="example" class="display"
-			style="width: 100%; text-align: center;">
+			style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
 			<thead>
 				<tr>
 					<th></th>
 					<th style="text-align: center;">日期</th>
 					<th style="text-align: center;">場次數</th>
-					<th style="text-align: center;">總座位數</th>
-					<th style="text-align: center;">售出座位數</th>
+					<th style="text-align: center;">總座位</th>
+					<th style="text-align: center;">售出座位</th>
 					<th style="text-align: center;">滿座率</th>
 					<th style="text-align: center;">平均消費/單</th>
 					<th style="text-align: center;">票銷售額</th>
@@ -199,7 +202,7 @@
 					<th></th>
 				</tr>
 			</tfoot>
-		</table>
+		</table></font>
 <form id="submitExcel"
 		action="${pageContext.request.contextPath}/ticketSaleDetail.xls"
 		method="POST">

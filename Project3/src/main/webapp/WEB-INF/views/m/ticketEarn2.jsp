@@ -80,6 +80,7 @@
 			</div>
 		</div>
 		<br>
+	<font size="2" face="Courier New">
 		<table id="example" class="display" style="width: 100%; text-align: center;">
 			<thead>
 				<tr>
@@ -112,7 +113,7 @@
 					<th></th>
 				</tr>
 			</tfoot>
-		</table>
+		</table></font>
 		<form id="submitExcel"
 		action="${pageContext.request.contextPath}/ticketSaleDetail.xls"
 		method="POST">

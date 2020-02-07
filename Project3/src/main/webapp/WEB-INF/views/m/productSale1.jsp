@@ -15,6 +15,7 @@
 <!-- jQuery -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -104,29 +105,31 @@
 
 /* Link the series colors to axis colors */
 .highcharts-color-0 {
-	fill: #7cb5ec;
-	stroke: #7cb5ec;
+	fill: #4682B4;
+	stroke: #4682B4;
 }
 
 .highcharts-axis.highcharts-color-0 .highcharts-axis-line {
-	stroke: #7cb5ec;
+	stroke: #4682B4;
 }
 
 .highcharts-axis.highcharts-color-0 text {
-	fill: #7cb5ec;
+	fill: #4682B4;
+	font-size: 18px;
 }
 
 .highcharts-color-1 {
-	fill: #90ed7d;
-	stroke: #90ed7d;
+	fill: #FFC0CB;
+	stroke: #FFC0CB;
 }
 
 .highcharts-axis.highcharts-color-1 .highcharts-axis-line {
-	stroke: #90ed7d;
+	stroke: #FFC0CB;
 }
 
 .highcharts-axis.highcharts-color-1 text {
-	fill: #90ed7d;
+	fill: #FFC0CB;
+	font-size: 18px;
 }
 
 .highcharts-yaxis .highcharts-axis-line {
@@ -166,7 +169,7 @@
 						<h2 style="text-align: center">產品銷售總覽</h2>
 						<br>
 						<div id="container1"
-							style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>
+							style="min-width: 310px; height: 600px; max-width: 1400px; margin: 0 auto"></div>
 						<!-- timpicker -->
 						<br>
 						<div style="text-align: -webkit-right;">
@@ -179,29 +182,30 @@
 							</div>
 						</div>
 						<br>
+						<font size="2" face="Courier New" >
 						<table id="example" class="display"
-							style="width: 100%; text-align: center;">
-							<thead>
+							style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+							<thead  style="background: #4ECDC4; color: white;">
 								<tr>
-									<th></th>
-									<th style="text-align: center;">產品名稱</th>
-									<th style="text-align: center;">單價</th>
-									<th style="text-align: center;">數量</th>
-									<th style="text-align: center;">總金額</th>
+									<th style="border-bottom: none !important;"></th>
+									<th style="text-align: center;border-bottom: none;">產品名稱</th>
+									<th style="text-align: center;border-bottom: none;">單價</th>
+									<th style="text-align: center;border-bottom: none;">數量</th>
+									<th style="text-align: center;border-bottom: none;">總金額</th>
 								</tr>
 							</thead>
 							<tbody id="insertHere">
 							</tbody>
 							<tfoot>
 								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
+<!-- 									<th></th> -->
 								</tr>
 							</tfoot>
-						</table>
+						</table></font>
 						<form id="submitExcel"
 							action="${pageContext.request.contextPath}/product/sale/productSale.xls"
 							method="POST">
@@ -232,6 +236,7 @@
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 	<script>
 		(function($) {
+			
 			$(document).ready(function() {
 				var t = $('#example').DataTable({
 					"columnDefs" : [ {

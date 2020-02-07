@@ -85,6 +85,7 @@
 							</div>
 						</div>
 						<br>
+						<font size="2" face="Courier New" >
 						<table id="example" class="display"
 							style="width: 100%; text-align: center;">
 							<thead>
@@ -111,7 +112,7 @@
 									<th></th>
 								</tr>
 							</tfoot>
-						</table>
+						</table></font>
 						<form id="submitExcel"
 							action="${pageContext.request.contextPath}/product/earn/productEarn.xls"
 							method="POST">

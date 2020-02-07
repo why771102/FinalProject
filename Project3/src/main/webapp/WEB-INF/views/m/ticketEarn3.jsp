@@ -71,7 +71,7 @@
 				<div class="row mt">
 					<div class="col-lg-12">
 						<!-- <p>Place your content here.</p> -->
-	<h2 style="text-align: center">${title}</h2>
+	<h2 style="text-align: center;">${title}</h2>
 <!-- 	<div> -->
 <!-- 		<div id="reportrange" -->
 <!-- 			style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 20%;"> -->
@@ -80,6 +80,7 @@
 <!-- 		</div> -->
 <!-- 	</div> -->
 	<br>
+<font size="2" face="Courier New">
 	<table id="example" class="display"
 		style="width: 100%; text-align: center;">
 		<thead>
@@ -113,7 +114,7 @@
 				<th></th>
 			</tr>
 		</tfoot>
-	</table>
+	</table></font>
 	<form id="submitExcel"
 		action="${pageContext.request.contextPath}/ticketSale/Date.xls"
 		method="POST">
