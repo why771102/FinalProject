@@ -310,7 +310,7 @@
 		//	changPageNum (id);
 			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/commingSoon/change/page",
+				url : "${pageContext.request.contextPath}/onMovie/change/page",
 				data : {"page":page},
 				type : "POST",
 				error: function(){alert("失敗");   },

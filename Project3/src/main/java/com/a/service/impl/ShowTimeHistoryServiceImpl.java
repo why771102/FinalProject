@@ -125,6 +125,13 @@ public class ShowTimeHistoryServiceImpl implements ShowTimeHistoryService {
 	
 	@Transactional
 	@Override
+	public List<RunningBean> getDistinctRunIDByDate(LocalDate startDay) {
+		
+		return dao.getDistinctRunIDByDate(startDay);
+	}
+	
+	@Transactional
+	@Override
 	public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime) {
 		
 		return dao.getAWeekShowTimeHistoryBean(starttime);
