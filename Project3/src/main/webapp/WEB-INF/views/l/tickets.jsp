@@ -30,9 +30,31 @@
 	href='${pageContext.request.contextPath}/css/responsive.css'
 	type='text/css' />
 <style>
-.bookBtn {
-    margin: 0 auto;
+.ticketInfo{
+    width:100%;
+    
+  	text-align: center;
     min-height: 480px;
+}
+.bookBtn{
+width:57%;
+text-align:left;
+display: inline-block;}
+.t-button{
+text-align:left;
+margin-top :15px;
+border-radius: 37px;
+padding: 20px 50px;
+width:100%}
+
+.ticketInfo  {
+ display: inline-block;
+  font-size: 20px;
+  padding: 20px;
+  
+}
+.bookInfo{
+text-align:left;
 }
 </style>
 </head>
@@ -59,19 +81,22 @@
 <!--      	   </div> -->
 <!--    	 </section> -->
 
-<div class="ticketInfo bookBtn">
-        	<table>
+
+<div class="ticketInfo"  >
+     <div class="bookBtn" >  
+     	<font color="#FF0000" style="font-size:27px" ><b>請注意！76影城絕不會要求顧客至 ATM操作解除分期或補繳金額，請貴賓提高警覺避免受騙。</b></font>
+        	<table style="display:inline-block " >
         		<tr>
 　					<td><a href="<spring:url value='/bookNormal' />"class="icon-vsgeneral">
-				<button>  <h1>一般 / 銀行優惠 / 76會員票種</h1>
-	                <h2>GENERAL / BANK PRIVILEGE TICKET / 76 SVC DISCOUNT TICKET</h2></button>
+				<button class="t-button">  <h1>一般 / 銀行優惠 / 76會員票種</h1>
+	                <h3>GENERAL / BANK PRIVILEGE TICKET / 76 SVC DISCOUNT TICKET</h3></button>
 			</a></td>
 　
 　				</tr>
 					<tr>
 　					<td><a href="<spring:url value='/bookNormal' />"class="icon-vsgeneral">
-				<button>  <h1>團體優待票券 / 愛心票 / 敬老票 / 免費兌換券</h1>
-	                <h2>CORPORATE MOVIE MONEY / DISABILITY TICKET / ELDERLY TICKET / READMISSION</h2></button>
+				<button class="t-button">  <h1>團體優待票券 / 愛心票 / 敬老票 / 免費兌換券</h1>
+	                <h3>CORPORATE MOVIE MONEY / DISABILITY TICKET / ELDERLY TICKET / READMISSION</h3></button>
 			</a></td>
 　
 　				</tr>
@@ -92,6 +117,7 @@
                 </ol>
               </div>
             </div>
+           </div> 
 <!-- footer -->
 	<jsp:include page="../a/footer.jsp">
 		<jsp:param name="a" value="1" />
