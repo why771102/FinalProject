@@ -345,12 +345,12 @@ span.seatCharts-legendDescription {
 								legend : {
 									node : $('#legend'),
 									items : [
-											[ 'f', 'available', 'Normal' ],
+											[ 'f', 'available', '標準座' ],
 											[ 'e', 'available',
-													'Handicap Seats' ],
+													'輪椅座' ],
 											// 										[ 'f', 'unavailable', 'Already Booked' ],
-											[ 'o', 'available', 'Out Of Order' ],
-											[ '_', 'seatCharts-space', 'Aisle' ] ]
+											[ 'o', 'available', '故障' ],
+											[ '_', 'seatCharts-space', '走道' ] ]
 								},
 								click : function() {
 									if (this.status() == 'available') {

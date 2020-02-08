@@ -53,7 +53,8 @@ div.tablist li{
 }
 
 div.tablist ul li:hover{
-	background-color: lightgrey;
+	cursor: pointer;
+	font-color: #C21010;
 	opacity:0.6;
 }
 div.empty-list {
@@ -61,6 +62,24 @@ div.empty-list {
 	margin: 24px 0;
 	/* padding: 24px; */
 	text-align: center;
+}
+li.selected{
+	border-bottom: solid 5px #C21010;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+  border: 1px solid #339FFF;
+ 
 }
 
 </style>
@@ -74,7 +93,7 @@ div.empty-list {
        <jsp:param name="a" value="1" />
 </jsp:include>
     </header>
-    <div class="wrapList">
+    <div class="wrapList" style="margin-top:64px;">
 
     <div class="tablist">
       <ul>
@@ -156,6 +175,10 @@ div.empty-list {
 	}
 
  $('#memberDetail').click(function(){
+	 $('#memberDetail').addClass("selected");
+	 $('#memTicket').removeClass("selected");
+	 $('#hallOrder').removeClass("selected");
+	 
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/member/query",
 // 			data : {
@@ -172,6 +195,9 @@ div.empty-list {
  })
  
  $('#memTicket').click(function(){
+	 $('#memTicket').addClass("selected");
+	 $('#memberDetail').removeClass("selected");
+	 $('#hallOrder').removeClass("selected");
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/member/ticket",
 // 			data : {
@@ -188,6 +214,9 @@ div.empty-list {
  })
  
  $('#hallOrder').click(function(){
+	 $('#hallOrder').addClass("selected");
+	 $('#memberDetail').removeClass("selected");
+	 $('#memTicket').removeClass("selected");
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/Member/hallOrderQuery",
 // 			data : {
