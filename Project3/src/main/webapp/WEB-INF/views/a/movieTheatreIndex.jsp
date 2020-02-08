@@ -73,7 +73,7 @@
                         </li>
                         <li><a href="up-coming.html">購票</a>
                         </li>
-                        <li><a href="conatct.html">contact</a>
+                        <li><a href="annos">公告</a>
                         </li>
                         <li><a href="showAllProducts">周邊商品</a>
                         </li>
@@ -207,106 +207,112 @@
 
 
 
-    <div class="ser-list">
-        <div class="container">
-            <div class="row">
+<!--     <div class="ser-list"> -->
+<!--         <div class="container"> -->
+<!--             <div class="row"> -->
 
-                <div class="col-sm-4">
-                    <ul class="nav nav-tabs list-items">
-                        <li class="arrow_box active"><a data-toggle="tab" href="#1">Session Management</a>
-                        </li>
-                        <li class="arrow_box"><a data-toggle="tab" href="#2">Reserved Seating</a>
-                        </li>
-                        <li class="arrow_box"><a data-toggle="tab" href="#3">Clickable Sector Maps</a>
-                        </li>
-                        <li class="arrow_box"><a data-toggle="tab" href="#4">Visual Mapping</a>
-                        </li>
-                        <li class="arrow_box"><a data-toggle="tab" href="#5">Cinema Booking</a>
-                        </li>
-                        <li class="arrow_box"><a data-toggle="tab" href="#6">Stadium Mapping</a>
-                        </li>
-                        <li class="arrow_box"><a data-toggle="tab" href="#7">Seat Booking</a>
-                        </li>
-                        <li class="arrow_box"><a data-toggle="tab" href="#8">Others</a>
-                        </li>
-                    </ul>
-                </div>
+<!--                 <div class="col-sm-4"> -->
+<!--                     <ul class="nav nav-tabs list-items"> -->
+<!--                         <li class="arrow_box active"><a data-toggle="tab" href="#1">Session Management</a> -->
+<!--                         </li> -->
+<!--                         <li class="arrow_box"><a data-toggle="tab" href="#2">Reserved Seating</a> -->
+<!--                         </li> -->
+<!--                         <li class="arrow_box"><a data-toggle="tab" href="#3">Clickable Sector Maps</a> -->
+<!--                         </li> -->
+<!--                         <li class="arrow_box"><a data-toggle="tab" href="#4">Visual Mapping</a> -->
+<!--                         </li> -->
+<!--                         <li class="arrow_box"><a data-toggle="tab" href="#5">Cinema Booking</a> -->
+<!--                         </li> -->
+<!--                         <li class="arrow_box"><a data-toggle="tab" href="#6">Stadium Mapping</a> -->
+<!--                         </li> -->
+<!--                         <li class="arrow_box"><a data-toggle="tab" href="#7">Seat Booking</a> -->
+<!--                         </li> -->
+<!--                         <li class="arrow_box"><a data-toggle="tab" href="#8">Others</a> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
 
-                <div class="col-sm-8">
+<!--                 <div class="col-sm-8"> -->
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane fade active in" id="1">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image.png">
-                                <h5>Session Management</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit. 
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="2">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image-1.jpg">
-                                <h5>Reserved Seating</h5>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="3">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image-2.jpg">
-                                <h5>Clickable Sector Maps</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="4">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image-3.jpg">
-                                <h5>Visual Mapping</h5>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="5">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image-1.jpg">
-                                <h5>Cinema Booking</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="6">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image-2.jpg">
-                                <h5>Stadium Mapping</h5>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="7">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image-3.jpg">
-                                <h5>Seat Booking</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="8">
-                            <div class="tab-data-info">
-                                <img src="img/tab-image.png">
-                                <h5>Other</h5>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+<!--                     Tab panes -->
+<!--                     <div class="tab-content"> -->
+<!--                         <div class="tab-pane fade active in" id="1"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image.png"> -->
+<!--                                 <h5>Session Management</h5> -->
+<!--                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit.  -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="tab-pane fade" id="2"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image-1.jpg"> -->
+<!--                                 <h5>Reserved Seating</h5> -->
+<!--                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia. -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="tab-pane fade" id="3"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image-2.jpg"> -->
+<!--                                 <h5>Clickable Sector Maps</h5> -->
+<!--                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit. -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="tab-pane fade" id="4"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image-3.jpg"> -->
+<!--                                 <h5>Visual Mapping</h5> -->
+<!--                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia. -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="tab-pane fade" id="5"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image-1.jpg"> -->
+<!--                                 <h5>Cinema Booking</h5> -->
+<!--                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit. -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="tab-pane fade" id="6"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image-2.jpg"> -->
+<!--                                 <h5>Stadium Mapping</h5> -->
+<!--                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia. -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="tab-pane fade" id="7"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image-3.jpg"> -->
+<!--                                 <h5>Seat Booking</h5> -->
+<!--                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat voluptas sit. -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="tab-pane fade" id="8"> -->
+<!--                             <div class="tab-data-info"> -->
+<!--                                 <img src="img/tab-image.png"> -->
+<!--                                 <h5>Other</h5> -->
+<!--                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia. -->
+<!--                                 </p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
 
-                </div>
+<!--                 </div> -->
 
-            </div>
-        </div>
-    </div>
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+
+
+		<jsp:include page="../z/annos.jsp">
+			<jsp:param name="b" value="1" />
+		</jsp:include>
+
 
 
 
