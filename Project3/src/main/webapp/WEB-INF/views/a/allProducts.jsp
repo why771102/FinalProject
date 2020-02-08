@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/responsive.css" type="text/css" />
     <style>
     
-    	img{
+    	#image img{
     		border-radius: 25px;
     	}
     	img:hover{
@@ -46,7 +46,7 @@
 	<!-- header -->
 
     <!-- banner -->
-    <section class="ticket-outer banner-featured">
+    <section class="ticket-outer banner-featured" style="margin-top:64px;"> 
         <div class="container">
             <div class="ticket-sell">
                 <h3 class="font">- - 電影周邊 - -</h3>

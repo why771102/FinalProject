@@ -15,7 +15,7 @@
 	crossorigin="anonymous"></script>
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	 
-<title>ShowCommingSoonMovie</title>
+<title>ShowComingSoonMovie</title>
   <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
@@ -51,7 +51,7 @@
 </header>
   <!-- header -->
    <!-- banner -->
-    <section class="ticket-outer banner-featured">
+    <section class="ticket-outer banner-featured" style="margin-top:64px;">
         <div class="container">
             <div class="ticket-sell">
                 <h3 class="font"> Latest Movies</h3>

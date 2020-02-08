@@ -313,7 +313,7 @@ div.free-trial-btn button:hover {
 
 	<!-- banner -->
 
-	<section class="dark-blue">
+	<section class="dark-blue" style="margin-top:64px;">
 		<div class="container">
 			<div class="ready">
 				<h4>現在就立刻購買！</h4>

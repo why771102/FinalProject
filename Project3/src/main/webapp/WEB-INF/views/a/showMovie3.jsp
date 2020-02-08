@@ -349,7 +349,7 @@
     <!-- banner -->
 
     <!-- banner -->
-    <section class='gray-bnr feature-sec ' style='background-color:black;'>
+    <section class='gray-bnr feature-sec ' style='background-color:black; margin-top:64px;'>
     <div class='container' >
     
         <div class='buy-txt'> 

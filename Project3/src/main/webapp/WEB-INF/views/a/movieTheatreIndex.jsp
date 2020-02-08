@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- title -->
-    <title>cineshow</title>
+    <title>76影城</title>
     <!-- google fonts -->
     
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
@@ -36,12 +36,20 @@
 	.navbar-default .navbar-nav > li.free-trial-btn {
     	margin-left: 13px;
 	}
+	
+	header{
+		position: fixed;
+    	width: 100%;
+    	display: block;
+    	top: 0;
+    	transition: top 0.3s;
+	}
     </style>
 </head>
 
 <body>
 
-    <header>
+    <header id="header">
         <!-- header -->
         <nav class="navbar navbar-default navbar-static-top my-navigation">
             <div class="container">
@@ -86,7 +94,7 @@
     <!-- header-->
 
     <!-- slider -->
-    <section class="slider-sec">
+    <section class="slider-sec" style="margin-top:64px;">
         <section class="slider">
             <div class="flexslider">
                 <ul class="slides">
@@ -579,6 +587,18 @@
             document.forms[0].method = "POST";
     		document.forms[0].submit();
     	}
+    	
+    	var prevScrollpos = window.pageYOffset;
+    	window.onscroll = function() {
+    	var currentScrollPos = window.pageYOffset;
+    	  if (prevScrollpos > currentScrollPos) {
+    	    document.getElementById("header").style.top = "0";
+    	  } else {
+    	    document.getElementById("header").style.top = "-65px";
+    	  }
+    	  prevScrollpos = currentScrollPos;
+    	}
+
     	
     </script>
 

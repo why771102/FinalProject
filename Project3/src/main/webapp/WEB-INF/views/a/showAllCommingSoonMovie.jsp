@@ -43,10 +43,10 @@
 </header>
   <!-- header -->
    <!-- banner -->
-    <section class="ticket-outer banner-featured">
+    <section class="ticket-outer banner-featured" style="margin-top:64px;">
         <div class="container">
             <div class="ticket-sell">
-                <h3 class="font"> Comming Soon Movies</h3>
+                <h3 class="font"> Coming Soon Movies</h3>
             </div>
         </div>
     </section>

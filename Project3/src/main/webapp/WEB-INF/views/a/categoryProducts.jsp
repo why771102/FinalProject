@@ -301,7 +301,7 @@ div.submitButton {
 
 	<!-- banner -->
 	<!-- slider -->
-    <section class="slider-sec">
+    <section class="slider-sec" style="margin-top:64px;">
         <section class="slider">
             <div class="flexslider">
                 <ul class="slides">
