@@ -364,7 +364,7 @@ to {
 								
 									</div>
 									<div>
-										Price:<input id="price" name="price" path="price" type='text'
+										Price:<input id="price" name="price" type='text'
 											required="required" style="margin-left: 15px; margin-bottom: 5px;"/>
 										
 										</div>
@@ -408,7 +408,6 @@ to {
 							</div>
 						</div>
 
-						</p>
 						<!-- movie seats end -->
 					</div>
 				</div>
@@ -490,6 +489,7 @@ to {
 			// }
 			seatmain(map, flag1);
 			modal.style.display = "none";
+			document.getElementsByClassName("modal-backdrop in")[0].style.display = "none";
 			document.getElementById('hall').innerText = document.getElementById('hallID').value + " 廳";
 		}
 
@@ -540,12 +540,12 @@ to {
 								legend : {
 									node : $('#legend'),
 									items : [
-											[ 'f', 'available', 'Normal' ],
+											[ 'f', 'available', '標準座' ],
 											[ 'e', 'available',
-													'Handicap Seats' ],
+													'輪椅座' ],
 											// [ 'f', 'unavailable', 'Already Booked' ],
 											// [ 'o', 'out-of-order', 'Out Of Order' ],
-											[ '_', 'available', 'Aisle' ] ]
+											[ '_', 'available', '走道' ] ]
 								},
 								click : function() {
 									//console.log(window.status);
