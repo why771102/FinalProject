@@ -67,7 +67,7 @@
                         </li>
                         <li><a href="up-coming.html">購票</a>
                         </li>
-                        <li><a href="conatct.html">contact</a>
+                        <li><a href="annos">公告</a>
                         </li>
                         <li><a href="${pageContext.request.contextPath}/showAllProducts">周邊商品</a>
                         </li>

@@ -612,7 +612,7 @@ img.logo-hdr {
     padding: 13px 25px 14px 0px;
     transition: none;
     border: 1px solid #e7e7e7 !important;
-    border-left: none !important;
+/*     border-left: none !important; */
     transition: all 0.4s ease 0s;
     font-weight: 400;
 }

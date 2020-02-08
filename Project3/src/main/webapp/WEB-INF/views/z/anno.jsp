@@ -44,7 +44,6 @@
     	transition: top 0.3s;
 	}
     </style>
-
 </head>
 <body>
 	<header>
@@ -52,39 +51,33 @@
 			<jsp:param name="a" value="1" />
 		</jsp:include>
 	</header>
-	<div class="container">
-		<section>
-			<div class="buy-block">
-				<div style="text-align: center">
-					<h1>公告</h1>
-				</div>
+ <div class="container">
+	<section>
+		<div class="buy-block">
+			<div style="text-align: center">
+				<h1>${annoBean.title}</h1>
 			</div>
-		</section>
-		<hr
-			style="height: 1px; border: none; color: #333; background-color: #333;">
+		</div>
+	</section>
+	<h4>${fn:substring(annoBean.startTime,0,10)}</h4>
+	<hr
+		style="height: 1px; border: none; color: #333; background-color: #333;">
+	<div>
 		<div>
-
-			<c:forEach var="anno" items="${annoList}">
-				<div>
-					<h4>
-						<a href="anno/${anno.annoId }">${anno.title}</a>
-					</h4>
-
-				</div>
-				<hr>
-			</c:forEach>
+			<div>${annoBean.content}</div>
 
 		</div>
+		<hr>
+
+
 	</div>
-
-
-
-
+</div>
 	<footer>
 		<jsp:include page="../a/footer.jsp">
 			<jsp:param name="a" value="1" />
 		</jsp:include>
 	</footer>
+
 
 </body>
 </html>

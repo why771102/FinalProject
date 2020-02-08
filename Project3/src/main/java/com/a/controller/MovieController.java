@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
@@ -26,6 +27,8 @@ import com.a.service.RunningService;
 import com.a.service.ShowTimeHistoryService;
 import com.google.gson.Gson;
 import com.l.service.mOrdersService;
+import com.z.model.AnnoBean;
+import com.z.service.AnnoService;
 
 @Controller
 public class MovieController implements ServletContextAware{
@@ -35,6 +38,7 @@ public class MovieController implements ServletContextAware{
 	RunningService rservice;
 	ServletContext context;
 	mOrdersService service;
+	AnnoService annoService;
 	
 	@Override
 	public void setServletContext(ServletContext servletContext) {
@@ -42,11 +46,18 @@ public class MovieController implements ServletContextAware{
 	}
 	
 	@Autowired
-	public void setService(MovieService mService, ShowTimeHistoryService sthService, RunningService rservice,mOrdersService service) {
+	public void setService(MovieService mService, ShowTimeHistoryService sthService, RunningService rservice,mOrdersService service, AnnoService annoService) {
 		this.mService = mService;
 		this.sthService = sthService;
 		this.rservice = rservice;
 		this.service=service;
+		this.annoService = annoService;
+	}
+	
+	@ModelAttribute("annoList")
+	public List<AnnoBean> getannoList() {
+		List<AnnoBean> allAnnos = annoService.showAnnoToMember();
+		return allAnnos;
 	}
 	
 	@GetMapping("/movieIndex")

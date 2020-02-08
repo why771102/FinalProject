@@ -86,20 +86,11 @@ public class AnnoController {
 		
 		System.out.println("轉換後的時間  nst : " + nst);
 		System.out.println("轉換後的時間  net : " + net);		
-//		String[] suppressedFields = result.getSuppressedFields();
-//		, BindingResult result
-//		if(suppressedFields.length > 0) {
-//			throw new RuntimeException("傳入不允許的欄位");
-//		} 
+		
  		service.addNewAnno(ab);
 		return "redirect:/bgAnnos";
 	}
 	
-	
-//	@InitBinder
-//	public void whiteListing(WebDataBinder binder) {
-//		binder.setAllowedFields("empName", "roleId", "email", "password", "status", "startDate" ,"endDate");
-//	}
 	
 	//----------------------------------
 	@RequestMapping(value = "/anno/update/{annoId}", method = RequestMethod.GET)
@@ -143,6 +134,13 @@ public class AnnoController {
 		return annoStatusMap;
 	}
 	
+	
+	@ModelAttribute("annoList")
+	public List<AnnoBean> getannoList() {
+		List<AnnoBean> allAnnos = service.showAnnoToMember();
+		return allAnnos;
+	}
+	
 	//前台顯示公告用(依照優先度排序)
 	@RequestMapping(value = "/annos")
 	public String showAnnos(Model model) {
@@ -150,6 +148,14 @@ public class AnnoController {
 		model.addAttribute("allAnnos", allAnnos);
 		return "z/annos";
 	}
+	
+	@RequestMapping(value = "/anno/{annoId}")
+	public String showOneAnno(Model model, @PathVariable("annoId") Integer annoId) {
+		AnnoBean ab = service.showOneAnno(annoId);
+		model.addAttribute("annoBean", ab);
+		return "z/anno";
+	}
+
 	
 	@RequestMapping(value = "/anno/launch/{annoId}")
 	public String launchAnno(Model model, @PathVariable("annoId") Integer annoId) {

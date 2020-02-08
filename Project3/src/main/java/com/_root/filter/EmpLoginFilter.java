@@ -27,15 +27,15 @@ import com.z.model.EmpBean;
 				@WebInitParam(name = "mustLogin11", value = "/emp/update"), //""內要填controller的路徑
 				@WebInitParam(name = "mustLogin12", value = "/backstageindex"), 
 				@WebInitParam(name = "mustLogin13", value = "/questionListForEmp"),
-				@WebInitParam(name = "mustLogin13", value = "/ticket/*"),
-				@WebInitParam(name = "mustLogin13", value = "/product/*"),
-				@WebInitParam(name = "mustLogin13", value = "/emp/add"),
-				@WebInitParam(name = "mustLogin13", value = "/emps"),
-				@WebInitParam(name = "mustLogin13", value = "/anno/*"),
-				@WebInitParam(name = "mustLogin13", value = "/bgAnnos"),
-				@WebInitParam(name = "mustLogin13", value = "/employee/*"),
-				@WebInitParam(name = "mustLogin13", value = "/hall/*"),
-				@WebInitParam(name = "mustLogin13", value = "/seats/*")
+				@WebInitParam(name = "mustLogin14", value = "/ticket/*"),
+				@WebInitParam(name = "mustLogin15", value = "/product/*"),
+				@WebInitParam(name = "mustLogin16", value = "/emp/add"),
+				@WebInitParam(name = "mustLogin17", value = "/emps"),
+				@WebInitParam(name = "mustLogin18", value = "/anno/*"),
+				@WebInitParam(name = "mustLogin19", value = "/bgAnnos"),
+				@WebInitParam(name = "mustLogin20", value = "/employee/*"),
+				@WebInitParam(name = "mustLogin21", value = "/hall/*"),
+				@WebInitParam(name = "mustLogin22", value = "/seats/*")
 		})
 public class EmpLoginFilter implements Filter {
 	List<String> url = new ArrayList<String>();
@@ -91,7 +91,7 @@ public class EmpLoginFilter implements Filter {
 	private boolean checkLogin(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 
-		EmpBean loginToken = (EmpBean) session.getAttribute("EmpLogin");
+//		EmpBean loginToken = (EmpBean) session.getAttribute("EmpLogin");
 		Cookie[] cookies = req.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -100,7 +100,7 @@ public class EmpLoginFilter implements Filter {
 				mID = cookie.getValue();
 			}
 		}
-		if ((loginToken == null && mID == "") || cookies.length == 0) {
+		if (mID == null || cookies.length == 0) {
 			return false;
 		} else {
 			return true;
