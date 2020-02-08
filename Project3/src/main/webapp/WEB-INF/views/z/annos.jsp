@@ -47,11 +47,11 @@
 
 </head>
 <body>
-<!-- 	<header> -->
-<%-- 		<jsp:include page="../a/header.jsp"> --%>
-<%-- 			<jsp:param name="a" value="1" /> --%>
-<%-- 		</jsp:include> --%>
-<!-- 	</header> -->
+	<header>
+		<jsp:include page="../a/header.jsp">
+			<jsp:param name="a" value="1" />
+		</jsp:include>
+	</header>
 	<div class="container">
 		<section>
 			<div class="buy-block">
@@ -62,66 +62,29 @@
 		</section>
 		<hr
 			style="height: 1px; border: none; color: #333; background-color: #333;">
-<!-- 		<div> -->
+		<div>
 
-<%-- 			<c:forEach var="anno" items="${annoList}"> --%>
-<!-- 				<div> -->
-<!-- 					<h4> -->
-<%-- 						<a href="anno/${anno.annoId }">${anno.title} <span>${fn:substring(anno.startTime, 0 ,10)}</span></a> --%>
-<!-- 					</h4> -->
+			<c:forEach var="anno" items="${annoList}">
+				<div>
+					<h4>
+						<a href="anno/${anno.annoId }">${anno.title}</a>
+					</h4>
 
-<!-- 				</div> -->
-<!-- 				<hr> -->
-<%-- 			</c:forEach> --%>
+				</div>
+				<hr>
+			</c:forEach>
 
-<!-- 		</div> -->
+		</div>
 	</div>
 
-<div class="ser-list">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-sm-4" style="width: 116%;">
-                    <ul class="nav nav-tabs list-items">
-                    <c:forEach var="anno" items="${annoList}">
-                        <li class="arrow_box" style="text-align: left;"><a href="anno/${anno.annoId }">&emsp; ${anno.title}</a>
-                        </li>
-                       </c:forEach> 
-                    </ul>
-                    <ul>
-                    <li>
-                    <a href="">read more</a>
-                    </li>
-                    </ul>
-                </div>
-
-<!--                 <div class="col-sm-8"> -->
-
-<!--                     Tab panes -->
-<!--                     <div class="tab-content"> -->
-<%--                     <c:forEach var="ann" items="${annoList}"> --%>
-                    
-<!--                         <div class="tab-pane fade active in" id="1"> -->
-<!--                             <div class="tab-data-info"> -->
-<%--                                 ${ann.content} --%>
-<!--                             </div> -->
-<!--                         </div> -->
-<%--                         </c:forEach>  --%>
-<!--                     </div> -->
-
-<!--                 </div> -->
-
-            </div>
-        </div>
-    </div>
 
 
 
-<!-- 	<footer> -->
-<%-- 		<jsp:include page="../a/footer.jsp"> --%>
-<%-- 			<jsp:param name="a" value="1" /> --%>
-<%-- 		</jsp:include> --%>
-<!-- 	</footer> -->
+	<footer>
+		<jsp:include page="../a/footer.jsp">
+			<jsp:param name="a" value="1" />
+		</jsp:include>
+	</footer>
 
 </body>
 </html>

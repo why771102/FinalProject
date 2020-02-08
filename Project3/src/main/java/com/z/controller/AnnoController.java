@@ -135,11 +135,11 @@ public class AnnoController {
 	}
 	
 	
-//	@ModelAttribute("annoList")
-//	public List<AnnoBean> getannoList() {
-//		List<AnnoBean> allAnnos = service.showAnnoToMember();
-//		return allAnnos;
-//	}
+	@ModelAttribute("annoList")
+	public List<AnnoBean> getannoList() {
+		List<AnnoBean> allAnnos = service.showAnnoToMember();
+		return allAnnos;
+	}
 	
 	//前台顯示公告用(依照優先度排序)
 	@RequestMapping(value = "/annos")

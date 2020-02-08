@@ -310,7 +310,7 @@
 <!--     </div> -->
 
 
-		<jsp:include page="../z/annos.jsp">
+		<jsp:include page="../z/annosInIndex.jsp">
 			<jsp:param name="b" value="1" />
 		</jsp:include>
 
