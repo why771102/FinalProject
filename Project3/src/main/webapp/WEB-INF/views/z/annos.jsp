@@ -62,19 +62,19 @@
 		</section>
 		<hr
 			style="height: 1px; border: none; color: #333; background-color: #333;">
-		<div>
+<!-- 		<div> -->
 
-			<c:forEach var="anno" items="${annoList}">
-				<div>
-					<h4>
-						<a href="anno/${anno.annoId }">${anno.title} <span>${fn:substring(anno.startTime, 0 ,10)}</span></a>
-					</h4>
+<%-- 			<c:forEach var="anno" items="${annoList}"> --%>
+<!-- 				<div> -->
+<!-- 					<h4> -->
+<%-- 						<a href="anno/${anno.annoId }">${anno.title} <span>${fn:substring(anno.startTime, 0 ,10)}</span></a> --%>
+<!-- 					</h4> -->
 
-				</div>
-				<hr>
-			</c:forEach>
+<!-- 				</div> -->
+<!-- 				<hr> -->
+<%-- 			</c:forEach> --%>
 
-		</div>
+<!-- 		</div> -->
 	</div>
 
 <div class="ser-list">
