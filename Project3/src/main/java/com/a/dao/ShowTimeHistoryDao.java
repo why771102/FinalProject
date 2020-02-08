@@ -47,4 +47,6 @@ public interface ShowTimeHistoryDao {
 		public RunningBean getDistinctMovies(Integer runID);
 		
 		List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime);
+
+		List<RunningBean> getDistinctRunIDByDate(LocalDate startDay);
 }

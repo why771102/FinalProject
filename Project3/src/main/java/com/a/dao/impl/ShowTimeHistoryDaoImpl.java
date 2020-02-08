@@ -258,11 +258,30 @@ public class ShowTimeHistoryDaoImpl implements ShowTimeHistoryDao {
 		System.out.println("now:" + now);
 		String enddate = (et.plusDays(7).toString())+" "+"00:00:00"; 
 		System.out.println("enddate:" + enddate);
-		String hql = "SELECT DISTINCT run FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate";
+		String hql = "SELECT DISTINCT run FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate " ;
 		List<RunningBean> list = new ArrayList<>();
 		try {
 		list = session.createQuery(hql).setParameter("enddate", enddate)
 								.setParameter("startdate", now)
+								.getResultList();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RunningBean> getDistinctRunIDByDate(LocalDate startDay){
+		Session session = factory.getCurrentSession();
+		String startdate = (startDay.toString())+" "+"00:00:00"; 
+		String enddate = (startDay.plusDays(7).toString())+" "+"00:00:00"; 
+		System.out.println("enddate:" + enddate);
+		String hql = "SELECT DISTINCT run FROM ShowTimeHistoryBean where playStartTime <= :enddate  and playStartTime >= :startdate " ;
+		List<RunningBean> list = new ArrayList<>();
+		try {
+		list = session.createQuery(hql).setParameter("enddate", enddate)
+								.setParameter("startdate", startdate)
 								.getResultList();
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -61,7 +61,7 @@ public class RunningDaoImpl implements RunningDao {
 	@Override
 	public List<RunningBean> getAllOnMoive(LocalDate day) {
 		List<RunningBean>rbList =new ArrayList<RunningBean>(); 
-		String hql ="from RunningBean where  release <= :endTime  and expectedOffDate >= :startTime ";
+		String hql ="from RunningBean where  release <= :endTime  and expectedOffDate >= :startTime ORDER BY release desc ";
 		String startTime = (day.toString())+" "+"00:00:00"; 
 		String endTime = (day.toString())+" "+"23:59:59"; 
 		Session session =factory.getCurrentSession();

@@ -51,8 +51,10 @@ import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.a.service.MovieService;
+import com.a.service.ShowTimeHistoryService;
 import com.a.test.Hallcomparator;
 import com.a.test.ShowtimeBean;
+import com.a.test.runIDComparator;
 import com.c.model.HallBean;
 import com.c.service.HallService;
 import com.google.gson.Gson;
@@ -70,6 +72,7 @@ public class RunMovieController implements ServletContextAware{
 	MovieService mService;
 	HallService hService;
 	ExpectationService eService;
+	ShowTimeHistoryService sthService;
 	CommentService cService;
 	HallOrderService hoService;
 
@@ -79,12 +82,13 @@ public class RunMovieController implements ServletContextAware{
 	}
 
 	@Autowired
-	public void setService(MovieService mService, HallService hService, HallOrderService hoService,ExpectationService eService,CommentService cService) {
+	public void setService(MovieService mService, HallService hService, HallOrderService hoService,ExpectationService eService,CommentService cService,ShowTimeHistoryService sthService) {
 		this.mService = mService;
 		this.hService = hService;
 		this.hoService = hoService;
 		this.eService = eService;
 		this.cService = cService;
+		this.sthService=sthService;
 	}
 
 	// 新增電影方法
@@ -286,29 +290,61 @@ public class RunMovieController implements ServletContextAware{
 		int pageNo=1;
 				System.out.println(pageNo);
 				int totalPages= 1;
+				
+				
 				LocalDate today=LocalDate.now();
+				LocalDateTime todayHaveTime=today.atTime(0, 0);
 //				List<RunningBean>rb_list=mService.getComingSoonMovie();
 				//取正在上映的電影
-				List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
-				System.out.println("movieNum:"+rb_list.size());
+//				List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+//				System.out.println("movieNum:"+rb_list.size());
+				//從showTime排出相同的runBean
+//				List<RunningBean> listofrunningID = sthService.getDistinctRunID(todayHaveTime);
+				List<RunningBean> listofrunningID = sthService.getDistinctRunIDByDate(today);
+				
+				List<RunningBean>rb_list=new ArrayList<>();
+				List<Integer> movies = new ArrayList<>();
+				for(RunningBean rb: listofrunningID) {
+					System.out.println(rb.getMovie().getTitle());
+				
+					if(!movies.contains(rb.getMovie().getMovieID())) {
+						movies.add(rb.getMovie().getMovieID());
+						rb_list.add(rb);
+					}
+				}
+				
+				runIDComparator	 runComp = new runIDComparator();
+				Collections.sort(rb_list, runComp);
 				
 				//movie要從第幾個開始
 				int movieNum =(pageNo-1)*8;
 				  //從第幾個(顯示到幾個(onePageNum)
 				int onePageNum =0;
 		        System.out.println("rb_size:"+rb_list.size());
+		        
+		        //如果這個可以整除
 		        if(rb_list.size()%8 ==0) {
 		        	if(rb_list.size() == 0) {
 		        		System.out.println("no Page");
 		        		onePageNum =pageNo*0;
 		        	}else {
 		        		totalPages =rb_list.size()/8;
-		        		 onePageNum =totalPages*8;
+		        		if(pageNo==totalPages) {
+		        			 onePageNum =totalPages*8;
+		        		}else {
+		        			onePageNum =pageNo*8 ;
+		        		}
+		        		
 		        	}
 		        }else {
 		        	if(rb_list.size()>8) {
 		        		totalPages =rb_list.size()/8+1;
-		        		onePageNum =pageNo*8 +rb_list.size()%8;
+		        		if(pageNo==totalPages) {
+		        			onePageNum =pageNo*8 +rb_list.size()%8;
+		        		}else {
+		        			onePageNum =pageNo*8 ;
+		        		}
+		        		
 		        		
 		        	}else {
 		        		//少於8個
@@ -319,7 +355,7 @@ public class RunMovieController implements ServletContextAware{
 
 				List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
 			
-				for(int i=movieNum;i<onePageNum-1;i++) {
+				for(int i=movieNum;i<onePageNum;i++) {
 					System.out.println("i:"+i);
 					System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
 					rb_page_list.add(rb_list.get(i));
@@ -332,7 +368,13 @@ public class RunMovieController implements ServletContextAware{
 		        request.setAttribute("rb_list", gson.toJson(rb_page_list));
 				
 //		       System.out.println("hi  go to showCommingSoon");
-		       
+		        for(RunningBean rb :rb_list) {
+		        	System.out.println("Allmovietitle:"+rb.getMovie().getTitle());
+		        }
+		        System.out.println("movieNum:"+movieNum);
+		        System.out.println("onePageNum:"+onePageNum);
+		        System.out.println("totalPages:"+totalPages);
+    
 				
 
 		return "a/showAllOnMovie";// URL 跟 eclip 擺放位置相關
@@ -352,44 +394,95 @@ public class RunMovieController implements ServletContextAware{
 		int totalPages= 1;
 		LocalDate today=LocalDate.now();
 //		List<RunningBean>rb_list=mService.getComingSoonMovie();
-		List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+//		List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
 		
-		if(rb_list.size()>8) {
-			totalPages = (rb_list.size()/8)+1;
-		}else {}
+		List<RunningBean> listofrunningID = sthService.getDistinctRunIDByDate(today);
 		
+		List<RunningBean>rb_list=new ArrayList<>();
+		List<Integer> movies = new ArrayList<>();
+		for(RunningBean rb: listofrunningID) {
+			System.out.println(rb.getMovie().getTitle());
 		
+			if(!movies.contains(rb.getMovie().getMovieID())) {
+				movies.add(rb.getMovie().getMovieID());
+				rb_list.add(rb);
+			}
+		}
+		
+		runIDComparator	 runComp = new runIDComparator();
+		Collections.sort(rb_list, runComp);
+		
+		//movie要從第幾個開始
 		int movieNum =(pageNo-1)*8;
-		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
-		System.out.println("rb_list:"+rb_list.size());
+		  //從第幾個(顯示到幾個(onePageNum)
 		int onePageNum =0;
-		if(rb_list.size()-movieNum>0) {
-			System.out.println("第二頁");
-			onePageNum=8+movieNum;
-		}else if(pageNo == 1) {
-			System.out.println("回第一頁");
-			movieNum =0;
-			onePageNum=rb_list.size()-1;
-			totalPages=1;
-		}
-		else {
-			onePageNum=rb_list.size()%8;
-		}
-		System.out.println("rb_list:"+rb_list.size());
+        System.out.println("rb_size:"+rb_list.size());
+        
+        //如果這個可以整除
+        if(rb_list.size()%8 ==0) {
+        	if(rb_list.size() == 0) {
+        		System.out.println("no Page");
+        		onePageNum =pageNo*0;
+        	}else {
+        		totalPages =rb_list.size()/8;
+        		if(pageNo==totalPages) {
+        			 onePageNum =totalPages*8;
+        		}else {
+        			onePageNum =pageNo*8 ;
+        		}
+        		
+        	}
+        }else {
+        	if(rb_list.size()>8) {
+        		totalPages =rb_list.size()/8+1;
+        		
+        			onePageNum =(pageNo-1)*8 +(rb_list.size()%8);
+        	
+        			
+        		
+        		
+        		
+        	}else {
+        		//少於8個
+        		totalPages=1;
+        		onePageNum =(rb_list.size());
+        	}
+        }
+        System.out.println("onePageNum"+onePageNum);
+		System.out.println("movieNum"+movieNum);
+		
+       
+		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
+	
 		for(int i=movieNum;i<onePageNum;i++) {
-			System.out.println(onePageNum);
-			System.out.println(movieNum);
 			System.out.println("i:"+i);
 			System.out.println("movieID:"+rb_list.get(i).getMovie().getMovieID());
-			
 			rb_page_list.add(rb_list.get(i));
 		}
-	
+		
         System.out.println(rb_page_list.size());
-      
+        request.setAttribute("pageNo", pageNo);
+        request.setAttribute("totalPages", totalPages);
         Gson gson =new Gson();
-//        model.addAttribute("rb_page_list",rb_page_list);
+        model.addAttribute("rb_page_list",rb_page_list);
         request.setAttribute("rb_list", gson.toJson(rb_page_list));
+		
+//       System.out.println("hi  go to showCommingSoon");
+        for(RunningBean rb :rb_list) {
+        	System.out.println("Allmovietitle:"+rb.getMovie().getTitle());
+        }
+        System.out.println("movieNum:"+movieNum);
+        System.out.println("onePageNum:"+onePageNum);
+        System.out.println("totalPages:"+totalPages);
+
+		
+		
+		
+		
+		
+		
+		
+		
 		
        System.out.println("hi  go to On Movie");
 		return  gson.toJson(rb_page_list);
@@ -593,9 +686,9 @@ public class RunMovieController implements ServletContextAware{
 		List<ShowtimeBean> AllDayShowTime = new ArrayList();
 		List<ShowtimeBean> AllShowTime = new ArrayList();
 
-		int day = 3;
+		int day = 7;
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
-		for (int d = 1; d <= day; d++) {
+		for (int d = 0; d <= day; d++) {
 			LocalDateTime runDateTime = LocalDate.now().plusDays(d).atTime(9, 0);
 			ShowtimeBean restTime = new ShowtimeBean(2, 10);
 			double rate = 0.90;
@@ -904,6 +997,10 @@ public class RunMovieController implements ServletContextAware{
 		else {
 			onePageNum=rb_list.size()%8;
 		}
+		
+		System.out.println("onePageNum"+onePageNum);
+		System.out.println("movieNum"+movieNum);
+		
 		System.out.println("rb_list:"+rb_list.size());
 		for(int i=movieNum;i<onePageNum;i++) {
 			System.out.println(onePageNum);

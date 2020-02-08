@@ -48,4 +48,6 @@ public interface ShowTimeHistoryService {
 			public RunningBean getDistinctMovies(Integer runID);
 			
 			public List<ShowTimeHistoryBean> getAWeekShowTimeHistoryBean(LocalDateTime starttime);
+
+			List<RunningBean> getDistinctRunIDByDate(LocalDate startDay);
 }
