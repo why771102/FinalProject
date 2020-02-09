@@ -138,9 +138,16 @@ public class AdminController {
 	}
 	
 	
-	@ModelAttribute("empStatusList")
-	public  void resetPwd() {
-		
+	@RequestMapping("resetPwd")
+	public @ResponseBody String resetPwd(Integer empId) {
+		System.out.println("resetPwd = " + empId);
+		EmpBean eb = service.getEmp(empId);
+		eb.setPassword(eb.getUid());
+		eb.setRoleId(eb.getRoleBean().getRoleId());
+		eb.setStatus(eb.getEmpStatusBean().getStatus());
+		service.saveEmp(eb);
+		Gson gson = new Gson();
+		return gson.toJson(eb);
 		
 	}
 

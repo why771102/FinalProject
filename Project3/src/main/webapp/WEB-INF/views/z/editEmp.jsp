@@ -94,7 +94,7 @@
 												<label class="col-lg-2 control-label">員工密碼：</label>
 												<div class="col-lg-6">
 													<form:input name="password" path="password" type='text'  hidden="hidden"/>
-													<input type="button" value="重置密碼" class="btn btn-theme"/>
+													<input type="button" id="reset" value="重置密碼" class="btn btn-theme"/>
 												</div>
 											</div>
 
@@ -165,6 +165,7 @@
 				a[i].selected = true;
 			}
 		}
+
 		
 		var status = "${empBean.empStatusBean.status}";
 		
@@ -174,6 +175,24 @@
 				b[i].selected = true;
 			}
 		}
+		
+		var empId = ${empBean.empId};
+		
+		$("#reset").click(function() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/resetPwd",
+				data: {empId : empId},
+				type: "POST",
+				success: function(data) {
+					alert("密碼已重置");
+					console.log(data);
+				},
+				error: function(data) {
+					alert("error");
+					console.log(data);
+				}
+			})
+		})
 	
 	
 	</script>
