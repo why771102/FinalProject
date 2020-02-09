@@ -1025,14 +1025,14 @@ public class RunMovieController implements ServletContextAware{
 	
 	
 	//顯示單個未上映電影
-	@PostMapping(value = "/show/this/movie/commingSoon")
+	@RequestMapping(value = "/show/this/movie/commingSoon")
 	public String showThisMovieCommingSoon(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
 		RunningBean run = mService.getRunningBeanById(runID);
 		System.out.println("inShowThisMovieCommingSoon");
 		
-		ExpectationBean eb = new ExpectationBean();
-		model.addAttribute("ExpectationBean",eb);
+//		ExpectationBean eb = new ExpectationBean();
+//		model.addAttribute("ExpectationBean",eb);
 
 		Integer expect = eService.getAvgExpectation(run.getMovie().getMovieID());
 		if(expect == null) {
@@ -1080,7 +1080,11 @@ public class RunMovieController implements ServletContextAware{
 	}
 	
 	
-	
+	@ModelAttribute("ExpectationBean")
+	public ExpectationBean getExpectationBean() {
+		ExpectationBean eb = new ExpectationBean();		
+		return eb;
+	}
 	
 	
 	
