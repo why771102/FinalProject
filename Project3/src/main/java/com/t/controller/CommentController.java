@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.MovieBean;
 import com.google.gson.Gson;
-import com.p.model.MemberBean;
-import com.p.validator.MemberValidator;
 import com.t.model.CommentBean;
 import com.t.service.CommentService;
 import com.t.validator.CommentValidator;
-import com.z.model.EmpBean;
 
 @Controller
 public class CommentController {
@@ -135,8 +133,6 @@ public class CommentController {
 		boolean ce = service.checkCommentExist(memberID,movieID);
 		//如果有 印出該留言並提供修改或刪除選項
 		if(ce == true){
-			System.out.println("memberID = " + memberID);
-			System.out.println("movieID = " + movieID);
 			int commentID = service.getCommentID(memberID,movieID);
 			CommentBean cb = service.getTheCommentBean(commentID);
 			model.addAttribute("CommentBean", cb);
@@ -226,11 +222,20 @@ public class CommentController {
 //	}
 	
 	//用對應的commentID找出該comment的資料
-	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET)
-	public String getupdateComment(@PathVariable("commentID")Integer commentID,Model model) {
+//	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET)
+//	public String getupdateComment(@PathVariable("commentID")Integer commentID,Model model) {
+//		CommentBean cb = service.getTheCommentBean(commentID);
+//		model.addAttribute("CommentBean", cb);
+//		return "t/updatecomment";
+//	}
+	
+	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8;")
+	public @ResponseBody String getupdateComment2(@PathVariable("commentID")Integer commentID,Model model) {
 		CommentBean cb = service.getTheCommentBean(commentID);
-		model.addAttribute("CommentBean", cb);
-		return "t/updatecomment";
+		model.addAttribute("updateComment", cb);
+		Gson gson = new Gson();
+		String str = gson.toJson(cb);
+		return str;
 	}
 	
 	//修改該留言內容

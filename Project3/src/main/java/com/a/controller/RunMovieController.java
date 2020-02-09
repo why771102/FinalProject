@@ -1086,9 +1086,29 @@ public class RunMovieController implements ServletContextAware{
 		return eb;
 	}
 	
+	@ModelAttribute("commentBean")
+	public CommentBean getCommentBean() {
+		CommentBean cb = new CommentBean();		
+		return cb;
+	}
 	
-	
-	
+//	@ModelAttribute("updateComment")
+//	public CommentBean getUpdateCommentBean(HttpServletRequest request) {
+//		RunningBean run = mService.getRunningBeanById(runID);
+//		Cookie[] cookies = request.getCookies();
+//		String mID = null;
+//		for (Cookie cookie : cookies) {
+//			String name = cookie.getName();
+//			if(name.equals("memberID")) {
+//				mID = cookie.getValue();
+//			}
+//		}
+//		int movieID = run.getMovie().getMovieID();
+//		int memberID = Integer.parseInt(mID);
+//		int commentID = cService.getCommentID(memberID,movieID);
+//		CommentBean cb = cService.getTheCommentBean(commentID);		
+//		return cb;
+//	}
 	
 	
 

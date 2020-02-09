@@ -29,7 +29,7 @@ fieldset {
 		<!--       三個地方要完全一樣 -->
 <%-- 	<c:forEach var="product" items="${Product}"> --%>
 		
-		<form:form method='POST' modelAttribute="CommentBean" class='form-horizontal'>
+		<form:form method='POST' modelAttribute="updateComment" class='form-horizontal'>
 			<fieldset >
 				
 				<div class="form-group">

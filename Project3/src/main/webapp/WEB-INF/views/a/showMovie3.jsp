@@ -374,7 +374,7 @@ div.submitButton {
 					<div id='showTimeHere'>
 						<h3
 							style="border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px">期待度</h3>
-						<div>
+						<div  class='buy-txt' style = "display:inline-block">
 							<jsp:include page="../t/addexpectation.jsp">
 								<jsp:param name="c" value="1" />
 								<jsp:param name="d" value="1" />
