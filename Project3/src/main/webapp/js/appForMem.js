@@ -34,7 +34,7 @@ function setConnected(connected) {
 			
 			
 			
-			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content);
+			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content, JSON.parse(greeting.body).endTime);
 		});
 	});
 //}
@@ -64,8 +64,8 @@ function sendMessage() {
 	}
 }
 
-function showMessage(name, message) {
-	$("#greetings").append("<tr><td>" + name + "：</td><td>" + message + "</td></tr>");
+function showMessage(name, message, endTime) {
+	$("#greetings").append("<tr><td>" + name + "：</td><td>" + message + "</td><td>" + endTime.substring(5, 16) + "</td></tr>");
 
 }
 

@@ -21,7 +21,7 @@ function setConnected(connected) {
 		setConnected(true);
 		console.log('Connected: ' + frame);
 		stompClient.subscribe('/topic/message/' + list[3], function(greeting) {
-			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content);
+			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content, JSON.parse(greeting.body).endTime);
 		});
 	});
 //}
@@ -52,8 +52,8 @@ function sendMessage() {
 	}
 }
 
-function showMessage(name, message) {
-	$("#greetings").append("<div class='group-rom'><div class='first-part'>" + name + "：</div><div class='second-part'>" + message + "</div><div class='third-part'>12:32</div></div>");
+function showMessage(name, message, endTime) {
+	$("#greetings").append("<div class='group-rom'><div class='first-part'>" + name + "：</div><div class='second-part'>" + message + "</div><div class='third-part'>" + endTime.substring(5, 16) + "</div></div>");
 
 }
 
