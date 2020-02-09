@@ -46,5 +46,25 @@ public class QuestionServiceImpl implements QuestionService {
 	public List<QuestionBean> allQuestionForEmp() {
 		return dao.allQuestionForEmp();
 	}
+	
+	@Transactional
+	@Override
+	public void closeQuestion(Integer questionId) {
+		dao.closeQuestion(questionId);
+		
+	}
+	
+	@Transactional
+	@Override
+	public void openQuestion(Integer questionId) {
+		dao.openQuestion(questionId);
+		
+	}
+	
+	@Transactional
+	@Override
+	public QuestionBean question(Integer questionId) {
+		return dao.question(questionId);
+	}
 
 }

@@ -63,10 +63,13 @@
 						<h3>客服訊息</h3>
 						<form class="form-inline pull-right position">
 							<div class="form-group">
-								<label for="name"></label> <input type="text" id="name1"
-									class="form-control" placeholder="輸入顯示名稱...">
+								<input type="text" id="name1" class="form-control"
+									placeholder="輸入顯示名稱...">
+								<button id="sendName" class="btn btn-default" type="submit">確認</button>
+								<input type="button" id="close" class="btn btn-success"
+									value="結案">
 							</div>
-							<button id="sendName" class="btn btn-default" type="submit">確認</button>
+
 						</form>
 					</div>
 					<c:forEach var="list" items="${content}">
@@ -132,6 +135,62 @@
 	<!--common script for all pages-->
 	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script>
 	<!--script for this page-->
+	<script>
+	var qId = location.pathname.split("/questionRep/")[1];
+	var status = ${status};
+	console.log("status = " + status);
+	
+	$(document).ready(function() {
+		if(status == 1) {         //未結案
+			$("#close").removeClass();
+			$("#close").addClass("btn btn-success");
+			$("#close").val("結案");
 
+		} else {
+			$("#close").removeClass();
+			$("#close").addClass("btn btn-danger");
+			$("#close").val("已結案");
+	
+		};
+	})
+	
+
+
+	$("#close").click(function() {
+		
+		if(status == 1) {
+			$.ajax({
+				type:"POST",
+				url: "${pageContext.request.contextPath}/closeQuestion",
+				data: {questionId : qId},
+				success: function(data) {
+					
+				},
+				error:function(data) {
+					$("#close").removeClass();
+					$("#close").addClass("btn btn-danger");
+					$("#close").val("已結案");
+				}
+			})
+		}else{
+			$.ajax({
+				type:"POST",
+				url: "${pageContext.request.contextPath}/openQuestion",
+				data: {questionId : qId},
+				success: function(data) {
+				},
+				error:function(data) {
+					$("#close").removeClass();
+					$("#close").addClass("btn btn-success");
+					$("#close").val("結案");
+				}
+			})
+		}
+		
+		
+		
+		
+	});
+	</script>
 </body>
 </html>

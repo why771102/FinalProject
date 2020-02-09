@@ -85,6 +85,34 @@ public class QuestionDaoImpl implements QuestionDao {
 		return list;
 		
 	}
+
+
+	@Override
+	public void closeQuestion(Integer questionId) {
+		String hql = "update QuestionBean set status = 2 where questionId = :questionId";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("questionId", questionId).executeUpdate();
+		
+		
+	}
+
+
+	@Override
+	public void openQuestion(Integer questionId) {
+		String hql = "update QuestionBean set status = 1 where questionId = :questionId";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("questionId", questionId).executeUpdate();
+		
+		
+	}
+
+
+	@Override
+	public QuestionBean question(Integer questionId) {
+		Session session = factory.getCurrentSession();
+		QuestionBean qb = session.get(QuestionBean.class, questionId);
+		return qb;
+	}
 	
 	
 

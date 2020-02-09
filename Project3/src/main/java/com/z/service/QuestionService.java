@@ -16,5 +16,11 @@ public interface QuestionService {
 	
 	//用來顯示所有提問清單
 	public List<QuestionBean> allQuestionForEmp();
+	
+	public void closeQuestion(Integer questionId);
+	
+	public void openQuestion(Integer questionId);
+	
+	public QuestionBean question(Integer questionId);
 
 }

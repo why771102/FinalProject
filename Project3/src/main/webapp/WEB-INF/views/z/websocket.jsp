@@ -66,7 +66,18 @@
 	</div>
 
 	<script>
-
+		var status = ${status};
+		console.log("status = " + status);
+	
+		$(document).ready(function() {
+			if(status == 2) {         //結案
+				$("#message").attr("disabled", "disabled");
+				$("#message").attr("placeholder", "此案件已結案");
+			} else {
+			
+	
+			};
+		})
 	</script>
 
 
