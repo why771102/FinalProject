@@ -39,13 +39,16 @@
     	z-index: 1;
 	}
 	
+	.navbar {
+	margin-bottom: 0px;
+	}
     </style>
 </head>
 
 <body>
     <header id="header">
 <!-- header -->
-        <nav class="navbar navbar-default navbar-static-top my-navigation">
+        <nav class="navbar navbar-default navbar-static-top my-navigation" style="margin-bottom:0px;">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed my-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -54,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>"><img src="<c:url value='/img/logo-1.png'/>" class="logo-hdr" width="180">
+                    <a class="navbar-brand" href="<c:url value='/movieIndex'/>" style="padding:0px 0px;"><img src="<c:url value='/img/logo-1.png'/>" class="logo-hdr" width="180">
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse my-nav-collapse">
@@ -73,8 +76,8 @@
                         </li>
                         <li><a href="${pageContext.request.contextPath}/getShoppingCart" style='padding:5px;'><img src="${pageContext.request.contextPath}/img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>
                         </li>
-                        <li class="free-trial-btn btn222" id="login"><a href="<c:url value='/member/login' />">登入</a></li>
-                        <li class="btn222" id="register"><a href="<c:url value='/member/register' />">註冊</a></li>
+                        <li class="free-trial-btn btn222" id="login" style="margin-left: 13px;"><a href="<c:url value='/member/login' />">登入</a></li>
+                        <li class="free-trial-btn btn222" id="register" style="margin-left: 13px;"><a href="<c:url value='/member/register' />">註冊</a></li>
                         <li class="btn222" id="memberCenter"><a href="<c:url value='/memberCenter' />">會員中心</a></li>
                         <li class="free-trial-btn btn222" id="logout"><a href="<c:url value='/member/logout' />">登出</a></li>
                     </ul>

@@ -79,7 +79,7 @@ input[type=text], select {
 
 input[type=text]:focus {
   border: 1px solid #339FFF;
- 
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
 
 </style>
