@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
@@ -37,15 +38,16 @@ import com.a.service.ShoppingCartService;
 import com.google.gson.Gson;
 import com.l.model.ProductsBean;
 import com.l.service.ProductsService;
+import com.p.model.MemberBean;
 import com.p.model.PayStatusBean;
 
 @Controller
 public class ShoppingCartController implements ServletContextAware {
 
 	// 購物車第一個分類ID
-	Integer categoryID = 6;
+	public final Integer categoryID = 6;
 	// 購物車最後一個分類ID
-	Integer endCatID = 13;
+	public final Integer endCatID = 13;
 
 	ShoppingCartService scservice;
 	SCOrderDetailsService scodservice;
@@ -75,44 +77,49 @@ public class ShoppingCartController implements ServletContextAware {
 	public String getShoppingCart(Model model, HttpServletRequest request) {
 		Integer memberID = scservice.getMemberID(request);
 		System.out.println(memberID);
-		Integer SCOrderID = scservice.getShoppingCart(memberID);
-		List<SCOrderDetailBean> list = scservice.getOrderDetails(SCOrderID);
-		Gson gson = new Gson();
-		String prod = gson.toJson(list);
-		if (SCOrderID != null) {
-			// showShoppingCart
+		if (memberID != 0) {
+			Integer SCOrderID = scservice.getShoppingCart(memberID);
+			List<SCOrderDetailBean> list = scservice.getOrderDetails(SCOrderID);
+			Gson gson = new Gson();
+			String prod = gson.toJson(list);
+			if (SCOrderID != null) {
+				// showShoppingCart
 
-			if (list.size() == 0) {
+				if (list.size() == 0) {
+					System.out.println("Shopping cart is empty");
+					model.addAttribute("shoppingCart", list);
+					model.addAttribute("shoppingCartJSON", prod);
+				} else {
+					for (int products = 0; products < list.size(); products++) {
+						int shoppingCartQuantity = list.get(products).getQuantity();
+						int stockQuantity = list.get(products).getProductsBean().getUnitStock();
+						// 若購物車裡的商品選購數已大於存貨
+						if (shoppingCartQuantity > stockQuantity && stockQuantity != 0) {
+							list.get(products).setQuantity(stockQuantity);
+							scservice.updateQty(list.get(products));
+						}
+					}
+					System.out.println("There are items in shopping cart");
+					model.addAttribute("shoppingCart", list);
+					model.addAttribute("shoppingCartJSON", prod);
+				}
+			} else {
+				SCOrdersBean scob = new SCOrdersBean();
+				scob.setMemberID(memberID);
+				LocalDateTime ldt = LocalDateTime.now();
+				String orderDate = ldt.toLocalDate().toString() + " " + ldt.toLocalTime().toString().substring(0, 8);
+				scob.setOrdDate(orderDate);
+				scoservice.insertOrder(scob);
 				System.out.println("Shopping cart is empty");
 				model.addAttribute("shoppingCart", list);
 				model.addAttribute("shoppingCartJSON", prod);
-			} else {
-				for (int products = 0; products < list.size(); products++) {
-					int shoppingCartQuantity = list.get(products).getQuantity();
-					int stockQuantity = list.get(products).getProductsBean().getUnitStock();
-					// 若購物車裡的商品選購數已大於存貨
-					if (shoppingCartQuantity > stockQuantity && stockQuantity != 0) {
-						list.get(products).setQuantity(stockQuantity);
-						scservice.updateQty(list.get(products));
-					}
-				}
-				System.out.println("There are items in shopping cart");
-				model.addAttribute("shoppingCart", list);
-				model.addAttribute("shoppingCartJSON", prod);
 			}
-		} else {
-			SCOrdersBean scob = new SCOrdersBean();
-			scob.setMemberID(memberID);
-			LocalDateTime ldt = LocalDateTime.now();
-			String orderDate = ldt.toLocalDate().toString() + " " + ldt.toLocalTime().toString().substring(0, 8);
-			scob.setOrdDate(orderDate);
-			scoservice.insertOrder(scob);
-			System.out.println("Shopping cart is empty");
-			model.addAttribute("shoppingCart", list);
-			model.addAttribute("shoppingCartJSON", prod);
+			return "a/ShoppingCart";
+		} else {//just in case loginfiler does not work
+			MemberBean mb = new MemberBean();
+			model.addAttribute("memberBean", mb);
+			return "redirect:/member/login";
 		}
-
-		return "a/ShoppingCart";
 	}
 
 	@PostMapping("/deleteProduct")
