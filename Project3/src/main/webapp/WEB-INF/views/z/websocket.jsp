@@ -67,7 +67,6 @@
 
 	<script>
 		var status = ${status};
-		console.log("status = " + status);
 	
 		$(document).ready(function() {
 			if(status == 2) {         //結案

@@ -55,6 +55,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/emp/add", method = RequestMethod.POST)
 	public String addNewEmp(@ModelAttribute("empBean") EmpBean eb) {
+		eb.setPassword(eb.getUid());
  		service.saveEmp(eb);
 		return "redirect:/emps";
 	}
@@ -134,6 +135,13 @@ public class AdminController {
 	public String processUdateEmp(@ModelAttribute("empBean") EmpBean eb) {
 		service.saveEmp(eb);
 		return "redirect:/emps";
+	}
+	
+	
+	@ModelAttribute("empStatusList")
+	public  void resetPwd() {
+		
+		
 	}
 
 }

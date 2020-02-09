@@ -76,10 +76,10 @@
 											</div>
 											
 											<div class="form-group">
-												<label class="col-lg-2 control-label">密碼:</label>
+												<label class="col-lg-2 control-label">身分證字號:</label>
 												<div class="col-lg-6">
-													<form:input type="password" placeholder=" " id="password"
-														class="form-control" path="password"></form:input>
+													<form:input type="text" placeholder=" " id="uid"
+														class="form-control" path="uid"></form:input>
 												</div>
 											</div>
 

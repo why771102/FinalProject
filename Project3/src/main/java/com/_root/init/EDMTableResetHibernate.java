@@ -118,6 +118,7 @@ public class EDMTableResetHibernate {
 					eb.setEmpStatusBean(esb);
 					eb.setStartDate(token[5]);
 					eb.setEndDate(token[6]);
+					eb.setUid(token[7]);
 
 					session.save(eb);
 				}

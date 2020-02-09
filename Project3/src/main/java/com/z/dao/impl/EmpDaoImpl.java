@@ -34,7 +34,7 @@ public class EmpDaoImpl implements EmpDao {
 		mb.setRoleBean(rb);
 		mb.setEmpStatusBean(esb);
 		
-		mb.setPassword(changeToMd5(mb.getPassword()));	
+		mb.setPassword(changeToMd5(mb.getPassword()));
 		session.saveOrUpdate(mb);
 	}
 	
