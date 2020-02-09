@@ -51,9 +51,9 @@ public class EmpBean implements Serializable{
 	@Transient
 	Integer status;
 	
-	@Column(columnDefinition = "datetime")
+	@Column(columnDefinition = "date")
 	String startDate;
-	@Column(columnDefinition = "datetime")
+	@Column(columnDefinition = "date")
 	String endDate;
 	
 	
