@@ -20,7 +20,12 @@
 	table{
 		margin-left:auto; 
 		margin-right:auto;
+		text-align: left;
 	}
+	
+	td, th {
+    padding: 3px;
+}
 </style>
 
 <!-- <title>會員資料</title> -->
@@ -35,7 +40,7 @@
 <!-- 		<div class="container"> -->
 			<div class="login-inner">
 				<h2>會員資料</h2>
-				<div class="login-form" style="padding: 57px 50px 14px;">
+				<div class="login-form" style="padding: 57px 50px 14px; text-align-last: start;">
 					<table>
 						<form:form method='POST' modelAttribute="mData"
 							enctype="multipart/form-data">
@@ -45,19 +50,19 @@
 								<td><form:input id="name1" path="name" type='text' /></td>
 							</tr>
 							<tr>
-								<td>信箱：</td>
+								<td>電子信箱：</td>
 								<td><form:input id="email" path="email" type='text' /></td>
 							</tr>
 							<tr>
-								<td>生日：</td>
+								<td>出生日期：</td>
 								<td>${mData.birth}</td>
 							</tr>
 							<tr>
-								<td>性別：</td>
+								<td>生理性別：</td>
 								<td>${mData.gender}</td>
 							</tr>
 							<tr>
-								<td>身分證字號：</td>
+								<td>身分字號：</td>
 								<td>${mData.uID}</td>
 							</tr>
 
@@ -67,18 +72,18 @@
 							</tr>
 
 							<tr>
-								<td>住址：</td>
+								<td>住家地址：</td>
 								<td><form:input id="address" path="address" type='text' /></td>
 							</tr>
 							<tr>
 								<td><form:input id="memberID" path="memberID" type='hidden' /></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" value="修改資料" class="inlog-btn" id="submitInfo"/></td>
+								<td colspan="2"><input type="submit" value="修改資料" class="inlog-btn" id="submitInfo" style="text-align-last: auto;"/></td>
 							</tr>
 						</form:form>
 							<tr>
-								<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/movieIndex' />'" class="inlog-btn"/></td>
+								<td colspan="2"><input type='button' value="回首頁" onclick="javascript:location.href='<c:url value='/movieIndex'/>'" class="inlog-btn" style="text-align-last: auto;"/></td>
 							</tr>
 					</table>
 				</div>

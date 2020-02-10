@@ -77,9 +77,8 @@ a {
 }
 
 .booking-details {
-	float: left;
 	text-align: left;
-	margin-left: 35px;
+/* 	margin-left: 35px; */
 	font-size: 12px;
 	position: relative;
 	height: 401px;
@@ -163,9 +162,10 @@ div.seatCharts-container {
 }
 
 div.seatCharts-legend {
-	padding-left: 340px;
+	padding-left: 12%;
 	position: absolute;
 	bottom: 447px;
+	text-align-last: justify;
 }
 
 ul.seatCharts-legendList {
@@ -229,11 +229,12 @@ span.seatCharts-legendDescription {
 					<div class="col-lg-12">
 						<p>
 							<!-- movie seats start -->
-						<div id="legend"></div>
+						
 						<div class="wrapper">
 							<div class="container">
 								<h1>廳院管理</h1>
 								<div style="text-align: -webkit-center;">選擇廳: ${hallID} 廳</div>
+								<div id="legend"></div>
 								<div id="seat-map">
 									<div class='front-indicator'>Screen</div>
 								</div>

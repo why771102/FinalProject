@@ -86,14 +86,18 @@ a {
 .booking-details {
 /* 	float: left; */
 /* 	margin-left: 155px; */
+/* 	font-size: 12px; */
+/* 	position: relative; */
+/* 	flex-flow: row nowrap; */
+/* 	justify-content: center; */
+/* 	align-items: center; */
+/* 	flex-flow: row nowrap; */
+/* 	font-size: 12px; */
+/* 	text-align: -webkit-center; */
 	font-size: 12px;
-	position: relative;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-items: center;
-	flex-flow: row nowrap;
-	font-size: 12px;
-	text-align: -webkit-center;
+    position: relative;
+    height: 401px;
+    text-align: -webkit-center;
 }
 
 .booking-details h2 {
@@ -153,15 +157,16 @@ div.seatCharts-seat.unavailable {
 div.seatCharts-container {
 	/* border-right: 1px dotted #adadad; */
 	/* width: 200px; */
-	margin-left: 222px;
+	margin-left: 25%;
 	padding: 20px;
 	/* float: left; */
 }
 
 div.seatCharts-legend {
-	padding-left: 340px;
+	padding-left: 7%;
 	position: absolute;
-	bottom: 100px;
+	bottom: 42%;
+	text-align-last: justify;
 }
 
 ul.seatCharts-legendList {
@@ -384,25 +389,26 @@ to {
 
 						</div>
 						<!-- Modal content end-->
-						<div id="legend"></div>
+						
 						<div class="wrapper">
 							<div class="container">
 								<h1>廳院新增</h1>
+								
 								<div id="hall"
 									style="margin-left: -2px; font-size: 17px; margin-bottom: -12px;">
 									</div>
 								<div class="wrapRowStart">
-
+									<div id="legend"></div>
 									<div id="seat-map">
 
 										<div class='front-indicator'>Screen</div>
 									</div>
 								</div>
-								<div class="booking-details" style="justify-content: center;">
+								<div class="booking-details">
 									<button class="checkout-button btn btn-round btn-success" id="checkout"
-										onclick="changeStatus()">確認&raquo;</button>
+										onclick="changeStatus()" style="display: flex;">確認&raquo;</button>
 									<button class="checkout-button btn btn-round btn-danger" id="re-select" id="refresh"
-										data-toggle="modal" data-target="#myModal">重新設定&raquo;</button>
+										data-toggle="modal" data-target="#myModal" style="display: flex;">重新設定&raquo;</button>
 								</div>
 
 							</div>
