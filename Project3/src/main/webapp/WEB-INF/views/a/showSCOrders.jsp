@@ -32,7 +32,7 @@ div.shop_details, div.order_history {
 			<div class="shop_details wrapList VH_padding3">
 				<div class="end_gray_border wrapRowStart">
 					<p class="text">Order Date</p>
-					<p class="text">Order Date</p>
+					<p class="text">Order No:</p>
 				</div>
 
 				<div class=" wrapList end_gray_border  ">

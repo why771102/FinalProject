@@ -718,27 +718,27 @@ public class EDMTableResetHibernate {
 				   System.out.println("MOrderDetailBean資料新增成功");  
 			
 //ExpectationBean
-			try (FileReader fr = new FileReader("data/Expectation.dat"); BufferedReader br = new BufferedReader(fr);) {
-				while ((line = br.readLine()) != null) {
-					if (line.startsWith(UTF8_BOM)) {
-						line = line.substring(1);
-					}
-					String[] token = line.split("\\|");
-					ExpectationBean eb = new ExpectationBean();
-
-					eb.setExpective(Integer.parseInt(token[0]));
-					MovieBean mvb = session.get(MovieBean.class, Integer.parseInt(token[1]));
-					eb.setMovieBean(mvb);
-					MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[2]));
-					eb.setMemberBean(mb);
-
-					session.save(eb);
-				}
-			} catch (IOException e) {
-				System.err.println("新建Expectation表格時發生IO例外: " + e.getMessage());
-			}
-			session.flush();
-			System.out.println("Expectation資料新增成功");
+//			try (FileReader fr = new FileReader("data/Expectation.dat"); BufferedReader br = new BufferedReader(fr);) {
+//				while ((line = br.readLine()) != null) {
+//					if (line.startsWith(UTF8_BOM)) {
+//						line = line.substring(1);
+//					}
+//					String[] token = line.split("\\|");
+//					ExpectationBean eb = new ExpectationBean();
+//
+//					eb.setExpective(Integer.parseInt(token[0]));
+//					MovieBean mvb = session.get(MovieBean.class, Integer.parseInt(token[1]));
+//					eb.setMovieBean(mvb);
+//					MemberBean mb = session.get(MemberBean.class, Integer.parseInt(token[2]));
+//					eb.setMemberBean(mb);
+//
+//					session.save(eb);
+//				}
+//			} catch (IOException e) {
+//				System.err.println("新建Expectation表格時發生IO例外: " + e.getMessage());
+//			}
+//			session.flush();
+//			System.out.println("Expectation資料新增成功");
 			
 //CommentBean
 			try (FileReader fr = new FileReader("data/Comment.dat"); BufferedReader br = new BufferedReader(fr);) {
