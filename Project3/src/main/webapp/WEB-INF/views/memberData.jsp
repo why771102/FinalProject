@@ -35,7 +35,7 @@
 <!-- 		<div class="container"> -->
 			<div class="login-inner">
 				<h2>會員資料</h2>
-				<div class="login-form">
+				<div class="login-form" style="padding: 57px 50px 14px;">
 					<table>
 						<form:form method='POST' modelAttribute="mData"
 							enctype="multipart/form-data">

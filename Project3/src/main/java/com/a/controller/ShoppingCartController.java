@@ -266,5 +266,11 @@ public class ShoppingCartController implements ServletContextAware {
 		scoservice.updateStatus(ob);
 		return "a/movieTheatreIndex";
 	}
+	
+	@GetMapping("/showSCOrderDetails")
+	public String showSCOrderDetails() {
+		
+		return "a/showSCOrders";
+	}
 
 }

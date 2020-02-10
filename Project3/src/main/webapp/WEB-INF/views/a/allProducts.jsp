@@ -21,7 +21,7 @@
     <style>
     
     	#image img{
-    		border-radius: 25px;
+    		border-radius: 25px 25px 0px 0px;
     	}
     	img:hover{
     		opacity: 0.6;

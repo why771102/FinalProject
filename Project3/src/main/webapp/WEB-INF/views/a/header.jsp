@@ -36,7 +36,7 @@
     	display: block;
     	top: 0;
     	transition: top 0.3s;
-    	z-index: 1;
+    	z-index: 80;
 	}
 	
 	.navbar {

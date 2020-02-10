@@ -178,6 +178,7 @@ input[type=text]:focus {
 	 $('#memberDetail').addClass("selected");
 	 $('#memTicket').removeClass("selected");
 	 $('#hallOrder').removeClass("selected");
+	 $('#memOrder').removeClass("selected");
 	 
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/member/query",
@@ -198,6 +199,7 @@ input[type=text]:focus {
 	 $('#memTicket').addClass("selected");
 	 $('#memberDetail').removeClass("selected");
 	 $('#hallOrder').removeClass("selected");
+	 $('#memOrder').removeClass("selected");
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/member/ticket",
 // 			data : {
@@ -213,10 +215,31 @@ input[type=text]:focus {
 		});
  })
  
+ $('#memOrder').click(function(){
+	 $('#memOrder').addClass("selected");
+	 $('#memberDetail').removeClass("selected");
+	 $('#memTicket').removeClass("selected");
+	 $('#hallOrder').removeClass("selected");
+	 $.ajax({
+			url : "${pageContext.request.contextPath}/showSCOrderDetails",
+//			data : {
+				
+				
+//			},
+			type : "GET",
+			success : function(page) {
+//				alert("新增成功!");
+//				window.location.href = "${pageContext.request.contextPath}/backstageindex";
+				$('#container').html(page);
+			}
+		});
+ });
+ 
  $('#hallOrder').click(function(){
 	 $('#hallOrder').addClass("selected");
 	 $('#memberDetail').removeClass("selected");
 	 $('#memTicket').removeClass("selected");
+	 $('#memOrder').removeClass("selected");
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/Member/hallOrderQuery",
 // 			data : {
