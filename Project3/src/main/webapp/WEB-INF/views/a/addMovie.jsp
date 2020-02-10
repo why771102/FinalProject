@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">拆帳比例：</label>
                                         <div class="col-sm-10">
-                                        <form:input id='profitRatio'  name="profitRatio" path="profitRatio" type='text' value='0.6' class="form-control"/>
+                                        <form:input id='profitRatio'  name="profitRatio" path="profitRatio" type='text' value='' class="form-control"/>
                                             
                                             <span class="help-block">請輸入影城方的拆帳比例</span>
                                         </div>
@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">片長:</label>
                                         <div class="col-sm-10">
-                                        <form:input id='runningTime' name="runningTime" path="runningTime" type='text' value='109' class="form-control"/>
+                                        <form:input id='runningTime' name="runningTime" path="runningTime" type='text' value='' class="form-control"/>
 
                                             <span class="help-block">請輸入電影片長 （單位：分鐘）</span>
                                         </div>
@@ -133,7 +133,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">導演:</label>
                                         <div class="col-sm-10">
-                                        <form:input id='director' name="director" path="director" type='text' value='閻羽茜' class="form-control"  />
+                                        <form:input id='director' name="director" path="director" type='text' value='' class="form-control"  />
                             
                                             <span class="help-block">請輸入電影導演</span>
                                         </div>
@@ -141,7 +141,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">演員:</label>
                                         <div class="col-sm-10">
-                                        <form:input id='cast' name="cast" path="cast" type='text' value='瑪格羅比、 瑪麗伊莉莎白文斯蒂德 、 伊旺麥奎格' class="form-control"  />
+                                        <form:input id='cast' name="cast" path="cast" type='text' value='' class="form-control"  />
                   
                                             <span class="help-block">請輸入電影主要演員</span>
                                         </div>
@@ -149,7 +149,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">類型:</label>
                                         <div class="col-sm-10">
-                                        <form:input id='genre'  name="genre" path="genre" type='text' value='1'  class="form-control"/>
+                                        <form:input id='genre'  name="genre" path="genre" type='text' value=''  class="form-control"/>
                                           
                                             <span class="help-block">請輸入電影類型 0(其他）1(劇情）2 (喜劇）3(愛情）4(驚悚恐怖）</span>
                                         </div>
@@ -157,7 +157,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">分級:</label>
                                         <div class="col-sm-10">
-                                        <form:input id='MovieRating' name="MovieRating" path="MovieRating" type='text' value='2' class="form-control"  />
+                                        <form:input id='MovieRating' name="MovieRating" path="MovieRating" type='text' value='' class="form-control"  />
                                            
                                             <span class="help-block">請輸入電影分級 0(普）1(保護）2(輔導級12) 3(輔導級15）4(限制級）</span>
                                         </div>
@@ -165,7 +165,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">預告:</label>
                                         <div class="col-sm-10">
-                                        <form:input id='trailer'  name="trailer" path="trailer" type='text' value='<iframe width="856" height="480" src="https://www.youtube.com/embed/2DZ9zEGN3kY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>' class="form-control" />
+                                        <form:input id='trailer'  name="trailer" path="trailer" type='text' value='' class="form-control" />
                              
                                             <span class="help-block">請輸入電影預告（youtube鑲嵌連結）</span>
                                         </div>
@@ -173,8 +173,7 @@
                                 <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">簡介:</label>
                                         <div class="col-sm-10">
-                                        <form:input id='plotSummary'  name="plotSummary" path="plotSummary" type='textarea' value='《猛禽小隊：小丑女大解放》構想來自DC同名漫畫，敘述一個不可能的組合，小丑女哈莉奎茵、黑金絲雀、女獵手與芮妮蒙托亞聯手，企圖從高譚市著名的犯罪首腦：「黑面具」手中拯救出一位名為卡珊卓拉該隱的小女孩。+
-                                        《猛禽小隊：小丑女大解放》演員陣容包括瑪格羅比飾演小丑女哈利奎茵、朱妮絲莫利特飾演黑金絲雀、瑪麗伊莉莎白文斯蒂德飾演女獵手、蘿西培瑞茲飾演芮妮蒙托亞、伊旺麥奎格在片中飾演反派：「黑面具」。瑪格羅比同時擔任製片，電影由華裔女導演閻羽茜執導，克麗絲汀哈德森擔任編劇。' class="form-control"/>
+                                        <form:input id='plotSummary'  name="plotSummary" path="plotSummary" type='textarea' value='' class="form-control"/>
                                           
 
                                             
@@ -208,14 +207,14 @@
                             <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">下檔日:</label>
                                     <div class="col-sm-10">
-                                        <input  id='expectedOffDate'  name="expectedOffDate"   value='2020-03-07' id='expectedOffDate'  type="text" class="form-control">
+                                        <input  id='expectedOffDate'  name="expectedOffDate"   value='' id='expectedOffDate'  type="text" class="form-control">
                                         <span class="help-block">請輸入電影下檔日（格式樣板：2020-01-01)</span>
                                     </div>
                             </div>
                             <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">必須上映:</label>
                                     <div class="col-sm-10">
-                                        <input id='MustShowDay'  type='text' name="MustShowDay"   value='7'id='MustShowDay' class="form-control">
+                                        <input id='MustShowDay'  type='text' name="MustShowDay"   value=''id='MustShowDay' class="form-control">
                                         <span class="help-block">請輸入電影簽約必須播出天數（單位：幾天)</span>
                                     </div>
                             </div>
@@ -261,19 +260,37 @@
 		alert("change");
 		
 		var title= document.getElementById("title");
-	    release.value = "小丑女大解放";
+		title.value = "小丑女大解放";
 		var contractDate = document.getElementById("contractDate");
-	    release.value = "2020-02-10";
+		contractDate.value = "2020-02-10";
 		var expectedProfit = document.getElementById("expectedProfit");
-	    release.value = "561920";
+		expectedProfit.value = "561920";
 		var profitRatio = document.getElementById("profitRatio");
-	    release.value = "561920";
-		var expectedProfit = document.getElementById("expectedProfit");
-	    release.value = "561920";
-		
+		profitRatio.value = "0.6";
+		var runningTime = document.getElementById("runningTime");
+		runningTime.value = "109";
+		var director = document.getElementById("director");
+		director.value = "閻羽茜";
+		var cast = document.getElementById("cast");
+		cast.value = "瑪格羅比、 瑪麗伊莉莎白文斯蒂德 、 伊旺麥奎格";
+		var runningTime = document.getElementById("runningTime");
+		runningTime.value = "109";
+		var genre = document.getElementById("genre");
+		genre.value = "1";
+		var MovieRating = document.getElementById("MovieRating");
+		MovieRating.value = "2";
+		var trailer = document.getElementById("trailer");
+		trailer.value = "<iframe width='856' height='480' src='https://www.youtube.com/embed/2DZ9zEGN3kY' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen> </iframe> ";
+	    var MovieRating = document.getElementById("plotSummary");
+	    MovieRating.value = "《猛禽小隊：小丑女大解放》構想來自DC同名漫畫，敘述一個不可能的組合，小丑女哈莉奎茵、黑金絲雀、女獵手與芮妮蒙托亞聯手，企圖從高譚市著名的犯罪首腦：「黑面具」手中拯救出一位名為卡珊卓拉該隱的小女孩。"+
+                        " 《猛禽小隊：小丑女大解放》演員陣容包括瑪格羅比飾演小丑女哈利奎茵、朱妮絲莫利特飾演黑金絲雀、瑪麗伊莉莎白文斯蒂德飾演女獵手、蘿西培瑞茲飾演芮妮蒙托亞、伊旺麥奎格在片中飾演反派：「黑面具」。瑪格羅比同時擔任製片，電影由華裔女導演閻羽茜執導，克麗絲汀哈德森擔任編劇。";
 		
 		var release = document.getElementById("release");
 		    release.value = "2020-02-10";
+		var expectedOffDate = document.getElementById("expectedOffDate");
+		    expectedOffDate.value = "2020-03-10";
+		var MustShowDay = document.getElementById("MustShowDay");
+		     MustShowDay.value = "7";
 		
 	}
 	
