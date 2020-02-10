@@ -31,7 +31,7 @@ import com.z.model.EmpBean;
 				@WebInitParam(name = "mustLogin15", value = "/product/*"),
 				@WebInitParam(name = "mustLogin16", value = "/emp/add"),
 				@WebInitParam(name = "mustLogin17", value = "/emps"),
-				@WebInitParam(name = "mustLogin18", value = "/anno/*"),
+//				@WebInitParam(name = "mustLogin18", value = "/anno/*"),
 				@WebInitParam(name = "mustLogin19", value = "/bgAnnos"),
 				@WebInitParam(name = "mustLogin20", value = "/employee/*"),
 				@WebInitParam(name = "mustLogin21", value = "/hall/*"),
