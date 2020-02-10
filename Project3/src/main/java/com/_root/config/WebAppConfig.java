@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -24,6 +25,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com._root.config.restful.ExcelViewResolver;
 
+import com._root.config.restful.PdfViewResolver;
+
 
 //import com._root.config.restful.ExcelViewResolver;
 
@@ -32,7 +35,7 @@ import com._root.config.restful.ExcelViewResolver;
 @EnableWebMvc
 //@ComponentScan("com")   //他會去找哪些地方有Controller要被控管
 @ComponentScan(basePackages = {"com", "m"})
-public class WebAppConfig implements WebMvcConfigurer {				//本類別提供組態資訊，例如要到哪裡找視圖檔，有哪些Controller要被控管
+public class WebAppConfig implements WebMvcConfigurer, ServletContextAware{				//本類別提供組態資訊，例如要到哪裡找視圖檔，有哪些Controller要被控管
 	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {								//做一個視圖解析器
@@ -70,8 +73,13 @@ public class WebAppConfig implements WebMvcConfigurer {				//本類別提供組�
 		return resolver;
 	}
 
-	@Autowired
+//	@Autowired
 	ServletContext context;
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.context = servletContext;
+	}
 	
 	@Override
 	// 本方法會自動產生一個ContentNegotiationManager
@@ -89,27 +97,21 @@ public class WebAppConfig implements WebMvcConfigurer {				//本類別提供組�
 		cnvResolver.setContentNegotiationManager(manager);
 		// Define all possible view resolvers
 		List<ViewResolver> resolvers = new ArrayList<ViewResolver>();
-//		resolvers.add(pdfViewResolver(context));
+		resolvers.add(pdfViewResolver(context));
 		resolvers.add(excelViewResolver());
-
+		
 		cnvResolver.setViewResolvers(resolvers);
 		return cnvResolver;
 	}
 	
-//	@Bean
-//	public ViewResolver pdfViewResolver(ServletContext context) {
-//		return new PdfViewResolver(context);
-//	}
+	@Bean
+	public ViewResolver pdfViewResolver(ServletContext context) {
+		return new PdfViewResolver(context);
+	}
 	
 	@Bean
 	public ViewResolver excelViewResolver() {
 		return new ExcelViewResolver();
-	}
-	
-	@Bean
-	public ServletContext getServletContext() {
-		
-		return context;
 	}
 	
 }

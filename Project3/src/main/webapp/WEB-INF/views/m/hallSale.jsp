@@ -125,10 +125,10 @@
 								</tfoot>
 							</table></font>
 							</div>
-							<form id="submitExcel"
-								action="${pageContext.request.contextPath}/hale/sale/hallSale.xls"
+							<form id="submitPdf"
+								action="${pageContext.request.contextPath}/hall/sale/hallSale"
 								method="POST">
-								<input type="submit" id="exportE" value="Export To Excel">
+								<input type="submit" id="exportE" value="Export To PDF">
 							</form>
 						</div>
 					</div>
@@ -204,7 +204,8 @@
 													},
 													type : "POST",
 													success : function(hall) {
-														// 																			alert("搜尋成功!");
+														window.hall = hall; 
+// 														alert("搜尋成功!");
 														var dataTable = $(
 																"#example")
 																.DataTable();
@@ -236,7 +237,9 @@
 																									subtotal ])
 																					.draw();
 																		});
-														
+														//pdf
+														document.getElementById("submitPdf").innerHTML += "<input type='hidden' name='exportPdf' value='"
+																+ JSON.stringify(window.hall)+ "'>" 
 														console.log(hall);
 														//				 		console.log("hhhh" + start.format('YYYY-MM-DD'));
 													}
