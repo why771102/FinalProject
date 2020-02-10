@@ -52,7 +52,7 @@ public class PaypalController {
 	//subtotal 和 total要長一樣
 	@RequestMapping(value = "/authorize_payment", method = RequestMethod.POST)
 	public void toPaypal(PaypalBean pb,HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		String product = request.getParameter("product");
+		String product = "76影城";
 		String subtotal = request.getParameter("subtotal");
 		String shipping = "0";
 		String tax = "0";
@@ -120,7 +120,7 @@ public class PaypalController {
 			request.setAttribute("payer", payerInfo);
 			request.setAttribute("transaction", transaction);			
 
-			request.getRequestDispatcher("WEB-INF/views/t/receipt.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/a/movieTheatreIndex.jsp").forward(request, response);
 			
 		} catch (PayPalRESTException ex) {
 			request.setAttribute("errorMessage", ex.getMessage());

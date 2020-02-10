@@ -495,7 +495,7 @@ public class RunMovieController implements ServletContextAware{
 	}
 	
 	//顯示單個已經上映電影
-	@PostMapping(value = "/show/this/movie")
+	@RequestMapping(value = "/show/this/movie")
 	public String showThisMovie(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
 		RunningBean run = mService.getRunningBeanById(runID);
@@ -508,13 +508,30 @@ public class RunMovieController implements ServletContextAware{
 				mID = cookie.getValue();
 			}
 		}
+		int memberID = Integer.parseInt(mID);
 		int movieID = run.getMovie().getMovieID();
+		//檢驗是否在這電影留過言
+		boolean ce = cService.checkCommentExist(memberID,movieID);
+		//如果有 印出該留言並可修改
+		if(ce == true) {
+			int commentID = cService.getCommentID(memberID,movieID);
+			CommentBean cb1 = cService.getTheCommentBean(commentID);
+			model.addAttribute("haveComment", "1");
+			model.addAttribute("updateComment", cb1);
+		}//如果無 印出留言區
+		else {
+			model.addAttribute("haveComment", "0");
+			CommentBean cb = new CommentBean();
+			model.addAttribute("commentBean",cb);
+		}
+		
 		Double avgGrade = cService.getAvgGrade(movieID);
 		if(avgGrade == 0) {
 			model.addAttribute("AVGGrade", "尚無評價");
 		}else {
 			model.addAttribute("AVGGrade", avgGrade);
 		}
+		//印所有留言
 		if(mID == null) {
 			List<CommentBean> comments=cService.getCommentByMovieNoLoginByTime(movieID);
 			model.addAttribute("Comments", comments);
@@ -558,7 +575,7 @@ public class RunMovieController implements ServletContextAware{
 			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
 			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
 		}
-		
+		model.addAttribute("run",run);
 //		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
 		model.addAttribute("sthb_list1",sthb_list);
 		model.addAttribute("oneMovie1",oneMovie);

@@ -15,30 +15,22 @@
 	<h1>Check Out</h1>
 	<br/>
 	<form action="authorize_payment" method="post">
-	<table>
-		<tr>
-			<td>購買商品:</td>
-			<td><input type="text" name="product" value="Next iPhone" /></td>
-		</tr>				
-		<tr>
-			<td>總額:</td>
-			<td><input type="text" name="total" value="100" /></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
+
+<!-- 		<tr> -->
+<!-- 			<td>購買商品:</td> -->
+<!-- 			<td><input type="text" name="product" value="Next iPhone" /></td> -->
+<!-- 		</tr>				 -->
+
+			<input type="text" name="total" value="100" />
+	
 				<input type="submit" value="購買" />
-			</td>
-		</tr>
-		<tr>
-			<td><input type="hidden" name="subtotal" value="100" /></td>
-		</tr>
-		<tr>
-			<td><input type="hidden" name="shipping" value="0" /></td>
-		</tr>		
-		<tr>
-			<td><input type="hidden" name="tax" value="0" /></td>
-		</tr>
-	</table>
+			<input type="hidden" name="subtotal" value="100" />
+<!-- 		<tr> -->
+<!-- 			<td><input type="hidden" name="shipping" value="0" /></td> -->
+<!-- 		</tr>		 -->
+<!-- 		<tr> -->
+<!-- 			<td><input type="hidden" name="tax" value="0" /></td> -->
+<!-- 		</tr> -->
 	</form>
 </div>
 </body>

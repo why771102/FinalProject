@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.MovieBean;
+import com.a.model.RunningBean;
+import com.a.service.MovieService;
 import com.google.gson.Gson;
 import com.t.model.CommentBean;
 import com.t.service.CommentService;
@@ -30,6 +32,7 @@ import com.t.validator.CommentValidator;
 public class CommentController {
 
 	CommentService service;
+	MovieService mService;
 	ServletContext context;
 	
 //	@Autowired
@@ -38,8 +41,9 @@ public class CommentController {
 	}
 
 	@Autowired
-	public void setService(CommentService service) {
+	public void setService(CommentService service,MovieService mService) {
 		this.service = service;
+		this.mService = mService;
 	}
 	
 //	@RequestMapping("/commentGetMovieID")
@@ -118,41 +122,42 @@ public class CommentController {
 		return "t/comments";
 	}
 	
-	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.GET)
-	public String getAddNewComment(@PathVariable("movieID")Integer movieID,HttpServletRequest request,Model model) {
-		Cookie[] cookies = request.getCookies();
-		String mID = null;
-		for (Cookie cookie : cookies) {
-			String name = cookie.getName();
-			if(name.equals("memberID")) {
-				mID = cookie.getValue();
-			}
-		}
-		int memberID = Integer.parseInt(mID);
-		//檢查是否有在該電影留過言
-		boolean ce = service.checkCommentExist(memberID,movieID);
-		//如果有 印出該留言並提供修改或刪除選項
-		if(ce == true){
-			int commentID = service.getCommentID(memberID,movieID);
-			CommentBean cb = service.getTheCommentBean(commentID);
-			model.addAttribute("CommentBean", cb);
-			return "t/onecomment";
-		}
-		//如果無 顯示撰寫區
-		else{
-			CommentBean cb = new CommentBean();
-			model.addAttribute("commentBean",cb);
-			return "t/addcomment";
-		}		
-	}
+//	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.GET)
+//	public String getAddNewComment(@PathVariable("movieID")Integer movieID,HttpServletRequest request,Model model) {
+//		Cookie[] cookies = request.getCookies();
+//		String mID = null;
+//		for (Cookie cookie : cookies) {
+//			String name = cookie.getName();
+//			if(name.equals("memberID")) {
+//				mID = cookie.getValue();
+//			}
+//		}
+//		int memberID = Integer.parseInt(mID);
+//		//檢查是否有在該電影留過言
+//		boolean ce = service.checkCommentExist(memberID,movieID);
+//		//如果有 印出該留言並提供修改或刪除選項
+//		if(ce == true){
+//			int commentID = service.getCommentID(memberID,movieID);
+//			CommentBean cb = service.getTheCommentBean(commentID);
+//			model.addAttribute("CommentBean", cb);
+//			return "t/onecomment";
+//		}
+//		//如果無 顯示撰寫區
+//		else{
+//			CommentBean cb = new CommentBean();
+//			model.addAttribute("commentBean",cb);
+//			return "t/addcomment";
+//		}		
+//	}
 	
-	@RequestMapping(value = "/comments/add/{movieID}", method = RequestMethod.POST)
-	public String processAddNewComment(@PathVariable("movieID")Integer movieID,CommentBean cb,BindingResult result,HttpServletRequest request) {
+	@RequestMapping(value = "/comments/add/{runID}", method = RequestMethod.POST)
+	public String processAddNewComment(@PathVariable("runID")String runID,@ModelAttribute("commentBean")CommentBean cb,BindingResult result,HttpServletRequest request) {
+		RunningBean run = mService.getRunningBeanById(runID);
 		CommentValidator validator = new CommentValidator();
 		// 呼叫Validate進行資料檢查
 		validator.validate(cb, result);
 		if (result.hasErrors()) {
-			return "t/addcomment";
+			return "a/showMovie2";
 		}
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
@@ -165,13 +170,15 @@ public class CommentController {
 		if(mID == null) {
 			return "redirect:/member/login";
 		}else {
+			int movieID = run.getMovie().getMovieID();
 			int nMID = Integer.parseInt(mID);
 			cb.setMemberID(nMID);
+			cb.setMovieID(movieID);
 			cb.setCommentDelete(0);
 			cb.setReportComment(0);
 			service.addComment(cb);
 		}
-		return "redirect:/comments/{movieID}";	
+		return "redirect:/show/this/movie?runID=" + runID;	
 	}
 	
 	//用戶自行刪除
@@ -229,22 +236,24 @@ public class CommentController {
 //		return "t/updatecomment";
 //	}
 	
-	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8;")
-	public @ResponseBody String getupdateComment2(@PathVariable("commentID")Integer commentID,Model model) {
-		CommentBean cb = service.getTheCommentBean(commentID);
-		model.addAttribute("updateComment", cb);
-		Gson gson = new Gson();
-		String str = gson.toJson(cb);
-		return str;
-	}
+//	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8;")
+//	public @ResponseBody String getupdateComment2(Model model) {
+//		int commentID = service.getCommentID(memberID,movieID);
+//		CommentBean cb = service.getTheCommentBean(commentID);
+//		model.addAttribute("updateComment", cb);
+//		Gson gson = new Gson();
+//		String str = gson.toJson(cb);
+//		return str;
+//	}
 	
 	//修改該留言內容
-	@RequestMapping(value = "/update/comment/{commentID}", method = RequestMethod.POST)
-	public String proccessupdateComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
-		cb.setCommentID(commentID);   //抓路徑ID塞進cb
-		service.updateComment(cb);
-		model.addAttribute("Comment",service.getTheCommentBean(commentID));
-		return "t/onecomment";
+	@RequestMapping(value = "/update/comment/{runID}", method = RequestMethod.POST)
+	public String proccessupdateComment(@PathVariable("runID")String runID,@ModelAttribute("updateComment") CommentBean cb1,Model model) {
+		 
+		int commentID = cb1.getCommentID();   //抓路徑ID塞進cb
+		cb1.setCommentID(commentID);
+		service.updateComment(cb1);
+		return "redirect:/show/this/movie?runID=" + runID;
 	}
 	
 	//列出所有被檢舉的Comment

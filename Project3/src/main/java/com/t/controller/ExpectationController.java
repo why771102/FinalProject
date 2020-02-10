@@ -92,7 +92,7 @@ public class ExpectationController {
 //	}
 
 	@RequestMapping(value = "/expectation/add/{runID}", method = RequestMethod.POST)
-	public String processAddNewExpection(@PathVariable("runID") String runID, ExpectationBean eb, BindingResult result,
+	public String processAddNewExpection(@PathVariable("runID") String runID, @ModelAttribute("ExpectationBean")ExpectationBean eb, BindingResult result,
 			HttpServletRequest request) {
 		HashMap<String, String> errorMsgMap = new HashMap<String, String>();
 		RunningBean run = mService.getRunningBeanById(runID);
@@ -117,7 +117,7 @@ public class ExpectationController {
 			int nMID = Integer.parseInt(mID);
 			boolean ee = service.checkExpectationExist(nMID, movieID);
 			if (ee == true) {
-				errorMsgMap.put("accountExistError", "無法多次填寫!");
+				errorMsgMap.put("expectExistError", "無法多次填寫!");
 			} else {
 				eb.setMovieID(movieID);
 				eb.setMemberID(nMID);
