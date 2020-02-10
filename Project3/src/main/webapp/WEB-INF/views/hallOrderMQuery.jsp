@@ -26,7 +26,8 @@
 	}
 	
 	#test{
-		height:300px;
+		height:400px;
+		overflow-y:auto;
 	}
 	
 	footer{

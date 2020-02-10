@@ -114,6 +114,16 @@ html, /* 這邊做初始化設定 全部字體為正黑體  並且字體大小�
 	box-sizing: border-box;
 	padding: 1%;
 }
+/* 留言編輯 項目名 */
+.control-label head {
+	padding: 0;
+	font-size: 20px;
+
+}
+
+.col-lg inner {
+	text-align : left;
+}
 
 /* warp 如何對齊 系列 */
 
@@ -368,6 +378,7 @@ div.submitButton {
 				<!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
       -->
 			</div>
+		</div>
 	</section>
 	<!-- banner -->
 
@@ -433,7 +444,7 @@ div.submitButton {
 				</div>
 			</div>
 		</div>
-		</div>
+
 
 	</section>
 
@@ -534,8 +545,8 @@ div.submitButton {
 						</ul>
 					</div>
 				</div>
-
 			</div>
+		</div>
 	</section>
 	<!-- banner -->
 	<!--     <section class="ticket-outer banner-featured"> -->
@@ -549,16 +560,146 @@ div.submitButton {
 	<!-- banner -->
 	<section class='contact-sec '>
 		<div class='container'>
+			<c:forEach var="list" items="${haveComment}">
+				<c:choose>
+					<c:when test='${list == "1"}'>
+						<div class='buy-txt'>
+							<form:form method='POST' modelAttribute="updateComment"
+								action="${pageContext.request.contextPath}/update/comment/${run.runID}"
+								class='form-horizontal'>
+								<h2 style='text-align: left; color: cornflowerblue;'>[修改留言]</h2>
+								<p></p>
+								<br>
+								<fieldset>
+									<div class="form-group">
+										<div>
+											<label class="control-label"
+												style="padding: 0; font-size: 20px" for='watched'>
+												已觀賞: </label>
+											<div class="col-lg inner"
+												style=" font-size: 20px">
+												<form:radiobutton id="watched" path="watched" value="1" />
+												已觀看
+												<form:radiobutton id="watched" path="watched" value="0" />
+												未觀看
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label" for='grade'> 評分等級: </label>
+										<div class="col-lg inner">
+											<form:select id="grade" path="grade"
+												class='form:input-large' style=" width : 10">
+<%-- 												<form:option --%>
+<%-- 													style="font-size : 10px" value="-1" label="請挑選" /> --%>
+												<form:option
+													style="font-size : 10px" value="1" label="1" />
+												<form:option
+													style="font-size : 10px" value="2" label="2" />
+												<form:option
+													style="font-size : 10px" value="3" label="3" />
+												<form:option 
+													style="font-size : 10px" value="4" label="4" />
+												<form:option 
+													style="font-size : 10px" value="5" label="5" />
+											</form:select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class='control-label' for="commentContent">
+											短評內文:</label>
+										<div class='col-lg inner'>
+											<form:textarea
+												style="font-size: 20px; resize: none ;width: 100%;height: 400"
+												rows="5" cols="40" id="commentContent" path="commentContent"
+												type='text' class='form:input-comment' />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class='col-lg-offset-2 col-lg-10'
+											style="text-align: left">
+											<input id="btnAdd" type='submit' class='btn btn-primary'
+												value="送出" />
+										</div>
+									</div>
+								</fieldset>
+							</form:form>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class='buy-txt'>
 
-			<div class='buy-txt' >
-				<jsp:include page="../t/addcomment.jsp">
-					<jsp:param name="c" value="1" />
-					<jsp:param name="d" value="1" />
-				</jsp:include>
-			</div>
-			<div class='buy-txt'>
-				
-			</div>
+							<%-- 				<jsp:include page="../t/addcomment.jsp"> --%>
+							<%-- 					<jsp:param name="c" value="1" /> --%>
+							<%-- 					<jsp:param name="d" value="1" /> --%>
+							<%-- 				</jsp:include> --%>
+							<form:form method='POST' modelAttribute="commentBean"
+								action="${pageContext.request.contextPath}/comments/add/${run.runID}"
+								class='form-horizontal'>
+								<h2 style='text-align: left; color: cornflowerblue;'>[新增留言]</h2>
+								<p></p>
+								<br>
+								<fieldset>
+									<div class="form-group" style="text-align: left">
+										<div>
+											<label class="control-label" style="text-align: left"
+												for='watched'> 已觀賞 </label>
+											<div class="col-lg-10">
+												<form:radiobutton id="watched" path="watched" value="1" />
+												已觀看
+												<form:radiobutton id="watched" path="watched" value="0" />
+												未觀看
+											</div>
+										</div>
+										<form:errors path="watched" cssClass="error" />
+									</div>
+
+									<div class="form-group">
+										<label class="control-label" for='grade'> 評分 </label>
+										<div class="col-lg-10">
+											<form:select id="grade" path="grade">
+												<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
+												<form:option value="1" label="1" />
+												<form:option value="2" label="2" />
+												<form:option value="3" label="3" />
+												<form:option value="4" label="4" />
+												<form:option value="5" label="5" />
+											</form:select>
+										</div>
+										<form:errors path="grade" cssClass="error" />
+									</div>
+									<div class="form-group">
+										<label class='control-label' for="commentContent"> 短評
+										</label>
+										<div class='col-lg-10'>
+											<form:input id="commentContent" path="commentContent"
+												type='text' class='form:input-large' style="height" />
+										</div>
+										<form:errors path="commentContent" cssClass="error" />
+									</div>
+									<div class="form-group">
+										<label class='control-label' for="commentTime"> </label>
+										<div class='col-lg-10'>
+											<form:input id="commentTime" path="commentTime" type='hidden'
+												class='form:input-large' />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class='col-lg-offset-2 col-lg-10'>
+											<input id="btnAddcomment" type='submit'
+												class='btn btn-primary' value="送出" />
+										</div>
+									</div>
+								</fieldset>
+							</form:form>
+						</div>
+
+					</c:otherwise>
+
+				</c:choose>
+			</c:forEach>
+
+
 
 			<div class='buy-txt'>
 				<h2>
@@ -773,6 +914,16 @@ div.submitButton {
 		document.getElementById("showIDForm" + b[i].sthb.showTimeId).submit()
 
 	}
+
+	$("#btnAddcomment").click(
+			function() {
+				var d = new Date();
+				$("#commentTime").val(
+						d.getFullYear() + "-" + (parseInt(d.getMonth()) + 1)
+								+ "-" + d.getDate() + " " + d.getHours() + ":"
+								+ d.getMinutes() + ":" + d.getSeconds()
+								+ ".000");
+			});
 </script>
 </body>
 </html>

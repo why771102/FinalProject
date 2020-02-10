@@ -349,7 +349,7 @@
                                         <div class="slide-con">
                                             <h5>不想排隊?</h5>
                                             <h4>快線上訂位!<br> </h4>
-                                            <a href="#booknow" class="slider-btn">立即訂位</a>
+                                            <a href="${pageContext.request.contextPath}/movieIndex#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -371,7 +371,7 @@
                                         <div class="slide-con">
                                             <h5>不想排隊? </h5>
                                             <h4>快線上訂位!</h4>
-                                            <a href="#booknow" class="slider-btn">立即訂位</a>
+                                            <a href="${pageContext.request.contextPath}/movieIndex#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">
@@ -392,7 +392,7 @@
                                         <div class="slide-con">
                                             <h5>不想排隊? </h5>
                                             <h4>快線上訂位!</h4>
-                                            <a href="#booknow" class="slider-btn">立即訂位</a>
+                                            <a href="${pageContext.request.contextPath}/movieIndex#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-7 col-xs-6 pull-right">

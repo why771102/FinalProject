@@ -48,6 +48,10 @@
 <style>
 @import 'https://code.highcharts.com/css/highcharts.css';
 
+.highcharts-background {
+  fill: #F5F5F5;
+}
+
 .highcharts-figure, .highcharts-data-table table {
 	min-width: 310px;
 	max-width: 800px;

@@ -107,7 +107,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 					pcUse = pcUse + subtotal;
 					
 					pseb1.setCategoriesBean(cb);
-					System.out.println("__________" + cb.getCategoryID() + "________________");
+//					System.out.println("__________" + cb.getCategoryID() + "________________");
 					pseb1.setProductsBean(pseb.getProductsBean());
 					pseb1.setProductName(productName);
 					pseb1.setPrice(unitPrice);

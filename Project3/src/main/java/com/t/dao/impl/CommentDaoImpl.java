@@ -503,11 +503,11 @@ public class CommentDaoImpl implements CommentDao {
 
 	@Override
 	public void updateComment(CommentBean cb) {
-		String hql = "UPDATE CommentBean SET watched = :newwatched, grade = :newgrade, commentContent = :newcommentContent, commentTime = :newcommentTime WHERE commentID = :id";
+		String hql = "UPDATE CommentBean SET watched = :newwatched, grade = :newgrade, commentContent = :newcommentContent WHERE commentID = :id";
 		Session session = factory.getCurrentSession();
 		int n = session.createQuery(hql).setParameter("newwatched", cb.getWatched())
 				.setParameter("newgrade", cb.getGrade()).setParameter("newcommentContent", cb.getCommentContent())
-				.setParameter("newcommentTime", cb.getCommentTime()).setParameter("id", cb.getCommentID())
+				.setParameter("id", cb.getCommentID())
 				.executeUpdate();
 	}
 

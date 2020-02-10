@@ -495,7 +495,7 @@ public class RunMovieController implements ServletContextAware{
 	}
 	
 	//顯示單個已經上映電影
-	@PostMapping(value = "/show/this/movie")
+	@RequestMapping(value = "/show/this/movie")
 	public String showThisMovie(Model model,
 			HttpServletRequest request ,@RequestParam String runID) {
 		RunningBean run = mService.getRunningBeanById(runID);
@@ -508,13 +508,30 @@ public class RunMovieController implements ServletContextAware{
 				mID = cookie.getValue();
 			}
 		}
+		int memberID = Integer.parseInt(mID);
 		int movieID = run.getMovie().getMovieID();
+		//檢驗是否在這電影留過言
+		boolean ce = cService.checkCommentExist(memberID,movieID);
+		//如果有 印出該留言並可修改
+		if(ce == true) {
+			int commentID = cService.getCommentID(memberID,movieID);
+			CommentBean cb1 = cService.getTheCommentBean(commentID);
+			model.addAttribute("haveComment", "1");
+			model.addAttribute("updateComment", cb1);
+		}//如果無 印出留言區
+		else {
+			model.addAttribute("haveComment", "0");
+			CommentBean cb = new CommentBean();
+			model.addAttribute("commentBean",cb);
+		}
+		
 		Double avgGrade = cService.getAvgGrade(movieID);
 		if(avgGrade == 0) {
 			model.addAttribute("AVGGrade", "尚無評價");
 		}else {
 			model.addAttribute("AVGGrade", avgGrade);
 		}
+		//印所有留言
 		if(mID == null) {
 			List<CommentBean> comments=cService.getCommentByMovieNoLoginByTime(movieID);
 			model.addAttribute("Comments", comments);
@@ -558,7 +575,7 @@ public class RunMovieController implements ServletContextAware{
 			LocalDateTime dateTime = LocalDateTime.parse(sthb.getPlayStartTime(), fmt);
 			oneMovie.add(new ShowtimeBean(1, sthb ,(dateTime.toLocalDate()).toString(), (dateTime.toLocalTime()).toString()));
 		}
-		
+		model.addAttribute("run",run);
 //		 System.out.println("電影名稱2:"+sthb_list.get(1).getRun().getMovie().getTitle());
 		model.addAttribute("sthb_list1",sthb_list);
 		model.addAttribute("oneMovie1",oneMovie);
@@ -592,12 +609,42 @@ public class RunMovieController implements ServletContextAware{
 	@GetMapping(value = "/Method/test") // URL 跟<a href='movie/show'> 相關
 	public String testMethod(Model model) {
 		System.out.println("TestMethod");
-		MovieBean mb = new MovieBean();
-		mb.setMovieID(39);
-		boolean result = mService.updatePT_value(mb, 2);
-//		
-		System.out.println("result"+result);
-		return "index-a";// URL 跟 eclip 擺放位置相關
+//	List<MovieBean> Allmovie_list=new ArrayList<>();
+	int dataCount= 64;
+	LocalDateTime startTime =LocalDateTime.parse("2020/02/10 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+	for(int i=53;i<= dataCount;i++) {
+	
+		MovieBean mb=mService.getMovieBeanById(i);
+		int random= (int) (Math.random()*2);
+		
+		LocalDate startDate = startTime.toLocalDate().plusDays(random);
+		LocalDate endDate2 = startDate.plusDays(30);
+		long daysDiff = ChronoUnit.DAYS.between(startDate, endDate2);
+		int totalDay = (int) (daysDiff);
+
+		RunningBean rb1 = new RunningBean();
+//	 		int totalDay = Integer.parseInt(expectedOnDate);
+		int mustDay = 7;
+		LocalDate endDate = startDate.plusDays(mustDay-1);
+		LocalDate startDate2 = startDate.plusDays(mustDay);
+		if (totalDay - mustDay > 0 && mustDay != 0) {
+			RunningBean rb2 = new RunningBean(startDate.toString(), mustDay, 7, endDate.toString(), endDate.toString(), 0, mb);
+			mService.addrunning(rb2);
+		
+			rb1 = new RunningBean(startDate2.toString(), (totalDay - mustDay), 23, endDate2.toString(),  endDate2.toString(), 1, mb);
+			mService.addrunning(rb1);
+		} else if (mustDay == 0) {
+			rb1 = new RunningBean(startDate.toString(), totalDay, 30, endDate2.toString(),  endDate2.toString(), 1, mb);
+			mService.addrunning(rb1);
+		} else {
+			// totalDay=mustDay
+			rb1 = new RunningBean(startDate.toString(), totalDay, 30, endDate2.toString(), endDate2.toString(), 0, mb);
+			mService.addrunning(rb1);
+		}
+	
+		startTime= startDate.atTime(LocalTime.now());
+	}
+		return "index-a";  // URL 跟 eclip 擺放位置相關
 
 	}
 	//ok
@@ -892,31 +939,62 @@ public class RunMovieController implements ServletContextAware{
 		int totalPages= 1;
 		
 		LocalDate today=LocalDate.now();
-		List<RunningBean>rb_list=mService.getComingSoonMovie();
+		List<RunningBean>rb_list1=mService.getComingSoonMovie();
 		//List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+		
+	
+		
+		List<RunningBean>rb_list=new ArrayList<>();
+		List<Integer> movies = new ArrayList<>();
+		for(RunningBean rb: rb_list1) {
+			System.out.println(rb.getMovie().getTitle());
+		
+			if(!movies.contains(rb.getMovie().getMovieID())) {
+				movies.add(rb.getMovie().getMovieID());
+				rb_list.add(rb);
+			}
+		}
+		
+		
+		
+		
+		
+		
 		
 		//movie要從第幾個開始
 		int movieNum =(pageNo-1)*8;
 		  //從第幾個(顯示到幾個(onePageNum)
 		int onePageNum =0;
         System.out.println("rb_size:"+rb_list.size());
+        
+        //如果這個可以整除
         if(rb_list.size()%8 ==0) {
         	if(rb_list.size() == 0) {
         		System.out.println("no Page");
         		onePageNum =pageNo*0;
         	}else {
         		totalPages =rb_list.size()/8;
-        		 onePageNum =totalPages*8;
+        		if(pageNo==totalPages) {
+        			 onePageNum =totalPages*8;
+        		}else {
+        			onePageNum =pageNo*8 ;
+        		}
+        		
         	}
         }else {
         	if(rb_list.size()>8) {
         		totalPages =rb_list.size()/8+1;
-        		onePageNum =pageNo*8 +rb_list.size()%8;
+        		if(pageNo==totalPages) {
+        			onePageNum =pageNo*8 +rb_list.size()%8;
+        		}else {
+        			onePageNum =pageNo*8 ;
+        		}
+        		
         		
         	}else {
         		//少於8個
         		totalPages=1;
-        		onePageNum =rb_list.size();
+        		onePageNum =(rb_list.size());
         	}
         }
         
@@ -980,30 +1058,77 @@ public class RunMovieController implements ServletContextAware{
 		int totalPages= 1;
 		LocalDate today=LocalDate.now();
 //		List<RunningBean>rb_list=mService.getComingSoonMovie();
-		List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+		List<RunningBean>rb_list2=mService.getAllOnMoive(LocalDate.now());
+		List<RunningBean>rb_list1=mService.getComingSoonMovie();
+		//List<RunningBean>rb_list=mService.getAllOnMoive(LocalDate.now());
+		List<Integer> movies = new ArrayList<>();
+	
+		for(RunningBean rb: rb_list2) {
+			if(!movies.contains(rb.getMovie().getMovieID())) {
+				movies.add(rb.getMovie().getMovieID());
+				
+			}
+		} 
 		
-		if(rb_list.size()>8) {
-			totalPages = (rb_list.size()/8)+1;
-		}else {}
+	
 		
+		List<RunningBean>rb_list=new ArrayList<>();
+//		List<Integer> movies = new ArrayList<>();
+		for(RunningBean rb: rb_list1) {
+			System.out.println(rb.getMovie().getTitle());
 		
-		int movieNum =(pageNo-1)*8;
+			if(!movies.contains(rb.getMovie().getMovieID())) {
+				movies.add(rb.getMovie().getMovieID());
+				rb_list.add(rb);
+			}
+		}
+		
+		//change Page
+		
 		List<RunningBean>rb_page_list =new ArrayList<RunningBean>();
-		System.out.println("rb_list:"+rb_list.size());
-		int onePageNum =0;
-		if(rb_list.size()-movieNum>0) {
-			System.out.println("第二頁");
-			onePageNum=8+movieNum;
-		}else if(pageNo == 1) {
-			System.out.println("回第一頁");
-			movieNum =0;
-			onePageNum=rb_list.size()-1;
-			totalPages=1;
-		}
-		else {
-			onePageNum=rb_list.size()%8;
-		}
-		
+		//movie要從第幾個開始
+				int movieNum =(pageNo-1)*8;
+				  //從第幾個(顯示到幾個(onePageNum)
+				int onePageNum =0;
+		        System.out.println("rb_size:"+rb_list.size());
+		        
+		        //如果這個可以整除
+		        if(rb_list.size()%8 ==0) {
+		        	System.out.println("整除8");
+		        	if(rb_list.size() == 0) {
+		        		System.out.println("no Page");
+		        		onePageNum =pageNo*0;
+		        	}else {
+		        		totalPages =rb_list.size()/8;
+		        		if(pageNo==totalPages) {
+		        			 onePageNum =totalPages*8;
+		        		}else {
+		        			onePageNum =pageNo*8 ;
+		        		}
+		        		
+		        	}
+		        }else {
+		        	if(rb_list.size()>8) {
+		        		totalPages =rb_list.size()/8+1;
+		        		if(pageNo==1) {
+		        			onePageNum=8;
+		        			
+		        		}else {
+		        			onePageNum =(pageNo-1)*8 +(rb_list.size()%8);
+		        		}
+		        		
+		        	
+		        			
+		        		
+		        		
+		        		
+		        	}else {
+		        		//少於8個
+		        		totalPages=1;
+		        		onePageNum =(rb_list.size());
+		        	}
+		        }
+		;
 		System.out.println("onePageNum"+onePageNum);
 		System.out.println("movieNum"+movieNum);
 		

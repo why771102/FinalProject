@@ -33,6 +33,31 @@
 		.movie1{
 			border-radius: 25px;
 		}
+		
+		.like-btn {
+  			position: absolute;
+ 			bottom: 27px;
+ 			right: 16px;
+  			background: url('${pageContext.request.contextPath}/img/twitter-heart.png');
+  			width: 60px;
+  			height: 60px;
+  			background-size: 2900%;
+  			background-repeat: no-repeat;
+		}
+		.is-active {
+  			animation-name: animate;
+ 			animation-duration: .8s;
+  			animation-iteration-count: 1;
+  			animation-timing-function: steps(28);
+  			animation-fill-mode: forwards;
+		}
+		
+		@keyframes animate {
+  			0%   { background-position: left;  }
+ 			50%  { background-position: right; }
+  			100% { background-position: right; }
+		}
+		
     </style>
 </head>
 
@@ -75,7 +100,7 @@
                             <h3>${pd.categoriesBean.categoryName}</h3>    
                         </a>                       
                         </div>
-                        
+                        <div class="buttons"><span class="like-btn"></span></div>
                     </div>
                         
                         <div>
@@ -112,7 +137,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script defer src="js/bootstrap.min.js"></script>
 <script>
-
+$('.like-btn').on('click', function() {
+	   $(this).toggleClass('is-active');
+	});
 </script>
 
 </body>

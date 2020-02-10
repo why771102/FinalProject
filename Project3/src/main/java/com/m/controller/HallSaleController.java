@@ -1,6 +1,8 @@
 package com.m.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,26 +20,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.m.model.HallSaleBean;
+import com.m.model.ProductSaleEarnBean;
 import com.m.service.HallSaleService;
 
 @Controller
 public class HallSaleController {
 	
 	HallSaleService service;
-	ServletContext context;
+//	ServletContext context;
 	
 //	@Autowired
-	public void setContext(ServletContext context) {
-		this.context = context;
-	}
+//	public void setContext(ServletContext context) {
+//		this.context = context;
+//	}
 	
 	@Autowired
 	public void setService(HallSaleService service) {
 		this.service = service;
 	}
 	
-//	//到hs1
+	//到hs1
 	@GetMapping(value = "/hall/sale")
 	public String toHallSale() {
 		return "m/hallSale";
@@ -70,16 +74,26 @@ public class HallSaleController {
 		return HB;
 	}
 	
-	//excel
-	@GetMapping(value = "/hall/sale", produces = "application/vnd.ms-excel")
-	public String queryAllHsbExcel(@ModelAttribute("HallSaleBean") HallSaleBean HB, 
-			Model model, HttpServletRequest request,
-			@RequestParam("start")String sDate, @RequestParam("end")String eDate) {
-		List<HallSaleBean> hsbList = service.getHallSaleOutput(service.getHallSaleLists
-				(service.getHallHrSubtotal(sDate,eDate)));
+	//pdf
+	@PostMapping(value = "/hall/sale/hallSale", produces = "application/pdf")
+	public String queryAllHsbPdf(@RequestParam("exportPdf")String ps, 
+			Model model, HttpServletRequest request) {
+		System.out.println("abcdefg");
+		Type listType = new TypeToken<ArrayList<HallSaleBean>>(){}.getType();
+		List<HallSaleBean> hsbList = new Gson().fromJson(ps, listType);
+		
 		model.addAttribute("hsbList", hsbList);
+		System.out.println("test~~~~~~~~~" +  hsbList);
 //		request.setAttribute("hsbList", hsbList);
-		return "m/hallSale";
+		return "hall/sale/hallSale";
 	}
 	
+//	@PostMapping(value = "/product/sale/productSale", produces ="application/vnd.ms-excel")
+//	public String queryAllpsebExcel(Model model, @RequestParam("exportExcel")String ps) {
+//		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
+//		List<ProductSaleEarnBean> psebList = new Gson().fromJson(ps, listType);
+//		model.addAttribute("psebList", psebList);
+//		System.out.println("psebList==> " + psebList);
+//	    return "product/sale/productSale";
+//	}
 }

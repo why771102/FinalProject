@@ -125,12 +125,12 @@
 //	@GetMapping(value = "/Allrunning/add")
 //	 public String addAllRunning(Model model) {
 ////		List<MovieBean> Allmovie_list=new ArrayList<>();
-//		int dataCount= 52;
-//		LocalDateTime startTime =LocalDateTime.parse("2019/11/02 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
-//		for(int i=1;i<= dataCount;i++) {
+//		int dataCount= 64;
+//		LocalDateTime startTime =LocalDateTime.parse("2020/02/11 00:00:00", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+//		for(int i=53;i<= dataCount;i++) {
 //		
 //			MovieBean mb=mService.getMovieBeanById(i);
-//			int random= (int) (Math.random()*3+1);
+//			int random= (int) (Math.random()*2+1);
 //			
 //			LocalDate startDate = startTime.toLocalDate().plusDays(random);
 //			LocalDate endDate2 = startDate.plusDays(30);

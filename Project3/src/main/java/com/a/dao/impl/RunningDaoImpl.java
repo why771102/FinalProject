@@ -33,10 +33,11 @@ public class RunningDaoImpl implements RunningDao {
 	@Override
 	public void addrunning(RunningBean run) {
 		System.out.println(run.getStatus());
-		Session session =factory.getCurrentSession();
+		Session session =factory.openSession();
 		RunningStatusBean msb = getRunningStatusBeanById(run.getStatus());
 		run.setRunningStatus(msb);
 		session.save(run);
+		session.close();
 
 	}
     //尋找從今天開始一個月後要上映的電影(好像可以把需帶入的參數刪掉)//ok

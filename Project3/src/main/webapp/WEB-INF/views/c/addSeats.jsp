@@ -134,8 +134,8 @@ div.seatCharts-seat.normal-seats {
 }
 
 div.seatCharts-seat.handicap-seats {
-	/* 	background: url(vip.png); */
-	background-color: #b9ca1c;
+/* 	background: url('${pageContext.request.contextPath}/img/h.jpg'); */
+ 	background-color: #b9ca1c; 
 }
 
 div.seatCharts-seat.aisle {
