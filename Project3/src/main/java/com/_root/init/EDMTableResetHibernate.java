@@ -372,7 +372,7 @@ public class EDMTableResetHibernate {
 					MovieRatingBean eb = new MovieRatingBean();
 					eb.setMovieRatingID(Integer.parseInt(token[0]));
 					eb.setAge(Integer.parseInt(token[1]));
-					eb.setrating(token[1]);
+					eb.setrating(token[2]);
 
 					session.save(eb);
 				}

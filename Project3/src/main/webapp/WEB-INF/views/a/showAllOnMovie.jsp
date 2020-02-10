@@ -54,7 +54,7 @@
     <section class="ticket-outer banner-featured" style="margin-top:64px;">
         <div class="container">
             <div class="ticket-sell">
-                <h3 class="font"> Latest Movies</h3>
+                <h3 class="font"> 熱映中電影</h3>
             </div>
         </div>
     </section>
@@ -81,8 +81,8 @@
 					<div class="m-name">
 						<h3>${run.movie.title}</h3>
 						<h4>${run.movie.genreBean.genre}</h4>
-						<a href="" class="movie-btn1">Action</a> <a href=""
-							class="movie-btn1">Thriller</a> <a href="" class="movie-btn1">Drama</a>
+						<h4>${run.movie.movieRatingBean.rating}</h4>
+						
 					</div>
 				</div>
 				<form id='runForm${run.runID}'
@@ -92,7 +92,7 @@
 					<input name='runID' type='hidden' value='${run.runID}'>
 
 				</form>
-				<a href="" class="book-now">BOOK NOW</a>
+				<div href="" class="book-now">立即購買</div>
 			</div>
 			
       </c:forEach>
@@ -214,7 +214,7 @@
 	   console.log(page);
 	   console.log(total);
 	   var NowPage =1;
-	   
+	
 	   
 	   
 	   /*	換下面頁數 */
@@ -339,8 +339,8 @@
 				    		  "<div class='movie1'>"+
 								"<div>"+
 	                               //圖片
-// 	                               "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
-// 	           						"width='70%' height='70%>" +
+ 	                               "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
+ 	           						"width='70%' height='70%>" +
 								"</div>"+
 								"<div class='m-name'>"+
 									"<h3>"+a[i].movie.title+"</h3>"+
