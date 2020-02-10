@@ -90,28 +90,53 @@
 
    
     <script>
+    
     cookieArray = document.cookie.split("; ");
 	console.log(cookieArray);
+	var sessionAtt = "<%=session.getAttribute("LoginOK")%>";
 
 	for (i = 0; i < cookieArray.length; i++) {
 			memberIDArrays = cookieArray[i].split("=");
-			console.log(memberIDArrays);
-			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
-// 				$("#name").text("訪客");
+			console.log(typeof(sessionAtt));
+			console.log(sessionAtt);
+			console.log(memberIDArrays[1]);
+			console.log("看這邊1:" + sessionAtt);
+			console.log(memberIDArrays[0] == "memberID");
+			console.log( memberIDArrays[1] == null);
+			console.log(sessionAtt == "null");
+			if ((memberIDArrays[0] == "memberID" && memberIDArrays[1] == null) || sessionAtt == "null") {
 				$("#memberCenter").hide();
 				$("#logout").hide();
+				console.log("看這邊2:" + sessionAtt);
 			}else{
-// 				for (i = 0; i < cookieArray.length; i++) {
-// 				nameArrays = cookieArray[i].split("=");
-// 				console.log(nameArrays);
-// 				if (nameArrays[0] == "name") {
-// 				$("#name").text(nameArrays[1]);
-// 				}
-// 			}
 				$("#register").hide();
 				$("#login").hide();
+				console.log("看這邊3:" + sessionAtt);
 		}
 	}
+    
+//     cookieArray = document.cookie.split("; ");
+// 	console.log(cookieArray);
+
+// 	for (i = 0; i < cookieArray.length; i++) {
+// 			memberIDArrays = cookieArray[i].split("=");
+// 			console.log(memberIDArrays);
+// 			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
+// // 				$("#name").text("訪客");
+// 				$("#memberCenter").hide();
+// 				$("#logout").hide();
+// 			}else{
+// // 				for (i = 0; i < cookieArray.length; i++) {
+// // 				nameArrays = cookieArray[i].split("=");
+// // 				console.log(nameArrays);
+// // 				if (nameArrays[0] == "name") {
+// // 				$("#name").text(nameArrays[1]);
+// // 				}
+// // 			}
+// 				$("#register").hide();
+// 				$("#login").hide();
+// 		}
+// 	}
 	
 	var prevScrollpos = window.pageYOffset;
 	window.onscroll = function() {
