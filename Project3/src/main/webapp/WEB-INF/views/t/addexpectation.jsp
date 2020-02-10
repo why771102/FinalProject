@@ -41,6 +41,7 @@ fieldset {
 						<form:radiobutton id="expective" path="expective" value="0" />
 						不期待
 					</p>
+					<br><span class="notice">${errorMsgMap.expectExistError}</span>
 					<form:errors path="expective" cssClass="error" />
 					<p class='enter' style="padding: 10px 0px 0px 0px ;display:inline-block">
 						<input id="btnAdd" type='submit' class='btn btn-primary'

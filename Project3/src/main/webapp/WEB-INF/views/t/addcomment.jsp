@@ -24,14 +24,18 @@ fieldset {
 </head>
 <body>
 	<section>
-		<div class="container">
-			<h1 style="text-align: center">新增留言</h1>
-		</div>
+		<div class='buy-txt'>
+				<h2 style='text-align: left; color: cornflowerblue;'>新增留言</h2>
+				<p></p>
+				<br>
+
+			</div>
 	</section>
 	<hr style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="commentBean" class='form-horizontal'>
+		<form:form method='POST' modelAttribute="commentBean" 
+		action="${pageContext.request.contextPath}/comments/add/${run.runID}" class='form-horizontal'>
 			<fieldset >
 				
 <!-- 				<div class="form-group"> -->
@@ -87,7 +91,7 @@ fieldset {
 						短評 </label>
 					<div class='col-lg-10'>
 						<form:input id="commentContent" path="commentContent" type='text'
-							class='form:input-large' />
+							class='form:input-large' style = "height"/>
 					</div>
 					<form:errors path="commentContent" cssClass="error" />
 				</div>

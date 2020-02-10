@@ -337,7 +337,7 @@ div.submitButton {
 
 						<div style='padding: 10px'>
 							<img src='<c:url value='/getPicture/${run.movie.movieID}' />'
-								width="100%" height="70%"> 
+								width="100%" height="70%">
 						</div>
 
 					</div>
@@ -373,11 +373,12 @@ div.submitButton {
 					<div id='showTimeHere'>
 						<h3
 							style="border-bottom: solid rgb(100, 100, 100) 2px; padding-bottom: 10px">期待度</h3>
-						<div  class='buy-txt' style = "display:inline-block">
+						<div class='buy-txt' style="display: inline-block">
 							<jsp:include page="../t/addexpectation.jsp">
 								<jsp:param name="c" value="1" />
 								<jsp:param name="d" value="1" />
 							</jsp:include>
+							<div style='font-size: 16px'>${AVGExpectation}%期待</div>
 						</div>
 					</div>
 
