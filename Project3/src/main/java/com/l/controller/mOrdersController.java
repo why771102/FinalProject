@@ -128,9 +128,9 @@ public class mOrdersController {
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("showtimeId")) {
-				 String value=cookie.getValue();
-//				 ShowTimeHistoryBean sthb=(ShowTimeHistoryBean) service.getStartTimeByID(Integer.parseInt(value));
-				 model.addAttribute("queryStartTime",sthb);
+				String value=cookie.getValue();
+				 ShowTimeHistoryBean sthb1=(ShowTimeHistoryBean) service.getStartTimeByID(Integer.parseInt(value));
+				 model.addAttribute("queryStartTime",sthb1);
 			}
 		}
 		

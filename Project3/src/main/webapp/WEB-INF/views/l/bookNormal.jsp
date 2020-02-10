@@ -115,19 +115,29 @@ text-align:center;
 }
 .F-price1 {
 	text-decoration:line-through;
-	font-size: 17px;
+	font-size: 15px;
 	text-align: left;
-	width: 20%;
+	width: 10%;
 	display: inline-block;
+	float: left;
 }
 
+.F-price2 {
+	font-size: 20px;
+	text-align: left;
+	width: 3%;
+	display: inline-block;
+	float: left;
+	color: #990000;
+}
 .F-price {
-	font-size: 17px;
+	font-size: 20px;
 	text-align: left;
 	width: 50%;
 	display: inline-block;
-	color: red;
+	color: #990000;
     font-weight: bold;
+    float: left;
 }
 
 .F-qty {
@@ -158,19 +168,32 @@ text-align:center;
 }
 .D-price1 {
 	text-decoration:line-through;
-	font-size: 17px;
+	font-size: 15px;
 	text-align: left;
-	width: 20%;
+	width: 8%;
 	display: inline-block;
+	float: left;
 }
 
+.D-price2 {
+	
+	font-size: 20px;
+	text-align: left;
+	width: 3%;
+	display: inline-block;
+	float: left;
+	color: #990000;
+}
+
+
 .D-price {
-	font-size: 17px;
+	font-size: 20px;
 	text-align: left;
 	width: 50%;
 	display: inline-block;
-	color: red;
+	color: #990000;
     font-weight: bold;
+    float: left;
 }
 
 .D-qty {
@@ -202,18 +225,30 @@ text-align:center;
 
 .P-price1 {
 	text-decoration:line-through;
-	font-size: 17px;
+	font-size: 15px;
 	text-align: left;
-	width: 20%;
+	width: 10%;
 	display: inline-block;
+	float: left;
+}
+
+.P-price2 {
+	
+	font-size: 20px;
+	text-align: left;
+	width: 3%;
+	display: inline-block;
+	float: left;
+	color: #990000;
 }
 .P-price {
-	font-size: 17px;
+	font-size: 20px;
 	text-align: left;
 	width: 50%;
 	display: inline-block;
-	color: red;
+	color: #990000;
     font-weight: bold;
+    float: left;
 	
 }
 
@@ -267,11 +302,13 @@ text-align:center;
 #drink {
 	width: 65%;
 	text-align: center;
+	padding-bottom: 15px;
 }
 
 #popcorn {
 	width: 65%;
 	text-align: center;
+	padding-bottom: 15px;
 }
 
 .activeme {
@@ -373,7 +410,7 @@ text-align:center;
 
 			<div>
 				<div class="ticket-img">
-					<img src="img/discountTicket.png">
+					<img src="img/bankticket.png">
 				</div>
 				<div class="ticket-name">
 					銀行優惠票<br>凡持此銀行信用卡即可享有此優惠
@@ -396,7 +433,7 @@ text-align:center;
 
 			<div>
 				<div class="ticket-img">
-					<img src="img/discountTicket.png">
+					<img src="img/ticket.png">
 				</div>
 				<div class="ticket-name">一般票</div>
 				<div class="ticket-price">270</div>
@@ -430,7 +467,7 @@ text-align:center;
 					</div>
 					<div class="F-name">熱狗</div>
 					<div>
-						<div class="F-price1">$120</div>$<div class="F-price">120</div>
+						<div class="F-price1">$120</div><div class="F-price2">$</div><div class="F-price">108</div>
 						<div class="F-qty">
 							<select id="hotdog" name="hotdog"
 								onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -453,7 +490,7 @@ text-align:center;
 					</div>
 					<div class="F-name">吉拿棒</div>
 					<div>
-						<div class="F-price1">$100</div>$<div class="F-price">100</div>
+						<div class="F-price1">$100</div><div class="F-price2">$</div><div class="F-price">90</div>
 						<div class="F-qty">
 							<select id="churro" name="churro"
 								onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -476,7 +513,7 @@ text-align:center;
 					</div>
 					<div class="F-name">炸雞+薯條</div>
 					<div>
-						<div class="F-price1">$200</div>$<div class="F-price">200</div>
+						<div class="F-price1">$200</div ><div class="F-price2">$</div ><div class="F-price">180</div>
 						<div class="F-qty">
 							<select id="friedChicken" name="friedChicken"
 								onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -500,7 +537,7 @@ text-align:center;
 						<img src="img/coke.png">
 					</div>
 					<div class="D-name">大可樂</div>
-					<div class="D-price1">$70</div>$<div class="D-price">70</div>
+					<div class="D-price1">$70</div><div class="D-price2">$</div><div class="D-price">63</div>
 					<div class="D-qty">
 						<select id="bigCoke" name="bigCoke"
 							onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -521,7 +558,7 @@ text-align:center;
 						<img src="img/coke.png">
 					</div>
 					<div class="D-name">中可樂</div>
-					<div class="D-price1">$60</div>$<div class="D-price">60</div>
+					<div class="D-price1">$60</div><div class="D-price2">$</div><div class="D-price">54</div>
 					<div class="D-qty">
 						<select id="normalCoke" name="normalCoke"
 							onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -542,7 +579,7 @@ text-align:center;
 						<img src="img/coke.png">
 					</div>
 					<div class="D-name">小可樂</div>
-					<div class="D-price1">$54</div>$<div class="D-price">54</div>
+					<div class="D-price1">$54</div><div class="D-price2">$</div><div class="D-price">49</div>
 					<div class="D-qty">
 						<select id="smallCoke" name="smallCoke"
 							onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -565,7 +602,7 @@ text-align:center;
 						<img src="img/popcorn.png">
 					</div>
 					<div class="P-name">大爆米花</div>
-				<div class="P-price1">$140</div>$<div class="P-price">140</div>
+				<div class="P-price1">$140</div><div class="P-price2">$</div><div class="P-price">126</div>
 					<div class="P-qty">
 						<select id="bigPopcorn" name="bigPopcorn"
 							onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -586,7 +623,7 @@ text-align:center;
 						<img src="img/popcorn.png">
 					</div>
 					<div class="P-name">中爆米花</div>
-				<div class="P-price1">$130</div>$<div class="P-price">130</div>
+				<div class="P-price1">$130</div><div class="P-price2">$</div><div class="P-price">117</div>
 					<div class="P-qty">
 						<select id="normalPopcorn" name="normalPopcorn"
 							onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -607,7 +644,7 @@ text-align:center;
 						<img src="img/popcorn.png">
 					</div>
 					<div class="P-name">小爆米花</div>
-					<div class="P-price1">$120</div>$<div class="P-price">120</div>
+					<div class="P-price1">$120</div><div class="P-price2">$</div><div class="P-price">108</div>
 					<div class="P-qty">
 						<select id="smallPopcorn" name="smallPopcorn"
 							onchange="setCookie(this.name,this.selectedIndex);setCountPrice(this.name,this.selectedIndex)"
@@ -628,7 +665,8 @@ text-align:center;
 		<div class="next">
 			<input type="button" value="下頁"
 				onclick="location.href='reservedSeats/showSeats'">
-		</div>
+				<!-- 	onclick="location.href='orderconfirm'">  -->
+ 		</div>
 		<div class="list">
 			購物清單
 			<p id="discountPrice" style="display: none">0</p>
@@ -729,7 +767,7 @@ text-align:center;
 				}
 			}
 			if (name === "hotdog") {
-				price = value * 120
+				price = value * 108
 				document.getElementById("hotdogPrice").innerHTML = "熱食類熱狗X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("hotdogTPrice").innerHTML = parseInt(price);
@@ -740,7 +778,7 @@ text-align:center;
 				}
 			}
 			if (name === "churro") {
-				price = value * 100
+				price = value * 90
 				document.getElementById("churroPrice").innerHTML = "熱食類吉拿棒X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("churroTPrice").innerHTML = parseInt(price);
@@ -751,7 +789,7 @@ text-align:center;
 				}
 			}
 			if (name === "friedChicken") {
-				price = value * 200
+				price = value * 180
 				document.getElementById("friedChickenPrice").innerHTML = "熱食類炸雞+薯條X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("friedChickenTPrice").innerHTML = parseInt(price);
@@ -763,7 +801,7 @@ text-align:center;
 
 			}
 			if (name === "bigCoke") {
-				price = value * 70
+				price = value * 63
 				document.getElementById("bigCokePrice").innerHTML = "飲料類大可樂X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("bigCokeTPrice").innerHTML = parseInt(price);
@@ -774,7 +812,7 @@ text-align:center;
 				}
 			}
 			if (name === "normalCoke") {
-				price = value * 60
+				price = value * 54
 				document.getElementById("normalCokePrice").innerHTML = "飲料類中可樂X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("normalCokeTPrice").innerHTML = parseInt(price);
@@ -785,7 +823,7 @@ text-align:center;
 				}
 			}
 			if (name === "smallCoke") {
-				price = value * 54
+				price = value * 49
 				document.getElementById("smallCokePrice").innerHTML = "飲料類小可樂X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("smallCokeTPrice").innerHTML = parseInt(price);
@@ -796,7 +834,7 @@ text-align:center;
 				}
 			}
 			if (name === "bigPopcorn") {
-				price = value * 140
+				price = value * 126
 				document.getElementById("bigPopcornPrice").innerHTML = "爆米花類大爆米花X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("bigPopcornTPrice").innerHTML = parseInt(price);
@@ -807,7 +845,7 @@ text-align:center;
 				}
 			}
 			if (name === "normalPopcorn") {
-				price = value * 130
+				price = value * 117
 				document.getElementById("normalPopcornPrice").innerHTML = "爆米花類中爆米花X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("normalPopcornTPrice").innerHTML = parseInt(price);
@@ -818,7 +856,7 @@ text-align:center;
 				}
 			}
 			if (name === "smallPopcorn") {
-				price = value * 120
+				price = value * 108
 				document.getElementById("smallPopcornPrice").innerHTML = "爆米花類小爆米花X"
 						+ parseInt(value) + "=" + parseInt(price);
 				document.getElementById("smallPopcornTPrice").innerHTML = parseInt(price);
