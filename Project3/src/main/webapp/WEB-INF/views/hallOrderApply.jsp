@@ -37,7 +37,7 @@
 		<div class="container">
 			<div class="login-inner">
 				<h2>包廳申請</h2>
-				<div class="login-form">
+				<div class="login-form" style="padding: 64px 35px 9px;">
 					<table>
 
 						<form:form method='POST' modelAttribute="hallOrderBean"

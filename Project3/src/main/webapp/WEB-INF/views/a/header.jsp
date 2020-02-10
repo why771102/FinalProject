@@ -68,8 +68,8 @@
                         </li>
                         <li><a href="${pageContext.request.contextPath}/AllMovie/show">熱映中</a>
                         </li>
-                        <li><a href="up-coming.html">購票</a>
-                        </li>
+<!--                         <li><a href="up-coming.html">購票</a> -->
+<!--                         </li> -->
                         <li><a href="annos">公告</a>
                         </li>
                         <li><a href="${pageContext.request.contextPath}/showAllProducts">周邊商品</a>
