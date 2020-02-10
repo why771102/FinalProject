@@ -72,7 +72,9 @@
                     <div class="f-inner contect-f">
                         <h4>聯絡我們</h4>
                         <ul class="list-unstyled">
-                            <address>線上客服 <br> 12345 India</address>
+                            <li>
+                            <a href="<c:url value='/questionList'/>">線上客服</a>
+                            </li>
                             <br>
                             <li>01 23 456 789</li>
                             <li class="f-link"><a href="">contact@cineshow.fr</a>
@@ -99,8 +101,8 @@
             <div class="footer-line">
                 <div class="im-inner">
                     <span></span>
-                    <a href="<c:url value='/movieIndex'/>"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="ftr-logo" width="200">
-                    </a><span></span>
+                    <a href="<c:url value='/movieIndex'/>"><img src="${pageContext.request.contextPath}/img/logo-1.png" class="ftr-logo" width="200"></a>
+                    <span></span>
                 </div>
                 <h4> Copyrights 2020.01.26 | <a href="#">10.3.7</a></h4>
                 <div class="right-icon">

@@ -22,6 +22,9 @@ function setConnected(connected) {
 		console.log('Connected: ' + frame);
 		stompClient.subscribe('/topic/message/' + list[3], function(greeting) {
 			showMessage(JSON.parse(greeting.body).name, JSON.parse(greeting.body).content, JSON.parse(greeting.body).endTime);
+			var txt = document.getElementById("div1");
+            document.body.focus();
+            txt.scrollTop = txt.scrollHeight;
 		});
 	});
 //}

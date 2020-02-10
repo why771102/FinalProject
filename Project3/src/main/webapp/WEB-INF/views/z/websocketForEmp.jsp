@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -72,39 +73,42 @@
 
 						</form>
 					</div>
-					<c:forEach var="list" items="${content}">
-						<c:choose>
-							<c:when test="${empty list.name}">
-								<div class="group-rom">
-									<div class="first-part">用戶</div>
-									<div class="second-part">${list.content }</div>
-									<div class="third-part"></div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="group-rom">
-									<div class="first-part">${list.name }：</div>
-									<div class="second-part">${list.content }</div>
-									<div class="third-part"></div>
-								</div>
-							</c:otherwise>
+					<div style="height: 750px; overflow-y: auto" id="div1">
+						<c:forEach var="list" items="${content}">
+							<c:choose>
+								<c:when test="${empty list.name}">
+									<div class="group-rom">
+										<div class="first-part">用戶</div>
+										<div class="second-part">${list.content }</div>
+										<div class="third-part">${fn:substring(list.datetime, 5,16 )}</div>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="group-rom">
+										<div class="first-part">${list.name }：</div>
+										<div class="second-part">${list.content }</div>
+										<div class="third-part">${fn:substring(list.datetime, 5,16 )}</div>
+									</div>
+								</c:otherwise>
 
-						</c:choose>
-					</c:forEach>
-					<div id="greetings"></div>
-					<div class="group-rom last-group">
-						<div class="first-part"></div>
-						<div class="second-part"></div>
-						<div class="third-part"></div>
+							</c:choose>
+						</c:forEach>
+						<div id="greetings"></div>
+<!-- 						<div class="group-rom last-group"> -->
+<!-- 							<div class="first-part"></div> -->
+<!-- 							<div class="second-part"></div> -->
+<!-- 							<div class="third-part"></div> -->
+<!-- 						</div> -->
+						
 					</div>
-
-					<footer>
+					<div style="background-color:#dcdada;padding:5px;">
 						<div class="chat-txt">
 							<input type="text" id="message" class="form-control"
 								placeholder="在此輸入訊息...">
 						</div>
 						<button id="sendMessage" class="btn btn-default" type="submit">送出</button>
-					</footer>
+					</div>
+					
 				</aside>
 			</div>
 			<!-- page end-->
@@ -136,61 +140,65 @@
 	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script>
 	<!--script for this page-->
 	<script>
-	var qId = location.pathname.split("/questionRep/")[1];
-	var status = ${status};
-	console.log("status = " + status);
-	
-	$(document).ready(function() {
-		if(status == 1) {         //未結案
-			$("#close").removeClass();
-			$("#close").addClass("btn btn-success");
-			$("#close").val("結案");
-
-		} else {
-			$("#close").removeClass();
-			$("#close").addClass("btn btn-danger");
-			$("#close").val("已結案");
-	
+		var qId = location.pathname.split("/questionRep/")[1];
+		var status = $
+		{
+			status
 		};
-	})
-	
+		console.log("status = " + status);
 
+		$(document).ready(function() {
+			if (status == 1) { //未結案
+				$("#close").removeClass();
+				$("#close").addClass("btn btn-success");
+				$("#close").val("結案");
 
-	$("#close").click(function() {
-		
-		if(status == 1) {
-			$.ajax({
-				type:"POST",
-				url: "${pageContext.request.contextPath}/closeQuestion",
-				data: {questionId : qId},
-				success: function(data) {
-					
-				},
-				error:function(data) {
-					$("#close").removeClass();
-					$("#close").addClass("btn btn-danger");
-					$("#close").val("已結案");
-				}
-			})
-		}else{
-			$.ajax({
-				type:"POST",
-				url: "${pageContext.request.contextPath}/openQuestion",
-				data: {questionId : qId},
-				success: function(data) {
-				},
-				error:function(data) {
-					$("#close").removeClass();
-					$("#close").addClass("btn btn-success");
-					$("#close").val("結案");
-				}
-			})
-		}
-		
-		
-		
-		
-	});
+			} else {
+				$("#close").removeClass();
+				$("#close").addClass("btn btn-danger");
+				$("#close").val("已結案");
+
+			}
+			;
+		})
+
+		$("#close").click(function() {
+			if (status == 1) {
+				$.ajax({
+					type : "POST",
+					url : "${pageContext.request.contextPath}/closeQuestion",
+					data : {
+						questionId : qId
+					},
+					success : function(data) {
+
+					},
+					error : function(data) {
+						$("#close").removeClass();
+						$("#close").addClass("btn btn-danger");
+						$("#close").val("已結案");
+						status = 2;
+					}
+				})
+			} else {
+				$.ajax({
+					type : "POST",
+					url : "${pageContext.request.contextPath}/openQuestion",
+					data : {
+						questionId : qId
+					},
+					success : function(data) {
+					},
+					error : function(data) {
+						$("#close").removeClass();
+						$("#close").addClass("btn btn-success");
+						$("#close").val("結案");
+						status = 1;
+					}
+				})
+			}
+
+		});
 	</script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -18,13 +19,23 @@
 </head>
 
 <body>
+
+<header>
+		<jsp:include page="../a/header.jsp">
+			<jsp:param name="a" value="1" />
+		</jsp:include>
+	</header>
+
+<section class="slider-sec" style="margin-top:100px;">
 	<div id="main-content" class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" style="height:500px;overflow-y:auto" id="div1">
 				<table id="conversation" class="table table-striped">
 					<thead>
 						<tr>
-							<th>訊息：</th>
+							<th>名稱：</th>
+							<th>內容：</th>
+							<th>時間：</th>
 						</tr>
 					</thead>
 
@@ -32,14 +43,16 @@
 						<c:choose>
 							<c:when test="${empty list.name}">
 								<tr>
-									<td>你：</td>
-									<td>${list.content }</td>
+									<td style="width:130px">你：</td>
+									<td style="width:600px">${list.content }</td>
+									<td>${fn:substring(list.datetime, 5,16 )}</td>
 								</tr>
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td>${list.name}：</td>
-									<td>${list.content}</td>
+									<td style="width:130px">${list.name}</td>
+									<td style="width:600px">${list.content}</td>
+									<td>${fn:substring(list.datetime, 5,16 )}</td>
 								</tr>
 							</c:otherwise>
 
@@ -51,19 +64,25 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">
+			<div>
 				<form class="form-inline">
 					<div class="form-group">
 						<label for="name"></label> 
 						<input type="text" id="message" class="form-control" placeholder="在此輸入訊息...">
 							<button id="sendMessage" class="btn btn-default" type="submit">送出</button>
 					</div>
-					
 				</form>
 			</div>
 		</div>
 		
 	</div>
+	</section>
+	
+	<footer>
+		<jsp:include page="../a/footer.jsp">
+			<jsp:param name="a" value="1" />
+		</jsp:include>
+	</footer>
 
 	<script>
 		var status = ${status};
@@ -77,6 +96,10 @@
 	
 			};
 		})
+		
+		 function setDivScoll() {
+            
+		}
 	</script>
 
 
