@@ -98,7 +98,7 @@ public class LoginFilter implements Filter {
 				mID = cookie.getValue();
 			}
 		}
-		if ((loginToken == null && mID == null) || cookies.length == 0) {
+		if (loginToken == null ||mID == null || cookies.length == 0) {
 			return false;
 		} else {
 			return true;

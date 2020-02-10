@@ -29,265 +29,300 @@
 	href="${pageContext.request.contextPath}/css/responsive.css"
 	type="text/css" />
 <style>
-/* CSS reset */
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form,
-	fieldset, input, textarea, p, blockquote, th, td {
-	margin: 0;
-	padding: 0;
-}
-
-html, /* 這邊做初始化設定 全部字體為正黑體  並且字體大小以百分比控制  */ body {
-	margin: 0;
-	padding: 0;
-	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
-	font-size: 100%;
-}
-
-/* warp 如何對齊 系列 */
-
-/* 排版垂直column置中 */
-.wrap {
-	/*Flex屬性區*/
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
-	/* border: solid 1px black;
+            /* CSS reset */
+            body,
+            div,
+            dl,
+            dt,
+            dd,
+            ul,
+            ol,
+            li,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            pre,
+            form,
+            fieldset,
+            input,
+            textarea,
+            p,
+            blockquote,
+            th,
+            td {
+                margin: 0;
+                padding: 0;
+            }
+    
+            html,
+            /* 這邊做初始化設定 全部字體為正黑體  並且字體大小以百分比控制  */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+                font-size: 100%;
+            }
+    
+    
+            /* warp 如何對齊 系列 */
+    
+            /* 排版垂直column置中 */
+            .wrap {
+                /*Flex屬性區*/
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+                /* border: solid 1px black;
                 border-block-end-color: brown; */
-	box-sizing: border-box;
-}
-
-/* 排版垂直column向左 */
-.wrapStart {
-	/*Flex屬性區*/
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-	/* border: solid 1px black;
+                box-sizing: border-box;
+            }
+    
+            /* 排版垂直column向左 */
+            .wrapStart {
+                /*Flex屬性區*/
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+                /* border: solid 1px black;
                 border-block-end-color: brown; */
-	/* 撐開長寬 */
-	/* width: 100%; */
-	height: 100%;
-	/* border and padding in box */
-	box-sizing: border-box;
-}
-
-/* 排版一列row 向左 */
-.wrapRowStart {
-	/*Flex屬性區*/
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-	/* border: solid 1px black;
+                /* 撐開長寬 */
+                /* width: 100%; */
+                height: 100%;
+                /* border and padding in box */
+                box-sizing: border-box;
+            }
+    
+            /* 排版一列row 向左 */
+            .wrapRowStart {
+                /*Flex屬性區*/
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+                /* border: solid 1px black;
                 border-block-end-color: brown; */
-	/* 撐開長寬 */
-	width: 100%;
-	height: 100%;
-	/* border and padding in box */
-	box-sizing: border-box;
-}
-
-/* 排版同列row 置中 */
-.wrapRow {
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-items: center;
-	/* order: solid 1px black;
+                /* 撐開長寬 */
+                width: 100%;
+                height: 100%;
+                /* border and padding in box */
+                box-sizing: border-box;
+            }
+    
+    
+            /* 排版同列row 置中 */
+            .wrapRow {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
+                /* order: solid 1px black;
                 border-block-end-color: brown; */
-}
-
-/* in article have padding */
-.wrapList {
-	/*Flex屬性區*/
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-	/* border: solid 1px black;
+    
+            }
+    
+            /* in article have padding */
+            .wrapList {
+                /*Flex屬性區*/
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+                /* border: solid 1px black;
                 border-block-end-color: brown; */
-	/* 撐開長寬 */
-	width: 100%;
-	/* height: 100%; */
-	/* border and padding in box */
-	box-sizing: border-box;
-	padding: 0% 1% 1% 1%;
-}
+                /* 撐開長寬 */
+                width: 100%;
+                /* height: 100%; */
+                /* border and padding in box */
+                box-sizing: border-box;
+                padding: 0% 1% 1% 1%;
+            }
+    
+            /* warp 如何對齊 系列 */
+    
+            /* 按鈕 選單系列  */
+    
+            select {
+                /* background-color: #fc6d6d; */
+                color: black;
+                padding: 0.5% 4%;
+                width: 100%;
+                height: 4vh;
+                border: solid rgb(34, 34, 34) 1px;
+                font-size: 100%;
+                /* box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); */
+                -webkit-appearance: button;
+                appearance: button;
+                outline: none;
+                text-align: center;
+                border-radius: 5px;
+            }
+    
+            label {
+                width: 100%;
+            }
+    
+    
+            /* 按鈕 選單系列 */
+    
+            #bg {
+                width: 100%;
+                height: 100%;
+            }
+    
+            /*  跟header 網頭 有關系列 */
+            #head {
+                width: 100%;
+                height: 90px;
+                padding: 10px 0px;
+            }
+    
+            /*  跟header 網頭 有關系列 */
+    
+            #cartShopList {
+                width: 90%;
+                height: 100%;
+            }
+    
+            #chooseAll {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: flex-start;
+                width: 100%;
+                height: 10%;
+    
+            }
+    
+    
+            /* 中間內文 */
+            #content {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: flex-start;
+                width: 100%;
+            }
+    
+            /* 中間內文 的左邊 還有 右邊 */
+            #product_left {
+                width: 50%;
+                height: 100%;
+            }
+    
+            #product_right {
+                width: 50%;
+                height: 100%;
+                padding: 0% 3% 2%;
+    
+            }
+    
+            /* 跟img 有關系列 */
+            #pictureBG {
+                /* background-color: #d8d8d8; */
+                width: 100%;
+                height: 75%;
+            }
+    
+    
+    
+            .Simg {
+                width: 20%;
+                height: 50%;
+                background-color: #949393;
+                padding: 1% 1%;
+            }
+    
+            /* 跟img 有關系列 */
+            
+    
+            /* foot 網頁最底層有關  */
+            #footBG {
+                background-color: #d8d8d8;
+                width: 100%;
+                height: 400px;
+            }
+    
+            /* foot  */
+    
+            /* 文字相關大小*/
+            p.BTital {
+                color: black;
+                text-align: left;
+                font-size: 4.5vh;
+                font-weight: bold;
+    
+            }
+    
+            p.tital {
+                color: black;
+                text-align: left;
+                font-size: 4vh;
+                font-weight: bold;
+                width: 100%;
+            }
+    
+            p.STital {
+                color: black;
+                text-align: left;
+                font-size: 3vh;
+                width: 100%;
+            }
+    
+            p.text {
+                color: black;
+                text-align: left;
+                font-size: 2vh;
+                width: 100%;
+            }
+    
+            /* 文字相關大小*/
+    
+            /* map 相關設定 */
+            .map {
+                width: 100%;
+                height: 60vh;
+                background-color: cadetblue;
+            }
+    
+            /* map 相關設定 */
+    
+    
+            /*＝＝＝＝＝＝＝新增加的＝＝＝＝＝＝＝＝＝ */
+    
+            .Bimg {
+                width: 50%;
+                height: 50%;
+                background-color: #949393;
+            }
+    
+            div.submitButton {
+                /* 送出按鈕 */
+                margin: 0px 0px 0px;
+                border: none;
+                border-radius: 5px;
+                background-color: #C21010;
+                width: 100%;
+                height: 100%;
+                color: white;
+                font-size: 2.5vh;
+                text-align: center;
+                padding: 1%;
+            }
+    
+    
+            .gray_border{
+                border-block-end:rgb(179, 179, 179) solid 1px ;
+            }
+            .star_border{
+                border-block-start:rgb(179, 179, 179) solid 1px ;
+            }
+        </style>
 
-/* warp 如何對齊 系列 */
-
-/* 按鈕 選單系列  */
-select {
-	/* background-color: #fc6d6d; */
-	color: black;
-	padding: 0.5% 4%;
-	width: 100%;
-	height: 4vh;
-	border: solid rgb(34, 34, 34) 1px;
-	font-size: 100%;
-	/* box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); */
-	-webkit-appearance: button;
-	appearance: button;
-	outline: none;
-	text-align: center;
-	border-radius: 5px;
-}
-
-label {
-	width: 100%;
-}
-
-/* 按鈕 選單系列 */
-#bg {
-	width: 100%;
-	height: 100%;
-}
-
-/*  跟header 網頭 有關系列 */
-#head {
-	width: 100%;
-	height: 90px;
-	padding: 10px 0px;
-}
-
-/*  跟header 網頭 有關系列 */
-#cartShopList {
-	width: 90%;
-	height: 100%;
-}
-
-#chooseAll {
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-items: flex-start;
-	width: 100%;
-	height: 10%;
-}
-
-/* 中間內文 */
-#content {
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-items: flex-start;
-	width: 100%;
-}
-
-/* 中間內文 的左邊 還有 右邊 */
-#product_left {
-	width: 30%;
-	height: 100%;
-}
-
-#product_right {
-/* 	width: 50%; */
-	height: 100%;
-/* 	padding: 0% 3% 2%; */
-}
-
-/* 跟img 有關系列 */
-#pictureBG {
-	/* background-color: #d8d8d8; */
-/* 	width: 100%; */
-	height: 75%;
-}
-
-.Simg {
-	width: 20%;
-	height: 50%;
-	background-color: #949393;
-	padding: 1% 1%;
-}
-
-/* 跟img 有關系列 */
-
-/* foot 網頁最底層有關  */
-#footBG {
-	background-color: #d8d8d8;
-	width: 100%;
-	height: 400px;
-}
-
-/* foot  */
-
-/* 文字相關大小*/
-p.BTital {
-	color: black;
-	text-align: left;
-	font-size: 4.5vh;
-	font-weight: bold;
-}
-
-p.tital {
-	color: black;
-	text-align: left;
-	font-size: 4vh;
-	font-weight: bold;
-	width: 100%;
-}
-
-p.STital {
-	color: black;
-	text-align: left;
-	font-size: 3vh;
-	width: 100%;
-}
-
-p.text {
-	color: black;
-	text-align: left;
-	font-size: 2vh;
-	width: 100%;
-}
-
-/* 文字相關大小*/
-
-/* map 相關設定 */
-.map {
-	width: 100%;
-	height: 60vh;
-	background-color: cadetblue;
-}
-
-/* map 相關設定 */
-
-/*＝＝＝＝＝＝＝新增加的＝＝＝＝＝＝＝＝＝ */
-.Bimg {
-	width: 100%;
-	height: 80%;
-	background-color: #949393;
-}
-
-div.submitButton {
-	/* 送出按鈕 */
-	margin: 0px 0px 0px;
-	border: none;
-	border-radius: 5px;
-	background-color: #C21010;
-	width: 100%;
-	height: 100%;
-	color: white;
-	font-size: 2.5vh;
-	text-align: center;
-	padding: 1%;
-	cursor: pointer;
-}
-
-.submitButton:hover {
-	background: #FFC0CB;
-}
-
-.gray_border {
-	border-block-end: rgb(179, 179, 179) solid 1px;
-}
-
-.star_border {
-	border-block-start: rgb(179, 179, 179) solid 1px;
-}
-</style>
 </head>
 
 <body>
@@ -379,208 +414,224 @@ div.submitButton {
 	<!-- banner -->
 
 
-	<!-- article -->
-	<div class="wrap" style="width: 100%; padding: 100px 100px;">
 
-		<!-- top  -->
-		<div class="wrap gray_border" id="chooseAll" style="display: none;">
-			<input type="checkbox"> <label for=""> 全部選取</label>
-		</div>
-		<!-- content  -->
-		<div class="wrapRow" id="content">
+<!-- 商品選擇 -->
+     <!-- article -->
+     <div class="wrap" style="width: 100%; padding: 100px 100px; ">
+     
+            <!-- top  -->
+            <div class="wrap gray_border" id="chooseAll" style="display:none;">
+                <input type="checkbox"> <label for=""> 全部選取</label>
+            </div>
+            <!-- content  -->
+            <div class="wrapRow" id="content">
 
-			<!-- left  -->
-			<div class="wrapRow " id="product_left">
+                <!-- left  -->
+                <div class="wrapStart" id="product_left">
 
-				<!-- 圖片輪播  -->
-				 <!-- 圖片輪播  style 跟javascript 有關 不能改 -->
-				<div class="wrap" id="pictureBG">
-					<div class="w3-content wrap One_width vh_height100" id="bigpic" >
-					<img class="mySlides P_Bimg" src="<c:url value='/products/${productList[0].productID}' />"alt="">
+                    <!-- 圖片輪播  -->
+                    <div class="wrap" id="pictureBG">
+                        <div class="w3-content wrap" style="width:100%; height:auto;">
+
+                            <img class="mySlides P_Bimg" src="<c:url value='/products/${productList[0].productID}' />"alt="">
 					<c:forEach begin='1' end='${productList.size()-1}' var='x'>
 					<img class="mySlides P_Bimg" src="<c:url value='/products/${productList[x].productID}' />" style="display:none">
 					</c:forEach>
-						<!-- small picture -->
-						<div class="wrapRow"
-							style="padding: 2vh;">
-							<c:forEach begin='0' end='${productList.size()-1}' var='x'>
-							<div class="w3-col s4 "
-								style="height: 100%; width: 80%; margin: 0px;">
-								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[x].productID}' />"
-									style="width: 100%; height: 100%; cursor: pointer"
-									onclick="currentDiv(${x+1})">
-							</div>
-							</c:forEach>
-<!-- 							<div class="w3-col s4 " -->
-<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
-<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="b.jpg" -->
-<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
-<!-- 									onclick="currentDiv(2)"> -->
-<!-- 							</div> -->
 
-<!-- 							<div class="w3-col s4 " -->
-<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
-<!-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="c.png" -->
-<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
-<!-- 									onclick="currentDiv(3)"> -->
-<!-- 							</div> -->
+                            <!-- small picture -->
+                            <div class="wrapRow" style="height: 13vh; width: 50%; padding: 2vh 0vh;">
+                            	<c:forEach begin='0' end='${productList.size()-1}' var='x'>
+                                <div class="w3-col s4 " style="height: 100%; width: 80%; margin:0px; padding:0px 6px 0px 0px;">
+                                    <img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[x].productID}' />"
+                                        style="width:100%;  height: 100%;  cursor:pointer" onclick="currentDiv(${x+1})">
+                                </div>
+								</c:forEach>
+<!--                                 <div class="w3-col s4 " style="height: 100%; width: 80%; margin:0px ;padding:0px 6px 0px 0px; "> -->
+<!--                                     <img class="demo w3-opacity w3-hover-opacity-off" src="img/feature10.jpg" -->
+<!--                                         style="width:100%;  height: 100%;  cursor:pointer" onclick="currentDiv(2)"> -->
+<!--                                 </div> -->
 
-<!-- 							<div class="w3-col s4 " -->
-<!-- 								style="height: 100%; width: 80%; margin: 0px;"> -->
-<%-- 								<img class="demo w3-opacity w3-hover-opacity-off" src="<c:url value='/products/${productList[0].productID}' />" --%>
-<!-- 									style="width: 100%; height: 100%; cursor: pointer" -->
-<!-- 									onclick="currentDiv(4)"> -->
-<!-- 							</div> -->
+<!--                                 <div class="w3-col s4 " style="height: 100%; width: 80%; margin:0px; padding:0px 6px 0px 0px;"> -->
+<!--                                     <img class="demo w3-opacity w3-hover-opacity-off" src="img/feature11.jpg" -->
+<!--                                         style="width:100%;  height: 100%;   cursor:pointer" onclick="currentDiv(3)"> -->
+<!--                                 </div> -->
+
+<!--                                 <div class="w3-col s4 " style="height: 100%; width: 80%; margin:0px; "> -->
+<!--                                     <img class="demo w3-opacity w3-hover-opacity-off" src="img/feature3.jpg" -->
+<!--                                         style="width:100%;  height: 100%;   cursor:pointer" onclick="currentDiv(4)"> -->
+<!--                                 </div> -->
 
 
-						</div>
-						<!-- small picture -->
-				</div>
-					
-				</div>
-				<!-- 圖片輪播  -->
-				<!-- 圖片  -->
-<!-- 				<div class="wrap" id="pictureBG"> -->
-<%-- 					<img src="<c:url value='/products/${productList[0].productID}' />" --%>
-<!-- 						alt=""> -->
-<!-- 				</div> -->
+                            </div>
+                            <!-- small picture -->
+                        </div>
+                    </div>
+                    <!-- 圖片輪播  -->
+                    
+                    <!-- 空白排版用 -->
+                    <div class="wrapList">
+                        <p></p><br><br>
+                    </div>
+                    <!-- 空白排版用 -->
+
+                    <!-- 分隔商品資訊框框 -->
+                    
+                    <!-- 分隔商品資訊框框 -->
+
+                    <!-- 空白排版用 -->
+                    
+                    <!-- 空白排版用 -->
 
 
-				<!-- 圖片  -->
-				<!-- 空白排版用 -->
-				
-				<!-- 空白排版用 -->
+                   
+                </div>
 
-				<!-- 分隔商品資訊框框 -->
+                <!-- right  -->
+                <div class="wrapStart " id="product_right">
 
-				<!-- 分隔商品資訊框框 -->
-
-				<!-- 空白排版用 -->
-
-				<!-- 空白排版用 -->
-				<!-- right  -->
-<div class="wrapStart " id="product_right">
-
-				<div class="wrapList">
-					<p class="tital ">
-						${productList[0].categoriesBean.categoryName}</p>
-				</div>
-
-				<div class="wrapList" id="productDetail">
-					<p class="tital" id="price">NT$</p>
-				</div>
-				<br>
-				<div class="wrapList">
-					<label for="productType">商品款式 <select name="productType"
-						id="productType">
-							<option value="default" selected="" disabled="">請選擇樣式</option>
+                    <div class="wrapList">
+                        <p class="tital "> ${productList[0].categoriesBean.categoryName}</p>
+                    </div>
+                  
+                    <div class="wrapList">
+                        <p class="tital" id="price">NT$</p>
+                    </div>
+                    <br>
+                    <div class="wrapList "> 
+                    <label for="productType">商品款式 
+                    <select name="productType" id="productType">
+          
+                                <option value="default" selected="" disabled="">請選擇樣式</option>
 							<c:forEach items="${productList}" var="typeOfProduct">
 								<option value="${typeOfProduct.productID}">${typeOfProduct.productName}</option>
 							</c:forEach>
-					</select>
-					</label>
-				</div>
+                            </select>
+                        </label>
+                    </div>
+                   
+                    <div class="wrapList "> <label for="productQuantity">數量 </label></div>
 
-				<div class="wrapList ">
-					<label for="productQuantity">數量 <select
+
+                    <div class="wrapList"> <select
 						name="productQuantity" id="productQuantity">
 							<option value="default" selected="" disabled="">數量</option>
 					</select>
-					</label>
-				</div>
+                            
+                    </div>
+                   
 
-				<div class="wrapList ">
+                    <div class="wrapList ">
+                        <br>
+                        <div class="submitButton" id="addToCart" onclick="addToCart()">加入購物車</div>
+
+                    </div>
+                    <div class="wrapList gray_border ">
+                    <p>付款後，從備貨到寄出商品為 2 個工作天。（不包含假日）
+                        設計館提供統一發票或免用統一發票收據</p>
+                    </div>
+
+                  
+
+                    <!-- 分隔商品資訊框框 -->
+                    <div class="wrapList gray_border" style="display:none;">
+                        <div class="wrapList">
+                            <p class="STital">關於產品</p>
+                            <div class="wrapRow">
+                                <div class="wrapStart" style="padding: 0px  100px 0px 0px;">
+
+                                    <p class="text">名稱</p>
+                                    <p class="text">產地</p>
+                                    <p class="text">材質</p>
+                                </div>
+                                <div class="wrapStart">
+                                    <p class="text">不鏽鋼</p>
+                                    <p class="text">商品來源</p>
+                                    <p class="text">庫存</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- 分隔商品資訊框框 -->
+                    <!-- 空白排版用 -->
+                    <div class="wrapList" style="display:none;">
+                        <p></p><br><br>
+                    </div>
+                    <!-- 空白排版用 -->
+
+                          <!-- 分隔商品資訊框框 -->
+                         
+                            <!-- 分隔商品資訊框框 -->
+                  
+
+                 
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+     <!-- article -->
+<!-- 商品選擇 -->
+
+<!-- 樣式圖片1 -->
+<section class='contact-sec' style="padding: 0px 0px 0px 0px; ">
+    <div class='container'>
+        <div class='wrap'>
+        	
+            <div style="width:100%; border-bottom: 1px lightgrey solid;">
+                    <h2 style="padding: 50px ;">${productList[0].categoriesBean.categoryName}</h2>
+            </div>
+            <c:forEach items="${productList}" var="pList">
+                <!-- 樣式圖片1 -->
+                <div class="wrapRowStart" style="width: 80%; border-bottom: 1px lightgrey solid;" >
+                    <div>
+                            <h3 style="padding: 30px 50px;">${pList.productName}</h3>
+                            <img src="<c:url value='/products/${pList.productID}' />" alt="" style="padding:20px 50px">
+                    </div>
+                    <c:if test="${pList.productDescription != 'NULL'}">
 					<br>
-
-					<div class="submitButton" id="addToCart" onclick="addToCart()">加入購物車</div>
-
-
-				</div>
-				<div class="wrapList gray_border ">
-					<p>付款後，從備貨到寄出商品為 2 個工作天。（不包含假日） 設計館提供統一發票或免用統一發票收據</p>
-				</div>
-
-
-
-				<!-- 分隔商品資訊框框 -->
-				<div class="wrapList gray_border" style="display: none;">
-					<div class="wrapList">
-						<p class="STital">關於產品</p>
-						<div class="wrapRow">
-							<div class="wrapStart" style="padding: 0px 100px 0px 0px;">
-
-								<p class="text">名稱</p>
-								<p class="text">產地</p>
-								<p class="text">材質</p>
-							</div>
-							<div class="wrapStart">
-								<p class="text">不鏽鋼</p>
-								<p class="text">商品來源</p>
-								<p class="text">庫存</p>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<!-- 分隔商品資訊框框 -->
-				<!-- 空白排版用 -->
-				<!--                     need to be in the middle -->
-
-				<!-- 空白排版用 -->
-
-				<!-- 分隔商品資訊框框 -->
-
-				<!-- 分隔商品資訊框框 -->
-
-<div class="wrapStart " style='width:20%;'></div>
-
-
-
-			</div>
-
-
-			</div>
-
-			<!-- right  -->
-			
-
-
-
-		</div>
-
-
-
-
-
-
-	</div>
-	<!-- article -->
-	<div class="wrap">
-		<div class="wrapList"
-			style="display: block; width: 50%; text-align: center;"
-			id="prodDetail">
-			<c:forEach items="${productList}" var="pList">
-				<img src="<c:url value='/products/${pList.productID}' />" alt="">
-				<c:if test="${pList.productDescription != 'NULL'}">
-					<br>
-					<div id="productDescription">${pList.productDescription}</div>
+					<div id="productDescription" style="padding:150px 100px; " >
+                        <p>${pList.productDescription}</p>
+                    </div>
 					<br>
 				</c:if>
-			</c:forEach>
-			<p></p>
-			<br> <br>
-		</div>
-	</div>
-	<section class="dark-blue">
-		<div class="container">
-			<div class="ready">
-				<h4>現在就立刻購買！</h4>
-				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
-				<a href="<c:url value='/movieIndex#booknow'/>" class="slider-btn">前往購票</a>
-			</div>
-		</div>
-	</section>
+                    
+                      
+                </div> 
+                </c:forEach>
+                <!-- 樣式圖片1 -->
+                <!-- 樣式圖片2 -->
+<!--                 <div class="wrapRowStart" style="width: 80%; border-bottom: 1px black solid;" > -->
+<!--                         <div> -->
+<!--                                 <h3 style="padding: 30px 50px;">[ 樣式1 ]</h3> -->
+<!--                                 <img src="img/feature2.jpg" alt="" style="padding:20px 50px"> -->
+<!--                         </div> -->
+<!--                         <div style="padding:150px 100px; " > -->
+<!--                             <p>這部電影豪華的演員陣容還包括安東尼奧班德拉斯、麥可辛（《黛妃與女皇》）以及奧斯卡金像獎得主吉姆布洛班特，並且還有更多的配音演員，包括金獎影后瑪莉詠柯蒂亞、湯姆霍蘭德、賽琳娜戈梅茲以及雷夫范恩斯。</p> -->
+<!--                         </div> -->
+                          
+<!--                     </div>  -->
+                    <!-- 樣式圖片2 -->
+        </div>
+<!-- 圖片  -->
 
+
+<!-- 圖片  -->
+        
+
+        
+    </div>
+</section>
 
 	 <!-- footer -->
     <footer>

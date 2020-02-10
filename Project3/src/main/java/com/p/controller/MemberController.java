@@ -113,7 +113,7 @@ public class MemberController {
 	@PostMapping("/member/query")
 	public String updateMember(@RequestParam("mail") String mail, @RequestParam("mobile") String mobile,
 			@RequestParam("name") String name, @RequestParam("address") String address,
-			@RequestParam("memberID") String memberID) {
+			@RequestParam("memberID") String memberID,HttpServletResponse response) {
 		MemberBean mb = new MemberBean();
 		mb.setEmail(mail);
 		mb.setName(name);
@@ -122,6 +122,10 @@ public class MemberController {
 		mb.setMemberID(Integer.parseInt(memberID));
 		System.out.println(mb.getName());
 		service.updateMember(mb);
+		Cookie cookie = new Cookie("name",mb.getName());
+	    cookie.setMaxAge(7 * 24 * 60 * 60);
+	    cookie.setPath("/");
+	    response.addCookie(cookie);
 		return "redirect:/memberCenter";
 	}
 	

@@ -72,8 +72,8 @@
                         </li>
                         <li><a href="${pageContext.request.contextPath}/AllMovie/show">熱映中</a>
                         </li>
-                        <li><a href="up-coming.html">購票</a>
-                        </li>
+<!--                         <li><a href="up-coming.html">購票</a> -->
+<!--                         </li> -->
                         <li><a href="annos">公告</a>
                         </li>
                         <li><a href="showAllProducts">周邊商品</a>
@@ -454,6 +454,7 @@
     <!-- scripts-->
     <script defer src="js/jquery.flexslider.js"></script>
     <script type="text/javascript">
+    
 
      var allshowtimelist = ${allshowtimelistJSON};
      console.log(allshowtimelist);
@@ -567,24 +568,25 @@
         
         cookieArray = document.cookie.split("; ");
     	console.log(cookieArray);
+    	var sessionAtt = "<%=session.getAttribute("LoginOK")%>";
 
     	for (i = 0; i < cookieArray.length; i++) {
     			memberIDArrays = cookieArray[i].split("=");
-    			console.log(memberIDArrays);
-    			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
-//     				$("#name").text("訪客");
+    			console.log(typeof(sessionAtt));
+    			console.log(sessionAtt);
+    			console.log(memberIDArrays[1]);
+    			console.log("看這邊1:" + sessionAtt);
+    			console.log(memberIDArrays[0] == "memberID");
+    			console.log( memberIDArrays[1] == null);
+    			console.log(sessionAtt == "null");
+    			if ((memberIDArrays[0] == "memberID" && memberIDArrays[1] == null) || sessionAtt == "null") {
 					$("#memberCenter").hide();
     				$("#logout").hide();
+    				console.log("看這邊2:" + sessionAtt);
     			}else{
-//     				for (i = 0; i < cookieArray.length; i++) {
-//     				nameArrays = cookieArray[i].split("=");
-//     				console.log(nameArrays);
-//     				if (nameArrays[0] == "name") {
-//     				$("#name").text(nameArrays[1]);
-//     				}
-//     			}
     				$("#register").hide();
     				$("#login").hide();
+    				console.log("看這邊3:" + sessionAtt);
     		}
     	}
     	

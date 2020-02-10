@@ -69,7 +69,7 @@ li.selected{
 
 input[type=text], select {
   width: 100%;
-  padding: 12px 20px;
+  padding: 9px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -139,7 +139,7 @@ input[type=text]:focus {
  </section>
  
 	<!-- footer -->
-    <footer>
+    <footer style="bottom:0px;">
 
        <jsp:include page="a/footer.jsp">
        	<jsp:param name="a" value="1" />
