@@ -47,6 +47,10 @@
 <style>
 @import 'https://code.highcharts.com/css/highcharts.css';
 
+.highcharts-background {
+  fill: #F5F5F5;
+}
+
 .highcharts-figure, .highcharts-data-table table {
 	min-width: 310px;
 	max-width: 800px;
@@ -156,13 +160,6 @@
 						<br>
 						<div id="container1"
 							style="min-width: 310px; height: 600px; max-width: 1800px; margin: 0 auto"></div>
-						<!-- <figure class="highcharts-figure"> -->
-						<!-- <div id="c" style="width: 100%; display:flex;  justify-content: center;align-items: center;"> -->
-						<!--     <div id="container" style="width: 49%;"></div> -->
-						<!--         <div id="test" style="width: 2%;"></div> -->
-						<!--     <div id="container1" style="width:49%;"></div> -->
-						<!-- </div> -->
-						<!-- </figure> -->
 						<br>
 						<div style="text-align: -webkit-right;">
 							類型： ${genreSelection} <br>
@@ -598,9 +595,8 @@
 
 				//chart
 				Highcharts.chart('container1', {
-
+			        backgroundColor: '#00FFFF',
 					chart : {
-						backgroundColor: '#FFF8DC',
 						type : 'column',
 						styledMode : true
 					},
