@@ -339,8 +339,8 @@
 				    		  "<div class='movie1'>"+
 								"<div>"+
 	                               //圖片
-	                               "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
-	           						"width='70%' height='70%>" +
+// 	                               "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
+// 	           						"width='70%' height='70%>" +
 								"</div>"+
 								"<div class='m-name'>"+
 									"<h3>"+a[i].movie.title+"</h3>"+

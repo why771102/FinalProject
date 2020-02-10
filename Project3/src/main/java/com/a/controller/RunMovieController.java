@@ -420,6 +420,7 @@ public class RunMovieController implements ServletContextAware{
         
         //如果這個可以整除
         if(rb_list.size()%8 ==0) {
+        	System.out.println("整除8");
         	if(rb_list.size() == 0) {
         		System.out.println("no Page");
         		onePageNum =pageNo*0;
@@ -435,8 +436,13 @@ public class RunMovieController implements ServletContextAware{
         }else {
         	if(rb_list.size()>8) {
         		totalPages =rb_list.size()/8+1;
-        		
+        		if(pageNo==1) {
+        			onePageNum=8;
+        			
+        		}else {
         			onePageNum =(pageNo-1)*8 +(rb_list.size()%8);
+        		}
+        		
         	
         			
         		
