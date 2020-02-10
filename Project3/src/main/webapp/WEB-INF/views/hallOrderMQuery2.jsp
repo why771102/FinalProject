@@ -32,6 +32,10 @@
 		bottom:0;
 	}
 	
+	#successful{
+		margin-top:70px;
+	}
+	
 	
 </style>
 </head>
@@ -43,7 +47,7 @@
 <!--     </header> -->
     <!-- header-->
 	<section>
-		<div>
+		<div id="successful">
 			<div style="text-align: center">
 				<h1>您的包廳申請清單</h1>
 			</div>

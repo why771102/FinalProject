@@ -20,6 +20,12 @@
 
 <title>包廳申請</title>
 
+<style type="text/css">
+ 	tr{ 
+ 		height:30;
+ 	} 
+</style>
+
 </head>
 <body>
 	<header>
@@ -45,7 +51,7 @@
 								</tr>
 
 								<tr>
-									<td>租借起始時間:</td>
+									<td>起始時間:</td>
 									<td><form:select id="startTime" path="startTime">
 											<form:option value="-1">請選擇</form:option>
 											<form:option value="09:00">09:00</form:option>
@@ -66,7 +72,7 @@
 										</form:select></td>
 								</tr>
 								<tr>
-									<td>租借結束時間:</td>
+									<td>結束時間:</td>
 									<td><form:select id="endTime" path="endTime">
 											<form:option value="-1">請選擇</form:option>
 											<form:option value="09:00">09:00</form:option>
@@ -96,7 +102,7 @@
 										</form:select></td>
 								</tr>
 								<tr>
-									<td>包廳總時數:</td>
+									<td>總時數:</td>
 									<td><form:input id="orderHours" path="orderHours"
 											type='text' readonly="true" /></td>
 								</tr>
@@ -117,7 +123,7 @@
 											type='textarea'></form:textarea></td>
 								</tr>
 								<tr>
-									<td>預估包廳總金額:</td>
+									<td>總金額:</td>
 									<td><form:input id="hallSubtotal" path="hallSubtotal"
 											type='text' readonly="true" /></td>
 								</tr>
