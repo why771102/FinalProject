@@ -38,7 +38,7 @@
   			position: absolute;
  			bottom: 27px;
  			right: 16px;
-  			background: url('img/twitter-heart.png');
+  			background: url('${pageContext.request.contextPath}/img/twitter-heart.png');
   			width: 60px;
   			height: 60px;
   			background-size: 2900%;

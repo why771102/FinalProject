@@ -124,8 +124,8 @@ div.seatCharts-seat.available.normal-seats {
 }
 
 div.seatCharts-seat.available.handicap-seats {
-	/* 	background: url(vip.png); */
-	background-color: #b9ca1c;
+/* 	background: url('${pageContext.request.contextPath}/img/h.jpg'); */
+ 	background-color: #b9ca1c; 
 }
 
 div.seatCharts-seat.aisle {
@@ -243,7 +243,7 @@ span.seatCharts-legendDescription {
 										onclick="changeStatus()">確認&raquo;</button>
 									<div id="closebutton"></div>
 									<div>
-										<a href='${pageContext.request.contextPath}/index-c'>index</a>
+										<a href='${pageContext.request.contextPath}/backstageindex'>index</a>
 									</div>
 								</div>
 
