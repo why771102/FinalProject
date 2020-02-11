@@ -191,11 +191,11 @@ public class CommentController {
 	
 	
 	//從後台刪除
-	@RequestMapping("/comments/delete/{commentID}")
-	public String deleteComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
-		cb.setCommentID(commentID);
+	@RequestMapping("/comments/delete/{runID}")
+	public String deleteComment(@PathVariable("runID")String runID,@RequestParam("id")Integer commentID,@ModelAttribute("updateComment") CommentBean cb2,Model model) {
+		cb2.setCommentID(commentID);
 		service.deleteComment(commentID);
-		return "redirect:/findAllReportComment";		
+		return "redirect:/show/this/movie?runID=" + runID;		
 	}
 	
 	//從後台取消檢舉
@@ -248,10 +248,8 @@ public class CommentController {
 	
 	//修改該留言內容
 	@RequestMapping(value = "/update/comment/{runID}", method = RequestMethod.POST)
-	public String proccessupdateComment(@PathVariable("runID")String runID,@ModelAttribute("updateComment") CommentBean cb1,Model model) {
-		 
-		int commentID = cb1.getCommentID();   //抓路徑ID塞進cb
-		cb1.setCommentID(commentID);
+	public String proccessupdateComment(@PathVariable("runID")String runID,@RequestParam("id")Integer commentID,@ModelAttribute("updateComment") CommentBean cb1,Model model) {
+		cb1.setCommentID(commentID); 		//抓ID塞進cb1
 		service.updateComment(cb1);
 		return "redirect:/show/this/movie?runID=" + runID;
 	}
