@@ -51,7 +51,7 @@
 </header>
   <!-- header -->
    <!-- banner -->
-    <section class="ticket-outer banner-featured" style="margin-top:64px;">
+    <section class="dark-blue banner-featured" style="margin-top:64px; padding-bottom:0px;">
         <div class="container">
             <div class="ticket-sell">
                 <h3 class="font"> 熱映中電影</h3>
@@ -148,7 +148,7 @@
       	
       
       </section>
-			<br>
+	
     
 
     <!-- movies -->

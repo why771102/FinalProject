@@ -651,7 +651,8 @@ div.submitButton {
 												未觀看
 											</div>
 										</div>
-										<form:errors path="watched" cssClass="error" />
+										<br><span class="notice" id="test123"></span>
+<%-- 										<form:errors path="watched" cssClass="error" /> --%>
 									</div>
 
 									<div class="form-group" style="text-align: left">
@@ -744,8 +745,7 @@ div.submitButton {
 											href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
 											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
 									</div>
-									<div>會員ID:${comment.memberBean.account}</div>
-									<div>已觀賞:${comment.watched}</div>
+									<div>會員帳號:${comment.memberBean.account}</div>
 									<div>短評內文:${comment.commentContent}</div>
 									<c:set var="commentTime1" value="${comment.commentTime}" />
 									<c:set var="commentTime2"
@@ -807,14 +807,9 @@ div.submitButton {
 
 
 <script>
-	var a = $
-	{
-		sthb_list
-	};
-	var b = $
-	{
-		oneMovie
-	};
+
+	var a = ${sthb_list};
+	var b = ${oneMovie};
 	console.log(a);
 	console.log(b);
 	var StratTime = b[0].strDay;
@@ -833,7 +828,7 @@ div.submitButton {
 	console.log(EndTime);
 	var diff = during - today;//差多少毫秒數
 	var diffDay = diff
-	/(1000*60*24*60) / / 差幾日
+// 	/(1000*60*24*60) // 差幾日
 	console.log("diff" + diff);
 	console.log("diff" + diffDay);
 
@@ -928,6 +923,13 @@ div.submitButton {
 								+ d.getMinutes() + ":" + d.getSeconds()
 								+ ".000");
 			});
+	
+	$("#btnAddcomment").click(function(){		
+		if($("#commentContent").val == null || $("#watched").val == null){
+			alert("欄位不可空白");
+		}
+	});
+
 </script>
 </body>
 </html>

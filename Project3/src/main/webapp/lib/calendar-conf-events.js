@@ -1,6 +1,5 @@
 var Script = function () {
 
-
     /* initialize the external events
      -----------------------------------------------------------------*/
 

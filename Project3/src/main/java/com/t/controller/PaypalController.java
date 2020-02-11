@@ -53,7 +53,7 @@ public class PaypalController {
 	@RequestMapping(value = "/authorize_payment", method = RequestMethod.POST)
 	public void toPaypal(PaypalBean pb,HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		String product = "76影城";
-		String subtotal = request.getParameter("subtotal");
+		String subtotal = "0";
 		String shipping = "0";
 		String tax = "0";
 		String total = request.getParameter("total");

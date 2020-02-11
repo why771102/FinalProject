@@ -31,103 +31,130 @@
   img:hover{
        opacity:0.6;
     }
-* {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;}
+    .wrap {
+                /*Flex屬性區*/
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+                /* border: solid 1px black;
+                border-block-end-color: brown; */
+                box-sizing: border-box;
+            }
+            
+            .wrapRowStart {
+                /*Flex屬性區*/
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+                /* border: solid 1px black;
+                border-block-end-color: brown; */
+                /* 撐開長寬 */
+                width: 100%;
+            
+                /* border and padding in box */
+                box-sizing: border-box;
+            }
+    
 
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
+   body {
+             font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
+              margin: 0;
+            }
+    
+                * {
+              box-sizing: border-box;
+            }
+            
+            img {
+              vertical-align: middle;
+            }
+            
+            /* Position the image container (needed to position the left and right arrows) */
+            .container {
+              position: relative;
+            }
+            
+            /* Hide the images by default */
+            .mySlides {
+              display: none;
+            }
+            
+            /* Add a pointer when hovering over the thumbnail images */
+            .cursor {
+              cursor: pointer;
+            }
+            
+            /* Next & previous buttons */
+            .prev,
+            .next {
+              cursor: pointer;
+              position: absolute;
+             top:210%;
+              width: auto;
+              padding: 16px;
+              margin-top: -50px;
+              color: white;
+              font-weight: bold;
+              font-size: 20px;
+              border-radius: 0 3px 3px 0;
+              user-select: none;
+              -webkit-user-select: none;
+            }
+            
+            /* Position the "next button" to the right */
+            .next {
+              right: 0;
+              border-radius: 3px 0 0 3px;
+            }
+            
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover,
+            .next:hover {
+              background-color: rgba(0, 0, 0, 0.8);
+            }
+            
+            /* Number text (1/3 etc) */
+            .numbertext {
+              color: #f2f2f2;
+              font-size: 12px;
+              padding: 8px 12px;
+              position: absolute;
+              top: 0;
+            }
+            
+            /* Container for image text */
+            .caption-container {
+              text-align: center;
+              background-color: #222;
+              padding: 2px 16px;
+              color: white;
+            }
+            
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            
+            /* Six columns side by side */
+            .column {
+              float: left;
+              width: 16.66%;
+            }
+            
+            /* Add a transparency effect for thumnbail images */
+            .demo {
+              opacity: 0.6;
+            }
+            
+            .active,
+            .demo:hover {
+              opacity: 1;
+            }
+    
 
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 0s; 
-  animation-name: fade;
-   animation-duration: 1.5s; 
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-}
 
 </style>
 </head>
@@ -140,8 +167,13 @@ img {vertical-align: middle;}
 </jsp:include>
 </header>
   <!-- header -->
-   <!-- banner -->
-    <section class="ticket-outer banner-featured" style="margin-top:64px;">
+  
+
+  
+ 
+  
+     <!-- banner -->
+     <section class="dark-blue banner-featured" style="margin-top:64px; padding-bottom:0px;">
         <div class="container">
             <div class="ticket-sell">
                 <h3 class="font"> 即將上映</h3>
@@ -149,6 +181,8 @@ img {vertical-align: middle;}
         </div>
     </section>
     <!-- banner -->
+  
+  
     <!-- movies -->
 
 	
@@ -230,69 +264,78 @@ img {vertical-align: middle;}
       	
       
       </section>
-			<br>
+		
     
 
     <!-- movies -->
 
-	
-  <!--section-->
-    <section class="gray-bnr feature-sec">
-        <div class="container">
-  <div class="container mt-3">
+<!-- 輪播圖carousel -->
+    <section class="gray-bnr feature-sec" style='background:black;'>
+       <div class="wrapRowStart" style=' width: 100%; ' >
+       
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                     
+                   
+                <div class="wrap" >
+                         <div class="mySlides ">
+                         
+                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0006_圖層 3.jpg" style="width:100%; padding:0px 200px;">
+                        </div>
+                      
+                        <div class="mySlides">
+                       
+                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0000_圖層 10.jpg" style="width:100%; padding:0px 200px;">
+                        </div>
+                      
+                        <div class="mySlides">
+                         
+                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0004_圖層 4.jpg"style="width:100%; padding:0px 200px;">
+                        </div>
+                          
+                        <div class="mySlides">
+                          
+                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0003_圖層 7.jpg" style="width:100%; padding:0px 200px;">
+                        </div>
+                      
+                        <div class="mySlides">
+                         
+                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0002_圖層 8.jpg"  style="width:100%; padding:0px 200px;">
+                        </div>
+                          
+                        <div class="mySlides">
+                         
+                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0001_圖層 9.jpg"  style="width:100%; padding:0px 200px;">
+                        </div>
+                    </div>     
+                       
+   <a class="next" onclick="plusSlides(1)">❯</a>
 
-<div class="slideshow-container">
-
-<div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
-  <img src="${pageContext.request.contextPath}/img/shoppingcart.png" style="width:100%">
-  <div class="text">Caption Text</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
-  <img src="${pageContext.request.contextPath}/img/shoppingcart.png" style="width:100%">
-  <div class="text">Caption Two</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="${pageContext.request.contextPath}/img/shoppingcart.png" style="width:100%">
-  <div class="text">Caption Three</div>
-</div>
-
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-</div>
-<br>
-
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-
-</div>
-  
         </div>
     </section>
-  
-    <!--section-->
-  <!--section-->
-  <section class="dark-blue">
-        <div class="container">
-            <div class="ready">
-                <h4>Book Your Tickets Now !</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <a href="free-trail.html" class="slider-btn">lETS GET sTARTED</a>
-            </div>
+<!-- 輪播圖carousel -->
+
+
+
+	 <!-- 輪播圖carousel -->
+    <section class="gray-bnr feature-sec" style='background:black;'>
+        <div class="wrapRowStart" style=' width: 100%; ' >
+                       <div>
+                        <a class="prev" onclick="plusSlides(-1)"></a>
+                        <a class="next" onclick="plusSlides(1)"></a>
+                       </div>
+                       
+                
+                     
+                        
+                        
+
         </div>
     </section>
-  
-  
-   <!--section-->
-   
+<!-- 輪播圖carousel -->
+
+
+
+
    
    
    
@@ -475,36 +518,44 @@ img {vertical-align: middle;}
 		
 		
 			
-	//倫波圖Slideshow / Carousel
-var slideIndex = 1;
-showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace("active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += "active";
-}
 		
 		
 	</script>
+	
+	    <!-- 輪播圖carousel -->
+    <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+            
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+            
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              var dots = document.getElementsByClassName("demo");
+              var captionText = document.getElementById("caption");
+              if (n > slides.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";
+              }
+              for (i = 0; i < dots.length; i++) {
+                  dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";
+              dots[slideIndex-1].className += " active";
+              captionText.innerHTML = dots[slideIndex-1].alt;
+            }
+            </script>
+<!-- 輪播圖carousel -->
+	
 </body>
 </html>
 
