@@ -617,7 +617,7 @@ div.submitButton {
 											<input id="btnAdd" type='submit' style="font-size: 20px;background-color: #C21010;border-color: #C21010"
 												class='btn btn-primary' value="修改" /> <a
 												href="<spring:url value='/comments/delete/${run.runID} ?id=${updateComment.commentID}' />"
-												class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
+												id = "deleteComment" class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
 											</a>
 										</div>
 									</div>
@@ -745,8 +745,7 @@ div.submitButton {
 											href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
 											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
 									</div>
-									<div>會員ID:${comment.memberBean.account}</div>
-									<div>已觀賞:${comment.watched}</div>
+									<div>會員帳號:${comment.memberBean.account}</div>
 									<div>短評內文:${comment.commentContent}</div>
 									<c:set var="commentTime1" value="${comment.commentTime}" />
 									<c:set var="commentTime2"
@@ -755,11 +754,11 @@ div.submitButton {
 									<div>
 										<a
 											href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
-											> <span
+											id = "block"> <span
 											class="glyphicon-info-sigh glyphicon"></span>屏蔽
 										</a> <a
 											href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
-											> <span
+											id = "reportComment"> <span
 											class="glyphicon-info-sigh glyphicon"></span>檢舉
 										</a>
 									</div>
@@ -808,14 +807,6 @@ div.submitButton {
 
 
 <script>
-
-$("#btnAddcomment").click(function(){
-	console.log("看看他印出啥:" + $("#commentContent").val);
-	alert("欄位不可空白");
-	if($("#commentContent").val == null){
-		alert("欄位不可空白");
-	}
-});
 
 	var a = ${sthb_list};
 	var b = ${oneMovie};
@@ -933,7 +924,33 @@ $("#btnAddcomment").click(function(){
 								+ ".000");
 			});
 	
+	$("#btnAddcomment").click(function(){		
+		if($("#commentContent").val == null){
+			alert("欄位不可空白");
+		}
+	});
 	
+	$("#btnAdd").click(function(){		
+		if($("#commentContent").val == null){
+			alert("欄位不可空白");
+		}
+	});
+	
+	$("#deleteComment").click(function(){	
+			alert("刪除成功");
+		}
+	});
+	
+	$("#reportComment").click(function(){	
+			alert("檢舉成功");
+		}	
+	});
+	
+	$("#block").click(function(){	
+			alert("屏蔽成功");
+		}	
+	});
+
 
 </script>
 </body>

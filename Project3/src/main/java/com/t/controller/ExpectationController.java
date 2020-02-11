@@ -100,7 +100,7 @@ public class ExpectationController {
 		// 呼叫Validate進行資料檢查
 		validator.validate(eb, result);
 		if (result.hasErrors()) {
-			return "t/addexpectation";
+			return "redirect:/show/this/movie/commingSoon?runID=" + runID;
 		}
 		Cookie[] cookies = request.getCookies();
 		String mID = null;

@@ -53,7 +53,7 @@ public class PaypalController {
 	@RequestMapping(value = "/authorize_payment", method = RequestMethod.POST)
 	public void toPaypal(PaypalBean pb,HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		String product = "76影城";
-		String subtotal = request.getParameter("subtotal");
+		String subtotal = request.getParameter("total");
 		String shipping = "0";
 		String tax = "0";
 		String total = request.getParameter("total");
@@ -105,7 +105,7 @@ public class PaypalController {
 	}
 	
 	@RequestMapping("/execute_payment")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String paymentId = request.getParameter("paymentId");
 		String payerId = request.getParameter("PayerID");
@@ -120,12 +120,12 @@ public class PaypalController {
 			request.setAttribute("payer", payerInfo);
 			request.setAttribute("transaction", transaction);			
 
-			request.getRequestDispatcher("WEB-INF/views/a/movieTheatreIndex.jsp").forward(request, response);
-			
+			return "redirect:/orderconfirmOK";
+					
 		} catch (PayPalRESTException ex) {
 			request.setAttribute("errorMessage", ex.getMessage());
 			ex.printStackTrace();
-			request.getRequestDispatcher("WEB-INF/views/t/error.jsp").forward(request, response);
+			return "redirect:/movieIndex";
 		}
 	}
 	
