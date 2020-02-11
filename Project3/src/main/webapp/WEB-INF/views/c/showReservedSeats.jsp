@@ -294,6 +294,8 @@ span.seatCharts-legendDescription {
 				seatmain(seat, 1)
 				window.noOfTickets = parseInt(data[2]);
 				window.hallID = data[3];
+				window.title = data[4];
+				window.date = data[5];
 				document.getElementById("numberOfTickets").innerText = window.noOfTickets;
 				document.getElementById("hallID").innerText = window.hallID + "廳";
 				document.getElementById("movieTitle").innerText += data[4];
@@ -447,11 +449,12 @@ span.seatCharts-legendDescription {
 		var bookSeats=JSON.stringify(SseatArray);
 		$.ajax({
 			url : "${pageContext.request.contextPath}/reservedSeats/reserveSeats",
-			data : {seats: bookSeats, showTimeID: window.showTimeID, hallID: window.hallID },
-			type : "POST",
-			success : function() {
+			data : {seats: bookSeats, showTimeID: window.showTimeID, hallID: window.hallID, movie:window.title, date:window.date },
+			type : "GET",
+			success : function(page) {
 				alert("訂"+bookSeats+"成功!");
-				window.location.href = "${pageContext.request.contextPath}/orderconfirm";
+// 				window.location.href = "${pageContext.request.contextPath}/index-c";
+				$('body').html(page);
 			}
 		});
 		//USE WHEN YOU WANT TO ADD DIFFERENT TYPE OF SEATS

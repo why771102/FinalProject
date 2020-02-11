@@ -118,7 +118,6 @@
         		type : "POST",
         		data : {email : email , uid : uid},
         		success : function(data) {
-        			console.log(data.empId);
         			var empId = data.empId;
         			$.ajax({
         				url : "${pageContext.request.contextPath}/resetPwd",
@@ -128,7 +127,7 @@
         					alert("密碼已重置，請重新登入！");
         				},
         				error: function(data) {
-        					alert("發生不明錯誤，請重試！");
+        					alert("輸入的資料有誤，請重新輸入！");
         				}
         			})
         		},

@@ -16,7 +16,7 @@ table td {
 </style>
 </head>
 <body>
-	<div align="center" style="padding-top: 250px">
+	<div align="center" style="padding-top: 200px">
 		<h1 style="font-size: 35px">付款前確認</h1>
 		<form action="execute_payment" method="post">
 			<table style="font-size: 20px">
@@ -47,7 +47,7 @@ table td {
 				<!-- 		</tr> -->
 				<tr>
 					<td>總額:</td>
-					<td>${transaction.amount.total}USD</td>
+					<td>${transaction.amount.total}NTD</td>
 				</tr>
 				<tr>
 					<td><br /></td>

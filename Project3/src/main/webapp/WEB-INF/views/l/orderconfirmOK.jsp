@@ -21,7 +21,7 @@
 <div><h3>交易成功</h3></div>
 
 
-<br> <a href="<c:url value='/' />">回首頁</a>
+<br> <a href="<c:url value='/movieIndex' />">回首頁</a>
 
 
 <script>
