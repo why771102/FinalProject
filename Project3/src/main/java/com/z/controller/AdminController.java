@@ -150,5 +150,21 @@ public class AdminController {
 		return gson.toJson(eb);
 		
 	}
+	
+	@RequestMapping("checkUid")
+	public @ResponseBody String checkUid(String email, String uid) {
+		System.out.println("resetPwd email = " + email);
+		EmpBean eb = service.getEmpFromEmail(email);
+		String ebUid = eb.getUid();
+		if(uid.equals(ebUid)) {
+			
+		}else {
+			return null;
+		}
+		
+		Gson gson = new Gson();
+		return gson.toJson(eb);
+		
+	}
 
 }

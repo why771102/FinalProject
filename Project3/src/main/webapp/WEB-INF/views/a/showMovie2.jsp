@@ -651,7 +651,8 @@ div.submitButton {
 												未觀看
 											</div>
 										</div>
-										<form:errors path="watched" cssClass="error" />
+										<br><span class="notice" id="test123"></span>
+<%-- 										<form:errors path="watched" cssClass="error" /> --%>
 									</div>
 
 									<div class="form-group" style="text-align: left">
@@ -739,9 +740,9 @@ div.submitButton {
 									style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
 									<div>
 										評分等級:${comment.grade} <a
-											href="<spring:url value='/preference/addlike/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
+											href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
 											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a> <a
-											href="<spring:url value='/preference/addbad/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
+											href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
 											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
 									</div>
 									<div>會員ID:${comment.memberBean.account}</div>
@@ -753,11 +754,11 @@ div.submitButton {
 									<div>${commentTime2}</div>
 									<div>
 										<a
-											href="<spring:url value='/preference/addblock/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
+											href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
 											> <span
 											class="glyphicon-info-sigh glyphicon"></span>屏蔽
 										</a> <a
-											href="<spring:url value='/comments/report/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
+											href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
 											> <span
 											class="glyphicon-info-sigh glyphicon"></span>檢舉
 										</a>
@@ -807,14 +808,17 @@ div.submitButton {
 
 
 <script>
-	var a = $
-	{
-		sthb_list
-	};
-	var b = $
-	{
-		oneMovie
-	};
+
+$("#btnAddcomment").click(function(){
+	console.log("看看他印出啥:" + $("#commentContent").val);
+	alert("欄位不可空白");
+	if($("#commentContent").val == null){
+		alert("欄位不可空白");
+	}
+});
+
+	var a = ${sthb_list};
+	var b = ${oneMovie};
 	console.log(a);
 	console.log(b);
 	var StratTime = b[0].strDay;
@@ -833,7 +837,7 @@ div.submitButton {
 	console.log(EndTime);
 	var diff = during - today;//差多少毫秒數
 	var diffDay = diff
-	/(1000*60*24*60) / / 差幾日
+// 	/(1000*60*24*60) // 差幾日
 	console.log("diff" + diff);
 	console.log("diff" + diffDay);
 
@@ -928,6 +932,9 @@ div.submitButton {
 								+ d.getMinutes() + ":" + d.getSeconds()
 								+ ".000");
 			});
+	
+	
+
 </script>
 </body>
 </html>

@@ -57,11 +57,11 @@ public class ReservedSeatsController {
 		// insert seats into reserved seats table;
 		List<ShowTimeHistoryBean> liststhb = rservice.insertSeats();
 
-		// insert seat number into number of seats table;
-//		for(int sthb = 0; sthb < liststhb.size(); sthb++) {
-//			List<ReservedSeatsBean> listrsb = rservice.getAllSeats(2);
-//		}
-//		
+//		 insert seat number into number of seats table;
+		for(int sthb = 0; sthb < liststhb.size(); sthb++) {
+			List<ReservedSeatsBean> listrsb = rservice.getAllSeats(2);
+		}
+		
 //		System.out.println(list.get(0).getDate());
 //		NumberOfSeatsBean nosb = new NumberOfSeatsBean(list.get(0).getDate(), list.size(), list.get(0).getSeatsBean().getHallBean().getHallID());
 //		nosservice.insertNumberofSeats(nosb);
@@ -80,9 +80,23 @@ public class ReservedSeatsController {
 
 //	應該傳到前端 電影名稱、廳、訂票數、日期
 	@PostMapping("/reservedSeats/showSeats")
-	public @ResponseBody Map<Integer, String> showReservedSeats() {
+	public @ResponseBody Map<Integer, String> showReservedSeats(
+			@RequestParam("showtimeId") String showtimeId,
+			@RequestParam("discount") String discount,
+			@RequestParam("discount2") String discount2,
+			@RequestParam("bankticket") String bankticket,
+			@RequestParam("normal") String normal
+			) {
 		// 由前端傳入showTimeID
-		Integer showTimeID = 4059;
+//		Integer showTimeID = 4473;
+		Integer showTimeID = Integer.parseInt(showtimeId);
+		Integer discounT = Integer.parseInt(discount);
+		Integer discounT2 = Integer.parseInt(discount2);
+		Integer banktickeT = Integer.parseInt(bankticket);
+		Integer normaL = Integer.parseInt(normal);
+		Integer Total=discounT+discounT2+discounT2+banktickeT+normaL;
+		String TotaL=Integer.toString(Total);
+		System.out.println("Total: " + TotaL);
 		List<ReservedSeatsBean> listsb = rservice.getAllSeats(showTimeID);
 		String date = listsb.get(0).getShowtimeHistoryBean().getPlayStartTime();
 		String movie = listsb.get(0).getShowtimeHistoryBean().getRun().getMovie().getTitle();
@@ -97,7 +111,7 @@ public class ReservedSeatsController {
 		Gson g = new Gson();
 		String seat = g.toJson(seats);
 		map.put(1, seat);// 座位表
-		map.put(2, "2"); // 訂票數number of tickets user wishes to buy
+		map.put(2, TotaL); // 訂票數number of tickets user wishes to buy
 		map.put(3, hb.getHallID());// 廳
 		map.put(4, movie);// 電影名稱
 		map.put(5, date);// 日期

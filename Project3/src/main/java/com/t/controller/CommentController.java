@@ -151,13 +151,31 @@ public class CommentController {
 //	}
 	
 	@RequestMapping(value = "/comments/add/{runID}", method = RequestMethod.POST)
-	public String processAddNewComment(@PathVariable("runID")String runID,@ModelAttribute("commentBean")CommentBean cb,BindingResult result,HttpServletRequest request) {
+	public String processAddNewComment(@PathVariable("runID")String runID,@ModelAttribute("commentBean")CommentBean cb,BindingResult result,HttpServletRequest request,Model model) {
 		RunningBean run = mService.getRunningBeanById(runID);
+		
+		
+		HashMap<String, String> errorMsgMap1 = new HashMap<String, String>();
+		
+		if(cb.getWatched() == null) {
+			errorMsgMap1.put("watchedError", "您不可來自未來!");
+		}
+		
+		if(!errorMsgMap1.isEmpty()) {
+			model.addAttribute("errorMsgMap",errorMsgMap1);
+			System.out.println("有近來這邊嗎11111");
+			return "redirect:/show/this/movie?runID=" + runID;
+		}
+		
+		System.out.println("有近來這邊嗎????");
+		
+		
+		
 		CommentValidator validator = new CommentValidator();
 		// 呼叫Validate進行資料檢查
 		validator.validate(cb, result);
 		if (result.hasErrors()) {
-			return "a/showMovie2";
+			return "redirect:/show/this/movie?runID=" + runID;
 		}
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
@@ -206,11 +224,11 @@ public class CommentController {
 		return "redirect:/findAllReportComment";		
 	}
 	
-	@RequestMapping("/comments/report/{movieID}")
-	public String reportComment(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
+	@RequestMapping("/comments/report/{runID}")
+	public String reportComment(@PathVariable("runID")String runID,@RequestParam("id")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
 		cb.setCommentID(commentID);
 		service.reportComment(commentID);
-		return "redirect:/comments/{movieID}";
+		return "redirect:/show/this/movie?runID=" + runID;
 	}
 	
 	//查詢單筆

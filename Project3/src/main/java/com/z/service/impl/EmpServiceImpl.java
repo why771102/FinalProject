@@ -85,6 +85,12 @@ public class EmpServiceImpl implements EmpService {
 	public void changePwd(EmpBean eb) {
 		dao.changePwd(eb);
 	}
+
+	@Transactional
+	@Override
+	public EmpBean getEmpFromEmail(String email) {
+		return dao.getEmpFromEmail(email);
+	}
 	
 	
 }
