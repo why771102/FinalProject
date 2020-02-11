@@ -62,10 +62,39 @@
     
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 班表</h3>
+      <br>
+      <br>
+      <div class="border-head">
+              <h3>INFORMATION</h3>
+            </div>
+      <div class="row">
+      <div class="col-md-4 mb">
+                <div class="weather pn">
+                  <i class="fa fa-cloud fa-4x"></i>
+                  <h2 id="weather"></h2>
+                  <h2 id="temp"></h2>
+                  <h4 id="location"></h4>
+                </div>
+              </div>
+      </div>
+      <div class="border-head">
+              <h3>班表</h3>
+            </div>
+      
+      
+<!--         <h3><i class="fa fa-angle-right"></i> 班表</h3> -->
         <!-- page start-->
         <div class="row mt">
-          <aside class="col-lg-3 mt">
+        
+        
+        <aside class="col-lg-7 mt">
+            <section class="panel">
+              <div class="panel-body">
+                <div id="calendar" class="has-toolbar"></div>
+              </div>
+            </section>
+          </aside>
+          <aside class="col-lg-4 mt">
             <h4><i class="fa fa-angle-right"></i> 員工清單</h4>
             <div id="external-events">
               <div class="external-event label label-theme">七六</div>
@@ -79,13 +108,7 @@
 <!--               <div class="external-event label label-success">My Event 9</div> -->
             </div>
           </aside>
-          <aside class="col-lg-9 mt">
-            <section class="panel">
-              <div class="panel-body">
-                <div id="calendar" class="has-toolbar"></div>
-              </div>
-            </section>
-          </aside>
+          
         </div>
         <!-- page end-->
       </section>
@@ -112,7 +135,29 @@
   <!--script for this page-->
   <script src="${pageContext.request.contextPath}/lib/calendar-conf-events.js"></script>
  <script>
-
+ 	$(document).ready(function() {
+ 		$.ajax({
+ 			url : "https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-A0010-001?Authorization=CWB-A1021C75-3099-40F7-9580-7601A4116BA1&downloadType=WEB&format=JSON",
+ 			type : "GET",
+ 			success: function(data) {
+ 				console.log(data);
+ 				console.log(data.cwbdata.resources.resource.data.agrWeatherForecasts.weatherForecasts.location);
+ 				var north = data.cwbdata.resources.resource.data.agrWeatherForecasts.weatherForecasts.location[0];
+ 				console.log(north);
+ 				var place = north.locationName;
+ 				console.log(place);
+ 				var weather = north.weatherElements.Wx.daily[0].weather;
+ 				console.log(weather);
+ 				var maxT = north.weatherElements.MaxT.daily[0].temperature;
+ 				var mixT = north.weatherElements.MinT.daily[0].temperature;
+ 				var temper = mixT + "ºC - " + maxT + "ºC";
+ 				$("#temp").html(temper);
+ 				$("#location").html(place);
+ 				$("#weather").html(weather);
+ 				
+ 			}
+ 		})
+ 	})
  
  
  </script>

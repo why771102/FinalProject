@@ -278,7 +278,7 @@ text-align:center;
 	width: 16%;
 	display: inline-block;
 	position: relative;
-	bottom: 50px;
+	bottom: 86px;
 	float: right;
 	right: 50px;
 }
@@ -296,19 +296,19 @@ text-align:center;
 #Food {
 	width: 65%;
 	text-align: center;
-	padding-bottom: 15px;
+	padding-bottom: 50px;
 }
 
 #drink {
 	width: 65%;
 	text-align: center;
-	padding-bottom: 15px;
+	padding-bottom: 50px;
 }
 
 #popcorn {
 	width: 65%;
 	text-align: center;
-	padding-bottom: 15px;
+	padding-bottom: 50px;
 }
 
 .activeme {

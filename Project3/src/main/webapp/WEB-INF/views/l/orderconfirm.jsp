@@ -278,11 +278,20 @@ width: 19%;
 		<div class="width80">
 			<div class="nextadjust">
 			<div class="next">
-				<input type="button" value="信用卡付款"
-				onclick="location.href='orderconfirmOK'"> 
+				<div>
+				<form action="${pageContext.request.contextPath}/authorize_payment" method="post">
+				<input type="hidden" id="totalPrice2" name="total" value="120" />
+				<input type="submit" value="信用卡付款"> 
+				</form>
+				</div>
  			</div>
- 		
- 			</div>
+ 				
+<%--  				<form action="${pageContext.request.contextPath}/authorize_payment" method="post"> --%>
+<!-- 				<input type="hidden" id="totalPrice2" name="total" value="120" />		 -->
+
+<!-- 				<button  type="submit">信用卡付款</button> -->
+<%-- 				</form> --%>
+ 		 	</div>
 		</div>
 		<div class="width20">
 		</div>
@@ -493,7 +502,7 @@ width: 19%;
 		parseInt(document.getElementById("smallPopcorncount").innerHTML)+
 		parseInt(document.getElementById("Handling").innerHTML);
 	document.getElementById("totalPrice").innerHTML =parseInt(totalPrice);
-
+	document.getElementById("totalPrice2").value =parseInt(totalPrice);
 	
 		      
 
