@@ -24,9 +24,19 @@
   margin-left:auto; 
   margin-right:auto;
  }
+ 
  tr{ 
  		height:30;
  	} 
+ 	
+ h2Style{
+ 	padding: 0px 10px 10px 20px;
+ }
+ 
+ #test2{
+ 	margin: 50px 0px 0px 0px;
+ }
+
 </style>
 
 <title>會員登入</title>
@@ -38,10 +48,10 @@
        <jsp:param name="a" value="1" />
 </jsp:include>
     </header>
- <section class="login-block">
+ <section class="login-block" id="test2">
   <div class="container">
    <div class="login-inner">
-    <h2>會員登入</h2>
+    <h2 id="h2Style">會員登入</h2>
 
     <div class="login-form">
      <table>
