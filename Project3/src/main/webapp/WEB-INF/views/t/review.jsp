@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html style="background: #ededed">
 <head>
 <meta charset="UTF-8">
 <title>Review</title>
@@ -16,15 +16,18 @@ table td {
 </style>
 </head>
 <body>
-	<div align="center">
-		<h1>Please Review Before Paying</h1>
+	<div align="center" style="padding-top: 250px">
+		<h1 style="font-size: 35px">付款前確認</h1>
 		<form action="execute_payment" method="post">
-			<table>
+			<table style="font-size: 20px">
 				<tr>
-					<td colspan="2"><b>賣家資訊:</b></td>
+					<td colspan="2" style="font-size: 25px"><b>賣家資訊:</b></td>
+
 					<td><input type="hidden" name="paymentId"
 						value="${param.paymentId}" /> <input type="hidden" name="PayerID"
 						value="${param.PayerID}" /></td>
+				</tr>
+				<tr>
 				</tr>
 				<tr>
 					<td>商家:</td>
@@ -50,11 +53,13 @@ table td {
 					<td><br /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>買家資訊:</b></td>
+					<td colspan="2" style="font-size: 25px"><b>買家資訊:</b></td>
+				</tr>
+				<tr>
 				</tr>
 				<tr>
 					<td>姓名:</td>
-					<td>${payer.lastName} ${payer.firstName}</td>
+					<td>${payer.lastName}${payer.firstName}</td>
 				</tr>
 				<tr>
 					<td>Email:</td>
@@ -90,9 +95,16 @@ table td {
 				<!-- 			<td>Postal Code:</td> -->
 				<%-- 			<td>${shippingAddress.postalCode}</td> --%>
 				<!-- 		</tr> -->
+
+			</table>
+			<table>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Pay Now" /></td>
+					<td colspan="2" align="center" style="font-size: 20px"><input
+						type="submit" class='btn btn-primary'
+						style="font-size: 20px; background-color: #ffffff; border-color: #000000"
+						value="確定付款" /></td>
+					<td><a href='movieIndex' type="button" class='btn btn-primary'
+						style="font-size: 20px; background-color: #ffffff; border-color: #000000;border: 2px solid black;text-decoration: none;color: black;padding: 2px 6px 3px 6px">取消交易</a></td>
 				</tr>
 			</table>
 		</form>

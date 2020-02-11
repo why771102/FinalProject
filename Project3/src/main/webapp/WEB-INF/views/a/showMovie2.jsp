@@ -651,7 +651,8 @@ div.submitButton {
 												未觀看
 											</div>
 										</div>
-										<form:errors path="watched" cssClass="error" />
+										<br><span class="notice" id="test123"></span>
+<%-- 										<form:errors path="watched" cssClass="error" /> --%>
 									</div>
 
 									<div class="form-group" style="text-align: left">
@@ -807,14 +808,17 @@ div.submitButton {
 
 
 <script>
-	var a = $
-	{
-		sthb_list
-	};
-	var b = $
-	{
-		oneMovie
-	};
+
+$("#btnAddcomment").click(function(){
+	console.log("看看他印出啥:" + $("#commentContent").val);
+	alert("欄位不可空白");
+	if($("#commentContent").val == null){
+		alert("欄位不可空白");
+	}
+});
+
+	var a = ${sthb_list};
+	var b = ${oneMovie};
 	console.log(a);
 	console.log(b);
 	var StratTime = b[0].strDay;
@@ -833,7 +837,7 @@ div.submitButton {
 	console.log(EndTime);
 	var diff = during - today;//差多少毫秒數
 	var diffDay = diff
-	/(1000*60*24*60) / / 差幾日
+// 	/(1000*60*24*60) // 差幾日
 	console.log("diff" + diff);
 	console.log("diff" + diffDay);
 
@@ -928,6 +932,9 @@ div.submitButton {
 								+ d.getMinutes() + ":" + d.getSeconds()
 								+ ".000");
 			});
+	
+	
+
 </script>
 </body>
 </html>
