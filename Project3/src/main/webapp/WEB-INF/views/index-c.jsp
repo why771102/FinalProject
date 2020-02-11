@@ -47,7 +47,7 @@
 		
 		<tr height="52" bgcolor="lightblue" align="center">
     		<td width="350"><p align="left" /> 
-    			<a href='forwardDemo'>RedirectView: forwardDemo</a><br> 
+    			<a href='insertReservedSeats'>insertReservedSeats</a><br> 
     		</td>
 		    <td width="350"><p align="left" />
 		    	<a href='redirectDemo'>RedirectView: redirectDemo</a><br>

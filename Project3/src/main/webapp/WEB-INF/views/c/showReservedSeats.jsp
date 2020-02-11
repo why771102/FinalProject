@@ -168,6 +168,7 @@ span.seatCharts-legendDescription {
 	<div class="container">
 		<h1>Create Movie Theatre Seatings</h1>
 <%-- 		<div> ${hallID} 廳</div> --%>
+<div id="showtimeId"></div>
 		<div id="numberOfTickets"></div>
 		<div id="hallID"></div>
 		<div id="movieTitle">電影:  ${showtime.run.movie.title}</div>
@@ -206,16 +207,73 @@ span.seatCharts-legendDescription {
 	}
 
 	
+	cookieArray = document.cookie.split("; ");
+	console.log(cookieArray);
+
+	
+	
 	
 	//showing the seating chart through calling controller using ajax
 	$(window).load(function () {
 		$('.seatCharts-row').remove();
 		$('.seatCharts-legendItem').remove();
 		$('#seat-map,#seat-map *').unbind().removeData();
+		
+		for (i = 0; i < cookieArray.length; i++) {
+			memberIDArrays = cookieArray[i].split("=");
+			console.log(memberIDArrays);
+			
+			window.discount="0";
+			window.discount2="0";
+			window.bankticket="0";
+			window.normal="0";
+			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
+
+				
+	
+// 				$("#name").text("訪客");
+// 				$("#memberCenter").hide();
+// 				$("#logout").hide();
+			}else{
+				for (i = 0; i < cookieArray.length; i++) {
+				nameArrays = cookieArray[i].split("=");
+				console.log(nameArrays);
+				if (nameArrays[0] == "showtimeId") {
+				$("#showtimeId").text(nameArrays[1]);
+				window.showtimeId = nameArrays[1];
+				}
+				if (nameArrays[0] == "discount") {
+				$("#discount").text(nameArrays[1]);
+				window.discount = nameArrays[1];
+				}
+				if (nameArrays[0] == "discount2") {
+				$("#discount2").text(nameArrays[1]);
+				window.discount2 = nameArrays[1];
+				}
+				if (nameArrays[0] == "bankticket") {
+				$("#bankticket").text(nameArrays[1]);
+				window.bankticket = nameArrays[1];
+				}
+				if (nameArrays[0] == "normal") {
+				$("#normal").text(nameArrays[1]);
+				window.normal = nameArrays[1];
+				}
+			}
+// 				$("#register").hide();
+// 				$("#login").hide();
+		}
+	}
+		
+		console.log(window.showtimeId);
+		console.log(typeof(window.discount));
+		console.log(typeof(window.discount2));
+		console.log(typeof(window.normal));
+
+// 		var showtimeID = JSON.stringify(window.showtimeId);
 // 		var hallID = document.getElementById("hallID").value;
 		$.ajax({
 			url : "${pageContext.request.contextPath}/reservedSeats/showSeats",
-// 			data : {hallID: hallID},
+			data : {showtimeId: window.showtimeId,discount: window.discount,discount2: window.discount2,bankticket: window.bankticket,normal: window.normal},
 			type : "POST",
 			success : function(data) {
 				var seat = JSON.parse(data[1]);
