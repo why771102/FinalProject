@@ -180,7 +180,8 @@ span.seatCharts-legendDescription {
 		<h1 style="text-align:center;">選擇座位</h1>
 <%-- 		<div> ${hallID} 廳</div> --%>
 <div id="showtimeId"></div>
-		<div id="numberOfTickets"></div>
+<span id="counter" style="display:none;">0</span>
+		<div id="numberOfTickets" style="display:none;"></div>
 		<div id="hallID"></div>
 		<div id="movieTitle">電影:  ${showtime.run.movie.title}</div>
 		<div id="date">日期: ${showtime.playStartTime}</div>
@@ -190,7 +191,7 @@ span.seatCharts-legendDescription {
 <!-- 		<div class="booking-details"> -->
 <!-- 			<h2>Booking Details</h2> -->
 <!-- 			<h3> -->
-<!-- 				Selected Seats (<span id="counter">0</span>): -->
+<!-- 				Selected Seats (): -->
 <!-- 			</h3> -->
 <!-- 			<ul id="selected-seats"> -->
 <!-- 			</ul> -->
@@ -354,7 +355,7 @@ span.seatCharts-legendDescription {
 										]
 							},
 							click : function() {
-								console.log(window.noOfTickets);
+// 								console.log("window.noOfTickets: " + window.noOfTickets);
 								if (this.status() == 'available' && parseInt(document.getElementById("counter").innerText) < window.noOfTickets) {
 									//let's create a new <li> which we'll add to the cart items
 									$(
