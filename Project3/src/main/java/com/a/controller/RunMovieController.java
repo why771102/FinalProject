@@ -1195,5 +1195,12 @@ public class RunMovieController implements ServletContextAware {
 //		CommentBean cb = cService.getTheCommentBean(commentID);		
 //		return cb;
 //	}
+	
+	@RequestMapping(value = "/scan/running")
+	public String scanRunning() {
+		System.out.println("in scan");
+		return "a/scanRunningDay";
+	}
+	
 
 }

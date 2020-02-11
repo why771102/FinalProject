@@ -316,23 +316,6 @@
 
 
 
-	 <!-- 輪播圖carousel -->
-    <section class="gray-bnr feature-sec" style='background:black;'>
-        <div class="wrapRowStart" style=' width: 100%; ' >
-                       <div>
-                        <a class="prev" onclick="plusSlides(-1)"></a>
-                        <a class="next" onclick="plusSlides(1)"></a>
-                       </div>
-                       
-                
-                     
-                        
-                        
-
-        </div>
-    </section>
-<!-- 輪播圖carousel -->
-
 
 
 

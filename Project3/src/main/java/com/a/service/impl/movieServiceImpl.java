@@ -599,7 +599,7 @@ public class movieServiceImpl implements MovieService {
 			// 把合約跟ＰＴ排片合併 Contract_list MovieInsetHall_list
 			for (ShowtimeBean stb : Contract_list) {
 //				stb.setHall(hb_list.get(Hall_i));
-				System.out.println(stb.getHall().getHallID());
+//				System.out.println(stb.getHall().getHallID());
 				System.out.println("=================================Contract RunID" + stb.getRb().getRunID());
 				MovieInsetHall_list.add(stb);
 			}

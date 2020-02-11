@@ -153,51 +153,20 @@
 
     <!-- movies -->
 
-	
-  <!--section-->
-    <section class="gray-bnr feature-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="ipad-bg">
-                        <img src="${pageContext.request.contextPath}/img/ipad-bg.png">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="ex-feature">
-                        <h6>Cineshow</h6>
-                        <h1>features</h1>
-                        <ul>
-                            <li>Sed ut perspiciatis </li>
-                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
-                            <li>Lorem ipsum dolor sit amet consectetur</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus</li>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Sed ut perspiciatis unde omnis </li>
-                            <li>Lorem ipsum dolor sit amet consectetur</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-  
-    <!--section-->
-  <!--section-->
-  <section class="dark-blue">
-        <div class="container">
-            <div class="ready">
-                <h4>Book Your Tickets Now !</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <a href="free-trail.html" class="slider-btn">lETS GET sTARTED</a>
-            </div>
-        </div>
-    </section>
-  
-  
-   <!--section-->
+
+       <!-- carousel -->
+ <jsp:include page="carousel.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
+</header>
+   <!-- carousel -->
+
+
+
+
+
+ 
      <!--footer-->
      <jsp:include page="footer.jsp">
      <jsp:param name="a" value="1" />
