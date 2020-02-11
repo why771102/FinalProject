@@ -105,7 +105,7 @@ public class PaypalController {
 	}
 	
 	@RequestMapping("/execute_payment")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String paymentId = request.getParameter("paymentId");
 		String payerId = request.getParameter("PayerID");
@@ -120,8 +120,8 @@ public class PaypalController {
 			request.setAttribute("payer", payerInfo);
 			request.setAttribute("transaction", transaction);			
 
-			request.getRequestDispatcher("WEB-INF/views/a/movieTheatreIndex.jsp").forward(request, response);
-			
+			return "redirect:/orderconfirmOK";
+					
 		} catch (PayPalRESTException ex) {
 			request.setAttribute("errorMessage", ex.getMessage());
 			ex.printStackTrace();
