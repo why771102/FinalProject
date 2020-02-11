@@ -14,8 +14,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/seat-charts.css">
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
+
 <style>
 body {
 /* 	font-family: 'Roboto', sans-serif; */
@@ -24,6 +23,7 @@ body {
 	background-size: cover;
 	-webkit-background-size: cover;
     background-attachment: fixed;
+    
 }
 
 a {
@@ -169,7 +169,7 @@ span.seatCharts-legendDescription {
 
 </style>
 </head>
-<body style="color: white;">
+<body style="color: white; margin-bottom: 27px;">
 <header>
        <jsp:include page="../a/header.jsp">
        <jsp:param name="a" value="1" />
@@ -205,7 +205,8 @@ span.seatCharts-legendDescription {
 	<div id="legend"></div>
 	
 </div>
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
 <script>
 
 	//Has to do with showing seats
