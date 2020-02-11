@@ -33,6 +33,8 @@ public interface EmpDao {
 	String changeFromMd5(String str);
 
 	void changePwd(EmpBean mb);
+
+	EmpBean getEmpFromEmail(String email);
 	
 	
 }
