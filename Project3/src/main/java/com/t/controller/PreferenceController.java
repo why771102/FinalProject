@@ -33,8 +33,8 @@ public class PreferenceController {
 	}
 	
 	//新增欄位 填入讚 噓 屏蔽
-	@RequestMapping("/preference/addlike/{movieID}")
-	public String processAddLike(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addlike/{runID}")
+	public String processAddLike(@PathVariable("runID")String runID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 //		System.out.println("runID1 = " + runID);
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
@@ -66,11 +66,11 @@ public class PreferenceController {
 			service.addLike(pb);
 		}
 //		System.out.println("runID2 = " + runID);
-		return "redirect:/show/this/movie";	
+		return "redirect:/show/this/movie?runID=" + runID;	
 	}
 	
-	@RequestMapping("/preference/addbad/{movieID}")
-	public String processAddBad(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addbad/{runID}")
+	public String processAddBad(@PathVariable("runID")String runID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -100,11 +100,11 @@ public class PreferenceController {
 			pb.setBlock(0);
 			service.addLike(pb);
 		}	
-		return "redirect:/show/this/movie";	
+		return "redirect:/show/this/movie?runID=" + runID;	
 	}
 	
-	@RequestMapping("/preference/addblock/{movieID}")
-	public String processAddBlock(@PathVariable("movieID")Integer movieID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
+	@RequestMapping("/preference/addblock/{runID}")
+	public String processAddBlock(@PathVariable("runID")String runID,@RequestParam("id")Integer commentID,PreferenceBean pb,HttpServletRequest request,Model model) {
 		Cookie[] cookies = request.getCookies();
 		String mID = null;
 		for (Cookie cookie : cookies) {
@@ -126,7 +126,7 @@ public class PreferenceController {
 			pb.setBlock(1);
 			service.addLike(pb);
 		}			
-		return "redirect:/show/this/movie";	
+		return "redirect:/show/this/movie?runID=" + runID;	
 	}
 	
 }
