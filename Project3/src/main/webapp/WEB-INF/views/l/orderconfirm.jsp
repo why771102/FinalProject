@@ -31,24 +31,28 @@
 	type='text/css' />
 <style>
 .orders{
-text-align: center;
-padding-bottom: 15px;
+	text-align: left;
+    padding-bottom: 15px;
+    background-color: rgba(128, 128, 128, 0.34);
+    width: 70%;
+    margin-left: 17%;
+    margin-bottom: 30px;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 .movie{
-width: 45%;
- display: inline-block;
-  padding-top: 15px;
+    width: 100%;
+ 	display: inline-block;
+  	padding-top: 15px;
 }
 .order{    
-width: 45%;
- display: inline-block;
- text-align: left;
- padding-top: 15px;
- font-size: 20px;
+    padding-bottom: 15px;
+	font-size: 23px;
+    text-align: -webkit-match-parent;
 }
 
 .moviename{
-font-weight:bold;
+font-weight: 500;
 font-size: 30px;
 text-align: left;
 display: inline-block;
@@ -64,30 +68,31 @@ width: 19%;
 .name {
 	display: inline-block;
 	width: 45%;
-	
+	padding-left: 40px;
 }
 
 .price {
 	text-align: right;
 	display: inline-block;
-	width: 20%;
+	width: 21%;
 
 }
 
 .qty {
 	display: inline-block;
 	text-align: right;
-	width: 10%;
+	width: 12%;
 
 }
 .ordercontent{
 background-color: #eaeaea;
+color: black;
 }
 .count {
 	
 	display: inline-block;
 	text-align: right;
-	width: 10%;
+	width: 15%;
 }
 #handling{
 font-weight:bold;
@@ -137,9 +142,9 @@ width: 19%;
 		</jsp:include>
 
 	</header>
-	<section class="ticket-outer banner-featured">
+	<section class="ticket-outer banner-featured" style="background:black;">
 		<div class="container">
-			<div class="ticket-sell">
+			<div class="ticket-sell" style="padding-top: 76px;">
 				<h3 class="font">確認訂單</h3>
 			</div>
 		</div>
@@ -147,11 +152,11 @@ width: 19%;
 <div class="orders" >
 	<div class="movies">
 		<div class="movie">
-			<div class="moviename">電影名稱:${queryStartTime.run.movie.title}</div>
+			<div class="moviename">電影名稱:${movie}</div>
 			<div class="movieinfo">
-				<div class="movietime">${queryStartTime.playStartTime}</div>
-				<div class="moviehall">電影廳:${queryStartTime.hall.hallID}</div>
-				<div class="movieseat">電影座位:</div>
+				<div class="movietime" style="font-size: 16px;">${playtime}</div>
+				<div class="moviehall" style="font-size: 18px;">${hallID}廳</div>
+				<div class="movieseat" style="font-size: 18px;">電影座位:${seats}</div>
 			</div>
 		</div>
 	</div>

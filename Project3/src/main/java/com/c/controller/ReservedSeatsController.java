@@ -9,6 +9,7 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.ShowTimeHistoryBean;
 import com.c.model.HallBean;
-import com.c.model.NumberOfSeatsBean;
 import com.c.model.ReservedSeatsBean;
 import com.c.model.SeatOrderBean;
 import com.c.service.HallService;
@@ -121,11 +121,15 @@ public class ReservedSeatsController {
 	}
 
 	// 需要傳入廳
-	@PostMapping("/reservedSeats/reserveSeats")
-	public String reservedSeats(@RequestParam("seats") String seats, @RequestParam("showTimeID") String showTimeID,
-			@RequestParam("hallID") String hallID) {
+	@GetMapping("/reservedSeats/reserveSeats")
+	public String reservedSeats(@RequestParam("seats") String seats, 
+			@RequestParam("showTimeID") String showTimeID,
+			@RequestParam("hallID") String hallID, Model model, 
+			@RequestParam("movie") String movie,
+			@RequestParam("date") String playtime) {
 		String[] seatsArray = sservice.stringToStringArray(seats, hallID);
 		String date = LocalDate.now().toString();
+		String orderseats = "";
 		for (int seat = 0; seat < seatsArray.length; seat++) {
 			Integer showTime = Integer.parseInt(showTimeID);
 			ReservedSeatsBean rsb = rservice.getSeat(Integer.parseInt(showTimeID), seatsArray[seat]);
@@ -137,8 +141,14 @@ public class ReservedSeatsController {
 //			SeatsBean sb = soservice.getSeatsById(seatsArray[seat]);
 			SeatOrderBean sob = new SeatOrderBean(date, showTime, seatsArray[seat]);
 			soservice.insertSeatOrder(sob);
+			orderseats += seatsArray[seat].substring(1, seatsArray[seat].length()) + " ";
 		}
-
-		return "/index-c";
+		
+		model.addAttribute("seats", orderseats);
+		model.addAttribute("hallID", hallID);
+		model.addAttribute("playtime", playtime.substring(0, playtime.length()-5));
+		model.addAttribute("movie", movie);
+		
+		return "l/orderconfirm";
 	}
 }
