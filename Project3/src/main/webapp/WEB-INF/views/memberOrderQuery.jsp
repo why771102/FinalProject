@@ -22,11 +22,12 @@
 	table{
 		margin-left:auto; 
 		margin-right:auto;
-		border:3px #cccccc solid;
+/* 		border:3px #cccccc solid; */
 	}
 	
 	#test{
 		height:300px;
+/* 		border:3px #cccccc solid; */
 	}
 	
 	footer{
@@ -35,6 +36,10 @@
 	
 	td{
 		width:100px;
+	}
+	
+	.tdWidth{
+		width:10px;
 	}
 	
 	
@@ -85,7 +90,7 @@
 			</c:forEach>
 			
 			<c:forEach var="tb" items="${tblist}">
-				<td>${tb.seatsBean.seatID}</td>
+				<td class="tdWidth">${tb.seatsBean.seatID}</td>
 			</c:forEach>
 		</tr>
 			

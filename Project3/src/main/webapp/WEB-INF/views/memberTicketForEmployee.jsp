@@ -38,6 +38,10 @@ tr{
 td{
 	width:100px;
 }
+
+.tdWidth{
+	width:10px;
+}
 </style>
 </head>
 <body>
@@ -108,11 +112,11 @@ td{
 														<td>${modetail.quantity}</td>
 													</c:forEach>
 													
-													<td>
+													
 													<c:forEach var="tb" items="${tblist}">
-														${tb.seatsBean.seatID}
+														<td class="tdWidth">${tb.seatsBean.seatID}</td>
 													</c:forEach>
-													</td>
+													
 												</tr>
 
 											</table>
