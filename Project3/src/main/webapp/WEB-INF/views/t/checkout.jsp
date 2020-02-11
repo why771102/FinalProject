@@ -20,7 +20,7 @@
 		
 		
 			Total Amount:
-			<input type="text" name="total" value="120" />		
+			<input type="text" id ="ccc" name="total" value="120" />		
 
 				<input type="submit" value="Checkout" />
 			

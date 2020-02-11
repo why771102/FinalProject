@@ -16,7 +16,7 @@ table td {
 </style>
 </head>
 <body>
-	<div align="center" style="padding-top: 250px">
+	<div align="center" style="padding-top: 200px">
 		<h1 style="font-size: 35px">付款前確認</h1>
 		<form action="execute_payment" method="post">
 			<table style="font-size: 20px">

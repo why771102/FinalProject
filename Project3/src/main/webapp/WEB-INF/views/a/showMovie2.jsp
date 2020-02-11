@@ -617,7 +617,7 @@ div.submitButton {
 											<input id="btnAdd" type='submit' style="font-size: 20px;background-color: #C21010;border-color: #C21010"
 												class='btn btn-primary' value="修改" /> <a
 												href="<spring:url value='/comments/delete/${run.runID} ?id=${updateComment.commentID}' />"
-												class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
+												id = "deleteComment" class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
 											</a>
 										</div>
 									</div>
@@ -754,11 +754,11 @@ div.submitButton {
 									<div>
 										<a
 											href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
-											> <span
+											id = "block"> <span
 											class="glyphicon-info-sigh glyphicon"></span>屏蔽
 										</a> <a
 											href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
-											> <span
+											id = "reportComment"> <span
 											class="glyphicon-info-sigh glyphicon"></span>檢舉
 										</a>
 									</div>
@@ -925,10 +925,32 @@ div.submitButton {
 			});
 	
 	$("#btnAddcomment").click(function(){		
-		if($("#commentContent").val == null || $("#watched").val == null){
+		if($("#commentContent").val == null){
 			alert("欄位不可空白");
 		}
 	});
+	
+	$("#btnAdd").click(function(){		
+		if($("#commentContent").val == null){
+			alert("欄位不可空白");
+		}
+	});
+	
+	$("#deleteComment").click(function(){	
+			alert("刪除成功");
+		}
+	});
+	
+	$("#reportComment").click(function(){	
+			alert("檢舉成功");
+		}	
+	});
+	
+	$("#block").click(function(){	
+			alert("屏蔽成功");
+		}	
+	});
+
 
 </script>
 </body>
