@@ -100,11 +100,11 @@
             <div class="flexslider">
                 <ul class="slides">
                     <li>
-                        <div class="slide-inner slide-1">
+                        <div class="slide-inner slide-1 "style='width:100% ;height:100vh;'>
                             <div class="overlay-slider"></div>
                             <div class="container">
                                 <div class="row resp-row">
-                                    <div class="col-sm-5 col-xs-6 pull-left">
+                                    <div class="col-sm-5 col-xs-6 pull-left" style='padding:20% 0%'>
                                         <div class="slide-con">
                                             <h5>不想排隊?</h5>
                                             <h4>快線上訂位!<br> </h4>
@@ -122,19 +122,19 @@
                         </div>
                     </li>
                     <li>
-                        <div class="slide-inner slide-2">
+                        <div class="slide-inner slide-2" style='width:100% ;height:100vh;'>
                             <div class="overlay-slider"></div>
                             <div class="container">
                                 <div class="row resp-row">
-                                    <div class="col-sm-5 col-xs-6 pull-left">
+                                    <div class="col-sm-5 col-xs-6 pull-left" style='padding:20% 0%'>
                                         <div class="slide-con">
                                             <h5>不想排隊? </h5>
                                             <h4>快線上訂位!</h4>
                                             <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-7 col-xs-6 pull-right">
-                                        <div class="sd-left-img">
+                                    <div class="col-sm-7 col-xs-6 pull-right" style='padding:20% 0%'>
+                                        <div class="sd-left-img" >
                                             <img src="" alt="" class="img-responsive">
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@
                         </div>
                     </li>
                     <li>
-                        <div class="slide-inner slide-3">
+                        <div class="slide-inner slide-3" style='width:100% ;height:100vh;'>
                             <div class="overlay-slider"></div>
                             <div class="container">
                                 <div class="row resp-row">
