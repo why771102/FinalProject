@@ -19,7 +19,7 @@ public interface SCOrdersDao {
 
 	public SCOrdersBean getOrder(Integer SCOrderID);
 
-	public List<SCOrdersBean> getMemberOrders(String memberID, Integer paymentStatus);
+	public List<SCOrdersBean> getMemberOrders(Integer memberID, Integer paymentStatus);
 	
 	boolean updateStatus(SCOrdersBean ob);
 }

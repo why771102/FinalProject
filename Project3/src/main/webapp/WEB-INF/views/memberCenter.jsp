@@ -5,6 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
  crossorigin="anonymous"></script>
@@ -148,7 +149,9 @@ input[type=text]:focus {
     </footer>
        
     <!-- footer -->
-
+<!-- 	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
  <script>
  
  cookieArray = document.cookie.split("; ");
@@ -220,14 +223,12 @@ input[type=text]:focus {
 	 $('#memberDetail').removeClass("selected");
 	 $('#memTicket').removeClass("selected");
 	 $('#hallOrder').removeClass("selected");
+	 alert("123");
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/showSCOrderDetails",
-//			data : {
-				
-				
-//			},
 			type : "GET",
 			success : function(page) {
+				alert("success!!");
 //				alert("新增成功!");
 //				window.location.href = "${pageContext.request.contextPath}/backstageindex";
 				$('#container').html(page);

@@ -336,8 +336,9 @@
                     </div>
 
                     	<div class="col-sm-6 pull-right">
-                        	<div class="tc-girl" id="booktickets" style="border: solid black 1px">
-                        		<select id="movie">
+                    	
+                    	<div class="tc-girl" id="booktickets" style="border: solid black 1px;z-index: 100;top: 173px;left: 189px;">
+                    	<select id="movie">
                         			<option value="default" selected="" disabled="">請選擇</option>
                         			<c:forEach var="movies" items="${movielist}">
                             			<option value="${movies.movieID}">${movies.title}</option>
@@ -351,11 +352,17 @@
                                <select id="movieStartTime">
                             		<option value="default" selected="" disabled="">請選擇</option>
                                </select>
-                        	</div>
-                        	<form id="purchaseTicket">
+                               <form id="purchaseTicket">
 								<div class="slider-btn slider-g-btn" id="pt" onclick="buyticket()">前往訂票</div>
                        
                         	</form>
+                    	</div>
+                        	<div class="tc-girl" id="booktickets" style="border: solid black 1px">
+                        	<img src="${pageContext.request.contextPath}/img/tc-girl1_1.png">
+                        	
+                        		
+                        	</div>
+                        	
                     	</div>
 
                 </div>
