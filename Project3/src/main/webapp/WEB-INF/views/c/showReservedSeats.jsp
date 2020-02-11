@@ -18,8 +18,12 @@
 <script src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
 <style>
 body {
-	font-family: 'Roboto', sans-serif;
-	background-color: #fafafa;
+/* 	font-family: 'Roboto', sans-serif; */
+	color: white;
+	background: url("${pageContext.request.contextPath}/img/seatings.jpg") no-repeat center;
+	background-size: cover;
+	-webkit-background-size: cover;
+    background-attachment: fixed;
 }
 
 a {
@@ -37,9 +41,11 @@ a {
 }
 
 .wrapper {
-	width: 100%;
+	background-color: rgba(128, 128, 128, 0.34);
+	width: 80%;
 	text-align: center;
 	margin-top: 150px;
+	margin-left: 10%;
 }
 
 .container {
@@ -163,10 +169,15 @@ span.seatCharts-legendDescription {
 
 </style>
 </head>
-
+<body style="color: white;">
+<header>
+       <jsp:include page="../a/header.jsp">
+       <jsp:param name="a" value="1" />
+</jsp:include>
+    </header>
 <div class="wrapper">
 	<div class="container">
-		<h1>Create Movie Theatre Seatings</h1>
+		<h1 style="text-align:center;">選擇座位</h1>
 <%-- 		<div> ${hallID} 廳</div> --%>
 <div id="showtimeId"></div>
 		<div id="numberOfTickets"></div>
@@ -176,20 +187,21 @@ span.seatCharts-legendDescription {
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
-		<div class="booking-details">
-			<h2>Booking Details</h2>
-			<h3>
-				Selected Seats (<span id="counter">0</span>):
-			</h3>
-			<ul id="selected-seats">
-			</ul>
-			Total: <b>$<span id="total">0</span></b>
+<!-- 		<div class="booking-details"> -->
+<!-- 			<h2>Booking Details</h2> -->
+<!-- 			<h3> -->
+<!-- 				Selected Seats (<span id="counter">0</span>): -->
+<!-- 			</h3> -->
+<!-- 			<ul id="selected-seats"> -->
+<!-- 			</ul> -->
+<!-- 			Total: <b>$<span id="total">0</span></b> -->
 
-		</div>
+<!-- 		</div> -->
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="confirmReservation()">確認&raquo;</button>
-	
+	<div style="text-align: -webkit-center; padding-bottom: 3px;">
+		<button class="checkout-button" id="checkout" onclick="confirmReservation()" style="color: black;">確認&raquo;</button>
+	</div>
 	<div id="legend"></div>
 	
 </div>
