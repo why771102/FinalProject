@@ -107,6 +107,20 @@ public class EmpDaoImpl implements EmpDao {
 		}
 		return eb;
 	}
+	
+	@Override
+	public EmpBean getEmpFromEmail(String email) {
+		Session session = factory.getCurrentSession();
+		String hql = "from EmpBean where email = :email";
+		System.out.println("Email : " + email);
+		EmpBean eb = null;
+		eb = (EmpBean)session.createQuery(hql).setParameter("email", email).getSingleResult();
+		
+		if(eb == null) {
+			return null;
+		}
+		return eb;
+	}
 
 	@Override
 	public List<RoleBean> getRoleList() {

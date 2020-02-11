@@ -30,4 +30,6 @@ public interface EmpService {
 
 	void changePwd(EmpBean eb);
 	
+	EmpBean getEmpFromEmail(String email);
+	
 }

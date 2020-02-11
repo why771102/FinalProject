@@ -98,6 +98,7 @@ html, /* 這邊做初始化設定 全部字體為正黑體  並且字體大小�
 	align-items: center;
 }
 
+    
 /* in article have padding */
 .wrapList {
 	/*Flex屬性區*/
@@ -564,7 +565,7 @@ div.submitButton {
 					<c:when test='${list == "1"}'>
 						<div class='buy-txt'>
 							<form:form method='POST' modelAttribute="updateComment"
-								action="${pageContext.request.contextPath}/update/comment/${run.runID}"
+								action="${pageContext.request.contextPath}/update/comment/${run.runID} ?id=${updateComment.commentID}"
 								class='form-horizontal'>
 								<h2 style='text-align: left; color: cornflowerblue;'>[修改留言]</h2>
 								<p></p>
@@ -612,10 +613,12 @@ div.submitButton {
 										</div>
 									</div>
 									<div class="form-group">
-										<div class='col-lg-offset-2 col-lg-10'
-											style="text-align: center">
-											<input id="btnAdd" type='submit' class='btn btn-primary'
-												value="修改" />
+										<div class='col-lg inner' style="text-align: center">
+											<input id="btnAdd" type='submit' style="font-size: 20px;background-color: #C21010;border-color: #C21010"
+												class='btn btn-primary' value="修改" /> <a
+												href="<spring:url value='/comments/delete/${run.runID} ?id=${updateComment.commentID}' />"
+												class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
+											</a>
 										</div>
 									</div>
 								</fieldset>
@@ -686,10 +689,9 @@ div.submitButton {
 										</div>
 									</div>
 									<div class="form-group">
-										<div class='col-lg-offset-2 col-lg-10'
-											style="text-align: center">
+										<div class='col-lg inner' style="text-align: center">
 											<input id="btnAddcomment" type='submit'
-												class='btn btn-primary' value="送出" />
+												class='btn btn-primary' style="font-size: 20px;background-color: #C21010;border-color: #C21010" value="送出" />
 										</div>
 									</div>
 								</fieldset>
@@ -707,8 +709,8 @@ div.submitButton {
 				<h2>
 					<b style='font-size: 16px;'> ${AVGExpectation}%期待
 						平均評分:${AVGGrade} <a href="<spring:url value='/' />"
-						class="btn btn-primary">發表時間 </a> <a
-						href="<spring:url value='/' />" class="btn btn-primary">評分 </a>
+						class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">發表時間 </a> <a
+						href="<spring:url value='/' />" class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">評分 </a>
 					</b>
 				</h2>
 				<p></p>
@@ -737,10 +739,10 @@ div.submitButton {
 									style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
 									<div>
 										評分等級:${comment.grade} <a
-											href="<spring:url value='/preference/addlike/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
-											class="btn btn-primary">${comment.likeNum}讚 </a> <a
-											href="<spring:url value='/preference/addbad/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
-											class="btn btn-primary">${comment.badNum}噓 </a>
+											href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
+											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a> <a
+											href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
+											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
 									</div>
 									<div>會員ID:${comment.memberBean.account}</div>
 									<div>已觀賞:${comment.watched}</div>
@@ -751,12 +753,12 @@ div.submitButton {
 									<div>${commentTime2}</div>
 									<div>
 										<a
-											href="<spring:url value='/preference/addblock/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
-											class="btn btn-primary"> <span
+											href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
+											> <span
 											class="glyphicon-info-sigh glyphicon"></span>屏蔽
 										</a> <a
-											href="<spring:url value='/comments/report/${comment.movieBean.movieID } ?id=${comment.commentID}' />"
-											class="btn btn-primary"> <span
+											href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
+											> <span
 											class="glyphicon-info-sigh glyphicon"></span>檢舉
 										</a>
 									</div>

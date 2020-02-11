@@ -125,26 +125,23 @@
 	<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script
-		src="${pageContext.request.contextPath}/lib/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="${pageContext.request.contextPath}/lib/jquery.dcjqaccordion.2.7.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js"
-		type="text/javascript"></script>
-	<!--common script for all pages-->
-	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery/jquery.min.js"></script> --%>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script> --%>
+<!-- 	<script class="include" type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery.dcjqaccordion.2.7.js"></script> --%>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script> --%>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js" --%>
+<!-- 		type="text/javascript"></script> -->
+<!-- 	<!--common script for all pages--> -->
+<%-- 	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script> --%>
 	<!--script for this page-->
 	<script>
 		var qId = location.pathname.split("/questionRep/")[1];
-		var status = $
-		{
-			status
-		};
+		var status = ${status};
 		console.log("status = " + status);
 
 		$(document).ready(function() {
@@ -167,9 +164,7 @@
 				$.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/closeQuestion",
-					data : {
-						questionId : qId
-					},
+					data : {questionId : qId},
 					success : function(data) {
 
 					},
@@ -184,9 +179,7 @@
 				$.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/openQuestion",
-					data : {
-						questionId : qId
-					},
+					data : {questionId : qId},
 					success : function(data) {
 					},
 					error : function(data) {
