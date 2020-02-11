@@ -125,7 +125,7 @@ public class PaypalController {
 		} catch (PayPalRESTException ex) {
 			request.setAttribute("errorMessage", ex.getMessage());
 			ex.printStackTrace();
-			request.getRequestDispatcher("WEB-INF/views/t/error.jsp").forward(request, response);
+			return "redirect:/movieIndex";
 		}
 	}
 	
