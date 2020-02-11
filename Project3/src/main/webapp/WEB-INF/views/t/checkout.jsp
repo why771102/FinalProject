@@ -16,21 +16,14 @@
 	<br/>
 	<form action="authorize_payment" method="post">
 
-<!-- 		<tr> -->
-<!-- 			<td>購買商品:</td> -->
-<!-- 			<td><input type="text" name="product" value="Next iPhone" /></td> -->
-<!-- 		</tr>				 -->
 
-			<input type="text" name="total" value="100" />
-	
-				<input type="submit" value="購買" />
-			<input type="hidden" name="subtotal" value="100" />
-<!-- 		<tr> -->
-<!-- 			<td><input type="hidden" name="shipping" value="0" /></td> -->
-<!-- 		</tr>		 -->
-<!-- 		<tr> -->
-<!-- 			<td><input type="hidden" name="tax" value="0" /></td> -->
-<!-- 		</tr> -->
+		
+		
+			Total Amount:
+			<input type="text" name="total" value="120" />		
+
+				<input type="submit" value="Checkout" />
+			
 	</form>
 </div>
 </body>

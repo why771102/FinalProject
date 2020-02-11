@@ -745,8 +745,7 @@ div.submitButton {
 											href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
 											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
 									</div>
-									<div>會員ID:${comment.memberBean.account}</div>
-									<div>已觀賞:${comment.watched}</div>
+									<div>會員帳號:${comment.memberBean.account}</div>
 									<div>短評內文:${comment.commentContent}</div>
 									<c:set var="commentTime1" value="${comment.commentTime}" />
 									<c:set var="commentTime2"
@@ -808,14 +807,6 @@ div.submitButton {
 
 
 <script>
-
-$("#btnAddcomment").click(function(){
-	console.log("看看他印出啥:" + $("#commentContent").val);
-	alert("欄位不可空白");
-	if($("#commentContent").val == null){
-		alert("欄位不可空白");
-	}
-});
 
 	var a = ${sthb_list};
 	var b = ${oneMovie};
@@ -933,7 +924,11 @@ $("#btnAddcomment").click(function(){
 								+ ".000");
 			});
 	
-	
+	$("#btnAddcomment").click(function(){		
+		if($("#commentContent").val == null || $("#watched").val == null){
+			alert("欄位不可空白");
+		}
+	});
 
 </script>
 </body>

@@ -47,7 +47,7 @@ table td {
 				<!-- 		</tr> -->
 				<tr>
 					<td>總額:</td>
-					<td>${transaction.amount.total}USD</td>
+					<td>${transaction.amount.total}NTD</td>
 				</tr>
 				<tr>
 					<td><br /></td>
