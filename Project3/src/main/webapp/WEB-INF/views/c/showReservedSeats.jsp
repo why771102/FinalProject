@@ -451,7 +451,7 @@ span.seatCharts-legendDescription {
 			type : "POST",
 			success : function() {
 				alert("訂"+bookSeats+"成功!");
-				window.location.href = "${pageContext.request.contextPath}/index-c";
+				window.location.href = "${pageContext.request.contextPath}/orderconfirm";
 			}
 		});
 		//USE WHEN YOU WANT TO ADD DIFFERENT TYPE OF SEATS
