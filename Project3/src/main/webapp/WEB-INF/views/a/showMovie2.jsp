@@ -118,11 +118,10 @@ html, /* 這邊做初始化設定 全部字體為正黑體  並且字體大小�
 .control-label head {
 	padding: 0;
 	font-size: 20px;
-
 }
 
 .col-lg inner {
-	text-align : left;
+	text-align: left;
 }
 
 /* warp 如何對齊 系列 */
@@ -571,13 +570,12 @@ div.submitButton {
 								<p></p>
 								<br>
 								<fieldset>
-									<div class="form-group">
+									<div class="form-group" style="text-align: left">
 										<div>
 											<label class="control-label"
 												style="padding: 0; font-size: 20px" for='watched'>
 												已觀賞: </label>
-											<div class="col-lg inner"
-												style=" font-size: 20px">
+											<div class="col-lg inner" style="font-size: 20px">
 												<form:radiobutton id="watched" path="watched" value="1" />
 												已觀看
 												<form:radiobutton id="watched" path="watched" value="0" />
@@ -585,28 +583,26 @@ div.submitButton {
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="control-label" for='grade'> 評分等級: </label>
+									<div class="form-group" style="text-align: left">
+										<label class="control-label"
+											style="padding: 0; font-size: 20px" for='grade'>
+											評分等級: </label>
 										<div class="col-lg inner">
-											<form:select id="grade" path="grade"
-												class='form:input-large' style=" width : 10">
-<%-- 												<form:option --%>
-<%-- 													style="font-size : 10px" value="-1" label="請挑選" /> --%>
-												<form:option
-													style="font-size : 10px" value="1" label="1" />
-												<form:option
-													style="font-size : 10px" value="2" label="2" />
-												<form:option
-													style="font-size : 10px" value="3" label="3" />
-												<form:option 
-													style="font-size : 10px" value="4" label="4" />
-												<form:option 
-													style="font-size : 10px" value="5" label="5" />
+											<form:select id="grade" path="grade" class='form:input-large'
+												style=" width : 130;font-size:20px">
+												<%-- 												<form:option --%>
+												<%-- 													style="font-size : 10px" value="-1" label="請挑選" /> --%>
+												<form:option style="font-size : 20px" value="1" label="1" />
+												<form:option style="font-size : 20px" value="2" label="2" />
+												<form:option style="font-size : 20px" value="3" label="3" />
+												<form:option style="font-size : 20px" value="4" label="4" />
+												<form:option style="font-size : 20px" value="5" label="5" />
 											</form:select>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class='control-label' for="commentContent">
+									<div class="form-group" style="text-align: left">
+										<label class='control-label'
+											style="padding: 0; font-size: 20px" for="commentContent">
 											短評內文:</label>
 										<div class='col-lg inner'>
 											<form:textarea
@@ -617,9 +613,9 @@ div.submitButton {
 									</div>
 									<div class="form-group">
 										<div class='col-lg-offset-2 col-lg-10'
-											style="text-align: left">
+											style="text-align: center">
 											<input id="btnAdd" type='submit' class='btn btn-primary'
-												value="送出" />
+												value="修改" />
 										</div>
 									</div>
 								</fieldset>
@@ -642,9 +638,10 @@ div.submitButton {
 								<fieldset>
 									<div class="form-group" style="text-align: left">
 										<div>
-											<label class="control-label" style="text-align: left"
-												for='watched'> 已觀賞 </label>
-											<div class="col-lg-10">
+											<label class="control-label"
+												style="padding: 0; font-size: 20px" for='watched'>
+												已觀賞 </label>
+											<div class="col-lg inner" style="font-size: 20px">
 												<form:radiobutton id="watched" path="watched" value="1" />
 												已觀看
 												<form:radiobutton id="watched" path="watched" value="0" />
@@ -654,12 +651,13 @@ div.submitButton {
 										<form:errors path="watched" cssClass="error" />
 									</div>
 
-									<div class="form-group">
-										<label class="control-label" for='grade'> 評分 </label>
-										<div class="col-lg-10">
-											<form:select id="grade" path="grade">
+									<div class="form-group" style="text-align: left">
+										<label class="control-label"
+											style="padding: 0; font-size: 20px" for='grade'> 評分 </label>
+										<div class="col-lg inner" style="font-size: 20px">
+											<form:select id="grade" style=" width : 130" path="grade">
 												<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
-												<form:option value="1" label="1" />
+												<form:option value="1" style="text-align:left" label="1" />
 												<form:option value="2" label="2" />
 												<form:option value="3" label="3" />
 												<form:option value="4" label="4" />
@@ -668,16 +666,19 @@ div.submitButton {
 										</div>
 										<form:errors path="grade" cssClass="error" />
 									</div>
-									<div class="form-group">
-										<label class='control-label' for="commentContent"> 短評
-										</label>
-										<div class='col-lg-10'>
-											<form:input id="commentContent" path="commentContent"
-												type='text' class='form:input-large' style="height" />
+									<div class="form-group" style="text-align: left">
+										<label class='control-label'
+											style="padding: 0; font-size: 20px" for="commentContent">
+											短評 </label>
+										<div class='col-lg inner' style="font-size: 20px">
+											<form:textarea id="commentContent" path="commentContent"
+												type='text' class='form:input-large'
+												style="font-size: 20px; resize: none ;width: 100%;height: 400"
+												rows="5" cols="40" />
 										</div>
 										<form:errors path="commentContent" cssClass="error" />
 									</div>
-									<div class="form-group">
+									<div class="form-group" style="text-align: left">
 										<label class='control-label' for="commentTime"> </label>
 										<div class='col-lg-10'>
 											<form:input id="commentTime" path="commentTime" type='hidden'
@@ -685,7 +686,8 @@ div.submitButton {
 										</div>
 									</div>
 									<div class="form-group">
-										<div class='col-lg-offset-2 col-lg-10'>
+										<div class='col-lg-offset-2 col-lg-10'
+											style="text-align: center">
 											<input id="btnAddcomment" type='submit'
 												class='btn btn-primary' value="送出" />
 										</div>
