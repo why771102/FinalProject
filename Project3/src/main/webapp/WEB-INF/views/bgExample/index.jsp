@@ -68,11 +68,11 @@
           <aside class="col-lg-3 mt">
             <h4><i class="fa fa-angle-right"></i> 員工清單</h4>
             <div id="external-events">
-              <div class="external-event label label-theme">My Event 1</div>
-<!--               <div class="external-event label label-success">My Event 2</div> -->
-<!--               <div class="external-event label label-info">My Event 3</div> -->
-<!--               <div class="external-event label label-warning">My Event 4</div> -->
-<!--               <div class="external-event label label-danger">My Event 5</div> -->
+              <div class="external-event label label-theme">七六</div>
+              <div class="external-event label label-success">Ally</div>
+              <div class="external-event label label-info">Mary</div>
+              <div class="external-event label label-warning">雅菁</div>
+              <div class="external-event label label-danger">Paul</div>
 <!--               <div class="external-event label label-default">My Event 6</div> -->
 <!--               <div class="external-event label label-theme">My Event 7</div> -->
 <!--               <div class="external-event label label-info">My Event 8</div> -->
@@ -105,15 +105,10 @@
   <!-- js placed at the end of the document so the pages load faster -->
 
   
- <script src="${pageContext.request.contextPath}/lib/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/lib/jquery-ui-1.9.2.custom.min.js"></script>
   <script src="${pageContext.request.contextPath}/lib/fullcalendar/fullcalendar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script>
   <script src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
-  <script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script>
   <!--script for this page-->
   <script src="${pageContext.request.contextPath}/lib/calendar-conf-events.js"></script>
  <script>

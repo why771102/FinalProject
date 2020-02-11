@@ -1,20 +1,5 @@
 var Script = function () {
 
-	$.ajax({
-			url : "http://localhost:8080/Project3/empsAjax",
-			type: "POST",
-			success: function(data) {
-				var txt = "";
-				for(var i = 0;i < data.length; i++) {
-					var name = data[i].empName;
-					txt += "<div class='external-event label label-theme'>";
-					txt += name;
-					txt += "</div>";
-				}
-				$("#external-events").html(txt);
-				console.log(data);
-			}
-		})
     /* initialize the external events
      -----------------------------------------------------------------*/
 

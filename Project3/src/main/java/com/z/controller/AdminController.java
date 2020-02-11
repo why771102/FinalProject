@@ -154,11 +154,14 @@ public class AdminController {
 	@RequestMapping("checkUid")
 	public @ResponseBody String checkUid(String email, String uid) {
 		System.out.println("resetPwd email = " + email);
+		System.out.println("resetPwd uid = " + uid);
 		EmpBean eb = service.getEmpFromEmail(email);
 		String ebUid = eb.getUid();
+		System.out.println("ebUid = " + ebUid);
 		if(uid.equals(ebUid)) {
-			
+			System.out.println("相符");
 		}else {
+			System.out.println("不相符");
 			return null;
 		}
 		
