@@ -14,12 +14,16 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/seat-charts.css">
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
+
 <style>
 body {
-	font-family: 'Roboto', sans-serif;
-	background-color: #fafafa;
+/* 	font-family: 'Roboto', sans-serif; */
+	color: white;
+	background: url("${pageContext.request.contextPath}/img/seatings.jpg") no-repeat center;
+	background-size: cover;
+	-webkit-background-size: cover;
+    background-attachment: fixed;
+    
 }
 
 a {
@@ -37,9 +41,11 @@ a {
 }
 
 .wrapper {
-	width: 100%;
+	background-color: rgba(128, 128, 128, 0.34);
+	width: 80%;
 	text-align: center;
 	margin-top: 150px;
+	margin-left: 10%;
 }
 
 .container {
@@ -163,36 +169,45 @@ span.seatCharts-legendDescription {
 
 </style>
 </head>
-
+<body style="color: white; margin-bottom: 27px;">
+<header>
+       <jsp:include page="../a/header.jsp">
+       <jsp:param name="a" value="1" />
+</jsp:include>
+    </header>
 <div class="wrapper">
 	<div class="container">
-		<h1>Create Movie Theatre Seatings</h1>
+		<h1 style="text-align:center;">選擇座位</h1>
 <%-- 		<div> ${hallID} 廳</div> --%>
-		<div id="numberOfTickets"></div>
+<div id="showtimeId"></div>
+<span id="counter" style="display:none;">0</span>
+		<div id="numberOfTickets" style="display:none;"></div>
 		<div id="hallID"></div>
 		<div id="movieTitle">電影:  ${showtime.run.movie.title}</div>
 		<div id="date">日期: ${showtime.playStartTime}</div>
 		<div id="seat-map">
 			<div class='front-indicator'>Screen</div>
 		</div>
-		<div class="booking-details">
-			<h2>Booking Details</h2>
-			<h3>
-				Selected Seats (<span id="counter">0</span>):
-			</h3>
-			<ul id="selected-seats">
-			</ul>
-			Total: <b>$<span id="total">0</span></b>
+<!-- 		<div class="booking-details"> -->
+<!-- 			<h2>Booking Details</h2> -->
+<!-- 			<h3> -->
+<!-- 				Selected Seats (): -->
+<!-- 			</h3> -->
+<!-- 			<ul id="selected-seats"> -->
+<!-- 			</ul> -->
+<!-- 			Total: <b>$<span id="total">0</span></b> -->
 
-		</div>
+<!-- 		</div> -->
 
 	</div>
-	<button class="checkout-button" id="checkout" onclick="confirmReservation()">確認&raquo;</button>
-	
+	<div style="text-align: -webkit-center; padding-bottom: 3px;">
+		<button class="checkout-button" id="checkout" onclick="confirmReservation()" style="color: black;">確認&raquo;</button>
+	</div>
 	<div id="legend"></div>
 	
 </div>
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.seat-charts.js"></script>
 <script>
 
 	//Has to do with showing seats
@@ -206,16 +221,73 @@ span.seatCharts-legendDescription {
 	}
 
 	
+	cookieArray = document.cookie.split("; ");
+	console.log(cookieArray);
+
+	
+	
 	
 	//showing the seating chart through calling controller using ajax
 	$(window).load(function () {
 		$('.seatCharts-row').remove();
 		$('.seatCharts-legendItem').remove();
 		$('#seat-map,#seat-map *').unbind().removeData();
+		
+		for (i = 0; i < cookieArray.length; i++) {
+			memberIDArrays = cookieArray[i].split("=");
+			console.log(memberIDArrays);
+			
+			window.discount="0";
+			window.discount2="0";
+			window.bankticket="0";
+			window.normal="0";
+			if (memberIDArrays[0] == "memberID" && memberIDArrays[1] == "" || cookieArray.length == 1 || cookieArray.length == 0) {
+
+				
+	
+// 				$("#name").text("訪客");
+// 				$("#memberCenter").hide();
+// 				$("#logout").hide();
+			}else{
+				for (i = 0; i < cookieArray.length; i++) {
+				nameArrays = cookieArray[i].split("=");
+				console.log(nameArrays);
+				if (nameArrays[0] == "showtimeId") {
+				$("#showtimeId").text(nameArrays[1]);
+				window.showtimeId = nameArrays[1];
+				}
+				if (nameArrays[0] == "discount") {
+				$("#discount").text(nameArrays[1]);
+				window.discount = nameArrays[1];
+				}
+				if (nameArrays[0] == "discount2") {
+				$("#discount2").text(nameArrays[1]);
+				window.discount2 = nameArrays[1];
+				}
+				if (nameArrays[0] == "bankticket") {
+				$("#bankticket").text(nameArrays[1]);
+				window.bankticket = nameArrays[1];
+				}
+				if (nameArrays[0] == "normal") {
+				$("#normal").text(nameArrays[1]);
+				window.normal = nameArrays[1];
+				}
+			}
+// 				$("#register").hide();
+// 				$("#login").hide();
+		}
+	}
+		
+		console.log(window.showtimeId);
+		console.log(typeof(window.discount));
+		console.log(typeof(window.discount2));
+		console.log(typeof(window.normal));
+
+// 		var showtimeID = JSON.stringify(window.showtimeId);
 // 		var hallID = document.getElementById("hallID").value;
 		$.ajax({
 			url : "${pageContext.request.contextPath}/reservedSeats/showSeats",
-// 			data : {hallID: hallID},
+			data : {showtimeId: window.showtimeId,discount: window.discount,discount2: window.discount2,bankticket: window.bankticket,normal: window.normal},
 			type : "POST",
 			success : function(data) {
 				var seat = JSON.parse(data[1]);
@@ -283,7 +355,7 @@ span.seatCharts-legendDescription {
 										]
 							},
 							click : function() {
-								console.log(window.noOfTickets);
+// 								console.log("window.noOfTickets: " + window.noOfTickets);
 								if (this.status() == 'available' && parseInt(document.getElementById("counter").innerText) < window.noOfTickets) {
 									//let's create a new <li> which we'll add to the cart items
 									$(

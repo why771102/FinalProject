@@ -32,6 +32,7 @@
 <style>
 .orders{
 text-align: center;
+padding-bottom: 15px;
 }
 .movie{
 width: 45%;
@@ -97,6 +98,36 @@ font-weight:bold;
 #totalPrice1{
 font-weight:bold;
 }
+.nextadjust{
+text-align: center;
+}
+.next {
+	font-size: 20px;
+	width: 16%;
+	display: inline-block;
+/* 	position: relative; */
+	bottom: 50px;
+/* 	float: right; */
+	right: 50px;
+}
+
+.next input {
+	background: #7fa8cc;
+	border: 0;
+	padding: 25px 60px;
+	border-radius: 20px;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 7px;
+    font-size: larger;
+}
+.width80{
+width: 80%;
+}
+.width20{
+width: 19%;
+}
+
 </style>
 <body>
 	<header>
@@ -239,14 +270,22 @@ font-weight:bold;
 			<div class="count"><p id="totalPrice"></p></div>
 		</div>
 		
+		<div class="width80">
+			<div class="nextadjust">
+			<div class="next">
+				<input type="button" value="信用卡付款"
+				onclick="location.href='orderconfirmOK'"> 
+ 			</div>
+ 		
+ 			</div>
+		</div>
+		<div class="width20">
+		</div>
 	</div>
+	
 	</div>
 
-<!-- 	<div class="next"> -->
-<!-- 			<input type="button" value="信用卡付款" -->
-<!-- 	onclick="location.href='orderconfirmOK'">  -->
-<!--  		</div> -->
-	<a href="orderconfirmOK">信用卡付款</a>
+	
 
 </body>
 	<!-- footer -->
