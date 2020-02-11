@@ -85,7 +85,16 @@
 <!--         <h3><i class="fa fa-angle-right"></i> 班表</h3> -->
         <!-- page start-->
         <div class="row mt">
-          <aside class="col-lg-3 mt">
+        
+        
+        <aside class="col-lg-7 mt">
+            <section class="panel">
+              <div class="panel-body">
+                <div id="calendar" class="has-toolbar"></div>
+              </div>
+            </section>
+          </aside>
+          <aside class="col-lg-4 mt">
             <h4><i class="fa fa-angle-right"></i> 員工清單</h4>
             <div id="external-events">
               <div class="external-event label label-theme">七六</div>
@@ -99,13 +108,7 @@
 <!--               <div class="external-event label label-success">My Event 9</div> -->
             </div>
           </aside>
-          <aside class="col-lg-9 mt">
-            <section class="panel">
-              <div class="panel-body">
-                <div id="calendar" class="has-toolbar"></div>
-              </div>
-            </section>
-          </aside>
+          
         </div>
         <!-- page end-->
       </section>
