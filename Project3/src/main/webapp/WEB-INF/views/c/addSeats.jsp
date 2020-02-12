@@ -374,10 +374,10 @@ to {
 										
 										</div>
 										<div>
-											column: <input type="text" id="col"><br>
+											欄: <input type="text" id="col"><br>
 										</div>
 										<div>
-											row: <input type="text" id="rows"
+											列: <input type="text" id="rows"
 												style="margin-left: 21px; margin-top: 7px;"><br>
 										</div>
 										<button class="seatNumber btn btn-round btn-primary" id="seatNoConfirm"
