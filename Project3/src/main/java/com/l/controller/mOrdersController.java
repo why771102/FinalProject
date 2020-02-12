@@ -150,9 +150,12 @@ public class mOrdersController {
 					 mb.setShowTimeID(Integer.parseInt(showtimeId));
 					 }
 				if(cookie.getName().equals("memberID")) {
-					 String memberID = cookie.getValue();
-					 mb.setMemberID(Integer.parseInt(memberID));
+				
+					String memberID = cookie.getValue();
+					System.out.println(memberID);
+					mb.setMemberID(Integer.parseInt(memberID));
 				}else{
+					
 					mb.setMemberID(1);
 				}
 			}
