@@ -76,7 +76,46 @@
                   <h4 id="location"></h4>
                 </div>
               </div>
+              <div class="col-md-8 mb">
+                <div class="">
+                  <table id="example" class="display table table-striped table-advance table-hover"
+						style="width: 100%; text-align: center;">
+						<thead>
+							<tr>
+								<th>內部公告</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="text-align:left">公告一</td>	
+							</tr>
+							<tr>
+								<td style="text-align:left">公告一</td>	
+							</tr>
+							<tr>
+								<td style="text-align:left">公告一</td>	
+							</tr>
+							<tr>
+								<td style="text-align:left">公告一</td>	
+							</tr>
+							<tr>
+								<td style="text-align:left">公告一</td>	
+							</tr>
+							<tr>
+								<td style="text-align:left">公告一</td>	
+							</tr>
+						</tbody>
+						<tfoot>
+							
+						</tfoot>
+					</table>
+                </div>
+              </div>
       </div>
+      
+      
+      
       <div class="border-head">
               <h3>班表</h3>
             </div>
@@ -95,7 +134,7 @@
             </section>
           </aside>
           <aside class="col-lg-4 mt">
-            <h4><i class="fa fa-angle-right"></i> 員工清單</h4>
+            <h4><i></i> 員工清單</h4>
             <div id="external-events">
               <div class="external-event label label-theme">七六</div>
               <div class="external-event label label-success">Ally</div>
@@ -140,14 +179,9 @@
  			url : "https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-A0010-001?Authorization=CWB-A1021C75-3099-40F7-9580-7601A4116BA1&downloadType=WEB&format=JSON",
  			type : "GET",
  			success: function(data) {
- 				console.log(data);
- 				console.log(data.cwbdata.resources.resource.data.agrWeatherForecasts.weatherForecasts.location);
  				var north = data.cwbdata.resources.resource.data.agrWeatherForecasts.weatherForecasts.location[0];
- 				console.log(north);
  				var place = north.locationName;
- 				console.log(place);
  				var weather = north.weatherElements.Wx.daily[0].weather;
- 				console.log(weather);
  				var maxT = north.weatherElements.MaxT.daily[0].temperature;
  				var mixT = north.weatherElements.MinT.daily[0].temperature;
  				var temper = mixT + "ºC - " + maxT + "ºC";
@@ -158,7 +192,6 @@
  			}
  		})
  	})
- 
  
  </script>
 </body>

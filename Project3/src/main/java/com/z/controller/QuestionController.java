@@ -159,7 +159,6 @@ public class QuestionController {
 	@RequestMapping(value = "/openQuestion")
 	public @ResponseBody String openQuestion(Integer questionId) {
 		System.out.println("questionId = " + questionId);
-		
 		service.openQuestion(questionId);
 		return "sucess";
 
