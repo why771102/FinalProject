@@ -315,10 +315,10 @@ public class mOrdersController {
 					 service.addMOrderDetail(mdb);
 					 session.removeAttribute("smallPopcorn");
 				}
-					cookie.setValue(null);
-		            cookie.setMaxAge(0);
-		            cookie.setPath("/");
-		            response.addCookie(cookie);
+//					cookie.setValue(null);
+//		            cookie.setMaxAge(0);
+//		            cookie.setPath("/");
+//		            response.addCookie(cookie);
 				
 			}
 			
