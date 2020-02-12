@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>76影城</title>
+<title>76敶勗?</title>
 
     
 <style>
@@ -41,12 +41,10 @@ tr.shown td.details-control {
 		<thead style="background: #C21010; color: white;">
 			<tr>
 				<th style="border-bottom: none;"></th>
-				<th style="text-align: center;border-bottom: none">OrderID</th>
-				<th style="text-align: center;border-bottom: none">Order Date</th>
-				<th style="text-align: center;border-bottom: none">Total</th>
-				<th style="text-align: center;border-bottom: none">Payment Status</th>
-				<th style="text-align: center;border-bottom: none; display:none;">Product Name</th>
-				<th style="text-align: center;border-bottom: none; display:none;">Quantity</th>
+				<th style="text-align: center;border-bottom: none">訂單ID</th>
+				<th style="text-align: center;border-bottom: none">訂單日期</th>
+				<th style="text-align: center;border-bottom: none">總價</th>
+				<th style="text-align: center;border-bottom: none">付款狀態</th>
 			</tr>
 		</thead>
 		<tbody id="insertHere">
@@ -57,71 +55,6 @@ tr.shown td.details-control {
 		</tfoot>
 	</table></font>
 
-<!-- 	<div class="login-inner"> -->
-<!-- 		<h2>訂單內容</h2> -->
-<!-- 		<div class="login-form"> -->
-<!-- 			<div class="shop_details wrapList VH_padding3"> -->
-<!-- 				<div class="end_gray_border wrapRowStart"> -->
-<!-- 					<p class="text">Order Date</p> -->
-<!-- 					<p class="text">Order No:</p> -->
-<!-- 				</div> -->
-
-<!-- 				<div class=" wrapList end_gray_border  "> -->
-<!-- 					<div class="shop_products wrapRowBtw"> -->
-<!-- 						<div class="wrapRowStart width60"> -->
-<!-- 							<div id="prodimage"> -->
-<!-- 								<img src="img/order_v2.png" alt=""> -->
-<!-- 							</div> -->
-<!-- 							<div id="prod_des">polka dot cat crop t-shirt: navy</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="wrapRowStart shopping_detail"> -->
-<!-- 							<div class=" VH_RL_padding4 " id="prod_quantity ">X 1</div> -->
-<!-- 							<div id="prod_price">NT$369</div> -->
-<!-- 						</div> -->
-
-
-<!-- 					</div> -->
-<!-- 					<div class="shop_products wrapRowBtw"> -->
-<!-- 						<div class="wrapRowStart width60"> -->
-<!-- 							<div id="prodimage"> -->
-<!-- 								<img src="img/order_v2.png" alt=""> -->
-<!-- 							</div> -->
-<!-- 							<div id="prod_des">polka dot cat crop t-shirt: natural</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="wrapRowStart shopping_detail"> -->
-<!-- 							<div class=" VH_RL_padding4 " id="prod_quantity ">X 1</div> -->
-<!-- 							<div id="prod_price">NT$369</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="shop_products wrapRowBtw"> -->
-<!-- 						<div class="wrapRowStart width60"> -->
-<!-- 							<div id="prodimage"> -->
-<!-- 								<img src="img/order_v2.png" alt=""> -->
-<!-- 							</div> -->
-<!-- 							<div id="prod_des">polka dot cat crop t-shirt: pink</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="wrapRowStart shopping_detail"> -->
-<!-- 							<div class=" VH_RL_padding4 " id="prod_quantity ">X 1</div> -->
-<!-- 							<div id="prod_price">NT$369</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="shop_products wrapRowBtw"> -->
-<!-- 						<div class="wrapRowStart width60"> -->
-<!-- 							<div id="prodimage"> -->
-<!-- 								<img src="img/order_v2.png" alt=""> -->
-<!-- 							</div> -->
-<!-- 							<div id="prod_des">polka dot cat crop t-shirt: white</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="wrapRowStart shopping_detail"> -->
-<!-- 							<div class=" VH_RL_padding4 " id="prod_quantity ">X 1</div> -->
-<!-- 							<div id="prod_price">NT$369</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
-<!-- 		</div> -->
-<!-- 	</div> -->
 	
 	
 <script type="text/javascript" charset="utf8"
@@ -131,64 +64,60 @@ tr.shown td.details-control {
 	var orders = ${orders};
 	/* Formatting function for row details - modify as you need */
 	function format ( d ) {
+		console.log(d);
+		console.log(typeof(d[1]));
 	    // `d` is the original data object for the row
-	    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-	        '<tr>'+
-	            '<td>productID:</td>'+
-	            '<td>'+d.name+'</td>'+
-	        '</tr>'+
-	        '<tr>'+
-	            '<td>Quantity:</td>'+
-	            '<td>'+d.extn+'</td>'+
-	        '</tr>'+
-	    '</table>';
-	}
+	    window.childtable = "<table cellpadding='5' cellspacing='0' border='0' style='padding-left:50px;'>";
+	    for(let order = 0; order < orders.length; order++){
+
+	    	if(d[1] == orders[order][0].SCOrdersBean.sCOrderID){
+	    		console.log("true");
+	    		for(let products = 0; products < orders[order].length; products++){
+	    			console.log(orders[order][products].productsBean.productName);
+	    			
+	    			window.childtable +='<tr>'+
+	            		'<td>商品名稱:</td>'+
+	            		'<td>'+orders[order][products].productsBean.productName+'</td>'+
+	        		'</tr>'+
+	        		'<tr>'+
+	           	 	'<td>購買數量:</td>'+
+	            	'<td>'+orders[order][products].quantity+'</td>'+
+	        	'</tr>'+
+	        	'<tr>'+
+            	'<td>單價:</td>'+
+            	'<td>NT$'+orders[order][products].productsBean.unitPrice+'</td>'+
+        		'</tr>'
+
+	    		}
+	    	}
+	    }
+	    window.childtable+='</table>';
+	    console.log(window.childtable);
+	    return window.childtable;
+
+	    	}
+	    
+	
 
 	$(document).ready(function() {
-// 	    	$.ajax({
-// 				url : "${pageContext.request.contextPath}/showSCOrderDetails",
-// 				type : "POST",
-// 				success : function(data) {
-// 					console.log(data);
-// 					console.log(data[SCOrdersBean][sCOrderID]);
 					var table = $('#example').DataTable({
-// 						"columns": [
-// 							{
-// 			                "className":      'details-control',
-// 			                "orderable":      false,
-// 			                "data":           null,
-// 			                "defaultContent": ''
-// 			            	},
-// 			            	{ "data": data[0][0].SCOrdersBean.sCOrderID },
-// 			            	{ "data": data[0][0].SCOrdersBean.ordDate },
-// 			            	{ "data": data[0][0].SCOrdersBean.ordDate },
-// 			            	{ "data": data[0][0].SCOrdersBean.payStatusBean.payStatus }
-// 			        	],
-// 			        	"order": [[1, 'asc']]
 						"columnDefs" : [ {
 							"searchable" : false,
 							"orderable" : false,
+							"className":      'details-control',
 							"targets" : 0
 						} ],
 						"order" : [ [ 1, 'asc' ] ]
 					});
-// 		}
-// 	    	});
+
 	    	});
 	    var dataTable = $("#example").DataTable();
-// 		for(let orders = 0; orders < orders.length; orders++){
-// 			for(let or)
-// 			console.log(value);
-// 			dataTable.row.add(["",orders.orderno,orders.SCOrdersBean.ordDate,orders.SCOrdersBean.total,orders.SCOrdersBean.payStatusBean.payStatus]).draw();
-// 		}
+
 	    $.each(orders, function(index, value) {
-	    	var img = document.createElement("img");
-	    	img.src = "${pageContext.request.contextPath}/details_open.png";
 			console.log(value);
 			console.log(value.length);
 			for(let x = 0; x < value.length; x++){
 				console.log("productname: " + value[x].productsBean.productName + " quantity: " + value[x].quantity);
-// 				console.log();
 			}
 			console.log(value[0].SCOrdersBean.sCOrderID);
 			console.log(value[0].SCOrdersBean.ordDate);
@@ -201,7 +130,7 @@ tr.shown td.details-control {
 	    // Add event listener for opening and closing details
 	    $('#example tbody').on('click', 'td.details-control', function(){
 	        var tr = $(this).closest('tr');
-	        var row = table.row( tr );
+	        var row = dataTable.row( tr );
 
 	        if(row.child.isShown()){
 	            // This row is already open - close it
