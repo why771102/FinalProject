@@ -374,7 +374,7 @@ div.submitButton {
 		<div class='container'>
 
 			<div class='buy-txt'>
-				${sthb_list1.get(1).run.movie.trailer}
+				${sthb_list1.get(1).run.movie.trailer} 
 				<!--    <iframe width='854' height='480' src='https://www.youtube.com/embed/FEf412bSPLs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>
       -->
 			</div>
@@ -557,223 +557,223 @@ div.submitButton {
 			</div>
 		</div>
 	</section>
-	<!-- banner -->
-	<section class='contact-sec '>
-		<div class='container'>
-			<c:forEach var="list" items="${haveComment}">
-				<c:choose>
-					<c:when test='${list == "1"}'>
-						<div class='buy-txt'>
-							<form:form method='POST' modelAttribute="updateComment"
-								action="${pageContext.request.contextPath}/update/comment/${run.runID} ?id=${updateComment.commentID}"
-								class='form-horizontal'>
-								<h2 style='text-align: left; color: cornflowerblue;'>[修改留言]</h2>
-								<p></p>
-								<br>
-								<fieldset>
-									<div class="form-group" style="text-align: left">
-										<div>
-											<label class="control-label"
-												style="padding: 0; font-size: 20px" for='watched'>
-												已觀賞: </label>
-											<div class="col-lg inner" style="font-size: 20px">
-												<form:radiobutton id="watched" path="watched" value="1" />
-												已觀看
-												<form:radiobutton id="watched" path="watched" value="0" />
-												未觀看
-											</div>
-										</div>
-									</div>
-									<div class="form-group" style="text-align: left">
-										<label class="control-label"
-											style="padding: 0; font-size: 20px" for='grade'>
-											評分等級: </label>
-										<div class="col-lg inner">
-											<form:select id="grade" path="grade" class='form:input-large'
-												style=" width : 130;font-size:20px">
-												<%-- 												<form:option --%>
-												<%-- 													style="font-size : 10px" value="-1" label="請挑選" /> --%>
-												<form:option style="font-size : 20px" value="1" label="1" />
-												<form:option style="font-size : 20px" value="2" label="2" />
-												<form:option style="font-size : 20px" value="3" label="3" />
-												<form:option style="font-size : 20px" value="4" label="4" />
-												<form:option style="font-size : 20px" value="5" label="5" />
-											</form:select>
-										</div>
-									</div>
-									<div class="form-group" style="text-align: left">
-										<label class='control-label'
-											style="padding: 0; font-size: 20px" for="commentContent">
-											短評內文:</label>
-										<div class='col-lg inner'>
-											<form:textarea
-												style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
-												rows="5" cols="40" id="commentContent" path="commentContent"
-												type='text' class='form:input-comment' />
-										</div>
-									</div>
-									<div class="form-group">
-										<div class='col-lg inner' style="text-align: center">
-											<input id="btnAdd" type='submit' style="font-size: 20px;background-color: #C21010;border-color: #C21010"
-												class='btn btn-primary' value="修改" /> <a
-												href="<spring:url value='/comments/delete/${run.runID} ?id=${updateComment.commentID}' />"
-												id = "deleteComment" class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
-											</a>
-										</div>
-									</div>
-								</fieldset>
-							</form:form>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class='buy-txt'>
+<!-- 	banner -->
+    <section class='contact-sec '>
+        <div class='container'>
+            <c:forEach var="list" items="${haveComment}">
+                <c:choose>
+                    <c:when test='${list == "1"}'>
+                        <div class='buy-txt'>
+                            <form:form method='POST' modelAttribute="updateComment"
+                                action="${pageContext.request.contextPath}/update/comment/${run.runID} ?id=${updateComment.commentID}"
+                                class='form-horizontal'>
+                                <h2 style='text-align: left; color: cornflowerblue;'>[修改留言]</h2>
+                                <p></p>
+                                <br>
+                                <fieldset>
+                                    <div class="form-group" style="text-align: left">
+                                        <div>
+                                            <label class="control-label"
+                                                style="padding: 0; font-size: 20px" for='watched'>
+                                                已觀賞: </label>
+                                            <div class="col-lg inner" style="font-size: 20px">
+                                                <form:radiobutton id="watched" path="watched" value="1" />
+                                                已觀看
+                                                <form:radiobutton id="watched" path="watched" value="0" />
+                                                未觀看
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="text-align: left">
+                                        <label class="control-label"
+                                            style="padding: 0; font-size: 20px" for='grade'>
+                                            評分等級: </label>
+                                        <div class="col-lg inner">
+                                            <form:select id="grade" path="grade" class='form:input-large'
+                                                style=" width : 130;font-size:20px">
+                                                <%--                                                 <form:option --%>
+                                                <%--                                                     style="font-size : 10px" value="-1" label="請挑選" /> --%>
+                                                <form:option style="font-size : 20px" value="1" label="1" />
+                                                <form:option style="font-size : 20px" value="2" label="2" />
+                                                <form:option style="font-size : 20px" value="3" label="3" />
+                                                <form:option style="font-size : 20px" value="4" label="4" />
+                                                <form:option style="font-size : 20px" value="5" label="5" />
+                                            </form:select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="text-align: left">
+                                        <label class='control-label'
+                                            style="padding: 0; font-size: 20px" for="commentContent">
+                                            短評內文:</label>
+                                        <div class='col-lg inner'>
+                                            <form:textarea
+                                                style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
+                                                rows="5" cols="40" id="commentContent" path="commentContent"
+                                                type='text' class='form:input-comment' />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class='col-lg inner' style="text-align: center">
+                                            <input id="btnAdd" type='submit' style="font-size: 20px;background-color: #C21010;border-color: #C21010"
+                                                class='btn btn-primary' value="修改" /> <a
+                                                href="<spring:url value='/comments/delete/${run.runID} ?id=${updateComment.commentID}' />"
+                                                id = "deleteComment" class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
+                                            </a>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form:form>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class='buy-txt'>
 
-							<%-- 				<jsp:include page="../t/addcomment.jsp"> --%>
-							<%-- 					<jsp:param name="c" value="1" /> --%>
-							<%-- 					<jsp:param name="d" value="1" /> --%>
-							<%-- 				</jsp:include> --%>
-							<form:form method='POST' modelAttribute="commentBean"
-								action="${pageContext.request.contextPath}/comments/add/${run.runID}"
-								class='form-horizontal'>
-								<h2 style='text-align: left; color: cornflowerblue;'>[新增留言]</h2>
-								<p></p>
-								<br>
-								<fieldset>
-									<div class="form-group" style="text-align: left">
-										<div>
-											<label class="control-label"
-												style="padding: 0; font-size: 20px" for='watched'>
-												已觀賞 </label>
-											<div class="col-lg inner" style="font-size: 20px">
-												<form:radiobutton id="watched" path="watched" value="1" />
-												已觀看
-												<form:radiobutton id="watched" path="watched" value="0" />
-												未觀看
-											</div>
-										</div>
-										<br><span class="notice" id="test123"></span>
-<%-- 										<form:errors path="watched" cssClass="error" /> --%>
-									</div>
+                            <%--                 <jsp:include page="../t/addcomment.jsp"> --%>
+                            <%--                     <jsp:param name="c" value="1" /> --%>
+                            <%--                     <jsp:param name="d" value="1" /> --%>
+                            <%--                 </jsp:include> --%>
+                            <form:form method='POST' modelAttribute="commentBean"
+                                action="${pageContext.request.contextPath}/comments/add/${run.runID}"
+                                class='form-horizontal'>
+                                <h2 style='text-align: left; color: cornflowerblue;'>[新增留言]</h2>
+                                <p></p>
+                                <br>
+                                <fieldset>
+                                    <div class="form-group" style="text-align: left">
+                                        <div>
+                                            <label class="control-label"
+                                                style="padding: 0; font-size: 20px" for='watched'>
+                                                已觀賞 </label>
+                                            <div class="col-lg inner" style="font-size: 20px">
+                                                <form:radiobutton id="watched" path="watched" value="1" />
+                                                已觀看
+                                                <form:radiobutton id="watched" path="watched" value="0" />
+                                                未觀看
+                                            </div>
+                                        </div>
+                                        <br><span class="notice" id="test123"></span>
+<%--                                         <form:errors path="watched" cssClass="error" /> --%>
+                                    </div>
 
-									<div class="form-group" style="text-align: left">
-										<label class="control-label"
-											style="padding: 0; font-size: 20px" for='grade'> 評分 </label>
-										<div class="col-lg inner" style="font-size: 20px">
-											<form:select id="grade" style=" width : 130" path="grade">
-												<%-- 							<form:option value = "-1" label = "請挑選"/> --%>
-												<form:option value="1" style="text-align:left" label="1" />
-												<form:option value="2" label="2" />
-												<form:option value="3" label="3" />
-												<form:option value="4" label="4" />
-												<form:option value="5" label="5" />
-											</form:select>
-										</div>
-										<form:errors path="grade" cssClass="error" />
-									</div>
-									<div class="form-group" style="text-align: left">
-										<label class='control-label'
-											style="padding: 0; font-size: 20px" for="commentContent">
-											短評 </label>
-										<div class='col-lg inner' style="font-size: 20px">
-											<form:textarea id="commentContent" path="commentContent"
-												type='text' class='form:input-large'
-												style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
-												rows="5" cols="40" />
-										</div>
-										<form:errors path="commentContent" cssClass="error" />
-									</div>
-									<div class="form-group" style="text-align: left">
-										<label class='control-label' for="commentTime"> </label>
-										<div class='col-lg-10'>
-											<form:input id="commentTime" path="commentTime" type='hidden'
-												class='form:input-large' />
-										</div>
-									</div>
-									<div class="form-group">
-										<div class='col-lg inner' style="text-align: center">
-											<input id="btnAddcomment" type='submit'
-												class='btn btn-primary' style="font-size: 20px;background-color: #C21010;border-color: #C21010" value="送出" />
-										</div>
-									</div>
-								</fieldset>
-							</form:form>
-						</div>
+                                    <div class="form-group" style="text-align: left">
+                                        <label class="control-label"
+                                            style="padding: 0; font-size: 20px" for='grade'> 評分 </label>
+                                        <div class="col-lg inner" style="font-size: 20px">
+                                            <form:select id="grade" style=" width : 130" path="grade">
+                                                <%--                             <form:option value = "-1" label = "請挑選"/> --%>
+                                                <form:option value="1" style="text-align:left" label="1" />
+                                                <form:option value="2" label="2" />
+                                                <form:option value="3" label="3" />
+                                                <form:option value="4" label="4" />
+                                                <form:option value="5" label="5" />
+                                            </form:select>
+                                        </div>
+                                        <form:errors path="grade" cssClass="error" />
+                                    </div>
+                                    <div class="form-group" style="text-align: left">
+                                        <label class='control-label'
+                                            style="padding: 0; font-size: 20px" for="commentContent">
+                                            短評 </label>
+                                        <div class='col-lg inner' style="font-size: 20px">
+                                            <form:textarea id="commentContent" path="commentContent"
+                                                type='text' class='form:input-large'
+                                                style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
+                                                rows="5" cols="40" />
+                                        </div>
+                                        <form:errors path="commentContent" cssClass="error" />
+                                    </div>
+                                    <div class="form-group" style="text-align: left">
+                                        <label class='control-label' for="commentTime"> </label>
+                                        <div class='col-lg-10'>
+                                            <form:input id="commentTime" path="commentTime" type='hidden'
+                                                class='form:input-large' />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class='col-lg inner' style="text-align: center">
+                                            <input id="btnAddcomment" type='submit'
+                                                class='btn btn-primary' style="font-size: 20px;background-color: #C21010;border-color: #C21010" value="送出" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form:form>
+                        </div>
 
-					</c:otherwise>
+                    </c:otherwise>
 
-				</c:choose>
-			</c:forEach>
+                </c:choose>
+            </c:forEach>
 
 
 
-			<div class='buy-txt'>
-				<h2>
-					<b style='font-size: 20px;'> 排序 : <a href="<spring:url value='/show/this/movie/bytime/${run.runID }' />"
-						class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">依時間 </a> <a
-						href="<spring:url value='/show/this/movie/bygrade/${run.runID }' />" class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">依評分 </a>
-						期待度: ${AVGExpectation} 平均評分:${AVGGrade} 
-					</b>
-				</h2>
-				<p></p>
-				<br>
+            <div class='buy-txt'>
+                <h2>
+                    <b style='font-size: 20px;'> 排序 : <a href="<spring:url value='/show/this/movie/bytime/${run.runID }' />"
+                        class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">依時間 </a> <a
+                        href="<spring:url value='/show/this/movie/bygrade/${run.runID }' />" class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">依評分 </a>
+                        期待度: ${AVGExpectation} 平均評分:${AVGGrade} 
+                    </b>
+                </h2>
+                <p></p>
+                <br>
 
-			</div>
+            </div>
 
-			<div class='buy-txt'>
+            <div class='buy-txt'>
 
-				<div class='col-sm-12 col-xs-12'>
-					<!-- 					<div class="avggrade"> -->
+                <div class='col-sm-12 col-xs-12'>
+                    <!--                     <div class="avggrade"> -->
 
-					<!-- 						<p> -->
-					<%-- 							<b style='font-size: 16px;'> ${AVGExpectation}%期待 --%>
-					<%-- 								平均評分:${AVGGrade} <a href="<spring:url value='/' />" --%>
-					<!-- 								class="btn btn-primary">發表時間 </a> <a -->
-					<%-- 								href="<spring:url value='/' />" class="btn btn-primary">評分 </a> --%>
-					<!-- 							</b> -->
-					<!-- 						</p> -->
+                    <!--                         <p> -->
+                    <%--                             <b style='font-size: 16px;'> ${AVGExpectation}%期待 --%>
+                    <%--                                 平均評分:${AVGGrade} <a href="<spring:url value='/' />" --%>
+                    <!--                                 class="btn btn-primary">發表時間 </a> <a -->
+                    <%--                                 href="<spring:url value='/' />" class="btn btn-primary">評分 </a> --%>
+                    <!--                             </b> -->
+                    <!--                         </p> -->
 
-					<!-- 					</div> -->
-					<c:forEach var='comment' items='${Comments}'>
-						<div class="comments" style="width: 100%; height: 330px">
-							<div class="thumbnail" style="border:3px solid #ddd;width: 100%; height: 300px">
-								<div class="caption_comment"
-									style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
-									<div>
-										評分等級:${comment.grade} &nbsp&nbsp<a
-											href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
-											href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
-									</div>
-									<div>會員帳號:${comment.memberBean.account}</div>
-									<div>短評內文:${comment.commentContent}</div>
-									<c:set var="commentTime1" value="${comment.commentTime}" />
-									<c:set var="commentTime2"
-										value="${fn:substring(commentTime1, 0, 16)}" />
-									<div>${commentTime2}</div>
-									<div>
-										<a
-											href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
-											id = "block"> <span
-											class="glyphicon-info-sigh glyphicon"></span>屏蔽
-										</a> <a
-											href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
-											id = "reportComment"> <span
-											class="glyphicon-info-sigh glyphicon"></span>檢舉
-										</a>
-									</div>
+                    <!--                     </div> -->
+                    <c:forEach var='comment' items='${Comments}'>
+                        <div class="comments" style="width: 100%; height: 330px">
+                            <div class="thumbnail" style="border:3px solid #ddd;width: 100%; height: 300px">
+                                <div class="caption_comment"
+                                    style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
+                                    <div>
+                                        評分等級:${comment.grade} &nbsp&nbsp<a
+                                            href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
+                                            class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
+                                            href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
+                                            class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
+                                    </div>
+                                    <div>會員帳號:${comment.memberBean.account}</div>
+                                    <div>短評內文:${comment.commentContent}</div>
+                                    <c:set var="commentTime1" value="${comment.commentTime}" />
+                                    <c:set var="commentTime2"
+                                        value="${fn:substring(commentTime1, 0, 16)}" />
+                                    <div>${commentTime2}</div>
+                                    <div>
+                                        <a
+                                            href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
+                                            id = "block"> <span
+                                            class="glyphicon-info-sigh glyphicon"></span>屏蔽
+                                        </a> <a
+                                            href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
+                                            id = "reportComment"> <span
+                                            class="glyphicon-info-sigh glyphicon"></span>檢舉
+                                        </a>
+                                    </div>
 
-								</div>
-							</div>
-						</div>
-					</c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
 
-				</div>
+                </div>
 
-			</div>
-		</div>
-	</section>
-
+            </div>
+        </div>
+    </section>
+<!-- 	banner -->
 	<section class='dark-blue'>
 		<div class='container'>
 			<div class='ready'>
@@ -807,78 +807,119 @@ div.submitButton {
 
 
 <script>
+var a =${sthb_list};
+var b=${oneMovie};
+console.log(a);
+console.log(b);
+var  StratTime= b[0].strDay;
+var  EndTime = b[(b.length)-1].strDay;
+console.log(StratTime);
+console.log(EndTime);
+var today = new Date(StratTime+" "+"00:00");
+var todayMonth =today.getMonth()*1+1;
+var todayDate = today.getDate()*1;
+var during = new Date(EndTime+" "+"00:00");
+var endMonth = during.getMonth()*1+1;
+var endDate = during.getDate()*1;
+console.log(endMonth);
+console.log(endDate);
+console.log(todayMonth);
+console.log(EndTime);
+var diff = during-today;//差多少毫秒數
+var diffDay = diff/(1000*60*24*60) //差幾日
+console.log("diff"+diff);
+console.log("diff"+diffDay);
 
-	var a = ${sthb_list};
-	var b = ${oneMovie};
-	console.log(a);
-	console.log(b);
-	var StratTime = b[0].strDay;
-	var EndTime = b[(b.length) - 1].strDay;
-	console.log(StratTime);
-	console.log(EndTime);
-	var today = new Date(StratTime + " " + "00:00");
-	var todayMonth = today.getMonth() * 1 + 1;
-	var todayDate = today.getDate() * 1;
-	var during = new Date(EndTime + " " + "00:00");
-	var endMonth = during.getMonth() * 1 + 1;
-	var endDate = during.getDate() * 1;
-	console.log(endMonth);
-	console.log(endDate);
-	console.log(todayMonth);
-	console.log(EndTime);
-	var diff = during - today;//差多少毫秒數
-	var diffDay = diff
-// 	/(1000*60*24*60) // 差幾日
-	console.log("diff" + diff);
-	console.log("diff" + diffDay);
 
-	// 處理showTime 時間
 
-	for (let day = 0; day <= diffDay; day++) {
-		$("#showTime_table")
-				.append(
-						"<div class='wrapRowStart fullwidth' style=' padding: 10px 20px; font-size: 20px; font-weight: bold;' >"
-								+ "2020"
-								+ "年"
-								+ (todayMonth)
-								+ "月"
-								+ (todayDate + day)
-								+ "日</div>"
-								+ " <div class='wrapRowStart fullwidth' style=' padding-bottom: 30px;' id ='showTime_tr"+day+"'></div>");
-		for (let i = 0; i <= (b.length - 1); i++) {
-			// 					console.log("b"+b.length);
-			// 					console.log("i"+i);
-			var during2 = new Date(b[i].strDay + " " + "00:00");
-			// 					var during3 = new Date(b[i+1].strDay+" "+"00:00");
-			//                      console.log("todayMonth"+todayMonth);
-			//                      console.log((during2.getMonth()*1)+1);
-			if (todayMonth == (during2.getMonth() * 1) + 1) {
-				// 						console.log("during2"+ during2.getDate()*1);
-				// 						console.log("today+day"+todayDate+day);
-				if (during2.getDate() * 1 == todayDate + day) {
 
+
+
+// 處理showTime 時間
+
+
+
+
+
+	for(let day =0 ;day<=diffDay;day++){
+		 $("#showTime_table").append("<div class='wrapRowStart fullwidth' style=' padding: 10px 20px; font-size: 20px; font-weight: bold;' >"+"2020"+"年"+(todayMonth)+"月"+(todayDate+day)+"日</div>"+
+				                      " <div class='wrapRowStart fullwidth' style=' padding-bottom: 30px;' id ='showTime_tr"+day+"'></div>"
+		                            );
+		for(let i =0;i<=(b.length-1);i++){
+//				console.log("b"+b.length);
+//				console.log("i"+i);
+			var during2 = new Date(b[i].strDay+" "+"00:00");
+//				var during3 = new Date(b[i+1].strDay+" "+"00:00");
+//              console.log("todayMonth"+todayMonth);
+//              console.log((during2.getMonth()*1)+1);
+			if(todayMonth == (during2.getMonth()*1)+1){
+//					console.log("during2"+ during2.getDate()*1);
+//					console.log("today+day"+todayDate+day);
+				if(during2.getDate()*1 ==todayDate+day ){
+					
 					console.log("相同月份");
+				
+					 document.getElementById("showTime_tr"+day).innerHTML+= "<a href='free-trail.html' class='slider-btn' style='margin: 5px 20px' onclick='formsubmit()'>"+b[i].strTime+"</a>";
+					 document.getElementById("showTime_tr"+day).innerHTML+= "<form id='showForm"+b[i].sthb.showTimeId+"'action='${pageContext.request.contextPath}/show/this/movie'method='post'>";
+					 document.getElementById("showTime_tr"+day).innerHTML+="<input name='showTimeId' type='hidden' value="+b[i].sthb.showTimeId+">"+"</form>" ;
 
-					document.getElementById("showTime_tr" + day).innerHTML += "<a href='free-trail.html' class='slider-btn' style='margin: 5px 20px' onclick='formsubmit()'>"
-							+ b[i].strTime + "</a>";
-					document.getElementById("showTime_tr" + day).innerHTML += "<form id='showForm"+b[i].sthb.showTimeId+"'action='${pageContext.request.contextPath}/show/this/movie'method='post'>";
-					document.getElementById("showTime_tr" + day).innerHTML += "<input name='showTimeId' type='hidden' value="+b[i].sthb.showTimeId+">"
-							+ "</form>";
-
-				} else {
-				}
-
-			} else {
+				}else{}
+					
+				
+				
+		
+			}else{
 				alert("月份不同");
 			}
+			
+		} 
+		
+		
+		
+		
 
-		}
+}
 
-	}
 
-	function c() {
-		console.log(document.getElementById("movieBean").value);
-	}
+function c(){
+console.log(document.getElementById("movieBean").value);
+}
+</script>
+
+<script>
+function showhide(id) {
+alert("id"+id);
+
+var divid = document.getElementById(id);
+var divs = document.getElementsByClassName('hide');
+var showElement = true;
+alert("aaa"+divid.style.display);
+if (divid.style.display === 'none') {
+// alert("bbbb");
+divid.style.display = 'block';
+showElement = false;
+}else{
+// alert("cccc");
+divid.style.display = 'none';
+}
+// for (var i = 0; i < divs.length; i++) {
+//     divs[i].style.display = 'none';
+// }
+// if (showElement) {
+//     divid.style.display = 'block';
+// }
+// return false;
+}
+
+
+/*	跳轉選指定電影page */
+function formsubmit(){
+
+//console.log(run.movie.movieID );
+document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
+
+}
+
 </script>
 
 <script>

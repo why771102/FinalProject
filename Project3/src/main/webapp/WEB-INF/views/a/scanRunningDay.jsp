@@ -86,7 +86,7 @@
                     <div class="col-lg-12">
                         <div class="form-panel">
                         
-                            <form method='POST' modelAttribute="Movie" enctype="multipart/form-data"  class="form-horizontal style-form">
+                            <form id='runForm${run.runID}'action="${pageContext.request.contextPath}/movie/autoRun"method="post">
 		
                         
                     
@@ -111,9 +111,30 @@
                                         <span class="help-block">請輸入想要排幾天的片（單位：幾天)</span>
                                     </div>
                             </div>
+                            <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">遞減函數值:</label>
+                                    <div class="col-sm-10">
+                                        <input  type='text' name="rate"   value=''id='rate' class="form-control">
+                                        <span class="help-block">請輸入(0.9~0.1之間的數字)</span>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">清場時間:</label>
+                                    <div class="col-sm-10">
+                                        <input  type='text' name="restTime"   value=''id='restTime' class="form-control">
+                                        <span class="help-block">請場次之間的最少間格時間(分鐘)</span>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">營業時間(open):</label>
+                                    <div class="col-sm-10">
+                                        <input  type='text' name="openTime"   value=''id='openTime' class="form-control">
+                                        <span class="help-block">輸入影城開放時間(格式範例 09:00 二十四小時制)</span>
+                                    </div>
+                            </div>
                             <div  align="center" class="form-group">
 
-                            <input  id='a'class="btn btn-theme" type="submit" onclick="formSubmit()">送出</input>
+                            <input  id='a'class="btn btn-theme" type="submit" onclick="formSubmit()"></input>
                         </div>
 		
 	                        </form>
@@ -157,6 +178,12 @@
 	
 		var runningDay = document.getElementById("runningDay");
 		    runningDay.value = "3";
+		var rate = document.getElementById("rate");
+		      rate .value = "0.90";
+		var restTime = document.getElementById("restTime");
+		    restTime.value = "10";
+		var openTime = document.getElementById("openTime");
+		     openTime.value = "09:00";
 		
 	}
 	

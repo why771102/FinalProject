@@ -727,17 +727,32 @@ public class RunMovieController implements ServletContextAware {
 	}
 
 //ok
-	@GetMapping(value = "/movie/autoRun") // URL 跟<a href='movie/show'> 相關
-	public String RunningMovie(Model model, HttpServletRequest request) {
+	@PostMapping(value = "/movie/autoRun") // URL 跟<a href='movie/show'> 相關
+	public String RunningMovie(Model model, HttpServletRequest request,@RequestParam("release") String release,
+			@RequestParam("runningDay") String runningDay, @RequestParam("rate") String rate1 , @RequestParam("restTime") String restTime1,
+			@RequestParam("openTime") String openTime) {
 		List<ShowtimeBean> AllDayShowTime = new ArrayList();
 		List<ShowtimeBean> AllShowTime = new ArrayList();
-
-		int day = 7;
+		System.out.println(openTime);
+		System.out.println(restTime1);
+		System.out.println(rate1);
+		System.out.println(runningDay);
+		System.out.println(release);
+	
+		DateTimeFormatter fmtD = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter fmtT = DateTimeFormatter.ofPattern("HH:MM");
+		LocalDate startDate = LocalDate.parse(release, fmtD);
+		LocalTime startTime = LocalTime.parse(openTime, fmtT);
+		
+	
+		int day = Integer.parseInt(runningDay);
 		// 跑第一天 //creatOneweekShowTime(LocalDateTime)
-		for (int d = 0; d <= day; d++) {
-			LocalDateTime runDateTime = LocalDate.now().plusDays(d).atTime(9, 0);
-			ShowtimeBean restTime = new ShowtimeBean(2, 10);
-			double rate = 0.90;
+		for (int d = 0; d < day; d++) { 
+			
+			LocalDateTime runDateTime = startDate.plusDays(d).atTime(startTime);
+			System.out.println("時間"+runDateTime);
+			ShowtimeBean restTime = new ShowtimeBean(2, Integer.parseInt(restTime1));
+			double rate = Double.parseDouble(rate1);
 			mService.creatOneDayShowTime(runDateTime, rate, restTime, d, AllDayShowTime);
 		}
 		System.out.println("size:" + AllDayShowTime.size());
