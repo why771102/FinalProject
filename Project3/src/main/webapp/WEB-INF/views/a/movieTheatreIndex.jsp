@@ -45,6 +45,35 @@
     	transition: top 0.3s;
     	z-index: 80;
 	}
+	div.tc-girl > select {
+		font-family: inherit;
+    	font-size: 25px;
+    	line-height: inherit;
+    	width: 50%;
+    	margin-bottom: 4%;
+	}
+	#booktickets{
+		z-index: 100;
+    	top: 171px;
+   		left: 23%;
+    	margin-top: 8%;
+	}
+	#pt{
+		    display: inline-block;
+    height: 44px;
+    color: #393939;
+    font-size: 25px;
+    padding: 0 20px;
+    background: #fff;
+    line-height: 44px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-top: -11px;
+    width: 34%;
+    height: 9VH;
+    padding-left: 8%;
+    padding-top: 3%;
+	}
     </style>
 </head>
 
@@ -104,7 +133,7 @@
                             <div class="overlay-slider"></div>
                             <div class="container">
                                 <div class="row resp-row">
-                                    <div class="col-sm-5 col-xs-6 pull-left" style='padding:20% 0%'>
+                                    <div class="col-sm-5 col-xs-6 pull-left" style=''>
                                         <div class="slide-con">
                                             <h5>不想排隊?</h5>
                                             <h4>快線上訂位!<br> </h4>
@@ -126,14 +155,14 @@
                             <div class="overlay-slider"></div>
                             <div class="container">
                                 <div class="row resp-row">
-                                    <div class="col-sm-5 col-xs-6 pull-left" style='padding:20% 0%'>
+                                    <div class="col-sm-5 col-xs-6 pull-left" style=''>
                                         <div class="slide-con">
                                             <h5>不想排隊? </h5>
                                             <h4>快線上訂位!</h4>
                                             <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-7 col-xs-6 pull-right" style='padding:20% 0%'>
+                                    <div class="col-sm-7 col-xs-6 pull-right" style=''>
                                         <div class="sd-left-img" >
                                             <img src="" alt="" class="img-responsive">
                                         </div>
@@ -317,14 +346,14 @@
 
 
 
-    <section class="ticket-outer" id="booknow">
+    <section class="ticket-outer" id="booknow" style="background: url('${pageContext.request.contextPath}/img/movieTicket-01.png') no-repeat;  background-size: 100% 480px;">
         <div class="container">
             <div class="ticket-sell">
                 <div class="row clearfix">
                     <div class="col-sm-6 pull-left">
-                        <div class="tc-con">
+                        <div class="tc-con" style="margin-right: 30%; margin-left: -31%;">
                             <h5>快速訂票</h5>
-                            <h3>購票須知</h3>
+                            <h3 style="font-family: arial, 'Microsoft JhengHei', '微軟正黑體', sans-serif;">購票須知</h3>
                             <ul class="list-unstyled">
                                 <li>非影城網路會員也可以使用</li>
                                 <li>每個帳號每筆交易最多可購買 6 張電影票劵。</li>
@@ -337,7 +366,7 @@
 
                     	<div class="col-sm-6 pull-right">
                     	
-                    	<div class="tc-girl" id="booktickets" style="border: solid black 1px;z-index: 100;top: 173px;left: 189px;">
+                    	<div class="tc-girl" id="booktickets">
                     	<select id="movie">
                         			<option value="default" selected="" disabled="">請選擇</option>
                         			<c:forEach var="movies" items="${movielist}">
@@ -357,11 +386,7 @@
                        
                         	</form>
                     	</div>
-                        	<div class="tc-girl" id="booktickets" style="border: solid black 1px">
-                        	<img src="${pageContext.request.contextPath}/img/tc-girl1_1.png">
-                        	
-                        		
-                        	</div>
+                    
                         	
                     	</div>
 

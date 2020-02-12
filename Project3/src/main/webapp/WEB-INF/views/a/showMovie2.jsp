@@ -607,7 +607,7 @@ div.submitButton {
 											短評內文:</label>
 										<div class='col-lg inner'>
 											<form:textarea
-												style="font-size: 20px; resize: none ;width: 100%;height: 400"
+												style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
 												rows="5" cols="40" id="commentContent" path="commentContent"
 												type='text' class='form:input-comment' />
 										</div>
@@ -677,7 +677,7 @@ div.submitButton {
 										<div class='col-lg inner' style="font-size: 20px">
 											<form:textarea id="commentContent" path="commentContent"
 												type='text' class='form:input-large'
-												style="font-size: 20px; resize: none ;width: 100%;height: 400"
+												style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
 												rows="5" cols="40" />
 										</div>
 										<form:errors path="commentContent" cssClass="error" />
@@ -708,10 +708,10 @@ div.submitButton {
 
 			<div class='buy-txt'>
 				<h2>
-					<b style='font-size: 16px;'> ${AVGExpectation}%期待
-						平均評分:${AVGGrade} <a href="<spring:url value='/' />"
-						class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">發表時間 </a> <a
-						href="<spring:url value='/' />" class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">評分 </a>
+					<b style='font-size: 20px;'> 排序 : <a href="<spring:url value='/show/this/movie/bytime/${run.runID }' />"
+						class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">依時間 </a> <a
+						href="<spring:url value='/show/this/movie/bygrade/${run.runID }' />" class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">依評分 </a>
+						期待度: ${AVGExpectation} 平均評分:${AVGGrade} 
 					</b>
 				</h2>
 				<p></p>
@@ -734,14 +734,14 @@ div.submitButton {
 
 					<!-- 					</div> -->
 					<c:forEach var='comment' items='${Comments}'>
-						<div class="comments" style="width: 100%; height: 380px">
-							<div class="thumbnail" style="width: 100%; height: 350px">
+						<div class="comments" style="width: 100%; height: 330px">
+							<div class="thumbnail" style="border:3px solid #ddd;width: 100%; height: 300px">
 								<div class="caption_comment"
 									style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
 									<div>
-										評分等級:${comment.grade} <a
+										評分等級:${comment.grade} &nbsp&nbsp<a
 											href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a> <a
+											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
 											href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
 											class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
 									</div>

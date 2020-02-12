@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 
 import com.a.model.SCOrderDetailBean;
@@ -269,19 +270,37 @@ public class ShoppingCartController implements ServletContextAware {
 	}
 	
 	@GetMapping("/showSCOrderDetails")
-	public String showSCOrderDetails(HttpServletRequest request, Model model) {
+	public String SCOrderDetails(HttpServletRequest request, Model model) {
 		Integer memberID = scservice.getMemberID(request);
 		List<SCOrdersBean> listscob = scoservice.getMemberOrders(memberID, 1);
-		Map<SCOrdersBean, List<SCOrderDetailBean>> map = new HashMap<SCOrdersBean, List<SCOrderDetailBean>>();
+		List<List<SCOrderDetailBean>> list = new ArrayList<List<SCOrderDetailBean>>();
 		for(SCOrdersBean scob : listscob) {
 			List<SCOrderDetailBean> listscodb = scodservice.getOrderDetails(scob.getsCOrderID());
-			map.put(scob, listscodb);
+			list.add(listscodb);
 			System.out.println("orderID: " + scob.getsCOrderID());
 		}
 		Gson gson = new Gson();
-		String orders = gson.toJson(map);
+		String orders = gson.toJson(list);
 		model.addAttribute("orders", orders);
+//		System.out.println(orders);
 		return "a/showSCOrders";
 	}
+	
+//	@PostMapping("/showSCOrderDetails")
+//	public @ResponseBody String showSCOrderDetails(HttpServletRequest request, Model model) {
+//		Integer memberID = scservice.getMemberID(request);
+//		List<SCOrdersBean> listscob = scoservice.getMemberOrders(memberID, 1);
+//		List<List<SCOrderDetailBean>> list = new ArrayList<List<SCOrderDetailBean>>();
+//		for(SCOrdersBean scob : listscob) {
+//			List<SCOrderDetailBean> listscodb = scodservice.getOrderDetails(scob.getsCOrderID());
+//			list.add(listscodb);
+//			System.out.println("orderID: " + scob.getsCOrderID());
+//		}
+//		Gson gson = new Gson();
+//		String orders = gson.toJson(list);
+////		model.addAttribute("orders", orders);
+//		System.out.println(orders);
+//		return orders;
+//	}
 
 }

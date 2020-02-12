@@ -378,7 +378,7 @@ div.submitButton {
 								<jsp:param name="c" value="1" />
 								<jsp:param name="d" value="1" />
 							</jsp:include>
-							<div style='font-size: 16px'>${AVGExpectation}%期待</div>
+							<div style='font-size: 24px'>${AVGExpectation}</div>
 						</div>
 					</div>
 

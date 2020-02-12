@@ -309,8 +309,16 @@ width: 19%;
 	</jsp:include>
 
 	<!-- footer -->
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
+	$(document).ready(function() {
+	if (typeof(Storage) !== "undefined") {
+		  // Code for localStorage/sessionStorage.
+		  sessionStorage.setItem("seats", "${seats}");
+		} else {
+	  	// Sorry! No Web Storage support..
+		}
+	});
 	function getCookie(cname) {
 		var name = cname + "=";
 		var ca = document.cookie.split(';');

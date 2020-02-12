@@ -193,12 +193,12 @@
 	
 		<c:forEach var="run" items="${rb_page_list}">
 			<div class="col-md-3 col-sm-4 col-xs-6"
-				onclick='formsubmit(${run.runID})' style='margin:40px 0px;'>
+				onclick='formsubmit(${run.runID})' style='margin:5% 0% 18% 0%;'>
 				<div class="movie1">
 					<div>
 						<!--                         修改處from line 22 to 26 -->
 					<img src='<c:url value='/getPicture/${run.movie.movieID}' />'
-						width="70%" height="70%">
+						width="70%" height="100%">
 					</div>
 					<div class="m-name">
 						<h3>${run.movie.title}</h3>
@@ -225,7 +225,7 @@
 
 	 <!-- movies page -->
 
-	<div id='createPage' style="margin:40px;">
+	<div id='createPage' style="margin:10% 0% 0% 0%;">
 	<table  align='center'>
 	<div align='center'>
 		<tr>
@@ -315,23 +315,6 @@
 <!-- 輪播圖carousel -->
 
 
-
-	 <!-- 輪播圖carousel -->
-    <section class="gray-bnr feature-sec" style='background:black;'>
-        <div class="wrapRowStart" style=' width: 100%; ' >
-                       <div>
-                        <a class="prev" onclick="plusSlides(-1)"></a>
-                        <a class="next" onclick="plusSlides(1)"></a>
-                       </div>
-                       
-                
-                     
-                        
-                        
-
-        </div>
-    </section>
-<!-- 輪播圖carousel -->
 
 
 
@@ -442,12 +425,12 @@
 			      for(let i=0 ;i<a.length;i++){
 			    	  
 			    	  $("#moviePlusHere").append(
-			    			  "<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' style='margin:40px 0px;' >"+
+			    			  "<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' style='margin:5% 0% 18% 0%;' >"+
 			    		  "<div class='movie1'>"+
 							"<div>"+
                               //圖片
                                "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
-           						"width='70%' height='70%>" +
+           						"width='70%' height='100%>" +
 							"</div>"+
 							"<div class='m-name'>"+
 								"<h3>"+a[i].movie.title+"</h3>"+
