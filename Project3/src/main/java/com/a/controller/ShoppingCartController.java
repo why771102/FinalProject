@@ -8,7 +8,9 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +30,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.a.model.SCOrderDetailBean;
 import com.a.model.SCOrdersBean;
@@ -268,8 +269,18 @@ public class ShoppingCartController implements ServletContextAware {
 	}
 	
 	@GetMapping("/showSCOrderDetails")
-	public String showSCOrderDetails() {
-		
+	public String showSCOrderDetails(HttpServletRequest request, Model model) {
+		Integer memberID = scservice.getMemberID(request);
+		List<SCOrdersBean> listscob = scoservice.getMemberOrders(memberID, 1);
+		Map<SCOrdersBean, List<SCOrderDetailBean>> map = new HashMap<SCOrdersBean, List<SCOrderDetailBean>>();
+		for(SCOrdersBean scob : listscob) {
+			List<SCOrderDetailBean> listscodb = scodservice.getOrderDetails(scob.getsCOrderID());
+			map.put(scob, listscodb);
+			System.out.println("orderID: " + scob.getsCOrderID());
+		}
+		Gson gson = new Gson();
+		String orders = gson.toJson(map);
+		model.addAttribute("orders", orders);
 		return "a/showSCOrders";
 	}
 

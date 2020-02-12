@@ -41,7 +41,7 @@ public class SCOrdersServiceImpl implements SCOrdersService {
 	}
 	@Transactional
 	@Override
-	public List<SCOrdersBean> getMemberOrders(String memberID, Integer paymentStatus) {
+	public List<SCOrdersBean> getMemberOrders(Integer memberID, Integer paymentStatus) {
 		
 		return scodao.getMemberOrders(memberID, paymentStatus);
 	}

@@ -19,7 +19,7 @@ table td {
 	<div align="center" style="width: 500px;margin-top: 200px;border: 3px solid #b08c8c;
 	padding: 50px 40px 50px 40px;margin-left: auto;margin-right: auto">
 		<h1 style="font-size: 35px">付款前確認</h1>
-		<form action="execute_payment" method="post">
+		<form action="execute_payment2" method="post">
 			<table style="font-size: 20px">
 				<tr>
 					<td colspan="2" style="font-size: 25px"><b>賣家資訊:</b></td>

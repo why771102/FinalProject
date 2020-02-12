@@ -76,11 +76,11 @@ public class SCOrdersDaoImpl implements SCOrdersDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SCOrdersBean> getMemberOrders(String memberID, Integer paymentStatus) {
+	public List<SCOrdersBean> getMemberOrders(Integer memberID, Integer paymentStatus) {
 		Session session = factory.getCurrentSession();
 		List<SCOrdersBean> list = new ArrayList<>();
-		String hql = "FROM SCordersBean WHERE memberID = :memberID AND paymentStatus = :paymentStatus";
-		list = session.createQuery(hql).setParameter("memberID", memberID).setParameter("paymentStatus", paymentStatus)
+		String hql = "FROM SCOrdersBean WHERE memberID = :memberID AND payStatusNO = :payStatusNO";
+		list = session.createQuery(hql).setParameter("memberID", memberID).setParameter("payStatusNO", paymentStatus)
 				.getResultList();
 		return list;
 	}

@@ -19,7 +19,8 @@ table td {
 	<div align="center">
 		<h1>Check Out</h1>
 		<br />
-		<form action="authorize_payment" method="post">			
+		<form action="authorize_payment" method="post">		
+			<input type="text" name="product" value="Next iPhone" />	
 				<input type="text" name="total" value="120" />
 
 					<input type="submit"

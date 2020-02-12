@@ -533,7 +533,7 @@ public class RunMovieController implements ServletContextAware {
 		if (avgExpectation == null) {
 			model.addAttribute("AVGExpectation", "尚無資料");
 		} else {
-			model.addAttribute("AVGExpectation", avgExpectation);
+			model.addAttribute("AVGExpectation", avgExpectation + "%");
 		}
 
 		System.out.println("inShowThisMovie");
@@ -1126,9 +1126,9 @@ public class RunMovieController implements ServletContextAware {
 
 		Integer expect = eService.getAvgExpectation(run.getMovie().getMovieID());
 		if (expect == null) {
-			model.addAttribute("AVGExpectation", "尚無資料");
+			model.addAttribute("AVGExpectation", "");
 		} else {
-			model.addAttribute("AVGExpectation", expect);
+			model.addAttribute("AVGExpectation", "期待度 : " + expect + "%");
 		}
 
 		System.out.println(runID);
