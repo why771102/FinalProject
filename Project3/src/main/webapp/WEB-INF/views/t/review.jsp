@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html style="background: #ededed">
+<html style="background-color: #c5c5c5">
 <head>
 <meta charset="UTF-8">
-<title>Review</title>
+<title>Paypal付款前確認</title>
 <style type="text/css">
 table {
 	border: 0;
@@ -16,9 +16,16 @@ table td {
 </style>
 </head>
 <body>
-	<div align="center" style="width: 500px;margin-top: 200px;border: 3px solid #b08c8c;
-	padding: 50px 40px 50px 40px;margin-left: auto;margin-right: auto">
-		<h1 style="font-size: 35px">付款前確認</h1>
+
+	<!-- 		<div> -->
+	<!-- 			<img src="img/LifterLMS-PayPal-Extension.png" /> -->
+	<!-- 		</div> -->
+	<div align="center"
+		style="width: 600px; margin-top: 100px; border: 1px solid #cdcdcd; padding: 50px 40px 50px 40px; margin-left: auto; margin-right: auto; background-color: white">
+		<div>
+			<img src="img/LifterLMS-PayPal-Extension.png" style="width: 550px" />
+		</div>
+		<!-- 			<h1 style="font-size: 35px">付款前確認</h1> -->
 		<form action="execute_payment" method="post">
 			<table style="font-size: 20px">
 				<tr>
@@ -105,7 +112,7 @@ table td {
 						style="font-size: 20px; background-color: #ffffff; border-color: #000000"
 						value="確定付款" /></td>
 					<td><a href='movieIndex' type="button" class='btn btn-primary'
-						style="font-size: 20px; background-color: #ffffff; border-color: #000000;border: 2px solid black;text-decoration: none;color: black;padding: 2px 6px 3px 6px">取消交易</a></td>
+						style="font-size: 20px; background-color: #ffffff; border-color: #000000; border: 2px solid black; text-decoration: none; color: black; padding: 2px 6px 3px 6px">取消交易</a></td>
 				</tr>
 			</table>
 		</form>
