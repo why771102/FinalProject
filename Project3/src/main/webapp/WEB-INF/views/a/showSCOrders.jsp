@@ -36,31 +36,24 @@ tr.shown td.details-control {
 
 </head>
 <body>
-
-<button id="btn-show-all-children" type="button">Expand All</button>
-<button id="btn-hide-all-children" type="button">Collapse All</button>
-<hr>
-<table id="example" class="display" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-				    <th></th>
-            <th>OrderID</th>
-            <th>Order Date</th>
-            <th>Total</th>
-            <th>Payment Status</th>
-        </tr>
-    </thead>
-    <tbody id="insertHere"></tbody>
-    <tfoot>
-        <tr>
-				    <th></th>
-            <th>OrderID</th>
-            <th>Order Date</th>
-            <th>Total</th>
-            <th>Payment Status</th>
-        </tr>
-    </tfoot>
-</table>
+<font size="2" face="Courier New" >
+	<table id="example" class="display" style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
+		<thead style="background: #4ECDC4; color: white;">
+			<tr>
+				<th style="border-bottom: none;"></th>
+				<th style="text-align: center;border-bottom: none">OrderID</th>
+				<th style="text-align: center;border-bottom: none">Order Date</th>
+				<th style="text-align: center;border-bottom: none">Total</th>
+				<th style="text-align: center;border-bottom: none">Payment Status</th>
+			</tr>
+		</thead>
+		<tbody id="insertHere">
+		</tbody>
+		<tfoot>
+			<tr>
+			</tr>
+		</tfoot>
+	</table></font>
 
 <!-- 	<div class="login-inner"> -->
 <!-- 		<h2>訂單內容</h2> -->
@@ -129,9 +122,11 @@ tr.shown td.details-control {
 <!-- 	</div> -->
 	
 	
-
+<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
-console.log(${orders});
+// 	console.log(${orders});
+// 	var orders = ${orders};
 	/* Formatting function for row details - modify as you need */
 	function format ( d ) {
 	    // `d` is the original data object for the row
@@ -148,23 +143,42 @@ console.log(${orders});
 	}
 
 	$(document).ready(function() {
-	    var table = $('#example').DataTable({
-// 	        'ajax': 'https://api.myjson.com/bins/16lp6',
-	        'columns': [
-	            {
-	                'className':      'details-control',
-	                'orderable':      false,
-	                'data':           null,
-	                'defaultContent': ''
-	            },
-	            { 'data': 'OrderID' },
-	            { 'data': 'Order Date' },
-	            { 'data': 'Total' },
-	            { 'data': 'Payment Status' }
-	        ],
-	        'order': [[1, 'asc']]
-	    } );
-
+	    	$.ajax({
+				url : "${pageContext.request.contextPath}/showSCOrderDetails",
+				type : "POST",
+				success : function(data) {
+					console.log(data);
+// 					console.log(data[SCOrdersBean][sCOrderID]);
+					var table = $('#example').DataTable({
+						"columns": [
+							{
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           null,
+			                "defaultContent": ''
+			            	},
+			            	{ "data": data[0][0].SCOrdersBean.sCOrderID },
+			            	{ "data": data[0][0].SCOrdersBean.ordDate },
+			            	{ "data": data[0][0].SCOrdersBean.ordDate },
+			            	{ "data": data[0][0].SCOrdersBean.payStatusBean.payStatus }
+			        	],
+			        	"order": [[1, 'asc']]
+					});
+		}
+	    	});
+	    	});
+	    var dataTable = $("#example").DataTable();
+// 		for(let orders = 0; orders < orders.length; orders++){
+// 			for(let or)
+// 			console.log(value);
+// 			dataTable.row.add(["",orders.orderno,orders.SCOrdersBean.ordDate,orders.SCOrdersBean.total,orders.SCOrdersBean.payStatusBean.payStatus]).draw();
+// 		}
+// 	    $.each(orders, function(index, value) {
+// 			console.log(value);
+// 			console.log(value[0]);
+// 			dataTable.row.add("", [value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate.substring(0, 16),value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
+// 		});
+	    
 	    // Add event listener for opening and closing details
 	    $('#example tbody').on('click', 'td.details-control', function(){
 	        var tr = $(this).closest('tr');
@@ -206,7 +220,7 @@ console.log(${orders});
 	            }
 	        });
 	    });
-	});
+
 	</script>
 	
 </body>
