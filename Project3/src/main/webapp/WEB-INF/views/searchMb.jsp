@@ -6,6 +6,10 @@
 <html>
 <head>
 
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+ integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+ crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/img/favicon.png"
 	rel="icon">
@@ -71,7 +75,7 @@
 <div class="form-group">
 						<label class="col-lg-2 control-label">請輸入會員身份證字號: </label>
 						<div class="col-lg-6">
-						<input name="uID"  type='text' class="form-control"/><br>
+						<input name="uID"  type='text' id='inputSide' class="form-control"/><br>
 						</div>
 						</div>
 						
@@ -79,6 +83,7 @@
 						<span style="color:red">${errorMsgMap2.uIDError}</span>
 
 		</form:form>
+						<input type='button' id='oneInput' value='一鍵輸入'/>
 		</div>
 								</div>
 							</div>
@@ -94,5 +99,12 @@
 		</jsp:include>
 		<!--footer end-->
 	</section>
+	
+
+<script>
+	$('#oneInput').click(function(){
+		$('#inputSide').val("M129118970");
+	});
+</script>
 </body>
 </html>
