@@ -741,9 +741,9 @@ div.submitButton {
                                     <div>
                                         評分等級:${comment.grade} &nbsp&nbsp<a
                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
+                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
+                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
                                     </div>
                                     <div>會員帳號:${comment.memberBean.account}</div>
                                     <div>短評內文:${comment.commentContent}</div>
@@ -754,11 +754,11 @@ div.submitButton {
                                     <div>
                                         <a
                                             href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
-                                            id = "block"> <span
+                                            id = "block${comment.commentID}"> <span
                                             class="glyphicon-info-sigh glyphicon"></span>屏蔽
                                         </a> <a
                                             href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
-                                            id = "reportComment"> <span
+                                            id = "report${comment.commentID}"> <span
                                             class="glyphicon-info-sigh glyphicon"></span>檢舉
                                         </a>
                                     </div>
@@ -955,6 +955,8 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 
 	}
 
+//	var cID = location.pathname.split("/questionRep/")[1];
+	
 	$("#btnAddcomment").click(
 			function() {
 				var d = new Date();
@@ -979,18 +981,65 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 	
 	$("#deleteComment").click(function(){	
 			alert("刪除成功");
-		}
+		
 	});
 	
-	$("#reportComment").click(function(){	
+	$("#report${comment.commentID}").click(function(){	
 			alert("檢舉成功");
-		}	
+			
 	});
 	
-	$("#block").click(function(){	
-			alert("屏蔽成功");
-		}	
-	});
+// 	$("#block${comment.commentID}").click(function(){			
+// 		$.ajax({
+// 			type : "POST",
+// 			url : "${pageContext.request.contextPath}/preference/addblock",
+// 			data : {commentID : cID},
+// 			success : function(data) {
+
+// 			},
+// 			error : function(data) {
+// 				$("#close").removeClass();
+// 				$("#close").addClass("btn btn-danger");
+// 				$("#close").val("已結案");
+// 				status = 2;
+// 			}
+// 		})
+// 		alert("屏蔽成功");			
+// 	});
+	
+// 	$("#good${comment.commentID}").click(function(){	
+// 		$.ajax({
+// 			type : "POST",
+// 			url : "${pageContext.request.contextPath}/preference/addlike",
+// 			data : {commentID : cID},
+// 			success : function(data) {
+
+// 			},
+// 			error : function(data) {
+// 				$("#close").removeClass();
+// 				$("#close").addClass("btn btn-danger");
+// 				$("#close").val("已結案");
+// 				status = 2;
+// 			}
+// 		})
+// });
+	
+// 	$("#bad${comment.commentID}").click(function(){	
+// 		$.ajax({
+// 			type : "POST",
+// 			url : "${pageContext.request.contextPath}/preference/addbad",
+// 			data : {commentID : cID},
+// 			success : function(data) {
+
+// 			},
+// 			error : function(data) {
+// 				$("#close").removeClass();
+// 				$("#close").addClass("btn btn-danger");
+// 				$("#close").val("已結案");
+// 				status = 2;
+// 			}
+// 		})
+// });
 
 
 </script>
