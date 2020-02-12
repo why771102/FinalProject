@@ -533,7 +533,7 @@ public class RunMovieController implements ServletContextAware {
 		if (avgExpectation == null) {
 			model.addAttribute("AVGExpectation", "尚無資料");
 		} else {
-			model.addAttribute("AVGExpectation", avgExpectation);
+			model.addAttribute("AVGExpectation", avgExpectation + "%");
 		}
 
 		System.out.println("inShowThisMovie");
