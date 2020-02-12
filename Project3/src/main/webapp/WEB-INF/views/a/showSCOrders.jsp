@@ -38,13 +38,15 @@ tr.shown td.details-control {
 <body>
 <font size="2" face="Courier New" >
 	<table id="example" class="display" style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
-		<thead style="background: #4ECDC4; color: white;">
+		<thead style="background: #C21010; color: white;">
 			<tr>
 				<th style="border-bottom: none;"></th>
 				<th style="text-align: center;border-bottom: none">OrderID</th>
 				<th style="text-align: center;border-bottom: none">Order Date</th>
 				<th style="text-align: center;border-bottom: none">Total</th>
 				<th style="text-align: center;border-bottom: none">Payment Status</th>
+				<th style="text-align: center;border-bottom: none; display:none;">Product Name</th>
+				<th style="text-align: center;border-bottom: none; display:none;">Quantity</th>
 			</tr>
 		</thead>
 		<tbody id="insertHere">
@@ -125,8 +127,8 @@ tr.shown td.details-control {
 <script type="text/javascript" charset="utf8"
 		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
-// 	console.log(${orders});
-// 	var orders = ${orders};
+	console.log(${orders});
+	var orders = ${orders};
 	/* Formatting function for row details - modify as you need */
 	function format ( d ) {
 	    // `d` is the original data object for the row
@@ -143,29 +145,35 @@ tr.shown td.details-control {
 	}
 
 	$(document).ready(function() {
-	    	$.ajax({
-				url : "${pageContext.request.contextPath}/showSCOrderDetails",
-				type : "POST",
-				success : function(data) {
-					console.log(data);
+// 	    	$.ajax({
+// 				url : "${pageContext.request.contextPath}/showSCOrderDetails",
+// 				type : "POST",
+// 				success : function(data) {
+// 					console.log(data);
 // 					console.log(data[SCOrdersBean][sCOrderID]);
 					var table = $('#example').DataTable({
-						"columns": [
-							{
-			                "className":      'details-control',
-			                "orderable":      false,
-			                "data":           null,
-			                "defaultContent": ''
-			            	},
-			            	{ "data": data[0][0].SCOrdersBean.sCOrderID },
-			            	{ "data": data[0][0].SCOrdersBean.ordDate },
-			            	{ "data": data[0][0].SCOrdersBean.ordDate },
-			            	{ "data": data[0][0].SCOrdersBean.payStatusBean.payStatus }
-			        	],
-			        	"order": [[1, 'asc']]
+// 						"columns": [
+// 							{
+// 			                "className":      'details-control',
+// 			                "orderable":      false,
+// 			                "data":           null,
+// 			                "defaultContent": ''
+// 			            	},
+// 			            	{ "data": data[0][0].SCOrdersBean.sCOrderID },
+// 			            	{ "data": data[0][0].SCOrdersBean.ordDate },
+// 			            	{ "data": data[0][0].SCOrdersBean.ordDate },
+// 			            	{ "data": data[0][0].SCOrdersBean.payStatusBean.payStatus }
+// 			        	],
+// 			        	"order": [[1, 'asc']]
+						"columnDefs" : [ {
+							"searchable" : false,
+							"orderable" : false,
+							"targets" : 0
+						} ],
+						"order" : [ [ 1, 'asc' ] ]
 					});
-		}
-	    	});
+// 		}
+// 	    	});
 	    	});
 	    var dataTable = $("#example").DataTable();
 // 		for(let orders = 0; orders < orders.length; orders++){
@@ -173,11 +181,22 @@ tr.shown td.details-control {
 // 			console.log(value);
 // 			dataTable.row.add(["",orders.orderno,orders.SCOrdersBean.ordDate,orders.SCOrdersBean.total,orders.SCOrdersBean.payStatusBean.payStatus]).draw();
 // 		}
-// 	    $.each(orders, function(index, value) {
-// 			console.log(value);
-// 			console.log(value[0]);
-// 			dataTable.row.add("", [value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate.substring(0, 16),value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
-// 		});
+	    $.each(orders, function(index, value) {
+	    	var img = document.createElement("img");
+	    	img.src = "${pageContext.request.contextPath}/details_open.png";
+			console.log(value);
+			console.log(value.length);
+			for(let x = 0; x < value.length; x++){
+				console.log("productname: " + value[x].productsBean.productName + " quantity: " + value[x].quantity);
+// 				console.log();
+			}
+			console.log(value[0].SCOrdersBean.sCOrderID);
+			console.log(value[0].SCOrdersBean.ordDate);
+			console.log(value[0].SCOrdersBean.total);
+			console.log(value[0].SCOrdersBean.payStatusBean.payStatus);
+			dataTable.row.add(["+",value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate.substring(0, 16),value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
+// 			dataTable.row.add("", [value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate,value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
+		});
 	    
 	    // Add event listener for opening and closing details
 	    $('#example tbody').on('click', 'td.details-control', function(){

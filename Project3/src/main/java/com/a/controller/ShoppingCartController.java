@@ -270,12 +270,7 @@ public class ShoppingCartController implements ServletContextAware {
 	}
 	
 	@GetMapping("/showSCOrderDetails")
-	public String SCOrderDetails() {
-		return "a/showSCOrders";
-	}
-	
-	@PostMapping("/showSCOrderDetails")
-	public @ResponseBody String showSCOrderDetails(HttpServletRequest request, Model model) {
+	public String SCOrderDetails(HttpServletRequest request, Model model) {
 		Integer memberID = scservice.getMemberID(request);
 		List<SCOrdersBean> listscob = scoservice.getMemberOrders(memberID, 1);
 		List<List<SCOrderDetailBean>> list = new ArrayList<List<SCOrderDetailBean>>();
@@ -286,9 +281,26 @@ public class ShoppingCartController implements ServletContextAware {
 		}
 		Gson gson = new Gson();
 		String orders = gson.toJson(list);
-//		model.addAttribute("orders", orders);
-		System.out.println(orders);
-		return orders;
+		model.addAttribute("orders", orders);
+//		System.out.println(orders);
+		return "a/showSCOrders";
 	}
+	
+//	@PostMapping("/showSCOrderDetails")
+//	public @ResponseBody String showSCOrderDetails(HttpServletRequest request, Model model) {
+//		Integer memberID = scservice.getMemberID(request);
+//		List<SCOrdersBean> listscob = scoservice.getMemberOrders(memberID, 1);
+//		List<List<SCOrderDetailBean>> list = new ArrayList<List<SCOrderDetailBean>>();
+//		for(SCOrdersBean scob : listscob) {
+//			List<SCOrderDetailBean> listscodb = scodservice.getOrderDetails(scob.getsCOrderID());
+//			list.add(listscodb);
+//			System.out.println("orderID: " + scob.getsCOrderID());
+//		}
+//		Gson gson = new Gson();
+//		String orders = gson.toJson(list);
+////		model.addAttribute("orders", orders);
+//		System.out.println(orders);
+//		return orders;
+//	}
 
 }

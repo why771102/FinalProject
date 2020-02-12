@@ -124,7 +124,7 @@
           
            <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-adjust"></i>
+              <i class="fa fa-rebel"></i>
               <span>影廳管理</span>
               </a>
             <ul class="sub">
@@ -136,7 +136,7 @@
           
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-adjust"></i>
+              <i class="fa fa-play-circle"></i>
               <span>電影管理/排片</span>
               </a>
             <ul class="sub">

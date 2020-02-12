@@ -281,6 +281,7 @@ text-align:center;
 	bottom: 86px;
 	float: right;
 	right: 50px;
+	z-index: 1;
 }
 
 .next input {
