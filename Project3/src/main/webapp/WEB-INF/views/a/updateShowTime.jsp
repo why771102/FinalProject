@@ -71,6 +71,19 @@ input:valid+span:after {
 	content: '✓';
 	padding-left: 5px;
 }
+tbody>tr>td{
+  padding-left:20px;
+}
+
+thead{
+     background: #4ECDC4;
+    color: white;
+    font-size:18px;
+    }
+table{
+       width: 100%;
+    text-align: center;
+}
 </style>
 <!--  =============================CSS put Here============================== -->
 </head>
@@ -130,15 +143,17 @@ input:valid+span:after {
 							</tbody>
 						</table>
 
+                        <div style=' ' align='center'>
 
-
-						<div>
+						<div >
 							<!--  	<input id='final' name='sth' type='hidden' value=''/>  -->
-							<input id='aaa' type='button' onclick="formSubmit()" value='確認修改' />
+							<input class='btn btn-theme' id='aaa' type='button' style='margin:0px 30px 0px 0px;' onclick="formSubmit()" value='修改' />
+						     <a href='${pageContext.request.contextPath}/insertReservedSeats'  style='margin:0px 30px 0px 0px;'><button class='btn btn-theme04'>確認</button></a>
+						
 						</div>
+						
 
-
-						<a href='${pageContext.request.contextPath}/insertReservedSeats'>確認</a>
+						</div>
 
 
 

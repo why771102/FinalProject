@@ -69,12 +69,12 @@
 	
 		<c:forEach var="run" items="${rb_page_list}">
 			<div class="col-md-3 col-sm-4 col-xs-6"
-				onclick='formsubmit(${run.runID})' style='margin:40px 0px;'>
+				onclick='formsubmit(${run.runID})' style='margin:5% 0% 18% 0% ;'>
 				<div class="movie1">
 					<div>
 						<!--                         修改處from line 22 to 26 -->
 					<img src="<c:url value='/getPicture/${run.movie.movieID}' />"
-						width="70%" height="70%">
+						width="70%" height="100%">
 						
 					</div>
 					
@@ -107,7 +107,7 @@
 
 	 <!-- movies page -->
 
-	<div id='createPage' style='margin:40px 0px 0px 0px ;'>
+	<div id='createPage' style='margin:10% 0px 0px 0px ;'>
 	<table  align='center'>
 	<div align='center'>
 	<br>
@@ -153,51 +153,20 @@
 
     <!-- movies -->
 
-	
-  <!--section-->
-    <section class="gray-bnr feature-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="ipad-bg">
-                        <img src="${pageContext.request.contextPath}/img/ipad-bg.png">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="ex-feature">
-                        <h6>Cineshow</h6>
-                        <h1>features</h1>
-                        <ul>
-                            <li>Sed ut perspiciatis </li>
-                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus error</li>
-                            <li>Lorem ipsum dolor sit amet consectetur</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus</li>
-                            <li>Sed ut perspiciatis unde omnis iste natus</li>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Sed ut perspiciatis unde omnis </li>
-                            <li>Lorem ipsum dolor sit amet consectetur</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-  
-    <!--section-->
-  <!--section-->
-  <section class="dark-blue">
-        <div class="container">
-            <div class="ready">
-                <h4>Book Your Tickets Now !</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <a href="free-trail.html" class="slider-btn">lETS GET sTARTED</a>
-            </div>
-        </div>
-    </section>
-  
-  
-   <!--section-->
+
+       <!-- carousel -->
+ <jsp:include page="carousel.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
+</header>
+   <!-- carousel -->
+
+
+
+
+
+ 
      <!--footer-->
      <jsp:include page="footer.jsp">
      <jsp:param name="a" value="1" />
@@ -335,12 +304,12 @@
 				      for(let i=0 ;i<a.length;i++){
 				    	  
 				    	  $("#moviePlusHere").append(
-				    			  "<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' style='margin:40px 0px;' >"+
+				    			  "<div id='"+a[i].runID+"' class='col-md-3 col-sm-4 col-xs-6'onclick='formsubmit2(this.id)' style='margin:5% 0% 18% 0%;' >"+
 				    		  "<div class='movie1'>"+
 								"<div>"+
 	                               //圖片
  	                               "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
- 	           						"width='70%' height='70%>" +
+ 	           						"width='70%' height='100%>" +
 								"</div>"+
 								"<div class='m-name'>"+
 									"<h3>"+a[i].movie.title+"</h3>"+

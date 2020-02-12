@@ -62,9 +62,9 @@ public class ExpectationController {
 	public String getExpectationByMovie(@PathVariable("movieID") Integer movieID, Model model) {
 		Integer avgExpectation = service.getAvgExpectation(movieID);
 		if (avgExpectation == null) {
-			model.addAttribute("AVGExpectation", "尚無資料");
+			model.addAttribute("AVGExpectation", "");
 		} else {
-			model.addAttribute("AVGExpectation", avgExpectation);
+			model.addAttribute("AVGExpectation", avgExpectation + "%期待");
 		}
 		List<ExpectationBean> expect = service.getExpectationByMovie(movieID);
 		model.addAttribute("Expectations", expect);

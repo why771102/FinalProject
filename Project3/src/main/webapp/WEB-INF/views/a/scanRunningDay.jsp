@@ -74,117 +74,109 @@
 		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-		<!--main content start-->
-		<section id="main-content">
-			<section class="wrapper site-min-height">
-				
-				<div class="row mt">
-					<div class="col-lg-12">
-						<!-- <p>Place your content here.</p> -->
-						<body>
-							<table id="table" class="display">
-								<thead>
-									<tr>
-										<td>日期:</td>
-										<td>廳:</td>
-										<td>代號:</td>
-										<td>電影名稱:</td>
-										<td>片長:</td>
-										<td>播出時間:</td>
-										<td>權重:</td>
-										
-
-									</tr>
-								</thead>
-								<c:forEach var="stb" items="${AllShowTime}">
-									<tr onclick="formSubmit()">
-										<td>${stb.day}</td>
-										<td>${stb.hall.hallID}</td>
-										<td>${stb.stID}</td>
-										<td>${stb.rb.movie.title}</td>
-										<td>${stb.runningTime}</td>
-										<td>${stb.time}</td>
-										<td>${stb.price_time}</td>
-										
-										<input type='hidden' name="date" value='${stb.day}' id='date' />
-										<input type='hidden' name="time" value='${stb.time}' id='time' />
-										<input type='hidden' name="hallID" value='${stb.hall.hallID}'
-											id='hallID' />
-									</tr>
-								</c:forEach>
-							</table>
-							<!-- 	<input id='b' type='submit' onclick="updateAllSubmit()" value='修改全部'/> -->
-							<%-- 	<a href='${pageContext.request.contextPath}/a/updateShowTime'>修改</a> --%>
-							<a href='${pageContext.request.contextPath}/insertReservedSeats'>確認</a>
-							<%-- 	<input type='button' name="updateAll"   value='${stb.day}' id='updateAll' /> --%>
+ <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+            	<h1 style='padding: 10px 30px;'>新增排片</h1>
+                <div class="row mt">
+                
+                </div>
+                    <!--  DATE PICKERS -->
+                    
+                    <div class="col-lg-12">
+                        <div class="form-panel">
+                        
+                            <form method='POST' modelAttribute="Movie" enctype="multipart/form-data"  class="form-horizontal style-form">
+		
+                        
+                    
+                            <!-- 輸入要得天數 -->
+                              
+                     
 
 
+                     
+                            <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">排片起始日期:</label>
+                                    <div class="col-sm-10">
+                                        <input id='release'  name="release"  type="text"  value='' id='release' class="form-control"ｂ> 
+                                        <span class="help-block">請輸入開始日期（格式樣板：2020-01-01)</span>
+                                    </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">排片天數:</label>
+                                    <div class="col-sm-10">
+                                        <input  type='text' name="runningDay"   value=''id='runningDay' class="form-control">
+                                        <span class="help-block">請輸入想要排幾天的片（單位：幾天)</span>
+                                    </div>
+                            </div>
+                            <div  align="center" class="form-group">
+
+                            <input  id='a'class="btn btn-theme" type="submit" onclick="formSubmit()">送出</input>
+                        </div>
+		
+	                        </form>
+
+                                <!-- /form-panel -->
+                                 <button  id='b'class="btn btn-theme" type="" onclick="getValue()">一鍵輸入</button>
+                        </div>
+                        <!-- /col-lg-12 -->
+                    </div>
+                    <!-- /row -->
 
 
 
-							<!-- <p>Place your content here.</p> -->
-					</div>
-				</div>
-			</section>
-			<!-- /wrapper -->
-		</section>
-		<!-- /MAIN CONTENT -->
-		<!--main content end-->
-		<!--footer start-->
-		<jsp:include page="../z/bg-footer.jsp">
+                    <!-- row -->
+            </section>
+            <!-- /wrapper -->
+        </section>
+        <!-- /MAIN CONTENT -->
+        <!--main content end-->
+
+
+
+        <!--footer start-->
+       <jsp:include page="../z/bg-footer.jsp">
 			<jsp:param name="e" value="1" />
 			<jsp:param name="f" value="1" />
 		</jsp:include>
-		<!--footer end-->
-	</section>
-
-	<!-- put Javascript  here-->
-
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-	<script>
-		$(document).ready(function() {
-			$("#table").dataTable();
-		});
-	   var a=${jsonString}
-		console.log(a[0].showTimeId);
-		
-		function updateAllSubmit(){
-			var date1 = a[0].day;
-			var time1 = a[0].time;
-			console.log(date1);
-			console.log(time1);
-			$.ajax({
-				url : "${pageContext.request.contextPath}/showTime/upadate",
-				data : {date: date1,time:time1},
-				type : "POST",
-				success : function() {
-					alert("修改成功");
-					window.location.href = "${pageContext.request.contextPath}/index-a";
-				}
-			});
-			
-		}
-		
-		
-		
-		
-		function formSubmit(){
-			var hallID='All';
-			var date = document.getElementById("date").value;
-			var time = document.getElementById("time").value;
-// 		    hallID = document.getElementById("hallID").value;
-			console.log(date);
-			console.log(time);
-			location.replace("${pageContext.request.contextPath}/showTime/update/"+date+"="+time+"="+hallID);
+        <!--footer end-->
+    </section>
 
 
-		}
-		
-		
-	</script>
 
-	<!-- put Javascript  here-->
+    <!-- javaScript placed at the end of the document so the pages load faster -->
+    <script>
+	//一鑑輸入
+	function getValue(){
+		alert("change");
+		
+		var release = document.getElementById("release");
+		    release.value = "2020-02-14";
+	
+		var runningDay = document.getElementById("runningDay");
+		    runningDay.value = "3";
+		
+	}
+	
+    
+    
+    
+          
+        
+            function formSubmit() {
+             
+              
+            
+         
+              }
+            </script>
+    
+
+
+
+
 </body>
 
 </html>

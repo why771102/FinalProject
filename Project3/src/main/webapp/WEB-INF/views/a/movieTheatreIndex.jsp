@@ -133,7 +133,7 @@
                             <div class="overlay-slider"></div>
                             <div class="container">
                                 <div class="row resp-row">
-                                    <div class="col-sm-5 col-xs-6 pull-left" style='padding:20% 0%'>
+                                    <div class="col-sm-5 col-xs-6 pull-left" style=''>
                                         <div class="slide-con">
                                             <h5>不想排隊?</h5>
                                             <h4>快線上訂位!<br> </h4>
@@ -155,14 +155,14 @@
                             <div class="overlay-slider"></div>
                             <div class="container">
                                 <div class="row resp-row">
-                                    <div class="col-sm-5 col-xs-6 pull-left" style='padding:20% 0%'>
+                                    <div class="col-sm-5 col-xs-6 pull-left" style=''>
                                         <div class="slide-con">
                                             <h5>不想排隊? </h5>
                                             <h4>快線上訂位!</h4>
                                             <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-7 col-xs-6 pull-right" style='padding:20% 0%'>
+                                    <div class="col-sm-7 col-xs-6 pull-right" style=''>
                                         <div class="sd-left-img" >
                                             <img src="" alt="" class="img-responsive">
                                         </div>
