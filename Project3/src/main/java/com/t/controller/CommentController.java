@@ -235,12 +235,21 @@ public class CommentController {
 	}
 
 	//檢舉
-	@RequestMapping("/comments/report/{runID}")
-	public String reportComment(@PathVariable("runID") String runID, @RequestParam("id") Integer commentID,
-			@ModelAttribute("CommentBean") CommentBean cb, Model model) {
+//	@RequestMapping("/comments/report/{runID}")
+//	public String reportComment(@PathVariable("runID") String runID, @RequestParam("id") Integer commentID,
+//			@ModelAttribute("CommentBean") CommentBean cb, Model model) {
+//		cb.setCommentID(commentID);
+//		service.reportComment(commentID);
+//		return "redirect:/show/this/movie?runID=" + runID;
+//	}
+	
+	//檢舉
+	@ResponseBody
+	@RequestMapping("/comments/report")
+	public String reportComment(Integer commentID,CommentBean cb) {
 		cb.setCommentID(commentID);
 		service.reportComment(commentID);
-		return "redirect:/show/this/movie?runID=" + runID;
+		return "success";
 	}
 
 	// 查詢單筆

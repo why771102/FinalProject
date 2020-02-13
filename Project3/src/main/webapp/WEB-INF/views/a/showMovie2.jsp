@@ -9,7 +9,7 @@
 
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 <!-- title -->
@@ -616,9 +616,9 @@ div.submitButton {
                                     <div class="form-group">
                                         <div class='col-lg inner' style="text-align: center">
                                             <input id="btnAdd" type='submit' style="font-size: 20px;background-color: #C21010;border-color: #C21010"
-                                                class='btn btn-primary' value="修改" /> <a
+                                                class='btn btn-primary' onclick = "fixcomment()" value="修改" /> <a
                                                 href="<spring:url value='/comments/delete/${run.runID} ?id=${updateComment.commentID}' />"
-                                                id = "deleteComment" class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
+                                                id = "deleteComment" onclick = "deletecomment()" class="btn btn-primary" style="font-size: 20px;background-color: #C21010;border-color: #C21010">刪除
                                             </a>
                                         </div>
                                     </div>
@@ -745,23 +745,23 @@ div.submitButton {
                                     <c:when test="${comment.haveLike == 1}">                                    
                                         	<a
                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}收回讚 </a>&nbsp&nbsp <a
+                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #c21010;border-color: white;font-size : 20px;color : white"><i class="icon-thumbs-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp <a
                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
+                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a>
                                         </c:when>
                                         <c:when test="${comment.haveBad == 1}">
                                         	<a
                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
+                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp <a
                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}收回噓 </a>
+                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #c21010;border-color: white;font-size : 20px;color : white"><i class="icon-thumbs-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a>
                                         </c:when>
                                         <c:otherwise>
                                         	<a
                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
+                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp<a
                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
+                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a>
                                         </c:otherwise> 
 <%--                                         評分等級:${comment.grade} &nbsp&nbsp<a --%>
 <%--                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />" --%>
@@ -770,6 +770,12 @@ div.submitButton {
 <%--                                             class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a> --%>
                                     </c:choose>
                                     </div>
+                                    <div>
+   										 <input id="likeNum" value="${comment.likeNum}" type="hidden">
+   									</div>
+   									<div>
+   										 <input id="badNum" value="${comment.badNum}" type="hidden">
+   									</div>
                                     <div>會員帳號:${comment.memberBean.account}</div>
                                     <div>短評內文:${comment.commentContent}</div>
                                     <c:set var="commentTime1" value="${comment.commentTime}" />
@@ -779,13 +785,12 @@ div.submitButton {
                                     <div>
                                         <a
                                             href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
-                                            id = "block${comment.commentID}"> <span
-                                            class="glyphicon-info-sigh glyphicon"></span>屏蔽
-                                        </a> <a
-                                            href="<spring:url value='/comments/report/${run.runID} ?id=${comment.commentID}' />"
-                                            id = "report${comment.commentID}"> <span
+                                            id = "block${comment.commentID}" onclick="block()"> <span
+                                            class="glyphicon-info-sigh glyphicon"></span>屏蔽</a>
+                                        <button onclick="report(${comment.commentID})" id = "report${comment.commentID}" style = "border:0;color: #337ab7">
+                                             <span
                                             class="glyphicon-info-sigh glyphicon"></span>檢舉
-                                        </a>
+                                        </button>
                                     </div>
 
                                 </div>
@@ -1004,15 +1009,6 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 		}
 	});
 	
-	$("#deleteComment").click(function(){	
-			alert("刪除成功");
-		
-	});
-	
-	$("#report${comment.commentID}").click(function(){	
-			alert("檢舉成功");
-			
-	});
 	
 // 	$("#block${comment.commentID}").click(function(){			
 // 		$.ajax({
@@ -1032,55 +1028,132 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 // 		alert("屏蔽成功");			
 // 	});
 	
-	$("#good${comment.commentID}").click(function(){	
-		$.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/preference/addlike",
-			data : {commentID : cID},
-			success : function(data) {
+// 	$("#good${comment.commentID}").click(function(){	
+// 		$.ajax({
+// 			type : "POST",
+// 			url : "${pageContext.request.contextPath}/preference/addlike",
+// 			data : {commentID : cID},
+// 			success : function(data) {
 
-			},
-			error : function(data) {
-				$("#close").removeClass();
-				$("#close").addClass("btn btn-danger");
-				$("#close").val("已結案");
-				status = 2;
-			}
-		})
-});
+// 			},
+// 			error : function(data) {
+// 				$("#close").removeClass();
+// 				$("#close").addClass("btn btn-danger");
+// 				$("#close").val("已結案");
+// 				status = 2;
+// 			}
+// 		})
+// });
 	
-	function like(commentID){
+// 	function like(commentID){
   
-   var  messageLike= parseInt($("#messageLike").val())+1;
+//    var  likeNum= parseInt($("#likeNum").val())+1;
 
-   alert(messageLike);
-    $.ajax({
-    url:"${pageContext.request.contextPath}/preference/addlike",
-    type:"POST",
-    data:{"commentID":commentID ,"messageLike":messageLike},
-   success:function(messageId){
-    $("#messageLike").val(messageLike);
-    $("#likes").text(messageLike+"人按讚");
-    $("#likebutton").text("收回讚");
-    $("#likebutton").attr("onclick","notlike(${message.messageId})");
-   }
-   }) 
- }
- function notlike(messageId){
-  var  messageLike= parseInt($("#messageLike").val())-1;
-  alert(messageLike);
-   $.ajax({
-   url:"like",
-   type:"POST",
-   data:{"messageId":messageId ,"messageLike":messageLike},
-   success:function(messageId){
-    $("#messageLike").val(messageLike);
-    $("#likes").text(messageLike+"人按讚");
-    $("#likebutton").text("讚");
-    $("#likebutton").attr("onclick","like(${message.messageId})");
-   }
-   })
- }
+//    alert(likeNum);
+//    alert(commentID);
+//    alert(getCookie("memberID"));
+//     $.ajax({
+//     url:"${pageContext.request.contextPath}/addcommentlike",
+//     type:"POST",
+//     data:{"commentID":commentID,"memberID":getCookie("memberID")},
+//    success:function(commentID){
+//     $("#likeNum").val(likeNum);
+//     $("#likebutton").text(likeNum + "讚");
+//     $("#likebutton").attr("onclick","notlike(${comment.commentID})");
+//    },
+//     error : function(commentID){
+//         $("#likeNum").val(likeNum);
+//         $("#likebutton").text(likeNum + "讚");
+//         $("#likebutton").attr("onclick","notlike(${comment.commentID})");
+//        }
+//    }) 
+//  }
+//  function notlike(commentID){
+//   var  likeNum= parseInt($("#likeNum").val())-1;
+//   alert(likeNum);
+//    $.ajax({
+//    url:"like",
+//    type:"POST",
+//    data:{"commentID":commentID ,"memberID":getCookie("memberID")},
+//    success:function(messageId){
+//     $("#likeNum").val(messageLike);
+//     $("#likes").text(messageLike+"人按讚");
+//     $("#likebutton").text("讚");
+//     $("#likebutton").attr("onclick","like(${comment.commentID})");
+//    }
+//    })
+//  }
+ 
+//  function bad(commentID){
+	  
+// 	   var  badNum= parseInt($("#badNum").val())+1;
+
+// 	   alert(badNum);
+// 	    $.ajax({
+// 	    url:"${pageContext.request.contextPath}/preference/addlike",
+// 	    type:"POST",
+// 	    data:{"commentID":commentID,"memberID":getCookie("memberID")},
+// 	   success:function(messageId){
+// 	    $("#badNum").val(badNum);
+// 	    $("#likes").text(badNum+"人按讚");
+// 	    $("#likebutton").text("收回讚");
+// 	    $("#likebutton").attr("onclick","notbad(${comment.commentID})");
+// 	   }
+// 	   }) 
+// 	 }
+// 	 function notbad(commentID){
+// 	  var  badNum= parseInt($("#badNum").val())-1;
+// 	  alert(badNum);
+// 	   $.ajax({
+// 	   url:"like",
+// 	   type:"POST",
+// 	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
+// 	   success:function(messageId){
+// 	    $("#badNum").val(badNum);
+// 	    $("#likes").text(badNum+"人按讚");
+// 	    $("#likebutton").text("讚");
+// 	    $("#likebutton").attr("onclick","bad(${comment.commentID})");
+// 	   }
+// 	   })
+// 	 }
+	 
+	 function report(commentID){		  
+
+		  alert("檢舉成功");
+		   $.ajax({
+		   url:"${pageContext.request.contextPath}/comments/report",
+	    type:"POST",
+	    data:{"commentID":commentID},
+	   success:function(){
+	   }
+		  })
+	 }
+	 
+	 function block(){		  
+
+		  alert("屏蔽成功");		
+	 }
+	 
+	 function deletecomment(){		  
+
+		  alert("刪除成功");		
+	 }
+	 
+	 function fixcomment(){		  
+
+		  alert("修改成功");		
+	 }
+ 
+ function getCookie(cname) {
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i].trim();
+			if (c.indexOf(name) == 0)
+				return c.substring(name.length, c.length);
+		}
+		return "";
+	}
 	
 // 	$("#bad${comment.commentID}").click(function(){	
 // 		$.ajax({

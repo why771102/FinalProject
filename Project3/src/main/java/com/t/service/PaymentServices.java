@@ -59,7 +59,7 @@ public class PaymentServices {
 		PayerInfo payerInfo = new PayerInfo();
 		payerInfo.setFirstName("")
 				 .setLastName("")
-				 .setEmail("");
+				 .setEmail("76theater@personal.example.com");
 		
 		payer.setPayerInfo(payerInfo);
 		
