@@ -118,19 +118,19 @@
 				</c:if></td>
 			<td width='' id='pprev_tr'><c:if test="${pageNo > 1}">
 					<div id="pprev" values="${pageNo-1} " onclick='changePage(this.id)'>
-						<a>上一頁</a>
+						<a style='cursor: pointer;'>上一頁</a>
 					</div>
 				</c:if></td>
 			<td width='76' align='center'><c:if test="${pageNo != totalPages}">
 					<div id="pnext" values='${pageNo+1} ' name='${pageNo+1}'
 						onclick='changePage(this.id)'>
-						<a>下一頁</a>
+						<a style='cursor: pointer;'>下一頁</a>
 					</div>
 				</c:if></td>
 			<td width='76' align='center'><c:if test="${pageNo != totalPages}">
 					<div id="plast" values='${totalPages}'
 						onclick='changePage(this.id)'>
-						<a>最末頁</a>
+						<a style='cursor: pointer;'>最末頁</a>
 					</div>
 				</c:if></td>
 			
@@ -335,21 +335,21 @@
 				    		   " <tr>"+
 				    		        "<td width='76' id='pfirst_tr'>"+
 				    		                "<div id='pfirst'  values='1' onclick='changePage(this.id)'>"+
-				    		         " <a>第一頁</a></div>"+
+				    		         " <a style='cursor: pointer;'>第一頁</a></div>"+
 				    		         "  </td>"+
 				    		       " <td width='76'>"+
 				    		               " <div id='pprev' values='"+(page*1-1)+"' onclick='changePage(this.id)' >"+
-				    		                " <a>上一頁</a>"+
+				    		                " <a style='cursor: pointer;'>上一頁</a>"+
 				    		               " </div>"+
 				    		          " </td>"+
 				    		        "<td width='76'>"+
 				    		                "<div id='pnext' values='"+(page*1+1)+"' onclick='changePage(this.id)' >"+
-				    		                    " <a>下一頁</a>"+
+				    		                    " <a style='cursor: pointer;'>下一頁</a>"+
 				    		               " </div>"+
 				    		           " </td>"+
 				    		        "<td width='76'>"+
 				    		               " <div id='plast'  values='"+total+"' onclick='changePage(this.id)' >"+
-				    		                     "<a>最末頁</a>"+
+				    		                     "<a style='cursor: pointer;'>最末頁</a>"+
 				    		                "</div>"+
 				    		           "</td>"+
 				    		       
