@@ -135,10 +135,14 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 		System.out.println("List<ReservedSeatsBean> getAllSeats");
 		Session session = factory.getCurrentSession();
 		System.out.println(showTimeID);
+		try {
 		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID";
 		list = session.createQuery(hql).setParameter("showTimeID", showTimeID)
 				.getResultList();
-		System.out.println(list.get(0));
+			}catch(Exception e) {
+			e.printStackTrace();
+			}
+//		System.out.println(list.get(0));
 		return list;
 	}
 

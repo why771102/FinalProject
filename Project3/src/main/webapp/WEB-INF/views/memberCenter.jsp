@@ -149,7 +149,7 @@ input[type=text]:focus {
     </footer>
        
     <!-- footer -->
-<!-- 	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
  <script>
@@ -241,18 +241,19 @@ input[type=text]:focus {
 	 $('#memberDetail').removeClass("selected");
 	 $('#memTicket').removeClass("selected");
 	 $('#memOrder').removeClass("selected");
-	 $.ajax({
-			url : "${pageContext.request.contextPath}/Member/hallOrderQuery",
-// 			data : {
+// 	 $.ajax({
+// 			url : "${pageContext.request.contextPath}/Member/hallOrderQuery",
+// // 			data : {
 				
-// 			},
-			type : "POST",
-			success : function(page) {
+// // 			},
+// 			type : "POST",
+// 			success : function(page) {
 // 				alert("新增成功!");
 // 				window.location.href = "${pageContext.request.contextPath}/backstageindex";
-				$('#container').html(page);
-			}
-		});
+				
+				$('#container').load("${pageContext.request.contextPath}/Member/hallOrderQuery");
+// 			}
+// 		});
  })
  
  

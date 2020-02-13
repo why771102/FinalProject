@@ -64,14 +64,15 @@
                     <ul class="nav navbar-nav navbar-right">
 <%--                         <li class="active"><a href="<c:url value='/movieIndex'/>">home</a> --%>
 <!--                         </li> -->
+						<li><a href="annos">公告</a>
+                        </li>
                         <li><a href="${pageContext.request.contextPath}/commingSoon/All/movie1">即將上映</a>
                         </li>
                         <li><a href="${pageContext.request.contextPath}/AllMovie/show">熱映中</a>
                         </li>
 <!--                         <li><a href="up-coming.html">購票</a> -->
 <!--                         </li> -->
-                        <li><a href="annos">公告</a>
-                        </li>
+                        
                         <li><a href="${pageContext.request.contextPath}/showAllProducts">周邊商品</a>
                         </li>
                         <li><a href="${pageContext.request.contextPath}/getShoppingCart" style='padding:5px;'><img src="${pageContext.request.contextPath}/img/shoppingcart.png" alt="" srcset=""width='25' height='20'style='position:relative;'></a>

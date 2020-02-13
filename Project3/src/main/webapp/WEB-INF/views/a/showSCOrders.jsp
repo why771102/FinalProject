@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>76敶勗?</title>
-
+<title>76影城</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+ integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+ crossorigin="anonymous"></script>
     
 <style>
 div.shop_details, div.order_history {
@@ -36,6 +38,13 @@ tr.shown td.details-control {
 
 </head>
 <body>
+	<section>
+		<div>
+			<div style="text-align: center">
+				<h1>購物車訂單</h1>
+			</div>
+		</div>
+	</section>
 <font size="2" face="Courier New" >
 	<table id="example" class="display" style="width: 100%; text-align: center; background:#eaeaea !important; box-shadow: none !important;">
 		<thead style="background: #C21010; color: white;">
@@ -56,7 +65,7 @@ tr.shown td.details-control {
 	</table></font>
 
 	
-	
+
 <script type="text/javascript" charset="utf8"
 		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>

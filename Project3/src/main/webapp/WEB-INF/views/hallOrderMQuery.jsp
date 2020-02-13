@@ -3,11 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"
-	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-	crossorigin="anonymous"></script>
+
 <!-- <link rel="stylesheet" -->
 <!-- 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
 
@@ -95,8 +94,8 @@
 <!-- 	<hr -->
 <!-- 		style="height: 1px; border: none; color: #333; background-color: #333;"> -->
 	<div id="test">
-		<table >
-		<tr style="text-align: center">
+		<table id="example">
+		<thead style="background: #C21010; color: white;text-align: center;">
 			<td><b>申請編號</b></td>
 			<td><b>申請廳院</b></td>
 			<td><b>申請日期</b></td>
@@ -106,7 +105,8 @@
 			<td><b>申請總金額</b></td>
 			<td><b>申請狀態</b></td>
 			<td><b>付款狀態</b></td>
-		</tr>
+		</thead>
+		<tbody>
 			<c:forEach var="hoA" items="${allMHO}">
 		<tr style="text-align: center">
 			<td>${hoA.hallOrderNo}</td>
@@ -126,6 +126,7 @@
 			<td>${hoA.psb.payStatus}</td> 
 		</tr>
 			</c:forEach>
+			</tbody>
 		</table>
 	</div>
 	<!-- footer -->
@@ -138,7 +139,17 @@
 <!--     </footer> -->
        
     <!-- footer -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" -->
+<!-- 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" -->
+<!-- 	crossorigin="anonymous"></script> -->
+	<script type="text/javascript" 
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    
     <script>
+
+		var table = $('#example').DataTable();
+
+    
 //     cookieArray = document.cookie.split("; ");
 // 	console.log(cookieArray);
 
