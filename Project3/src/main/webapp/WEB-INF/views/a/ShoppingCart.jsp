@@ -442,21 +442,21 @@ div.free-trial-btn button:hover {
 						<!--left  -->
 						<div div class="wrapStart halfwidth" style='margin: 5%;'>
 							<div class="wrapRowStart ">
-								<p>商品總計</p>
+								<p>商品總計:&emsp;</p>
 								<div class="pay_right" id="cartTotal">NT$ 10,000</div>
 							</div>
 							<div class="wrapRowStart ">
-								<p>運費總計</p>
+								<p>運費總計:&emsp;</p>
 								<div class="pay_right" id="shippingfee">NT$ 60</div>
 							</div>
 							<div class="wrapRowStart ">
-								<p>其他折抵</p>
+								<p>其他折抵:&emsp;</p>
 								<div class="pay_right">NT$ 0</div>
 							</div>
 							<br>
 							<div class="wrapRowStart "
 								style='border-top: solid #eeeeef; width: 100%'>
-								<p>結帳總金額</p>
+								<p>結帳總金額:&emsp;</p>
 								<div class="pay_right" id="orderTotal">NT$ 9,500</div>
 							</div>
 						</div>
@@ -471,10 +471,10 @@ div.free-trial-btn button:hover {
 							<div class="spacingGeneral fullwidth">
 								<div class="fullwidth"
 									style="border-radius: 5px; background-color: #e5e5e6; padding: 5% 2% 5% 2%;">
-									<p class="spacing_b">姓名</p>
-									<p class="spacing_b">電話</p>
-									<p class="spacing_b">地址</p>
-									<p class="spacing_b">購買人</p>
+									<p class="spacing_b">姓名:&emsp;蔡瑪莉</p>
+									<p class="spacing_b">電話:&emsp;0911661335</p>
+									<p class="spacing_b">地址:&emsp;新北市新莊區中正路508號</p>
+									<p class="spacing_b">購買人:&emsp;蔡瑪莉</p>
 								</div>
 								<div class="spacing_top">
 									<p>運送方式：宅配</p>

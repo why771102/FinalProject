@@ -44,6 +44,9 @@
   			background-size: 2900%;
   			background-repeat: no-repeat;
 		}
+		.like-btn:hover{
+			cursor: pointer;
+		}
 		.is-active {
   			animation-name: animate;
  			animation-duration: .8s;
