@@ -57,7 +57,7 @@
 				<section>
 					<div>
 						<div style="text-align: center">
-							<h1>產品明細</h1>
+							<h1>產品清單</h1>
 						</div>
 					</div>
 				</section>
@@ -67,10 +67,10 @@
 						<thead>
 							<tr>
 								<td>訂單編號</td>
-								<td>產品名稱</td>
-								<td>產品折扣</td>
-								<td>購買數量</td>
-								<td>產品價格</td>
+								<td>訂單時間</td>
+								<td>會員名稱</td>
+								<td>電影名稱</td>
+								<td>詳細資料</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -115,21 +115,24 @@
 		);
 		$(function() {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/DetailAjax",
+				url : "${pageContext.request.contextPath}/OrdersAjax",
 				type : "POST",
 				success : function(data) {
 // 					alert(data);
 					dataTable.clear().draw();
 					var data1=data;
 					console.log("list:"+data1[0].ordersID);
-					console.log("list:"+data1[0].productsBean.productName);
-					console.log("list:"+data1[0].discount);
-					console.log("list:"+data1[0].quantity);
-					console.log("list:"+data1[0].sellUnitPrice);
+					console.log("list:"+data1[0].OrderTime);
+					console.log("list:"+data1[0].memberBean.name);
+					console.log("list:"+data1[0].showTimeHistoryBean.run.movie.title);
 					
 					$.each(data1,function(index,value) {
  						dataTable.row.add([
- 			value.ordersID, value.productsBean.productName,value.discount, value.quantity,value.sellUnitPrice 
+ 			value.ordersID, value.OrderTime,value.memberBean.name, value.showTimeHistoryBean.run.movie.title, 
+ 			function(data,type,row) {
+				var html = "<form action='${pageContext.request.contextPath}/searchTicket' method='POST'><input type='hidden' value='"+ value.ordersID +"' name='ordersID'/>'<button >詳細資料</button>";
+ 				return html;
+ 				} 
  				]).draw();
  			})
 		}

@@ -6,6 +6,7 @@ import java.util.List;
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.a.test.ShowtimeBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
@@ -35,6 +36,8 @@ public interface mOrdersDao {
 	//修改票狀態、領票時間、員工ID原本1
 	public void updateTicket(MOrderBean mob);
 
+	
+	
 	//查詢單筆訂單	
 	public MOrderBean getOrderID(Integer orderID);
 	
@@ -49,4 +52,17 @@ public interface mOrdersDao {
 	MOrderBean getOrderBeanID(int OrderID);
 
 	ProductsBean getProductBeanID(int ProductsID);
+
+	//查詢全部訂單
+	public List<MOrderBean> getOrders();
+
+	public List<MemberBean> getMemberList();
+
+	public List<ShowTimeHistoryBean> getShowtimeList();
+	
+	public List<MOrderDetailBean> getDetails(int ordersID);
+	
+//	public ShowTimeHistoryBean getShowtime(int showtimeID);
+//	public RunningBean getRunning(int runningID);
+	
 }

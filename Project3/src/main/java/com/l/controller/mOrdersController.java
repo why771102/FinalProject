@@ -28,11 +28,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.a.test.ShowtimeBean;
 import com.google.gson.Gson;
+import com.l.model.CategoriesBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.l.service.mOrdersService;
+import com.p.model.MemberBean;
 import com.z.model.EmpBean;
 
 
@@ -338,17 +341,69 @@ public class mOrdersController {
 			return "l/orderconfirmOK";
 		}
 
-		//輸入訂單號碼頁面
-		@RequestMapping("/inputOrderID")
-		public String inputOrderID(Model model) {
-		return "l/inputOrderID";
+		//查詢所有訂單資料
+		@RequestMapping("/queryOrders")
+		public String getProducts(Model model) {
+			List<MOrderBean> list=service.getOrders();
+			model.addAttribute("Orders", list);
+			return "l/Orders";
+		}
+		
+		//測試查詢多筆Ajax
+		@RequestMapping(value = "/OrdersAjax" ,produces="application/json;charset=UTF-8;")
+		public @ResponseBody String getOrdersAjax(Model model) {
+			List<MOrderBean> list=service.getOrders();
+			model.addAttribute("Orders", list);
+			Gson gson = new Gson();
+			String str = gson.toJson(list);
+			return str;
+		}
+		
+		@ModelAttribute("MemberList")
+		public Map<Integer, String> getMemberList() {
+			Map<Integer, String> MemberMap = new HashMap<>();
+			List<MemberBean> list = service.getMemberList();
+			for (MemberBean mb : list) {
+				MemberMap.put(mb.getMemberID(), mb.getName());
+			}
+			return MemberMap;
+		}
+		
+		@ModelAttribute("ShowtimeList")
+		public Map<Integer, String> getShowtime() {
+			Map<Integer, String> ShowtimeMap = new HashMap<Integer, String>();
+			List<ShowTimeHistoryBean> list = service.getShowtimeList();
+			for (ShowTimeHistoryBean sb : list) {
+				ShowtimeMap.put(sb.getShowTimeId(), sb.getRun().getMovie().getTitle());
+			}
+			return ShowtimeMap;
+		}
+		
+		
+//		//輸入訂單號碼頁面
+//		@RequestMapping("/inputOrderID")
+//		public String inputOrderID(Model model) {
+//		return "l/inputOrderID";
+//		}
+	
+		//測試查詢多筆Ajax
+		@RequestMapping(value = "/DetailAjax" ,produces="application/json;charset=UTF-8;")
+		public @ResponseBody String queryTicketAjax(@RequestParam("ordersID")String ordersID,Model model) {
+		List<MOrderDetailBean> mdb=service.getDetails(Integer.parseInt(ordersID));
+		model.addAttribute("getOrderByID", mdb);
+		Gson gson = new Gson();
+		String str = gson.toJson(mdb);
+		return str;
 		}
 		
 		//查詢單筆資料
 		@RequestMapping("/searchTicket")
-		public String queryTicket(@RequestParam("orderID") Integer orderID,Model model) {
-			MOrderBean mb = service.getOrderID(orderID);
-			model.addAttribute("getOrderByID",mb);
+		public String queryTicket(@RequestParam("ordersID")String ordersID,Model model) {
+			System.out.println("ordersID"+ordersID);
+			int orderID = Integer.parseInt(ordersID);
+			List<MOrderDetailBean> mdb=service.getDetails(orderID);
+			//			MOrderBean mb = service.getOrderID(orderID);
+			model.addAttribute("getOrderByID",mdb);
 			return "l/queryTicket";
 		}
 		

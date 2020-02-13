@@ -13,10 +13,13 @@ import org.springframework.stereotype.Repository;
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.a.test.ShowtimeBean;
 import com.l.dao.mOrdersDao;
+import com.l.model.CategoriesBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
+import com.p.dao.MemberDao;
 import com.p.model.MemberBean;
 import com.z.model.EmpBean;
 
@@ -24,9 +27,12 @@ import com.z.model.EmpBean;
 @Repository
 public class mOrdersDaoImpl implements mOrdersDao{
 	SessionFactory factory;
+	
+	
 	@Autowired
-	public void setFactory(SessionFactory factory) {
+	public void setFactory(SessionFactory factory,MemberDao dao) {
 		this.factory = factory;
+	
 	}
 
 	//查詢所有runID時間在現在時間和expectedOffDate之間之電影ID
@@ -118,6 +124,20 @@ public class mOrdersDaoImpl implements mOrdersDao{
 						.executeUpdate();
 		}
 
+		
+		//查詢所有ordersID
+		@Override
+		public List<MOrderBean> getOrders() {
+			String hql="FROM MOrderBean where ordersID>5000";
+			Session session=null;
+			List<MOrderBean> list=new ArrayList<>();
+			session = factory.getCurrentSession();
+			list=session.createQuery(hql).getResultList();
+			return list;
+		}
+
+		
+		
 		//查詢單筆OrderID
 		@Override
 		public MOrderBean getOrderID(Integer orderID) {
@@ -168,6 +188,46 @@ public class mOrdersDaoImpl implements mOrdersDao{
 			return pb;
 		}
 
+		@Override
+		public List<MemberBean> getMemberList() {
+			String hql = "from MemberBean";
+			Session session = factory.getCurrentSession();
+			List<MemberBean> list = session.createQuery(hql).getResultList();
+			return list;
+		}
+
+		@Override
+		public List<ShowTimeHistoryBean> getShowtimeList() {
+			String hql = "from ShowTimeHistoryBean";
+			Session session = factory.getCurrentSession();
+			List<ShowTimeHistoryBean> list = session.createQuery(hql).getResultList();
+			return list;
+		}
+
+		@Override
+		public List<MOrderDetailBean> getDetails(int ordersID) {
+			String hql ="from MOrderDetailBean where ordersID=:ordersID";
+			Session session=factory.getCurrentSession();
+			List<MOrderDetailBean> list=new ArrayList<>();
+			list=session.createQuery(hql).setParameter("ordersID", ordersID).getResultList();
+			return list;
+		}
+		
+//		@Override
+//		public ShowTimeHistoryBean getShowtime(int showtimeID) {
+//			ShowtimeBean sb = null;
+//			Session session = factory.getCurrentSession();
+//			sb = session.get(ShowTimeHistoryBean.class, showtimeID);
+//			return sb;
+//		}
+//		
+//		@Override
+//		public RunningBean getRunning(int runningID) {
+//			RunningBean rb = null;
+//			Session session = factory.getCurrentSession();
+//			rb = session.get(RunningBean.class, runningID);
+//			return rb;
+//		}
 		
 		
 }

@@ -19,11 +19,13 @@ import org.springframework.stereotype.Service;
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.a.test.ShowtimeBean;
 import com.l.dao.mOrdersDao;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.l.service.mOrdersService;
+import com.p.model.MemberBean;
 import com.z.model.EmpBean;
 
 @Service
@@ -92,6 +94,34 @@ public class mOrdersServiceImpl implements mOrdersService{
 	public MOrderBean getOrderID(Integer orderID) {
 		
 		return dao.getOrderID(orderID);
+	}
+	
+	@Transactional
+	@Override
+	public List<MOrderBean> getOrders() {
+		
+		return dao.getOrders();
+	}
+	
+	@Transactional
+	@Override
+	public List<MemberBean> getMemberList() {
+		
+		return dao.getMemberList();
+	}
+	
+	@Transactional
+	@Override
+	public List<ShowTimeHistoryBean> getShowtimeList() {
+		
+		return dao.getShowtimeList();
+	}
+	
+	@Transactional
+	@Override
+	public List<MOrderDetailBean> getDetails(int ordersID) {
+		
+		return dao.getDetails(ordersID);
 	}
 
 	

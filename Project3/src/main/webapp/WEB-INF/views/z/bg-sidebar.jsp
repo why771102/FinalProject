@@ -153,8 +153,12 @@
               <span>商品管理</span>
               </a>
             <ul class="sub">
+              <li><a href="<c:url value='/queryOrders'/>">查詢訂單</a></li>
+            </ul>
+            <ul class="sub">
               <li><a href="<c:url value='/products'/>">查詢產品</a></li>
             </ul>
+            
           </li>
 <!--           <li> -->
 <!--             <a href="inbox.html"> -->

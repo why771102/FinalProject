@@ -6,9 +6,11 @@ import java.util.List;
 import com.a.model.MovieBean;
 import com.a.model.RunningBean;
 import com.a.model.ShowTimeHistoryBean;
+import com.a.test.ShowtimeBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
+import com.p.model.MemberBean;
 import com.z.model.EmpBean;
 
 public interface mOrdersService {
@@ -35,5 +37,14 @@ public interface mOrdersService {
 
 	//查詢單筆訂單	
 	public MOrderBean getOrderID(Integer orderID);
+
+	//查詢全部訂單
+	public List<MOrderBean> getOrders();
+	
+	public List<MemberBean> getMemberList();
+
+	public List<ShowTimeHistoryBean> getShowtimeList();
+
+	public List<MOrderDetailBean> getDetails(int ordersID);
 		
 }

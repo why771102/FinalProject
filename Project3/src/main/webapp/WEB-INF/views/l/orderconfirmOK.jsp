@@ -125,7 +125,6 @@ font-weight: bold;
 						<p id="bigPopcorn" style="display: none">0</p>
 						<p id="normalPopcorn" style="display: none">0</p>
 						<p id="smallPopcorn" style="display: none">0</p>
-						
 					</div>
 				</div>
 				<div class="name" id="count">金額</div>
@@ -270,7 +269,7 @@ font-weight: bold;
 														+49*getCookie("smallCoke")
 														+126*getCookie("bigPopcorn")
 														+117*getCookie("normalPopcorn")
-														+108*getCookie("smallPopcorn");
+														+108*getCookie("smallPopcorn")+"元";
 		
 		
 		
