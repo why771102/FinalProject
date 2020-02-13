@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.TicketBean;
@@ -53,8 +54,8 @@ public class MemberProductsQueryController {
 		List<MOrderBean> molist = service.getMOrderBeanByMemberID(nMID);
 		if(molist.size() != 0) {
 			List<MOrderDetailBean> modetaillist = service.checkMOrder(nMID);
-		    List<TicketBean> tblist = service.checkTicket(nMID);
-		    
+		    List<List<TicketBean>> tblist = service.checkTicket(nMID);
+		    	System.out.println("這這邊:" + tblist);
 		
 		    	model.addAttribute("molist", molist);
 				model.addAttribute("modetaillist",modetaillist);
@@ -81,11 +82,12 @@ public class MemberProductsQueryController {
 		if(molist.size() != 0) {
 	
 			List<MOrderDetailBean> modetaillist = service.checkMOrder(memberID);
-		    List<TicketBean> tblist = service.checkTicket(memberID);
-		    
+		    List<List<TicketBean>> tblist = service.checkTicket(memberID);
+		    Gson gson = new Gson();
+		    String tb = gson.toJson(tblist);
 		    model.addAttribute("molist", molist);
 			model.addAttribute("modetaillist",modetaillist);
-			model.addAttribute("tblist", tblist);
+			model.addAttribute("tb", tb);
 			return "memberTicketForEmployee";
 			
 		}else {

@@ -20,7 +20,7 @@ public interface MemberProductsQueryService {
 	public TicketBean getTicketBeanByOrdersID(Integer ordersID);
 	
 	//票與mOrder進行比對
-	public List<TicketBean> checkTicket(Integer memberID);
+	public List<List<TicketBean>> checkTicket(Integer memberID);
 	
 	//用ordersID來查訂票座位2222
 	public List<TicketBean> getTicketBeanByOrdersID2(Integer ordersID);
