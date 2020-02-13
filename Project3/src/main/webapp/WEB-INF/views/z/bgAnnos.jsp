@@ -143,8 +143,8 @@
 				value.annoId,value.title,value.startTime.substring(0,16),value.endTime.substring(0,16),value.priority,value.annoStatusBean.statusName,
 				function(data,type,row) {
 					var html = "<a href='anno/update/" + value.annoId + "'>修改公告</a>";
-					html += " <a href='anno/launch/" + value.annoId + "'>上架</a>";
-					html += " <a href='anno/takeoff/" + value.annoId + "'>下架</a>";
+					html += " <a href='anno/launch/" + value.annoId + "' class='check'>上架</a>";
+					html += " <a href='anno/takeoff/" + value.annoId + "' class='check'>下架</a>";
 					return html;
 					} 
 					]).draw();
@@ -153,6 +153,10 @@
 		})
 	})
 });
+		
+		$(".check").click(function() {
+			alert("已修改");
+		})
 	</script>
 </body>
 </html>

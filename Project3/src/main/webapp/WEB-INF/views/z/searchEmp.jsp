@@ -52,6 +52,11 @@
 <section id="main-content">
 			<section class="wrapper site-min-height">
 				<div class="row mt">
+				<div>
+						<div style="text-align: center">
+							<h1>員工查詢</h1>
+						</div>
+					</div>
 					<!-- /row -->
 				</div>
 				<!-- /col-lg-12 -->
@@ -63,7 +68,7 @@
 							<div id="edit" class="tab-pane">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2 detailed">
-										<h4 class="mb">員工查詢</h4>
+										
 
 
 

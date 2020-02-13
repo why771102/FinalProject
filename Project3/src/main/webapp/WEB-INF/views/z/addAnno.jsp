@@ -54,6 +54,12 @@
 		<section id="main-content">
 			<section class="wrapper site-min-height">
 				<div class="row mt">
+				
+				<div>
+						<div style="text-align: center">
+							<h1>新增公告</h1>
+						</div>
+					</div>
 					<!-- /row -->
 				</div>
 				<!-- /col-lg-12 -->
@@ -65,7 +71,7 @@
 							<div id="edit" class="tab-pane">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2 detailed">
-										<h4 class="mb">新增公告</h4>
+<!-- 										<h4 class="mb">新增公告</h4> -->
 										
 										<form:form role="form" class="form-horizontal" method='POST'
 											modelAttribute="annoBean" enctype="multipart/form-data">
@@ -131,6 +137,7 @@
 												<div class="col-lg-offset-2 col-lg-10">
 													<button class="btn btn-theme" type="submit">儲存</button>
 													<button class="btn btn-theme04" type="button" onclick="location.href='../bgAnnos'">取消</button>
+													<input type="button" class="btn btn-theme" value="一鍵輸入" id="oneKey">
 												</div>
 											</div>
 
@@ -152,5 +159,20 @@
 		</jsp:include>
 		<!--footer end-->
 	</section>
+	
+	<script>
+		$("#oneKey").click(function() {
+			$("#title").val("76影城周年慶，電影全面7折起！");
+			$("#status").val(1);
+			$("#startTime").val("2020-02-11T10:00");
+			$("#endTime").val("2020-03-01T18:00");
+			$("#priority").val(1);
+			
+			
+		})
+	
+	
+	
+	</script>
 </body>
 </html>

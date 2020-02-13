@@ -37,6 +37,7 @@
 </head>
 
 <body>
+<section id="container">
 	<jsp:include page="bg-header.jsp">
 		<jsp:param name="a" value="1" />
 		<jsp:param name="b" value="1" />
@@ -56,7 +57,7 @@
         *********************************************************************************************************************************************************** -->
 	<!--main content start-->
 	<section id="main-content">
-		<section class="wrapper site-min-height">
+		<section class="wrapper">
 			<!-- page start-->
 			<div class="chat-room mt">
 				<aside class="mid-side">
@@ -73,7 +74,7 @@
 
 						</form>
 					</div>
-					<div style="height: 750px; overflow-y: auto" id="div1">
+					<div style="height: 330px; overflow-y: auto" id="div1">
 						<c:forEach var="list" items="${content}">
 							<c:choose>
 								<c:when test="${empty list.name}">
@@ -94,11 +95,6 @@
 							</c:choose>
 						</c:forEach>
 						<div id="greetings"></div>
-<!-- 						<div class="group-rom last-group"> -->
-<!-- 							<div class="first-part"></div> -->
-<!-- 							<div class="second-part"></div> -->
-<!-- 							<div class="third-part"></div> -->
-<!-- 						</div> -->
 						
 					</div>
 					<div style="background-color:#dcdada;padding:5px;">
@@ -107,6 +103,8 @@
 								placeholder="在此輸入訊息...">
 						</div>
 						<button id="sendMessage" class="btn btn-default" type="submit">送出</button>
+						<input type="button" id="oneKey" class="btn btn-default" value="一鍵輸入" >
+						<input type="button" id="hello" class="btn btn-default" value="招呼語" >
 					</div>
 					
 				</aside>
@@ -124,21 +122,7 @@
 	</jsp:include>
 	<!--footer end-->
 	</section>
-	<!-- js placed at the end of the document so the pages load faster -->
-<!-- 	<script -->
-<%-- 		src="${pageContext.request.contextPath}/lib/jquery/jquery.min.js"></script> --%>
-<!-- 	<script -->
-<%-- 		src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script> --%>
-<!-- 	<script class="include" type="text/javascript" -->
-<%-- 		src="${pageContext.request.contextPath}/lib/jquery.dcjqaccordion.2.7.js"></script> --%>
-<!-- 	<script -->
-<%-- 		src="${pageContext.request.contextPath}/lib/jquery.scrollTo.min.js"></script> --%>
-<!-- 	<script -->
-<%-- 		src="${pageContext.request.contextPath}/lib/jquery.nicescroll.js" --%>
-<!-- 		type="text/javascript"></script> -->
-<!-- 	<!--common script for all pages--> -->
-<%-- 	<script src="${pageContext.request.contextPath}/lib/common-scripts.js"></script> --%>
-	<!--script for this page-->
+	
 	<script>
 		var qId = location.pathname.split("/questionRep/")[1];
 		var status = ${status};
@@ -192,6 +176,14 @@
 			}
 
 		});
+		
+		$("#oneKey").click(function() {
+			$("#message").val("您好，已協助將您的訂票紀錄予以退費，如果還有其他問題，歡迎再透過客服聯繫我們，謝謝您的使用。");
+		})
+		
+		$("#hello").click(function() {
+			$("#message").val("歡迎使用76影城客服系統，敝姓李，很高興為您服務，請問有什麼需要協助的嗎？");
+		})
 	</script>
 </body>
 </html>

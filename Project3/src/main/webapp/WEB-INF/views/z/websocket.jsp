@@ -33,8 +33,8 @@
 				<table id="conversation" class="table table-striped">
 					<thead>
 						<tr>
-							<th>名稱：</th>
-							<th>內容：</th>
+							<th style="width:130px">名稱：</th>
+							<th style="width:600px">內容：</th>
 							<th>時間：</th>
 						</tr>
 					</thead>
@@ -70,6 +70,8 @@
 						<label for="name"></label> 
 						<input type="text" id="message" class="form-control" placeholder="在此輸入訊息...">
 							<button id="sendMessage" class="btn btn-default" type="submit">送出</button>
+							<input id="oneKey" class="btn btn-default" type="button" value="一鍵輸入">
+							<input id="message2" class="btn btn-default" type="button" value="一鍵訊息">
 					</div>
 				</form>
 			</div>
@@ -97,9 +99,15 @@
 			};
 		})
 		
-		 function setDivScoll() {
-            
-		}
+		$("#oneKey").click(function() {
+			$("#message").val("好的，F123456789");
+		})
+		
+		$("#message2").click(function() {
+			$("#message").val("不好意思，想請問一下");
+		})
+		
+		
 	</script>
 
 

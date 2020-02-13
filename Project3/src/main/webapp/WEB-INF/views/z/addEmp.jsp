@@ -129,6 +129,7 @@
 											<div class="form-group">
 												<div class="col-lg-offset-2 col-lg-10">
 													<button class="btn btn-theme" type="submit">送出</button>
+													<input type="button" class="btn btn-theme" id="oneKey" value="一鍵輸入">
 												</div>
 											</div>
 										</form:form>
@@ -147,4 +148,16 @@
 		</jsp:include>
 	</section>
 	</body>
+	<script>
+		$("#oneKey").click(function() {
+			$("#empName").val("楊凱淇");
+			$("#email").val("jess@gmail.com");
+			$("#uid").val("F223456123");
+			$("#status").val(2);
+			$("#startDate").val("2020-02-20");
+			$("#roleId").val(1);
+		})
+	
+	
+	</script>
 </html>

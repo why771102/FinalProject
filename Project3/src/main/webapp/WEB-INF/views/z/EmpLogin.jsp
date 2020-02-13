@@ -63,7 +63,7 @@
                             </span>
                         </label>
                         <input type='submit' value="登入" id="sumit1"  class="btn btn-theme btn-block"/>
-
+						<input type='button' value="一鍵輸入" id="oneKey"  class="btn btn-theme btn-block"/>
                     </form:form>
                     
                     
@@ -86,8 +86,10 @@
                                 <input type="text" name="uid" id="uid" autocomplete="off" class="form-control placeholder-no-fix">
                             </div>
                             <div class="modal-footer">
+                            	<button class="btn btn-theme" type="button" id="oneKey2">一鍵輸入</button>
                                 <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
                                 <button class="btn btn-theme" type="button" id="reset">送出</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -135,6 +137,16 @@
         			alert("輸入的資料有誤，請重新輸入！");
         		}
         	})
+        })
+        
+        $("#oneKey").click(function() {
+        	$("#email").val("yan@gmail.com");
+        	$("#password").val("F123456789");
+        })
+        
+        $("#oneKey2").click(function() {
+        	$("#email2").val("yan@gmail.com");
+        	$("#uid").val("F123456789");
         })
         
         

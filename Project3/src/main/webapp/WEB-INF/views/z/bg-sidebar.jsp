@@ -19,6 +19,7 @@
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/css/bg-style.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/2b661327b6.js" crossorigin="anonymous"></script>
 <style>
 	body{
 		font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
@@ -80,7 +81,7 @@
 <!--           </li> -->
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-book"></i>
+              <i class="fa fa-users"></i>
               <span>員工管理</span>
               </a>
             <ul class="sub">
@@ -124,7 +125,7 @@
           
            <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-rebel"></i>
+              <i class="fab fa-rebel"></i>
               <span>影廳管理</span>
               </a>
             <ul class="sub">

@@ -26,6 +26,7 @@
   <link href="${pageContext.request.contextPath}/css/backstagestyle.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
   <script src="${pageContext.request.contextPath}/lib/chart-master/Chart.js"></script>
+  <script src="https://kit.fontawesome.com/2b661327b6.js" crossorigin="anonymous"></script>
 
   <!-- =======================================================
     Template Name: Dashio
@@ -65,45 +66,45 @@
       <br>
       <br>
       <div class="border-head">
-              <h3>INFORMATION</h3>
+              <h3>資訊</h3>
             </div>
       <div class="row">
-      <div class="col-md-4 mb">
-                <div class="weather pn">
-                  <i class="fa fa-cloud fa-4x"></i>
-                  <h2 id="weather"></h2>
-                  <h2 id="temp"></h2>
-                  <h4 id="location"></h4>
-                </div>
-              </div>
-              <div class="col-md-8 mb">
+      	<div class="col-md-5 mb">
+      		<div class="weather pn">
+            	<i class="fa fa-cloud-showers-heavy fa-4x"></i>
+            	<h2 id="weather"></h2>
+                <h2 id="temp"></h2>
+                <h4 id="location"></h4>
+            </div>
+        </div>
+        <div class="col-md-7 mb">
                 <div class="">
                   <table id="example" class="display table table-striped table-advance table-hover"
 						style="width: 100%; text-align: center;">
 						<thead>
 							<tr>
-								<th>內部公告</th>
+								<th><strong>內部公告</strong></th>
 								
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td style="text-align:left">公告一</td>	
+								<td style="text-align:left">因應冠狀病毒，上班時請配戴口罩，以避免感染。</td>	
 							</tr>
 							<tr>
-								<td style="text-align:left">公告一</td>	
+								<td style="text-align:left">上下班請記得打卡，避免出缺勤有缺紀錄。</td>	
 							</tr>
 							<tr>
-								<td style="text-align:left">公告一</td>	
+								<td style="text-align:left">辦公室拾獲波提貓一隻，請飼主前來認領。</td>	
 							</tr>
 							<tr>
-								<td style="text-align:left">公告一</td>	
+								<td style="text-align:left">本月即將結束，請各部門主管盡早批改請假申請。</td>	
 							</tr>
 							<tr>
-								<td style="text-align:left">公告一</td>	
+								<td style="text-align:left">三月份班表已公布，請提早確認，方便進行調動。</td>	
 							</tr>
 							<tr>
-								<td style="text-align:left">公告一</td>	
+								<td style="text-align:left">本月聚餐訂於3月14日舉辦，請至信件夾查看詳細資訊。</td>	
 							</tr>
 						</tbody>
 						<tfoot>
