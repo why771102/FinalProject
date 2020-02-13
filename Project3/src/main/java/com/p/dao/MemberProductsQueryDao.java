@@ -27,7 +27,7 @@ public interface MemberProductsQueryDao{
 	public List<MOrderBean> getMOrderBeanByMemberID(Integer memberID);//看看參數要填啥
 	
 	//查詢歷史訂票細節，用上面找出的的ordersID來查詢
-	public MOrderDetailBean getListMOrderDetailBeanByOrdersID(Integer ordersID);
+	public List<MOrderDetailBean> getListMOrderDetailBeanByOrdersID(Integer ordersID);
 	
 	//用ordersID來查訂票座位
 	public TicketBean getTicketBeanByOrdersID(Integer ordersID);

@@ -125,7 +125,7 @@ font-weight: bold;
 						<p id="bigPopcorn" style="display: none">0</p>
 						<p id="normalPopcorn" style="display: none">0</p>
 						<p id="smallPopcorn" style="display: none">0</p>
-						<p>手續費</p>
+						
 					</div>
 				</div>
 				<div class="name" id="count">金額</div>
