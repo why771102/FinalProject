@@ -779,7 +779,7 @@ div.submitButton {
 			<div class='ready'>
 				<h4>現在就立刻購票！</h4>
 				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
-				<a href='free-trail.html' class='slider-btn'>前往購票</a>
+				<a href='<c:url value="movieIndex#booknow"/>' class='slider-btn'>前往購票</a>
 			</div>
 		</div>
 	</section>
