@@ -47,6 +47,26 @@
   ======================================================= -->
 <!--  =============================CSS put Here============================== -->
 <style>
+
+tr{
+     
+       cursor: pointer;
+    }
+    
+    
+    tbody>tr>td{
+  padding-left:20px;
+}
+
+thead{
+     background: #4ECDC4;
+    color: white;
+    font-size:18px;
+    }
+table{
+       width: 100%;
+    text-align: center;
+}
 </style>
 <!--  =============================CSS put Here============================== -->
 </head>
@@ -77,7 +97,7 @@
 		<!--main content start-->
 		<section id="main-content">
 			<section class="wrapper site-min-height">
-				
+					<h1 style='  padding:1% 5% 2% 0%;  text-align: center;'>生成場次結果</h1>
 				<div class="row mt">
 					<div class="col-lg-12">
 						<!-- <p>Place your content here.</p> -->
@@ -115,10 +135,11 @@
 							</table>
 							<!-- 	<input id='b' type='submit' onclick="updateAllSubmit()" value='修改全部'/> -->
 							<%-- 	<a href='${pageContext.request.contextPath}/a/updateShowTime'>修改</a> --%>
-							<a href='${pageContext.request.contextPath}/insertReservedSeats'>確認</a>
+							  <div style=' ' align='center'>
+							  <a href='${pageContext.request.contextPath}/insertReservedSeats'  style='margin:0px 30px 0px 0px;'><button class='btn btn-theme04'>確認</button></a>
 							<%-- 	<input type='button' name="updateAll"   value='${stb.day}' id='updateAll' /> --%>
 
-
+                              </div>
 
 
 

@@ -77,7 +77,7 @@
  <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
-            	<h1 style='padding: 10px 30px;'>新增排片</h1>
+            	<h1 style='padding: 10px 30px;    text-align: center;'>新增排片場次</h1>
                 <div class="row mt">
                 
                 </div>

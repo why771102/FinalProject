@@ -48,6 +48,22 @@
   ======================================================= -->
 <!--  =============================CSS put Here============================== -->
 <style>
+
+    tbody>tr>td{
+  padding-left:20px;
+}
+
+thead{
+     background: #4ECDC4;
+    color: white;
+    font-size:18px;
+    }
+table{
+       width: 100%;
+    text-align: center;
+}
+
+
 </style>
 <!--  =============================CSS put Here============================== -->
 </head>
@@ -81,12 +97,13 @@
 				<div class="row mt">
 					<div class="col-lg-12">
 				<!-- <p>Place your content here.</p> -->
-		<h1>排片查詢</h1>
+		<h1 style='  padding:20px 10px;  text-align: center;'>排片場次查詢</h1>
 		<label>請選擇日期：</label> <label>起始日期：</label> <input type="date"
 			id="startShowDate" name="startDate" min="2019-11-01" max="2020-04-30">
 		<label>結束日期：</label> <input type="date" id="endShowDate"
-			name="endDate" min="2019-11-01" max="2020-04-30"> <select
-			name='hallID' id='hall' value=''>
+			name="endDate" min="2019-11-01" max="2020-04-30"> 
+			<label>選擇影廳：</label> 
+			<select name='hallID' id='hall' value=''>
 			<option selected='' disabled='' value=''>請選擇廳</option>
 			<option selected='' value='All'>全部</option>
 			<option selected='' value='A'>A廳</option>
@@ -96,7 +113,7 @@
 			<option selected='' value='E'>E廳</option>
 			<option selected='' value='F'>F廳</option>
 			<option selected='' value='G'>G廳</option>
-		</select> <input id='a' type='submit' onclick="formSubmit()" value='確定送出' /> <br>
+		</select> <input   class='btn btn-theme04' id='a' type='submit' onclick="formSubmit()" value='確定送出' /> <br>
 		<!--    <div id ='AllTable'> -->
 		<table id="table1" class="display">
 			<thead id='table_thead'>

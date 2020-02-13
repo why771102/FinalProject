@@ -869,7 +869,7 @@ console.log("diff"+diffDay);
 				
 		
 			}else{
-				alert("月份不同");
+// 				alert("月份不同");
 			}
 			
 		} 
@@ -888,12 +888,12 @@ console.log(document.getElementById("movieBean").value);
 
 <script>
 function showhide(id) {
-alert("id"+id);
+// alert("id"+id);
 
 var divid = document.getElementById(id);
 var divs = document.getElementsByClassName('hide');
 var showElement = true;
-alert("aaa"+divid.style.display);
+// alert("aaa"+divid.style.display);
 if (divid.style.display === 'none') {
 // alert("bbbb");
 divid.style.display = 'block';
@@ -924,12 +924,12 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 
 <script>
 	function showhide(id) {
-		alert("id" + id);
+// 		alert("id" + id);
 
 		var divid = document.getElementById(id);
 		var divs = document.getElementsByClassName('hide');
 		var showElement = true;
-		alert("aaa" + divid.style.display);
+// 		alert("aaa" + divid.style.display);
 		if (divid.style.display === 'none') {
 			//         alert("bbbb");
 			divid.style.display = 'block';

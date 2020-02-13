@@ -77,7 +77,7 @@
  <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
-            	<h1 style='padding: 10px 30px;'>新增電影</h1>
+            	<h1  style='padding: 10px 30px;     text-align: center;'>新增電影</h1>
                 <div class="row mt">
                 
                 </div>
@@ -286,11 +286,11 @@
                         " 《猛禽小隊：小丑女大解放》演員陣容包括瑪格羅比飾演小丑女哈利奎茵、朱妮絲莫利特飾演黑金絲雀、瑪麗伊莉莎白文斯蒂德飾演女獵手、蘿西培瑞茲飾演芮妮蒙托亞、伊旺麥奎格在片中飾演反派：「黑面具」。瑪格羅比同時擔任製片，電影由華裔女導演閻羽茜執導，克麗絲汀哈德森擔任編劇。";
 		
 		var release = document.getElementById("release");
-		    release.value = "2020-02-10";
+		    release.value = "2020-02-14";
 		var expectedOffDate = document.getElementById("expectedOffDate");
 		    expectedOffDate.value = "2020-03-10";
 		var MustShowDay = document.getElementById("MustShowDay");
-		     MustShowDay.value = "7";
+		     MustShowDay.value = "30";
 		
 	}
 	

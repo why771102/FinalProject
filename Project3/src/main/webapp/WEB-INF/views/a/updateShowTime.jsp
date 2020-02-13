@@ -118,7 +118,7 @@ table{
 				<div class="row mt">
 					<div class="col-lg-12">
 						<!-- <p>Place your content here.</p> -->
-						<h1>修改頁面</h1>
+						<h1 style='    text-align: center;'>修改頁面</h1>
 
 						<table id="table" class="display">
 							

@@ -345,7 +345,7 @@
 	   
 	   /*	換下面頁數 */
 	   function changPageNum (id){
-		   console.log(document.getElementById(id).getAttribute("values"));
+// 		   console.log(document.getElementById(id).getAttribute("values"));
 			var pageNoChange =document.getElementById(id).getAttribute("values"); 
 			NowPage = pageNoChange;
 			var pprev =document.getElementById(pprev);
@@ -353,7 +353,7 @@
 			var plast =document.getElementById(plast);
 			var count =document.getElementById(pageCount);
 			var pfirst_tr =document.getElementById(pfirst_tr);
-			alert("pageNoChange:"+pageNoChange);
+// 			alert("pageNoChange:"+pageNoChange);
 			
 	
 		   
@@ -365,7 +365,7 @@
 	   
 /*	跳轉選指定電影page */
 	   function formsubmit(run){
-		  alert("formsubmit");
+// 		  alert("formsubmit");
 		  console.log(JSON.stringify(run));
 // 		  console.log(run.movie.movieID );
 		  document.getElementById("runForm"+run).submit()
@@ -373,7 +373,7 @@
 	   }
 	   
 	   function formsubmit2(runID){
-		   alert("formsubmit2");
+// 		   alert("formsubmit2");
 		   console.log(runID);
 		   document.getElementById("runForm"+runID).submit()
 	   }
@@ -385,7 +385,7 @@
 			console.log(document.getElementById(id).getAttribute("values"));
 			var page =document.getElementById(id).getAttribute("values");
 			page =page.trim();
-			alert("送出page:"+page);
+// 			alert("送出page:"+page);
 			 
 // 			location.replace("${pageContext.request.contextPath}/commingSoon/All/movie"+page);
 //             var url2="${pageContext.request.contextPath}/commingSoon/All/movie"+page;
@@ -407,7 +407,7 @@
 				error: function(){alert("失敗");   },
 				success : function(data) {
 					
-					alert("修改成功"+data);
+// 					alert("修改成功"+data);
 //  			 	    document.getElementById("movie").remove();
  			 	  var divObj = document.getElementById("movie");
  			 	  var PageObj = document.getElementById("createPage");
@@ -416,7 +416,7 @@
  			 	     
 //  			 	      location.reload();
 // 				      divObj.innerHTML ="";
-				      alert("修改成功"+data);
+// 				      alert("修改成功"+data);
 				      divObj.innerHTML="";
 				      PageObj.innerHTML="";
 // 				      $("#movie").append("<div>aaa</div>");
