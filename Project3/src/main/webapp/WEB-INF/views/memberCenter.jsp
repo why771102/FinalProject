@@ -82,7 +82,15 @@ input[type=text]:focus {
   border: 1px solid #339FFF;
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
-
+/* .loader {  */
+/*  	position: fixed;  */
+/*  	left: 0px;  */
+/*  	top: 0px;  */
+/*  	width: 100%;  */
+/*  	height: 100%;  */
+/*  	z-index: 9999;  */
+/*  	background: url('${pageContext.request.contextPath}/img/loader.gif') 50% 50% no-repeat rgb(249,249,249);  */
+/*  }  */
 </style>
 
 <title>會員登入</title>
@@ -147,7 +155,7 @@ input[type=text]:focus {
        </jsp:include>
 
     </footer>
-       
+<!--        <div class="loader" id="loading" display="none"></div> -->
     <!-- footer -->
 	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" charset="utf8"
@@ -228,9 +236,14 @@ input[type=text]:focus {
 			url : "${pageContext.request.contextPath}/showSCOrderDetails",
 			type : "GET",
 			success : function(page) {
-				alert("success!!");
+// 				alert("success!!");
 //				alert("新增成功!");
 //				window.location.href = "${pageContext.request.contextPath}/backstageindex";
+// $(document).ajaxStart(function () {
+//         $("#loading").show();
+//     }).ajaxStop(function () {
+//         $("#loading").hide();
+//     });
 				$('#container').html(page);
 			}
 		});
@@ -241,19 +254,19 @@ input[type=text]:focus {
 	 $('#memberDetail').removeClass("selected");
 	 $('#memTicket').removeClass("selected");
 	 $('#memOrder').removeClass("selected");
-// 	 $.ajax({
-// 			url : "${pageContext.request.contextPath}/Member/hallOrderQuery",
-// // 			data : {
+	 $.ajax({
+			url : "${pageContext.request.contextPath}/Member/hallOrderQuery",
+// 			data : {
 				
-// // 			},
-// 			type : "POST",
-// 			success : function(page) {
+// 			},
+			type : "POST",
+			success : function(page) {
 // 				alert("新增成功!");
 // 				window.location.href = "${pageContext.request.contextPath}/backstageindex";
 				
-				$('#container').load("${pageContext.request.contextPath}/Member/hallOrderQuery");
-// 			}
-// 		});
+				$('#container').html(page);
+			}
+		});
  })
  
  

@@ -259,8 +259,8 @@ public class ShoppingCartController implements ServletContextAware {
 	@PostMapping("/confirmPurchase")
 	public String confirmPurchase(@RequestParam("total") String total, @RequestParam("orderID") String orderID) {
 		PayStatusBean payStatusBean = new PayStatusBean(1);
-		System.out.println("total: " + total);
-		System.out.println("orderID: " + orderID);
+//		System.out.println("total: " + total);
+//		System.out.println("orderID: " + orderID);
 		SCOrdersBean ob = new SCOrdersBean();
 		ob.setPayStatusBean(payStatusBean);
 		ob.setTotal(Integer.parseInt(total));
@@ -277,7 +277,7 @@ public class ShoppingCartController implements ServletContextAware {
 		for(SCOrdersBean scob : listscob) {
 			List<SCOrderDetailBean> listscodb = scodservice.getOrderDetails(scob.getsCOrderID());
 			list.add(listscodb);
-			System.out.println("orderID: " + scob.getsCOrderID());
+//			System.out.println("orderID: " + scob.getsCOrderID());
 		}
 		Gson gson = new Gson();
 		String orders = gson.toJson(list);

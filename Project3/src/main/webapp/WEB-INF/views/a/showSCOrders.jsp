@@ -35,15 +35,15 @@ tr.shown td.details-control {
     background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
 }
 
-.loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('${pageContext.request.contextPath}/img/loader.gif') 50% 50% no-repeat rgb(249,249,249);
-}
+/*  .loader {  */
+/*  	position: fixed;  */
+/*  	left: 0px;  */
+/*  	top: 0px;  */
+/*  	width: 100%;  */
+/*  	height: 100%;  */
+/*  	z-index: 9999;  */
+/*  	background: url('${pageContext.request.contextPath}/img/loader.gif') 50% 50% no-repeat rgb(249,249,249);  */
+/*  }  */
 </style>
 
 </head>
@@ -75,25 +75,25 @@ tr.shown td.details-control {
 		</tfoot>
 	</table></font>
 
-	<div class="loader" display="none"></div>
+<!-- 	<div class="loader" display="none"></div> -->
 
 <script type="text/javascript" charset="utf8"
 		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
-	console.log(${orders});
+// 	console.log(${orders});
 	var orders = ${orders};
 	/* Formatting function for row details - modify as you need */
 	function format ( d ) {
-		console.log(d);
-		console.log(typeof(d[1]));
+// 		console.log(d);
+// 		console.log(typeof(d[1]));
 	    // `d` is the original data object for the row
 	    window.childtable = "<table cellpadding='5' cellspacing='0' border='0' style='padding-left:50px;'>";
 	    for(let order = 0; order < orders.length; order++){
 
 	    	if(d[1] == orders[order][0].SCOrdersBean.sCOrderID){
-	    		console.log("true");
+// 	    		console.log("true");
 	    		for(let products = 0; products < orders[order].length; products++){
-	    			console.log(orders[order][products].productsBean.productName);
+// 	    			console.log(orders[order][products].productsBean.productName);
 	    			
 	    			window.childtable +='<tr>'+
 	            		'<td>商品名稱:</td>'+
@@ -112,7 +112,7 @@ tr.shown td.details-control {
 	    	}
 	    }
 	    window.childtable+='</table>';
-	    console.log(window.childtable);
+// 	    console.log(window.childtable);
 	    return window.childtable;
 
 	    	}
@@ -144,7 +144,7 @@ tr.shown td.details-control {
 // 			console.log(value[0].SCOrdersBean.total);
 // 			console.log(value[0].SCOrdersBean.payStatusBean.payStatus);
 			dataTable.row.add(["",value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate.substring(0, 16),value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
-			document.getElementById("loader").style.visibility = 'visible';
+// 			document.getElementById("loader").style.visibility = 'visible';
 		});
 	    
 	    // Add event listener for opening and closing details
