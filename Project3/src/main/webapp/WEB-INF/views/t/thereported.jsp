@@ -125,7 +125,7 @@
 						dataTable.row.add([
 			value.memberBean.account, value.commentContent,
 			function(data,type,row) {
-				var html = "<a href='comments/delete/" + value.commentID + "'>刪除</a>";
+				var html = "<a href='comments/deletereport/" + value.commentID + "'>刪除</a>";
 				return html;
 				},
 			function(data,type,row) {
