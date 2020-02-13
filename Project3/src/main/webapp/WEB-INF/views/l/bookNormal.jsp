@@ -84,6 +84,7 @@ text-align:center;
 }
 
 .foods {
+	cursor: pointer;
 	font-size: 20px;
 	width: 10%;
 	display: inline-block;
