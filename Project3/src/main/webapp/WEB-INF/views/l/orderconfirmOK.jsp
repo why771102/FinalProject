@@ -136,7 +136,7 @@ font-weight: bold;
 				<div class="next">
 					<input type="button" value="回首頁"
 						
-						onclick="location.href='${pageContext.request.contextPath}/movieIndex';clearAllCookie()"
+						onclick="location.href='${pageContext.request.contextPath}/movieIndex';eraseCookie(name)"
 						
 						>
 				</div>
@@ -152,16 +152,43 @@ font-weight: bold;
 	<!-- footer -->
 	<script>
 		
-	
-		
-		function clearAllCookie() {
-			var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-			if (keys) {
-				for (var i = keys.length; i--;)
-					document.cookie = keys[i] + '=0;expires='
-							+ new Date(0).toUTCString();
-			}
+	function createCookie(name, value, days, path) {
+		  if (days) {
+		    var date = new Date();
+		    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		    var expires = "; expires=" + date.toGMTString();
+		  }
+		  else var expires = "";
+		  document.cookie = name + "=" + value + expires + "; path=/";
 		}
+		
+		//刪除
+		function eraseCookie(name) {
+		   createCookie("discount", "", -1,"/");
+		   createCookie("discount2", "", -1,"/");
+		   createCookie("bankticket", "", -1,"/");
+		   createCookie("normal", "", -1,"/");
+		   createCookie("hotdog", "", -1,"/");
+		   createCookie("churro", "", -1,"/");
+		   createCookie("friedChicken", "", -1,"/");
+		   createCookie("bigCoke", "", -1,"/");
+		   createCookie("normalCoke", "", -1,"/");
+		   createCookie("smallCoke", "", -1,"/");
+		   createCookie("bigPopcorn", "", -1,"/");
+		   createCookie("normalPopcorn", "", -1,"/");
+		   createCookie("smallPopcorn", "", -1,"/");
+		   createCookie("showtimeId", "", -1,"/");
+		  	   
+		}
+		
+// 		function clearAllCookie() {
+// 			var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+// 			if (keys) {
+// 				for (var i = keys.length; i--;)
+// 					document.cookie = keys[i] + '=0;expires='
+// 							+ new Date(0).toUTCString();
+// 			}
+// 		}
 		
 		function getCookie(cname) {
 			var name = cname + "=";
