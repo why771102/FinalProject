@@ -859,7 +859,7 @@ console.log("diff"+diffDay);
 					
 					console.log("相同月份");
 				
-					 document.getElementById("showTime_tr"+day).innerHTML+= "<a href='free-trail.html' class='slider-btn' style='margin: 5px 20px' onclick='formsubmit()'>"+b[i].strTime+"</a>";
+					 document.getElementById("showTime_tr"+day).innerHTML+= "<a href='${pageContext.request.contextPath}/buyticket' class='slider-btn' style='margin: 5px 20px' onclick='formsubmit()'>"+b[i].strTime+"</a>";
 					 document.getElementById("showTime_tr"+day).innerHTML+= "<form id='showForm"+b[i].sthb.showTimeId+"'action='${pageContext.request.contextPath}/show/this/movie'method='post'>";
 					 document.getElementById("showTime_tr"+day).innerHTML+="<input name='showTimeId' type='hidden' value="+b[i].sthb.showTimeId+">"+"</form>" ;
 

@@ -30,6 +30,7 @@
 
   img:hover{
        opacity:0.6;
+       cursor: pointer;
     }
     .wrap {
                 /*Flex屬性區*/
