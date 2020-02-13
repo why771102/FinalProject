@@ -49,7 +49,7 @@ table td {
 	<div align="center"
 		style="width: 600px; margin-top: 100px; margin-bottom: 100px; border: 1px solid #cdcdcd; padding: 50px 40px 50px 40px; margin-left: auto; margin-right: auto; background-color: white">
 		<div>
-			<img src="img/LifterLMS-PayPal-Extension.png" style="width: 550px" />
+			<img src="img/LifterLMS-PayPal-Extension.png" style="width: 100%;text-align: center" />
 		</div>
 		<!-- 			<h1 style="font-size: 35px">付款前確認</h1> -->
 		<form action="execute_payment" method="post">
@@ -81,7 +81,7 @@ table td {
 				<!-- 		</tr> -->
 				<tr>
 					<td>總額:</td>
-					<td>NT &nbsp ${transaction.amount.total}</td>
+					<td>NT$ &nbsp ${transaction.amount.total}</td>
 				</tr>
 				<tr>
 					<td><br /></td>
