@@ -712,14 +712,17 @@ text-align:center;
 
 		});
 
-		var expDays = 7;
-		function setCookie(name, value) {
+		var expDays = 1;
+		function setCookie(name, value, days, path) {
 			var exp = new Date();
 			var cookieTimeToLive = exp.getTime()
 					+ (expDays * 24 * 60 * 60 * 1000)
 			exp.setTime(cookieTimeToLive)
-			document.cookie = name + "=" + escape(value) + "; expires="
-					+ exp.toGMTString()
+			
+			var expires = "; expires=" + exp.toGMTString();
+			
+			document.cookie = name + "=" + escape(value) + expires + "; path=/"; 
+					
 		}
 
 		function setCountPrice(name, value) {

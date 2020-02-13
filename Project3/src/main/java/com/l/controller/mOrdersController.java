@@ -200,11 +200,7 @@ public class mOrdersController {
 					 mdb1.setQuantity(Integer.parseInt(discount));
 					 service.addMOrderDetail(mdb1); 
 					 session.removeAttribute("discount");
-					 Cookie killMyCookie = new Cookie("discount", null);
-		             killMyCookie.setMaxAge(0);
-		             killMyCookie.setPath("/");
-		             response.addCookie(killMyCookie);
-	
+						
 				}
 				if(cookie.getName().equals("discount2")) {
 					 String discount2 = cookie.getValue();
