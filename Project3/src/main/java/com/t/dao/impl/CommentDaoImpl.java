@@ -194,9 +194,20 @@ public class CommentDaoImpl implements CommentDao {
 					.setParameter("id", cid).getResultList();
 			int len1 = list2.size() - 1;
 			for (int k = len1; k >= 0; k--) {
+				if (list2.get(k).getGood() == 1) {
+					list.get(m).setHaveLike(1);
+					list.get(m).setHaveBad(0);
+				}if(list2.get(k).getGood() == 0) {
+					list.get(m).setHaveLike(0);
+					if(list2.get(k).getBad() == 1) {
+						list.get(m).setHaveBad(1);
+					}if(list2.get(k).getBad() == 0) {
+						list.get(m).setHaveBad(0);
+					}
+				}			
 				if (list2.get(k).getBlock() == 1) {
 					list.remove(m);
-				}
+				}				
 			}
 		}
 		for (int i = 0; i < list.size(); i++) {

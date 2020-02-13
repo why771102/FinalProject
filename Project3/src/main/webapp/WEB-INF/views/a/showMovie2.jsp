@@ -1007,22 +1007,55 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 // 		alert("屏蔽成功");			
 // 	});
 	
-// 	$("#good${comment.commentID}").click(function(){	
-// 		$.ajax({
-// 			type : "POST",
-// 			url : "${pageContext.request.contextPath}/preference/addlike",
-// 			data : {commentID : cID},
-// 			success : function(data) {
+	$("#good${comment.commentID}").click(function(){	
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/preference/addlike",
+			data : {commentID : cID},
+			success : function(data) {
 
-// 			},
-// 			error : function(data) {
-// 				$("#close").removeClass();
-// 				$("#close").addClass("btn btn-danger");
-// 				$("#close").val("已結案");
-// 				status = 2;
-// 			}
-// 		})
-// });
+			},
+			error : function(data) {
+				$("#close").removeClass();
+				$("#close").addClass("btn btn-danger");
+				$("#close").val("已結案");
+				status = 2;
+			}
+		})
+});
+	
+	function like(commentID){
+  
+   var  messageLike= parseInt($("#messageLike").val())+1;
+
+   alert(messageLike);
+    $.ajax({
+    url:"${pageContext.request.contextPath}/preference/addlike",
+    type:"POST",
+    data:{"commentID":commentID ,"messageLike":messageLike},
+   success:function(messageId){
+    $("#messageLike").val(messageLike);
+    $("#likes").text(messageLike+"人按讚");
+    $("#likebutton").text("收回讚");
+    $("#likebutton").attr("onclick","notlike(${message.messageId})");
+   }
+   }) 
+ }
+ function notlike(messageId){
+  var  messageLike= parseInt($("#messageLike").val())-1;
+  alert(messageLike);
+   $.ajax({
+   url:"like",
+   type:"POST",
+   data:{"messageId":messageId ,"messageLike":messageLike},
+   success:function(messageId){
+    $("#messageLike").val(messageLike);
+    $("#likes").text(messageLike+"人按讚");
+    $("#likebutton").text("讚");
+    $("#likebutton").attr("onclick","like(${message.messageId})");
+   }
+   })
+ }
 	
 // 	$("#bad${comment.commentID}").click(function(){	
 // 		$.ajax({

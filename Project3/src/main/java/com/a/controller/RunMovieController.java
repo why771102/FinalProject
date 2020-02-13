@@ -519,6 +519,7 @@ public class RunMovieController implements ServletContextAware {
 			if (ce == true) {
 				int commentID = cService.getCommentID(memberID, movieID);
 				CommentBean cb1 = cService.getTheCommentBean(commentID);
+				System.out.println(cb1.getHaveLike());
 				model.addAttribute("haveComment", "1");
 				model.addAttribute("updateComment", cb1);
 			} // 如果無 印出留言區

@@ -73,6 +73,28 @@ public class CommentBean implements Serializable{
 	@Transient
 	Integer badNum;	
 	
+	@Transient
+	Integer haveLike;
+	
+	@Transient
+	Integer haveBad;
+	
+	public Integer getHaveLike() {
+		return haveLike;
+	}
+
+	public void setHaveLike(Integer haveLike) {
+		this.haveLike = haveLike;
+	}
+
+	public Integer getHaveBad() {
+		return haveBad;
+	}
+
+	public void setHaveBad(Integer haveBad) {
+		this.haveBad = haveBad;
+	}
+
 	public Integer getAvgGrade() {
 		return avgGrade;
 	}
