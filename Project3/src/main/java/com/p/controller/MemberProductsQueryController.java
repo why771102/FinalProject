@@ -56,10 +56,12 @@ public class MemberProductsQueryController {
 			List<MOrderDetailBean> modetaillist = service.checkMOrder(nMID);
 		    List<List<TicketBean>> tblist = service.checkTicket(nMID);
 		    	System.out.println("這這邊:" + tblist);
-		
+		    	Gson gson = new Gson();
+			    String tb = gson.toJson(tblist);
 		    	model.addAttribute("molist", molist);
 				model.addAttribute("modetaillist",modetaillist);
 				model.addAttribute("tblist", tblist);
+				System.out.println(tblist.get(0).get(0).getSeatsBean().getSeatID());
 				
 			    
 				return "memberOrderQuery";
@@ -85,6 +87,7 @@ public class MemberProductsQueryController {
 		    List<List<TicketBean>> tblist = service.checkTicket(memberID);
 		    Gson gson = new Gson();
 		    String tb = gson.toJson(tblist);
+		    System.out.println("黑:" + tb);
 		    model.addAttribute("molist", molist);
 			model.addAttribute("modetaillist",modetaillist);
 			model.addAttribute("tb", tb);

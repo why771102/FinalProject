@@ -34,10 +34,21 @@ td.details-control {
 tr.shown td.details-control {
     background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
 }
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('${pageContext.request.contextPath}/img/loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
 </style>
 
 </head>
 <body>
+
 	<section>
 		<div>
 			<div style="text-align: center">
@@ -64,7 +75,7 @@ tr.shown td.details-control {
 		</tfoot>
 	</table></font>
 
-	
+	<div class="loader" display="none"></div>
 
 <script type="text/javascript" charset="utf8"
 		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
@@ -123,17 +134,17 @@ tr.shown td.details-control {
 	    var dataTable = $("#example").DataTable();
 
 	    $.each(orders, function(index, value) {
-			console.log(value);
-			console.log(value.length);
-			for(let x = 0; x < value.length; x++){
-				console.log("productname: " + value[x].productsBean.productName + " quantity: " + value[x].quantity);
-			}
-			console.log(value[0].SCOrdersBean.sCOrderID);
-			console.log(value[0].SCOrdersBean.ordDate);
-			console.log(value[0].SCOrdersBean.total);
-			console.log(value[0].SCOrdersBean.payStatusBean.payStatus);
-			dataTable.row.add(["+",value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate.substring(0, 16),value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
-// 			dataTable.row.add("", [value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate,value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
+// 			console.log(value);
+// 			console.log(value.length);
+// 			for(let x = 0; x < value.length; x++){
+// 				console.log("productname: " + value[x].productsBean.productName + " quantity: " + value[x].quantity);
+// 			}
+// 			console.log(value[0].SCOrdersBean.sCOrderID);
+// 			console.log(value[0].SCOrdersBean.ordDate);
+// 			console.log(value[0].SCOrdersBean.total);
+// 			console.log(value[0].SCOrdersBean.payStatusBean.payStatus);
+			dataTable.row.add(["",value[0].SCOrdersBean.sCOrderID,value[0].SCOrdersBean.ordDate.substring(0, 16),value[0].SCOrdersBean.total,value[0].SCOrdersBean.payStatusBean.payStatus]).draw();
+			document.getElementById("loader").style.visibility = 'visible';
 		});
 	    
 	    // Add event listener for opening and closing details

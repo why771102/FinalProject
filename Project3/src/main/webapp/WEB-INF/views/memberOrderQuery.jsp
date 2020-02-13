@@ -84,51 +84,37 @@
 				<td>${playTime2}</td>
 				
 				
-				
-<%-- 				<c:forEach var="tb" items="${tb}"> --%>
-				
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${tb.size()>1}"> --%>
-<!-- 							<td class="tdWidth"> -->
-<%-- 								<c:forEach begin="0" end="${tb.size()-1}" var="seats"> --%>
-<%-- 									<c:choose> --%>
-<%-- 										<c:when test="${tb[seats].mOrderBean.ordersID == mo.ordersID}"> --%>
-<%-- 											${tb[seats].seatsBean.seatID}  &nbsp; --%>
-<%-- 										</c:when> --%>
-<%-- 										<c:otherwise> --%>
-<!-- 											<td class="tdWidth">&nbsp </td> -->
-<%-- 										</c:otherwise> --%>
-<%-- 									</c:choose> --%>
-<%-- 								</c:forEach> --%>
-<!-- 							</td> -->
+				<td class="tdWidth">
+			<c:forEach var="tb" items="${tblist}">
+							
+							<c:if test="${tb.size()>1}">
+							
+								<c:forEach begin="0" end="${tb.size()-1}" var="seats">
+								
+								<c:if test="${tb[seats].mOrderBean.ordersID == mo.ordersID}">
+								${tb[seats].seatsBean.seatID}  &nbsp;
+								</c:if>
 
-<%-- 						</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<%-- 							<td class="tdWidth">${tb[0].seatsBean.seatID} </td> --%>
-<%-- 						</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-<!-- 			</tr>	 -->
-<%-- 			</c:forEach> --%>
-			
-		</c:forEach>
-			
+								</c:forEach>
 
-<%-- 			<c:forEach var="modetail" items="${modetaillist}"> --%>
-<%-- 				<td>${modetail.productsBean.productName}</td> --%>
-<%-- 				<td>${modetail.quantity}</td> --%>
-<%-- 			</c:forEach> --%>
-			
-<%-- 			<c:forEach var="tb" items="${tblist}"> --%>
-<%-- 				<c:if test="${tb.size()>1}"> --%>
-<!-- 				<td class="tdWidth"> -->
-<%-- 					<c:forEach begin="0" end="${tb.size()-1}" var="seats"> --%>
-<%-- 						${tb[seats].seatsBean.seatID}  &nbsp; --%>
-<%-- 					</c:forEach> --%>
-<!-- 					</td> -->
-<%-- 				</c:if> --%>
-<%-- 				<td class="tdWidth">${tb[0].seatsBean.seatID} </td> --%>
-<!-- 			</tr>	 -->
-<%-- 			</c:forEach> --%>
+								</c:if>
+							
+							
+							<c:if test="${tb.size() == 1}">
+
+							<c:forEach begin="0" end="${tb.size()-1}" var="seats">
+							<c:if test="${tb[seats].mOrderBean.ordersID == mo.ordersID}">
+							${tb[0].seatsBean.seatID}
+							</c:if>
+							
+							</c:forEach>
+						
+							</c:if>
+		
+				</c:forEach>
+					</td>
+				</tr>	
+			</c:forEach>
 		
 			
 		</table>
@@ -143,10 +129,6 @@
 <!--     </footer> -->
        
     <!-- footer -->
-    
-   <script>
-		var tblist = ${tb};
-		console.log("雅菁:" + tblist);
-   </script>
+
 </body>
 </html>
