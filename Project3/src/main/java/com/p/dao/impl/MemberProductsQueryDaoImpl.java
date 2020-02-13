@@ -43,12 +43,12 @@ public class MemberProductsQueryDaoImpl implements MemberProductsQueryDao {
 	}
 
 	@Override
-	public MOrderDetailBean getListMOrderDetailBeanByOrdersID(Integer ordersID) {
+	public List<MOrderDetailBean> getListMOrderDetailBeanByOrdersID(Integer ordersID) {
 		String hql = "From MOrderDetailBean where ordersID = :ordersID";
 		Session session = factory.getCurrentSession();
-		MOrderDetailBean mdb = (MOrderDetailBean) session.createQuery(hql)
-														 .setParameter("ordersID", ordersID).getSingleResult();
-		return mdb;
+		List<MOrderDetailBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("ordersID", ordersID).getResultList();
+		return list;
 	}
 	
 	//從票抓座位

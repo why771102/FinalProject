@@ -31,7 +31,7 @@ public class MemberProductsQueryServiceImpl implements MemberProductsQueryServic
 	
 	@Transactional
 	@Override
-	public MOrderDetailBean getListMOrderDetailBeanByOrdersID(Integer ordersID) {
+	public List<MOrderDetailBean> getListMOrderDetailBeanByOrdersID(Integer ordersID) {
 		return dao.getListMOrderDetailBeanByOrdersID(ordersID);
 	}
 
@@ -42,8 +42,8 @@ public class MemberProductsQueryServiceImpl implements MemberProductsQueryServic
 		List<MOrderDetailBean> mdb_list = new ArrayList<>();
 		for(MOrderBean mob:list) {
 			Integer ordersID = mob.getOrdersID();
-			MOrderDetailBean mdb = dao.getListMOrderDetailBeanByOrdersID(ordersID);
-			mdb_list.add(mdb);
+			List<MOrderDetailBean> mdb = dao.getListMOrderDetailBeanByOrdersID(ordersID);
+			mdb_list.addAll(mdb);
 		}
 		return mdb_list;
 	}
