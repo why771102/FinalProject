@@ -59,21 +59,32 @@
     	margin-top: 8%;
 	}
 	#pt{
-		    display: inline-block;
+    cdisplay: inline-block;
     height: 44px;
     color: #393939;
     font-size: 25px;
-    padding: 0 20px;
+    /* padding: 0 20px; */
     background: #fff;
     line-height: 44px;
     border-radius: 3px;
     text-transform: uppercase;
-    margin-top: -11px;
-    width: 34%;
-    height: 9VH;
-    padding-left: 8%;
-    padding-top: 3%;
+    /* margin: 1% 0% 2% 0%; */
+    width: 24%;
+    height: 7VH;
+    padding-left: %;
+    padding: 2%;
+    text-align: center;
+    position: relative;
+    top: -5px;
+    left: -1px;
+    cursor: pointer;
 	}
+	
+	#pt:hover {
+    background: #C21010;
+    color: #fff;
+    text-decoration: none;
+}
     </style>
 </head>
 
@@ -136,9 +147,9 @@
                             <div class="container">
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left" style=''>
-                                        <div class="slide-con">
-                                            <h5>不想排隊?</h5>
-                                            <h4>快線上訂位!<br> </h4>
+                                        <div class="slide-con"style='padding-top: 50%;'>
+                                            <h5 style=' font-size: 50px;'>不想排隊?</h5>
+                                            <h4 style='font-size: 80px;margin: 10% 0%;'>快線上訂位!<br> </h4>
                                             <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
@@ -158,9 +169,9 @@
                             <div class="container">
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left" style=''>
-                                        <div class="slide-con">
-                                            <h5>不想排隊? </h5>
-                                            <h4>快線上訂位!</h4>
+                                        <div class="slide-con" style='padding-top: 50%;'>
+                                           <h5 style=' font-size: 50px;'>不想排隊?</h5>
+                                            <h4 style='font-size: 80px;margin: 10% 0%;'>快線上訂位!<br> </h4>
                                             <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>
@@ -179,9 +190,9 @@
                             <div class="container">
                                 <div class="row resp-row">
                                     <div class="col-sm-5 col-xs-6 pull-left">
-                                        <div class="slide-con">
-                                            <h5>不想排隊? </h5>
-                                            <h4>快線上訂位!</h4>
+                                        <div class="slide-con" style='padding-top: 50%;'>
+                                           <h5 style=' font-size: 50px;'>不想排隊?</h5>
+                                            <h4 style='font-size: 80px;margin: 10% 0%;'>快線上訂位!<br> </h4>
                                             <a href="#booknow" class="slider-btn">立即訂位</a>
                                         </div>
                                     </div>

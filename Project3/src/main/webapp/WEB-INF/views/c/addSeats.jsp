@@ -54,6 +54,7 @@
 body {
 	font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
 	background-color: #fafafa;
+
 }
 
 a {
@@ -155,15 +156,13 @@ div.seatCharts-seat.unavailable {
 }
 
 div.seatCharts-container {
-	/* border-right: 1px dotted #adadad; */
-	/* width: 200px; */
-	margin-left: 25%;
-	padding: 20px;
-	/* float: left; */
+	margin-left: 19%;
+    padding: 20px;
+
 }
 
 div.seatCharts-legend {
-	padding-left: 7%;
+/* 	padding-left: 7%; */
 	position: absolute;
 	bottom: 42%;
 	text-align-last: justify;
@@ -316,7 +315,7 @@ to {
 </style>
 </head>
 
-<body>
+<body style="font-size: medium;">
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
@@ -357,7 +356,7 @@ to {
 									<h2>新增場地</h2>
 								</div>
 								<div class="modal-body">
-									<!-- 			hall name: <input type="text" id="hallName"><br> -->
+									
 									<div style="display: inline;">
 									<div>
 										HallID:<select id="hallID" style="margin-left: 9px; margin-bottom: 8px;">
@@ -369,16 +368,16 @@ to {
 								
 									</div>
 									<div>
-										Price:<input id="price" name="price" type='text'
-											required="required" style="margin-left: 15px; margin-bottom: 5px;"/>
+										價格:<input id="price" name="price" type='text'
+											required="required" style="margin-left: 2%;margin-bottom: 0.5%;"/>
 										
 										</div>
 										<div>
-											欄: <input type="text" id="col"><br>
+											欄: <input type="text" id="col" style="margin-left: 3%;margin-bottom: 5px;"><br>
 										</div>
 										<div>
 											列: <input type="text" id="rows"
-												style="margin-left: 21px; margin-top: 7px;"><br>
+												style="margin-left: 3%;"><br>
 										</div>
 										<button class="seatNumber btn btn-round btn-primary" id="seatNoConfirm"
 											onclick="changeSeat(document.getElementById('col').value, document.getElementById('rows').value)"
@@ -525,19 +524,13 @@ to {
 										classes : 'aisle',
 										category : 'Aisle'
 									}
-								// 								o : {
-								// 									classes : 'out-of-order',
-								// 									category : 'Out Of Order'
-								// 								}
+					
 
 								},
 								naming : {
 									top : false,
 									rows : getEN(),
-									// 								getLabel: function (character, rows, columns) {
-									// 									return firstSeatLabel++;
-
-									// 								},
+								
 									getId : function(character, rows, columns) {
 										return rows + '_' + columns;
 									}
@@ -549,8 +542,7 @@ to {
 											[ 'f', 'available', '標準座' ],
 											[ 'e', 'available',
 													'輪椅座' ],
-											// [ 'f', 'unavailable', 'Already Booked' ],
-											// [ 'o', 'out-of-order', 'Out Of Order' ],
+							
 											[ '_', 'available', '走道' ] ]
 								},
 								click : function() {
@@ -660,7 +652,7 @@ to {
 					"seatCharts-seat seatCharts-cell handicap-seats")[0];
 			var A = document.getElementById("legend").getElementsByClassName(
 					"seatCharts-seat seatCharts-cell aisle")[0];
-			// console.log(document.getElementsByClassName("seatCharts-seat seatCharts-cell available first-class"));
+			
 
 			$(NS).click(function() {
 				if ($(HS).hasClass("selected")) {
@@ -715,23 +707,6 @@ to {
 				console.log("aisle");
 			})
 		}
-		// });
-
-		// function changeStatus() {
-		// 	var needtosubmit = document.getElementsByClassName("seatCharts-seat seatCharts-cell");
-		// 	var seatArray = [];
-		// 	var seatobj = {};
-		// 	for (var i = 0; i < needtosubmit.length; i++) {
-		// 		if (needtosubmit[i].id != "") {
-		// 			seatobj = { id: needtosubmit[i].id,
-		// 					available: needtosubmit[i].classList[2] }
-		// 			seatArray.push(seatobj);
-		// 		}
-		// 	}
-
-		// 	console.log(seatArray);
-		// 	//AJAX return seatArray
-		// }
 
 		function changeStatus() {
 			//SELECTED SEATS
@@ -792,39 +767,10 @@ to {
 							window.location.href = "${pageContext.request.contextPath}/backstageindex";
 						}
 					});
-			//USE WHEN YOU WANT TO ADD DIFFERENT TYPE OF SEATS
-			// var seats = document.getElementsByClassName("seatCharts-seat seatCharts-cell available");
-			// var seatArray = [];
-			// var seatobj = {};
-			// for (var i = 0; i < seats.length; i++) {
-			// 	if (seats[i].id != "") {
-			// 		seatobj = { id: seats[i].id,
-			// 				available: seats[i].classList[2] }
-			// 		seatArray.push(seatobj);
-			// 	}
-			// }
-
-			// console.log(seatArray);
-			//AJAX return seatArray
+			
 		}
 
-		// 		function returnArray() {
-		// 			//ONLY RECORDS AVAILABLE SEATS
-		// 			// 		console.log(firstSeatLabel);
-
-		// 			var AseatArray = [];
-		// 			var Aseatobj = {};
-		// 			for (var i = 0; i < availableSeats.length; i++) {
-		// 				if (availableSeats[i].id != "") {
-		// 					Aseatobj = availableSeats[i].id
-		// 					AseatArray.push(Aseatobj);
-		// 				}
-		// 			}
-		// 			console.log("This is available seats: " + AseatArray);
-		// 			return AseatArray;
-		// 			//AJAX return seatArray
-
-		// 		}
+		
 
 		function recalculateTotal(sc) {
 			var total = 0;

@@ -59,11 +59,11 @@
 				<section>
 					<div>
 						<div style="text-align: center">
-							<h1>員工清單</h1>
+							<h1 style='padding:3% 0%'>員工清單</h1>
 						</div>
 					</div>
 				</section>
-				<hr style="height: 1px; border: none; color: #333; background-color: #333;">
+			
 				<div class="content-panel">
 					<table id="example" class="display table table-striped table-advance table-hover" style="width: 100%; text-align: center;">
 						<thead>

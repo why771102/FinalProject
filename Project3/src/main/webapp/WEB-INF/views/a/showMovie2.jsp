@@ -587,10 +587,10 @@ div.submitButton {
                                     <div class="form-group" style="text-align: left">
                                         <label class="control-label"
                                             style="padding: 0; font-size: 20px" for='grade'>
-                                            評分等級: </label>
+                                            評分: </label>
                                         <div class="col-lg inner">
                                             <form:select id="grade" path="grade" class='form:input-large'
-                                                style=" width : 130;font-size:20px">
+                                                style=" width : 15%;font-size:20px">
                                                 <%--                                                 <form:option --%>
                                                 <%--                                                     style="font-size : 10px" value="-1" label="請挑選" /> --%>
                                                 <form:option style="font-size : 20px" value="1" label="1" />
@@ -604,10 +604,11 @@ div.submitButton {
                                     <div class="form-group" style="text-align: left">
                                         <label class='control-label'
                                             style="padding: 0; font-size: 20px" for="commentContent">
-                                            短評內文:</label>
-                                        <div class='col-lg inner'>
+                                            <br>
+                                            短評:</label>                                            
+                                        <div class='col-lg inner' style  ="font-size: 20px;text-align:center">
                                             <form:textarea
-                                                style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
+                                                style="font-size: 20px; resize: none ;width: 95%;height: 300;padding:15px"
                                                 rows="5" cols="40" id="commentContent" path="commentContent"
                                                 type='text' class='form:input-comment' />
                                         </div>
@@ -643,7 +644,7 @@ div.submitButton {
                                         <div>
                                             <label class="control-label"
                                                 style="padding: 0; font-size: 20px" for='watched'>
-                                                已觀賞 </label>
+                                                已觀賞: </label>
                                             <div class="col-lg inner" style="font-size: 20px">
                                                 <form:radiobutton id="watched" path="watched" value="1" />
                                                 已觀看
@@ -657,9 +658,9 @@ div.submitButton {
 
                                     <div class="form-group" style="text-align: left">
                                         <label class="control-label"
-                                            style="padding: 0; font-size: 20px" for='grade'> 評分 </label>
+                                            style="padding: 0; font-size: 20px" for='grade'> 評分 :</label>
                                         <div class="col-lg inner" style="font-size: 20px">
-                                            <form:select id="grade" style=" width : 130" path="grade">
+                                            <form:select id="grade" style=" width : 15%" path="grade">
                                                 <%--                             <form:option value = "-1" label = "請挑選"/> --%>
                                                 <form:option value="1" style="text-align:left" label="1" />
                                                 <form:option value="2" label="2" />
@@ -671,13 +672,14 @@ div.submitButton {
                                         <form:errors path="grade" cssClass="error" />
                                     </div>
                                     <div class="form-group" style="text-align: left">
+                                    <br>
                                         <label class='control-label'
                                             style="padding: 0; font-size: 20px" for="commentContent">
-                                            短評 </label>
-                                        <div class='col-lg inner' style="font-size: 20px">
+                                            短評 :</label>
+                                        <div class='col-lg inner' style="font-size: 20px;text-align:center">
                                             <form:textarea id="commentContent" path="commentContent"
                                                 type='text' class='form:input-large'
-                                                style="font-size: 20px; resize: none ;width: 100%;height: 400;padding:15px"
+                                                style="font-size: 20px; resize: none ;width: 95%;height: 300;padding:15px"
                                                 rows="5" cols="40" />
                                         </div>
                                         <form:errors path="commentContent" cssClass="error" />
@@ -738,12 +740,35 @@ div.submitButton {
                             <div class="thumbnail" style="border:3px solid #ddd;width: 100%; height: 300px">
                                 <div class="caption_comment"
                                     style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
-                                    <div>
-                                        評分等級:${comment.grade} &nbsp&nbsp<a
+                                    <div>評分等級:${comment.grade} &nbsp&nbsp
+                                    <c:choose>
+                                    <c:when test="${comment.haveLike == 1}">                                    
+                                        	<a
+                                            href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
+                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}收回讚 </a>&nbsp&nbsp <a
+                                            href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
+                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
+                                        </c:when>
+                                        <c:when test="${comment.haveBad == 1}">
+                                        	<a
+                                            href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
+                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
+                                            href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
+                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}收回噓 </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                        	<a
                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
                                             class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a
                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
                                             class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a>
+                                        </c:otherwise> 
+<%--                                         評分等級:${comment.grade} &nbsp&nbsp<a --%>
+<%--                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />" --%>
+<%--                                             class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a --%>
+<%--                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />" --%>
+<%--                                             class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.badNum}噓 </a> --%>
+                                    </c:choose>
                                     </div>
                                     <div>會員帳號:${comment.memberBean.account}</div>
                                     <div>短評內文:${comment.commentContent}</div>
@@ -779,7 +804,7 @@ div.submitButton {
 			<div class='ready'>
 				<h4>現在就立刻購票！</h4>
 				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
-				<a href='free-trail.html' class='slider-btn'>前往購票</a>
+				<a href='<c:url value="movieIndex#booknow"/>' class='slider-btn'>前往購票</a>
 			</div>
 		</div>
 	</section>
@@ -869,7 +894,7 @@ console.log("diff"+diffDay);
 				
 		
 			}else{
-				alert("月份不同");
+// 				alert("月份不同");
 			}
 			
 		} 
@@ -888,12 +913,12 @@ console.log(document.getElementById("movieBean").value);
 
 <script>
 function showhide(id) {
-alert("id"+id);
+// alert("id"+id);
 
 var divid = document.getElementById(id);
 var divs = document.getElementsByClassName('hide');
 var showElement = true;
-alert("aaa"+divid.style.display);
+// alert("aaa"+divid.style.display);
 if (divid.style.display === 'none') {
 // alert("bbbb");
 divid.style.display = 'block';
@@ -924,12 +949,12 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 
 <script>
 	function showhide(id) {
-		alert("id" + id);
+// 		alert("id" + id);
 
 		var divid = document.getElementById(id);
 		var divs = document.getElementsByClassName('hide');
 		var showElement = true;
-		alert("aaa" + divid.style.display);
+// 		alert("aaa" + divid.style.display);
 		if (divid.style.display === 'none') {
 			//         alert("bbbb");
 			divid.style.display = 'block';

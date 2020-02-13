@@ -207,15 +207,7 @@ public class CommentController {
 		return "redirect:/show/this/movie?runID=" + runID;
 	}
 
-	// 用戶自行刪除
-//	@RequestMapping("/comments/delete/{commentID}")
-//	public String getDeleteComment(@PathVariable("commentID")Integer commentID,@ModelAttribute("CommentBean") CommentBean cb,Model model) {
-//		cb.setCommentID(commentID);
-//		service.deleteComment(commentID);
-//		return "redirect:/findAllComment";		
-//	}
-
-	// 從後台刪除
+	// 自行刪除
 	@RequestMapping("/comments/delete/{runID}")
 	public String deleteComment(@PathVariable("runID") String runID, @RequestParam("id") Integer commentID,
 			@ModelAttribute("updateComment") CommentBean cb2, Model model) {
@@ -232,7 +224,17 @@ public class CommentController {
 		service.cancalReportComment(commentID);
 		return "redirect:/findAllReportComment";
 	}
+	
+	// 從後台刪除
+	@RequestMapping("/comments/deletereport/{commentID}")
+	public String deleteCommentFromBack(@PathVariable("commentID") Integer commentID,
+			@ModelAttribute("CommentBean") CommentBean cb, Model model) {
+		cb.setCommentID(commentID);
+		service.deleteComment(commentID);
+		return "redirect:/findAllReportComment";
+	}
 
+	//檢舉
 	@RequestMapping("/comments/report/{runID}")
 	public String reportComment(@PathVariable("runID") String runID, @RequestParam("id") Integer commentID,
 			@ModelAttribute("CommentBean") CommentBean cb, Model model) {
