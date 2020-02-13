@@ -149,14 +149,28 @@ public class mOrdersController {
 					 String showtimeId = cookie.getValue();
 					 mb.setShowTimeID(Integer.parseInt(showtimeId));
 					 }
+//				if(cookie.getName().equals("memberID")) {
+//				
+//					String memberID = cookie.getValue();
+//					System.out.println(memberID);
+//					mb.setMemberID(Integer.parseInt(memberID));
+//				}else{
+//					
+//					mb.setMemberID(1);
+//				}
+			}
+			for(Cookie cookie : cookies){
+			
 				if(cookie.getName().equals("memberID")) {
-				
+					System.out.println("安安:" + cookie.getName());
 					String memberID = cookie.getValue();
 					System.out.println(memberID);
 					mb.setMemberID(Integer.parseInt(memberID));
+					break;
 				}else{
-					
+					System.out.println("安安2:" + cookie.getName());
 					mb.setMemberID(1);
+					
 				}
 			}
 			LocalDate today = (LocalDate.now());
