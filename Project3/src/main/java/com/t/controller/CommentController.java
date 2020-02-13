@@ -437,7 +437,7 @@ public class CommentController {
 		return "a/showMovie2";
 	}
 
-	// 修改該留言內容
+	// 改成照評分排列
 	@RequestMapping(value = "/show/this/movie/bytime/{runID}")
 	public String showThisMovieByTime(@PathVariable("runID") String runID,Model model) {		
 		return "redirect:/show/this/movie?runID=" + runID;

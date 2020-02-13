@@ -134,57 +134,57 @@ public class PreferenceController {
 	}
 
 	// 第一次按讚
-	@ResponseBody
-	@RequestMapping("/addcommentlike")
-	public String addLike(Integer commentID, Integer memberID) {
-		PreferenceBean pb = new PreferenceBean();
-		pb.setCommentID(commentID);
-		pb.setMemberID(memberID);
-		pb.setGood(1);
-		pb.setBad(0);
-		pb.setBlock(0);
-		System.out.println("目標commentID" + commentID);
-		System.out.println("目標memberID" + memberID);
-		service.addLike(pb);
-		return "success";
-	}
-
-	// 第一次按噓
-	@ResponseBody
-	@RequestMapping("/addcommentbad")
-	public String addBad(Integer commentID, Integer memberID) {
-		PreferenceBean pb = new PreferenceBean();
-		pb.setCommentID(commentID);
-		pb.setMemberID(memberID);
-		pb.setGood(0);
-		pb.setBad(1);
-		pb.setBlock(0);
-		System.out.println("目標commentID" + commentID);
-		System.out.println("目標memberID" + memberID);
-		service.addLike(pb);
-		return "success";
-	}
-
-	// 按讚
-	@ResponseBody
-	@RequestMapping("/addcommentblock")
-	public String addBlock(Integer commentID, Integer memberID) {
-		PreferenceBean pb = new PreferenceBean();
-		pb.setCommentID(commentID);
-		pb.setMemberID(memberID);
-		System.out.println("目標commentID" + commentID);
-		System.out.println("目標memberID" + memberID);
-		boolean le = service.checkLikeExist(memberID, commentID);
-		if (le == true) {
-			service.fixBlock(memberID, commentID);
-		}
-		if (le == false) {
-			pb.setGood(0);
-			pb.setBad(0);
-			pb.setBlock(1);
-			service.addLike(pb);
-		}
-		return "success";
-	}
+//	@ResponseBody
+//	@RequestMapping("/addcommentlike")
+//	public String addLike(Integer commentID, Integer memberID) {
+//		PreferenceBean pb = new PreferenceBean();
+//		pb.setCommentID(commentID);
+//		pb.setMemberID(memberID);
+//		pb.setGood(1);
+//		pb.setBad(0);
+//		pb.setBlock(0);
+//		System.out.println("目標commentID" + commentID);
+//		System.out.println("目標memberID" + memberID);
+//		service.addLike(pb);
+//		return "success";
+//	}
+//
+//	// 第一次按噓
+//	@ResponseBody
+//	@RequestMapping("/addcommentbad")
+//	public String addBad(Integer commentID, Integer memberID) {
+//		PreferenceBean pb = new PreferenceBean();
+//		pb.setCommentID(commentID);
+//		pb.setMemberID(memberID);
+//		pb.setGood(0);
+//		pb.setBad(1);
+//		pb.setBlock(0);
+//		System.out.println("目標commentID" + commentID);
+//		System.out.println("目標memberID" + memberID);
+//		service.addLike(pb);
+//		return "success";
+//	}
+//
+//	// 按讚
+//	@ResponseBody
+//	@RequestMapping("/addcommentblock")
+//	public String addBlock(Integer commentID, Integer memberID) {
+//		PreferenceBean pb = new PreferenceBean();
+//		pb.setCommentID(commentID);
+//		pb.setMemberID(memberID);
+//		System.out.println("目標commentID" + commentID);
+//		System.out.println("目標memberID" + memberID);
+//		boolean le = service.checkLikeExist(memberID, commentID);
+//		if (le == true) {
+//			service.fixBlock(memberID, commentID);
+//		}
+//		if (le == false) {
+//			pb.setGood(0);
+//			pb.setBad(0);
+//			pb.setBlock(1);
+//			service.addLike(pb);
+//		}
+//		return "success";
+//	}
 
 }

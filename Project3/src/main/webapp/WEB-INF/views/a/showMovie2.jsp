@@ -695,6 +695,8 @@ div.submitButton {
                                         <div class='col-lg inner' style="text-align: center">
                                             <input id="btnAddcomment" type='submit'
                                                 class='btn btn-primary' style="font-size: 20px;background-color: #C21010;border-color: #C21010" value="送出" />
+                                            <input id="btnAddcomment2" onclick  ="quickenter()"
+                                                class='btn btn-primary' style="font-size: 20px;width: 150px;background-color: #C21010;border-color: #C21010" value="一鍵輸入" />
                                         </div>
                                     </div>
                                 </fieldset>
@@ -1142,6 +1144,10 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 	 function fixcomment(){		  
 
 		  alert("修改成功");		
+	 }
+	 
+	 function quickenter(){
+		 $("#commentContent").val("今年看過最好看的電影，大家不要考慮了，趕快去看!!!!!");
 	 }
  
  function getCookie(cname) {
