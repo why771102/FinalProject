@@ -59,7 +59,7 @@
     	margin-top: 8%;
 	}
 	#pt{
-display: inline-block;
+    cdisplay: inline-block;
     height: 44px;
     color: #393939;
     font-size: 25px;

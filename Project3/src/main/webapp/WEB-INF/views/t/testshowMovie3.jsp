@@ -268,7 +268,7 @@
 		</div>
 	</section>
 
-	ｂ
+	
 	<!-- footer -->
 	<jsp:include page="footer.jsp">
 		<jsp:param name="a" value="1" />

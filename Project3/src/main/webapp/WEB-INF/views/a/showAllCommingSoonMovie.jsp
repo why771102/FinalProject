@@ -235,19 +235,19 @@
 				</c:if></td>
 			<td width='' id='pprev_tr'><c:if test="${pageNo > 1}">
 					<div id="pprev" values="${pageNo-1} " onclick='changePage(this.id)'>
-						<a>上一頁</a>
+						<a style='cursor: pointer;'>上一頁</a>
 					</div>
 				</c:if></td>
 			<td width='76' align='center'><c:if test="${pageNo != totalPages}">
 					<div id="pnext" values='${pageNo+1} ' name='${pageNo+1}'
 						onclick='changePage(this.id)'>
-						<a>下一頁</a>
+						<a style='cursor: pointer;'>下一頁</a>
 					</div>
 				</c:if></td>
 			<td width='76' align='center'><c:if test="${pageNo != totalPages}">
 					<div id="plast" values='${totalPages}'
 						onclick='changePage(this.id)'>
-						<a>最末頁</a>
+						<a style='cursor: pointer;'>最末頁</a>
 					</div>
 				</c:if></td>
 			
@@ -270,50 +270,15 @@
 
     <!-- movies -->
 
-<!-- 輪播圖carousel -->
-    <section class="gray-bnr feature-sec" style='background:black;'>
-       <div class="wrapRowStart" style=' width: 100%; ' >
-       
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-                     
-                   
-                <div class="wrap" >
-                         <div class="mySlides ">
-                         
-                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0006_圖層 3.jpg" style="width:100%; padding:0px 200px;">
-                        </div>
-                      
-                        <div class="mySlides">
-                       
-                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0000_圖層 10.jpg" style="width:100%; padding:0px 200px;">
-                        </div>
-                      
-                        <div class="mySlides">
-                         
-                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0004_圖層 4.jpg"style="width:100%; padding:0px 200px;">
-                        </div>
-                          
-                        <div class="mySlides">
-                          
-                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0003_圖層 7.jpg" style="width:100%; padding:0px 200px;">
-                        </div>
-                      
-                        <div class="mySlides">
-                         
-                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0002_圖層 8.jpg"  style="width:100%; padding:0px 200px;">
-                        </div>
-                          
-                        <div class="mySlides">
-                         
-                          <img src="${pageContext.request.contextPath}/img/sliderIMG_0001_圖層 9.jpg"  style="width:100%; padding:0px 200px;">
-                        </div>
-                    </div>     
-                       
-   <a class="next" onclick="plusSlides(1)">❯</a>
 
-        </div>
-    </section>
-<!-- 輪播圖carousel -->
+       <!-- carousel -->
+ <jsp:include page="carousel.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
+</header>
+   <!-- carousel -->
+
 
 
 
