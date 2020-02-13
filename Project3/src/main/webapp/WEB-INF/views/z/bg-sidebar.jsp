@@ -142,7 +142,6 @@
             <ul class="sub">
               <li><a href="<c:url value='/movie/add'/>">新增電影</a></li>
               <li><a href="<c:url value='/scan/running'/>">自訂排片</a></li>
-              <li><a href="<c:url value='/movie/autoRun'/>">排片</a></li>
               <li><a href="<c:url value='/oldShowTimeHistory'/>">查詢排片紀錄</a></li>
               <li><a href="<c:url value='/findAllReportComment'/>">管理短評</a></li>
             </ul>
