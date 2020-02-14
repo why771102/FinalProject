@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -140,15 +141,81 @@ public class PreferenceController {
 //		PreferenceBean pb = new PreferenceBean();
 //		pb.setCommentID(commentID);
 //		pb.setMemberID(memberID);
-//		pb.setGood(1);
-//		pb.setBad(0);
-//		pb.setBlock(0);
-//		System.out.println("目標commentID" + commentID);
-//		System.out.println("目標memberID" + memberID);
-//		service.addLike(pb);
+//		// 檢查是否有在該留言建立過喜好欄位
+//		boolean le = service.checkLikeExist(memberID, commentID);
+//		if (le == true) {
+//			// 檢查good是否為1
+//			boolean lt = service.checkLikeTrue(memberID, commentID);
+//			if (lt == true) {
+//				service.cancel(memberID, commentID);
+//			}
+//			if (lt == false) {
+//				service.addGood(memberID, commentID);
+//			}
+//		}
+//		if (le == false) {
+//			pb.setGood(1);
+//			pb.setBad(0);
+//			pb.setBlock(0);
+//			service.addLike(pb);
+//		}
 //		return "success";
 //	}
-//
+	
+	// 第一次按讚	
+	@PostMapping("/addcommentlike")
+	public @ResponseBody String addLike(Integer commentID, Integer memberID) {		
+		PreferenceBean pb = new PreferenceBean();
+		pb.setCommentID(commentID);
+		pb.setMemberID(memberID);
+		// 檢查是否有在該留言建立過喜好欄位
+		boolean le = service.checkLikeExist(memberID, commentID);
+		if (le == true) {
+			// 檢查good是否為1
+			boolean lt = service.checkLikeTrue(memberID, commentID);
+			if (lt == true) {
+				service.cancel(memberID, commentID);
+			}
+			if (lt == false) {
+				service.addGood(memberID, commentID);
+			}
+		}
+		if (le == false) {
+			pb.setGood(1);
+			pb.setBad(0);
+			pb.setBlock(0);
+			service.addLike(pb);
+		}
+		return "success";
+	}
+	
+	
+	@PostMapping("/addcommentbad")
+	public @ResponseBody String addBad(Integer commentID, Integer memberID) {
+		PreferenceBean pb = new PreferenceBean();
+		pb.setCommentID(commentID);
+		pb.setMemberID(memberID);
+		// 檢查是否有在該留言建立過喜好欄位
+		boolean le = service.checkLikeExist(memberID, commentID);
+		if (le == true) {
+			// 檢查good是否為1
+			boolean lt = service.checkDislikeTrue(memberID, commentID);
+			if (lt == true) {
+				service.cancel(memberID, commentID);
+			}
+			if (lt == false) {
+				service.addBad(memberID, commentID);
+			}
+		}
+		if (le == false) {
+			pb.setGood(0);
+			pb.setBad(1);
+			pb.setBlock(0);
+			service.addLike(pb);
+		}
+		return "success";
+	}
+
 //	// 第一次按噓
 //	@ResponseBody
 //	@RequestMapping("/addcommentbad")
