@@ -71,7 +71,7 @@
       <div class="row">
       	<div class="col-md-5 mb">
       		<div class="weather pn">
-            	<i class="fa fa-cloud-showers-heavy fa-4x"></i>
+            	<i class="fa fa-4x"id="weatherIcon"></i>
             	<h2 id="weather"></h2>
                 <h2 id="temp"></h2>
                 <h4 id="location"></h4>
@@ -183,13 +183,28 @@
  				var north = data.cwbdata.resources.resource.data.agrWeatherForecasts.weatherForecasts.location[0];
  				var place = north.locationName;
  				var weather = north.weatherElements.Wx.daily[0].weather;
+ 				var weatherid = north.weatherElements.Wx.daily[0].weatherid;
  				var maxT = north.weatherElements.MaxT.daily[0].temperature;
  				var mixT = north.weatherElements.MinT.daily[0].temperature;
  				var temper = mixT + "ºC - " + maxT + "ºC";
  				$("#temp").html(temper);
  				$("#location").html(place);
  				$("#weather").html(weather);
- 				
+ 				switch (weatherid){
+ 					case "16":
+ 						$("#weatherIcon").addClass("fa-cloud-showers-heavy");
+ 						break;
+ 					case "8":
+ 					case "11":
+ 						$("#weatherIcon").addClass("fa-cloud-rain");
+ 						break;
+ 					case "4":
+ 						$("#weatherIcon").addClass("fa-cloud");
+ 						break;
+ 					case "2":
+ 						$("#weatherIcon").addClass("fa-cloud-sun");
+ 						break;		
+ 				}
  			}
  		})
  	})

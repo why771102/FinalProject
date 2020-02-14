@@ -77,13 +77,13 @@
 						style="width: 100%; text-align: center;">
 						<thead>
 							<tr>
-								<th style="width: 90px">公告編號</th>
-								<th>公告標題</th>
-								<th>開始時間</th>
-								<th>結束時間</th>
-								<th style="width: 70px">權重</th>
-								<th style="width: 90px">公告狀態</th>
-								<th>操作</th>
+								<th style="width: 90px;text-align:center;">公告編號</th>
+								<th style="text-align:center;">公告標題</th>
+								<th style="text-align:center;">開始時間</th>
+								<th style="text-align:center;">結束時間</th>
+								<th style="width: 70px;text-align:center;">權重</th>
+								<th style="width: 90px;text-align:center;">公告狀態</th>
+								<th style="text-align:center;">操作</th>
 							</tr>
 						</thead>
 						<tbody>
