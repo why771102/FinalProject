@@ -66,9 +66,7 @@
 					<table id="example" class="display table table-striped table-advance table-hover" style="width: 100%; text-align: center;">
 						<thead>
 							<tr>
-								<td>訂單編號</td>
 								<td>產品名稱</td>
-								<td>產品折扣</td>
 								<td>購買數量</td>
 								<td>產品價格</td>
 							</tr>
@@ -78,8 +76,6 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<td></td>
-								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -99,6 +95,7 @@
 	<script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 	<script>
+	var ordersID = ${ordersID};
 	$(document).ready(function() {
 		var dataTable = $('#example').DataTable(
 				{language: {		
@@ -116,20 +113,16 @@
 		$(function() {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/DetailAjax",
+				data : {ordersID : ordersID},
 				type : "POST",
 				success : function(data) {
 // 					alert(data);
 					dataTable.clear().draw();
 					var data1=data;
-					console.log("list:"+data1[0].ordersID);
-					console.log("list:"+data1[0].productsBean.productName);
-					console.log("list:"+data1[0].discount);
-					console.log("list:"+data1[0].quantity);
-					console.log("list:"+data1[0].sellUnitPrice);
-					
+				
 					$.each(data1,function(index,value) {
  						dataTable.row.add([
- 			value.ordersID, value.productsBean.productName,value.discount, value.quantity,value.sellUnitPrice 
+ 			 value.productsBean.productName, value.quantity,value.sellUnitPrice 
  				]).draw();
  			})
 		}

@@ -34,6 +34,7 @@ import com.l.model.CategoriesBean;
 import com.l.model.MOrderBean;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
+import com.l.model.TicketBean;
 import com.p.model.HallOrderBean;
 import com.p.model.HallOrderStatusBean;
 import com.p.model.MemberBean;
@@ -716,7 +717,27 @@ public class EDMTableResetHibernate {
 				   }
 				   session.flush();
 				   System.out.println("MOrderDetailBean資料新增成功");  
-			
+//TicketBean
+				   try (FileReader fr = new FileReader("data/ticket.dat"); BufferedReader br = new BufferedReader(fr);) {
+					    while ((line = br.readLine()) != null) {
+					     if (line.startsWith(UTF8_BOM)) {
+					      line = line.substring(1);
+					     }
+					     String[] token = line.split("\\|");
+					     TicketBean tb = new TicketBean();
+					    
+					     MOrderBean mob = session.get(MOrderBean.class, Integer.parseInt(token[0]));
+					     tb.setmOrderBean(mob);
+					     SeatsBean sb = session.get(SeatsBean.class, token[1]);
+					     tb.setSeatsBean(sb);
+					    
+					     session.save(tb);
+					    }
+					   } catch (IOException e) {
+					    System.err.println("新建TicketBean表格時發生IO例外: " + e.getMessage());
+					   }
+					   session.flush();
+					   System.out.println("TicketBean資料新增成功");  	   
 //ExpectationBean
 			try (FileReader fr = new FileReader("data/Expectation.dat"); BufferedReader br = new BufferedReader(fr);) {
 				while ((line = br.readLine()) != null) {
