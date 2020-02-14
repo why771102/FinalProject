@@ -124,7 +124,7 @@ $('#submitInfo').click(function(){
 			},
 			type : "POST",
 			success : function(page) {
-				alert("新增成功!");
+				alert("修改成功!");
 				window.location.href = "${pageContext.request.contextPath}/memberCenter";
 
 			}
