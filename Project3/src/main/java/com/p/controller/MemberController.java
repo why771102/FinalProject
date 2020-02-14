@@ -88,7 +88,7 @@ public class MemberController {
 			return "register";
 		}
 		service.register(mb);
-		return "redirect:/movieIndex";
+		return "registerSuccess";
 		
 	}
 	

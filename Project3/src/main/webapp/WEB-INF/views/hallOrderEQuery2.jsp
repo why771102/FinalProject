@@ -41,6 +41,41 @@
  	footer{ 
  		width:2425px;
  	} 
+ 	
+/*  	#preloader { */
+/* /*   這是整個會蓋住畫面的底色色塊  */ */
+/*  position: fixed; */
+/*  width: 100%; */
+/*  height: 100%; */
+/*  left: 0%; */
+/*  top: 0%; */
+/*  background-color: #f4f4f4; */
+/*  z-index: 3002 */
+/* } */
+
+/* #status { */
+/* /*   這是中間loading的gif坐標css,我們盡量讓他畫面置中  */ */
+/*  position: fixed; */
+/*  width: 218px; */
+/*  height: 419px; */
+/*  margin-left: -109px; */
+/*  margin-top: -110px; */
+/*  left: 50%; */
+/*  top: 50%; */
+/*  background-color: #f4f4f4 */
+/* } */
+
+
+/* #loading_txt { */
+/* /*   這是讀取icon旁邊的文字區塊，樣式可以自己定義*/ */
+/*  font-size: 14px; */
+/*  position: fixed; */
+/*  margin-left: -40px; */
+/*  margin-top: -12px; */
+/*  left: 50%; */
+/*  top: 50% */
+/* } */
+ 	
 </style>
 
 </head>
@@ -67,6 +102,12 @@
 		</div>
 
 		<!--sidebar end-->
+		
+<!-- 			<div id="preloader"> -->
+<!-- 				<div id="status"><img src="../img/loader.gif"/></div> -->
+<!-- 				<div id="loading_txt">Now Loading</div> -->
+<!-- 			</div> -->
+		
 	<section id="main-content">
 		<section class="wrapper">
 			<h3>
@@ -154,7 +195,7 @@
 
 										<td><input type='button' value="發送付款通知信"
 											onclick="javascript:location.href='<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>'"
-											class="inlog-btn" /></td>
+											class="inlog-btn" id="mailButton" /></td>
 										<%-- 			<td><a href="<c:url value="/hallOrder/mail/${AHO.hallOrderNo}"/>">發送付款通知信</a></td> --%>
 									</tr>
 
@@ -176,6 +217,13 @@
 		<!--footer end-->
 
 	<script>
+	
+// 	$(window).load(function() { // 確認整個頁面讀取完畢再將這三個div隱藏起來
+// 	     $("#status").fadeOut();
+// 	        $("#loading_txt").fadeOut();
+// 	     $("#preloader").fadeOut("slow");
+// 	    })
+	
 		// var hallOrderStatusNo = "${AHO.hob.hallOrderStatusNo}";
 		// var a = $("#no option");
 
