@@ -437,7 +437,13 @@ public class RunMovieController implements ServletContextAware {
 				if (pageNo == 1) {
 					onePageNum = 8;
 
-				} else {
+				} else if(pageNo == totalPages){
+					
+					onePageNum = (pageNo - 1) * 8 + (rb_list.size() % 8);
+				}else if(pageNo < totalPages){
+					
+					onePageNum =pageNo*8;
+				}else {
 					onePageNum = (pageNo - 1) * 8 + (rb_list.size() % 8);
 				}
 
@@ -1097,7 +1103,13 @@ public class RunMovieController implements ServletContextAware {
 				if (pageNo == 1) {
 					onePageNum = 8;
 
-				} else {
+				} else if(pageNo == totalPages){
+					
+					onePageNum = (pageNo - 1) * 8 + (rb_list.size() % 8);
+				}else if(pageNo < totalPages){
+					
+					onePageNum =pageNo*8;
+				}else {
 					onePageNum = (pageNo - 1) * 8 + (rb_list.size() % 8);
 				}
 
@@ -1107,7 +1119,6 @@ public class RunMovieController implements ServletContextAware {
 				onePageNum = (rb_list.size());
 			}
 		}
-		;
 		System.out.println("onePageNum" + onePageNum);
 		System.out.println("movieNum" + movieNum);
 

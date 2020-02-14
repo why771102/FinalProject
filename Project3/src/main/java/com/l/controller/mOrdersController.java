@@ -396,16 +396,28 @@ public class mOrdersController {
 		return str;
 		}
 		
+//		//查詢單筆資料
+//		@PostMapping("/searchTicket")
+//		public String queryTicket(@RequestParam("ordersID")String ordersID,Model model) {
+//			System.out.println("ordersID"+ordersID);
+//			int orderID = Integer.parseInt(ordersID);
+//			List<MOrderDetailBean> mdb=service.getDetails(orderID);
+//			//			MOrderBean mb = service.getOrderID(orderID);
+//			model.addAttribute("getOrderByID",mdb);
+//			return "l/queryTicket";
+//		}
+		
 		//查詢單筆資料
-		@RequestMapping("/searchTicket")
-		public String queryTicket(@RequestParam("ordersID")String ordersID,Model model) {
-			System.out.println("ordersID"+ordersID);
-			int orderID = Integer.parseInt(ordersID);
-			List<MOrderDetailBean> mdb=service.getDetails(orderID);
-			//			MOrderBean mb = service.getOrderID(orderID);
-			model.addAttribute("getOrderByID",mdb);
-			return "l/queryTicket";
-		}
+				@PostMapping("/searchTicket/{ordersID}")
+				public String queryTicket(@PathVariable("ordersID")String ordersID,Model model) {
+					System.out.println("ordersID"+ordersID);
+					int orderID = Integer.parseInt(ordersID);
+					List<MOrderDetailBean> mdb=service.getDetails(orderID);
+					//			MOrderBean mb = service.getOrderID(orderID);
+					model.addAttribute("getOrderByID",mdb);
+					model.addAttribute("ordersID", ordersID);
+					return "l/queryTicket";
+				}
 		
 		//修改訂單時間
 		@RequestMapping(value ="/updateTicket/{orderID}", method = RequestMethod.GET)

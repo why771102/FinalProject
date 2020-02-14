@@ -231,7 +231,6 @@ input[type=text]:focus {
 	 $('#memberDetail').removeClass("selected");
 	 $('#memTicket').removeClass("selected");
 	 $('#hallOrder').removeClass("selected");
-	 alert("123");
 	 $.ajax({
 			url : "${pageContext.request.contextPath}/showSCOrderDetails",
 			type : "GET",

@@ -41,7 +41,7 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 				   .setParameter("currentDate", currentDate)
 				   .setParameter("currentDatePlusAWeek", currentDatePlusAWeek)
 				   .getResultList();
-		System.out.println("listSTHB.size() = " + listSTHB.size());
+//		System.out.println("listSTHB.size() = " + listSTHB.size());
 		// 取得showtimeID and hallID
 		List<SeatsBean> listSB = new ArrayList<>();
 		for (ShowTimeHistoryBean stBean : listSTHB) {
@@ -55,10 +55,10 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 //			System.out.println("sthbHallID in for (ShowTimeHistoryBean sthBean : listSTHB)" + sthbHallID);
 			String date = stBean.getPlayStartTime();
 			date = date.substring(0, 10);
-			System.out.println(date);
+//			System.out.println(date);
 			for (SeatsBean sBean : listSB) {
 				String sbHallID = sBean.getHallBean().getHallID();
-				System.out.println("sbHallID in for (SeatsBean sBean : listSB)" + sbHallID);
+//				System.out.println("sbHallID in for (SeatsBean sBean : listSB)" + sbHallID);
 				if (sthbHallID.equalsIgnoreCase(sbHallID)) {
 					ShowTimeHistoryBean showTimeID = getShowTimeById(stBean.getShowTimeId());
 					SeatsBean seatID = getSeatsById(sBean.getSeatID());
@@ -132,9 +132,9 @@ public class ReservedSeatsDaoImpl implements ReservedSeatsDao {
 	@Override
 	public List<ReservedSeatsBean> getAllSeats(Integer showTimeID) {
 		List<ReservedSeatsBean> list = new ArrayList<>();
-		System.out.println("List<ReservedSeatsBean> getAllSeats");
+//		System.out.println("List<ReservedSeatsBean> getAllSeats");
 		Session session = factory.getCurrentSession();
-		System.out.println(showTimeID);
+//		System.out.println(showTimeID);
 		try {
 		String hql = "FROM ReservedSeatsBean WHERE showTimeID = :showTimeID";
 		list = session.createQuery(hql).setParameter("showTimeID", showTimeID)

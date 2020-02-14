@@ -88,6 +88,7 @@
 					</table>
 				</div>
 	<!--footer start-->
+
 			<jsp:include page="../z/bg-footer.jsp">
 				<jsp:param name="e" value="1" />
 				<jsp:param name="f" value="1" />
@@ -116,6 +117,7 @@
 		$(function() {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/OrdersAjax",
+				data : {},
 				type : "POST",
 				success : function(data) {
 // 					alert(data);
@@ -130,7 +132,7 @@
  						dataTable.row.add([
  			value.ordersID, value.OrderTime,value.memberBean.name, value.showTimeHistoryBean.run.movie.title, 
  			function(data,type,row) {
-				var html = "<form action='${pageContext.request.contextPath}/searchTicket' method='POST'><input type='hidden' value='"+ value.ordersID +"' name='ordersID'/>'<button >詳細資料</button>";
+				var html = "<form action='${pageContext.request.contextPath}/searchTicket/"+value.ordersID+"' method='POST'><input type='hidden' value='"+ value.ordersID +"' name='ordersID'/><input type='submit' value='詳細資料'/></form>";
  				return html;
  				} 
  				]).draw();
