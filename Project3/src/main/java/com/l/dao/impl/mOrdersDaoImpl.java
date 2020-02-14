@@ -128,7 +128,7 @@ public class mOrdersDaoImpl implements mOrdersDao{
 		//查詢所有ordersID
 		@Override
 		public List<MOrderBean> getOrders() {
-			String hql="FROM MOrderBean where ordersID>5000";
+			String hql="FROM MOrderBean where ordersID>4001";
 			Session session=null;
 			List<MOrderBean> list=new ArrayList<>();
 			session = factory.getCurrentSession();

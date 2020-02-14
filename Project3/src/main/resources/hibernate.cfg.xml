@@ -45,6 +45,7 @@
 		<mapping class="com.a.model.MovieBean"></mapping>
 		<mapping class="com.p.model.PayStatusBean"></mapping>
 		<mapping class="com.l.model.ProductsBean"></mapping>
+		<mapping class="com.l.model.TicketBean"></mapping>
 		<mapping class="com.c.model.ReservationStatusBean"></mapping>
 		<mapping class="com.c.model.SeatStatusBean"></mapping>
 		<mapping class="com.c.model.TypeOfSeatBean"></mapping>

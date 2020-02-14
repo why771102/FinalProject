@@ -87,28 +87,46 @@ tr.shown td.details-control {
 // 		console.log(d);
 // 		console.log(typeof(d[1]));
 	    // `d` is the original data object for the row
-	    window.childtable = "<table cellpadding='5' cellspacing='0' border='0' style='padding-left:50px;'>";
+	    window.childtable = "<table cellpadding='5' cellspacing='0' border='0' style='padding-left:50px;'><tr>";
 	    for(let order = 0; order < orders.length; order++){
 
 	    	if(d[1] == orders[order][0].SCOrdersBean.sCOrderID){
 // 	    		console.log("true");
+				window.childtable +='<td>商品名稱:</td>';
 	    		for(let products = 0; products < orders[order].length; products++){
 // 	    			console.log(orders[order][products].productsBean.productName);
 	    			
-	    			window.childtable +='<tr>'+
-	            		'<td>商品名稱:</td>'+
-	            		'<td>'+orders[order][products].productsBean.productName+'</td>'+
-	        		'</tr>'+
-	        		'<tr>'+
-	           	 	'<td>購買數量:</td>'+
-	            	'<td>'+orders[order][products].quantity+'</td>'+
-	        	'</tr>'+
-	        	'<tr>'+
-            	'<td>單價:</td>'+
-            	'<td>NT$'+orders[order][products].productsBean.unitPrice+'</td>'+
-        		'</tr>'
+// 	    			window.childtable +='<tr>'+
+// 	            		'<td>商品名稱:</td>'+
+// 	            		'<td>'+orders[order][products].productsBean.productName+'</td>'+
+// 	        		'</tr>'+
+// 	        		'<tr>'+
+// 	           	 	'<td>購買數量:</td>'+
+// 	            	'<td>'+orders[order][products].quantity+'</td>'+
+// 	        	'</tr>'+
+// 	        	'<tr>'+
+//             	'<td>單價:</td>'+
+//             	'<td>NT$'+orders[order][products].productsBean.unitPrice+'</td>'+
+//         		'</tr>'
 
+					window.childtable +=
+	            		'<td>'+orders[order][products].productsBean.productName+'</td>';
 	    		}
+	    		
+	    		window.childtable += '</tr><tr><td>購買數量:</td>';
+	    		for(let products = 0; products < orders[order].length; products++){
+	        		
+	           	 	window.childtable +=
+	            	'<td>'+orders[order][products].quantity+'</td>';
+	    		}
+	    		window.childtable += '</tr><tr><td>單價:</td>';
+	            for(let products = 0; products < orders[order].length; products++){
+
+            		window.childtable+=
+            		'<td>NT$'+orders[order][products].productsBean.unitPrice+'</td>';
+        		
+	    		}
+	            	window.childtable+='</tr>';
 	    	}
 	    }
 	    window.childtable+='</table>';
