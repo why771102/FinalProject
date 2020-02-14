@@ -245,7 +245,7 @@
 
 Highcharts.chart('container1', {
     chart: {
-        backgroundColor: '#FCFFC5'},
+        backgroundColor: '#F5F5F5'},
   title: {
     text: '數量變化表'
   },
