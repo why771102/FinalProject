@@ -98,6 +98,31 @@ html, /* 這邊做初始化設定 全部字體為正黑體  並且字體大小�
 	align-items: center;
 }
 
+.likeclicked {
+	border : 0 ;
+	font-size : 20px;
+	color : white;
+	background-color: #c21010;
+	border-radius: 4px
+}
+
+.likenormal {
+	border : 0 ;
+	font-size : 20px;
+	border-radius: 4px
+}
+
+.fa{
+	font-size : 20px;
+}
+
+.icon-thumbs-up{
+	font-size : 20px;
+}
+
+.icon-thumbs-down{
+	font-size : 20px;
+}
     
 /* in article have padding */
 .wrapList {
@@ -744,27 +769,28 @@ div.submitButton {
                                     style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
                                     <div>評分等級:${comment.grade} &nbsp&nbsp
                                     <c:choose>
-                                    <c:when test="${comment.haveLike == 1}">                                    
-                                        	<a
-                                            href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #c21010;border-color: white;font-size : 20px;color : white"><i class="icon-thumbs-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp <a
-                                            href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a>
-                                        </c:when>
-                                        <c:when test="${comment.haveBad == 1}">
-                                        	<a
-                                            href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp <a
-                                            href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #c21010;border-color: white;font-size : 20px;color : white"><i class="icon-thumbs-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a>
-                                        </c:when>
-                                        <c:otherwise>
-                                        	<a
-                                            href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp<a
-                                            href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />"
-                                            class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a>
-                                        </c:otherwise> 
+                                    <c:when test="${comment.haveLike == 1}"> 
+                                    	<button id="likebutton${comment.commentID }" onclick="notlike(${comment.commentID})" class = "likeclicked"><i class="icon-thumbs-up"></i>&nbsp${comment.likeNum}</button>&nbsp&nbsp
+                                        <button id="badbutton${comment.commentID }" onclick="tobad(${comment.commentID})" class = "likenormal"><i class="fa fa-thumbs-o-down"></i>&nbsp${comment.badNum}</button>                                   
+<!--                                         	<a -->
+<%--                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />" --%>
+<%--                                             class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #c21010;border-color: white;font-size : 20px;color : white"><i class="icon-thumbs-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp <a --%>
+<%--                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />" --%>
+<%--                                             class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a> --%>
+                                    </c:when>
+                                    <c:when test="${comment.haveBad == 1}">
+                                        <button id="likebutton${comment.commentID }" onclick="tolike(${comment.commentID})" class = "likenormal"><i class="fa fa-thumbs-o-up"></i>&nbsp${comment.likeNum}</button>&nbsp&nbsp
+                                        <button id="badbutton${comment.commentID }" onclick="notbad(${comment.commentID})" class = "likeclicked"><i class="icon-thumbs-down"></i>&nbsp${comment.badNum}</button>
+<!--                                         	<a -->
+<%--                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />" --%>
+<%--                                             class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #ffffff;border-color: white;font-size : 20px;color : black"><i class="fa fa-thumbs-o-up" style = "font-size : 20px"></i>&nbsp ${comment.likeNum} </a>&nbsp&nbsp <a --%>
+<%--                                             href="<spring:url value='/preference/addbad/${run.runID } ?id=${comment.commentID}' />" --%>
+<%--                                             class="btn btn-primary" id = "bad${comment.commentID}" style = "background-color: #c21010;border-color: white;font-size : 20px;color : white"><i class="icon-thumbs-down" style = "font-size : 20px"></i>&nbsp ${comment.badNum} </a> --%>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button id="likebutton${comment.commentID }" onclick="like(${comment.commentID})" class = "likenormal"><i class="fa fa-thumbs-o-up"></i>&nbsp${comment.likeNum}</button>&nbsp&nbsp
+                                        <button id="badbutton${comment.commentID }" onclick="bad(${comment.commentID})" class = "likenormal"><i class="fa fa-thumbs-o-down"></i>&nbsp${comment.badNum}</button>
+                                    </c:otherwise> 
 <%--                                         評分等級:${comment.grade} &nbsp&nbsp<a --%>
 <%--                                             href="<spring:url value='/preference/addlike/${run.runID } ?id=${comment.commentID}' />" --%>
 <%--                                             class="btn btn-primary" id = "good${comment.commentID}" style = "background-color: #C21010;border-color: #C21010">${comment.likeNum}讚 </a>&nbsp&nbsp <a --%>
@@ -773,10 +799,10 @@ div.submitButton {
                                     </c:choose>
                                     </div>
                                     <div>
-   										 <input id="likeNum" value="${comment.likeNum}" type="hidden">
+   										 <input id="likeNum${comment.commentID }" value="${comment.likeNum}" type="hidden"/>
    									</div>
    									<div>
-   										 <input id="badNum" value="${comment.badNum}" type="hidden">
+   										 <input id="badNum${comment.commentID }" value="${comment.badNum}" type="hidden"/>
    									</div>
                                     <div>會員帳號:${comment.memberBean.account}</div>
                                     <div>短評內文:${comment.commentContent}</div>
@@ -789,7 +815,7 @@ div.submitButton {
                                             href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
                                             id = "block${comment.commentID}" onclick="block()"> <span
                                             class="glyphicon-info-sigh glyphicon"></span>屏蔽</a>
-                                        <button onclick="report(${comment.commentID})" id = "report${comment.commentID}" style = "border:0;color: #337ab7">
+                                        <button onclick="report(${comment.commentID})" id = "report${comment.commentID}" style = "border:0;color: #337ab7;background: white">
                                              <span
                                             class="glyphicon-info-sigh glyphicon"></span>檢舉
                                         </button>
@@ -1047,80 +1073,161 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 // 		})
 // });
 	
-// 	function like(commentID){
+	//讚+1
+ function like(commentID){
   
-//    var  likeNum= parseInt($("#likeNum").val())+1;
+    let likeNum= parseInt($("#likeNum"+commentID).val())+1;
+//    var conn = $("#likeNum"+commentID).val();
 
-//    alert(likeNum);
-//    alert(commentID);
-//    alert(getCookie("memberID"));
-//     $.ajax({
-//     url:"${pageContext.request.contextPath}/addcommentlike",
-//     type:"POST",
-//     data:{"commentID":commentID,"memberID":getCookie("memberID")},
-//    success:function(commentID){
-//     $("#likeNum").val(likeNum);
-//     $("#likebutton").text(likeNum + "讚");
-//     $("#likebutton").attr("onclick","notlike(${comment.commentID})");
-//    },
-//     error : function(commentID){
-//         $("#likeNum").val(likeNum);
-//         $("#likebutton").text(likeNum + "讚");
-//         $("#likebutton").attr("onclick","notlike(${comment.commentID})");
-//        }
-//    }) 
-//  }
-//  function notlike(commentID){
-//   var  likeNum= parseInt($("#likeNum").val())-1;
-//   alert(likeNum);
-//    $.ajax({
-//    url:"like",
-//    type:"POST",
-//    data:{"commentID":commentID ,"memberID":getCookie("memberID")},
-//    success:function(messageId){
-//     $("#likeNum").val(messageLike);
-//     $("#likes").text(messageLike+"人按讚");
-//     $("#likebutton").text("讚");
-//     $("#likebutton").attr("onclick","like(${comment.commentID})");
-//    }
-//    })
-//  }
- 
-//  function bad(commentID){
+   alert(likeNum);
+   alert(commentID);
+   alert(getCookie("memberID"));
+    $.ajax({
+    url:"${pageContext.request.contextPath}/addcommentlike",
+    type:"POST",
+    data:{"commentID":commentID,"memberID":getCookie("memberID")},
+    dataType:"text",
+   success:function(data){
+	   alert("successLike");
+    $("#likeNum" + commentID).val(likeNum);
+    $("#likebutton" + commentID).text(likeNum + "讚");
+    $("#likebutton" + commentID).attr("onclick","notlike("+commentID+")");
+    $("#badbutton" + commentID).attr("onclick","tobad("+commentID+")");
+   },
+    error : function(data){
+    	alert("fail");
+       }
+   }) 
+ }
+ //讚-1
+ function notlike(commentID){
+	let likeNum= parseInt($("#likeNum"+commentID).val())-1;
+  alert(likeNum);
+  alert(commentID);
+  alert(getCookie("memberID"));
+   $.ajax({
+   url:"${pageContext.request.contextPath}/addcommentlike",
+   type:"POST",
+   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
+   dataType:"text",
+   success:function(data){
+	   alert("successNotLike");
+	   $("#likeNum" + commentID).val(likeNum);
+ 	    $("#likebutton" + commentID).text(likeNum + "讚");
+	    $("#likebutton" + commentID).attr("onclick","like("+commentID+")");
+        $("#badbutton" + commentID).attr("onclick","bad("+commentID+")");
+   },
+   error : function(data){
+	   alert("fail");
+      }
+   })
+ }
+ //噓+1
+  function bad(commentID){
 	  
-// 	   var  badNum= parseInt($("#badNum").val())+1;
+	  let  badNum= parseInt($("#badNum"+commentID).val())+1;
 
-// 	   alert(badNum);
-// 	    $.ajax({
-// 	    url:"${pageContext.request.contextPath}/preference/addlike",
-// 	    type:"POST",
-// 	    data:{"commentID":commentID,"memberID":getCookie("memberID")},
-// 	   success:function(messageId){
-// 	    $("#badNum").val(badNum);
-// 	    $("#likes").text(badNum+"人按讚");
-// 	    $("#likebutton").text("收回讚");
-// 	    $("#likebutton").attr("onclick","notbad(${comment.commentID})");
-// 	   }
-// 	   }) 
-// 	 }
-// 	 function notbad(commentID){
-// 	  var  badNum= parseInt($("#badNum").val())-1;
-// 	  alert(badNum);
-// 	   $.ajax({
-// 	   url:"like",
-// 	   type:"POST",
-// 	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
-// 	   success:function(messageId){
-// 	    $("#badNum").val(badNum);
-// 	    $("#likes").text(badNum+"人按讚");
-// 	    $("#likebutton").text("讚");
-// 	    $("#likebutton").attr("onclick","bad(${comment.commentID})");
-// 	   }
-// 	   })
-// 	 }
+	   alert(badNum);
+	   alert(commentID);
+	   alert(getCookie("memberID"));
+	    $.ajax({
+	    url:"${pageContext.request.contextPath}/addcommentbad",
+	    type:"POST",
+	    data:{"commentID":commentID,"memberID":getCookie("memberID")},
+	    dataType:"text",
+	   success:function(data){
+		   alert("successBad");
+	    $("#badNum" + commentID).val(badNum);
+	    $("#badbutton" + commentID).text(badNum+"噓");
+	    $("#badbutton" + commentID).attr("onclick","notbad("+commentID+")");
+        $("#likebutton" + commentID).attr("onclick","tolike("+commentID+")");
+	   },
+	   error : function(data){
+		   alert("fail");
+	      }		   
+	   }) 
+	 }
+  //噓-1
+	 function notbad(commentID){
+		 let  badNum= parseInt($("#badNum"+commentID).val())-1;
+	  alert(badNum);
+	  alert(commentID);
+	  alert(getCookie("memberID"));
+	   $.ajax({
+	   url:"${pageContext.request.contextPath}/addcommentbad",
+	   type:"POST",
+	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
+	    dataType:"text",
+	   success:function(data){
+		   alert("successNotBad");
+		   $("#badNum" + commentID).val(badNum);
+		    $("#badbutton" + commentID).text(badNum+"噓");
+		    $("#badbutton" + commentID).attr("onclick","bad("+commentID+")");
+	        $("#likebutton" + commentID).attr("onclick","like("+commentID+")");
+		   },
+		error : function(data){
+			alert("fail");
+		  }	
+	   })
+	 }
+  
+  //讚+1 噓-1
+  function tolike(commentID){
+	  let  likeNum= parseInt($("#likeNum"+commentID).val())+1;
+	  let  badNum= parseInt($("#badNum"+commentID).val())-1;
+	  alert(likeNum);
+	  alert(badNum);
+	  alert(commentID);
+	  alert(getCookie("memberID"));
+	   $.ajax({
+	   url:"${pageContext.request.contextPath}/addcommentlike",
+	   type:"POST",
+	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
+	    dataType:"text",
+	   success:function(data){
+		   alert("successTolike");
+		   $("#likeNum" + commentID).val(likeNum);
+		   $("#badNum" + commentID).val(badNum);
+		   $("#likebutton" + commentID).text(likeNum + "讚");
+		    $("#badbutton" + commentID).text(badNum+"噓");
+		    $("#badbutton" + commentID).attr("onclick","tobad("+commentID+")");
+	        $("#likebutton" + commentID).attr("onclick","notlike("+commentID+")");
+		   },
+		error : function(data){
+			alert("fail");
+		  }	
+	   })
+	 }
+  
+  //讚-1 噓+1
+  function tobad(commentID){
+	  let  likeNum= parseInt($("#likeNum"+commentID).val())-1;
+	  let  badNum= parseInt($("#badNum"+commentID).val())+1;
+	  alert(likeNum);
+	  alert(badNum);
+	  alert(commentID);
+	  alert(getCookie("memberID"));
+	   $.ajax({
+	   url:"${pageContext.request.contextPath}/addcommentbad",
+	   type:"POST",
+	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
+	    dataType:"text",
+	   success:function(data){
+		   alert("successTobad");
+		   $("#likeNum" + commentID).val(likeNum);
+		   $("#badNum" + commentID).val(badNum);
+		   $("#likebutton" + commentID).text(likeNum + "讚");
+		    $("#badbutton" + commentID).text(badNum+"噓");
+		    $("#badbutton" + commentID).attr("onclick","notbad("+commentID+")");
+	        $("#likebutton" + commentID).attr("onclick","tolike("+commentID+")");
+		   },
+		error : function(data){
+			alert("fail");
+		  }	
+	   })
+	 }
 	 
-	 function report(commentID){		  
-
+	 function report(commentID){
 		  alert("檢舉成功");
 		   $.ajax({
 		   url:"${pageContext.request.contextPath}/comments/report",
@@ -1132,17 +1239,14 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 	 }
 	 
 	 function block(){		  
-
 		  alert("屏蔽成功");		
 	 }
 	 
-	 function deletecomment(){		  
-
+	 function deletecomment(){
 		  alert("刪除成功");		
 	 }
 	 
-	 function fixcomment(){		  
-
+	 function fixcomment(){
 		  alert("修改成功");		
 	 }
 	 
@@ -1160,24 +1264,6 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 		}
 		return "";
 	}
-	
-// 	$("#bad${comment.commentID}").click(function(){	
-// 		$.ajax({
-// 			type : "POST",
-// 			url : "${pageContext.request.contextPath}/preference/addbad",
-// 			data : {commentID : cID},
-// 			success : function(data) {
-
-// 			},
-// 			error : function(data) {
-// 				$("#close").removeClass();
-// 				$("#close").addClass("btn btn-danger");
-// 				$("#close").val("已結案");
-// 				status = 2;
-// 			}
-// 		})
-// });
-
 
 </script>
 </body>
