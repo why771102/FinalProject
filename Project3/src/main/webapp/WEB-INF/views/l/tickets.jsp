@@ -94,7 +94,7 @@ text-align:left;
 　
 　				</tr>
 					<tr>
-　					<td><a href="<spring:url value='/bookNormal' />"class="icon-vsgeneral">
+　				<td><a href="<spring:url value='/testProducts' />"class="icon-vsgeneral">
 				<button class="t-button">  <h1>團體優待票券 / 愛心票 / 敬老票 / 免費兌換券</h1>
 	                <h3>CORPORATE MOVIE MONEY / DISABILITY TICKET / ELDERLY TICKET / READMISSION</h3></button>
 			</a></td>

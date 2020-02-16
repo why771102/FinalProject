@@ -667,7 +667,7 @@ text-align:center;
 		<div class="next">
 			<input type="button" value="下頁"
 		onclick="location.href='reservedSeats/showSeats'">
-<!-- 	onclick="location.href='orderconfirm'">  -->
+<!-- 	onclick="location.href='testOrderconfirm'">  -->
 			
 					
  		</div>
