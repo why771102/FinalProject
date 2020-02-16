@@ -127,14 +127,14 @@
         <div class="row mt">
         
         
-        <aside class="col-lg-7 mt">
+        <aside class="col-lg-8 mt">
             <section class="panel">
               <div class="panel-body">
                 <div id="calendar" class="has-toolbar"></div>
               </div>
             </section>
           </aside>
-          <aside class="col-lg-4 mt">
+          <aside class="col-lg-3 mt">
             <h4><i></i> 員工清單</h4>
             <div id="external-events">
               <div class="external-event label label-theme">七六</div>

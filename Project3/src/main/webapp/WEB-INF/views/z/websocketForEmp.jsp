@@ -74,7 +74,7 @@
 
 						</form>
 					</div>
-					<div style="height: 330px; overflow-y: auto" id="div1">
+					<div style="height: 393px; overflow-y: auto" id="div1">
 						<c:forEach var="list" items="${content}">
 							<c:choose>
 								<c:when test="${empty list.name}">
