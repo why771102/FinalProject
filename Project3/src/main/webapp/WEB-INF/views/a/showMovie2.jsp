@@ -1090,7 +1090,7 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
     $("#badbutton" + commentID).attr("onclick","tobad("+commentID+")");
    },
     error : function(data){
-    	alert("fail");
+    	alert("請先登入");
        }
    }) 
  }
@@ -1111,7 +1111,7 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
         $("#badbutton" + commentID).attr("onclick","bad("+commentID+")");
    },
    error : function(data){
-	   alert("fail");
+	   alert("請先登入");
       }
    })
  }
@@ -1133,7 +1133,7 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
         $("#likebutton" + commentID).attr("onclick","tolike("+commentID+")");
 	   },
 	   error : function(data){
-		   alert("fail");
+		   alert("請先登入");
 	      }		   
 	   }) 
 	 }
@@ -1154,7 +1154,7 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 	        $("#likebutton" + commentID).attr("onclick","like("+commentID+")");
 		   },
 		error : function(data){
-			alert("fail");
+			alert("請先登入");
 		  }	
 	   })
 	 }
@@ -1181,7 +1181,7 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 	        $("#likebutton" + commentID).attr("onclick","notlike("+commentID+")");
 		   },
 		error : function(data){
-			alert("fail");
+			alert("請先登入");
 		  }	
 	   })
 	 }
@@ -1208,7 +1208,7 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
 	        $("#likebutton" + commentID).attr("onclick","tolike("+commentID+")");
 		   },
 		error : function(data){
-			alert("fail");
+			alert("請先登入");
 		  }	
 	   })
 	 }
@@ -1225,21 +1225,21 @@ function report(commentID){
 	})
 }
 	 
-	 function block(commentID){		  
-		  alert("屏蔽成功");	
-		  $.ajax({
-			    url:"${pageContext.request.contextPath}/addcommentblock",
-			    type:"POST",
-			    data:{"commentID":commentID,"memberID":getCookie("memberID")},
-			    dataType:"text",
-			   success:function(data){
-				$("#comment" + commentID).remove();
-			   },
-			   error : function(data){
-				   alert("fail");
-			      }		   
-			   })
-	 }
+function block(commentID){	  	
+	$.ajax({
+	url:"${pageContext.request.contextPath}/addcommentblock",
+	type:"POST",
+	data:{"commentID":commentID,"memberID":getCookie("memberID")},
+	dataType:"text",
+	success:function(data){
+		alert("屏蔽成功");
+		$("#comment" + commentID).remove();
+		},
+	error : function(data){
+		alert("請先登入");
+		}		   
+	})
+}
 	 
 	 function deletecomment(){
 		  alert("刪除成功");		
