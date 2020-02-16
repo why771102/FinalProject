@@ -171,41 +171,41 @@ width: 19%;
 		</div>
 	
 		<c:forEach items="${disountTicket}" var="product">
-		<div class="discountcontent" id="hidediscount">
-			<div class="name"><p id="${product.productName}"></p></div>
-			<div class="price"><p id="${product.unitPrice}"></p></div>
+		<div class="discountcontent" id="hide${product.productID}">
+			<div class="name"><p id="${product.productID}">${product.productName}</p></div>
+			<div class="price"><p id="price${product.productID}">${product.unitPrice}</p></div>
 			<div class="qty"><p id="qty${product.productID}">0</p></div>
 			<div class="count"><p id="count${product.productID}">0</p></div>
 		</div>
 		</c:forEach>
 		<c:forEach items="${ticket}" var="product">
-		<div class="discountcontent" id="hidediscount">
-			<div class="name"><p id="${product.productName}"></p></div>
-			<div class="price"><p id="${product.unitPrice}"></p></div>
+		<div class="discountcontent" id="hide${product.productID}">
+			<div class="name"><p id="${product.productID}">${product.productName}</p></div>
+			<div class="price"><p id="price${product.productID}">${product.unitPrice}</p></div>
 			<div class="qty"><p id="qty${product.productID}">0</p></div>
 			<div class="count"><p id="count${product.productID}">0</p></div>
 		</div>
 		</c:forEach>
 		<c:forEach items="${food}" var="product">
-		<div class="discountcontent" id="hidediscount">
-			<div class="name"><p id="${product.productName}"></p></div>
-			<div class="price"><p id="${product.unitPrice}"></p></div>
+		<div class="discountcontent" id="hide${product.productID}">
+			<div class="name"><p id="${product.productID}">${product.productName}</p></div>
+			<div class="price"><p id="price${product.productID}">${product.unitPrice}</p></div>
 			<div class="qty"><p id="qty${product.productID}">0</p></div>
 			<div class="count"><p id="count${product.productID}">0</p></div>
 		</div>
 		</c:forEach>
 		<c:forEach items="${drink}" var="product">
-		<div class="discountcontent" id="hidediscount">
-			<div class="name"><p id="${product.productName}"></p></div>
-			<div class="price"><p id="${product.unitPrice}"></p></div>
+		<div class="discountcontent" id="hide${product.productID}">
+			<div class="name"><p id="${product.productID}">${product.productName}</p></div>
+			<div class="price"><p id="price${product.productID}">${product.unitPrice}</p></div>
 			<div class="qty"><p id="qty${product.productID}">0</p></div>
 			<div class="count"><p id="count${product.productID}">0</p></div>
 		</div>
 		</c:forEach>
 		<c:forEach items="${popcorn}" var="product">
-		<div class="discountcontent" id="hidediscount">
-			<div class="name"><p id="${product.productName}"></p></div>
-			<div class="price"><p id="${product.unitPrice}"></p></div>
+		<div class="discountcontent" id="hide${product.productID}">
+			<div class="name"><p id="${product.productID}">${product.productName}</p></div>
+			<div class="price"><p id="price${product.productID}">${product.unitPrice}</p></div>
 			<div class="qty"><p id="qty${product.productID}">0</p></div>
 			<div class="count"><p id="count${product.productID}">0</p></div>
 		</div>
@@ -280,44 +280,40 @@ width: 19%;
 		return "";
 	}
 	
-	for(var x=0;x<=20;x++)
-	{console.log(x+" :"+getCookie(x))}
-	
-
-// 	if(document.getElementById("discountqty").innerHTML==0){
-// 		document.getElementById("hidediscount").style.display = "none";}
+	for(var x=0;x<=20;x++){
+		try{
+			document.getElementById("qty"+x).innerHTM;
+			document.getElementById("count"+x).innerHTM;
+		}catch(e){
+			continue;
+		}
+		if(getCookie(x)>0){
+		document.getElementById("qty"+x).innerHTML=getCookie(x);
+		document.getElementById("hide"+x).style.display = "";
+		}else{
+			document.getElementById("hide"+x).style.display = "none";
+		}
 		
+		document.getElementById("count"+x).innerHTML=document.getElementById("price"+x).innerHTML*getCookie(x);
+		
+	}
 	
-// 	if (getCookie(x) > 0) {
-// 		document.getElementById("discount").innerHTML = "優惠票個人套票";
-// 		document.getElementById("discountprice").innerHTML =350	;
-// 		document.getElementById("discountqty").innerHTML =getCookie("discount")	;
-// 		document.getElementById("discountcount").innerHTML=document.getElementById("discountprice").innerHTML
-// 							*document.getElementById("discountqty").innerHTML;
-// 		document.getElementById("hidediscount").style.display = "";
-// 	}
-	
-	
-// 	}
-// 	var totalPrice;
-// 	totalPrice=	parseInt(document.getElementById("discountcount").innerHTML)+
-// 		parseInt(document.getElementById("discount2count").innerHTML)+
-// 		parseInt(document.getElementById("bankticketcount").innerHTML)+
-// 		parseInt(document.getElementById("normalcount").innerHTML)+
-// 		parseInt(document.getElementById("hotdogcount").innerHTML)+
-// 		parseInt(document.getElementById("churrocount").innerHTML)+
-// 		parseInt(document.getElementById("friedChickencount").innerHTML)+
-// 		parseInt(document.getElementById("bigCokecount").innerHTML)+
-// 		parseInt(document.getElementById("normalCokecount").innerHTML)+
-// 		parseInt(document.getElementById("smallCokecount").innerHTML)+
-// 		parseInt(document.getElementById("bigPopcorncount").innerHTML)+
-// 		parseInt(document.getElementById("normalPopcorncount").innerHTML)+
-// 		parseInt(document.getElementById("smallPopcorncount").innerHTML)+
-// 		parseInt(document.getElementById("Handling").innerHTML);
-// 	document.getElementById("totalPrice").innerHTML =parseInt(totalPrice);
-// 	document.getElementById("totalPrice2").value =parseInt(totalPrice);
-	
-		      
+	document.getElementById("Handling").innerHTML=(parseInt(document.getElementById("qty13").innerHTML)+
+	(parseInt(document.getElementById("qty15").innerHTML))*2+
+	parseInt(document.getElementById("qty3").innerHTML)+
+	parseInt(document.getElementById("qty1").innerHTML))*20;
+		
+	var sum=0;
+	for(var x=0;x<=20;x++){
+		try{
+			document.getElementById("count"+x).innerHTML;
+		}catch(e){
+			continue;
+		}
+		var price=document.getElementById("count"+x).innerHTML;
+		sum=sum+parseInt(price);
+	}
+	document.getElementById("totalPrice").innerHTML=sum+parseInt(document.getElementById("Handling").innerHTML)
 
 </script>
 </html>
