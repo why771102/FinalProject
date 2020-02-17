@@ -321,6 +321,10 @@
             .star_border{
                 border-block-start:rgb(179, 179, 179) solid 1px ;
             }
+            
+            .w3-hover-opacity-off:hover{
+            	opacity: 0.6;
+            }
         </style>
 
 </head>
