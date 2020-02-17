@@ -165,16 +165,12 @@ public class mOrdersController {
 			for(Cookie cookie : cookies){
 			
 				if(cookie.getName().equals("memberID")) {
-					System.out.println("安安:" + cookie.getName());
 					String memberID = cookie.getValue();
-					System.out.println(memberID);
 					mb.setMemberID(Integer.parseInt(memberID));
 					break;
 				}else{
-					System.out.println("安安2:" + cookie.getName());
 					mb.setMemberID(1);
-					
-				}
+					}
 			}
 			LocalDate today = (LocalDate.now());
 			LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);

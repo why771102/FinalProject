@@ -103,13 +103,15 @@ html, /* 這邊做初始化設定 全部字體為正黑體  並且字體大小�
 	font-size : 20px;
 	color : white;
 	background-color: #c21010;
-	border-radius: 4px
+	border-radius: 4px;
 }
 
 .likenormal {
 	border : 0 ;
 	font-size : 20px;
-	border-radius: 4px
+	color : black;
+	background-color: white;
+	border-radius: 4px;
 }
 
 .fa{
@@ -615,7 +617,7 @@ div.submitButton {
                                             評分: </label>
                                         <div class="col-lg inner">
                                             <form:select id="grade" path="grade" class='form:input-large'
-                                                style=" width : 15%;font-size:20px">
+                                                style=" width : 15%;font-size:20px;height: auto">
                                                 <%--                                                 <form:option --%>
                                                 <%--                                                     style="font-size : 10px" value="-1" label="請挑選" /> --%>
                                                 <form:option style="font-size : 20px" value="1" label="1" />
@@ -685,7 +687,7 @@ div.submitButton {
                                         <label class="control-label"
                                             style="padding: 0; font-size: 20px" for='grade'> 評分 :</label>
                                         <div class="col-lg inner" style="font-size: 20px">
-                                            <form:select id="grade" style=" width : 15%" path="grade">
+                                            <form:select id="grade" style=" width : 15%;font-size:20px;height: auto" path="grade">
                                                 <%--                             <form:option value = "-1" label = "請挑選"/> --%>
                                                 <form:option value="1" style="text-align:left" label="1" />
                                                 <form:option value="2" label="2" />
@@ -763,7 +765,7 @@ div.submitButton {
 
                     <!--                     </div> -->
                     <c:forEach var='comment' items='${Comments}'>
-                        <div class="comments" style="width: 100%; height: 330px">
+                        <div class="comments" id = "comment${comment.commentID }" style="width: 100%; height: 330px">
                             <div class="thumbnail" style="border:3px solid #ddd;width: 100%; height: 300px">
                                 <div class="caption_comment"
                                     style="text-align: left; padding: 25px; line-height: 2.5; font-size: 20px">
@@ -811,14 +813,10 @@ div.submitButton {
                                         value="${fn:substring(commentTime1, 0, 16)}" />
                                     <div>${commentTime2}</div>
                                     <div>
-                                        <a
-                                            href="<spring:url value='/preference/addblock/${run.runID} ?id=${comment.commentID}' />"
-                                            id = "block${comment.commentID}" onclick="block()"> <span
-                                            class="glyphicon-info-sigh glyphicon"></span>屏蔽</a>
-                                        <button onclick="report(${comment.commentID})" id = "report${comment.commentID}" style = "border:0;color: #337ab7;background: white">
-                                             <span
-                                            class="glyphicon-info-sigh glyphicon"></span>檢舉
-                                        </button>
+                                    	<button onclick="block(${comment.commentID})" id = "block${comment.commentID}" style = "border:0;color: #337ab7;background: white">
+                                             	屏蔽</button>                                        
+                                        <button onclick="report(${comment.commentID})" id = "reportbutton${comment.commentID}" style = "border:0;color: #337ab7;background: white">
+                                             	檢舉</button>
                                     </div>
 
                                 </div>
@@ -1078,47 +1076,42 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
   
     let likeNum= parseInt($("#likeNum"+commentID).val())+1;
 //    var conn = $("#likeNum"+commentID).val();
-
-   alert(likeNum);
-   alert(commentID);
-   alert(getCookie("memberID"));
     $.ajax({
     url:"${pageContext.request.contextPath}/addcommentlike",
     type:"POST",
     data:{"commentID":commentID,"memberID":getCookie("memberID")},
     dataType:"text",
    success:function(data){
-	   alert("successLike");
     $("#likeNum" + commentID).val(likeNum);
-    $("#likebutton" + commentID).text(likeNum + "讚");
+	$("#likebutton" + commentID).html('<i class="icon-thumbs-up"></i>&nbsp' + likeNum);
+	$("#likebutton" + commentID).removeClass("likenormal");
+	$("#likebutton" + commentID).addClass("likeclicked");
     $("#likebutton" + commentID).attr("onclick","notlike("+commentID+")");
     $("#badbutton" + commentID).attr("onclick","tobad("+commentID+")");
    },
     error : function(data){
-    	alert("fail");
+    	alert("請先登入");
        }
    }) 
  }
  //讚-1
  function notlike(commentID){
 	let likeNum= parseInt($("#likeNum"+commentID).val())-1;
-  alert(likeNum);
-  alert(commentID);
-  alert(getCookie("memberID"));
    $.ajax({
    url:"${pageContext.request.contextPath}/addcommentlike",
    type:"POST",
    data:{"commentID":commentID ,"memberID":getCookie("memberID")},
    dataType:"text",
    success:function(data){
-	   alert("successNotLike");
 	   $("#likeNum" + commentID).val(likeNum);
- 	    $("#likebutton" + commentID).text(likeNum + "讚");
+		$("#likebutton" + commentID).removeClass("likeclicked");
+		$("#likebutton" + commentID).addClass("likenormal");
+		$("#likebutton" + commentID).html('<i class="fa fa-thumbs-o-up"></i>&nbsp' + likeNum);
 	    $("#likebutton" + commentID).attr("onclick","like("+commentID+")");
         $("#badbutton" + commentID).attr("onclick","bad("+commentID+")");
    },
    error : function(data){
-	   alert("fail");
+	   alert("請先登入");
       }
    })
  }
@@ -1126,47 +1119,42 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
   function bad(commentID){
 	  
 	  let  badNum= parseInt($("#badNum"+commentID).val())+1;
-
-	   alert(badNum);
-	   alert(commentID);
-	   alert(getCookie("memberID"));
 	    $.ajax({
 	    url:"${pageContext.request.contextPath}/addcommentbad",
 	    type:"POST",
 	    data:{"commentID":commentID,"memberID":getCookie("memberID")},
 	    dataType:"text",
 	   success:function(data){
-		   alert("successBad");
 	    $("#badNum" + commentID).val(badNum);
-	    $("#badbutton" + commentID).text(badNum+"噓");
+		$("#badbutton" + commentID).html('<i class="icon-thumbs-down"></i>&nbsp' + badNum);
+		$("#badbutton" + commentID).removeClass("likenormal");
+		$("#badbutton" + commentID).addClass("likeclicked");
 	    $("#badbutton" + commentID).attr("onclick","notbad("+commentID+")");
         $("#likebutton" + commentID).attr("onclick","tolike("+commentID+")");
 	   },
 	   error : function(data){
-		   alert("fail");
+		   alert("請先登入");
 	      }		   
 	   }) 
 	 }
   //噓-1
 	 function notbad(commentID){
 		 let  badNum= parseInt($("#badNum"+commentID).val())-1;
-	  alert(badNum);
-	  alert(commentID);
-	  alert(getCookie("memberID"));
 	   $.ajax({
 	   url:"${pageContext.request.contextPath}/addcommentbad",
 	   type:"POST",
 	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
 	    dataType:"text",
 	   success:function(data){
-		   alert("successNotBad");
 		   $("#badNum" + commentID).val(badNum);
-		    $("#badbutton" + commentID).text(badNum+"噓");
+		    $("#badbutton" + commentID).html('<i class="fa fa-thumbs-o-down"></i>&nbsp' + badNum);
+			$("#badbutton" + commentID).removeClass("likeclicked");
+			$("#badbutton" + commentID).addClass("likenormal");
 		    $("#badbutton" + commentID).attr("onclick","bad("+commentID+")");
 	        $("#likebutton" + commentID).attr("onclick","like("+commentID+")");
 		   },
 		error : function(data){
-			alert("fail");
+			alert("請先登入");
 		  }	
 	   })
 	 }
@@ -1175,26 +1163,25 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
   function tolike(commentID){
 	  let  likeNum= parseInt($("#likeNum"+commentID).val())+1;
 	  let  badNum= parseInt($("#badNum"+commentID).val())-1;
-	  alert(likeNum);
-	  alert(badNum);
-	  alert(commentID);
-	  alert(getCookie("memberID"));
 	   $.ajax({
 	   url:"${pageContext.request.contextPath}/addcommentlike",
 	   type:"POST",
 	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
 	    dataType:"text",
 	   success:function(data){
-		   alert("successTolike");
 		   $("#likeNum" + commentID).val(likeNum);
 		   $("#badNum" + commentID).val(badNum);
-		   $("#likebutton" + commentID).text(likeNum + "讚");
-		    $("#badbutton" + commentID).text(badNum+"噓");
+			$("#likebutton" + commentID).removeClass("likenormal");
+			$("#likebutton" + commentID).addClass("likeclicked");
+			$("#badbutton" + commentID).removeClass("likeclicked");
+			$("#badbutton" + commentID).addClass("likenormal");
+		   $("#likebutton" + commentID).html('<i class="icon-thumbs-up"></i>&nbsp' + likeNum);
+		    $("#badbutton" + commentID).html('<i class="fa fa-thumbs-o-down"></i>&nbsp' + badNum);
 		    $("#badbutton" + commentID).attr("onclick","tobad("+commentID+")");
 	        $("#likebutton" + commentID).attr("onclick","notlike("+commentID+")");
 		   },
 		error : function(data){
-			alert("fail");
+			alert("請先登入");
 		  }	
 	   })
 	 }
@@ -1203,44 +1190,56 @@ document.getElementById("showIDForm"+b[i].sthb.showTimeId).submit()
   function tobad(commentID){
 	  let  likeNum= parseInt($("#likeNum"+commentID).val())-1;
 	  let  badNum= parseInt($("#badNum"+commentID).val())+1;
-	  alert(likeNum);
-	  alert(badNum);
-	  alert(commentID);
-	  alert(getCookie("memberID"));
 	   $.ajax({
 	   url:"${pageContext.request.contextPath}/addcommentbad",
 	   type:"POST",
 	   data:{"commentID":commentID ,"memberID":getCookie("memberID")},
-	    dataType:"text",
+	   dataType:"text",
 	   success:function(data){
-		   alert("successTobad");
 		   $("#likeNum" + commentID).val(likeNum);
 		   $("#badNum" + commentID).val(badNum);
-		   $("#likebutton" + commentID).text(likeNum + "讚");
-		    $("#badbutton" + commentID).text(badNum+"噓");
+			$("#likebutton" + commentID).removeClass("likeclicked");
+			$("#likebutton" + commentID).addClass("likenormal");
+			$("#badbutton" + commentID).removeClass("likenormal");
+			$("#badbutton" + commentID).addClass("likeclicked");
+			$("#likebutton" + commentID).html('<i class="fa fa-thumbs-o-up"></i>&nbsp' + likeNum);
+			$("#badbutton" + commentID).html('<i class="icon-thumbs-down"></i>&nbsp' + badNum);
 		    $("#badbutton" + commentID).attr("onclick","notbad("+commentID+")");
 	        $("#likebutton" + commentID).attr("onclick","tolike("+commentID+")");
 		   },
 		error : function(data){
-			alert("fail");
+			alert("請先登入");
 		  }	
 	   })
 	 }
 	 
-	 function report(commentID){
-		  alert("檢舉成功");
-		   $.ajax({
-		   url:"${pageContext.request.contextPath}/comments/report",
+function report(commentID){
+	alert("檢舉成功");
+		$.ajax({
+		url:"${pageContext.request.contextPath}/comments/report",
 	    type:"POST",
 	    data:{"commentID":commentID},
-	   success:function(){
+	    dataType:"text",
+	    success:function(data){
 	   }
-		  })
-	 }
+	})
+}
 	 
-	 function block(){		  
-		  alert("屏蔽成功");		
-	 }
+function block(commentID){	  	
+	$.ajax({
+	url:"${pageContext.request.contextPath}/addcommentblock",
+	type:"POST",
+	data:{"commentID":commentID,"memberID":getCookie("memberID")},
+	dataType:"text",
+	success:function(data){
+		alert("屏蔽成功");
+		$("#comment" + commentID).remove();
+		},
+	error : function(data){
+		alert("請先登入");
+		}		   
+	})
+}
 	 
 	 function deletecomment(){
 		  alert("刪除成功");		

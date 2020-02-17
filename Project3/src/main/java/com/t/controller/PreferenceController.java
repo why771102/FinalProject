@@ -215,6 +215,25 @@ public class PreferenceController {
 		}
 		return "success";
 	}
+	
+	@PostMapping("/addcommentblock")
+	public @ResponseBody String addBlock(Integer commentID, Integer memberID) {
+		PreferenceBean pb = new PreferenceBean();
+		pb.setCommentID(commentID);
+		pb.setMemberID(memberID);
+		// 檢查是否有在該留言建立過喜好欄位
+		boolean le = service.checkLikeExist(memberID, commentID);
+		if (le == true) {			
+			service.fixBlock(memberID, commentID);			
+		}
+		if (le == false) {
+			pb.setGood(0);
+			pb.setBad(0);
+			pb.setBlock(1);
+			service.addLike(pb);
+		}
+		return "success";
+	}
 
 //	// 第一次按噓
 //	@ResponseBody
