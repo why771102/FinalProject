@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
-<html style="background-color: #c5c5c5">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -34,7 +34,7 @@ table td {
 }
 </style>
 </head>
-<body>
+<body style="background-color: lightgrey">
 	<header>
 		<!-- header -->
 		<jsp:include page="header.jsp">
