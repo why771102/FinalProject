@@ -173,7 +173,7 @@ width: 19%;
 		<c:forEach items="${disountTicket}" var="product">
 		<div class="discountcontent" id="hide${product.productID}">
 			<div class="name"><p id="${product.productID}">${product.productName}</p></div>
-			<div class="price"><p id="price${product.productID}">${product.unitPrice}</p></div>
+			<div class="price"><p id="price${product.productID}">${product.unitPrice*2}</p></div>
 			<div class="qty"><p id="qty${product.productID}">0</p></div>
 			<div class="count"><p id="count${product.productID}">0</p></div>
 		</div>
@@ -229,7 +229,7 @@ width: 19%;
 			<div class="nextadjust">
 			<div class="next">
 				<div>
-				<form action="${pageContext.request.contextPath}/authorize_payment" method="post">
+				<form action="${pageContext.request.contextPath}/testOrderConfirmOK" method="post">
 				<input type="hidden" id="totalPrice2" name="total" value="120" />
 				<input type="submit" value="信用卡付款"> 
 				</form>
