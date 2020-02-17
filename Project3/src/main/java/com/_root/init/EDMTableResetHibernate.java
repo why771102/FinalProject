@@ -191,8 +191,7 @@ public class EDMTableResetHibernate {
 			session.flush();
 			System.out.println("Anno資料新增成功");
 
-//這邊開始
-//ReservationStatusBean	
+//這邊開始ReservationStatusBean	
 			try (FileReader fr = new FileReader("data/reservationStatus.dat");
 					BufferedReader br = new BufferedReader(fr);) {
 				while ((line = br.readLine()) != null) {
