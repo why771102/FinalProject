@@ -53,8 +53,8 @@
     	margin-bottom: 4%;
 	}
 	#booktickets{
-		z-index: 100;
-    	top: 171px;
+		z-index: 0;
+    	top: 169px;
    		left: 23%;
     	margin-top: 8%;
 	}
@@ -75,8 +75,8 @@
     padding: 2%;
     text-align: center;
     position: relative;
-    top: -5px;
-    left: -1px;
+    top: -12px;
+    left: 23px;
     cursor: pointer;
 	}
 	
