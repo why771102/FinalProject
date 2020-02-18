@@ -5,6 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<meta http-equiv="refresh" content="3;url=http://localhost:8080/Project3/movieIndex" />
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	crossorigin="anonymous"></script>
@@ -56,7 +57,8 @@
 <!-- 	<hr -->
 <!-- 		style="height: 1px; border: none; color: #333; background-color: #333;"> -->
 	<div style="text-align: center; height:300px;">
-		<h3><a href="<c:url value='/movieIndex'/>">回首頁觀看更多電影資訊</a></h3>
+		<h2>3秒後將自動跳轉回首頁...</h2>
+		<h3><a href="<c:url value='/movieIndex'/>">或直接回首頁觀看更多電影資訊</a></h3>
 	</div>
 	<!-- footer -->
     <footer>
