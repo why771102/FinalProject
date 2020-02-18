@@ -537,7 +537,7 @@ table{
 					//                     console.log(JSON.stringify(updateData));
 				},
 				success : function(data) {
-					alert("修改成功");
+					alert("修改成功");
 					//                     window.location.href = "${pageContext.request.contextPath}/index-a";
 				},
 			});
