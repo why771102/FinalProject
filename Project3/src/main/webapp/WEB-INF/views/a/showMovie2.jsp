@@ -617,7 +617,7 @@ div.submitButton {
                                             評分: </label>
                                         <div class="col-lg inner">
                                             <form:select id="grade" path="grade" class='form:input-large'
-                                                style=" width : 15%;font-size:20px;height: auto">
+                                                style=" width : auto;font-size:20px;height: auto">
                                                 <%--                                                 <form:option --%>
                                                 <%--                                                     style="font-size : 10px" value="-1" label="請挑選" /> --%>
                                                 <form:option style="font-size : 20px" value="1" label="1" />
@@ -687,7 +687,7 @@ div.submitButton {
                                         <label class="control-label"
                                             style="padding: 0; font-size: 20px" for='grade'> 評分 :</label>
                                         <div class="col-lg inner" style="font-size: 20px">
-                                            <form:select id="grade" style=" width : 15%;font-size:20px;height: auto" path="grade">
+                                            <form:select id="grade" style=" width : auto;font-size:20px;height: auto" path="grade">
                                                 <%--                             <form:option value = "-1" label = "請挑選"/> --%>
                                                 <form:option value="1" style="text-align:left" label="1" />
                                                 <form:option value="2" label="2" />
