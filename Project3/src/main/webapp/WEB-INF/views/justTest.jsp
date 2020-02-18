@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-	pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -19,20 +19,20 @@
 				<table class="mdl-data-table mdl-js-data-table">
 					<thead>
 						<tr>
-							<th class="mdl-data-table__cell--non-numeric">�ӽнs��</th>
-							<th class="mdl-data-table__cell--non-numeric">�U�|</th>
-							<th class="mdl-data-table__cell--non-numeric">�_�l�ɶ�</th>
-							<th class="mdl-data-table__cell--non-numeric">�����ɶ�</th>
-							<th class="mdl-data-table__cell--non-numeric">�]�U�ت�</th>
-							<th class="mdl-data-table__cell--non-numeric">�����Ӹ`</th>
-							<th class="mdl-data-table__cell--non-numeric">�`�ɼ�</th>
-							<th class="mdl-data-table__cell--non-numeric">�`���B</th>
-							<th class="mdl-data-table__cell--non-numeric">�p���H</th>
-							<th class="mdl-data-table__cell--non-numeric">�s���q��</th>
-							<th class="mdl-data-table__cell--non-numeric">�q�l�l��</th>
-							<th class="mdl-data-table__cell--non-numeric">�ӽЪ��A</th>
-							<th class="mdl-data-table__cell--non-numeric">�I�ڪ��A</th>
-							<th class="mdl-data-table__cell--non-numeric">�e�X�ק���</th>
+							<th class="mdl-data-table__cell--non-numeric">申請編號</th>
+							<th class="mdl-data-table__cell--non-numeric">廳院</th>
+							<th class="mdl-data-table__cell--non-numeric">起始時間</th>
+							<th class="mdl-data-table__cell--non-numeric">結束時間</th>
+							<th class="mdl-data-table__cell--non-numeric">包廳目的</th>
+							<th class="mdl-data-table__cell--non-numeric">相關細節</th>
+							<th class="mdl-data-table__cell--non-numeric">總時數</th>
+							<th class="mdl-data-table__cell--non-numeric">總金額</th>
+							<th class="mdl-data-table__cell--non-numeric">聯絡人</th>
+							<th class="mdl-data-table__cell--non-numeric">連絡電話</th>
+							<th class="mdl-data-table__cell--non-numeric">電子郵件</th>
+							<th class="mdl-data-table__cell--non-numeric">申請狀態</th>
+							<th class="mdl-data-table__cell--non-numeric">付款狀態</th>
+							<th class="mdl-data-table__cell--non-numeric">送出修改資料</th>
 						</tr>
 					</thead>
 					<tbody>

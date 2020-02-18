@@ -63,6 +63,7 @@ public class RootAppConfig {
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
+		System.out.println(env.getProperty("spring.database.url"));
 		ds.setJdbcUrl(env.getProperty("spring.database.url"));
 		ds.setInitialPoolSize(ips);
 		ds.setMaxPoolSize(mps);

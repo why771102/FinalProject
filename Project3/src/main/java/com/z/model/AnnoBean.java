@@ -32,6 +32,7 @@ public class AnnoBean implements Serializable{
 	String startTime;
 	@Column(columnDefinition = "smalldatetime")
 	String endTime;
+	@Column(columnDefinition = "NVARCHAR(50)")
 	String title;
 	@Column(columnDefinition = "NVARCHAR(MAX)")
 	String content;
