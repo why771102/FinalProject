@@ -68,7 +68,7 @@
 
 		</div>
 		<hr>
-		<a href="">回公告列表</a>
+		<a href="<c:url value='/annos'/>">回公告列表</a>
 		<br>
 
 		<br>
