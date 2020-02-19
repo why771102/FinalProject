@@ -166,7 +166,7 @@ public class ProductSaleController {
 	//excel:psd
 	@PostMapping(value = "/productSaleDetail", produces ="application/vnd.ms-excel")
 	public String queryAllpseb1Excel(Model model, @RequestParam("exportExcel1")String psd) {
-		System.out.println("123321");
+//		System.out.println("123321");
 //		Gson gson = new Gson();
 //		String ps1 = gson.toJson(ps);
 //		System.out.println(ps1);

@@ -152,7 +152,7 @@
 
 	// timepicker
 	$(function() {
-		var start = moment().subtract(7, 'days');
+		var start = moment().subtract(6, 'days');
 		var end = moment();
 		function cb(start, end, label) {
 			$('#reportrange span').html(

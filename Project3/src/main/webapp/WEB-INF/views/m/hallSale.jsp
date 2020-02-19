@@ -179,7 +179,7 @@
 
 								// timepicker
 								$(function() {
-									var start = moment().subtract(7, 'days');
+									var start = moment().subtract(6, 'days');
 									var end = moment();
 									function cb(start, end, label) {
 										$('#timePicker span')
@@ -262,9 +262,7 @@
 																					1,
 																					'days'),
 																	moment()
-																			.subtract(
-																					1,
-																					'days') ],
+																			.subtract(1,'days') ],
 															'Last 7 Days' : [
 																	moment()
 																			.subtract(

@@ -265,7 +265,7 @@
 
 			// timepicker
 			$(function() {
-				var start = moment().subtract(7, 'days');
+				var start = moment().subtract(6, 'days');
 				var end = moment();
 				jQuery.noConflict();
 				function cb(start, end, label) {
