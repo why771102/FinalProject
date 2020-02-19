@@ -65,13 +65,13 @@ var Script = function () {
         },
         events: [
             {
-                title: 'All Day Event',
+                title: '李怡瑩',
                 start: new Date(y, m, 1)
             },
             {
-                title: 'Long Event',
-                start: new Date(y, m, d-5),
-                end: new Date(y, m, d-2)
+                title: '顏啟倫',
+                start: new Date(y, m, 1),
+                end: new Date(y, m, 4)
             },
             {
                 id: 999,
