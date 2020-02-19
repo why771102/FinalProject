@@ -51,15 +51,23 @@
 </jsp:include>
 </header>
   <!-- header -->
-   <!-- banner -->
-    <section class="dark-blue banner-featured" style="margin-top:64px; padding-bottom:0px;">
-        <div class="container">
-            <div class="ticket-sell">
-                <h3 class="font"> 熱映中電影</h3>
-            </div>
-        </div>
-    </section>
-    <!-- banner -->
+         <!-- carousel -->
+ <jsp:include page="carousel.jsp">
+     <jsp:param name="a" value="1" />
+    <jsp:param name="b" value="1" />
+</jsp:include>
+</header>
+   <!-- carousel -->
+  
+<!--    <!-- banner --> 
+<!--     <section class="dark-blue banner-featured" style="margin-top:64px; padding-bottom:0px;"> -->
+<!--         <div class="container"> -->
+<!--             <div class="ticket-sell"> -->
+<!--                 <h3 class="font"> 熱映中電影</h3> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </section> -->
+<!--     banner -->
     <!-- movies -->
 
 	
@@ -154,15 +162,23 @@
     
 
     <!-- movies -->
+  <section class="dark-blue">
+		<div class="container">
+			<div class="ready">
+				<h4>現在就立刻購買！</h4>
+				<p>想要有完美的視覺饗宴，精彩的電影體驗，還不立即登入購票~</p>
+				<a href="<c:url value='/movieIndex#booknow'/>" class="slider-btn">前往購票</a>
+			</div>
+		</div>
+	</section>
 
-
-       <!-- carousel -->
- <jsp:include page="carousel.jsp">
-     <jsp:param name="a" value="1" />
-    <jsp:param name="b" value="1" />
-</jsp:include>
-</header>
-   <!-- carousel -->
+<!--        carousel -->
+<%--  <jsp:include page="carousel.jsp"> --%>
+<%--      <jsp:param name="a" value="1" /> --%>
+<%--     <jsp:param name="b" value="1" /> --%>
+<%-- </jsp:include> --%>
+<!-- </header> -->
+<!--    <!-- carousel --> 
 
 
 
@@ -315,7 +331,7 @@
 								"</div>"+
 								"<div class='m-name'>"+
 									"<h3>"+a[i].movie.title+"</h3>"+
-									"<h4 class='movie-btn1>"+a[i].movie.genreBean.genre+"</h4>"+		
+									"<a href='' class='movie-btn1'>"+a[i].movie.genreBean.genre+"</a>"+		
 									"<a href='' class='movie-btn1'>"+a[i].movie.movieRatingBean.rating+"</a>"+
 								"</div>"+
 							"</div>"+

@@ -82,7 +82,7 @@
             .next {
               cursor: pointer;
               position: absolute;
-             top:280%;
+             top:40%;
               width: auto;
               padding: 16px;
               margin-top: -50px;

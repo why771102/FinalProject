@@ -118,7 +118,7 @@
       
       
       <div class="border-head">
-              <h3>班表</h3>
+              <h3>休假列表</h3>
             </div>
       
       
@@ -135,13 +135,13 @@
             </section>
           </aside>
           <aside class="col-lg-3 mt">
-            <h4><i></i> 員工清單</h4>
+            <h4><i></i></h4>
             <div id="external-events">
-              <div class="external-event label label-theme">七六</div>
-              <div class="external-event label label-success">Ally</div>
-              <div class="external-event label label-info">Mary</div>
-              <div class="external-event label label-warning">雅菁</div>
-              <div class="external-event label label-danger">Paul</div>
+<!--               <div class="external-event label label-theme">七六</div> -->
+<!--               <div class="external-event label label-success">Ally</div> -->
+<!--               <div class="external-event label label-info">Mary</div> -->
+<!--               <div class="external-event label label-warning">雅菁</div> -->
+<!--               <div class="external-event label label-danger">Paul</div> -->
 <!--               <div class="external-event label label-default">My Event 6</div> -->
 <!--               <div class="external-event label label-theme">My Event 7</div> -->
 <!--               <div class="external-event label label-info">My Event 8</div> -->

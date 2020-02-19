@@ -67,9 +67,10 @@
 							<div class="form-group">
 								<input type="text" id="name1" class="form-control"
 									placeholder="輸入顯示名稱...">
+									<input type="button" id="InsertName" class="btn btn-success" value="一鍵輸入">
 								<button id="sendName" class="btn btn-default" type="submit">確認</button>
-								<input type="button" id="close" class="btn btn-success"
-									value="結案">
+								
+								<input type="button" id="close" class="btn btn-success" value="結案">
 							</div>
 
 						</form>
@@ -183,6 +184,10 @@
 		
 		$("#hello").click(function() {
 			$("#message").val("歡迎使用76影城客服系統，敝姓李，很高興為您服務，請問有什麼需要協助的嗎？");
+		})
+		
+		$("#InsertName").click(function() {
+			$("#name1").val("客服人員1號");
 		})
 	</script>
 </body>
