@@ -1,5 +1,6 @@
 package com.m.controller;
 
+import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import com.a.model.SCOrdersBean;
 import com.a.model.ShowTimeHistoryBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import com.l.model.MOrderDetailBean;
 import com.l.model.ProductsBean;
 import com.m.model.HallSaleBean;
@@ -153,7 +155,9 @@ public class ProductSaleController {
 	@PostMapping(value = "/product/sale/productSale", produces ="application/vnd.ms-excel")
 	public String queryAllpsebExcel(Model model, @RequestParam("exportExcel")String ps) {
 		Type listType = new TypeToken<ArrayList<ProductSaleEarnBean>>(){}.getType();
-		List<ProductSaleEarnBean> psebList = new Gson().fromJson(ps, listType);
+		JsonReader reader = new JsonReader(new StringReader(ps));
+		reader.setLenient(true);
+		List<ProductSaleEarnBean> psebList = new Gson().fromJson(reader, listType);
 		model.addAttribute("psebList", psebList);
 		System.out.println("psebList==> " + psebList);
 	    return "product/sale/productSale";
