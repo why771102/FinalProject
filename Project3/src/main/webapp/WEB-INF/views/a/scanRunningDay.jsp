@@ -171,10 +171,10 @@
     <script>
 	//一鑑輸入
 	function getValue(){
-		alert("change");
+// 		alert("change");
 		
 		var release = document.getElementById("release");
-		    release.value = "2020-02-15";
+		    release.value = "2020-02-20";
 	
 		var runningDay = document.getElementById("runningDay");
 		    runningDay.value = "3";

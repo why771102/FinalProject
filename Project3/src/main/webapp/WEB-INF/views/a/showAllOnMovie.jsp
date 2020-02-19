@@ -15,7 +15,7 @@
 	crossorigin="anonymous"></script>
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	 
-<title>ShowComingSoonMovie</title>
+<title>ShowMovie</title>
   <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <!-- stylesheets -->
@@ -81,8 +81,9 @@
 					
 					<div class="m-name">
 						<h3>${run.movie.title}</h3>
-						<h4>${run.movie.genreBean.genre}</h4>
-						<h4>${run.movie.movieRatingBean.rating}</h4>
+						
+						<a href='' class='movie-btn1'>${run.movie.genreBean.genre}</a>
+						<a href='' class='movie-btn1'>${run.movie.movieRatingBean.rating}</a>
 						
 					</div>
 				</div>
@@ -314,9 +315,8 @@
 								"</div>"+
 								"<div class='m-name'>"+
 									"<h3>"+a[i].movie.title+"</h3>"+
-									"<h4>"+a[i].movie.genreBean.genre+"</h4>"+
-									"<a href='' class='movie-btn1'>"+a[i].movie.movieRatingBean.rating+"</a> <a href=''class='movie-btn1'>"+
-									"	Thriller</a> <a href='' class='movie-btn1'>Drama</a>"+
+									"<h4 class='movie-btn1>"+a[i].movie.genreBean.genre+"</h4>"+		
+									"<a href='' class='movie-btn1'>"+a[i].movie.movieRatingBean.rating+"</a>"+
 								"</div>"+
 							"</div>"+
 							"<form id='runForm"+a[i].runID+"'action='${pageContext.request.contextPath}/show/this/movie' method='post'>"+

@@ -257,7 +257,7 @@
     <script>
 	//一鑑輸入
 	function getValue(){
-		alert("change");
+// 		alert("change");
 		
 		var title= document.getElementById("title");
 		title.value = "小丑女大解放";

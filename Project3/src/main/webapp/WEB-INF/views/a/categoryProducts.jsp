@@ -325,6 +325,14 @@
             .w3-hover-opacity-off:hover{
             	opacity: 0.6;
             }
+            
+            #addToCart:hover{
+            	opacity:0.6;
+            	cursor: pointer;
+            }
+            select:hover{
+            	cursor: pointer;
+            }
         </style>
 
 </head>
