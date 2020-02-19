@@ -199,7 +199,7 @@
 					<div>
 						<!--                         修改處from line 22 to 26 -->
 					<img src='<c:url value='/getPicture/${run.movie.movieID}' />'
-						width="70%" height="100%">
+						width="70%" height="80%">
 					</div>
 					<div class="m-name">
 						<h3>${run.movie.title}</h3>
@@ -396,7 +396,7 @@
 							"<div>"+
                               //圖片
                                "<img src='<c:url value='/getPicture/"+a[i].movie.movieID+"' />'"+
-           						"width='70%' height='100%>" +
+           						"width='70%' height='80%>" +
 							"</div>"+
 							"<div class='m-name'>"+
 								"<h3>"+a[i].movie.title+"</h3>"+
