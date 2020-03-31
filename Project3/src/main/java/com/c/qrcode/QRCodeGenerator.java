@@ -17,7 +17,7 @@ public class QRCodeGenerator {
     	String text = "Dennis!!!";
         try {
             
-            qr.generateQRCodeImage(text, 350, 350, QR_CODE_IMAGE_PATH);
+            qr.generateQRCodeImage(text, 700, 700, QR_CODE_IMAGE_PATH);
         } catch (WriterException e) {
             System.out.println("Could not generate QR Code, WriterException :: " + e.getMessage());
         } catch (IOException e) {

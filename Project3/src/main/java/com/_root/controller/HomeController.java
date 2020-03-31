@@ -1,14 +1,20 @@
 package com._root.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.c.model.HallBean;
 import com.c.service.HallService;
 import com.c.service.impl.HallServiceImpl;
+import com.z.test.QRcode.C.QRCodeZServiceImpl;
 
 //範本
 @Controller
@@ -57,5 +63,19 @@ public class HomeController {
 	@RequestMapping("index-z")
 	public String indexz(Model model, HttpServletRequest req) {
 		return "index-z";
+	}
+	
+	@RequestMapping("qrcode")
+	@ResponseBody
+	public void qrcode(Model model, HttpServletRequest req,HttpServletResponse res) {
+		
+		QRCodeZServiceImpl qrcodeService = new QRCodeZServiceImpl();
+		String text = "Dennis!!!";
+		File a = new File("D:\\22.png");
+		File codeFile =new File("D:\\3.jpg");
+		String qrUrl = "https://www.youtube.com/";
+		String note = "李怡瑩";
+		qrcodeService.drawLogoQRCode(a, codeFile, qrUrl, note, res);
+
 	}
 }
